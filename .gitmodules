@@ -1,0 +1,3 @@
+[submodule "marseille2024"]
+	path = marseille2024
+	url = git@github.com:ASKabalan/quarto-template.git
