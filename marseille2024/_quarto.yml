@@ -1,2 +1,19 @@
 project:
+  type: website
   output-dir: .
+
+website:
+  title: "marseille2024"
+  navbar:
+    left:
+      - href: index.qmd
+
+format:
+  revealjs:
+    theme: css/custom.scss
+    incremental: false   
+    transition: slide
+    background-transition: slide
+
+
+

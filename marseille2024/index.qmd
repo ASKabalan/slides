@@ -2,12 +2,6 @@
 title: "Differentiable and distributed Particle-Mesh n-body simulations"
 
 author: "Wassim Kabalan"
-format:
-  revealjs:
-    theme: css/custom.scss
-    incremental: false   
-    transition: slide
-    background-transition: slide
 title-slide-attributes:
   data-background-image: "assets/lsst_bg.jpg"
   data-background-size: fill
