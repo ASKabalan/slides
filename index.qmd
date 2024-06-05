@@ -1,0 +1,9 @@
+---
+title: "Wassim's slides"
+author: "Wassim Kabalan"
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+---
