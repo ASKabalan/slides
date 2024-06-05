@@ -8,12 +8,5 @@ website:
     left:
       - href: index.qmd
 
-format:
-  revealjs:
-    theme: css/custom.scss
-    incremental: false   
-    transition: slide
-    background-transition: slide
-
 
 
