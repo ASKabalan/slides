@@ -1,3 +1,5 @@
-*/.quarto/
 /.quarto/
 /_site/
+site_libs
+search.json
+index.html

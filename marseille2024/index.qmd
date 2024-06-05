@@ -14,113 +14,32 @@ title-slide-attributes:
   data-background-opacity: "0.5"
 ---
 
-## the $\Lambda$CDM view of the universe
-
-:::: {.columns}
-
-::: {.column width="60%"}
-
-::: {.fragment}
-
-<div style="text-align: center;">
-  ![lambda CMD model](assets/LCDM.png)
-</div>
-
-:::
-
-:::
-
-::: {.column width="40%"}
-
-::: {.fragment}
-
-<br />
-<br />
-
-### Cosmological Parameters:
-
-- Physical baryon density $\Omega_b$
-- Physical dark matter density $\Omega_{cdm}$
-- The age of the universe $t_0$
-- Scalar spectral index $n_s$
-- Curvature fluctuation amplitude $A_s$
-- Reionization optical depth $\tau$
-
-:::
-:::
-
-::::
-
----
-
-## Cosmological probes {background-image="assets/wl.jpeg"}
-
-
-::: {.fragment}
-
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-
-:::{.solutionbox}
-
-::::{.solutionbox-header}
-
-Weak Gravitaional Lensing
-
-:::::
-
-::::{.solutionbox-body} 
-
-$$ \boxed{e = \gamma + e_i} $$
- ➢  &emsp;With $\gamma$ representing the shear and $e_i$ representing the intrinsic ellipticity, distributed as $\mathcal{N}(0, I)$\
- ➢  &emsp;We use the shear as as probe of dark matter distribution
-
-::::
-
-
-:::
-:::
-
----
-
 
 ## Traditional cosmological inference
 
+<br />
+
+### Bayesian inference in cosmology
+
+- We need to infer the cosmological parameters $\theta$ that generated an observartion $x$
+
+<font size="4">$$p(\theta | x ) \propto \underbrace{p(x | \theta)}_{\mathrm{likelihood}} \ \underbrace{p(\theta)}_{\mathrm{prior}}$$</font>
+
+
 :::: {.columns}
 
 ::: {.column width="40%"}
 
-::: {.fragment .fade-in-then-out fragment-index=1}
-![](assets/alonso-g1.png){.absolute top=50 left=0 width="400"}
+::: {.fragment fragment-index=1 .fade-in-then-out }
 
-![](assets/alonso-g2.png){.absolute top=250 left=0 width="400"}
-:::
+![](assets/hsc-corr-function.png){.absolute top=180 left=25 width="300"}
 
-::: {.fragment .fade-in-then-out fragment-index=1}
-::: {.fragment .fade-in-then-out fragment-index=3}
-![](assets/hsc_constraints.png){.absolute top=75 left=25 width="350"}
-(Hikage et al. 2018)
-:::
 :::
 
-::: {.fragment .fade-in-then-out fragment-index=2}
-![](assets/hsc-corr-function.png){.absolute top=75 left=25 width="300"}
-:::
+::: {.fragment fragment-index=2}
 
-::: {.fragment fragment-index=3}
-![](assets/hsc_constraints.png){.absolute top=75 left=25 width="350"}
-:::
+![](assets/hsc_constraints.png){.absolute top=200 left=25 width="350"}
 
-::: {.fragment fragment-index=1}
-::: aside
-(Hikage et al. 2018)
-:::
 :::
 
 :::
@@ -128,30 +47,22 @@ $$ \boxed{e = \gamma + e_i} $$
 ::: {.column width="60%"}
 
 ::: {.fragment fragment-index=1}
-<br />
-<br />
- ➢  &emsp;Measure the ellipticity $e = \gamma + e_i$ of all galaxies
-:::
-
-::: {.fragment fragment-index=2}
-<br />
 <br />
  ➢  &emsp;Compute **summary statistics** based on the 2-point correlation function of the shear field
 :::
 
-::: {.fragment fragment-index=3}
-<br />
+::: {.fragment fragment-index=2}
 <br />
  ➢  &emsp;Run an **MCMC** chain to recover the posterior distribution of the cosmological parameters, using an **analytical likelihood**
-  $$p(\theta | x ) \propto \underbrace{p(x | \theta)}_{\mathrm{likelihood}} \ \underbrace{p(\theta)}_{\mathrm{prior}}$$
-
 :::
 
 :::
 
 ::::
 
-::: {.fragment fragment-index=4}
+<br />
+
+::: {.fragment fragment-index=3}
 
 :::{.solutionbox}
 
@@ -160,8 +71,8 @@ Limitations
 ::::
 
 ::::{.solutionbox-body}
-- Simple summary statistics works well for Gaussian fields
-- The need to compute from theory the likelihood for simple summary statistics
+- Simple summary statistics assume Gaussianity
+- The need to compute an analytical likelihood
 ::::
 
 :::
@@ -170,9 +81,10 @@ Limitations
 
 ---
 
-### Beyond 2 point statistics : Forward modeling
+### Beyond 2 point statistics : Full field inference
 
 <br />
+
 
 ![](assets/simu.png){.nostretch fig-align="center" width="600px"}
 
@@ -208,30 +120,111 @@ Possible solutions
 
 :::
 
+::: {.fragment}
+
+➢  &emsp; We need a fast, differentiable and precise cosmological simulations
+
+:::
 ---
 
-### Forward Models in Cosmology
+### Fast Particle-mesh simulations
 
 <br />
 <br />
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+#### Numerical scheme
+
+::: {.fragment fragment-index=1}
+
+➢  &emsp;Interpolate particles on a grid to estimate mass density
+
+:::
+
+::: {.fragment fragment-index=2}
+
+➢  &emsp;Estimate gravitational force on grid points by FFT
+
+:::
+
+::: {.fragment fragment-index=3}
+
+➢  &emsp;Interpolate forces back on particles
+
+:::
+
+::: {.fragment fragment-index=4}
+
+➢  &emsp;Update particle velocity and positions, and iterate 
+
+:::
+
+::: 
+
+::: {.column width="50%"}
 
 ::: {style="text-align: center;"}
 
-::: {.columns}
 
-::: {.column width="25%" .fragment fragment-index=1}
-![Initial Conditions](assets/field-init.png )
-:::
-::: {.column width="25%" .fragment fragment-index=2}
-![Final Dark Matter](assets/field-init.png)
+::: {.fragment fragment-index=1 .fade-in-then-out}
+
+![](assets/particle_positions_0.png){.absolute top=25 right=75 width=300px height=300px}
+[Cloud in cell interpolation]{.absolute top=320 right=110}
+![](assets/cic.png){.absolute top=375 right=175 width=100px}
+
 
 :::
-::: {.column width="25%" .fragment fragment-index=3}
-![Linear field](assets/field-init.png)
+
+
+::: {.fragment fragment-index=2 .fade-in-then-out}
+
+![](assets/particle_density.png){.absolute top=25 right=75 width=300px height=300px}
+
+
+[$\begin{array}{c}{{\nabla^{2}\phi=-4\pi G\rho}}\\\\ {{f(\vec{k})=i\vec{k}k^{-2}\rho(\vec{k})}}\end{array}$]{.absolute top=350 right=135}
+
+::: 
+
+::: {.fragment fragment-index=3 .fade-in-then-out}
+
+![](assets/particle_positions_0.png){.absolute top=25 right=75 width=300px height=300px}
+
+[$\begin{array}{c}{{\nabla^{2}\phi=-4\pi G\rho}}\\\\ {{f(\vec{k})=i\vec{k}k^{-2}\rho(\vec{k})}}\end{array}$]{.absolute top=350 right=135}
+
+
 :::
-::: {.column width="25%" .fragment fragment-index=3}
-![Linear field](assets/field-init.png)
+::: {.fragment fragment-index=4}
+
+![](assets/particle_positions_1.png){.absolute top=25 right=75 width=300px height=300px}
+
 :::
+
+:::
+
+
+::: 
+
+:::: 
+
+::: {.fragment fragment-index=5 }
+
+<br />
+<br />
+<br />
+
+
+:::{.solutionbox}
+
+::::{.solutionbox-body}
+
+- Fast and simple, at the cost of approximating short range interactions. 
+- It is differentiable and can run on GPUs
+- It is essentially a series of FFTs and interpolations
+
+::::
 
 :::
 
@@ -239,62 +232,37 @@ Possible solutions
 
 ---
 
-### Cosmological simulations WIP
+### JAX : Automatic differentiation and Hardware acceleration
 
-![](assets/image-9.png)
+example of numpy code and grad
 
 ---
 
-### Fast Particle-Mesh WIP
+### JaxPM : A differentiable Particle-Mesh simulation
 
-Having a full n body simulation is very expensive, so we use a particle mesh simulation
+example of JAXPM code
 
-The idea is to put particles in a grid and evolve the particles in the grid
+---
 
-you lose some precision on the small scales, but on the large scale it is pretty accurate.
-
-Numerical cheme
-
-Cloud in Cell binning
-
-
-![alt text](assets/image-10.png)
-
-
-![alt text](assets/image-11.png)
-
-when we have the forces on the grid point we interpolate the forces on the particles
-
-![alt text](assets/image-12.png)
+# Is everything solved?
 
 ---
 
 ### Where does LSST fit into this WIP
 
-Rubin observatory will provide us with a 15 TB of data per night for 10 years
+Rubin observatory will provide 18,000 square degrees, observed once every few days (few TBs of data per night)
 
 say that we need to make a cube of big part of the volume of the survey.
-
-Picture of a 3D force vector field
 
 High end GPUs have a reached 80 GBs A100 next generation H100
 
 ---
 
-### Problems to consider WIP
+### Distributed Particle-Mesh simulations
 
- - Diffrentability
- - Fast GPU
- - Distribution of the data
- - Multi Host distribution
+only operation that requires communication is the FFT
 
-JAX 
-
----
-
-### JAXDECOMP WIP
-
-example of numpy code and grad
+#### Jaxdecomp
 
 we can also run multiple devices in a single controlle set up
 
@@ -310,7 +278,7 @@ pmwd 512^3
 
 ---
 
-### JAXPM WIP
+### JAXPM ewample
 
 built on top of JAXDECOMP
 
@@ -326,13 +294,6 @@ then the final nbody simulation (use any differential equation solver like diffr
 
 Finally we put the final grid back to the particles
 
----
-
-### AutoDiff capabilities WIP
-
-We can simply differentiate the entire simulation using jax.grad
-
-We can also interface it with machine learning frameworks like flax for the dark matter halo painting and galaxy painting
 
 ---
 
