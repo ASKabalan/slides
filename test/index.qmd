@@ -1,0 +1,9 @@
+---
+title: "Test"
+
+author: "Wassim Kabalan"
+title-slide-attributes:
+  data-background-image: "assets/lsst_bg.jpg"
+  data-background-size: fill
+  data-background-opacity: "0.5"
+---
