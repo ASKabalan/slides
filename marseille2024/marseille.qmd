@@ -1,0 +1,346 @@
+---
+title: "Differentiable and distributed Particle-Mesh n-body simulations"
+
+author: "Wassim Kabalan"
+format:
+  revealjs:
+    theme: css/custom.scss
+    incremental: false   
+    transition: slide
+    background-transition: slide
+title-slide-attributes:
+  data-background-image: "assets/lsst_bg.jpg"
+  data-background-size: fill
+  data-background-opacity: "0.5"
+---
+
+## the $\Lambda$CDM view of the universe
+
+:::: {.columns}
+
+::: {.column width="60%"}
+
+::: {.fragment}
+
+<div style="text-align: center;">
+  ![lambda CMD model](assets/LCDM.png)
+</div>
+
+:::
+
+:::
+
+::: {.column width="40%"}
+
+::: {.fragment}
+
+<br />
+<br />
+
+### Cosmological Parameters:
+
+- Physical baryon density $\Omega_b$
+- Physical dark matter density $\Omega_{cdm}$
+- The age of the universe $t_0$
+- Scalar spectral index $n_s$
+- Curvature fluctuation amplitude $A_s$
+- Reionization optical depth $\tau$
+
+:::
+:::
+
+::::
+
+---
+
+## Cosmological probes {background-image="assets/wl.jpeg"}
+
+
+::: {.fragment}
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+:::{.solutionbox}
+
+::::{.solutionbox-header}
+
+Weak Gravitaional Lensing
+
+:::::
+
+::::{.solutionbox-body} 
+
+$$ \boxed{e = \gamma + e_i} $$
+ ➢  &emsp;With $\gamma$ representing the shear and $e_i$ representing the intrinsic ellipticity, distributed as $\mathcal{N}(0, I)$\
+ ➢  &emsp;We use the shear as as probe of dark matter distribution
+
+::::
+
+
+:::
+:::
+
+---
+
+
+## Traditional cosmological inference
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+::: {.fragment .fade-in-then-out fragment-index=1}
+![](assets/alonso-g1.png){.absolute top=50 left=0 width="400"}
+
+![](assets/alonso-g2.png){.absolute top=250 left=0 width="400"}
+:::
+
+::: {.fragment .fade-in-then-out fragment-index=1}
+::: {.fragment .fade-in-then-out fragment-index=3}
+![](assets/hsc_constraints.png){.absolute top=75 left=25 width="350"}
+(Hikage et al. 2018)
+:::
+:::
+
+::: {.fragment .fade-in-then-out fragment-index=2}
+![](assets/hsc-corr-function.png){.absolute top=75 left=25 width="300"}
+:::
+
+::: {.fragment fragment-index=3}
+![](assets/hsc_constraints.png){.absolute top=75 left=25 width="350"}
+:::
+
+::: {.fragment fragment-index=1}
+::: aside
+(Hikage et al. 2018)
+:::
+:::
+
+:::
+
+::: {.column width="60%"}
+
+::: {.fragment fragment-index=1}
+<br />
+<br />
+ ➢  &emsp;Measure the ellipticity $e = \gamma + e_i$ of all galaxies
+:::
+
+::: {.fragment fragment-index=2}
+<br />
+<br />
+ ➢  &emsp;Compute **summary statistics** based on the 2-point correlation function of the shear field
+:::
+
+::: {.fragment fragment-index=3}
+<br />
+<br />
+ ➢  &emsp;Run an **MCMC** chain to recover the posterior distribution of the cosmological parameters, using an **analytical likelihood**
+  $$p(\theta | x ) \propto \underbrace{p(x | \theta)}_{\mathrm{likelihood}} \ \underbrace{p(\theta)}_{\mathrm{prior}}$$
+
+:::
+
+:::
+
+::::
+
+::: {.fragment fragment-index=4}
+
+:::{.solutionbox}
+
+::::{.solutionbox-header}
+Limitations
+::::
+
+::::{.solutionbox-body}
+- Simple summary statistics works well for Gaussian fields
+- The need to compute from theory the likelihood for simple summary statistics
+::::
+
+:::
+
+:::
+
+---
+
+### Beyond 2 point statistics : Forward modeling
+
+<br />
+
+![](assets/simu.png){.nostretch fig-align="center" width="600px"}
+
+
+::: {.fragment}
+
+➕  &emsp;No longer need to compute the likelihood analytically
+<br />
+<br />
+➖ &emsp;We need to infer the joint posterior $p(\theta, z | x)$ before marginalization to get $p(\theta | x) = \int p(\theta, z | x) \, dz$
+
+::: 
+
+::: {.fragment}
+
+:::{.solutionbox}
+
+
+::::{.solutionbox-header}
+Possible solutions
+::::
+
+::::{.solutionbox-body}
+- **Hamiltonian Monte Carlo**
+- **Variational Inference**
+- **Dimensionality reduction using Fisher Information Matrix**
+
+*All require a differentiable fast forward model*
+
+::::
+
+:::
+
+:::
+
+---
+
+### Forward Models in Cosmology
+
+<br />
+<br />
+
+::: {style="text-align: center;"}
+
+::: {.columns}
+
+::: {.column width="25%" .fragment fragment-index=1}
+![Initial Conditions](assets/field-init.png )
+:::
+::: {.column width="25%" .fragment fragment-index=2}
+![Final Dark Matter](assets/field-init.png)
+
+:::
+::: {.column width="25%" .fragment fragment-index=3}
+![Linear field](assets/field-init.png)
+:::
+::: {.column width="25%" .fragment fragment-index=3}
+![Linear field](assets/field-init.png)
+:::
+
+:::
+
+:::
+
+---
+
+### Cosmological simulations WIP
+
+![](assets/image-9.png)
+
+---
+
+### Fast Particle-Mesh WIP
+
+Having a full n body simulation is very expensive, so we use a particle mesh simulation
+
+The idea is to put particles in a grid and evolve the particles in the grid
+
+you lose some precision on the small scales, but on the large scale it is pretty accurate.
+
+Numerical cheme
+
+Cloud in Cell binning
+
+
+![alt text](assets/image-10.png)
+
+
+![alt text](assets/image-11.png)
+
+when we have the forces on the grid point we interpolate the forces on the particles
+
+![alt text](assets/image-12.png)
+
+---
+
+### Where does LSST fit into this WIP
+
+Rubin observatory will provide us with a 15 TB of data per night for 10 years
+
+say that we need to make a cube of big part of the volume of the survey.
+
+Picture of a 3D force vector field
+
+High end GPUs have a reached 80 GBs A100 next generation H100
+
+---
+
+### Problems to consider WIP
+
+ - Diffrentability
+ - Fast GPU
+ - Distribution of the data
+ - Multi Host distribution
+
+JAX 
+
+---
+
+### JAXDECOMP WIP
+
+example of numpy code and grad
+
+we can also run multiple devices in a single controlle set up
+
+80 w=x 80
+
+Differentiable multi host distributed n body simulation that runs on GPUs
+
+Related work
+
+FastPM
+Poqueres nbody 64^3
+pmwd 512^3
+
+---
+
+### JAXPM WIP
+
+built on top of JAXDECOMP
+
+example code of JAXPM
+
+Three steps
+
+Generate the linear field
+
+then LPT simulation 
+
+then the final nbody simulation (use any differential equation solver like diffrax)
+
+Finally we put the final grid back to the particles
+
+---
+
+### AutoDiff capabilities WIP
+
+We can simply differentiate the entire simulation using jax.grad
+
+We can also interface it with machine learning frameworks like flax for the dark matter halo painting and galaxy painting
+
+---
+
+### Benchmark  WIP
+
+
+
+### Animation WIP
+
+Unique solutions : no, two particles crossing each other yoy can't tell which one is which
+

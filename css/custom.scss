@@ -1,0 +1,97 @@
+/*-- scss:defaults --*/
+
+$body-bg: #000;  // Background color set to black
+$body-color: #fff;  // Text color set to white
+$link-color: #42affa;  // Link color remains unchanged
+$body-font-size: 20px;  // Adjust this value to make the font size smaller or larger
+
+/*-- scss:rules --*/
+
+.reveal {
+  background-color: $body-bg;
+  color: $body-color;
+  font-size: $body-font-size;  // Set the body font size
+
+  .slides {
+    .slide {
+      color: $body-color;
+
+      /* Customizing blockquotes */
+      blockquote {
+        border-left: 3px solid lighten($body-color, 20%);
+        padding-left: 0.5em;
+        color: lighten($body-color, 40%);
+      }
+    }
+  }
+
+
+  /* Customizing links */
+  a {
+    color: $link-color;
+
+    &:hover {
+      color: lighten($link-color, 20%);
+    }
+  }
+}
+
+.solutionbox {
+  margin-top: 1em;
+  margin-bottom: 1em;  
+  border-radius: .50rem;
+  border-left: solid 0.8px silver;
+  border-right: solid 0.8px silver;
+  border-top: solid 0.8px #3e0145;
+  border-bottom: solid 0.8px silver;
+  background-color: black;
+  border-left-color: #3e0145 !important;
+  border-right-color: #3e0145 !important;
+}
+
+.solutionbox-icon {
+  height: 0.9rem;
+  width: 0.9rem;
+  display: inline-block;
+  content: "";
+  background-repeat: no-repeat;
+  background-size: 0.9rem 0.9rem;
+  margin-top: .5rem;
+  padding-right: 1.25rem;
+  background-image: url('screwdriver-wrench-solid.png');
+}
+
+.solutionbox-header {
+  //margin-top: 0.5em;
+  vertical-align: middle;
+  text-align: center;
+  margin-bottom: 0.5em;
+  border-bottom: none;
+  font-weight: 600;
+  opacity: 100%;
+  font-size: 0.9rem;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  display: flex;
+  background-color: #3e0145;
+  height: 2em;
+  overflow: hidden;
+  align-items: center;  // Align items vertically in the center
+  justify-content: center;  // Align items horizontally in the center
+}
+
+.solutionbox-header p {
+  padding-top: 0.2em;
+}
+
+.solutionbox-body {
+  font-size: 0.9rem;
+  font-weight: 400;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+.solutionbox-body > :last-child {
+  padding-bottom: 0.5rem;
+  margin-bottom: 0;
+}
