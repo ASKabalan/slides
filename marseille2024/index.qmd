@@ -4,10 +4,12 @@ title: "Differentiable and distributed Particle-Mesh n-body simulations"
 author: "Wassim Kabalan"
 format:
   revealjs:
-    theme: css/custom.scss
+    theme: [default , css/custom.scss]
     incremental: false   
     transition: slide
     background-transition: slide
+
+code-block-border-left: "#31BAE9"
 title-slide-attributes:
   data-background-image: "assets/lsst_bg.jpg"
   data-background-size: fill
@@ -125,6 +127,7 @@ Possible solutions
 ➢  &emsp; We need a fast, differentiable and precise cosmological simulations
 
 :::
+
 ---
 
 ### Fast Particle-mesh simulations
@@ -171,9 +174,7 @@ Possible solutions
 
 ::: {.fragment fragment-index=1 .fade-in-then-out}
 
-![](assets/particle_positions_0.png){.absolute top=25 right=75 width=300px height=300px}
-[Cloud in cell interpolation]{.absolute top=320 right=110}
-![](assets/cic.png){.absolute top=375 right=175 width=100px}
+![](assets/FastPM_Init.gif){.absolute top=50 left=400 width="800"}
 
 
 :::
@@ -181,24 +182,18 @@ Possible solutions
 
 ::: {.fragment fragment-index=2 .fade-in-then-out}
 
-![](assets/particle_density.png){.absolute top=25 right=75 width=300px height=300px}
+![](assets/FastPM_LPT.gif){.absolute top=50 left=400 width="800"}
 
 
-[$\begin{array}{c}{{\nabla^{2}\phi=-4\pi G\rho}}\\\\ {{f(\vec{k})=i\vec{k}k^{-2}\rho(\vec{k})}}\end{array}$]{.absolute top=350 right=135}
+[$\begin{array}{c}{{\nabla^{2}\phi=-4\pi G\rho}}\\\\ {{f(\vec{k})=i\vec{k}k^{-2}\rho(\vec{k})}}\end{array}$]{.absolute top=500 right=160}
 
 ::: 
 
-::: {.fragment fragment-index=3 .fade-in-then-out}
+::: {.fragment fragment-index=3}
 
-![](assets/particle_positions_0.png){.absolute top=25 right=75 width=300px height=300px}
-
-[$\begin{array}{c}{{\nabla^{2}\phi=-4\pi G\rho}}\\\\ {{f(\vec{k})=i\vec{k}k^{-2}\rho(\vec{k})}}\end{array}$]{.absolute top=350 right=135}
+![](assets/FastPM_ODE.gif){.absolute top=50 left=400 width="800"}
 
 
-:::
-::: {.fragment fragment-index=4}
-
-![](assets/particle_positions_1.png){.absolute top=25 right=75 width=300px height=300px}
 
 :::
 
@@ -214,6 +209,9 @@ Possible solutions
 <br />
 <br />
 <br />
+<br />
+<br />
+<br />
 
 
 :::{.solutionbox}
@@ -221,8 +219,8 @@ Possible solutions
 ::::{.solutionbox-body}
 
 - Fast and simple, at the cost of approximating short range interactions. 
-- It is differentiable and can run on GPUs
 - It is essentially a series of FFTs and interpolations
+- It is differentiable and can run on GPUs
 
 ::::
 
@@ -232,76 +230,511 @@ Possible solutions
 
 ---
 
-### JAX : Automatic differentiation and Hardware acceleration
+## JAX : Automatic differentiation and Hardware acceleration {auto-animate="true"}
 
-example of numpy code and grad
+![](assets/JaxLogo.png){.absolute top=60 right=25 width=200px}
 
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+``` python
+import numpy as np
+
+
+def multiply_and_add(a, b, c):
+    return np.dot(a, b) + c
+
+
+a, b, c = np.random.normal(size=(3, 32, 32))
+result = multiply_and_add(a, b, c)
+```
+<br />
+
+::: {.fragment fragment-index=1 .fade-in-then-out }
+
+``` python
+import jax
+import jax.numpy as jnp
+
+
+def multiply_and_add(a, b, c):
+    return jnp.dot(a, b) + c
+
+
+key = jax.random.PRNGKey(0)
+a, b, c = jax.random.normal(key, (3, 32, 32))
+
+result = multiply_and_add(a, b, c) 
+
+```
+
+::: 
+
+
+## JAX : Automatic differentiation and Hardware acceleration {auto-animate="true"}
+
+![](assets/JaxLogo.png){.absolute top=60 right=25 width=200px}
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
+``` python
+import jax
+import jax.numpy as jnp
+
+
+def multiply_and_add(a, b, c):
+    return jnp.dot(a, b) + c
+
+
+key = jax.random.PRNGKey(0)
+a, b, c = jax.random.normal(key, (3, 32, 32))
+
+result = multiply_and_add(a, b, c) 
+
+```
+
+## JAX : Automatic differentiation and Hardware acceleration {auto-animate="true"}
+
+![](assets/JaxLogo.png){.absolute top=60 right=25 width=200px}
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
+``` python
+import jax
+import jax.numpy as jnp
+
+@jax.jit
+def multiply_and_add(a, b, c):
+    return jnp.dot(a, b) + c
+
+
+key = jax.random.PRNGKey(0)
+a, b, c = jax.random.normal(key, (3, 32, 32))
+
+result = multiply_and_add(a, b, c) 
+gradient = jax.grad(multiply_and_add)(a, b, c)
+
+```
+
+<br />
+<br />
+
+:::{.solutionbox}
+
+::::{.solutionbox-header}
+
+JAX : Numpy + Autograd + GPU
+
+::::
+
+::::{.solutionbox-body}
+
+ - <span style="color:violet;">jax.grad</span> uses automatic differentiation to compute the gradient of the function
+ - <span style="color:violet;">jax.jit</span> compiles the function to run on GPUs
+
+::::
+
+:::
 ---
 
 ### JaxPM : A differentiable Particle-Mesh simulation
 
-example of JAXPM code
+#### FastPM simulation in a few lines of code
+
+<p style="display: flex; align-items: center; position: absolute; top: 10px; left: 700px;">
+  <img src="assets/github_logo.png" alt="GitHub Logo" style="width: 5%; margin-right: 10px;">
+  <a href="https://github.com/DifferentiableUniverseInitiative/JaxPM">DifferentiableUniverseInitiative/JaxPM</a>
+</p>
+
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+<div style="font-size: 85%">
+
+<div style="position: absolute; top: 100px; left: 0px;">
+
+```{.python }
+mesh_shape = [64, 64, 64]
+box_size = [64., 64., 64.]
+snapshots = jnp.linspace(0.1, 1., 2)
+
+@jax.jit
+def run_simulation(omega_c, sigma8):
+    # Create a small function to generate the matter power spectrum
+    k = jnp.logspace(-4, 1, 128)
+    pk = jc.power.linear_matter_power(
+        jc.Planck15(Omega_c=omega_c, sigma8=sigma8), k)
+    pk_fn = lambda x: jc.scipy.interpolate.interp(x.reshape([-1]), k, pk
+                                                  ).reshape(x.shape)
+
+    # Create initial conditions
+    initial_conditions = linear_field(mesh_shape,
+                                      box_size,
+                                      pk_fn,
+                                      seed=jax.random.PRNGKey(0))
+
+    # Create particles
+    particles = jnp.stack(jnp.meshgrid(*[jnp.arange(s) for s in mesh_shape]),
+                          axis=-1).reshape([-1, 3])
+
+    cosmo = jc.Planck15(Omega_c=omega_c, sigma8=sigma8)
+
+    # Initial displacement
+    dx, p, f = lpt(cosmo, initial_conditions, particles, 0.1)
+    field = dx + particles
+
+    # Evolve the simulation forward
+    res = odeint(make_ode_fn(mesh_shape), [particles + dx, p],
+                 snapshots,
+                 cosmo,
+                 rtol=1e-5,
+                 atol=1e-5)
+
+    # Return the simulation volume at requested
+    return field, res, initial_conditions
+
+field, res, initial_conditions = run_simulation(0.25, 0.8)
+
+```
+</div>
+
+</div>
+
+:::
+
+::: {.column width="50%"}
+
+::: {.fragment fragment-index=1} 
+
+
+
+![](assets/FastPM_ODE3D.gif){.absolute top=50 left=400 width="900"}
+
+:::
+
+:::
+
+::::
+
+::: {.fragment fragment-index=7} 
+
+
+[***Is everything solved ?***]{.absolute top=650 left=100}
+
+::: 
 
 ---
 
-# Is everything solved?
+### Fast Particle-mesh scaling
+
+#### Current FastPM implementation
+
+:::aside
+
+
+:::
+
+
+➢  &emsp;(Poqueres et al. 2021) : $64^3$ mesh size, on a 1000 Mpc/h box
+
+➢  &emsp;(Li et al. 2022) : $512^3$ mesh size, on a 1000 Mpc/h box using [pmwd](https://github.com/eelregit/pmwd)
+
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+::: {.fragment fragment-index=1 .fade-in-then-out}
+
+512 image
+
+::: 
+
+::: {.fragment fragment-index=2 .fade-in-then-out}
+
+256 image
+
+::: 
+
+::: {.fragment fragment-index=3 .fade-in-then-out}
+
+128 image
+
+::: 
+
+::: {.fragment fragment-index=4 .fade-in-then-out}
+
+64 image
+
+::: 
+
+::: {.fragment fragment-index=5 .fade-in-then-out}
+
+512 PowerSpec
+
+::: 
+
+::: {.fragment fragment-index=6 .fade-in-then-out}
+
+256 PowerSpec
+
+::: 
+
+::: {.fragment fragment-index=7 .fade-in-then-out}
+
+128 PowerSpec
+
+::: 
+
+::: {.fragment fragment-index=8}
+
+64 PowerSpec
+
+::: 
+
+::: 
+
+::: {.column width="50%"}
+
+::: {.fragment fragment-index=1 .fade-in-then-out}
+
+
+512 image
+
+::: 
+
+::: {.fragment fragment-index=2 .fade-in-then-out}
+
+256 image
+
+::: 
+
+::: {.fragment fragment-index=3 .fade-in-then-out}
+
+128 image
+
+::: 
+
+::: {.fragment fragment-index=4 .fade-in-then-out}
+
+64 image
+
+::: 
+
+::: {.fragment fragment-index=5 .fade-in-then-out}
+
+
+512 image
+
+::: 
+
+::: {.fragment fragment-index=6 .fade-in-then-out}
+
+256 image
+
+::: 
+
+::: {.fragment fragment-index=7 .fade-in-then-out}
+
+128 image
+
+::: 
+
+::: {.fragment fragment-index=8}
+
+64 image
+
+::: 
+
+
+::: 
+
+::::
+
+::: {.fragment fragment-index=9}
+
+:::{.solutionbox}
+
+::::{.solutionbox-header}
+
+Scaling
+
+::::
+
+::::{.solutionbox-body}
+
+We need a fast, differentiable and <span style="color:violet;">distributed</span> Particle-Mesh simulation
+
+::::
+
+::: 
+
+::: 
+
+
 
 ---
 
-### Where does LSST fit into this WIP
+### Scaling on modern hardware
 
-Rubin observatory will provide 18,000 square degrees, observed once every few days (few TBs of data per night)
+#### Size of a FastPM simulation
 
-say that we need to make a cube of big part of the volume of the survey.
+::: {fragment .fragment-index-1}
 
-High end GPUs have a reached 80 GBs A100 next generation H100
+image of vector field
+
+:::
+
+
+:::: {.columns}
+
+
+
+::: {fragment .fragment-index-2}
+
+::: {.column width="50%"}
+
+plot of GPUs memory per architecture
+
+:::
+
+::: {.column width="50%"}
+
+plot of data size per simulation
+
+:::
+
+:::
+
+:::: 
+
+:::: {.columns}
+
+::: {fragment .fragment-index-3}
+
+::: {.column width="33%"}
+
+Single GPU 80 GB
+
+:::
+
+::: {.column width="33%"}
+
+Single Node 8x80 GB
+
+:::
+
+::: {.column width="33%"}
+
+Multi node infinite
+
+:::
+
+:::
+
+:::: 
+
 
 ---
 
-### Distributed Particle-Mesh simulations
+### Distributed Fast Fourier Transform
 
-only operation that requires communication is the FFT
+➢  &emsp;only operation that requires communication is the FFT
 
 #### Jaxdecomp
 
-we can also run multiple devices in a single controlle set up
+<p style="display: flex; align-items: center; position: absolute; top: 10px; left: 700px;">
+  <img src="assets/github_logo.png" alt="GitHub Logo" style="width: 5%; margin-right: 10px;">
+  <a href="https://github.com/DifferentiableUniverseInitiative/jaxDecomp">DifferentiableUniverseInitiative/jaxDecomp</a>
+</p>
 
-80 w=x 80
 
-Differentiable multi host distributed n body simulation that runs on GPUs
+:::{.fragment fragment-index=1}
 
-Related work
 
-FastPM
-Poqueres nbody 64^3
-pmwd 512^3
+add animation of the decomposition
 
----
+:::
 
-### JAXPM ewample
 
-built on top of JAXDECOMP
+:::{.fragment fragment-index=2}
 
-example code of JAXPM
 
-Three steps
+add plots of scallig
 
-Generate the linear field
+:::
 
-then LPT simulation 
+:::{.fragment fragment-index=3}
 
-then the final nbody simulation (use any differential equation solver like diffrax)
 
-Finally we put the final grid back to the particles
+jaxDecomp is also provided as a standalone library
+
+:::
 
 
 ---
 
-### Benchmark  WIP
+### Distributed JaxPM Particle-Mesh simulations 
 
 
+:::{.fragment fragment-index=1}
+
+➢  &emsp;Built on top of jaxDecomp
+
+:::
+
+:::{.fragment fragment-index=2}
+
+➢  &emsp;Supports diffirentiable multi-host (multi-node) simulations
+
+:::
+
+:::{.fragment fragment-index=3}
+
+
+image of 4000 mparsec box
+
+:::
+
+
+---
+
+### Benchmarks
+
+
+---
+
+### Conclusion
+
+➢  &emsp;
+
+---
 
 ### Animation WIP
 
 Unique solutions : no, two particles crossing each other yoy can't tell which one is which
 
+
+---
+
+### Backup slides (Halo exchange)
+
+image of with and without halo exchange

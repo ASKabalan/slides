@@ -1,11 +1,12 @@
 /*-- scss:defaults --*/
 
-$body-bg: #000;  // Background color set to black
+$body-bg: rgb(39, 39, 39);  // Background color set to black
 $body-color: #fff;  // Text color set to white
 $link-color: #42affa;  // Link color remains unchanged
 $body-font-size: 20px;  // Adjust this value to make the font size smaller or larger
 $solution-header-font-size: 20px;  // Adjust this value to make the font size smaller or larger
-$solution-body-font-size : 18px;
+$solution-body-font-size: 18px;
+
 /*-- scss:rules --*/
 
 .reveal {
@@ -23,9 +24,13 @@ $solution-body-font-size : 18px;
         padding-left: 0.5em;
         color: lighten($body-color, 40%);
       }
+
+      /* Customizing code blocks */
+      pre {
+        background-color: #ccc; // Gray background
+      }
     }
   }
-
 
   /* Customizing links */
   a {
@@ -37,6 +42,7 @@ $solution-body-font-size : 18px;
   }
 }
 
+/* Continue with your existing custom styles below */
 .solutionbox {
   margin-top: 1em;
   margin-bottom: 1em;  
@@ -44,7 +50,7 @@ $solution-body-font-size : 18px;
   border-left: none;
   border-right: none;
   border-top: none;
-  border-bottom:none;
+  border-bottom: none;
   background-color: #403940;
 }
 
