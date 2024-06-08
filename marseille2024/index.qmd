@@ -402,11 +402,15 @@ def run_simulation(omega_c, sigma8):
     field = dx + particles
 
     # Evolve the simulation forward
-    res = odeint(make_ode_fn(mesh_shape), [particles + dx, p],
-                 snapshots,
-                 cosmo,
-                 rtol=1e-5,
-                 atol=1e-5)
+    ode_fn = make_ode_fn(mesh_shape)
+    term = ODETerm(lambda t, state, args: jnp.stack(ode_fn(state, t, args), axis=0))
+    solver = Dopri5()
+
+    stepsize_controller = PIDController(rtol=1e-7, atol=1e-7)
+    res = diffeqsolve(term, solver, t0=0.1, t1=1., dt0=0.01, y0=jnp.stack([dx, p],axis=0), 
+                       args=(cosmo , kvec),
+                       stepsize_controller=stepsize_controller,
+                       saveat=SaveAt(ts=snapshots))
 
     # Return the simulation volume at requested
     return field, res, initial_conditions
@@ -455,7 +459,7 @@ field, res, initial_conditions = run_simulation(0.25, 0.8)
 
 ➢  &emsp;(Poqueres et al. 2021) : $64^3$ mesh size, on a 1000 Mpc/h box
 
-➢  &emsp;(Li et al. 2022) : $512^3$ mesh size, on a 1000 Mpc/h box using [pmwd](https://github.com/eelregit/pmwd)
+➢  &emsp;(Li et al. 2022) : $512^3$ mesh size,  using [pmwd](https://github.com/eelregit/pmwd)
 
 
 :::: {.columns}
@@ -597,67 +601,51 @@ We need a fast, differentiable and <span style="color:violet;">distributed</span
 
 #### Size of a FastPM simulation
 
-::: {fragment .fragment-index-1}
 
-image of vector field
+:::{.fragment .fragment-index-2}
 
-:::
-
-
-:::: {.columns}
+![](assets/gpu_memory_sizes.png){.absolute top=75 right=50 width="400"}
 
 
-
-::: {fragment .fragment-index-2}
-
-::: {.column width="50%"}
-
-plot of GPUs memory per architecture
+![](assets/simulation_sizes.png){.absolute top=75 left=50 width="400"}
 
 :::
 
-::: {.column width="50%"}
 
-plot of data size per simulation
+::: {.fragment .fragment-index-3}
 
-:::
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
-:::
+#### Scaling on multiple GPUs
 
-:::: 
 
-:::: {.columns}
-
-::: {fragment .fragment-index-3}
-
-::: {.column width="33%"}
-
-Single GPU 80 GB
-
-:::
-
-::: {.column width="33%"}
-
-Single Node 8x80 GB
+![](assets/jax-1gpu.svg){.absolute top=420 right=800 width="40%" height="40%"}
+[Single GPU (80GB)]{.absolute top=500 right=160}
 
 :::
 
-::: {.column width="33%"}
-
-Multi node infinite
-
-:::
-
-:::
-
-:::: 
 
 
 ---
 
+
 ### Distributed Fast Fourier Transform
 
 ➢  &emsp;only operation that requires communication is the FFT
+
+<br/>
+<br/>
+
+:::{.fragment fragment-index=1}
 
 #### Jaxdecomp
 
@@ -667,8 +655,7 @@ Multi node infinite
 </p>
 
 
-:::{.fragment fragment-index=1}
-
+snippet
 
 add animation of the decomposition
 
