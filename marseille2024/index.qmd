@@ -417,7 +417,11 @@ def run_simulation(omega_c, sigma8):
 
 field, res, initial_conditions = run_simulation(0.25, 0.8)
 
+
+
 ```
+
+
 </div>
 
 </div>
@@ -598,7 +602,7 @@ field, res, initial_conditions = run_simulation(0.25, 0.8)
 
 ::::
 
-<!-- ::: {.fragment fragment-index=9} -->
+::: {.fragment fragment-index=9}
 
 <br/>
 <br/>
@@ -633,7 +637,7 @@ We need a fast, differentiable and <span style="color:violet;">Scalable</span> P
 
 ::: 
 
-<!-- :::  -->
+::: 
 
 
 
@@ -759,16 +763,24 @@ k_field = jaxdecomp.fft.pfft3d(field)
 
 ```
 
-:::{.fragment fragment-index=4}
+:::{.fragment fragment-index=3}
 
 
 :::{.solutionbox}
+
+::::{.solutionbox-header}
+
+JaxDecomp features
+
+::::
 
 ::::{.solutionbox-body}
 
 ➢  &emsp;jaxDecomp supports 2D and 1D decompositions
 
 ➢  &emsp;Works for multi-node FFTs
+
+➢  &emsp;is differentiable
 
 ➢  &emsp;The package is also provided as a standalone library
 
@@ -786,7 +798,15 @@ k_field = jaxdecomp.fft.pfft3d(field)
 :::{.fragment fragment-index=2}
 
 
-![](assets/FastPM_Init.gif){.absolute top=50 left=400 width="900"}
+![](assets/decomp2d.gif){.absolute top=50 left=400 width="900"}
+
+
+:::
+
+:::{.fragment fragment-index=4}
+
+
+![](assets/decomp1d.gif){.absolute top=50 left=400 width="900"}
 
 
 :::
@@ -801,6 +821,12 @@ k_field = jaxdecomp.fft.pfft3d(field)
 
 ![](assets/gpu_memory_sizes.png){.absolute top=50 left=0 width="1000"}
 
+
+---
+
+### Halo exchange in distributed simulations
+
+:::{.fragment fragment-index=2}
 
 ---
 
@@ -897,7 +923,7 @@ Distruibuted Particle-Mesh simulations for cosmological inference
 
 ---
 
-## {background-video="video.mp4" background-video-loop="true" background-video-muted="true"}
+## 
 
 ---
 
