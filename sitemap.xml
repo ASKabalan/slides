@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://ASKabalan.github.io/slides/template/index.html</loc>
-    <lastmod>2024-06-05T09:44:14.456Z</lastmod>
+    <loc>https://ASKabalan.github.io/slides/index.html</loc>
+    <lastmod>2024-06-10T07:57:00.696Z</lastmod>
   </url>
   <url>
     <loc>https://ASKabalan.github.io/slides/marseille2024/index.html</loc>
-    <lastmod>2024-06-05T09:44:14.456Z</lastmod>
+    <lastmod>2024-06-10T07:57:00.696Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ASKabalan.github.io/slides/template/index.html</loc>
+    <lastmod>2024-06-10T07:57:00.700Z</lastmod>
   </url>
 </urlset>
