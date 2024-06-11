@@ -32,7 +32,7 @@
     "href": "marseille2024/index.html#distributed-fast-fourier-transform",
     "title": "Differentiable and distributed Particle-Mesh n-body simulations",
     "section": "Distributed Fast Fourier Transform",
-    "text": "Distributed Fast Fourier Transform\n➢  only operation that requires communication is the FFT\n\nJaxdecomp\n\n DifferentiableUniverseInitiative/jaxDecomp\n\n\n\nimport jax\nimport jax.numpy as jnp\n\nfield = jax.random.normal(jax.random.PRNGKey(0), (1024, 1024, 1024))\nk_field = jnp.fft.fftn(field)"
+    "text": "Distributed Fast Fourier Transform\n➢  only operation that requires communication is the FFT\n\nJaxdecomp\n\n\nimport jax\nimport jax.numpy as jnp\n\nfield = jax.random.normal(jax.random.PRNGKey(0), (1024, 1024, 1024))\nk_field = jnp.fft.fftn(field)"
   },
   {
     "objectID": "marseille2024/index.html#distributed-fast-fourier-transform-1",
@@ -42,10 +42,17 @@
     "text": "Distributed Fast Fourier Transform\n➢  only operation that requires communication is the FFT\n\nJaxdecomp\n\n DifferentiableUniverseInitiative/jaxDecomp\n\n\n\nimport jax\nimport jax.numpy as jnp\nimport jaxdecomp\n\ndevices = mesh_utils.create_device_mesh((2, 2))\nmesh = jax.sharding.Mesh(devices, axis_names=('x', 'y'))\nsharding = jax.sharding.NamedSharding(mesh, P('x', 'y'))\n\n# Create gaussian field distributed across the mesh\nfield = jax.make_array_from_single_device_arrays(\n    shape=mesh_shape,\n    sharding=sharding,\n    arrays=[jax.random.normal(jax.random.PRNGKey(rank), (512, 512, 1024))])\n\nk_field = jaxdecomp.fft.pfft3d(field)\n\n\n\n\nJaxDecomp features\n\n\n➢  jaxDecomp supports 2D and 1D decompositions\n➢  Works for multi-node FFTs\n➢  is differentiable\n➢  The package is also provided as a standalone library"
   },
   {
-    "objectID": "marseille2024/index.html#section",
-    "href": "marseille2024/index.html#section",
+    "objectID": "marseille2024/index.html#halo-exchange-in-distributed-simulations",
+    "href": "marseille2024/index.html#halo-exchange-in-distributed-simulations",
     "title": "Differentiable and distributed Particle-Mesh n-body simulations",
-    "section": "",
-    "text": "Backup slides (Halo exchange)\nimage of with and without halo exchange"
+    "section": "Halo exchange in distributed simulations",
+    "text": "Halo exchange in distributed simulations\n\n\n\n\n\nInitial Field\n\n\n\n\n\n\n\n\n\n\n\n\n\nFirst slice\n\n\n\n\n\n\n\n\n\nSecond slice\n\n\n\n\n\n\n\n\n\nThird slice\n\n\n\n\n\n\n\n\n\nFourth slice\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFirst slice\n\n\n\n\n\n\n\n\n\nSecond slice\n\n\n\n\n\n\n\n\n\nThird slice\n\n\n\n\n\n\n\n\n\nFourth slice\n\n\n\n\n\n\n\n\n\n\nLPT Field\n\n\n\n\n\n\n\nLPT Field\n\n\n\n\njaxDecomp Halo exchange\nimport jaxdecomp\n\nhalo_size = 128\nfield = jaxdecomp.halo_exchange(field, halo_extent=halo_size)"
+  },
+  {
+    "objectID": "marseille2024/index.html#halo-exchange-in-distributed-simulations-1",
+    "href": "marseille2024/index.html#halo-exchange-in-distributed-simulations-1",
+    "title": "Differentiable and distributed Particle-Mesh n-body simulations",
+    "section": "Halo exchange in distributed simulations",
+    "text": "Halo exchange in distributed simulations\n\n\n\nLPT Field\n\n\njaxDecomp Halo exchange\nimport jaxdecomp\n\nhalo_size = 128\nfield = jaxdecomp.halo_exchange(field, halo_extent=halo_size)"
   }
 ]

@@ -493,7 +493,7 @@ Wassim Kabalan
 <p>➢  Update particle velocity and positions, and iterate</p>
 </div>
 </div><div class="column" style="width:50%;">
-<div style="text-align: center;">
+<div class="{r-stack}">
 <div class="fragment fade-in-then-out" data-fragment-index="1">
 <p><img data-src="assets/FastPM_Init.gif" class="absolute" style="top: 50px; left: 400px; width: 800px; "></p>
 </div>
@@ -605,8 +605,8 @@ Wassim Kabalan
 </p>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div style="font-size: 85%">
-<div style="position: absolute; top: 100px; left: 0px;">
+<div style="font-size: 83%">
+<div style="position: absolute; top: 75px; left: 0px;">
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a>mesh_shape <span class="op">=</span> [<span class="dv">64</span>, <span class="dv">64</span>, <span class="dv">64</span>]</span>
 <span id="cb5-2"><a></a>box_size <span class="op">=</span> [<span class="fl">64.</span>, <span class="fl">64.</span>, <span class="fl">64.</span>]</span>
 <span id="cb5-3"><a></a>snapshots <span class="op">=</span> jnp.linspace(<span class="fl">0.1</span>, <span class="fl">1.</span>, <span class="dv">2</span>)</span>
@@ -651,8 +651,7 @@ Wassim Kabalan
 <span id="cb5-42"><a></a>    <span class="cf">return</span> field, res, initial_conditions</span>
 <span id="cb5-43"><a></a></span>
 <span id="cb5-44"><a></a>field, res, initial_conditions <span class="op">=</span> run_simulation(<span class="fl">0.25</span>, <span class="fl">0.8</span>)</span>
-<span id="cb5-45"><a></a></span>
-<span id="cb5-46"><a></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-45"><a></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
@@ -674,63 +673,120 @@ Wassim Kabalan
 <p>➢  (Li et al.&nbsp;2022) : <span class="math inline">\(512^3\)</span> mesh size, using <a href="https://github.com/eelregit/pmwd">pmwd</a></p>
 <div class="columns">
 <div class="column" style="width:50%;">
+<div class="r-stack">
 <div class="fragment fade-in-then-out" data-fragment-index="1">
-<p><img data-src="assets/field-init.png" class="absolute" style="top: 150px; left: 20px; width: 400px; "> <span class="absolute" style="top: 570px; left: 75px; ">Initial Conditions with a 512 mesh</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/initial_conditions_1024.png" class="nostretch" width="400"></p>
+<figcaption>Initial Conditions with a 1024 mesh</figcaption>
+</figure>
+</div>
 </div>
 <div class="fragment fade-in-then-out" data-fragment-index="2">
-<p><img data-src="assets/field-init.png" class="absolute" style="top: 150px; left: 20px; width: 400px; "> <span class="absolute" style="top: 570px; left: 75px; ">Initial Conditions with a 256 mesh</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/initial_conditions_512.png" class="nostretch" width="400"></p>
+<figcaption>Initial Conditions with a 512 mesh</figcaption>
+</figure>
+</div>
 </div>
 <div class="fragment fade-in-then-out" data-fragment-index="3">
-<p><img data-src="assets/field-init.png" class="absolute" style="top: 150px; left: 20px; width: 400px; "> <span class="absolute" style="top: 570px; left: 75px; ">Initial Conditions with a 128 mesh</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/initial_conditions_256.png" class="nostretch" width="400"></p>
+<figcaption>Initial Conditions with a 256 mesh</figcaption>
+</figure>
+</div>
 </div>
 <div class="fragment fade-in-then-out" data-fragment-index="4">
-<p><img data-src="assets/field-init.png" class="absolute" style="top: 150px; left: 20px; width: 400px; "> <span class="absolute" style="top: 570px; left: 75px; ">Initial Conditions with a 64 mesh</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/initial_conditions_128.png" class="nostretch" width="400"></p>
+<figcaption>Initial Conditions with a 128 mesh</figcaption>
+</figure>
+</div>
 </div>
 <div class="fragment fade-in-then-out" data-fragment-index="5">
-<!-- 512 -->
-<p><img data-src="assets/gpu_memory_sizes.png" class="absolute" style="top: 250px; left: 20px; width: 400px; "> <span class="absolute" style="top: 570px; left: 125px; ">Power Spectrum</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/initial_conditions_64.png" class="nostretch" width="400"></p>
+<figcaption>Initial Conditions with a 64 mesh</figcaption>
+</figure>
+</div>
 </div>
 <div class="fragment fade-in-then-out" data-fragment-index="6">
-<!-- 256 -->
-<p><img data-src="assets/gpu_memory_sizes.png" class="absolute" style="top: 250px; left: 20px; width: 400px; "> <span class="absolute" style="top: 570px; left: 125px; ">Power Spectrum</span></p>
+<!-- 512 -->
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/gpu_memory_sizes.png" class="nostretch" width="400"></p>
+<figcaption>Power spectrum 1024</figcaption>
+</figure>
+</div>
 </div>
 <div class="fragment fade-in-then-out" data-fragment-index="7">
-<!-- 128 -->
-<p><img data-src="assets/gpu_memory_sizes.png" class="absolute" style="top: 250px; left: 20px; width: 400px; "> <span class="absolute" style="top: 570px; left: 125px; ">Power Spectrum</span></p>
+<!-- 256 -->
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/gpu_memory_sizes.png" class="nostretch" width="400"></p>
+<figcaption>Power spectrum</figcaption>
+</figure>
 </div>
-<div class="fragment" data-fragment-index="8">
-<!-- 64 -->
-<p><img data-src="assets/gpu_memory_sizes.png" class="absolute" style="top: 250px; left: 20px; width: 400px; "> <span class="absolute" style="top: 570px; left: 125px; ">Power Spectrum</span></p>
+</div>
 </div>
 </div><div class="column" style="width:50%;">
+<div class="r-stack">
 <div class="fragment fade-in-then-out" data-fragment-index="1">
-<p><img data-src="assets/field-init.png" class="absolute" style="top: 150px; right: 20px; width: 400px; "> <span class="absolute" style="top: 570px; right: 75px; ">Final field with a 512 mesh</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/LPT_density_field_z0_1024.png" class="nostretch" width="400"></p>
+<figcaption>Final field with a 1024 mesh</figcaption>
+</figure>
+</div>
 </div>
 <div class="fragment fade-in-then-out" data-fragment-index="2">
-<p><img data-src="assets/field-init.png" class="absolute" style="top: 150px; right: 20px; width: 400px; "> <span class="absolute" style="top: 570px; right: 75px; ">Initial Conditions with a 256 mesh</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/LPT_density_field_z0_512.png" class="nostretch" width="400"></p>
+<figcaption>Final field with a 512 mesh</figcaption>
+</figure>
+</div>
 </div>
 <div class="fragment fade-in-then-out" data-fragment-index="3">
-<p><img data-src="assets/field-init.png" class="absolute" style="top: 150px; right: 20px; width: 400px; "> <span class="absolute" style="top: 570px; right: 75px; ">Initial Conditions with a 128 mesh</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/LPT_density_field_z0_256.png" class="nostretch" width="400"></p>
+<figcaption>Final field with a 256 mesh</figcaption>
+</figure>
+</div>
 </div>
 <div class="fragment fade-in-then-out" data-fragment-index="4">
-<p><img data-src="assets/field-init.png" class="absolute" style="top: 150px; right: 20px; width: 400px; "> <span class="absolute" style="top: 570px; right: 75px; ">Initial Conditions with a 64 mesh</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/LPT_density_field_z0_128.png" class="nostretch" width="400"></p>
+<figcaption>Final field with a 128 mesh</figcaption>
+</figure>
+</div>
 </div>
 <div class="fragment fade-in-then-out" data-fragment-index="5">
-<p><img data-src="assets/field-init.png" class="absolute" style="top: 150px; right: 20px; width: 400px; "> <span class="absolute" style="top: 570px; right: 120px; ">Final field with a 512 mesh</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/LPT_density_field_z0_64.png" class="nostretch" width="400"></p>
+<figcaption>Final field with a 64 mesh</figcaption>
+</figure>
 </div>
-<div class="fragment fade-in-then-out" data-fragment-index="6">
-<p><img data-src="assets/field-init.png" class="absolute" style="top: 150px; right: 20px; width: 400px; "> <span class="absolute" style="top: 570px; right: 75px; ">Initial Conditions with a 256 mesh</span></p>
 </div>
-<div class="fragment fade-in-then-out" data-fragment-index="7">
-<p><img data-src="assets/field-init.png" class="absolute" style="top: 150px; right: 20px; width: 400px; "> <span class="absolute" style="top: 570px; right: 75px; ">Initial Conditions with a 128 mesh</span></p>
+<div class="fragment" data-fragment-index="6">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/LPT_density_field_z0_1024.png" class="nostretch" width="400"></p>
+<figcaption>Final field with a 1024 mesh</figcaption>
+</figure>
 </div>
-<div class="fragment" data-fragment-index="8">
-<p><img data-src="assets/field-init.png" class="absolute" style="top: 150px; right: 20px; width: 400px; "> <span class="absolute" style="top: 570px; right: 75px; ">Initial Conditions with a 64 mesh</span></p>
+</div>
 </div>
 </div>
 </div>
 <div class="fragment" data-fragment-index="9">
-<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <div class="solutionbox">
 <div class="solutionbox-header">
 <p>Scaling</p>
@@ -747,16 +803,45 @@ Wassim Kabalan
 
 <h3 id="scaling-on-modern-hardware">Scaling on modern hardware</h3>
 <h4 id="size-of-a-fastpm-simulation">Size of a FastPM simulation</h4>
-<div class="fragment fragment-index-2">
-<p><img data-src="assets/gpu_memory_sizes.png" class="absolute" style="top: 75px; right: 50px; width: 400px; "></p>
-<p><img data-src="assets/simulation_sizes.png" class="absolute" style="top: 75px; left: 50px; width: 400px; "></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/simulation_gpu_sizes.png" class="nostretch quarto-figure quarto-figure-center" width="650"></p>
+</figure>
 </div>
-<div class="fragment fragment-index-3">
-<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<div class="fragment fragment-index-1">
+<!-- -->
 <h4 id="scaling-on-multiple-gpus">Scaling on multiple GPUs</h4>
-<p><img data-src="assets/jax-1gpu.svg" class="absolute" style="top: 420px; right: 800px; width: 40%; height: 40%; "> <span class="absolute" style="top: 725px; right: 900px; ">Single GPU (80GB)</span></p>
-<p><img data-src="assets/jax-1node.svg" class="absolute" style="top: 420px; right: 400px; width: 40%; height: 40%; "> <span class="absolute" style="top: 725px; right: 525px; ">Single Node (8x80GB)</span></p>
-<p><img data-src="assets/jax-multi-node.svg" class="absolute" style="top: 420px; left: 700px; width: 50%; height: 50%; "> <span class="absolute" style="top: 725px; left: 900px; ">Muti Node ( <span class="math inline">\(\infty\)</span> )</span></p>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-align="bottom" data-layout="[20 , 30 , 50]">
+<div class="quarto-layout-row quarto-layout-valign-bottom">
+<div class="quarto-layout-cell" style="flex-basis: 20.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/jax-1gpu.png" style="width:55.0%"></p>
+<figcaption>Single GPU (80GB)</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 30.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/jax-1node.png" style="width:55.0%"></p>
+<figcaption>Single Node (8x80GB)</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/jax-multi-node.png" style="width:90.0%"></p>
+<figcaption>Muti Node ( <span class="math inline">\(\infty\)</span> )</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
 </div>
 </section>
 <section id="distributed-fast-fourier-transform" class="slide level2" data-auto-animate="true">
@@ -764,9 +849,6 @@ Wassim Kabalan
 <p>➢  only operation that requires communication is the FFT</p>
 <p><br></p>
 <h4 id="jaxdecomp">Jaxdecomp</h4>
-<p style="display: flex; align-items: center; position: absolute; top: 10px; left: 600px;">
-<img src="assets/github_logo.png" alt="GitHub Logo" style="width: 5%; margin-right: 10px;"> <a href="https://github.com/DifferentiableUniverseInitiative/jaxDecomp">DifferentiableUniverseInitiative/jaxDecomp</a>
-</p>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb6-1" class="hljs-ln-code"><a></a><span class="im">import</span> jax</span>
@@ -822,27 +904,165 @@ Wassim Kabalan
 <div class="fragment" data-fragment-index="2">
 <p><img data-src="assets/decomp2d.gif" class="absolute" style="top: 50px; left: 400px; width: 900px; "></p>
 </div>
-<div class="fragment" data-fragment-index="4">
-<p><img data-src="assets/decomp1d.gif" class="absolute" style="top: 50px; left: 400px; width: 900px; "></p>
-</div>
 </div>
 </div>
 </section>
 <section class="slide level2">
 
 <h3 id="scaling-of-distributed-fft-operations">Scaling of Distributed FFT operations</h3>
-<p><img data-src="assets/gpu_memory_sizes.png" class="absolute" style="top: 50px; left: 0px; width: 1000px; "></p>
+<p><img data-src="assets/single_precision_gpus.png" class="absolute" style="top: 50px; left: 0px; width: 1000px; "></p>
+</section>
+<section id="halo-exchange-in-distributed-simulations" class="slide level2">
+<h2>Halo exchange in distributed simulations</h2>
+<div class="r-stack">
+<div class="fragment fade-in-then-out" data-fragment-index="1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/initial_conditions_1024.png" class="nostretch" width="400"></p>
+<figcaption>Initial Field</figcaption>
+</figure>
+</div>
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="2">
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-align="center" data-layout="[[1] , [1] , [1] , [1]]">
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/initial_conditions_0_no_halo.png" class="nostretch" width="400"></p>
+<figcaption>First slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/initial_conditions_1_no_halo.png" class="nostretch" width="400"></p>
+<figcaption>Second slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/initial_conditions_2_no_halo.png" class="nostretch" width="400"></p>
+<figcaption>Third slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/initial_conditions_3_no_halo.png" class="nostretch" width="400"></p>
+<figcaption>Fourth slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="3">
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-align="center" data-layout="[[1] , [1] , [1] , [1]]">
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/LPT_density_field_z0_0_no_halo.png" class="nostretch" width="400"></p>
+<figcaption>First slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/LPT_density_field_z0_0_no_halo.png" class="nostretch" width="400"></p>
+<figcaption>Second slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/LPT_density_field_z0_0_no_halo.png" class="nostretch" width="400"></p>
+<figcaption>Third slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/LPT_density_field_z0_0_no_halo.png" class="nostretch" width="400"></p>
+<figcaption>Fourth slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="4">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/LPT_density_field_z0_1024_no_halo.png" class="nostretch" width="400"></p>
+<figcaption>LPT Field</figcaption>
+</figure>
+</div>
+</div>
+<div class="fragment" data-fragment-index="5">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/LPT_density_field_z0_1024.png" class="nostretch" width="400"></p>
+<figcaption>LPT Field</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<h4 id="jaxdecomp-halo-exchange">jaxDecomp Halo exchange</h4>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="im">import</span> jaxdecomp</span>
+<span id="cb8-2"><a></a></span>
+<span id="cb8-3"><a></a>halo_size <span class="op">=</span> <span class="dv">128</span></span>
+<span id="cb8-4"><a></a>field <span class="op">=</span> jaxdecomp.halo_exchange(field, halo_extent<span class="op">=</span>halo_size)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="halo-exchange-in-distributed-simulations-1" class="slide level2">
+<h2>Halo exchange in distributed simulations</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/LPT_density_field_z0_1024.png" class="" width="400"></p>
+<figcaption>LPT Field</figcaption>
+</figure>
+</div>
+<h4 id="jaxdecomp-halo-exchange-1">jaxDecomp Halo exchange</h4>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a><span class="im">import</span> jaxdecomp</span>
+<span id="cb9-2"><a></a></span>
+<span id="cb9-3"><a></a>halo_size <span class="op">=</span> <span class="dv">128</span></span>
+<span id="cb9-4"><a></a>field <span class="op">=</span> jaxdecomp.halo_exchange(field, halo_extent<span class="op">=</span>halo_size)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section class="slide level2">
 
-<h3 id="halo-exchange-in-distributed-simulations">Halo exchange in distributed simulations</h3>
-<div class="fragment" data-fragment-index="2">
-<hr>
 <h3 id="distributed-jaxpm-particle-mesh-simulations">Distributed JaxPM Particle-Mesh simulations</h3>
-<p><img data-src="assets/field-init.png" class="absolute" style="top: 60px; left: 20px; width: 350px; "> <span class="absolute" style="top: 450px; left: 115px; ">Initial Conditions</span></p>
-<p><img data-src="assets/field-init.png" class="absolute" style="top: 60px; left: 410px; width: 350px; "> <span class="absolute" style="top: 450px; left: 515px; ">LPT Simulation</span></p>
-<p><img data-src="assets/field-init.png" class="absolute" style="top: 60px; left: 800px; width: 350px; "> <span class="absolute" style="top: 450px; left: 920px; ">Final field</span></p>
-<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/field-init.png" class="" width="800"></p>
+<figcaption>Final field</figcaption>
+</figure>
+</div>
 <div class="solutionbox">
 <div class="solutionbox-header">
 <p>Distributed FastPM simulations</p>
@@ -853,10 +1073,14 @@ Wassim Kabalan
 <p>➢  Runtime for a forward run is <span style="color:violet;">6 seconds</span></p>
 </div>
 </div>
-<hr>
+</section>
+<section class="slide level2">
+
 <h3 id="benchmarks">Benchmarks</h3>
 <p><img data-src="assets/gpu_memory_sizes.png" class="absolute" style="top: 50px; left: 0px; width: 1000px; "></p>
-<hr>
+</section>
+<section class="slide level2">
+
 <h3 id="conclusion">Conclusion</h3>
 <p><br> <br> <br> <br></p>
 <div class="solutionbox">
@@ -864,25 +1088,33 @@ Wassim Kabalan
 <p>Distruibuted Particle-Mesh simulations for cosmological inference</p>
 </div>
 <div class="solutionbox-body">
-<p>➢  A shift from analytical likelihoods to full field inference</p>
-<p>➢  The need for fast differentiable simulators</p>
-<p>➢  Particle-Mesh as simulators for full field inference</p>
-<p>➢  Distributed fourrier transforms that work on multi-node HPC</p>
+<ul>
+<li>A shift from analytical likelihoods to full field inference
+<ul>
+<li>The need for fast differentiable simulators</li>
+<li>Particle-Mesh as simulators for full field inference</li>
+<li>Distributed fourrier transforms that work on multi-node HPC using <span style="color:violet;">jaxDecomp</span></li>
+<li>Highly scalable LPT simulations using <span style="color:violet;">JaxPM</span></li>
+</ul></li>
+<li>Still subject to some challenges
+<ul>
+<li>Some issues with the ODE solving step</li>
+<li>Only Euler gives decent results.</li>
+</ul></li>
+</ul>
 </div>
 </div>
-<hr>
+</section>
 <section id="section" class="slide level2">
 <h2></h2>
-<hr>
-<h3 id="backup-slides-halo-exchange">Backup slides (Halo exchange)</h3>
-<p>image of with and without halo exchange</p>
+</section>
+<section class="slide level2">
+
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
-</div>
-</section>
 </div>
 </section>
     </div>
