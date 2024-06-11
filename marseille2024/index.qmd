@@ -8,6 +8,7 @@ format:
     incremental: false   
     transition: slide
     background-transition: slide
+output: revealjs
 
 code-block-border-left: "#31BAE9"
 title-slide-attributes:
@@ -169,13 +170,12 @@ Possible solutions
 
 ::: {.column width="50%"}
 
-::: {style="text-align: center;"}
+:::{r-stack}
 
 
 ::: {.fragment fragment-index=1 .fade-in-then-out}
 
 ![](assets/FastPM_Init.gif){.absolute top=50 left=400 width="800"}
-
 
 :::
 
@@ -367,9 +367,9 @@ JAX : Numpy + Autograd + GPU
 
 ::: {.column width="50%"}
 
-<div style="font-size: 85%">
+<div style="font-size: 83%">
 
-<div style="position: absolute; top: 100px; left: 0px;">
+<div style="position: absolute; top: 75px; left: 0px;">
 
 ```{.python }
 mesh_shape = [64, 64, 64]
@@ -418,7 +418,6 @@ def run_simulation(omega_c, sigma8):
 field, res, initial_conditions = run_simulation(0.25, 0.8)
 
 
-
 ```
 
 
@@ -431,8 +430,6 @@ field, res, initial_conditions = run_simulation(0.25, 0.8)
 ::: {.column width="50%"}
 
 ::: {.fragment fragment-index=1} 
-
-
 
 ![](assets/FastPM_ODE3D.gif){.absolute top=50 left=400 width="900"}
 
@@ -470,156 +467,106 @@ field, res, initial_conditions = run_simulation(0.25, 0.8)
 
 ::: {.column width="50%"}
 
+::: {.r-stack}
+
 ::: {.fragment fragment-index=1 .fade-in-then-out}
 
-![](assets/field-init.png){.absolute top=150 left=20 width="400"}
-[Initial Conditions with a 512 mesh]{.absolute top=570 left=75}
+![Initial Conditions with a 1024 mesh](assets/initial_conditions_1024.png){.nostretch fig-align="center" width="400px"}
 
 ::: 
 
 ::: {.fragment fragment-index=2 .fade-in-then-out}
 
-![](assets/field-init.png){.absolute top=150 left=20 width="400"}
-[Initial Conditions with a 256 mesh]{.absolute top=570 left=75}
-
+![Initial Conditions with a 512 mesh](assets/initial_conditions_512.png){.nostretch fig-align="center" width="400px"}
 
 ::: 
 
 ::: {.fragment fragment-index=3 .fade-in-then-out}
 
-![](assets/field-init.png){.absolute top=150 left=20 width="400"}
-[Initial Conditions with a 128 mesh]{.absolute top=570 left=75}
+![Initial Conditions with a 256 mesh](assets/initial_conditions_256.png){.nostretch fig-align="center" width="400px"}
 
 ::: 
 
 ::: {.fragment fragment-index=4 .fade-in-then-out}
 
-![](assets/field-init.png){.absolute top=150 left=20 width="400"}
-[Initial Conditions with a 64 mesh]{.absolute top=570 left=75}
+![Initial Conditions with a 128 mesh](assets/initial_conditions_128.png){.nostretch fig-align="center" width="400px"}
 
 ::: 
 
 ::: {.fragment fragment-index=5 .fade-in-then-out}
 
-<!-- 512 -->
-
-![](assets/gpu_memory_sizes.png){.absolute top=250 left=20 width="400"}
-[Power Spectrum]{.absolute top=570 left=125}
+![Initial Conditions with a 64 mesh](assets/initial_conditions_64.png){.nostretch fig-align="center" width="400px"}
 
 ::: 
 
 ::: {.fragment fragment-index=6 .fade-in-then-out}
 
-<!-- 256 -->
+<!-- 512 -->
 
-![](assets/gpu_memory_sizes.png){.absolute top=250 left=20 width="400"}
-[Power Spectrum]{.absolute top=570 left=125}
+![Power spectrum 1024](assets/gpu_memory_sizes.png){.nostretch fig-align="center" width="400px"}
 
 ::: 
 
 ::: {.fragment fragment-index=7 .fade-in-then-out}
 
-<!-- 128 -->
+<!-- 256 -->
 
-![](assets/gpu_memory_sizes.png){.absolute top=250 left=20 width="400"}
-[Power Spectrum]{.absolute top=570 left=125}
+![Power spectrum](assets/gpu_memory_sizes.png){.nostretch fig-align="center" width="400px"}
 
-::: 
 
-::: {.fragment fragment-index=8}
+:::
 
-<!-- 64 -->
-
-![](assets/gpu_memory_sizes.png){.absolute top=250 left=20 width="400"}
-[Power Spectrum]{.absolute top=570 left=125}
-
-::: 
+:::
 
 ::: 
 
 ::: {.column width="50%"}
 
+::: {.r-stack}
+
 ::: {.fragment fragment-index=1 .fade-in-then-out}
 
-
-![](assets/field-init.png){.absolute top=150 right=20 width="400"}
-[Final field with a 512 mesh]{.absolute top=570 right=75}
+![Final field with a 1024 mesh](assets/LPT_density_field_z0_1024.png){.nostretch fig-align="center" width="400px"}
 
 ::: 
 
 ::: {.fragment fragment-index=2 .fade-in-then-out}
 
-![](assets/field-init.png){.absolute top=150 right=20 width="400"}
-[Initial Conditions with a 256 mesh]{.absolute top=570 right=75}
+![Final field with a 512 mesh](assets/LPT_density_field_z0_512.png){.nostretch fig-align="center" width="400px"}
 
 ::: 
 
 ::: {.fragment fragment-index=3 .fade-in-then-out}
 
-![](assets/field-init.png){.absolute top=150 right=20 width="400"}
-[Initial Conditions with a 128 mesh]{.absolute top=570 right=75}
+![Final field with a 256 mesh](assets/LPT_density_field_z0_256.png){.nostretch fig-align="center" width="400px"}
 
 ::: 
 
 ::: {.fragment fragment-index=4 .fade-in-then-out}
 
-![](assets/field-init.png){.absolute top=150 right=20 width="400"}
-[Initial Conditions with a 64 mesh]{.absolute top=570 right=75}
+![Final field with a 128 mesh](assets/LPT_density_field_z0_128.png){.nostretch fig-align="center" width="400px"}
 
 ::: 
 
 ::: {.fragment fragment-index=5 .fade-in-then-out}
 
-
-![](assets/field-init.png){.absolute top=150 right=20 width="400"}
-[Final field with a 512 mesh]{.absolute top=570 right=120}
+![Final field with a 64 mesh](assets/LPT_density_field_z0_64.png){.nostretch fig-align="center" width="400px"}
 
 ::: 
 
-::: {.fragment fragment-index=6 .fade-in-then-out}
+::: {.fragment fragment-index=6}
 
-![](assets/field-init.png){.absolute top=150 right=20 width="400"}
-[Initial Conditions with a 256 mesh]{.absolute top=570 right=75}
-
-::: 
-
-::: {.fragment fragment-index=7 .fade-in-then-out}
-
-![](assets/field-init.png){.absolute top=150 right=20 width="400"}
-[Initial Conditions with a 128 mesh]{.absolute top=570 right=75}
+![Final field with a 1024 mesh](assets/LPT_density_field_z0_1024.png){.nostretch fig-align="center" width="400px"}
 
 ::: 
 
-::: {.fragment fragment-index=8}
-
-![](assets/field-init.png){.absolute top=150 right=20 width="400"}
-[Initial Conditions with a 64 mesh]{.absolute top=570 right=75}
-
 ::: 
 
-
-::: 
+:::
 
 ::::
 
 ::: {.fragment fragment-index=9}
-
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
 
 :::{.solutionbox}
 
@@ -648,46 +595,28 @@ We need a fast, differentiable and <span style="color:violet;">Scalable</span> P
 #### Size of a FastPM simulation
 
 
-:::{.fragment .fragment-index-2}
-
-![](assets/gpu_memory_sizes.png){.absolute top=75 right=50 width="400"}
+![](assets/simulation_gpu_sizes.png){.nostretch fig-align="center" width="650"}
 
 
-![](assets/simulation_sizes.png){.absolute top=75 left=50 width="400"}
+::: {.fragment .fragment-index-1}
 
-:::
-
-
-::: {.fragment .fragment-index-3}
-
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
 
 #### Scaling on multiple GPUs
 
 
-![](assets/jax-1gpu.svg){.absolute top=420px right=800 width="40%" height="40%"}
-[Single GPU (80GB)]{.absolute top=725 right=900}
+::: {layout="[20 , 30 , 50]" layout-valign="bottom" layout-align="bottom"}
+
+![Single GPU (80GB)](assets/jax-1gpu.png){width="55%"}
 
 
-![](assets/jax-1node.svg){.absolute top=420px right=400 width="40%" height="40%"}
-[Single Node (8x80GB)]{.absolute top=725 right=525}
+![Single Node (8x80GB)](assets/jax-1node.png){width="55%"}
 
-![](assets/jax-multi-node.svg){.absolute top=420px left=700 width="50%" height="50%"}
-[Muti Node ( $\infty$ )]{.absolute top=725 left=900}
+
+![Muti Node ( $\infty$ )](assets/jax-multi-node.png){width="90%"}
+
+::: 
 
 :::
-
-
-
 ---
 
 
@@ -698,11 +627,6 @@ We need a fast, differentiable and <span style="color:violet;">Scalable</span> P
 <br/>
 
 #### Jaxdecomp
-
-<p style="display: flex; align-items: center; position: absolute; top: 10px; left: 600px;">
-  <img src="assets/github_logo.png" alt="GitHub Logo" style="width: 5%; margin-right: 10px;">
-  <a href="https://github.com/DifferentiableUniverseInitiative/jaxDecomp">DifferentiableUniverseInitiative/jaxDecomp</a>
-</p>
 
 :::: {.columns}
 
@@ -797,17 +721,7 @@ JaxDecomp features
 
 :::{.fragment fragment-index=2}
 
-
 ![](assets/decomp2d.gif){.absolute top=50 left=400 width="900"}
-
-
-:::
-
-:::{.fragment fragment-index=4}
-
-
-![](assets/decomp1d.gif){.absolute top=50 left=400 width="900"}
-
 
 :::
 
@@ -819,46 +733,104 @@ JaxDecomp features
 
 ### Scaling of Distributed FFT operations
 
-![](assets/gpu_memory_sizes.png){.absolute top=50 left=0 width="1000"}
+![](assets/single_precision_gpus.png){.absolute top=50 left=0 width="1000"}
 
 
 ---
 
-### Halo exchange in distributed simulations
+## Halo exchange in distributed simulations
 
-:::{.fragment fragment-index=2}
+:::{.r-stack}
+
+:::{.fragment fragment-index=1 .fade-in-then-out}
+
+![Initial Field](assets/initial_conditions_1024.png){.nostretch  width="400px"}
+
+:::
+
+:::{.fragment fragment-index=2 .fade-in-then-out}
+
+:::{layout="[[1] , [1] , [1] , [1]]" layout-valign="center" layout-align="center"}
+
+![First slice](assets/initial_conditions_0_no_halo.png){.nostretch fig-align="center" width="400px"}
+
+![Second slice](assets/initial_conditions_1_no_halo.png){.nostretch fig-align="center" width="400px"}
+
+![Third slice](assets/initial_conditions_2_no_halo.png){.nostretch fig-align="center" width="400px"}
+
+![Fourth slice](assets/initial_conditions_3_no_halo.png){.nostretch fig-align="center" width="400px"}
+
+:::
+
+:::
+
+:::{.fragment fragment-index=3 .fade-in-then-out}
+
+:::{layout="[[1] , [1] , [1] , [1]]" layout-valign="center" layout-align="center"}
+
+![First slice](assets/LPT_density_field_z0_0_no_halo.png){.nostretch fig-align="center" width="400px"}
+
+![Second slice](assets/LPT_density_field_z0_0_no_halo.png){.nostretch fig-align="center" width="400px"}
+
+![Third slice](assets/LPT_density_field_z0_0_no_halo.png){.nostretch fig-align="center" width="400px"}
+
+![Fourth slice](assets/LPT_density_field_z0_0_no_halo.png){.nostretch fig-align="center" width="400px"}
+
+:::
+
+:::
+
+:::{.fragment fragment-index=4 .fade-in-then-out}
+
+![LPT Field](assets/LPT_density_field_z0_1024_no_halo.png){.nostretch fig-align="center" width="400px"}
+
+:::
+
+
+:::{.fragment fragment-index=5}
+
+![LPT Field](assets/LPT_density_field_z0_1024.png){.nostretch fig-align="center" width="400px"}
+
+:::
+
+:::
+
+
+#### jaxDecomp Halo exchange
+
+```python
+import jaxdecomp
+
+halo_size = 128
+field = jaxdecomp.halo_exchange(field, halo_extent=halo_size)
+
+```
+
+---
+
+## Halo exchange in distributed simulations
+
+![LPT Field](assets/LPT_density_field_z0_1024.png){.nostretch fig-align="center" width="400px"}
+
+
+#### jaxDecomp Halo exchange
+
+```python
+import jaxdecomp
+
+halo_size = 128
+field = jaxdecomp.halo_exchange(field, halo_extent=halo_size)
+
+```
 
 ---
 
 ### Distributed JaxPM Particle-Mesh simulations 
 
 
-![](assets/field-init.png){.absolute top=60 left=20 width="350"}
-[Initial Conditions]{.absolute top=450 left=115}
+![Final field](assets/field-init.png){.nostretch fig-align="center" width="800px"}
 
-![](assets/field-init.png){.absolute top=60 left=410 width="350"}
-[LPT Simulation]{.absolute top=450 left=515}
 
-![](assets/field-init.png){.absolute top=60 left=800 width="350"}
-[Final field]{.absolute top=450 left=920}
-
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
 
 :::{.solutionbox}
 
@@ -907,14 +879,14 @@ Distruibuted Particle-Mesh simulations for cosmological inference
 
 ::::{.solutionbox-body}
 
-➢  &emsp;A shift from analytical likelihoods to full field inference
-
-➢  &emsp;The need for fast differentiable simulators
-
-➢  &emsp;Particle-Mesh as simulators for full field inference
-
-➢  &emsp;Distributed fourrier transforms that work on multi-node HPC 
-
+ - A shift from analytical likelihoods to full field inference
+   - The need for fast differentiable simulators
+   - Particle-Mesh as simulators for full field inference
+   - Distributed fourrier transforms that work on multi-node HPC using <span style="color:violet;">jaxDecomp</span>
+   - Highly scalable LPT simulations using <span style="color:violet;">JaxPM</span>
+ - Still subject to some challenges 
+   - Some issues with the ODE solving step
+   - Only Euler gives decent results.
 
 ::::
 
@@ -926,7 +898,3 @@ Distruibuted Particle-Mesh simulations for cosmological inference
 ## 
 
 ---
-
-### Backup slides (Halo exchange)
-
-image of with and without halo exchange

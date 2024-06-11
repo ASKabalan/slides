@@ -17,29 +17,17 @@ $solution-body-font-size: 18px;
   .slides {
     .slide {
       color: $body-color;
-
-      /* Customizing blockquotes */
-      blockquote {
-        border-left: 3px solid lighten($body-color, 20%);
-        padding-left: 0.5em;
-        color: lighten($body-color, 40%);
-      }
-
-      /* Customizing code blocks */
-      pre {
-        background-color: #ccc; // Gray background
-      }
     }
   }
 
   /* Customizing links */
-  a {
-    color: $link-color;
+  // a {
+  //   color: $link-color;
 
-    &:hover {
-      color: lighten($link-color, 20%);
-    }
-  }
+  //   &:hover {
+  //     color: lighten($link-color, 20%);
+  //   }
+  // }
 }
 
 /* Continue with your existing custom styles below */
@@ -100,4 +88,10 @@ $solution-body-font-size: 18px;
 .solutionbox-body > :last-child {
   padding-bottom: 0.5rem;
   margin-bottom: 0;
+}
+
+
+figcaption {
+  margin: auto;
+  text-align: center;
 }
