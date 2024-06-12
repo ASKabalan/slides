@@ -857,7 +857,7 @@ Distributed FastPM simulations
 ---
 
 
-## Conclusion {background-image="assets/LPT_density_field_z0_2048.jpg"}
+## Conclusion {background-image="assets/LPT_density_field_z0_2048.png"}
 
 <br/>
 <br/>
