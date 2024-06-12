@@ -1,0 +1,58 @@
+[
+  {
+    "objectID": "marseille2024/index.html#traditional-cosmological-inference",
+    "href": "marseille2024/index.html#traditional-cosmological-inference",
+    "title": "Differentiable and distributed Particle-Mesh n-body simulations",
+    "section": "Traditional cosmological inference",
+    "text": "Traditional cosmological inference\n\nBayesian inference in cosmology\n\nWe need to infer the cosmological parameters \\(\\theta\\) that generated an observartion \\(x\\)\n\n\\[p(\\theta | x ) \\propto \\underbrace{p(x | \\theta)}_{\\mathrm{likelihood}} \\ \\underbrace{p(\\theta)}_{\\mathrm{prior}}\\]\n\n\n\n\n\n\n\n\n\n\n ➢  Compute summary statistics based on the 2-point correlation function of the shear field\n\n\n ➢  Run an MCMC chain to recover the posterior distribution of the cosmological parameters, using an analytical likelihood\n\n\n\n\n\n\n\nLimitations\n\n\n\nSimple summary statistics assume Gaussianity\nThe need to compute an analytical likelihood"
+  },
+  {
+    "objectID": "marseille2024/index.html#jax-automatic-differentiation-and-hardware-acceleration",
+    "href": "marseille2024/index.html#jax-automatic-differentiation-and-hardware-acceleration",
+    "title": "Differentiable and distributed Particle-Mesh n-body simulations",
+    "section": "JAX : Automatic differentiation and Hardware acceleration",
+    "text": "JAX : Automatic differentiation and Hardware acceleration\n\n     \nimport numpy as np\n\n\ndef multiply_and_add(a, b, c):\n    return np.dot(a, b) + c\n\n\na, b, c = np.random.normal(size=(3, 32, 32))\nresult = multiply_and_add(a, b, c)\n\n\nimport jax\nimport jax.numpy as jnp\n\n\ndef multiply_and_add(a, b, c):\n    return jnp.dot(a, b) + c\n\n\nkey = jax.random.PRNGKey(0)\na, b, c = jax.random.normal(key, (3, 32, 32))\n\nresult = multiply_and_add(a, b, c)"
+  },
+  {
+    "objectID": "marseille2024/index.html#jax-automatic-differentiation-and-hardware-acceleration-1",
+    "href": "marseille2024/index.html#jax-automatic-differentiation-and-hardware-acceleration-1",
+    "title": "Differentiable and distributed Particle-Mesh n-body simulations",
+    "section": "JAX : Automatic differentiation and Hardware acceleration",
+    "text": "JAX : Automatic differentiation and Hardware acceleration\n\n     \nimport jax\nimport jax.numpy as jnp\n\n\ndef multiply_and_add(a, b, c):\n    return jnp.dot(a, b) + c\n\n\nkey = jax.random.PRNGKey(0)\na, b, c = jax.random.normal(key, (3, 32, 32))\n\nresult = multiply_and_add(a, b, c)"
+  },
+  {
+    "objectID": "marseille2024/index.html#jax-automatic-differentiation-and-hardware-acceleration-2",
+    "href": "marseille2024/index.html#jax-automatic-differentiation-and-hardware-acceleration-2",
+    "title": "Differentiable and distributed Particle-Mesh n-body simulations",
+    "section": "JAX : Automatic differentiation and Hardware acceleration",
+    "text": "JAX : Automatic differentiation and Hardware acceleration\n\n     \nimport jax\nimport jax.numpy as jnp\n\n@jax.jit\ndef multiply_and_add(a, b, c):\n    return jnp.dot(a, b) + c\n\n\nkey = jax.random.PRNGKey(0)\na, b, c = jax.random.normal(key, (3, 32, 32))\n\nresult = multiply_and_add(a, b, c) \ngradient = jax.grad(multiply_and_add)(a, b, c)\n \n\n\nJAX : Numpy + Autograd + GPU\n\n\n\njax.grad uses automatic differentiation to compute the gradient of the function\njax.jit compiles the function to run on GPUs"
+  },
+  {
+    "objectID": "marseille2024/index.html#distributed-fast-fourier-transform",
+    "href": "marseille2024/index.html#distributed-fast-fourier-transform",
+    "title": "Differentiable and distributed Particle-Mesh n-body simulations",
+    "section": "Distributed Fast Fourier Transform",
+    "text": "Distributed Fast Fourier Transform\n➢  only operation that requires communication is the FFT\n\nJaxdecomp\n\n\nimport jax\nimport jax.numpy as jnp\n\nfield = jax.random.normal(jax.random.PRNGKey(0), (1024, 1024, 1024))\nk_field = jnp.fft.fftn(field)"
+  },
+  {
+    "objectID": "marseille2024/index.html#distributed-fast-fourier-transform-1",
+    "href": "marseille2024/index.html#distributed-fast-fourier-transform-1",
+    "title": "Differentiable and distributed Particle-Mesh n-body simulations",
+    "section": "Distributed Fast Fourier Transform",
+    "text": "Distributed Fast Fourier Transform\n➢  only operation that requires communication is the FFT\n\nJaxdecomp\n\n DifferentiableUniverseInitiative/jaxDecomp\n\n\n\nimport jax\nimport jax.numpy as jnp\nimport jaxdecomp\n\ndevices = mesh_utils.create_device_mesh((2, 2))\nmesh = jax.sharding.Mesh(devices, axis_names=('x', 'y'))\nsharding = jax.sharding.NamedSharding(mesh, P('x', 'y'))\n\n# Create gaussian field distributed across the mesh\nfield = jax.make_array_from_single_device_arrays(\n    shape=mesh_shape,\n    sharding=sharding,\n    arrays=[jax.random.normal(jax.random.PRNGKey(rank), (512, 512, 1024))])\n\nk_field = jaxdecomp.fft.pfft3d(field)\n\n\n\n\nJaxDecomp features\n\n\n➢  jaxDecomp supports 2D and 1D decompositions\n➢  Works for multi-node FFTs\n➢  is differentiable\n➢  The package is also provided as a standalone library"
+  },
+  {
+    "objectID": "marseille2024/index.html#halo-exchange-in-distributed-simulations",
+    "href": "marseille2024/index.html#halo-exchange-in-distributed-simulations",
+    "title": "Differentiable and distributed Particle-Mesh n-body simulations",
+    "section": "Halo exchange in distributed simulations",
+    "text": "Halo exchange in distributed simulations\n\n\n\n\n\n\n\n\n\n\n\nInitial Field\n\n\n\n\n\n\n\n\n\n\n\n\n\nFirst slice\n\n\n\n\n\n\n\n\n\nSecond slice\n\n\n\n\n\n\n\n\n\nThird slice\n\n\n\n\n\n\n\n\n\nFourth slice\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFirst slice\n\n\n\n\n\n\n\n\n\nSecond slice\n\n\n\n\n\n\n\n\n\nThird slice\n\n\n\n\n\n\n\n\n\nFourth slice\n\n\n\n\n\n\n\n\n\n\nLPT Field\n\n\n\n\n\n\n\nLPT Field\n\n\n\n\n\n\nfrom jaxdecomp import halo_exchange\n\nhalo_size = 128\nfield = halo_exchange(field, halo_extent=halo_size)"
+  },
+  {
+    "objectID": "marseille2024/index.html#conclusion",
+    "href": "marseille2024/index.html#conclusion",
+    "title": "Differentiable and distributed Particle-Mesh n-body simulations",
+    "section": "Conclusion",
+    "text": "Conclusion\n   \n\n\nDistruibuted Particle-Mesh simulations for cosmological inference\n\n\n\nA shift from analytical likelihoods to full field inference\n\nThe need for fast differentiable simulators\nParticle-Mesh as simulators for full field inference\nDistributed fourrier transforms that work on multi-node HPC using jaxDecomp\nHighly scalable LPT simulations using JaxPM\n\nStill subject to some challenges\n\nSome issues with the ODE solving step\nOnly Euler gives decent results."
+  }
+]
