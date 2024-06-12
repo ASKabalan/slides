@@ -1,13 +1,16 @@
 ---
 title: "Differentiable and distributed Particle-Mesh n-body simulations"
-
-author: "Wassim Kabalan"
+author: "Wassim Kabalan, François Lanusse, Alexandre Boucaud"
+footer: "LSST France, 2024"
 format:
   revealjs:
-    theme: [default , css/custom.scss]
+    theme: [default, css/custom.scss]
     incremental: false   
     transition: slide
     background-transition: slide
+    presentation-size: max-scale
+    template-partials:
+      - css/title-slide.html
 output: revealjs
 
 code-block-border-left: "#31BAE9"
@@ -15,8 +18,12 @@ title-slide-attributes:
   data-background-image: "assets/lsst_bg.jpg"
   data-background-size: fill
   data-background-opacity: "0.5"
----
 
+logo1: '![](assets/AIM.png){fig-align="center"width=10%} ![](assets/APC.png){fig-align="center" width=10%}'
+
+
+
+---
 
 ## Traditional cosmological inference
 
@@ -462,6 +469,11 @@ field, res, initial_conditions = run_simulation(0.25, 0.8)
 
 ➢  &emsp;(Li et al. 2022) : $512^3$ mesh size,  using [pmwd](https://github.com/eelregit/pmwd)
 
+::: {.fragment fragment-index=1 }
+
+![](assets/depict_gathered.png){.absolute top=30 right=0 width="20%"}
+
+::: 
 
 :::: {.columns}
 
@@ -740,6 +752,18 @@ JaxDecomp features
 
 ## Halo exchange in distributed simulations
 
+::: {.fragment fragment-index=1 .fade-in-then-out}
+
+![](assets/depict_gathered.png){.absolute top=30 right=20 width="20%"}
+
+::: 
+
+::: {.fragment fragment-index=2 }
+
+![](assets/depict_split.png){.absolute top=30 right=20 width="20%"}
+
+::: 
+
 :::{.r-stack}
 
 :::{.fragment fragment-index=1 .fade-in-then-out}
@@ -770,11 +794,11 @@ JaxDecomp features
 
 ![First slice](assets/LPT_density_field_z0_0_no_halo.png){.nostretch fig-align="center" width="400px"}
 
-![Second slice](assets/LPT_density_field_z0_0_no_halo.png){.nostretch fig-align="center" width="400px"}
+![Second slice](assets/LPT_density_field_z0_1_no_halo.png){.nostretch fig-align="center" width="400px"}
 
-![Third slice](assets/LPT_density_field_z0_0_no_halo.png){.nostretch fig-align="center" width="400px"}
+![Third slice](assets/LPT_density_field_z0_2_no_halo.png){.nostretch fig-align="center" width="400px"}
 
-![Fourth slice](assets/LPT_density_field_z0_0_no_halo.png){.nostretch fig-align="center" width="400px"}
+![Fourth slice](assets/LPT_density_field_z0_3_no_halo.png){.nostretch fig-align="center" width="400px"}
 
 :::
 
@@ -795,33 +819,21 @@ JaxDecomp features
 
 :::
 
+:::{.fragment fragment-index=5}
 
-#### jaxDecomp Halo exchange
+<div style="position: absolute; top: 75px; left: 0px; width: 500px; font-size: 100%">
 
 ```python
-import jaxdecomp
+from jaxdecomp import halo_exchange
 
 halo_size = 128
-field = jaxdecomp.halo_exchange(field, halo_extent=halo_size)
+field = halo_exchange(field, halo_extent=halo_size)
 
 ```
 
----
+</div>
 
-## Halo exchange in distributed simulations
-
-![LPT Field](assets/LPT_density_field_z0_1024.png){.nostretch fig-align="center" width="400px"}
-
-
-#### jaxDecomp Halo exchange
-
-```python
-import jaxdecomp
-
-halo_size = 128
-field = jaxdecomp.halo_exchange(field, halo_extent=halo_size)
-
-```
+:::
 
 ---
 
