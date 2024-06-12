@@ -511,22 +511,13 @@ field, res, initial_conditions = run_simulation(0.25, 0.8)
 
 ::: 
 
-::: {.fragment fragment-index=6 .fade-in-then-out}
+::: {.fragment fragment-index=6}
 
 <!-- 512 -->
 
-![Power spectrum 1024](assets/gpu_memory_sizes.png){.nostretch fig-align="center" width="400px"}
+![Power spectrum comparison](assets/power_spec.png){.nostretch fig-align="center" width="400px"}
 
 ::: 
-
-::: {.fragment fragment-index=7 .fade-in-then-out}
-
-<!-- 256 -->
-
-![Power spectrum](assets/gpu_memory_sizes.png){.nostretch fig-align="center" width="400px"}
-
-
-:::
 
 :::
 
@@ -840,9 +831,7 @@ field = halo_exchange(field, halo_extent=halo_size)
 ### Distributed JaxPM Particle-Mesh simulations 
 
 
-![Final field](assets/field-init.png){.nostretch fig-align="center" width="800px"}
-
-
+![](assets/LPT_density_field_z0_2048.png){.nostretch fig-align="center" width="400px"}
 
 :::{.solutionbox}
 
@@ -856,9 +845,9 @@ Distributed FastPM simulations
 
 ➢  &emsp;Multi host version of <span style="color:violet;">JaxPM</span> using <span style="color:violet;">jaxDecomp</span>
 
-➢  &emsp;For a $4096^3$ simulation we used 32 GPUs on 4 nodes
+➢  &emsp;For a $2048^3$ LPT simulation ran on 16 GPUs runs in under a second on Jean-Zay super computer
 
-➢  &emsp;Runtime for a forward run is  <span style="color:violet;">6 seconds</span>
+➢  &emsp;We aim to run a $8192^3$ Particle-mesh simulation on 160 GPUs 
 
 ::::
 
@@ -867,14 +856,8 @@ Distributed FastPM simulations
 
 ---
 
-### Benchmarks
 
-![](assets/gpu_memory_sizes.png){.absolute top=50 left=0 width="1000"}
-
-
----
-
-### Conclusion
+## Conclusion {background-image="assets/LPT_density_field_z0_2048.jpg"}
 
 <br/>
 <br/>
