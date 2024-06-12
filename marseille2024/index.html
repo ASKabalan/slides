@@ -714,21 +714,12 @@
 </figure>
 </div>
 </div>
-<div class="fragment fade-in-then-out" data-fragment-index="6">
+<div class="fragment" data-fragment-index="6">
 <!-- 512 -->
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/gpu_memory_sizes.png" class="nostretch" width="400"></p>
-<figcaption>Power spectrum 1024</figcaption>
-</figure>
-</div>
-</div>
-<div class="fragment fade-in-then-out" data-fragment-index="7">
-<!-- 256 -->
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/gpu_memory_sizes.png" class="nostretch" width="400"></p>
-<figcaption>Power spectrum</figcaption>
+<p><img data-src="assets/power_spec.png" class="nostretch" width="400"></p>
+<figcaption>Power spectrum comparison</figcaption>
 </figure>
 </div>
 </div>
@@ -814,7 +805,7 @@
 <div>
 
 </div>
-<div class="quarto-layout-panel" data-layout-align="bottom" data-layout="[20 , 30 , 50]">
+<div class="quarto-layout-panel" data-layout="[20 , 30 , 50]" data-layout-align="bottom">
 <div class="quarto-layout-row quarto-layout-valign-bottom">
 <div class="quarto-layout-cell" style="flex-basis: 20.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
@@ -933,7 +924,7 @@
 <div>
 
 </div>
-<div class="quarto-layout-panel" data-layout-align="center" data-layout="[[1] , [1] , [1] , [1]]">
+<div class="quarto-layout-panel" data-layout="[[1] , [1] , [1] , [1]]" data-layout-align="center">
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -980,7 +971,7 @@
 <div>
 
 </div>
-<div class="quarto-layout-panel" data-layout-align="center" data-layout="[[1] , [1] , [1] , [1]]">
+<div class="quarto-layout-panel" data-layout="[[1] , [1] , [1] , [1]]" data-layout-align="center">
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -1054,8 +1045,7 @@
 <h3 id="distributed-jaxpm-particle-mesh-simulations">Distributed JaxPM Particle-Mesh simulations</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/field-init.png" class="" width="800"></p>
-<figcaption>Final field</figcaption>
+<p><img data-src="assets/LPT_density_field_z0_2048.png" class="quarto-figure quarto-figure-center" width="400"></p>
 </figure>
 </div>
 <div class="solutionbox">
@@ -1064,19 +1054,13 @@
 </div>
 <div class="solutionbox-body">
 <p>➢  Multi host version of <span style="color:violet;">JaxPM</span> using <span style="color:violet;">jaxDecomp</span></p>
-<p>➢  For a <span class="math inline">\(4096^3\)</span> simulation we used 32 GPUs on 4 nodes</p>
-<p>➢  Runtime for a forward run is <span style="color:violet;">6 seconds</span></p>
+<p>➢  For a <span class="math inline">\(2048^3\)</span> LPT simulation ran on 16 GPUs runs in under a second on Jean-Zay super computer</p>
+<p>➢  We aim to run a <span class="math inline">\(8192^3\)</span> Particle-mesh simulation on 160 GPUs</p>
 </div>
 </div>
 </section>
-<section class="slide level2">
-
-<h3 id="benchmarks">Benchmarks</h3>
-<p><img data-src="assets/gpu_memory_sizes.png" class="absolute" style="top: 50px; left: 0px; width: 1000px; "></p>
-</section>
-<section class="slide level2">
-
-<h3 id="conclusion">Conclusion</h3>
+<section id="conclusion" class="slide level2" data-background-image="assets/LPT_density_field_z0_2048.jpg">
+<h2>Conclusion</h2>
 <p><br> <br> <br> <br></p>
 <div class="solutionbox">
 <div class="solutionbox-header">
