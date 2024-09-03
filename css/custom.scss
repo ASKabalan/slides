@@ -1,8 +1,8 @@
 /*-- scss:defaults --*/
 
-$body-bg: rgb(39, 39, 39);  // Background color set to black
-$body-color: #fff;  // Text color set to white
-$link-color: #42affa;  // Link color remains unchanged
+$body-bg: #f4f4f4;  // Background color set to light grey
+$body-color: #333;  // Text color set to dark grey for better readability on light background
+$link-color: #007acc;  // Link color with a blue shade that stands out on a light background
 $body-font-size: 20px;  // Adjust this value to make the font size smaller or larger
 $solution-header-font-size: 20px;  // Adjust this value to make the font size smaller or larger
 $solution-body-font-size: 18px;
@@ -35,11 +35,8 @@ $solution-body-font-size: 18px;
   margin-top: 1em;
   margin-bottom: 1em;  
   border-radius: .50rem;
-  border-left: none;
-  border-right: none;
-  border-top: none;
-  border-bottom: none;
-  background-color: #403940;
+  border: 2px solid #c8c8c8;  // Add a light grey border (frame) around the box
+  background-color: #e8e8e8;  // Light grey background for the solution box
 }
 
 .solutionbox-icon {
@@ -66,7 +63,7 @@ $solution-body-font-size: 18px;
   padding-left: 0.5em;
   padding-right: 0.5em;
   display: flex;
-  background-color: #3e0145;
+  background-color: #d3b4f0;  // Light purple background for the header
   height: 2em;
   overflow: hidden;
   align-items: center;  // Align items vertically in the center
@@ -80,7 +77,7 @@ $solution-body-font-size: 18px;
 .solutionbox-body {
   font-size: $solution-body-font-size;
   font-weight: 400;
-  background-color: #403940;
+  background-color: #f4f4f4;  // Match the body background or slightly darker
   padding-left: 0.5em;
   padding-right: 0.5em;
 }
@@ -90,8 +87,8 @@ $solution-body-font-size: 18px;
   margin-bottom: 0;
 }
 
-
 figcaption {
   margin: auto;
   text-align: center;
 }
+
