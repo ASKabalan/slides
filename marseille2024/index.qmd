@@ -239,7 +239,7 @@ Possible solutions
 
 ## JAX : Automatic differentiation and Hardware acceleration {auto-animate="true"}
 
-![](assets/JaxLogo.png){.absolute top=60 right=25 width=200px}
+![](assets/Logos/JaxLogo.png){.absolute top=60 right=25 width=200px}
 
 <br />
 <br />
@@ -284,7 +284,7 @@ result = multiply_and_add(a, b, c)
 
 ## JAX : Automatic differentiation and Hardware acceleration {auto-animate="true"}
 
-![](assets/JaxLogo.png){.absolute top=60 right=25 width=200px}
+![](assets/Logos/JaxLogo.png){.absolute top=60 right=25 width=200px}
 
 <br />
 <br />
@@ -312,7 +312,7 @@ result = multiply_and_add(a, b, c)
 
 ## JAX : Automatic differentiation and Hardware acceleration {auto-animate="true"}
 
-![](assets/JaxLogo.png){.absolute top=60 right=25 width=200px}
+![](assets/Logos/JaxLogo.png){.absolute top=60 right=25 width=200px}
 
 <br />
 <br />
@@ -365,7 +365,7 @@ JAX : Numpy + Autograd + GPU
 #### FastPM simulation in a few lines of code
 
 <p style="display: flex; align-items: center; position: absolute; top: 10px; left: 700px;">
-  <img src="assets/github_logo.png" alt="GitHub Logo" style="width: 5%; margin-right: 10px;">
+  <img src="assets/Logos/github_logo.png" alt="GitHub Logo" style="width: 5%; margin-right: 10px;">
   <a href="https://github.com/DifferentiableUniverseInitiative/JaxPM">DifferentiableUniverseInitiative/JaxPM</a>
 </p>
 
@@ -471,7 +471,7 @@ field, res, initial_conditions = run_simulation(0.25, 0.8)
 
 ::: {.fragment fragment-index=1 }
 
-![](assets/depict_gathered.png){.absolute top=30 right=0 width="20%"}
+![](assets/HPC/depict_gathered.png){.absolute top=30 right=0 width="20%"}
 
 ::: 
 
@@ -483,31 +483,31 @@ field, res, initial_conditions = run_simulation(0.25, 0.8)
 
 ::: {.fragment fragment-index=1 .fade-in-then-out}
 
-![Initial Conditions with a 1024 mesh](assets/initial_conditions_1024.png){.nostretch fig-align="center" width="400px"}
+![Initial Conditions with a 1024 mesh](assets/Fields/initial_conditions_1024.png){.nostretch fig-align="center" width="400px"}
 
 ::: 
 
 ::: {.fragment fragment-index=2 .fade-in-then-out}
 
-![Initial Conditions with a 512 mesh](assets/initial_conditions_512.png){.nostretch fig-align="center" width="400px"}
+![Initial Conditions with a 512 mesh](assets/Fields/initial_conditions_512.png){.nostretch fig-align="center" width="400px"}
 
 ::: 
 
 ::: {.fragment fragment-index=3 .fade-in-then-out}
 
-![Initial Conditions with a 256 mesh](assets/initial_conditions_256.png){.nostretch fig-align="center" width="400px"}
+![Initial Conditions with a 256 mesh](assets/Fields/initial_conditions_256.png){.nostretch fig-align="center" width="400px"}
 
 ::: 
 
 ::: {.fragment fragment-index=4 .fade-in-then-out}
 
-![Initial Conditions with a 128 mesh](assets/initial_conditions_128.png){.nostretch fig-align="center" width="400px"}
+![Initial Conditions with a 128 mesh](assets/Fields/initial_conditions_128.png){.nostretch fig-align="center" width="400px"}
 
 ::: 
 
 ::: {.fragment fragment-index=5 .fade-in-then-out}
 
-![Initial Conditions with a 64 mesh](assets/initial_conditions_64.png){.nostretch fig-align="center" width="400px"}
+![Initial Conditions with a 64 mesh](assets/Fields/initial_conditions_64.png){.nostretch fig-align="center" width="400px"}
 
 ::: 
 
@@ -515,7 +515,7 @@ field, res, initial_conditions = run_simulation(0.25, 0.8)
 
 <!-- 512 -->
 
-![Power spectrum comparison](assets/power_spec.png){.nostretch fig-align="center" width="400px"}
+![Power spectrum comparison](assets/Fields/power_spec.png){.nostretch fig-align="center" width="400px"}
 
 ::: 
 
@@ -529,37 +529,37 @@ field, res, initial_conditions = run_simulation(0.25, 0.8)
 
 ::: {.fragment fragment-index=1 .fade-in-then-out}
 
-![Final field with a 1024 mesh](assets/LPT_density_field_z0_1024.png){.nostretch fig-align="center" width="400px"}
+![Final field with a 1024 mesh](assets/Fields/LPT_density_field_z0_1024.png){.nostretch fig-align="center" width="400px"}
 
 ::: 
 
 ::: {.fragment fragment-index=2 .fade-in-then-out}
 
-![Final field with a 512 mesh](assets/LPT_density_field_z0_512.png){.nostretch fig-align="center" width="400px"}
+![Final field with a 512 mesh](assets/Fields/LPT_density_field_z0_512.png){.nostretch fig-align="center" width="400px"}
 
 ::: 
 
 ::: {.fragment fragment-index=3 .fade-in-then-out}
 
-![Final field with a 256 mesh](assets/LPT_density_field_z0_256.png){.nostretch fig-align="center" width="400px"}
+![Final field with a 256 mesh](assets/Fields/LPT_density_field_z0_256.png){.nostretch fig-align="center" width="400px"}
 
 ::: 
 
 ::: {.fragment fragment-index=4 .fade-in-then-out}
 
-![Final field with a 128 mesh](assets/LPT_density_field_z0_128.png){.nostretch fig-align="center" width="400px"}
+![Final field with a 128 mesh](assets/Fields/LPT_density_field_z0_128.png){.nostretch fig-align="center" width="400px"}
 
 ::: 
 
 ::: {.fragment fragment-index=5 .fade-in-then-out}
 
-![Final field with a 64 mesh](assets/LPT_density_field_z0_64.png){.nostretch fig-align="center" width="400px"}
+![Final field with a 64 mesh](assets/Fields/LPT_density_field_z0_64.png){.nostretch fig-align="center" width="400px"}
 
 ::: 
 
 ::: {.fragment fragment-index=6}
 
-![Final field with a 1024 mesh](assets/LPT_density_field_z0_1024.png){.nostretch fig-align="center" width="400px"}
+![Final field with a 1024 mesh](assets/Fields/LPT_density_field_z0_1024.png){.nostretch fig-align="center" width="400px"}
 
 ::: 
 
@@ -598,7 +598,7 @@ We need a fast, differentiable and <span style="color:violet;">Scalable</span> P
 #### Size of a FastPM simulation
 
 
-![](assets/simulation_gpu_sizes.png){.nostretch fig-align="center" width="650"}
+![](assets/HPC/simulation_gpu_sizes.png){.nostretch fig-align="center" width="650"}
 
 
 ::: {.fragment .fragment-index-1}
@@ -609,13 +609,13 @@ We need a fast, differentiable and <span style="color:violet;">Scalable</span> P
 
 ::: {layout="[20 , 30 , 50]" layout-valign="bottom" layout-align="bottom"}
 
-![Single GPU (80GB)](assets/jax-1gpu.png){width="55%"}
+![Single GPU (80GB)](assets/HPC/jax-1gpu.png){width="55%"}
 
 
-![Single Node (8x80GB)](assets/jax-1node.png){width="55%"}
+![Single Node (8x80GB)](assets/HPC/jax-1node.png){width="55%"}
 
 
-![Muti Node ( $\infty$ )](assets/jax-multi-node.png){width="90%"}
+![Muti Node ( $\infty$ )](assets/HPC/jax-multi-node.png){width="90%"}
 
 ::: 
 
@@ -662,7 +662,7 @@ k_field = jnp.fft.fftn(field)
 #### Jaxdecomp
 
 <p style="display: flex; align-items: center; position: absolute; top: 10px; left: 600px;">
-  <img src="assets/github_logo.png" alt="GitHub Logo" style="width: 5%; margin-right: 10px;">
+  <img src="assets/Logos/github_logo.png" alt="GitHub Logo" style="width: 5%; margin-right: 10px;">
   <a href="https://github.com/DifferentiableUniverseInitiative/jaxDecomp">DifferentiableUniverseInitiative/jaxDecomp</a>
 </p>
 
@@ -724,7 +724,7 @@ JaxDecomp features
 
 :::{.fragment fragment-index=2}
 
-![](assets/decomp2d.gif){.absolute top=50 left=400 width="900"}
+![](assets/HPC/decomp2d.gif){.absolute top=50 left=400 width="900"}
 
 :::
 
@@ -736,7 +736,7 @@ JaxDecomp features
 
 ### Scaling of Distributed FFT operations
 
-![](assets/single_precision_gpus.png){.absolute top=50 left=0 width="1000"}
+![](assets/benchmarks/single_precision_gpus.png){.absolute top=50 left=0 width="1000"}
 
 
 ---
@@ -745,13 +745,13 @@ JaxDecomp features
 
 ::: {.fragment fragment-index=1 .fade-in-then-out}
 
-![](assets/depict_gathered.png){.absolute top=30 right=20 width="20%"}
+![](assets/HPC/depict_gathered.png){.absolute top=30 right=20 width="20%"}
 
 ::: 
 
 ::: {.fragment fragment-index=2 }
 
-![](assets/depict_split.png){.absolute top=30 right=20 width="20%"}
+![](assets/HPC/depict_split.png){.absolute top=30 right=20 width="20%"}
 
 ::: 
 
@@ -759,7 +759,7 @@ JaxDecomp features
 
 :::{.fragment fragment-index=1 .fade-in-then-out}
 
-![Initial Field](assets/initial_conditions_1024.png){.nostretch  width="400px"}
+![Initial Field](assets/Fields/initial_conditions_1024.png){.nostretch  width="400px"}
 
 :::
 
@@ -767,13 +767,13 @@ JaxDecomp features
 
 :::{layout="[[1] , [1] , [1] , [1]]" layout-valign="center" layout-align="center"}
 
-![First slice](assets/initial_conditions_0_no_halo.png){.nostretch fig-align="center" width="400px"}
+![First slice](assets/Fields/initial_conditions_0_no_halo.png){.nostretch fig-align="center" width="400px"}
 
-![Second slice](assets/initial_conditions_1_no_halo.png){.nostretch fig-align="center" width="400px"}
+![Second slice](assets/Fields/initial_conditions_1_no_halo.png){.nostretch fig-align="center" width="400px"}
 
-![Third slice](assets/initial_conditions_2_no_halo.png){.nostretch fig-align="center" width="400px"}
+![Third slice](assets/Fields/initial_conditions_2_no_halo.png){.nostretch fig-align="center" width="400px"}
 
-![Fourth slice](assets/initial_conditions_3_no_halo.png){.nostretch fig-align="center" width="400px"}
+![Fourth slice](assets/Fields/initial_conditions_3_no_halo.png){.nostretch fig-align="center" width="400px"}
 
 :::
 
@@ -783,13 +783,13 @@ JaxDecomp features
 
 :::{layout="[[1] , [1] , [1] , [1]]" layout-valign="center" layout-align="center"}
 
-![First slice](assets/LPT_density_field_z0_0_no_halo.png){.nostretch fig-align="center" width="400px"}
+![First slice](assets/Fields/LPT_density_field_z0_0_no_halo.png){.nostretch fig-align="center" width="400px"}
 
-![Second slice](assets/LPT_density_field_z0_1_no_halo.png){.nostretch fig-align="center" width="400px"}
+![Second slice](assets/Fields/LPT_density_field_z0_1_no_halo.png){.nostretch fig-align="center" width="400px"}
 
-![Third slice](assets/LPT_density_field_z0_2_no_halo.png){.nostretch fig-align="center" width="400px"}
+![Third slice](assets/Fields/LPT_density_field_z0_2_no_halo.png){.nostretch fig-align="center" width="400px"}
 
-![Fourth slice](assets/LPT_density_field_z0_3_no_halo.png){.nostretch fig-align="center" width="400px"}
+![Fourth slice](assets/Fields/LPT_density_field_z0_3_no_halo.png){.nostretch fig-align="center" width="400px"}
 
 :::
 
@@ -797,14 +797,14 @@ JaxDecomp features
 
 :::{.fragment fragment-index=4 .fade-in-then-out}
 
-![LPT Field](assets/LPT_density_field_z0_1024_no_halo.png){.nostretch fig-align="center" width="400px"}
+![LPT Field](assets/Fields/LPT_density_field_z0_1024_no_halo.png){.nostretch fig-align="center" width="400px"}
 
 :::
 
 
 :::{.fragment fragment-index=5}
 
-![LPT Field](assets/LPT_density_field_z0_1024.png){.nostretch fig-align="center" width="400px"}
+![LPT Field](assets/Fields/LPT_density_field_z0_1024.png){.nostretch fig-align="center" width="400px"}
 
 :::
 
@@ -831,7 +831,7 @@ field = halo_exchange(field, halo_extent=halo_size)
 ### Distributed JaxPM Particle-Mesh simulations 
 
 
-![](assets/LPT_density_field_z0_2048.png){.nostretch fig-align="center" width="400px"}
+![](assets/Fields/LPT_density_field_z0_2048.png){.nostretch fig-align="center" width="400px"}
 
 :::{.solutionbox}
 
@@ -856,8 +856,7 @@ Distributed FastPM simulations
 
 ---
 
-
-## Conclusion {background-image="assets/LPT_density_field_z0_2048.png"}
+## <span style="color:white">Conclusion </span> {background-image="assets/Fields/LPT_density_field_z0_2048.png"}
 
 <br/>
 <br/>
@@ -888,8 +887,4 @@ Distruibuted Particle-Mesh simulations for cosmological inference
 
 :::
 
----
 
-## 
-
----
