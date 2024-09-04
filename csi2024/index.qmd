@@ -505,6 +505,8 @@ Possible solutions
 <br />
 <br />
 
+![](assets/simu.png){.nostretch fig-align="center" width="600px"}
+
 
 :::: {.columns}
 
