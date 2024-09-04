@@ -136,7 +136,7 @@
     "objectID": "marseille2024/index.html#conclusion",
     "href": "marseille2024/index.html#conclusion",
     "title": "Differentiable and distributed Particle-Mesh n-body simulations",
-    "section": "Conclusion",
-    "text": "Conclusion\n   \n\n\nDistruibuted Particle-Mesh simulations for cosmological inference\n\n\n\nA shift from analytical likelihoods to full field inference\n\nThe need for fast differentiable simulators\nParticle-Mesh as simulators for full field inference\nDistributed fourrier transforms that work on multi-node HPC using jaxDecomp\nHighly scalable LPT simulations using JaxPM\n\nStill subject to some challenges\n\nSome issues with the ODE solving step\nOnly Euler gives decent results."
+    "section": "Conclusion ",
+    "text": "Conclusion \n   \n\n\nDistruibuted Particle-Mesh simulations for cosmological inference\n\n\n\nA shift from analytical likelihoods to full field inference\n\nThe need for fast differentiable simulators\nParticle-Mesh as simulators for full field inference\nDistributed fourrier transforms that work on multi-node HPC using jaxDecomp\nHighly scalable LPT simulations using JaxPM\n\nStill subject to some challenges\n\nSome issues with the ODE solving step\nOnly Euler gives decent results.\n\n\n\n\n\n\n\nLSST France, 2024"
   }
 ]
