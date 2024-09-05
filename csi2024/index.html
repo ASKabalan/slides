@@ -1165,6 +1165,20 @@
 
 </div>
 </div>
+<aside class="notes">
+<p>L’opération qui nécessite le plus de communication dans une simulation distribuée est la transformée de Fourier rapide (FFT).</p>
+<p>L’utilisation sur un seul GPU est triviale</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="distributed-fast-fourier-transform-1" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Distributed Fast Fourier Transform</h2>
@@ -1193,7 +1207,7 @@
 <span id="cb3-14" class="hljs-ln-code"><a></a></span>
 <span id="cb3-15" class="hljs-ln-code"><a></a>k_field <span class="op">=</span> jaxdecomp.fft.pfft3d(field)</span>
 <span id="cb3-16" class="hljs-ln-code"><a></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="fragment" data-fragment-index="2">
+<div class="fragment" data-fragment-index="3">
 <p><img data-src="assets/Papers/joss-jaxdecomp.png"></p>
 </div>
 </div>
@@ -1221,8 +1235,7 @@
 </div>
 </div>
 <aside class="notes">
-<p>L’opération qui nécessite le plus de communication dans une simulation distribuée est la transformée de Fourier rapide (FFT).</p>
-<p>JaxDecomp est une bibliothèque qui permet de faire des FFT distribuées sur plusieurs GPU et nœuds de calcul.</p>
+<p>avec JaxDecomp c’est aussi trivial faire des FFT distribuées sur plusieurs GPU et nœuds de calcul.</p>
 <p>L’utilisation est aussi trivial que faire une FFT sur un seul GPU, il suffit de décrire la grille de distribution et la bibliothèque s’occupe du reste.</p>
 <p><strong>NEXT</strong></p>
 <p>ça supporte les décompositions 2D et 1D, fonctionne pour les FFT multi-nœuds, tout en restant différentiable.</p>
