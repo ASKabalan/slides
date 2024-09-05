@@ -37,7 +37,7 @@ logo1: '![](assets/Logos/AIM.png){fig-align="center"width=10%} ![](assets/Logos/
 
 ➢  &emsp; Leveraging the Cosmic Microwave Background (CMB) as a tracer to constrain the tensor-to-scalar ratio, $r$
 
-➢  &emsp; Utilizing weak lensing to constrain key cosmological parameters like $\Omega_m$ and $\sigma_8$
+➢  &emsp; Utilizing weak lensing to constrain key **cosmological parameters** like $\Omega_m$ and $\sigma_8$
 
 <br />
 <br />
@@ -352,7 +352,8 @@ La méthode que nous utilisons ici est **paramétrique**, où chaque composante 
 :::
 
 
-## Minimization Process in CMB Component Separation
+## Minimization Process in CMB Component Separation  ![SO](assets/Logos/so.webp){.nostretch fig-valign="center" width="5%"} ![LiteBIRD](assets/Logos/litebird.png){.nostretch fig-valign="center" width="7%"}
+
 
 ### Using Scipols's  `Furax` Library (Chanial et al. in prep.)
 
@@ -380,7 +381,7 @@ Array([[ 0,  1,  2,  3,  0,  0,  0,  0,  0,  0,  0,  0],
 
 ::::{.solutionbox-header}
 
-My contributions
+My contributions (in the context of SO and LiteBIRD)
 
 ::::
 
@@ -388,9 +389,10 @@ My contributions
 
 - **Use JAX tools** to evaluate the spectral likelihood.
 - **Apply gradient descent methods** to minimize the likelihood function.
-- [**TODOs**]: 
+- **Next steps**
   - Adapt code to handle **multi-resolution** data.
   - Implement support for **multi-patch** analysis.
+  - Write a paper about GPU-accelerated component seperation
 
 ::::
 
@@ -414,15 +416,15 @@ Mon travail consiste à utiliser les outils de JAX pour évaluer la fonction de 
 ![Projects](assets/Projects/ALL_Projects.svg){.nostretch fig-align="center" width="70%"}
 :::
 
-## Weak Lensing - AstroDeep/Aim {auto-animate=true}
+## Large Scale Structure - AstroDeep {auto-animate=true}
 
 :::{data-id="Projects"}
 
-![Projects](assets/Projects/WK.svg){.nostretch fig-align="center" width="70%"}
+![Projects](assets/Projects/WL.svg){.nostretch fig-align="center" width="70%"}
 
 :::
 
-## Weak Lensing - Statistical Tools {auto-animate=true}
+## Large Scale Structure - Statistical Tools {auto-animate=true}
 
 :::: {.columns}
 
@@ -480,7 +482,6 @@ $$
 
 :::
 
-
 :::
 
 :::
@@ -508,6 +509,33 @@ $$
 
 ::::
 
+::: {.notes}
+
+Dans le cadre de mon travail avec **AstroDeep**, je me concentre sur le lentillage gravitationnel faible.
+
+Le lentillage gravitationnel faible est un tracer important pour mettre une contrante sur les parameters cosmologique liée à la densité de matiere dans l'univers et la formation des sctructure à grande echelle.
+
+traditionellement, on utilise une fonction de correlation à deux points pour résumer les données des champs de convergence. typiquiment on utlisé le spectre de puissance .. très concreement il s'agit de encoder les distancess entre chaque pair de galaxy (ce qui assume des données gaussienne)
+
+Cependant, cette approche est limitée car le champs observées à basse red shift est tout sauf gaussian.
+
+**NEXT**
+
+Une autre famille de methodes existent, notammement l'inference basé sur les simulation ou SBI. Cette approche consiste à utiliser des simulations pour générer des données et des champs de convergence, et ça remplace l'utilisation d'une vraisemblance analytique.
+
+La vraisemblance devient l'ecart entre la sortie de la simulation et les données observées, On ajoute aussi un apriori gaussian sur les parameters.
+
+**NEXT**
+
+Un exemple de ce genre de processus est illustré ici. On commence par générer un champ gaussien, puis on le fait évoluer en utilisant une Simulation cosmologique. On utilise d'autre methodes specifique pour introduire les galaxies dans les amas de matière noire puis on compare avec les données
+
+**NEXT**
+
+En bref, on appelle le processus de générer les données à partir de simulations **Forward Modeling** ou la prédiction, et le processus de comparer les données observées avec les simulations **Inference**.
+
+mon travail consist à faire un ce forward model
+
+:::
 
 ## Hearchical Bayesian Modeling
 
@@ -525,13 +553,12 @@ $$
 ➕  &emsp;No longer need to compute the likelihood analytically
 <br />
 <br />
-➖ &emsp;We need to infer the joint posterior $p(\beta, g | z)$ before marginalization to get $p(\beta | g) = \int p(\beta, z | g) \, dz$
-
-:::
-
-:::
 
 :::{.fragment fragment-index=1}
+
+➖ &emsp;We need to infer the joint posterior $p(\beta, g | z)$ before marginalization to get $p(\beta | g) = \int p(\beta, z | g) \, dz$
+
+:::{.fragment fragment-index=2}
 
 :::{.solutionbox}
 
@@ -541,15 +568,63 @@ Possible solutions
 ::::
 
 ::::{.solutionbox-body}
-- **Hamiltonian Monte Carlo**
+- *Hamiltonian Monte Carlo* (NUTS)
 - **Variational Inference**
 - **Dimensionality reduction using Fisher Information Matrix**
-
-*All require a differentiable fast forward model*
-
 ::::
 
 :::
+
+:::
+
+
+:::
+
+:::
+
+:::{.fragment fragment-index=3}
+
+
+:::{.solutionbox}
+
+
+::::{.solutionbox-header}
+Differentiable forward model for differentiable sampling
+::::
+
+::::{.solutionbox-body}
+- Full NBody simulation are too slow to be used in an iterative sampler
+- Dynamic grid-based simulations can be fast but hard to differentiate
+- Fast Particle-Mesh simulations are fast and differentiable
+::::
+
+:::
+
+:::
+
+:::
+
+
+::: {.notes}
+
+Dans le cadre de l'inférence bayésienne hiérarchique, on utilise un modèle graphique probabiliste pour représenter les relations entre les variables aléatoires.
+
+typiquiment ici j'ai un exemple d'un model graphique probabiliste ou les cercle blanches sont les parameters echantillonable et les grise represent les parametes latents.
+
+L'avatage c'est que on a plus besoin de calculer la vraisemblance analytique, 
+
+**Next**
+
+Ce genre de simulateur dit explicit, ou les parameters intermediaire ou latents sont pas directement observables mais utilise, contrainerement à un simulateur implicite ou aveugle ou les parameters ne sont plus interpretable, implique une augmentation majeur de temps passé à marginaliser .
+
+**Next**
+
+Pour résoudre ce problème, on peut utiliser des méthodes d'échantillonnage comme le **NUTS** ou le **HMC**, ce genre de methodes peuvent être significativement accélérées en utilisant un modèle forward différentiable.
+En ayant accès aux gradient, l'echantillonnage necessite moins de pas pour converger.
+
+**Next**
+
+Pour ce faire, des simulation N Corps classique sont trop lentes pour être utilisées dans un échantillonneur itératif. Les simulations basées sur des grilles dynamiques peuvent être rapides mais difficiles à différencier. Les simulations de particules-réseau sont rapides et différentiables.
 
 :::
 
@@ -649,10 +724,25 @@ Possible solutions
 
 :::
 
+::: {.notes}
 
-## JaxPM : A differentiable Particle-Mesh simulation
+Les simulations de particules-mesh sont une méthode rapide et simple pour simuler l'évolution des structures cosmologiques.
 
-### FastPM simulation in a few lines of code
+Le schéma numérique est assez simple :
+
+on commence par interpoler les particules sur une grille pour estimer la densité de masse,
+
+puis on estime la force gravitationnelle sur les points de la grille en utilisant une transformée de Fourier rapide (FFT). 
+
+On interpole ensuite les forces sur les particules, on met à jour les vitesses et les positions des particules, et on répète le processus.
+
+On peut demarrer d'un red shift 10 par exemple et faire evoluer le systeme jusqu'à un red shift 0.
+
+**NEXT**
+
+Cette méthode est rapide et simple, mais elle approxime les interactions à courte portée. C'est essentiellement une série de FFT et d'interpolations. Elle est différentiable et peut être exécutée sur des GPU.
+
+:::
 
 <!-- <p style="display: flex; align-items: center; position: absolute; top: 10px; left: 700px;"> -->
 <!--   <img src="assets/Logos/github_logo.png" alt="GitHub Logo" style="width: 5%; margin-right: 10px;"> -->
@@ -660,79 +750,16 @@ Possible solutions
 <!-- </p> -->
 <!---->
 
-<br />
-
-:::: {.columns}
-
-
-::: {.column width="60%"}
-
-
-```{.python }
-mesh_shape = [64, 64, 64]
-box_size = [64., 64., 64.]
-snapshots = jnp.linspace(0.1, 1., 2)
-
-@jax.jit
-def run_simulation(omega_c, sigma8):
-    # Create a small function to generate the matter power spectrum
-    k = jnp.logspace(-4, 1, 128)
-    pk = jc.power.linear_matter_power(
-        jc.Planck15(Omega_c=omega_c, sigma8=sigma8), k)
-    pk_fn = lambda x: jc.scipy.interpolate.interp(x.reshape([-1]), k, pk
-                                                  ).reshape(x.shape)
-
-    # Create initial conditions
-    initial_conditions = linear_field(mesh_shape,
-                                      box_size,
-                                      pk_fn,
-                                      seed=jax.random.PRNGKey(0))
-
-    # Create particles
-    particles = jnp.stack(jnp.meshgrid(*[jnp.arange(s) for s in mesh_shape]),
-                          axis=-1).reshape([-1, 3])
-
-    cosmo = jc.Planck15(Omega_c=omega_c, sigma8=sigma8)
-
-    # Initial displacement
-    dx, p, f = lpt(cosmo, initial_conditions, particles, 0.1)
-    field = dx + particles
-
-    # Evolve the simulation forward
-    ode_fn = make_ode_fn(mesh_shape)
-    term = ODETerm(lambda t, state, args: jnp.stack(ode_fn(state, t, args), axis=0))
-    solver = Dopri5()
-
-    stepsize_controller = PIDController(rtol=1e-7, atol=1e-7)
-    res = diffeqsolve(term, solver, t0=0.1, t1=1., dt0=0.01, y0=jnp.stack([dx, p],axis=0), 
-                       args=(cosmo , kvec),
-                       stepsize_controller=stepsize_controller,
-                       saveat=SaveAt(ts=snapshots))
-
-    # Return the simulation volume at requested
-    return field, res, initial_conditions
-
-field, res, initial_conditions = run_simulation(0.25, 0.8)
-
-
-```
-
-:::
-
-::: {.column width="40%"}
-
-![](assets/Fields/NBody.png){.nostretch fig-align="center" width="50%"} 
-
-:::
-
-::::
- 
-
-## Fast Particle-mesh scaling
+## Fast Particle-mesh scaling  ![LSST Desc](assets/Logos/lsst_desc.png){.nostretch fig-valign="center" width="5%"}
 
 ➢  &emsp;(Poqueres et al. 2021) : $64^3$ mesh size, on a 1000 Mpc/h box
 
 ➢  &emsp;(Li et al. 2022) : $512^3$ mesh size,  using [pmwd](https://github.com/eelregit/pmwd)
+
+➢  &emsp;(Lanusse et al.) :  [JaxPM](https://github.com/DifferentiableUniverseInitiative/JaxPM) similaire à pmwd.
+
+➢  &emsp;[FastPM](https://github.com/fastpm/fastpm) : distributed but CPU-based
+ 
 
 ::: {.fragment fragment-index=1 }
 
@@ -758,11 +785,21 @@ field, res, initial_conditions = run_simulation(0.25, 0.8)
 
 ::: 
 
+::: {.fragment fragment-index=5 .fade-out}
 ::: {.fragment fragment-index=3}
 
-![Power spectrum comparison](assets/Fields/power_spec.png){.nostretch fig-align="center" width="400px"}
+![Power spectrum comparison](assets/Fields/power_spec.png){.nostretch fig-align="center" width="100%}
 
-:::  
+::: 
+:::
+
+
+::: {.fragment fragment-index=5}
+
+![Muti Node ( $\infty$ )](assets/HPC/jax-multi-node.png){width="100%"}
+
+:::
+
 
 :::
 
@@ -782,13 +819,7 @@ field, res, initial_conditions = run_simulation(0.25, 0.8)
 
 ![Final field with a 64 mesh](assets/Fields/LPT_density_field_z0_64.png){.nostretch fig-align="center" width="400px"}
 
-::: 
-
 :::
-
-::: 
-
-:::: 
 
 ::: {.fragment fragment-index=4}
 
@@ -796,47 +827,64 @@ field, res, initial_conditions = run_simulation(0.25, 0.8)
 
 ::::{.solutionbox-header}
 
-Scaling
+My contributions (in the context of ISSC and LSST DESC)
 
 ::::
 
 ::::{.solutionbox-body}
 
-We need a fast, differentiable and <span style="color:violet;">Scalable</span> Particle-Mesh simulation
+We need a fast, differentiable and <span style="color:violet;">Scalable</span> Particle-Mesh simulation that can run on multiple GPUs.
+
+**Multi-GPU Particle mesh** requires : 
+
+  - **Distributed FFT** operations\
+  - **Interpolation scheme** to handle boundary conditions in a distributed manner
 
 ::::
 
 :::  
 
-:::  
+:::
 
-
-
-## Scaling on modern hardware
-
-### Size of a FastPM simulation
-
-
-![](assets/HPC/simulation_gpu_sizes.png){.nostretch fig-align="center" width="75%"}
-
-
-::: {.fragment .fragment-index-1}
-
-
-### Scaling on multiple GPUs
-
-
-::: {layout="[20 , 30 , 50]" layout-valign="bottom" layout-align="bottom"}
-
-![Single GPU (80GB)](assets/HPC/jax-1gpu.png){width="55%"}
-
-
-![Single Node (8x80GB)](assets/HPC/jax-1node.png){width="55%"}
-
-
-![Muti Node ( $\infty$ )](assets/HPC/jax-multi-node.png){width="90%"}
 
 ::: 
+
+:::: 
+
+
+
+:::
+
+
+::: {.notes}
+
+Il existe déja quelque implementation de simulation de particules-mesh qui sont capable de simuler des boites de 1000 Mpc/h avec une résolution de 64^3 ou 512^3.
+
+Les deux exemples faites dans un papier de poqueres et l'autre par le package pmwd basé sur JAX.
+
+Le papier de poqueres à utilisé une résolution de 64^3 pour simuler une boite de 1000 Mpc/h, et le package pmwd peut aller jusq'à une résolution de 512^3.
+
+JaxPM est un package similaire à pmwd, qui est capable de simuler des résolutions similaires à celles de pmwd et toujours sur un seul GPU.
+
+**NEXT**
+
+Un exemple de deux simulation faites sur une boite de 1 Gpc/h avec une résolution de 64^3 et 1024^3. On peut voir que la résolution plus élevée permet de capturer plus de détails dans le champ de densité.
+
+**NEXT**
+
+Si on visualise le spectre de puissance de ces deux champs, on peut voir que la résolution plus basse sous-estime la densité de matière et les interactions à petite échelle.
+En fonction du type du but cosmologique , ce qui peut dire que ce type d'inference ne sera pas capable de mettre une contrainte mielleure voir meme pire par rapport à une méthode basé sur des fonction de correlation à deux points ou spectre de puissance.
+
+La taille de mémoire etant un facteur limitant, il est important de pouvoir mettre à l'échelle ces simulations sur plusieurs GPU et nœuds de calcul haute performance.
+
+Le passage à une simulation multi-GPU nécessite des opérations de FFT distribuées, des interpolations distribuées et des conditions aux limites.
+
+**NEXT**
+
+Notre but serait de pouvoir faires simulation qui peuvent être distribuées sur plusieur GPU et nœuds de calcul haute performance.
+Tout en restant diffirentiable et rapide (quelque secondes pour chaque simulation).
+
+pas été fait
 
 :::
 
@@ -868,6 +916,14 @@ k_field = jnp.fft.fftn(field)
 :::
 
 ::::
+
+:::{.notes}
+
+L'opération qui nécessite le plus de communication dans une simulation distribuée est la transformée de Fourier rapide (FFT).
+
+L'utilisation sur un seul GPU est triviale
+
+:::
 
 ---
 
@@ -911,11 +967,11 @@ k_field = jaxdecomp.fft.pfft3d(field)
 
 ```
 
-::: {.fragment fragment-index=2}
-
-![](assets/Papers/joss-jaxdecomp.png)
-
-:::
+<!-- ::: {.fragment fragment-index=3} -->
+<!---->
+<!-- ![](assets/Papers/joss-jaxdecomp.png) -->
+<!---->
+<!-- ::: -->
 
 :::
 
@@ -953,7 +1009,7 @@ JaxDecomp features
 
 :::{.fragment fragment-index=2}
 
-![](assets/HPC/decomp2d.gif){.absolute top=50 left=400 width="900"}
+![](assets/Fields/CIC/FFT-Op.svg){.nostretch fig-align="center" width="100%"}
 
 :::
 
@@ -962,16 +1018,43 @@ JaxDecomp features
 ::::
 
 
+::: {.notes}
+
+avec JaxDecomp c'est aussi trivial faire des FFT distribuées sur plusieurs GPU et nœuds de calcul.
+
+L'utilisation est aussi trivial que faire une FFT sur un seul GPU, il suffit de décrire la grille de distribution et la bibliothèque s'occupe du reste.
+
+**NEXT**
+
+ça supporte les décompositions 2D et 1D, fonctionne pour les FFT multi-nœuds, tout en restant différentiable.
+
+**NEXT**
+
+Côté implémentation, j'effectue à une série de FFT locales sur chaque GPU, en travaillant à chaque fois sur un axe non distribué. Ensuite, j’effectue une transposition de la grille de distribution pour redistribuer les données et traiter l’axe suivant. Cela permet de répartir la charge de calcul efficacement entre plusieurs GPU tout en s'assurant que chaque transformation de Fourier est correctement alignée avec l'axe de calcul.
+:::
+
 ## Scaling of Distributed FFT operations
 
 ![](assets/benchmarks/single_precision_gpus.png){.absolute top=50 left=0 width="1000"}
 
-## Interpolation function for Particle-Mesh simulations
+::: {.notes}
+
+Dans cette figure, on peut voir les performances de la bibliothèque JaxDecomp pour les FFT distribuées sur plusieurs GPU.
+
+On est capable des faires des FFTs sur des grille de 4096^3 en quelque centaine de millisecondes (ce qui est très rapide).
+
+Et on voit deja qu'on peut aller jusqu'à une grille de 4096^3 en utilisant 64 GPU.
+En comparaison, Les simulation actuelles avec un seul GPU ne dépassent pas 1024^3.
+
+:::
+
+## Interpolation function for Particle-Mesh simulations (Cloud-in-Cell)
 
 :::: {.columns}
 
-
 ::: {.column width="50%"}
+
+::: {.fragment fragment-index=2}
 
 **CIC Paint Function:**
 
@@ -980,6 +1063,10 @@ $$
 g({\bf j})=\sum_{i=1}^{N}m_{i}\times\prod_{d=1}^{D}\left(1-\left|p_{i}^{d}-j_{d}\right|\right)
 \end{array}
 $$
+
+:::
+
+::: {.fragment fragment-index=3}
 
 **Forces Functions:**
 
@@ -991,39 +1078,58 @@ $$
 f(\vec{k}) = \dot{\vec{k}}k^{-2}\rho(\vec{k})
 $$
 
+:::
+
+::: {.fragment fragment-index=4}
+
 **CIC Read Function:**
 
 $$
 v_{i} = \sum_{{\bf j}}g({\bf j})\times\prod_{d=1}^{D}\left(1-|p_{i}^{d}-j_{d}|\right)
 $$
 
+:::
+
+::: {.fragment fragment-index=5}
 
 :::{.solutionbox}
 
-
 ::::{.solutionbox-body}
 
-➢  &emsp;Periodic boundary conditions
+➢  &emsp;Periodic boundary conditions are applied to each slice of the simulation
 
-➢  &emsp;Not compatible with distributed simulations
+➢  &emsp;Particles cannot escape the simulation domain
 
 ::::
 
 :::
 
+:::
 
 
 :::
 
 ::: {.column width="50%"}
 
+::: {.fragment fragment-index=1}
+
 ![Particles](assets/Fields/CIC/CIC_Init.svg){.nostretch fig-align="center" width="20%"}
+
+:::
+
+::: {.fragment fragment-index=2}
 
 ![CIC Kernel](assets/Fields/CIC/CIC_Kernel.svg){.nostretch fig-align="center" width="20%"}
 
+
 ![Mesh](assets/Fields/CIC/CIC_Grid.svg){.nostretch fig-align="center" width="20%"}
 
-::: {layout="[2,1 , 2] " layout-valign="center" layout-align="center"}
+:::
+
+::: {.fragment fragment-index=3}
+
+::: {layout="[2, 1 , 2] " layout-valign="center" layout-align="center"}
+
 
 ![Gradients](assets/Fields/CIC/CIC_Gradients.svg){.nostretch fig-align="center" width="60%"}
 
@@ -1031,11 +1137,54 @@ $$
 
 ![Displacement](assets/Fields/CIC/CIC_Disp.svg){.nostretch fig-align="center" width="60%"}
 
+
+:::
+
 :::
 
 :::
 
 ::::
+
+::: {.notes}
+
+Pour les simulations de particules-mesh, on utilise une fonction d'interpolation pour peindre les particules sur la grille.
+
+La methode s'appelle Cloud-in-Cell (CIC), qui est une méthode simple et rapide pour interpoler les particules sur une grille.
+
+On part d'une liste de particules représentées par leurs coordonnées et leur masse.
+
+**NEXT**
+
+Ensuite on 'paint' chaque particules sur les cellules adjacentes.
+
+Chaque particule contribue à la densité de masse de la cellule en fonction de sa distance à la cellule.
+
+Par exemple dans cette exemple, la plus part des particules sont proche de la cellule (1 , 0) donc elle aura le plus de densité.
+
+**NEXT**
+
+On calcule les forces en utilisant la densité de masse interpolée sur la grille.
+On obtient donc des gradients.
+
+**NEXT**
+
+Ensuite on interpole les forces sur les particules pour les mettre à jour.
+
+Chaque gradient contribue au deplacement d'une particule en fonction de sa distance à la cellule.
+
+**NEXT**
+
+Cependant, cette méthode n'est pas compatible avec les simulations distribuées, car elle nécessite de lire les valeurs des cellules voisines, ce qui n'est pas possible si les cellules sont sur un autre GPU.
+Ce qui se passe sur un seul GPU c'est l'application de la condition periodique. Ce qui veut dire que les particules qui sort d'un sous domain reviennent de l'autre coté du meme domaine.
+
+Cela le reflète pas la réalité physique, et peut introduire des erreurs dans les simulations.
+
+**NEXT**
+
+Je montre dans le slide suivant quel impact cela peut avoir sur les simulations.
+
+:::
 
 
 ## Halo exchange in distributed simulations
@@ -1138,41 +1287,217 @@ field = halo_exchange(field, halo_extent=halo_size)
 
 :::
 
+::: {.notes}
 
-## Summary of projects {auto-animate=true}
+On commence par voir un champs de densité gaussien de , qui est distribué sur 4 GPU.
 
-:::{data-id="Projects"}
-![Projects](assets/Projects/ALL_Projects.svg){.nostretch fig-align="center" width="70%"}
+Chaque GPU a une partie du champ de densité, et peut evoluer de manière indépendante.
+
+Après avoir calculer les forces avec la FFT distribuée, on obtient un champ de densité qui est distribué sur les 4 GPU.
+
+On fait evoluer les particules indépendamment, mais on voit que les particules qui sont proche des bords du domaine ne sont pas correctement traitées.
+
+**NEXT**
+
+On a egalement une solution pour ce problème, qui est l'échange de halo.
+Ou un utilisateur peut definir une taille de halo, qui est la taille des cellules qui sont échangées entre les GPU.
+
+**NEXT**
+
+Concretement, pendant la phase de l'interpolaction CIC, on permet les particules d'être peintes sur des cellule plus grande que les cellules locales.
+
+Puis on echange la partie des cellules qui sont dans le halo avec les autres GPU.
+
+L'échange applique les conditions periodiques sur les bords du domaine, et permet de traiter les particules qui sont proche des bords du domaine.
+Cela nous donne un resultat très similaire à une simulation sur un seul GPU.
+
 :::
 
-## Weak Lensing - AstroDeep/Aim {auto-animate=true}
+## Conclusion
 
-:::{data-id="Projects"}
 
-![Projects](assets/Projects/WK.svg){.nostretch fig-align="center" width="70%"}
+:::{.solutionbox}
+
+::::{.solutionbox-header}
+
+Work already done
+
+::::
+
+::::{.solutionbox-body}
+
+➢  &emsp;[jaxDecomp](https://github.com/DifferentiableUniverseInitiative/jaxDecomp) : Distributed FFT operations and halo exchange  **(Released)**\
+➢  &emsp;[jaxPM](https://github.com/DifferentiableUniverseInitiative/jaxPM) : Distributed Particle-Mesh simulations **(Code)** \
+➢  &emsp;[Furax](https://gitlab.in2p3.fr/scipol/furax) : Minimization of the spectral likelihood for CMB component separation **(Code)** \
+➢  &emsp;[S2FFT](https://astro-informatics.github.io/s2fft/) : Accelerated spherical harmonics transforms **(Pull request)**
+
+::::
 
 :::
 
+<br />
 
-## Attended Conferences & Papers
+:::{.solutionbox}
 
-### Conferences
+::::{.solutionbox-header}
 
-- **IAP 2023 Machine Learning**
+Work in progress
+
+::::
+
+::::{.solutionbox-body}
+
+➢ &emsp;[Furax](https://gitlab.in2p3.fr/scipol/furax) (Continued) : Creation of a special optimiser that can handle multi-resolution and multi-patch data\
+➢ &emsp;[jaxPM](https://github.com/DifferentiableUniverseInitiative/jaxPM) : Benchmarking and testing the scaling of the simulations
+
+::::
+
+:::
+
+<br />
+
+:::{.solutionbox}
+
+::::{.solutionbox-header}
+
+Future work
+
+::::
+
+::::{.solutionbox-body}
+
+➢ &emsp; Optimized and distributed spherical harmonics transforms for CMB lensing\
+➢ &emsp; Distributed probabilistic programming for hierarchical Bayesian Modeling
+
+::::
+
+:::
+
+## Attended Conferences 
+
+
+:::{.solutionbox}
+
+::::{.solutionbox-header}
+
+French Conferences
+
+
+::::
+
+::::{.solutionbox-body}
+
+- **IAP** 2023 Machine Learning-
 - **LSST France 2023** Lyon, France
-- **Moriond Cosmology 2023** La Thuile, Italy **(Poster)**
 - **LSST France 2024** Marseille, France **(Talk)**
-- **LSST DESC 2024** Zurich, Switzerland 
-- [Future] **IAP GDR CoPhy Tools 2024** Paris, France **(Presentation)**
+- ***[Upcomming Conference]*** **IAP GDR CoPhy Tools 2024** Paris, France **(Talk)**
 
-### Papers
+::::
 
-- Infrared Radiometric Image Classification and Segmentation of Cloud Structure Using ML (*Published*)
-- **JaxDecomp: A Distributed Fast Fourier Transform Library** (Draft being reviewed by supervisors)
-- **Furax** : Optimization of the Large Scale Multiresolution Parametric Component Separation (In prep.)
-- **JaxPM: A Differentiable Particle-Mesh Simulation** (In prep.)
+:::
 
-### Future papers
+:::{.solutionbox}
 
-- **Spherical Harmonics for CMB component separation** 
-- **Distributed Probabilistic Programming for Hierarchical Bayesian Modeling (FFI)**
+::::{.solutionbox-header}
+
+International Conferences
+
+::::
+
+::::{.solutionbox-body}
+
+- **Moriond Cosmology 2023** La Thuile, Italy **(Poster)**
+- **LSST DESC 2023** Zurich, Switzerland
+
+
+::::
+
+:::
+
+
+## Papers
+
+<br />
+<br />
+
+:::{.solutionbox}
+
+::::{.solutionbox-header}
+
+Current/Submitted papers
+
+::::
+
+::::{.solutionbox-body}
+
+- Infrared Radiometric Image Classification and Segmentation of Cloud Structure Using ML <span style="color:darkblue;">**(Sommer et al. 2024, Published)**</span>
+- **JaxDecomp**: A Distributed Fast Fourier Transform Library <span style="color:darkblue;">**(Kabalan et al. to be submitted soon)**</span>
+- **Furax**: Optimization of the Large Scale Multiresolution Parametric Component Separation <span style="color:darkblue;">**(Kabalan et al., for end of 2024)**</span>
+- **JaxPM**: A Differentiable Particle-Mesh Simulation <span style="color:darkblue;">**(Kabalan et al. in prep.)**</span>
+
+::::
+
+:::
+
+<br />
+
+:::{.solutionbox}
+
+::::{.solutionbox-header}
+
+Future papers
+
+::::
+
+::::{.solutionbox-body}
+
+- **Spherical Harmonics for CMB component separation** <span style="color:darkblue;">(Lead author)</span>
+- Distributed Probabilistic Programming for Hierarchical Bayesian Modeling
+
+::::
+
+
+
+:::
+
+## Formations
+
+
+<div style="font-size: 285%">
+
+:::{.solutionbox}
+
+::::{.solutionbox-header}
+
+divers
+
+::::
+
+
+::::{.solutionbox-body}
+
+- Euclid summer school (2023)
+- AISSAI AstroInfo Hackathon 2023, Frejus, France
+- **Physics informed neural networks** with the IDRIS team (Jean-zay super computer) **(2024)**
+
+::::
+
+:::
+
+:::{.solutionbox}
+
+::::{.solutionbox-header}
+
+Cours Ecole Doctorale
+
+::::
+
+::::{.solutionbox-body}
+
+- **QCD** with Matteo Cacciari **(2023)**
+
+::::
+
+:::
+
+</div>
