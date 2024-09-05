@@ -705,8 +705,8 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="minimization-process-in-cmb-component-separation" class="slide level2">
-<h2>Minimization Process in CMB Component Separation</h2>
+<section id="minimization-process-in-cmb-component-separation-so-litebird" class="slide level2">
+<h2>Minimization Process in CMB Component Separation <img data-src="assets/Logos/so.webp" class="nostretch" style="width:5.0%" data-fig-valign="center" alt="SO"> <img data-src="assets/Logos/litebird.png" class="nostretch" style="width:7.0%" data-fig-valign="center" alt="LiteBIRD"></h2>
 <h3 id="using-scipolss-furax-library-chanial-et-al.-in-prep.">Using Scipols’s <code>Furax</code> Library (Chanial et al.&nbsp;in prep.)</h3>
 <p><br> <br></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a>blocks <span class="op">=</span> jnp.arange(<span class="dv">24</span>).reshape(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
@@ -722,14 +722,17 @@
 <div class="fragment" data-fragment-index="1">
 <div class="solutionbox">
 <div class="solutionbox-header">
-<p>My contributions</p>
+<p>My contributions (in the context of SO and LiteBIRD)</p>
 </div>
 <div class="solutionbox-body">
 <ul>
 <li><strong>Use JAX tools</strong> to evaluate the spectral likelihood.</li>
 <li><strong>Apply gradient descent methods</strong> to minimize the likelihood function.</li>
-<li><ul>
+<li><strong>Next steps</strong>
+<ul>
+<li>Adapt code to handle <strong>multi-resolution</strong> data.</li>
 <li>Implement support for <strong>multi-patch</strong> analysis.</li>
+<li>Write a paper about GPU-accelerated component seperation</li>
 </ul></li>
 </ul>
 </div>
@@ -762,19 +765,19 @@
 </div>
 </div>
 </section>
-<section id="weak-lensing---astrodeepaim" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Weak Lensing - AstroDeep/Aim</h2>
+<section id="large-scale-structure---astrodeep" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Large Scale Structure - AstroDeep</h2>
 <div data-id="Projects">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/Projects/WK.svg" class="" style="width:70.0%"></p>
+<p><img data-src="assets/Projects/WL.svg" class="" style="width:70.0%"></p>
 <figcaption>Projects</figcaption>
 </figure>
 </div>
 </div>
 </section>
-<section id="weak-lensing---statistical-tools" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Weak Lensing - Statistical Tools</h2>
+<section id="large-scale-structure---statistical-tools" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Large Scale Structure - Statistical Tools</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="r-stack">
@@ -875,6 +878,30 @@
 </div>
 </div>
 </div>
+<aside class="notes">
+<p>Dans le cadre de mon travail avec <strong>AstroDeep</strong>, je me concentre sur le lentillage gravitationnel faible.</p>
+<p>Le lentillage gravitationnel faible est un tracer important pour mettre une contrante sur les parameters cosmologique liée à la densité de matiere dans l’univers et la formation des sctructure à grande echelle.</p>
+<p>traditionellement, on utilise une fonction de correlation à deux points pour résumer les données des champs de convergence. typiquiment on utlisé le spectre de puissance .. très concreement il s’agit de encoder les distancess entre chaque pair de galaxy (ce qui assume des données gaussienne)</p>
+<p>Cependant, cette approche est limitée car le champs observées à basse red shift est tout sauf gaussian.</p>
+<p><strong>NEXT</strong></p>
+<p>Une autre famille de methodes existent, notammement l’inference basé sur les simulation ou SBI. Cette approche consiste à utiliser des simulations pour générer des données et des champs de convergence, et ça remplace l’utilisation d’une vraisemblance analytique.</p>
+<p>La vraisemblance devient l’ecart entre la sortie de la simulation et les données observées, On ajoute aussi un apriori gaussian sur les parameters.</p>
+<p><strong>NEXT</strong></p>
+<p>Un exemple de ce genre de processus est illustré ici. On commence par générer un champ gaussien, puis on le fait évoluer en utilisant une Simulation cosmologique. On utilise d’autre methodes specifique pour introduire les galaxies dans les amas de matière noire puis on compare avec les données</p>
+<p><strong>NEXT</strong></p>
+<p>En bref, on appelle le processus de générer les données à partir de simulations <strong>Forward Modeling</strong> ou la prédiction, et le processus de comparer les données observées avec les simulations <strong>Inference</strong>.</p>
+<p>mon travail consist à faire un ce forward model</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="hearchical-bayesian-modeling" class="slide level2">
 <h2>Hearchical Bayesian Modeling</h2>
@@ -887,24 +914,60 @@
 </figure>
 </div>
 </div><div class="column" style="width:50%;">
-<p>➕  No longer need to compute the likelihood analytically <br> <br> ➖  We need to infer the joint posterior <span class="math inline">\(p(\beta, g | z)\)</span> before marginalization to get <span class="math inline">\(p(\beta | g) = \int p(\beta, z | g) \, dz\)</span></p>
-</div>
-</div>
+<p>➕  No longer need to compute the likelihood analytically <br> <br></p>
 <div class="fragment" data-fragment-index="1">
+<p>➖  We need to infer the joint posterior <span class="math inline">\(p(\beta, g | z)\)</span> before marginalization to get <span class="math inline">\(p(\beta | g) = \int p(\beta, z | g) \, dz\)</span></p>
+<div class="fragment" data-fragment-index="2">
 <div class="solutionbox">
 <div class="solutionbox-header">
 <p>Possible solutions</p>
 </div>
 <div class="solutionbox-body">
 <ul>
-<li><strong>Hamiltonian Monte Carlo</strong></li>
+<li><em>Hamiltonian Monte Carlo</em> (NUTS)</li>
 <li><strong>Variational Inference</strong></li>
 <li><strong>Dimensionality reduction using Fisher Information Matrix</strong></li>
 </ul>
-<p><em>All require a differentiable fast forward model</em></p>
 </div>
 </div>
 </div>
+</div>
+</div><div class="fragment" data-fragment-index="3">
+<div class="solutionbox">
+<div class="solutionbox-header">
+<p>Differentiable forward model for differentiable sampling</p>
+</div>
+<div class="solutionbox-body">
+<ul>
+<li>Full NBody simulation are too slow to be used in an iterative sampler</li>
+<li>Dynamic grid-based simulations can be fast but hard to differentiate</li>
+<li>Fast Particle-Mesh simulations are fast and differentiable</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Dans le cadre de l’inférence bayésienne hiérarchique, on utilise un modèle graphique probabiliste pour représenter les relations entre les variables aléatoires.</p>
+<p>typiquiment ici j’ai un exemple d’un model graphique probabiliste ou les cercle blanches sont les parameters echantillonable et les grise represent les parametes latents.</p>
+<p>L’avatage c’est que on a plus besoin de calculer la vraisemblance analytique,</p>
+<p><strong>Next</strong></p>
+<p>Ce genre de simulateur dit explicit, ou les parameters intermediaire ou latents sont pas directement observables mais utilise, contrainerement à un simulateur implicite ou aveugle ou les parameters ne sont plus interpretable, implique une augmentation majeur de temps passé à marginaliser .</p>
+<p><strong>Next</strong></p>
+<p>Pour résoudre ce problème, on peut utiliser des méthodes d’échantillonnage comme le <strong>NUTS</strong> ou le <strong>HMC</strong>, ce genre de methodes peuvent être significativement accélérées en utilisant un modèle forward différentiable. En ayant accès aux gradient, l’echantillonnage necessite moins de pas pour converger.</p>
+<p><strong>Next</strong></p>
+<p>Pour ce faire, des simulation N Corps classique sont trop lentes pour être utilisées dans un échantillonneur itératif. Les simulations basées sur des grilles dynamiques peuvent être rapides mais difficiles à différencier. Les simulations de particules-réseau sont rapides et différentiables.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="fast-particle-mesh-simulations" class="slide level2">
 <h2>Fast Particle-mesh simulations</h2>
@@ -951,76 +1014,37 @@
 </div>
 </div>
 </div>
-</section>
-<section id="jaxpm-a-differentiable-particle-mesh-simulation" class="slide level2">
-<h2>JaxPM : A differentiable Particle-Mesh simulation</h2>
-<h3 id="fastpm-simulation-in-a-few-lines-of-code">FastPM simulation in a few lines of code</h3>
+<aside class="notes">
+<p>Les simulations de particules-mesh sont une méthode rapide et simple pour simuler l’évolution des structures cosmologiques.</p>
+<p>Le schéma numérique est assez simple :</p>
+<p>on commence par interpoler les particules sur une grille pour estimer la densité de masse,</p>
+<p>puis on estime la force gravitationnelle sur les points de la grille en utilisant une transformée de Fourier rapide (FFT).</p>
+<p>On interpole ensuite les forces sur les particules, on met à jour les vitesses et les positions des particules, et on répète le processus.</p>
+<p>On peut demarrer d’un red shift 10 par exemple et faire evoluer le systeme jusqu’à un red shift 0.</p>
+<p><strong>NEXT</strong></p>
+<p>Cette méthode est rapide et simple, mais elle approxime les interactions à courte portée. C’est essentiellement une série de FFT et d’interpolations. Elle est différentiable et peut être exécutée sur des GPU.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 <!-- <p style="display: flex; align-items: center; position: absolute; top: 10px; left: 700px;"> -->
 <!--   <img src="assets/Logos/github_logo.png" alt="GitHub Logo" style="width: 5%; margin-right: 10px;"> -->
 <!--   <a href="https://github.com/DifferentiableUniverseInitiative/JaxPM">DifferentiableUniverseInitiative/JaxPM</a> -->
 <!-- </p> -->
 <!---->
-<p><br></p>
-<div class="columns">
-<div class="column" style="width:60%;">
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a>mesh_shape <span class="op">=</span> [<span class="dv">64</span>, <span class="dv">64</span>, <span class="dv">64</span>]</span>
-<span id="cb2-2"><a></a>box_size <span class="op">=</span> [<span class="fl">64.</span>, <span class="fl">64.</span>, <span class="fl">64.</span>]</span>
-<span id="cb2-3"><a></a>snapshots <span class="op">=</span> jnp.linspace(<span class="fl">0.1</span>, <span class="fl">1.</span>, <span class="dv">2</span>)</span>
-<span id="cb2-4"><a></a></span>
-<span id="cb2-5"><a></a><span class="at">@jax.jit</span></span>
-<span id="cb2-6"><a></a><span class="kw">def</span> run_simulation(omega_c, sigma8):</span>
-<span id="cb2-7"><a></a>    <span class="co"># Create a small function to generate the matter power spectrum</span></span>
-<span id="cb2-8"><a></a>    k <span class="op">=</span> jnp.logspace(<span class="op">-</span><span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">128</span>)</span>
-<span id="cb2-9"><a></a>    pk <span class="op">=</span> jc.power.linear_matter_power(</span>
-<span id="cb2-10"><a></a>        jc.Planck15(Omega_c<span class="op">=</span>omega_c, sigma8<span class="op">=</span>sigma8), k)</span>
-<span id="cb2-11"><a></a>    pk_fn <span class="op">=</span> <span class="kw">lambda</span> x: jc.scipy.interpolate.interp(x.reshape([<span class="op">-</span><span class="dv">1</span>]), k, pk</span>
-<span id="cb2-12"><a></a>                                                  ).reshape(x.shape)</span>
-<span id="cb2-13"><a></a></span>
-<span id="cb2-14"><a></a>    <span class="co"># Create initial conditions</span></span>
-<span id="cb2-15"><a></a>    initial_conditions <span class="op">=</span> linear_field(mesh_shape,</span>
-<span id="cb2-16"><a></a>                                      box_size,</span>
-<span id="cb2-17"><a></a>                                      pk_fn,</span>
-<span id="cb2-18"><a></a>                                      seed<span class="op">=</span>jax.random.PRNGKey(<span class="dv">0</span>))</span>
-<span id="cb2-19"><a></a></span>
-<span id="cb2-20"><a></a>    <span class="co"># Create particles</span></span>
-<span id="cb2-21"><a></a>    particles <span class="op">=</span> jnp.stack(jnp.meshgrid(<span class="op">*</span>[jnp.arange(s) <span class="cf">for</span> s <span class="kw">in</span> mesh_shape]),</span>
-<span id="cb2-22"><a></a>                          axis<span class="op">=-</span><span class="dv">1</span>).reshape([<span class="op">-</span><span class="dv">1</span>, <span class="dv">3</span>])</span>
-<span id="cb2-23"><a></a></span>
-<span id="cb2-24"><a></a>    cosmo <span class="op">=</span> jc.Planck15(Omega_c<span class="op">=</span>omega_c, sigma8<span class="op">=</span>sigma8)</span>
-<span id="cb2-25"><a></a></span>
-<span id="cb2-26"><a></a>    <span class="co"># Initial displacement</span></span>
-<span id="cb2-27"><a></a>    dx, p, f <span class="op">=</span> lpt(cosmo, initial_conditions, particles, <span class="fl">0.1</span>)</span>
-<span id="cb2-28"><a></a>    field <span class="op">=</span> dx <span class="op">+</span> particles</span>
-<span id="cb2-29"><a></a></span>
-<span id="cb2-30"><a></a>    <span class="co"># Evolve the simulation forward</span></span>
-<span id="cb2-31"><a></a>    ode_fn <span class="op">=</span> make_ode_fn(mesh_shape)</span>
-<span id="cb2-32"><a></a>    term <span class="op">=</span> ODETerm(<span class="kw">lambda</span> t, state, args: jnp.stack(ode_fn(state, t, args), axis<span class="op">=</span><span class="dv">0</span>))</span>
-<span id="cb2-33"><a></a>    solver <span class="op">=</span> Dopri5()</span>
-<span id="cb2-34"><a></a></span>
-<span id="cb2-35"><a></a>    stepsize_controller <span class="op">=</span> PIDController(rtol<span class="op">=</span><span class="fl">1e-7</span>, atol<span class="op">=</span><span class="fl">1e-7</span>)</span>
-<span id="cb2-36"><a></a>    res <span class="op">=</span> diffeqsolve(term, solver, t0<span class="op">=</span><span class="fl">0.1</span>, t1<span class="op">=</span><span class="fl">1.</span>, dt0<span class="op">=</span><span class="fl">0.01</span>, y0<span class="op">=</span>jnp.stack([dx, p],axis<span class="op">=</span><span class="dv">0</span>), </span>
-<span id="cb2-37"><a></a>                       args<span class="op">=</span>(cosmo , kvec),</span>
-<span id="cb2-38"><a></a>                       stepsize_controller<span class="op">=</span>stepsize_controller,</span>
-<span id="cb2-39"><a></a>                       saveat<span class="op">=</span>SaveAt(ts<span class="op">=</span>snapshots))</span>
-<span id="cb2-40"><a></a></span>
-<span id="cb2-41"><a></a>    <span class="co"># Return the simulation volume at requested</span></span>
-<span id="cb2-42"><a></a>    <span class="cf">return</span> field, res, initial_conditions</span>
-<span id="cb2-43"><a></a></span>
-<span id="cb2-44"><a></a>field, res, initial_conditions <span class="op">=</span> run_simulation(<span class="fl">0.25</span>, <span class="fl">0.8</span>)</span>
-<span id="cb2-45"><a></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column" style="width:40%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Fields/NBody.png" class="quarto-figure quarto-figure-center" style="width:50.0%"></p>
-</figure>
-</div>
-</div>
-</div>
 </section>
-<section id="fast-particle-mesh-scaling" class="slide level2">
-<h2>Fast Particle-mesh scaling</h2>
+<section id="fast-particle-mesh-scaling-lsst-desc" class="slide level2">
+<h2>Fast Particle-mesh scaling <img data-src="assets/Logos/lsst_desc.png" class="nostretch" style="width:5.0%" data-fig-valign="center" alt="LSST Desc"></h2>
 <p>➢  (Poqueres et al.&nbsp;2021) : <span class="math inline">\(64^3\)</span> mesh size, on a 1000 Mpc/h box</p>
 <p>➢  (Li et al.&nbsp;2022) : <span class="math inline">\(512^3\)</span> mesh size, using <a href="https://github.com/eelregit/pmwd">pmwd</a></p>
+<p>➢  (Lanusse et al.) : <a href="https://github.com/DifferentiableUniverseInitiative/JaxPM">JaxPM</a> similaire à pmwd.</p>
 <div class="fragment" data-fragment-index="1">
 <p><img data-src="assets/HPC/depict_gathered.png" class="absolute" style="top: 10px; right: 0px; width: 15%; "></p>
 </div>
@@ -1043,11 +1067,21 @@
 </figure>
 </div>
 </div>
+<div class="fragment fade-out" data-fragment-index="5">
 <div class="fragment" data-fragment-index="3">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/Fields/power_spec.png" class="nostretch" width="400"></p>
+<p><img data-src="assets/Fields/power_spec.png" class="nostretch"></p>
 <figcaption>Power spectrum comparison</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="fragment" data-fragment-index="5">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/HPC/jax-multi-node.png" style="width:100.0%"></p>
+<figcaption>Muti Node ( <span class="math inline">\(\infty\)</span> )</figcaption>
 </figure>
 </div>
 </div>
@@ -1070,63 +1104,50 @@
 </figure>
 </div>
 </div>
-</div>
-</div>
-</div>
 <div class="fragment" data-fragment-index="4">
 <div class="solutionbox">
 <div class="solutionbox-header">
-<p>Scaling</p>
+<p>My contributions (in the context of ISSC and LSST DESC)</p>
 </div>
 <div class="solutionbox-body">
-<p>We need a fast, differentiable and <span style="color:violet;">Scalable</span> Particle-Mesh simulation</p>
-</div>
-</div>
-</div>
-</section>
-<section id="scaling-on-modern-hardware" class="slide level2">
-<h2>Scaling on modern hardware</h2>
-<h3 id="size-of-a-fastpm-simulation">Size of a FastPM simulation</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/HPC/simulation_gpu_sizes.png" class="nostretch quarto-figure quarto-figure-center" style="width:75.0%"></p>
-</figure>
-</div>
-<div class="fragment fragment-index-1">
-<!-- -->
-<h3 id="scaling-on-multiple-gpus">Scaling on multiple GPUs</h3>
-<div>
-
-</div>
-<div class="quarto-layout-panel" data-layout="[20 , 30 , 50]" data-layout-align="bottom">
-<div class="quarto-layout-row quarto-layout-valign-bottom">
-<div class="quarto-layout-cell" style="flex-basis: 20.0%;justify-content: flex-start;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/HPC/jax-1gpu.png" style="width:55.0%"></p>
-<figcaption>Single GPU (80GB)</figcaption>
-</figure>
-</div>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 30.0%;justify-content: flex-start;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/HPC/jax-1node.png" style="width:55.0%"></p>
-<figcaption>Single Node (8x80GB)</figcaption>
-</figure>
-</div>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/HPC/jax-multi-node.png" style="width:90.0%"></p>
-<figcaption>Muti Node ( <span class="math inline">\(\infty\)</span> )</figcaption>
-</figure>
+<p>We need a fast, differentiable and <span style="color:violet;">Scalable</span> Particle-Mesh simulation that can run on multiple GPUs.</p>
+<p><strong>Multi-GPU Particle mesh</strong> requires :</p>
+<ul>
+<li><strong>Distributed FFT</strong> operations<br>
+</li>
+<li><strong>Distributed Interpolation</strong> and boundary conditions</li>
+</ul>
 </div>
 </div>
 </div>
 </div>
 </div>
+</div>
+<aside class="notes">
+<p>Il existe déja quelque implementation de simulation de particules-mesh qui sont capable de simuler des boites de 1000 Mpc/h avec une résolution de 64^3 ou 512^3.</p>
+<p>Les deux exemples faites dans un papier de poqueres et l’autre par le package pmwd basé sur JAX.</p>
+<p>Le papier de poqueres à utilisé une résolution de 64^3 pour simuler une boite de 1000 Mpc/h, et le package pmwd peut aller jusq’à une résolution de 512^3.</p>
+<p>JaxPM est un package similaire à pmwd, qui est capable de simuler des résolutions similaires à celles de pmwd et toujours sur un seul GPU.</p>
+<p><strong>NEXT</strong></p>
+<p>Un exemple de deux simulation faites sur une boite de 1 Gpc/h avec une résolution de 64^3 et 1024^3. On peut voir que la résolution plus élevée permet de capturer plus de détails dans le champ de densité.</p>
+<p><strong>NEXT</strong></p>
+<p>Si on visualise le spectre de puissance de ces deux champs, on peut voir que la résolution plus basse sous-estime la densité de matière et les interactions à petite échelle. En fonction du type du but cosmologique , ce qui peut dire que ce type d’inference ne sera pas capable de mettre une contrainte mielleure voir meme pire par rapport à une méthode basé sur des fonction de correlation à deux points ou spectre de puissance.</p>
+<p>La taille de mémoire etant un facteur limitant, il est important de pouvoir mettre à l’échelle ces simulations sur plusieurs GPU et nœuds de calcul haute performance.</p>
+<p>Le passage à une simulation multi-GPU nécessite des opérations de FFT distribuées, des interpolations distribuées et des conditions aux limites.</p>
+<p><strong>NEXT</strong></p>
+<p>Notre but serait de pouvoir faires simulation qui peuvent être distribuées sur plusieur GPU et nœuds de calcul haute performance. Tout en restant diffirentiable et rapide (quelque secondes pour chaque simulation).</p>
+<p>pas été fait</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="distributed-fast-fourier-transform" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Distributed Fast Fourier Transform</h2>
@@ -1135,11 +1156,11 @@
 <h4 id="jaxdecomp">Jaxdecomp</h4>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb3-1" class="hljs-ln-code"><a></a><span class="im">import</span> jax</span>
-<span id="cb3-2" class="hljs-ln-code"><a></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
-<span id="cb3-3" class="hljs-ln-code"><a></a></span>
-<span id="cb3-4" class="hljs-ln-code"><a></a>field <span class="op">=</span> jax.random.normal(jax.random.PRNGKey(<span class="dv">0</span>), (<span class="dv">1024</span>, <span class="dv">1024</span>, <span class="dv">1024</span>))</span>
-<span id="cb3-5" class="hljs-ln-code"><a></a>k_field <span class="op">=</span> jnp.fft.fftn(field)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb2-1" class="hljs-ln-code"><a></a><span class="im">import</span> jax</span>
+<span id="cb2-2" class="hljs-ln-code"><a></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
+<span id="cb2-3" class="hljs-ln-code"><a></a></span>
+<span id="cb2-4" class="hljs-ln-code"><a></a>field <span class="op">=</span> jax.random.normal(jax.random.PRNGKey(<span class="dv">0</span>), (<span class="dv">1024</span>, <span class="dv">1024</span>, <span class="dv">1024</span>))</span>
+<span id="cb2-5" class="hljs-ln-code"><a></a>k_field <span class="op">=</span> jnp.fft.fftn(field)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:50%;">
 
 </div>
@@ -1156,22 +1177,22 @@
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="r-stack">
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb4-1" class="hljs-ln-code"><a></a><span class="im">import</span> jax</span>
-<span id="cb4-2" class="hljs-ln-code"><a></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
-<span id="cb4-3" class="hljs-ln-code"><a></a><span class="im">import</span> jaxdecomp</span>
-<span id="cb4-4" class="hljs-ln-code"><a></a></span>
-<span id="cb4-5" class="hljs-ln-code"><a></a>devices <span class="op">=</span> mesh_utils.create_device_mesh((<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb4-6" class="hljs-ln-code"><a></a>mesh <span class="op">=</span> jax.sharding.Mesh(devices, axis_names<span class="op">=</span>(<span class="st">'x'</span>, <span class="st">'y'</span>))</span>
-<span id="cb4-7" class="hljs-ln-code"><a></a>sharding <span class="op">=</span> jax.sharding.NamedSharding(mesh, P(<span class="st">'x'</span>, <span class="st">'y'</span>))</span>
-<span id="cb4-8" class="hljs-ln-code"><a></a></span>
-<span id="cb4-9" class="hljs-ln-code"><a></a><span class="co"># Create gaussian field distributed across the mesh</span></span>
-<span id="cb4-10" class="hljs-ln-code"><a></a>field <span class="op">=</span> jax.make_array_from_single_device_arrays(</span>
-<span id="cb4-11" class="hljs-ln-code"><a></a>        shape<span class="op">=</span>mesh_shape,</span>
-<span id="cb4-12" class="hljs-ln-code"><a></a>        sharding<span class="op">=</span>sharding,</span>
-<span id="cb4-13" class="hljs-ln-code"><a></a>        arrays<span class="op">=</span>[jax.random.normal(jax.random.PRNGKey(rank), (<span class="dv">512</span>, <span class="dv">512</span>, <span class="dv">1024</span>))])</span>
-<span id="cb4-14" class="hljs-ln-code"><a></a></span>
-<span id="cb4-15" class="hljs-ln-code"><a></a>k_field <span class="op">=</span> jaxdecomp.fft.pfft3d(field)</span>
-<span id="cb4-16" class="hljs-ln-code"><a></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb3-1" class="hljs-ln-code"><a></a><span class="im">import</span> jax</span>
+<span id="cb3-2" class="hljs-ln-code"><a></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
+<span id="cb3-3" class="hljs-ln-code"><a></a><span class="im">import</span> jaxdecomp</span>
+<span id="cb3-4" class="hljs-ln-code"><a></a></span>
+<span id="cb3-5" class="hljs-ln-code"><a></a>devices <span class="op">=</span> mesh_utils.create_device_mesh((<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb3-6" class="hljs-ln-code"><a></a>mesh <span class="op">=</span> jax.sharding.Mesh(devices, axis_names<span class="op">=</span>(<span class="st">'x'</span>, <span class="st">'y'</span>))</span>
+<span id="cb3-7" class="hljs-ln-code"><a></a>sharding <span class="op">=</span> jax.sharding.NamedSharding(mesh, P(<span class="st">'x'</span>, <span class="st">'y'</span>))</span>
+<span id="cb3-8" class="hljs-ln-code"><a></a></span>
+<span id="cb3-9" class="hljs-ln-code"><a></a><span class="co"># Create gaussian field distributed across the mesh</span></span>
+<span id="cb3-10" class="hljs-ln-code"><a></a>field <span class="op">=</span> jax.make_array_from_single_device_arrays(</span>
+<span id="cb3-11" class="hljs-ln-code"><a></a>        shape<span class="op">=</span>mesh_shape,</span>
+<span id="cb3-12" class="hljs-ln-code"><a></a>        sharding<span class="op">=</span>sharding,</span>
+<span id="cb3-13" class="hljs-ln-code"><a></a>        arrays<span class="op">=</span>[jax.random.normal(jax.random.PRNGKey(rank), (<span class="dv">512</span>, <span class="dv">512</span>, <span class="dv">1024</span>))])</span>
+<span id="cb3-14" class="hljs-ln-code"><a></a></span>
+<span id="cb3-15" class="hljs-ln-code"><a></a>k_field <span class="op">=</span> jaxdecomp.fft.pfft3d(field)</span>
+<span id="cb3-16" class="hljs-ln-code"><a></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment" data-fragment-index="2">
 <p><img data-src="assets/Papers/joss-jaxdecomp.png"></p>
 </div>
@@ -1191,25 +1212,66 @@
 </div>
 </div><div class="column" style="width:50%;">
 <div class="fragment" data-fragment-index="2">
-<p><img data-src="assets/HPC/decomp2d.gif" class="absolute" style="top: 50px; left: 400px; width: 900px; "></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/CIC/FFT-Op.svg" class="nostretch quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
 </div>
 </div>
 </div>
+</div>
+<aside class="notes">
+<p>L’opération qui nécessite le plus de communication dans une simulation distribuée est la transformée de Fourier rapide (FFT).</p>
+<p>JaxDecomp est une bibliothèque qui permet de faire des FFT distribuées sur plusieurs GPU et nœuds de calcul.</p>
+<p>L’utilisation est aussi trivial que faire une FFT sur un seul GPU, il suffit de décrire la grille de distribution et la bibliothèque s’occupe du reste.</p>
+<p><strong>NEXT</strong></p>
+<p>ça supporte les décompositions 2D et 1D, fonctionne pour les FFT multi-nœuds, tout en restant différentiable.</p>
+<p><strong>NEXT</strong></p>
+<p>Côté implémentation, j’effectue à une série de FFT locales sur chaque GPU, en travaillant à chaque fois sur un axe non distribué. Ensuite, j’effectue une transposition de la grille de distribution pour redistribuer les données et traiter l’axe suivant. Cela permet de répartir la charge de calcul efficacement entre plusieurs GPU tout en s’assurant que chaque transformation de Fourier est correctement alignée avec l’axe de calcul.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="scaling-of-distributed-fft-operations" class="slide level2">
 <h2>Scaling of Distributed FFT operations</h2>
 <p><img data-src="assets/benchmarks/single_precision_gpus.png" class="absolute" style="top: 50px; left: 0px; width: 1000px; "></p>
+<aside class="notes">
+<p>Dans cette figure, on peut voir les performances de la bibliothèque JaxDecomp pour les FFT distribuées sur plusieurs GPU.</p>
+<p>On est capable des faires des FFTs sur des grille de 4096^3 en quelque centaine de millisecondes (ce qui est très rapide).</p>
+<p>Et on voit deja qu’on peut aller jusqu’à une grille de 4096^3 en utilisant 64 GPU. En comparaison, Les simulation actuelles avec un seul GPU ne dépassent pas 1024^3.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
-<section id="interpolation-function-for-particle-mesh-simulations" class="slide level2">
-<h2>Interpolation function for Particle-Mesh simulations</h2>
+<section id="interpolation-function-for-particle-mesh-simulations-cloud-in-cell" class="slide level2">
+<h2>Interpolation function for Particle-Mesh simulations (Cloud-in-Cell)</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
+<div class="fragment" data-fragment-index="2">
 <p><strong>CIC Paint Function:</strong></p>
 <p><span class="math display">\[
 \begin{array}{l c r}
 g({\bf j})=\sum_{i=1}^{N}m_{i}\times\prod_{d=1}^{D}\left(1-\left|p_{i}^{d}-j_{d}\right|\right)
 \end{array}
 \]</span></p>
+</div>
+<div class="fragment" data-fragment-index="3">
 <p><strong>Forces Functions:</strong></p>
 <p><span class="math display">\[
 \nabla^{2}\phi = -4\pi G\kappa\rho
@@ -1217,23 +1279,31 @@ g({\bf j})=\sum_{i=1}^{N}m_{i}\times\prod_{d=1}^{D}\left(1-\left|p_{i}^{d}-j_{d}
 <p><span class="math display">\[
 f(\vec{k}) = \dot{\vec{k}}k^{-2}\rho(\vec{k})
 \]</span></p>
+</div>
+<div class="fragment" data-fragment-index="4">
 <p><strong>CIC Read Function:</strong></p>
 <p><span class="math display">\[
 v_{i} = \sum_{{\bf j}}g({\bf j})\times\prod_{d=1}^{D}\left(1-|p_{i}^{d}-j_{d}|\right)
 \]</span></p>
+</div>
+<div class="fragment" data-fragment-index="5">
 <div class="solutionbox">
 <div class="solutionbox-body">
-<p>➢  Periodic boundary conditions</p>
-<p>➢  Not compatible with distributed simulations</p>
+<p>➢  Periodic boundary conditions are applied to each slice of the simulation</p>
+<p>➢  Particles cannot escape the simulation domain</p>
+</div>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
+<div class="fragment" data-fragment-index="1">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="assets/Fields/CIC/CIC_Init.svg" class="nostretch" style="width:20.0%"></p>
 <figcaption>Particles</figcaption>
 </figure>
 </div>
+</div>
+<div class="fragment" data-fragment-index="2">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="assets/Fields/CIC/CIC_Kernel.svg" class="nostretch" style="width:20.0%"></p>
@@ -1246,10 +1316,12 @@ v_{i} = \sum_{{\bf j}}g({\bf j})\times\prod_{d=1}^{D}\left(1-|p_{i}^{d}-j_{d}|\r
 <figcaption>Mesh</figcaption>
 </figure>
 </div>
+</div>
+<div class="fragment" data-fragment-index="3">
 <div>
 
 </div>
-<div class="quarto-layout-panel" data-layout="[2,1 , 2] " data-layout-align="center">
+<div class="quarto-layout-panel" data-layout="[2, 1 , 2] " data-layout-align="center">
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div class="quarto-layout-cell" style="flex-basis: 40.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -1278,6 +1350,36 @@ v_{i} = \sum_{{\bf j}}g({\bf j})\times\prod_{d=1}^{D}\left(1-|p_{i}^{d}-j_{d}|\r
 </div>
 </div>
 </div>
+</div>
+<aside class="notes">
+<p>Pour les simulations de particules-mesh, on utilise une fonction d’interpolation pour peindre les particules sur la grille.</p>
+<p>La methode s’appelle Cloud-in-Cell (CIC), qui est une méthode simple et rapide pour interpoler les particules sur une grille.</p>
+<p>On part d’une liste de particules représentées par leurs coordonnées et leur masse.</p>
+<p><strong>NEXT</strong></p>
+<p>Ensuite on ‘paint’ chaque particules sur les cellules adjacentes.</p>
+<p>Chaque particule contribue à la densité de masse de la cellule en fonction de sa distance à la cellule.</p>
+<p>Par exemple dans cette exemple, la plus part des particules sont proche de la cellule (1 , 0) donc elle aura le plus de densité.</p>
+<p><strong>NEXT</strong></p>
+<p>On calcule les forces en utilisant la densité de masse interpolée sur la grille. On obtient donc des gradients.</p>
+<p><strong>NEXT</strong></p>
+<p>Ensuite on interpole les forces sur les particules pour les mettre à jour.</p>
+<p>Chaque gradient contribue au deplacement d’une particule en fonction de sa distance à la cellule.</p>
+<p><strong>NEXT</strong></p>
+<p>Cependant, cette méthode n’est pas compatible avec les simulations distribuées, car elle nécessite de lire les valeurs des cellules voisines, ce qui n’est pas possible si les cellules sont sur un autre GPU. Ce qui se passe sur un seul GPU c’est l’application de la condition periodique. Ce qui veut dire que les particules qui sort d’un sous domain reviennent de l’autre coté du meme domaine.</p>
+<p>Cela le reflète pas la réalité physique, et peut introduire des erreurs dans les simulations.</p>
+<p><strong>NEXT</strong></p>
+<p>Je montre dans le slide suivant quel impact cela peut avoir sur les simulations.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="halo-exchange-in-distributed-simulations" class="slide level2">
 <h2>Halo exchange in distributed simulations</h2>
@@ -1425,58 +1527,151 @@ v_{i} = \sum_{{\bf j}}g({\bf j})\times\prod_{d=1}^{D}\left(1-|p_{i}^{d}-j_{d}|\r
 </div>
 <div class="fragment" data-fragment-index="5">
 <div style="position: absolute; top: 75px; left: 0px; width: 500px; font-size: 100%">
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="im">from</span> jaxdecomp <span class="im">import</span> halo_exchange</span>
-<span id="cb5-2"><a></a></span>
-<span id="cb5-3"><a></a>halo_size <span class="op">=</span> <span class="dv">128</span></span>
-<span id="cb5-4"><a></a>field <span class="op">=</span> halo_exchange(field, halo_extent<span class="op">=</span>halo_size)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="im">from</span> jaxdecomp <span class="im">import</span> halo_exchange</span>
+<span id="cb4-2"><a></a></span>
+<span id="cb4-3"><a></a>halo_size <span class="op">=</span> <span class="dv">128</span></span>
+<span id="cb4-4"><a></a>field <span class="op">=</span> halo_exchange(field, halo_extent<span class="op">=</span>halo_size)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<aside class="notes">
+<p>On commence par voir un champs de densité gaussien de , qui est distribué sur 4 GPU.</p>
+<p>Chaque GPU a une partie du champ de densité, et peut evoluer de manière indépendante.</p>
+<p>Après avoir calculer les forces avec la FFT distribuée, on obtient un champ de densité qui est distribué sur les 4 GPU.</p>
+<p>On fait evoluer les particules indépendamment, mais on voit que les particules qui sont proche des bords du domaine ne sont pas correctement traitées.</p>
+<p><strong>NEXT</strong></p>
+<p>On a egalement une solution pour ce problème, qui est l’échange de halo. Ou un utilisateur peut definir une taille de halo, qui est la taille des cellules qui sont échangées entre les GPU.</p>
+<p><strong>NEXT</strong></p>
+<p>Concretement, pendant la phase de l’interpolaction CIC, on permet les particules d’être peintes sur des cellule plus grande que les cellules locales.</p>
+<p>Puis on echange la partie des cellules qui sont dans le halo avec les autres GPU.</p>
+<p>L’échange applique les conditions periodiques sur les bords du domaine, et permet de traiter les particules qui sont proche des bords du domaine. Cela nous donne un resultat très similaire à une simulation sur un seul GPU.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="conclusion" class="slide level2">
+<h2>Conclusion</h2>
+<div class="solutionbox">
+<div class="solutionbox-header">
+<p>Work already done</p>
+</div>
+<div class="solutionbox-body">
+<p>➢  <a href="https://github.com/DifferentiableUniverseInitiative/jaxDecomp">jaxDecomp</a> : Distributed FFT operations and halo exchange <strong>(Released)</strong><br>
+➢  <a href="https://github.com/DifferentiableUniverseInitiative/jaxPM">jaxPM</a> : Distributed Particle-Mesh simulations <strong>(Code)</strong><br>
+➢  <a href="https://gitlab.in2p3.fr/scipol/furax">Furax</a> : Minimization of the spectral likelihood for CMB component separation <strong>(Code)</strong><br>
+➢  <a href="https://astro-informatics.github.io/s2fft/">S2FFT</a> : Accelerated spherical harmonics transforms <strong>(Pull request)</strong></p>
+</div>
+</div>
+<p><br></p>
+<div class="solutionbox">
+<div class="solutionbox-header">
+<p>Work in progress</p>
+</div>
+<div class="solutionbox-body">
+<p>➢  <a href="https://gitlab.in2p3.fr/scipol/furax">Furax</a> (Continued) : Creation of a special optimiser that can handle multi-resolution and multi-patch data<br>
+➢  <a href="https://github.com/DifferentiableUniverseInitiative/jaxPM">jaxPM</a> : Benchmarking and testing the scaling of the simulations</p>
+</div>
+</div>
+<p><br></p>
+<div class="solutionbox">
+<div class="solutionbox-header">
+<p>Future work</p>
+</div>
+<div class="solutionbox-body">
+<p>➢   Optimized and distributed spherical harmonics transforms for CMB lensing<br>
+➢   Distributed probabilistic programming for hierarchical Bayesian Modeling</p>
 </div>
 </div>
 </section>
-<section id="summary-of-projects-2" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Summary of projects</h2>
-<div data-id="Projects">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Projects/ALL_Projects.svg" class="" style="width:70.0%"></p>
-<figcaption>Projects</figcaption>
-</figure>
+<section id="attended-conferences" class="slide level2">
+<h2>Attended Conferences</h2>
+<div class="solutionbox">
+<div class="solutionbox-header">
+<p>French Conferences</p>
 </div>
-</div>
-</section>
-<section id="weak-lensing---astrodeepaim-1" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Weak Lensing - AstroDeep/Aim</h2>
-<div data-id="Projects">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Projects/WK.svg" class="" style="width:70.0%"></p>
-<figcaption>Projects</figcaption>
-</figure>
-</div>
-</div>
-</section>
-<section id="attended-conferences-papers" class="slide level2">
-<h2>Attended Conferences &amp; Papers</h2>
-<h3 id="conferences">Conferences</h3>
+<div class="solutionbox-body">
 <ul>
-<li><strong>IAP 2023 Machine Learning</strong></li>
+<li><strong>IAP</strong> 2023 Machine Learning-</li>
 <li><strong>LSST France 2023</strong> Lyon, France</li>
-<li><strong>Moriond Cosmology 2023</strong> La Thuile, Italy <strong>(Poster)</strong></li>
 <li><strong>LSST France 2024</strong> Marseille, France <strong>(Talk)</strong></li>
-<li><strong>LSST DESC 2024</strong> Zurich, Switzerland</li>
-<li>[Future] <strong>IAP GDR CoPhy Tools 2024</strong> Paris, France <strong>(Presentation)</strong></li>
+<li><strong><em>[Upcomming Conference]</em></strong> <strong>IAP GDR CoPhy Tools 2024</strong> Paris, France <strong>(Talk)</strong></li>
 </ul>
-<h3 id="papers">Papers</h3>
+</div>
+</div>
+<div class="solutionbox">
+<div class="solutionbox-header">
+<p>International Conferences</p>
+</div>
+<div class="solutionbox-body">
 <ul>
-<li>Infrared Radiometric Image Classification and Segmentation of Cloud Structure Using ML (<em>Published</em>)</li>
-<li><strong>JaxDecomp: A Distributed Fast Fourier Transform Library</strong> (Draft being reviewed by supervisors)</li>
-<li><strong>Furax</strong> : Optimization of the Large Scale Multiresolution Parametric Component Separation (In prep.)</li>
-<li><strong>JaxPM: A Differentiable Particle-Mesh Simulation</strong> (In prep.)</li>
+<li><strong>Moriond Cosmology 2023</strong> La Thuile, Italy <strong>(Poster)</strong></li>
+<li><strong>LSST DESC 2023</strong> Zurich, Switzerland</li>
 </ul>
-<h3 id="future-papers">Future papers</h3>
+</div>
+</div>
+</section>
+<section id="papers" class="slide level2">
+<h2>Papers</h2>
+<p><br> <br></p>
+<div class="solutionbox">
+<div class="solutionbox-header">
+<p>Current/Submitted papers</p>
+</div>
+<div class="solutionbox-body">
 <ul>
-<li><strong>Spherical Harmonics for CMB component separation</strong></li>
-<li><strong>Distributed Probabilistic Programming for Hierarchical Bayesian Modeling (FFI)</strong></li>
+<li>Infrared Radiometric Image Classification and Segmentation of Cloud Structure Using ML <span style="color:darkblue;"><strong>(Sommer et al.&nbsp;2024, Published)</strong></span></li>
+<li><strong>JaxDecomp</strong>: A Distributed Fast Fourier Transform Library <span style="color:darkblue;"><strong>(Kabalan et al.&nbsp;to be submitted soon)</strong></span></li>
+<li><strong>Furax</strong>: Optimization of the Large Scale Multiresolution Parametric Component Separation <span style="color:darkblue;"><strong>(Kabalan et al., for end of 2024)</strong></span></li>
+<li><strong>JaxPM</strong>: A Differentiable Particle-Mesh Simulation <span style="color:darkblue;"><strong>(Kabalan et al.&nbsp;in prep.)</strong></span></li>
 </ul>
+</div>
+</div>
+<p><br></p>
+<div class="solutionbox">
+<div class="solutionbox-header">
+<p>Future papers</p>
+</div>
+<div class="solutionbox-body">
+<ul>
+<li><strong>Spherical Harmonics for CMB component separation</strong> <span style="color:darkblue;">(Lead author)</span></li>
+<li>Distributed Probabilistic Programming for Hierarchical Bayesian Modeling</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="formations" class="slide level2">
+<h2>Formations</h2>
+<div style="font-size: 285%">
+<div class="solutionbox">
+<div class="solutionbox-header">
+<p>divers</p>
+</div>
+<div class="solutionbox-body">
+<ul>
+<li>Euclid summer school (2023)</li>
+<li>AISSAI AstroInfo Hackathon 2023, Frejus, France</li>
+<li><strong>Physics informed neural networks</strong> with the IDRIS team (Jean-zay super computer) <strong>(2024)</strong></li>
+</ul>
+</div>
+</div>
+<div class="solutionbox">
+<div class="solutionbox-header">
+<p>Cours Ecole Doctorale</p>
+</div>
+<div class="solutionbox-body">
+<ul>
+<li><strong>QCD</strong> with Matteo Cacciari <strong>(2023)</strong></li>
+</ul>
+</div>
+</div>
+</div>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
