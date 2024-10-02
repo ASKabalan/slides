@@ -320,7 +320,7 @@ $$
 
 :::
 
-::: {.fragment fragment-index=6}
+::: {.fragment fragm:ent-index=6}
 
 #### Minimization for Component Separation
 
