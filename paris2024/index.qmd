@@ -93,7 +93,7 @@ Cosmological Models and Pipelines
 
 ::: {.column width="50%"}
 
-![GPU threads](assets/HPC/GPUS_CPU.png){fig-align="center" width="80%"}
+![GPU threads](assets/HPC/GPUS_CPU.svg){fig-align="center" width="80%"}
 
 :::{.r-stack}
 
