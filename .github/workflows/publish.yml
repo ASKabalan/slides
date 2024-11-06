@@ -1,61 +1,79 @@
-name: 'Publish Quarto project'
-author: 'Carlos Scheidegger'
-description: 'This action will publish an existing quarto project'
-inputs:
-  to:
-    description: 'Service to publish to. If unspecified, use the default value derived from _publish.yml'
-    required: false
-  target:
-    description: 'Alias for `to`. If unspecified, use the default value derived from _publish.yml'
-    required: false
-  CONNECT_SERVER:
-    description: 'RStudio Connect server. If unspecified, use the default value derived from _publish.yml'
-    required: false
-  CONNECT_API_KEY:
-    description: 'RStudio Connect API key. (Use with github actions secrets: see documentation and examples for details)'
-    required: false
-  NETLIFY_AUTH_TOKEN:
-    description: 'Netlify Auth Token. (Use with github actions secrets: see documentation and examples for details)'
-    required: false
-  QUARTO_PUB_AUTH_TOKEN:
-    description: 'Quarto Pub Auth Token. (Use with github actions secrets: see documentation and examples for details)'
-    required: false
-  GITHUB_EMAIL:
-    description: 'Email to be used on gh-pages commit'
-    required: false
-    default: quarto-github-actions-publish@example.com
-  GITHUB_USERNAME:
-    description: 'User name to be used on gh-pages commit'
-    required: false
-    default: Quarto GHA Workflow Runner
-  path:
-    description: 'Subdirectory containing the quarto project to be published'
-    required: false
-    default: "."
-  render:
-    description: 'If not true, do not render project before publishing'
-    required: false
-    default: "true"
-runs:
-  using: 'composite'
-  steps: 
-    - name: 'Publish'
-      shell: bash
-      env:
-        QUARTO_PRINT_STACK: true
-        CONNECT_SERVER: ${{ inputs.CONNECT_SERVER }}
-        CONNECT_API_KEY: ${{ inputs.CONNECT_API_KEY }}
-        NETLIFY_AUTH_TOKEN: ${{ inputs.NETLIFY_AUTH_TOKEN }}
-        QUARTO_PUB_AUTH_TOKEN: ${{ inputs.QUARTO_PUB_AUTH_TOKEN }}
-      run: |
-        git config --global user.email "${{ inputs.GITHUB_EMAIL }}"
-        git config --global user.name "${{ inputs.GITHUB_USERNAME }}"
-        TARGET="${{ inputs.to }}"
-        if [ "$TARGET" == "" ]; then
-          TARGET="${{ inputs.target }}"
-        fi
-        if [ "${{ inputs.render }}" != "true" ]; then
-          quarto publish $TARGET ${{ inputs.path }} --no-render --no-browser
-        else
-          quarto publish $TARGET ${{ inputs.path }} --no-browser
-        fi
+on:
+  push:
+    branches:
+      - main
+
+name: Render and Publish
+
+# you need these permissions to publish to GitHub pages
+permissions: 
+    contents: write
+    pages: write
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          # To install LaTeX to build PDF book 
+          tinytex: true 
+          # uncomment below and fill to pin a version
+          # version: SPECIFIC-QUARTO-VERSION-HERE
+      
+      # add software dependencies here and any libraries
+      
+      # From https://github.com/actions/setup-python
+      # - name: Setup Python
+      #   uses: actions/setup-python@v3
+
+      # From https://github.com/r-lib/actions/tree/v2-branch/setup-r
+      # - name: Setup R
+      #   uses: r-lib/actions/setup-r@v2
+
+      # From https://github.com/julia-actions/setup-julia
+      # - name: Setup Julia
+      #   uses: julia-actions/setup-julia@v1
+
+      # See more at https://github.com/quarto-dev/quarto-actions/blob/main/examples/example-03-dependencies.md
+
+      # To publish to Netlify, RStudio Connect, or GitHub Pages, uncomment
+      # the appropriate block below
+      
+      # - name: Publish to Netlify (and render)
+      #   uses: quarto-dev/quarto-actions/publish@v2
+      #   with:
+      #     target: netlify
+      #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        
+      # - name: Publish to RStudio Connect (and render)
+      #   uses: quarto-dev/quarto-actions/publish@v2
+      #   with:
+      #     target: connect
+      #     CONNECT_SERVER: enter-the-server-url-here
+      #     CONNECT_API_KEY: ${{ secrets.CONNECT_API_KEY }} 
+
+      # NOTE: If Publishing to GitHub Pages, set the permissions correctly (see top of this yaml)
+      - name: Publish to GitHub Pages (and render) 
+         uses: quarto-dev/quarto-actions/publish@v2
+         with:
+           target: gh-pages
+         env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions
+
+      # - name: Publish to confluence
+      #   uses: quarto-dev/quarto-actions/publish@v2
+      #   with:
+      #     target: confluence
+      #   env: 
+      #     CONFLUENCE_USER_EMAIL: ${{ secrets.CONFLUENCE_USER_EMAIL }}
+      #     CONFLUENCE_AUTH_TOKEN: ${{ secrets.CONFLUENCE_AUTH_TOKEN }}
+      #     CONFLUENCE_DOMAIN: ${{ secrets.CONFLUENCE_DOMAIN }}
+      
