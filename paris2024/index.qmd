@@ -1,0 +1,248 @@
+---
+title: "Massively Parallel Computing in Cosmology with JAX"
+
+author: "Wassim Kabalan"
+title-slide-attributes:
+  data-background-image: "assets/lsst_bg.jpg"
+  data-background-size: fill
+  data-background-opacity: "0.5"
+format:
+  revealjs:
+    fontsize: 1
+    theme: css/custom.scss
+    incremental: false   
+    transition: slide
+    background-transition: slide
+---
+
+
+## Motivation: Parallel Computing in Cosmology {background-image="assets/rubin.jpg"}
+
+<br />
+<br />
+<br />
+
+:::{.solutionbox}
+
+::: {.solutionbox-header}
+
+Upcoming Surveys and Massive Data in Cosmology
+:::
+
+::::{.solutionbox-body}
+
+- **Massive Data Volume**: LSST will generate **20 TB of raw data per night** over **10 years**, totaling **60 PB**.
+- **Catalog Size**: The processed LSST catalog database will reach **15 PB**.
+
+::::
+
+
+:::
+
+
+:::{.solutionbox}
+
+::: {.solutionbox-header}
+
+Cosmological Models and Pipelines
+:::
+
+::::{.solutionbox-body}
+ - Cosmological simulations and forward modeling can easily reach multiple terabytes in size.
+ - We need to scale up cosmological pipelines to handle these data volumes effectively.
+
+
+::::
+
+:::
+
+
+---
+
+## Background: How GPUs Work
+
+:::{.columns}
+
+::: {.column width="50%"}
+
+<br />
+
+#### **Massive Thread Count**
+- GPUs are designed with thousands of threads.
+- Each core can handle many data elements simultaneously.
+- The main bottleneck is memory throughput.
+
+
+::: {.fragment fragment-index=1}
+
+<br />
+
+
+#### **Optimizing Throughput with Multiple GPUs**:
+- Computation is often only a fraction of total processing time.
+
+:::
+
+::: {.fragment fragment-index=3}
+
+- Using multiple GPUs increases overall data throughput, enhancing performance and reducing idle time.
+
+:::
+
+:::
+
+::: {.column width="50%"}
+
+![GPU threads](assets/HPC/GPUS_CPU.png){fig-align="center" width="80%"}
+
+:::{.r-stack}
+
+::: {.fragment fragment-index=1 .fade-in-then-out}
+
+![Single GPU throughput](assets/HPC/batching_single_gpu.svg){fig-align="center" width="55%"}
+
+:::
+
+::: {.fragment fragment-index=2 .fade-in-then-out}
+
+![Saturated GPU](assets/HPC/saturated_gpu.svg){fig-align="center" width="60%"}
+
+:::
+
+::: {.fragment fragment-index=3 .fade-in-then-out}
+
+![Multiple GPUs throughput](assets/HPC/multi_gpu_saturate.svg){fig-align="center" width="70%"}
+
+:::
+
+:::
+
+:::
+
+:::
+
+::: {.notes}
+
+
+- **Massive Thread Count**: GPUs have thousands of threads, allowing them to process large datasets in parallel. Each core can handle multiple data elements, making them ideal for parallel computing tasks.
+  
+- **Memory Throughput Bottleneck**: The true bottleneck in GPU performance is often memory throughput. Even with many threads, GPU efficiency can drop if data isn't supplied quickly enough.
+
+- **Optimizing Throughput with Multiple GPUs**: In many cases, computation is only a small portion of the total processing time. By adding more GPUs, we increase possible data throughput, reduce idle time, and ultimately improve performance for large workloads.
+
+:::
+
+---
+
+## Background: Types of Data parallelism  {style="font-size: 22px;"}
+
+:::{.columns}
+
+::: {.column width="40%"}
+
+
+#### **Data Parallelism**
+- **Simple Parallelism**: Each device processes a different subset of data independently.
+
+::: {.fragment fragment-index=1}
+
+- **Data Parallelism with Collective Communication**:
+    - Devices process data in parallel but periodically share results (e.g., for gradient averaging in training).
+
+:::
+
+::: {.fragment fragment-index=2}
+
+#### **Task Parallelism**
+- Each device handles a different part of the computation.
+- The computation itself is divided between devices.
+- Is generally more complex than data parallelism.
+
+:::
+
+:::
+
+
+::: {.column width="60%"}
+
+:::{.r-stack}
+
+::: {.fragment fragment-index=1 .fade-out}
+
+![Simple Data Parallelism](assets/HPC/simple_data_parallel.svg){fig-align="center" width="120%"}
+
+:::
+
+::: {.fragment fragment-index=1 .fade-in}
+
+![Data Parallelism with Communication](assets/HPC/data_parallel_collective_comm.svg){fig-align="center" width="120%"}
+
+:::
+
+:::
+
+::: {.fragment fragment-index=2 .fade-in}
+
+![Task Parallelism](assets/HPC/task_parallel.svg){fig-align="center" width="120%"}
+
+:::
+
+:::
+
+:::
+
+::: {.notes}
+
+- **Data Parallelism**: In simple data parallelism, each device processes its own data slice independently, ideal for tasks without inter-device dependencies.
+  
+- **Data Parallelism with Collective Communication**: Some applications require devices to periodically exchange data, such as in gradient averaging for distributed training. This helps maintain model consistency across devices.
+
+- **Task Parallelism**: Each device handles a unique slice of the overall computation. This method is used in workflows where the computation on each device contributes to different parts of the task (e.g., in pipeline parallelism for model inference).
+
+:::
+
+## Why Should You Use Parallelism?
+
+<br />
+
+#### Simple cases
+
+- **Data Parallelism (Simple)** ✅
+    - If your pipeline resembles simple data parallelism, then parallelism is a good idea.
+
+- **Data Parallelism with Simple Collectives** ✅
+    - Simple collectives (e.g., gradient averaging) can be easily expressed in JAX, allowing devices to share intermediate results.
+
+::: {.fragment fragment-index=1}
+
+#### Complex cases
+
+
+- **Non-splittable Input (e.g., N-body Simulation Fields)** ⚠️
+    - When the input is not easily batchable, like a field in an N-body simulation.
+:::
+
+::: {.fragment fragment-index=2}
+
+- **Task Parallelism** ⚠️
+
+    - Useful for **long sequential cosmological pipelines** where each device handles a unique task in the sequence.
+    - More common in training complex models (e.g., LLMs like Gemini or ChatGPT).
+
+:::
+
+
+:::{.notes}
+
+- **Data Parallelism**: Ideal if your pipeline can be split into independent data chunks. JAX makes it easy to implement with `pmap` for distributing computations.
+  
+- **Collectives in Data Parallelism**: Some tasks, like gradient averaging, require simple collective communication between devices. JAX provides tools to express these collectives efficiently.
+
+- **Non-Batchable Input**: In cases where data cannot be split into batches (e.g., field-based data in simulations), you may need to implement more complex collectives to coordinate data across devices.
+
+- **Task Parallelism**: Used in sequential pipelines where each device performs a unique task. This approach is more complex and requires substantial restructuring, making it common in large language model training.
+
+:::
+
+
+ ❌

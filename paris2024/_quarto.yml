@@ -1,0 +1,12 @@
+project:
+  type: website
+  output-dir: .
+
+website:
+  title: "Massively Parallel Computing in Cosmology with JAX"
+  navbar:
+    left:
+      - href: index.qmd
+
+
+
