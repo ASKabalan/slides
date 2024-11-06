@@ -8,7 +8,7 @@
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.5.57">
+  <meta name="generator" content="quarto-1.5.43">
 
   <meta name="author" content="Wassim Kabalan">
   <title>CSI Presentation 2024</title>
@@ -516,7 +516,8 @@
 <li><strong>The tensor-to-scalar</strong> ratio <span class="math inline">\(r\)</span>, which is the ratio of the tensor power spectrum to the scalar power spectrum</li>
 </ul>
 </div>
-</div></div>
+</div>
+</div>
 <aside class="notes">
 <p>Le fond diffus cosmologique, ou CMB, est le rayonnement fossile du Big Bang, qui nous offre une image de l’univers primitif.</p>
 <p>Le CMB est polarisé et se compose de deux types de modes : les <strong>E modes</strong> et les <strong>B modes</strong>.</p>
@@ -591,7 +592,8 @@
 </ul>
 </div>
 <p><br> <br></p>
-</div></div>
+</div>
+</div>
 <aside class="notes">
 <p>Le signal du fond diffus cosmologique, ou CMB, est en réalité obscurci par plusieurs avant-plans, ce qui rend difficile l’extraction des informations cosmologiques réelles.</p>
 <p>L’un des contaminants principaux est la poussière galactique. Cette poussière émet du rayonnement qui ajoute un bruit significatif au CMB, affectant particulièrement les mesures de polarisation.</p>
@@ -644,7 +646,8 @@
 \boxed{s_{\text{synch}}(\nu) = \left(\frac{\nu}{\nu_0}\right)^{\color{green}{\beta_{\text{pl}}}}}
 \]</span></p>
 </div>
-</div></div>
+</div>
+</div>
 <div class="fragment" data-fragment-index="3">
 <!-- -->
 <h4 id="signal-representation">Signal Representation</h4>
@@ -657,7 +660,8 @@
 <p><span class="math display">\[
 \boxed{\mathbf{d} = \color{green}{A_{\text{synch}}} \cdot s_{\text{synch}} + \color{blue}{A_{\mathrm{d}}} \cdot s_{\mathrm{d}} + A_{\text{cmb}} \cdot s_{\text{cmb}} + \mathbf{n}}
 \]</span></p>
-</div></div>
+</div>
+</div>
 </div>
 <div class="fragment" data-fragment-index="4">
 <!-- -->
@@ -872,7 +876,8 @@
 </div>
 </div>
 </div>
-</div></div>
+</div>
+</div>
 <aside class="notes">
 <p>Dans le cadre de mon travail avec <strong>AstroDeep</strong>, je me concentre sur le lentillage gravitationnel faible.</p>
 <p>Le lentillage gravitationnel faible est un tracer important pour mettre une contrante sur les parameters cosmologique liée à la densité de matiere dans l’univers et la formation des sctructure à grande echelle.</p>
@@ -995,7 +1000,8 @@
 <p><img data-src="assets/FastPM_ODE.gif" class="absolute" style="top: 50px; left: 400px; width: 800px; "></p>
 </div>
 </div>
-</div></div>
+</div>
+</div>
 <div class="fragment" data-fragment-index="5">
 <p><br> <br> <br> <br> <br> <br></p>
 <div class="solutionbox">
@@ -1116,7 +1122,8 @@
 </div>
 </div>
 </div>
-</div></div>
+</div>
+</div>
 <aside class="notes">
 <p>Il existe déja quelque implementation de simulation de particules-mesh qui sont capable de simuler des boites de 1000 Mpc/h avec une résolution de 64^3 ou 512^3.</p>
 <p>Les deux exemples faites dans un papier de poqueres et l’autre par le package pmwd basé sur JAX.</p>
@@ -1157,7 +1164,8 @@
 <span id="cb2-5" class="hljs-ln-code"><a></a>k_field <span class="op">=</span> jnp.fft.fftn(field)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:50%;">
 
-</div></div>
+</div>
+</div>
 <aside class="notes">
 <p>L’opération qui nécessite le plus de communication dans une simulation distribuée est la transformée de Fourier rapide (FFT).</p>
 <p>L’utilisation sur un seul GPU est triviale</p>
@@ -1227,7 +1235,8 @@
 </figure>
 </div>
 </div>
-</div></div>
+</div>
+</div>
 <aside class="notes">
 <p>avec JaxDecomp c’est aussi trivial faire des FFT distribuées sur plusieurs GPU et nœuds de calcul.</p>
 <p>L’utilisation est aussi trivial que faire une FFT sur un seul GPU, il suffit de décrire la grille de distribution et la bibliothèque s’occupe du reste.</p>
@@ -1328,7 +1337,7 @@ v_{i} = \sum_{{\bf j}}g({\bf j})\times\prod_{d=1}^{D}\left(1-|p_{i}^{d}-j_{d}|\r
 <div>
 
 </div>
-<div class="quarto-layout-panel" data-layout="[2, 1 , 2] " data-layout-align="center">
+<div class="quarto-layout-panel" data-layout-align="center" data-layout="[2, 1 , 2] ">
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div class="quarto-layout-cell" style="flex-basis: 40.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -1341,7 +1350,7 @@ v_{i} = \sum_{{\bf j}}g({\bf j})\times\prod_{d=1}^{D}\left(1-|p_{i}^{d}-j_{d}|\r
 <div class="quarto-layout-cell" style="flex-basis: 20.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/Symboles/Right-Arrow.svg" class="nostretch quarto-figure quarto-figure-center"></p>
+<p><img data-src="assets/Symboles/Right-Arrow.svg" class="nostretch quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1356,7 +1365,8 @@ v_{i} = \sum_{{\bf j}}g({\bf j})\times\prod_{d=1}^{D}\left(1-|p_{i}^{d}-j_{d}|\r
 </div>
 </div>
 </div>
-</div></div>
+</div>
+</div>
 <aside class="notes">
 <p>Pour les simulations de particules-mesh, on utilise une fonction d’interpolation pour peindre les particules sur la grille.</p>
 <p>La methode s’appelle Cloud-in-Cell (CIC), qui est une méthode simple et rapide pour interpoler les particules sur une grille.</p>
@@ -1408,7 +1418,7 @@ v_{i} = \sum_{{\bf j}}g({\bf j})\times\prod_{d=1}^{D}\left(1-|p_{i}^{d}-j_{d}|\r
 <div>
 
 </div>
-<div class="quarto-layout-panel" data-layout="[[1] , [1] , [1] , [1]]" data-layout-align="center">
+<div class="quarto-layout-panel" data-layout-align="center" data-layout="[[1] , [1] , [1] , [1]]">
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -1455,7 +1465,7 @@ v_{i} = \sum_{{\bf j}}g({\bf j})\times\prod_{d=1}^{D}\left(1-|p_{i}^{d}-j_{d}|\r
 <div>
 
 </div>
-<div class="quarto-layout-panel" data-layout="[[1] , [1] , [1] , [1]]" data-layout-align="center">
+<div class="quarto-layout-panel" data-layout-align="center" data-layout="[[1] , [1] , [1] , [1]]">
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
