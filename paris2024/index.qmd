@@ -8,11 +8,15 @@ title-slide-attributes:
   data-background-opacity: "0.5"
 format:
   revealjs:
-    fontsize: 1
-    theme: css/custom.scss
+    theme: [default, css/custom.scss]
     incremental: false   
     transition: slide
     background-transition: slide
+    presentation-size: max-scale
+    slide-number: true
+    template-partials:
+      - css/title-slide.html
+output: revealjs
 ---
 
 
@@ -193,11 +197,31 @@ Cosmological Models and Pipelines
 
 ::: {.notes}
 
-- **Data Parallelism**: In simple data parallelism, each device processes its own data slice independently, ideal for tasks without inter-device dependencies.
-  
-- **Data Parallelism with Collective Communication**: Some applications require devices to periodically exchange data, such as in gradient averaging for distributed training. This helps maintain model consistency across devices.
+- **Data Parallelism (Simple Parallelism)**: 
+    - In simple data parallelism, each device processes a distinct subset of the data independently, without needing to interact with other devices during computation. This approach works best when:
+      - The dataset has to be evenly split across devices.
+      - Each subset of data can be processed in isolation, which reduces the complexity and overhead of communication.
+      - Example in Cosmology: Simple data parallelism might be used in parameter estimation tasks where each GPU computes likelihoods for different portions of the dataset independently.
 
-- **Task Parallelism**: Each device handles a unique slice of the overall computation. This method is used in workflows where the computation on each device contributes to different parts of the task (e.g., in pipeline parallelism for model inference).
+- **Data Parallelism with Collective Communication**:
+    - In many applications, devices working in parallel need to share intermediate results to ensure consistency and accuracy. For example, in distributed neural network training, devices need to periodically share gradient information to keep model weights in sync.
+      - This form of parallelism is more complex than simple data parallelism, as it involves synchronizing data across devices at intervals, typically through collective communication operations.
+      - **Challenges**:
+         - Collective operations like gradient averaging can become bottlenecks as they require frequent communication between devices, which may impact scaling efficiency.
+         - In cosmology, gradient sharing can be particularly useful in distributed optimization routines where multiple GPUs are used to train machine learning models on large cosmological datasets.
+
+- **Task Parallelism**:
+    - In task parallelism, each device handles a unique segment of the overall computation pipeline. This approach is ideal when the computation itself is modular and can be split into discrete tasks that contribute independently to the final result.
+      - Unlike data parallelism, task parallelism is often sequential in nature, where each device performs a specific part of a larger computational workflow.
+      - Example in Cosmology: Task parallelism can be applied in cosmological simulations where certain calculations are interdependent. For example:
+        - One device might handle the gravitational calculations, while another processes hydrodynamic interactions, with each task feeding results to the next stage.
+      - **Complexity**:
+         - Task parallelism generally requires more significant changes to the code structure and may involve custom communication protocols between tasks.
+         - This approach is commonly used in model pipelines that require heavy sequential processing, such as large language model (LLM) training (e.g., Gemini or ChatGPT) or in cosmology, where different physical components need distinct treatments in simulations.
+
+- **Summary**: 
+    - Data parallelism is typically easier to implement but may be limited by the need for collective communication.
+    - Task parallelism is more flexible in terms of workload distribution but often requires substantial restructuring of code and specific coordination between tasks, especially in long, sequential workflows.
 
 :::
 
@@ -244,5 +268,695 @@ Cosmological Models and Pipelines
 
 :::
 
+---
 
- ❌
+## When Not to Use Parallelism 
+
+:::{.columns}
+
+::: {.column width="60%"}
+
+#### To Keep in Mind
+
+- **Data Fits on a Single GPU**  
+
+::: {.fragment fragment-index=1}
+
+- **Need for Complex Collectives**  
+    - Additional GPUs can add complexity and may not yield enough performance improvement.
+
+- **Task Parallel Model**  
+    - Changing the pipeline or adapting to new devices often requires significant rewrites.
+
+:::
+
+:::
+
+::: {.column width="40%"}
+
+![Not fully used GPU](assets/HPC/parallelism_limitations.svg){fig-align="center" width="50%"}
+
+:::
+
+:::
+
+::: {.fragment fragment-index=2}
+
+:::{.solutionbox}
+
+::: {.solutionbox-header}
+
+**Consider Scaling to multiple GPUs if:**
+
+:::
+
+::::{.solutionbox-body}
+
+- You have a single-GPU prototype that’s working but needs significant runtime reduction.
+- Using multiple GPUs can significantly decrease execution time.
+- You have non-splittable input (e.g., fields in a cosmological simulation) that is crucial for your results.
+
+::::
+
+:::
+
+:::
+
+:::{.notes}
+
+- **Single-GPU Sufficiency**: If all data fits on one GPU, adding more GPUs may introduce unnecessary overhead, reducing overall performance.
+  
+- **Complex Collectives**: Complex collective communication (like frequent data sharing) can slow down computations. In cases where collectives are challenging, stick to a single GPU if possible.
+
+- **Task Parallelism Complexity**: Task parallel models are generally harder to adjust. Each device performs a unique task, making it more challenging to scale or modify the pipeline.
+
+:::
+
+
+---
+
+
+## How to Measure Scaling for Parallel Codes
+
+:::{.columns}
+
+::: {.column width="50%"}
+
+<br />
+
+#### **Weak Scaling**
+- Increasing data size with a fixed number of GPUs.
+
+<br />
+
+::: {.fragment fragment-index=1}
+
+#### **Strong Scaling**
+- Increasing the number of GPUs to reduce runtime for a fixed data size.
+
+:::
+
+:::
+
+::: {.column width="50%"}
+
+![Weak Scaling](assets/HPC/WEAK_SCALING.png){fig-align="center" width="70%"}
+
+:::{.fragment fragment-index=1}
+
+![Strong Scaling](assets/HPC/STRONG_SCALING.png){fig-align="center" width="70%"}
+
+:::
+
+:::
+
+:::
+
+:::{.notes}
+
+- **Weak Scaling**: Measures how well a system handles growing data sizes without increasing runtime, ideal for cases like simulating larger cosmological volumes with a fixed hardware setup.
+  
+- **Strong Scaling**: Tests how effectively additional GPUs reduce runtime for a fixed dataset, useful in speeding up compute-heavy tasks like fixed-size simulations.
+
+:::
+
+---
+
+## Environmental Impact of High-Performance Computing {style="font-size: 21px;"}
+
+:::{.columns}
+
+::: {.column width="50%"}
+
+#### **Perlmutter Supercomputer (NERSC)**
+- **Location**: NERSC, Berkeley Lab, California, USA
+- **Compute Power**: ~119 PFlops
+- **GPUs**: 6,144 NVIDIA A100 GPUs (Phase 1)
+- **Total Nodes**: 1,536 CPU nodes + 6,159 GPU nodes
+- **Power Draw**: ~3.2 MW/hr
+
+<br />
+
+#### **Jean Zay Supercomputer (IDRIS)**
+- **Location**: IDRIS, France
+- **Compute Power**: ~126 PFlops (FP64), 2.88 EFlops (BF/FP16)
+- **GPUs**: 3,704 GPUs, including V100, A100, and H100
+- **Power Draw**: ~1.4 MW/hr on average (as of September, without full H100 usage), leveraging France’s renewable energy grid.
+
+:::
+
+::: {.column width="50%"}
+
+![Perlmutter Supercomputer](assets/HPC/perlmutter_supercomputer.png){fig-align="center" width="80%"}
+
+![Jean Zay Supercomputer](assets/HPC/jean_zay_photo.png){fig-align="center" width="80%"}
+
+:::
+
+:::
+
+::: aside
+Credit: Laurent Leger from IDRIS
+:::
+
+:::{.notes}
+
+- **Perlmutter**: A hybrid CPU-GPU setup with over 6,000 A100 GPUs, designed for both machine learning and scientific tasks. It operates with a high power draw of ~3.2 MW/hr, but the energy-per-FLOP efficiency is optimized through extensive GPU utilization.
+  
+- **Jean Zay’s Environmental Efficiency**: With its renewable energy source and GPU partitions, Jean Zay achieves significant computational power (~126 PFlops) while keeping average power consumption at ~1.4 MW/hr. The partitioned GPU setup (V100, A100, and soon H100) allows Jean Zay to scale efficiently for a variety of workloads without excessive energy use.
+
+:::
+
+# How to Scale in JAX {style="font-size: 40px; align=center;"}
+
+---
+
+## Why JAX for Distributed Computing?
+
+
+
+- **Distributed Computing Isn’t New**:
+   - Tools like **MPI** and **OpenMP** are used extensively.
+   - ML frameworks like **TensorFlow** and **PyTorch** offer distributed training.
+   - **DiffEqFlux.jl** **Horovod** and **Ray** 
+
+::: {.fragment fragment-index=1}
+
+- **Familiar and Accessible API**:
+   - JAX offers a **NumPy-like API** that is both accessible and intuitive.
+   - Python users can leverage parallelism without needing in-depth knowledge of low-level parallel frameworks like MPI.
+
+:::
+
+::: {.fragment fragment-index=2}
+
+:::{.solutionbox}
+
+::: {.solutionbox-header}
+
+**Key Points**
+
+:::
+
+::::{.solutionbox-body}
+
+- **Pythonic Scalability**: JAX allows you to write scalable, **pythonic code** that is compiled by XLA for performance.
+- **Automatic Differentiation**: JAX offers a trivial way to write diffrentiable distributed code.
+- Same code runs on anything from a laptop to multi node supercomputer.
+
+::::
+
+:::
+
+::: 
+
+:::{.notes}
+
+- **Traditional Distributed Computing**: MPI and OpenMP have been essential tools for achieving high-performance distributed computing in fields like cosmology. These frameworks provide fine control but often require specific parallel programming expertise.
+  
+- **Accessibility and Familiarity**: JAX's familiar, high-level syntax lowers the barrier to entry, bringing distributed computing within reach of Python users without the need to manage intricate MPI or OpenMP settings.
+
+- **JAX’s Unique Advantages**: Through XLA compilation, JAX not only scales code efficiently but also integrates differentiability, crucial for machine learning and simulations that require backpropagation. This blend of performance and flexibility sets JAX apart for scientific and AI applications.
+
+### Talking Points on Alternative Framework Limitations
+
+- **Open MPI**: Primarily optimized for CPU-based parallelism, making it less effective on GPUs where scientific workloads in JAX often run. This can limit its efficiency for cosmology applications that leverage GPU acceleration.
+
+- **ML Frameworks (PyTorch, TensorFlow)**: While powerful for machine learning, these frameworks are ML-centric and don’t natively support the arbitrary scientific functions often needed in cosmology. Customizing these frameworks for scientific use cases requires significant additional effort.
+
+- **DiffEqFlux.jl (Julia)**: While Julia’s ecosystem is growing, it’s still limited compared to Python, particularly for scientific computing and distributed applications. This smaller ecosystem can make it harder to find compatible tools and libraries for complex cosmological simulations.
+
+- **Horovod and Ray**: Neither is natively differentiable, which means they rely on external frameworks (e.g., PyTorch or TensorFlow) for differentiation. This lack of built-in differentiability adds overhead and complexity for workflows that require gradient-based optimization, a key feature that JAX integrates seamlessly.
+
+
+For questions
+
+### PyTorch Distributed
+- **Complex Setup**: Requires more effort to configure distributed training, especially outside deep learning.
+- **Performance Overhead**: Lacks JAX’s XLA compilation, which can lead to inefficiencies in scientific applications.
+- **Limited Scientific Libraries**: PyTorch’s ecosystem is growing, but it still lacks the depth of JAX for scientific and physics-based computing.
+
+### TensorFlow Distributed
+- **Complex and Verbose**: Distributed setup with `tf.distribute.Strategy` is often more cumbersome and requires multiple API layers.
+- **Less Flexibility with Gradients**: Limited flexibility in complex gradient computations compared to JAX’s functional approach.
+- **Under-Optimized for Scientific Workflows**: XLA support is not as performant in scientific HPC compared to JAX.
+
+### Ray with Auto-Differentiation
+- **Not Natively Differentiable**: Ray relies on external libraries (like PyTorch and TensorFlow) for differentiation, adding communication and synchronization overhead.
+- **Focus on General Purpose Computing**: Lacks specific optimizations for HPC environments and scientific computing.
+- **Limited Low-Level Hardware Control**: Ray abstracts device management, reducing optimization potential in specialized HPC setups.
+
+### DiffEqFlux.jl (Julia)
+- **Limited Ecosystem**: Julia’s ecosystem is smaller and less mature, especially for scientific computing.
+- **Developing Distributed Support**: Distributed computing in Julia is still evolving and less robust than in Python.
+- **Learning Curve**: Julia has a steeper learning curve for Python-based teams, and integration with Python infrastructure can be difficult.
+
+### Mesh TensorFlow
+- **Specialized for Transformers**: Primarily designed for partitioning large transformer models, limiting flexibility in other scientific applications.
+- **Complex Configuration**: Mesh configuration is often challenging and may be a barrier for scientific users.
+- **Tied to TensorFlow**: Mesh TensorFlow’s dependency on TensorFlow makes it less intuitive for scientific computing compared to JAX’s NumPy-like API.
+
+### Horovod (Multi-Framework)
+- **Optimized for Data Parallelism in ML**: Primarily suited for data parallelism in ML, not as adaptable for complex scientific workflows.
+- **External Library Dependence**: Requires frameworks like PyTorch or TensorFlow for auto-differentiation, adding performance overhead.
+- **Limited Scientific Integration**: Does not integrate well with libraries focused on physical simulations, whereas JAX has a growing ecosystem for such applications.
+
+### Key Advantages of JAX
+- **Unified, Pythonic API**: JAX’s intuitive API combines ease of use with the power of distributed computing.
+- **XLA Compilation for Efficiency**: Optimized for performance across devices, making it highly suitable for HPC environments.
+- **Native Differentiability**: Differentiability is built-in and seamlessly integrated with distributed workflows, providing a smooth experience for scientific applications.
+
+:::
+
+---
+
+## Expressing Parallelism in JAX (Simple parallelism) {auto-animate="true"}
+
+#### Example of computing a gaussian from data Points
+
+```Python
+import jax
+import jax.numpy as jnp
+
+def gaussian(x, mean, variance):
+      """Compute Gaussian distribution for given x, mean, and variance."""
+      coefficient = 1.0 / jnp.sqrt(2 * jnp.pi * variance)
+      exponent = -((x - mean) ** 2) / (2 * variance)
+      return coefficient * jnp.exp(exponent)
+
+mean = 0.0
+variance = 1.0
+x = jnp.linspace(-5, 5, 128)
+result = gaussian(x, mean, variance)
+
+```
+
+## Expressing Parallelism in JAX (Simple parallelism) {auto-animate="true" visibility="uncounted"}
+
+#### Example of computing a gaussian from data Points
+
+
+```Python
+import jax
+import jax.numpy as jnp
+from jax.debug import visualize_array_sharding
+
+def gaussian(x, mean, variance):
+        """Compute Gaussian distribution for given x, mean, and variance."""
+        coefficient = 1.0 / jnp.sqrt(2 * jnp.pi * variance)
+        exponent = -((x - mean) ** 2) / (2 * variance)
+        return coefficient * jnp.exp(exponent)
+
+  mean = 0.0
+variance = 1.0
+x = jnp.linspace(-5, 5, 128)
+result = gaussian(x, mean, variance)
+visualize_array_sharding(x)
+visualize_array_sharding(result)
+
+```
+
+<br />
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 0  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+</pre>
+
+<br />
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 0  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+</pre>
+
+
+## Expressing Parallelism in JAX (Simple parallelism) {auto-animate="true" visibility="uncounted"}
+
+#### Example of computing a gaussian from data Points
+
+
+```Python
+import jax
+import jax.numpy as jnp
+from jax.sharding import PartitionSpec as P, NamedSharding
+from jax.debug import visualize_array_sharding
+
+assert jax.device_count() == 8
+
+mesh = jax.make_mesh((8,), ('x'))
+sharding = NamedSharding(mesh , P('x'))
+
+def gaussian(x, mean, variance):
+          """Compute Gaussian distribution for given x, mean, and variance."""
+          coefficient = 1.0 / jnp.sqrt(2 * jnp.pi * variance)
+          exponent = -((x - mean) ** 2) / (2 * variance)
+          return coefficient * jnp.exp(exponent)
+
+mean = 0.0
+variance = 1.0
+x = jnp.linspace(-5, 5, 128)
+x = jax.device_put_sharded(sharding, x)
+result = gaussian(x, mean, variance)
+visualize_array_sharding(x)
+visualize_array_sharding(result)
+
+```
+
+<br />
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 0  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">  GPU 1  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">  GPU 2  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">  GPU 3  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7cb94">  GPU 4  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">  GPU 5  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">  GPU 6  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">  GPU 7  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">         </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7cb94">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">         </span>
+</pre>
+
+<br />
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 0  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">  GPU 1  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">  GPU 2  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">  GPU 3  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7cb94">  GPU 4  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">  GPU 5  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">  GPU 6  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">  GPU 7  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">         </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7cb94">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">         </span>
+</pre>
+
+---
+
+## Expressing Parallelism in JAX (Simple parallelism) {visibility="uncounted"}
+
+#### Example of computing a gaussian from data Points
+
+
+```{.python code-line-numbers="3,8,9,20"}
+import jax
+import jax.numpy as jnp
+from jax.sharding import PartitionSpec as P, NamedSharding
+from jax.debug import visualize_array_sharding
+
+assert jax.device_count() == 8
+
+mesh = jax.make_mesh((8,), ('x'))
+sharding = NamedSharding(mesh , P('x'))
+
+def gaussian(x, mean, variance):
+  """Compute Gaussian distribution for given x, mean, and variance."""
+  coefficient = 1.0 / jnp.sqrt(2 * jnp.pi * variance)
+  exponent = -((x - mean) ** 2) / (2 * variance)
+  return coefficient * jnp.exp(exponent)
+
+mean = 0.0
+variance = 1.0
+x = jnp.linspace(-5, 5, 128)
+x = jax.device_put_sharded(sharding, x)
+result = gaussian(x, mean, variance)
+visualize_array_sharding(x)
+visualize_array_sharding(result)
+
+```
+
+<br />
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 0  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">  GPU 1  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">  GPU 2  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">  GPU 3  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7cb94">  GPU 4  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">  GPU 5  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">  GPU 6  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">  GPU 7  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">         </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7cb94">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">         </span>
+</pre>
+
+<br />
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 0  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">  GPU 1  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">  GPU 2  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">  GPU 3  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7cb94">  GPU 4  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">  GPU 5  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">  GPU 6  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">  GPU 7  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">         </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7cb94">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">         </span>
+</pre>
+
+
+## Expressing Parallelism in JAX (Using collectives) {auto-animate="true"}
+
+<br />
+
+#### Example of SGD with Gradient averaging
+
+Example from Jean-Eric's tutorial
+
+```Python
+import jax
+import jax.numpy as jnp
+
+@jax.jit  
+def gradient_descent_step(p, xi, yi, lr=0.1):
+    gradients = jax.grad(loss_fun)(p, xi, yi)
+    return p - lr * gradients
+
+def minimzer(loss_fun, x_data, y_data, par_init, method, verbose=True):
+   ...
+# Example usage
+par_mini_GD = minimzer(
+    loss_fun, 
+    x_data=xin, 
+    y_data=yin, 
+    par_init=jnp.array([0., 0.5]), 
+    method=partial(gradient_descent_step, lr=0.5), 
+    verbose=True
+)
+
+```
+
+---
+
+## Expressing Parallelism in JAX (Using collectives) {auto-animate="true" visibility="uncounted"}
+
+<br />
+
+#### Example of SGD with Gradient averaging
+
+Example from Jean-Eric's tutorial
+
+```{.python code-line-numbers="3,4,8,9,12-16,21,22"}
+import jax
+import jax.numpy as jnp
+from jax.experimental.shard_map import shard_map
+from jax.sharding import PartitionSpec as P, NamedSharding
+
+assert jax.device_count() == 8
+
+mesh = jax.make_mesh((8,), ('x'))
+sharding = NamedSharding(mesh , P('x'))
+
+@jax.jit 
+@partial(shard_map, mesh = mesh , in_specs=P('x'), out_spec=P('x'))
+def gradient_descent_step(p, xi, yi, lr=0.1):
+      per_device_gradients = jax.grad(loss_fun)(p, xi, yi)
+      avg_gradients = jax.lax.pmean(per_device_gradients, axis_name='x')
+      return p - lr * avg_gradients
+
+def minimzer(loss_fun, x_data, y_data, par_init, method, verbose=True):
+     ...
+  # Example usage
+xin = jax.device_put_sharded(sharding, xin)
+yin = jax.device_put_sharded(sharding, yin)
+par_mini_GD = minimzer(
+        loss_fun, 
+        x_data=xin, 
+        y_data=yin, 
+        par_init=jnp.array([0., 0.5]), 
+        method=partial(gradient_descent_step, lr=0.5), 
+        verbose=True
+    )
+
+```
+
+---
+
+
+## JAX Collective Operations for Parallel Computing {style="font-size: 21px;"}
+
+### Overview of JAX Collectives in `jax.lax.p*` Functions
+
+- **`lax.pmean`**  
+  - Computes the mean of arrays across devices. Useful for averaging gradients in distributed training.
+  
+- **`lax.ppermute`**  
+  - Permutes data across devices in a specified order. Very usefull in cosmological simulations.
+
+- **`lax.all_to_all`**  
+  - Exchanges data between devices in a controlled manner. Useful for custom data exchange patterns in distributed computing.
+
+- **`lax.pmax` / `lax.pmin`**  
+  - Computes the element-wise maximum/minimum across devices. Often used in situations where you want to find the maximum or minimum of a distributed dataset.
+
+- **`lax.psum`**  
+  - Sums arrays across devices. Commonly used for aggregating gradients or other values in distributed settings.
+
+- **`lax.pall`**  
+  - Checks if all values across devices are `True`. Often used for collective boolean checks across distributed data.
+
+:::{.notes}
+
+- **Gradient Aggregation**: In distributed training, `pmean` is commonly used to average gradients from multiple devices, ensuring each device updates with the same gradient.
+- **Logical Collectives**: Operators like `pand`, `por`, and `pall` allow distributed boolean logic operations, which can help in synchronization or conditional checks in parallel code.
+- **Flexible Data Distribution**: `ppermute` allows data rearrangement across devices, making it useful in more complex parallelism setups or for rearranging distributed data for specific computations.
+
+:::
+
+---
+
+
+## Using `shard_map` for Advanced Parallelism in JAX
+
+### Why `shard_map` instead of `pmap`?
+
+- **Limitations of `pmap`** :
+    - `pmap` is effective for simple data parallelism but lacks flexibility in more complex cases.
+    - **Nested Parallelism**: `pmap` does not handle nested parallelism well.
+    - **Data Layout Control**: `pmap` does not offer fine-grained control over data layout.
+
+- **Advantages of `shard_map`**:
+    - **Greater Flexibility**: `shard_map` allows custom parallelism patterns and fine control over data sharding.
+    - **Nested Parallelism Support**: Suitable for complex workloads that require hierarchical parallelism.
+    - **Direct Device Control**: Allows fine-grained control over data distribution and parallel operations.
+
+[JAX explaining the weakness of pmap](https://jax.readthedocs.io/en/latest/jep/14273-shard-map.html#why-don-t-pmap-or-xmap-already-solve-this)
+
+---
+
+## Example: Nested Parallelism with `shard_map` {auto-animate="true"}
+
+<br />
+
+```python
+mesh = jax.make_mesh((2,2), ('x', 'y'))
+sharding = NamedSharding(mesh , P('x', 'y'))
+data = jnp.arange(16).reshape(4, 4) 
+sharded_data = lax.with_sharding_constraint(data, sharding)
+
+@partial(jax.pmap, axis_name='x' , devices=mesh.devices[0])
+@partial(jax.pmap, axis_name='y', devices=mesh.devices[1])
+def sum_and_avg_nested_pmap(x):
+      sum_across_x = lax.psum(x, axis_name='x')
+      avg_across_y = lax.pmean(sum_across_x, axis_name='y')  
+      return avg_across_y
+
+def sum_and_avg_pmap(x):
+    sum_across_x = jax.pmap(lambda a: lax.psum(a, axis_name='x'),
+                            axis_name='x',
+                            devices=mesh.devices[0])(x.reshape(2, 2, 4))
+    avg_across_y = jax.pmap(lambda a: lax.pmean(a, axis_name='y'),
+                            axis_name='y',
+                            devices=mesh.devices[1])(sum_across_x.reshape(2, 4, 2))
+    return avg_across_y.reshape(4, 4)
+
+@partial(shard_map , mesh=mesh , in_specs=(P('x', 'y'),), out_specs=P('x'))
+def sum_and_avg_shardmap(x):
+      sum_across_x = lax.psum(x, axis_name='x')
+      avg_across_y = lax.pmean(sum_across_x, axis_name='y')  
+      return avg_across_y
+
+```
+
+---
+
+## Example: Nested Parallelism with `shard_map` {auto-animate="true" visibility="uncounted"}
+
+<br />
+
+```{.python code-line-numbers="6-12"}
+mesh = jax.make_mesh((2,2), ('x', 'y'))
+sharding = NamedSharding(mesh , P('x', 'y'))
+data = jnp.arange(16).reshape(4, 4) 
+sharded_data = lax.with_sharding_constraint(data, sharding)
+
+@partial(jax.pmap, axis_name='x' , devices=mesh.devices[0])
+@partial(jax.pmap, axis_name='y', devices=mesh.devices[1])
+def sum_and_avg_nested_pmap(x):
+      sum_across_x = lax.psum(x, axis_name='x')
+      avg_across_y = lax.pmean(sum_across_x, axis_name='y')  
+      return avg_across_y
+
+def sum_and_avg_pmap(x):
+    sum_across_x = jax.pmap(lambda a: lax.psum(a, axis_name='x'),
+                            axis_name='x',
+                            devices=mesh.devices[0])(x.reshape(2, 2, 4))
+    avg_across_y = jax.pmap(lambda a: lax.pmean(a, axis_name='y'),
+                            axis_name='y',
+                            devices=mesh.devices[1])(sum_across_x.reshape(2, 4, 2))
+    return avg_across_y.reshape(4, 4)
+
+@partial(shard_map , mesh=mesh , in_specs=(P('x', 'y'),), out_specs=P('x'))
+def sum_and_avg_shardmap(x):
+      sum_across_x = lax.psum(x, axis_name='x')
+      avg_across_y = lax.pmean(sum_across_x, axis_name='y')  
+      return avg_across_y
+
+```
+
+---
+
+## Example: Nested Parallelism with `shard_map` {auto-animate="true" visibility="uncounted"}
+
+<br />
+
+```{.python code-line-numbers="13-21"}
+mesh = jax.make_mesh((2,2), ('x', 'y'))
+sharding = NamedSharding(mesh , P('x', 'y'))
+data = jnp.arange(16).reshape(4, 4) 
+sharded_data = lax.with_sharding_constraint(data, sharding)
+
+@partial(jax.pmap, axis_name='x' , devices=mesh.devices[0])
+@partial(jax.pmap, axis_name='y', devices=mesh.devices[1])
+def sum_and_avg_nested_pmap(x):
+      sum_across_x = lax.psum(x, axis_name='x')
+      avg_across_y = lax.pmean(sum_across_x, axis_name='y')  
+      return avg_across_y
+
+def sum_and_avg_pmap(x):
+    sum_across_x = jax.pmap(lambda a: lax.psum(a, axis_name='x'),
+                            axis_name='x',
+                            devices=mesh.devices[0])(x.reshape(2, 2, 4))
+    avg_across_y = jax.pmap(lambda a: lax.pmean(a, axis_name='y'),
+                            axis_name='y',
+                            devices=mesh.devices[1])(sum_across_x.reshape(2, 4, 2))
+    return avg_across_y.reshape(4, 4)
+
+@partial(shard_map , mesh=mesh , in_specs=(P('x', 'y'),), out_specs=P('x'))
+def sum_and_avg_shardmap(x):
+      sum_across_x = lax.psum(x, axis_name='x')
+      avg_across_y = lax.pmean(sum_across_x, axis_name='y')  
+      return avg_across_y
+
+
+```
+
+---
+
+## Example: Nested Parallelism with `shard_map` {visibility="uncounted"}
+
+<br />
+
+```{.python code-line-numbers="22-26"}
+mesh = jax.make_mesh((2,2), ('x', 'y'))
+sharding = NamedSharding(mesh , P('x', 'y'))
+data = jnp.arange(16).reshape(4, 4) 
+sharded_data = lax.with_sharding_constraint(data, sharding)
+
+@partial(jax.pmap, axis_name='x' , devices=mesh.devices[0])
+@partial(jax.pmap, axis_name='y', devices=mesh.devices[1])
+def sum_and_avg_nested_pmap(x):
+      sum_across_x = lax.psum(x, axis_name='x')
+      avg_across_y = lax.pmean(sum_across_x, axis_name='y')  
+      return avg_across_y
+
+def sum_and_avg_pmap(x):
+    sum_across_x = jax.pmap(lambda a: lax.psum(a, axis_name='x'),
+                            axis_name='x',
+                            devices=mesh.devices[0])(x.reshape(2, 2, 4))
+    avg_across_y = jax.pmap(lambda a: lax.pmean(a, axis_name='y'),
+                            axis_name='y',
+                            devices=mesh.devices[1])(sum_across_x.reshape(2, 4, 2))
+    return avg_across_y.reshape(4, 4)
+
+@partial(shard_map , mesh=mesh , in_specs=(P('x', 'y'),), out_specs=P('x'))
+def sum_and_avg_shardmap(x):
+      sum_across_x = lax.psum(x, axis_name='x')
+      avg_across_y = lax.pmean(sum_across_x, axis_name='y')  
+      return avg_across_y
+
+
+```
+
+---
+
+## Towards infinite scalability with JAX
+
+#### Difference between a GPU, a node and a cluster
+
+
