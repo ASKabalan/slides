@@ -2,10 +2,7 @@
 title: "Massively Parallel Computing in Cosmology with JAX"
 
 author: "Wassim Kabalan"
-title-slide-attributes:
-  data-background-image: "assets/lsst_bg.jpg"
-  data-background-size: fill
-  data-background-opacity: "0.5"
+
 format:
   revealjs:
     theme: [default, css/custom.scss]
@@ -17,6 +14,20 @@ format:
     template-partials:
       - css/title-slide.html
 output: revealjs
+
+code-block-border-left: "#31BAE9"
+title-slide-attributes:
+  data-background-image: "assets/JZ-JAX.png"
+  data-background-size: fill
+  data-background-opacity: "0.2"
+
+
+logo1: '<div style="display: flex; justify-content: center; align-items: center; height: 100%; gap: 200px;">
+  ![](assets/Logos/scipol.jpeg){width=18%}
+  ![](assets/Logos/APC.png){width=15%}  
+  ![](assets/Logos/AstroDeep-2.png){width=15%}
+</div>'
+
 ---
 
 
