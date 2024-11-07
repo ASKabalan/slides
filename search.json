@@ -88,7 +88,7 @@
     "href": "paris2024/index.html#expressing-parallelism-in-jax-using-collectives",
     "title": "Massively Parallel Computing in Cosmology with JAX",
     "section": "Expressing Parallelism in JAX (Using collectives)",
-    "text": "Expressing Parallelism in JAX (Using collectives)\n\nExample of SGD with Gradient averaging\nExample from Jean-Eric’s tutorial\nimport jax\nimport jax.numpy as jnp\n\n@jax.jit  \ndef gradient_descent_step(p, xi, yi, lr=0.1):\n    gradients = jax.grad(loss_fun)(p, xi, yi)\n    return p - lr * gradients\n\ndef minimzer(loss_fun, x_data, y_data, par_init, method, verbose=True):\n   ...\n# Example usage\npar_mini_GD = minimzer(\n    loss_fun, \n    x_data=xin, \n    y_data=yin, \n    par_init=jnp.array([0., 0.5]), \n    method=partial(gradient_descent_step, lr=0.5), \n    verbose=True\n)"
+    "text": "Expressing Parallelism in JAX (Using collectives)\n\nExample of SGD with Gradient averaging\nExample from Jean-Eric’s tutorial\nimport jax\nimport jax.numpy as jnp\n\n@jax.jit  \ndef gradient_descent_step(p, xi, yi, lr=0.1):\n  gradients = jax.grad(loss_fun)(p, xi, yi)\n  return p - lr * gradients\n\ndef minimzer(loss_fun, x_data, y_data, par_init, method, verbose=True):\n  ...\n# Example usage\npar_mini_GD = minimzer(\n  loss_fun, \n  x_data=xin, \n  y_data=yin, \n  par_init=jnp.array([0., 0.5]), \n  method=partial(gradient_descent_step, lr=0.5), \n  verbose=True\n)"
   },
   {
     "objectID": "paris2024/index.html#expressing-parallelism-in-jax-using-collectives-1",
