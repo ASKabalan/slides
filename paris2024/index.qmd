@@ -646,7 +646,7 @@ visualize_array_sharding(result)
 
 ---
 
-## Expressing Parallelism in JAX (Simple parallelism) {visibility="uncounted"}
+## Expressing Parallelism in JAX (Simple parallelism) {auto-animate="true" visibility="uncounted"}
 
 #### Example of computing a gaussian from data Points
 
@@ -690,7 +690,6 @@ visualize_array_sharding(result)
 <span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">         </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7cb94">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">         </span>
 </pre>
 
-
 ## Expressing Parallelism in JAX (Using collectives) {auto-animate="true"}
 
 <br />
@@ -705,19 +704,19 @@ import jax.numpy as jnp
 
 @jax.jit  
 def gradient_descent_step(p, xi, yi, lr=0.1):
-    gradients = jax.grad(loss_fun)(p, xi, yi)
-    return p - lr * gradients
+  gradients = jax.grad(loss_fun)(p, xi, yi)
+  return p - lr * gradients
 
 def minimzer(loss_fun, x_data, y_data, par_init, method, verbose=True):
-   ...
+  ...
 # Example usage
 par_mini_GD = minimzer(
-    loss_fun, 
-    x_data=xin, 
-    y_data=yin, 
-    par_init=jnp.array([0., 0.5]), 
-    method=partial(gradient_descent_step, lr=0.5), 
-    verbose=True
+  loss_fun, 
+  x_data=xin, 
+  y_data=yin, 
+  par_init=jnp.array([0., 0.5]), 
+  method=partial(gradient_descent_step, lr=0.5), 
+  verbose=True
 )
 
 ```
@@ -929,7 +928,7 @@ def sum_and_avg_shardmap(x):
 
 ---
 
-## Example: Nested Parallelism with `shard_map` {visibility="uncounted"}
+## Example: Nested Parallelism with `shard_map` {auto-animate="true" visibility="uncounted"}
 
 <br />
 
