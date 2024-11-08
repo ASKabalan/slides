@@ -625,7 +625,7 @@ def gaussian(x, mean, variance):
 mean = 0.0
 variance = 1.0
 x = jnp.linspace(-5, 5, 128)
-x = jax.device_put_sharded(sharding, x)
+x = jax.device_put(sharding, x)
 result = gaussian(x, mean, variance)
 visualize_array_sharding(x)
 visualize_array_sharding(result)
@@ -671,7 +671,7 @@ def gaussian(x, mean, variance):
 mean = 0.0
 variance = 1.0
 x = jnp.linspace(-5, 5, 128)
-x = jax.device_put_sharded(sharding, x)
+x = jax.device_put(sharding, x)
 result = gaussian(x, mean, variance)
 visualize_array_sharding(x)
 visualize_array_sharding(result)
@@ -752,8 +752,8 @@ def gradient_descent_step(p, xi, yi, lr=0.1):
 def minimzer(loss_fun, x_data, y_data, par_init, method, verbose=True):
      ...
   # Example usage
-xin = jax.device_put_sharded(sharding, xin)
-yin = jax.device_put_sharded(sharding, yin)
+xin = jax.device_put(sharding, xin)
+yin = jax.device_put(sharding, yin)
 par_mini_GD = minimzer(
         loss_fun, 
         x_data=xin, 
@@ -762,7 +762,7 @@ par_mini_GD = minimzer(
         method=partial(gradient_descent_step, lr=0.5), 
         verbose=True
     )
-
+W
 ```
 
 ---
@@ -962,11 +962,474 @@ def sum_and_avg_shardmap(x):
 
 
 ```
+# Towards Infinite Scalability with JAX 
 
 ---
 
-## Towards infinite scalability with JAX
+## A Node vs a Supercomputer {style="font-size: 21px;"}
 
-#### Difference between a GPU, a node and a cluster
+:::{.columns}
 
+::: {.column width="60%"}
+
+### Differences in Scale 
+
+- **Single GPU**:
+    - Maximum memory: **80 GB**
+
+- **Single Node (Octocore)**:
+    - Maximum memory: **640 GB**
+    - Contains multiple GPUs (e.g., 8 A100 GPUs) connected via high-speed interconnects.
+
+- **Multi-Node Cluster**:
+    - **Infinite Memory** 🎉
+    - Connects multiple nodes, allowing scaling across potentially thousands of GPUs.
+
+
+:::{.solutionbox} 
+
+::: {.solutionbox-header style="font-size: 20px;"}
+
+Multi-Node scalability with Jean Zay
+
+:::
+
+::::{.solutionbox-body style="font-size: 20px;"}
+
+- Up to 30TB of memory using all 48 nodes of Jean Zay
+- Is enough to run a 15 billion particle simulation.
+
+::::
+
+:::
+
+:::
+
+::: {.column width="40%"}
+
+::: {layout-nrows=3}
+
+![](assets/HPC/single_A100.png){fig-align="center" width="40%"}
+
+![@credit: NVIDIA](assets/HPC/node_A100.png){fig-align="center" width="40%"}
+
+
+![@credit: servethehome.com](assets/HPC/cluster.jpg){fig-align="center" width="40%"}
+
+:::
+
+:::
+
+:::
+
+:::{.notes}
+
+- **Single GPU**: GPUs have powerful cores but are limited by memory. With a max memory of 80 GB, they are ideal for tasks that fit within this memory constraint, often used for model training or inference.
+  
+- **Single Node (Octocore)**: An octocore node can host multiple GPUs (e.g., 8 GPUs) and has larger memory (up to 640 GB), enabling it to handle larger datasets. This setup is common in high-performance servers.
+
+- **Multi-Node Cluster**: By connecting nodes in a distributed cluster, we achieve "infinite" scalability in terms of memory and compute. JAX can take advantage of this via distributed parallelism, making it ideal for cosmological simulations and other large-scale scientific computations.
+
+:::
+
+---
+
+## Scaling JAX on a Single GPU vs. Multi-Host Setup
+
+:::{.columns}
+
+::: {.column width="50%"}
+
+#### Single GPU Code
+
+```python
+x = jnp.linspace(-5, 5, 128)
+mean = 0.0
+variance = 1.0
+result = gaussian(x, mean, variance)
+```
+
+<br />
+
+#### Multi-GPU Code
+
+```python
+mesh = jax.make_mesh((8,), ('x'))
+sharding = NamedSharding(mesh , P('x'))
+x = jnp.linspace(-5, 5, 128)
+x = jax.device_put(sharding, x)
+mean = 0.0
+variance = 1.0
+result = gaussian(x, mean, variance)
+```
+
+<br />
+
+#### Multi-Host Code
+
+![](assets/Symboles/question-mark-512.png){fig-align="center" width="20%"}
+
+
+:::
+
+::: {.column width="50%"}
+
+:::{layout-nrows=3 layout-align="center"}
+
+![](assets/HPC/jax-1gpu.svg){fig-align="center" width="15%"}
+
+![](assets/HPC/jax-1node.svg){fig-align="center" width="25%"}
+
+
+![](assets/HPC/jax-multi-node.svg){fig-align="center" width="70%"}
+
+:::
+
+:::
+
+:::
+
+
+:::{.notes}
+
+- **Single GPU Code**: This example demonstrates using `jax.pmap` for parallel computation on a single GPU.
+- **Multi-Host Setup**: The code placeholder highlights the need for additional configuration to distribute JAX computations across multiple hosts, allowing for large-scale distributed workloads.
+- **Single GPU vs Multi-Host**: JAX makes it easy to parallelize across local devices (GPUs on the same host), but multi-host configurations require further setup and are used for even larger-scale tasks.
+
+:::
+
+---
+
+## Scaling JAX on a Single GPU vs. Multi-Host Setup {style="font-size: 22px;" auto-animate="true"}
+
+#### A JAX process per GPU
+<br />
+
+:::{.columns}
+
+::: {.column width="50%"}
+
+```{.python filename="multi-host-jax.py"}
+import jax
+
+mesh = jax.make_mesh((4,), ('x'))
+sharding = NamedSharding(mesh , P('x'))
+
+def gaussian(x, mean, variance):
+    ...
+mean = 0.0
+variance = 1.0
+x = jnp.linspace(-5, 5, 128)
+x = jax.device_put(sharding, x)
+result = gaussian(x, mean, variance)
+visualize_array_sharding(x)
+visualize_array_sharding(result)
+
+```
+<br />
+
+#### Requesting a slurm job
+
+```bash
+$ salloc --gres=gpu:8 --ntasks-per-node=1 --nodes=1
+```
+<br />
+
+#### Running with srun
+
+```bash
+$ srun python multi-host-jax.py
+```
+
+:::
+
+::: {.column width="50%"}
+
+:::{.r-stack}
+
+![](assets/HPC/jax-1node.svg){fig-align="center" width="100%"}
+
+:::
+
+:::
+
+:::
+
+---
+
+## Scaling JAX on a Single GPU vs. Multi-Host Setup {style="font-size: 22px;" auto-animate="true"}
+
+#### A JAX process per GPU
+<br />
+
+:::{.columns}
+
+::: {.column width="50%"}
+
+```{.python filename="multi-host-jax.py" code-line-numbers="|2-3|10-11"}
+import jax
+jax.distributed.initialize()
+mesh = jax.make_mesh((16,), ('x'))
+sharding = NamedSharding(mesh , P('x'))
+
+def gaussian(x, mean, variance):
+    ...
+mean = 0.0
+variance = 1.0
+x = jnp.linspace(-5, 5, 128)
+x = jax.device_put(sharding, x)
+result = gaussian(x, mean, variance)
+visualize_array_sharding(x)
+visualize_array_sharding(result)
+
+```
+<br />
+
+#### Requesting a slurm job
+
+```bash
+$ salloc --gres=gpu:8 --ntasks-per-node=8 --nodes=2
+```
+<br />
+
+#### Running with srun
+
+```bash
+$ srun -n 8 python multi-host-jax.py
+```
+
+:::
+
+::: {.column width="50%"}
+
+:::{.r-stack}
+
+![](assets/HPC/jax-multi-node.svg){fig-align="center" width="100%"}
+
+:::
+
+:::
+
+:::
+
+---
+
+## Scaling JAX on a Single GPU vs. Multi-Host Setup {style="font-size: 22px;" auto-animate="true"}
+
+#### A JAX process per GPU
+<br />
+
+:::{.columns}
+
+::: {.column width="50%"}
+
+```{.python filename="multi-host-jax.py" code-line-numbers="10-11"}
+import jax
+jax.distributed.initialize()
+mesh = jax.make_mesh((16,), ('x'))
+sharding = NamedSharding(mesh , P('x'))
+
+def gaussian(x, mean, variance):
+...
+mean = 0.0
+variance = 1.0
+x = jnp.linspace(-5, 5, 128)
+x = jax.device_put(sharding, x)
+result = gaussian(x, mean, variance)
+visualize_array_sharding(x)
+visualize_array_sharding(result)
+
+```
+<br />
+
+#### Requesting a slurm job
+
+```bash
+$ salloc --gres=gpu:8 --ntasks-per-node=8 --nodes=2
+```
+<br />
+
+#### Running with srun
+
+```bash
+$ srun -n 8 python multi-host-jax.py
+```
+
+:::
+
+::: {.column width="50%"}
+
+:::{.r-stack}
+
+![](assets/HPC/jax-multi-node.svg){fig-align="center" width="100%"}
+
+:::
+
+
+:::{.solutionbox}
+
+:::{.solutionbox-header style="font-size: 18px;"}
+CAUTION ⚠️
+:::
+
+:::{.solutionbox-body style="font-size: 18px;"}
+
+- `jax.device_put` does not work with multi-host setups.
+- Allocating a jax numpy array does not have the same behavior as single node setups.
+
+:::
+
+:::
+
+:::
+
+:::
+
+---
+
+## Loading Data in JAX in a Multi-Host Setup {style="font-size: 22px;" auto-animate="true"}
+
+#### A JAX process per GPU
+<br />
+
+```{.python filename="multi-host-jax.py" }
+import jax
+jax.distributed.initialize()
+
+assert jax.device_count() == 16
+
+x = jnp.linspace(-5, 5, 128)
+visualize_array_sharding(x)
+```
+
+<br />
+
+:::{.columns}
+
+::: {.column width="50%"}
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 0  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+</pre>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 2  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+</pre>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 1  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+</pre>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 3  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+</pre>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 14  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+</pre>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 8  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+</pre>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 7  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+</pre>
+
+:::
+
+::: {.column width="50%"}
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 5  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+</pre>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 6  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+</pre>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 4  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+</pre>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 15  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+</pre>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 12  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+</pre>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 13  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+</pre>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 11  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+</pre>
+
+:::
+
+:::
+
+---
+
+## Loading Data in JAX in a Multi-Host Setup {style="font-size: 22px;" auto-animate="true"}
+
+#### A JAX process per GPU
+<br />
+
+```{.python filename="multi-host-jax.py" code-line-numbers="|7-10|13-14|"}
+import jax
+jax.distributed.initialize()
+
+mesh = jax.make_mesh((16,) , ('x',))
+sharding = NamedSharding(mesh , P('x'))
+
+def distributed_linspace(start, stop, num):
+    def local_linspace(indx):
+        return np.linspace(start, stop, num)[indx]
+    return jax.make_array_from_callback(shape=(num,), sharding=sharding,data_callback=local_linspace)
+
+x = distributed_linspace(-5, 5, 128)
+if jax.process_index() == 0:
+  visualize_array_sharding(x)
+```
+<br />
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #843c39">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">  …  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7ba52">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #5254a3">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ad494a"> G…  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #637939"> G…  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #7b4173"> G…  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #b5cf6b"> G…  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ce6dbd"> G…  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #bd9e39"> G…  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  0  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #843c39">  1  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">  2  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">  3  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">  4  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">  5  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">  6  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">  7  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7ba52">  8  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #5254a3">  9  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ad494a"> 10  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #637939"> 11  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #7b4173"> 12  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #b5cf6b"> 13  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ce6dbd"> 14  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #bd9e39"> 15  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #843c39">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">     </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7ba52">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #5254a3">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ad494a">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #637939">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #7b4173">     </span><span style="color: #000000; text-decoration-color: #000000; background-color: #b5cf6b">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ce6dbd">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #bd9e39">     </span>
+</pre>
+
+---
+
+## Loading Data in JAX in a Multi-Host Setup {style="font-size: 22px;" auto-animate="true"}
+
+#### A JAX process per GPU
+<br />
+
+```{.python filename="multi-host-jax.py" code-line-numbers="|7-10|13-14"}
+import jax
+jax.distributed.initialize()
+
+mesh = jax.make_mesh((16,) , ('x',))
+sharding = NamedSharding(mesh , P('x'))
+
+def distributed_linspace(start, stop, num):
+    def local_linspace(indx):
+        return np.linspace(start, stop, num)[indx]
+    return jax.make_array_from_callback(shape=(num,), sharding=sharding,data_callback=local_linspace)
+
+x = distributed_linspace(-5, 5, 128)
+if jax.process_index() == 0:
+  visualize_array_sharding(x)
+mean = 0.0
+variance = 1.0
+result = gaussian(x, mean, variance)
+if jax.process_index() == 0:
+  visualize_array_sharding(result)
+```
+<br />
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #843c39">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">  …  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7ba52">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #5254a3">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ad494a"> G…  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #637939"> G…  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #7b4173"> G…  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #b5cf6b"> G…  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ce6dbd"> G…  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #bd9e39"> G…  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  0  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #843c39">  1  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">  2  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">  3  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">  4  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">  5  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">  6  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">  7  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7ba52">  8  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #5254a3">  9  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ad494a"> 10  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #637939"> 11  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #7b4173"> 12  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #b5cf6b"> 13  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ce6dbd"> 14  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #bd9e39"> 15  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #843c39">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">     </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7ba52">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #5254a3">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ad494a">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #637939">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #7b4173">     </span><span style="color: #000000; text-decoration-color: #000000; background-color: #b5cf6b">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ce6dbd">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #bd9e39">     </span>
+</pre>
+
+<br />
+
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #843c39">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">  …  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7ba52">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #5254a3">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ad494a"> G…  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #637939"> G…  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #7b4173"> G…  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #b5cf6b"> G…  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ce6dbd"> G…  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #bd9e39"> G…  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  0  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #843c39">  1  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">  2  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">  3  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">  4  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">  5  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">  6  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">  7  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7ba52">  8  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #5254a3">  9  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ad494a"> 10  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #637939"> 11  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #7b4173"> 12  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #b5cf6b"> 13  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ce6dbd"> 14  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #bd9e39"> 15  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #843c39">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">     </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7ba52">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #5254a3">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ad494a">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #637939">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #7b4173">     </span><span style="color: #000000; text-decoration-color: #000000; background-color: #b5cf6b">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ce6dbd">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #bd9e39">     </span>
+</pre>
 
