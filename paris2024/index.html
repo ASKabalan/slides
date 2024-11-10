@@ -399,14 +399,16 @@
 </div>
 
 </section>
-<section id="motivation-parallel-computing-in-cosmology" class="slide level2" data-background-image="assets/rubin.jpg">
-<h2>Motivation: Parallel Computing in Cosmology</h2>
-<p><br> <br> <br></p>
+<section id="motivation-cosmology-in-the-exascale-era" class="slide level2" data-background-image="assets/rubin.jpg">
+<h2><span style="color: white ;">Motivation: Cosmology in the exascale era </span></h2>
+<p><br></p>
+<div class="columns">
+<div class="column" style="width:60%;">
 <div class="solutionbox">
-<div class="solutionbox-header">
+<div class="solutionbox-header" style="font-size: 22px;">
 <p>Upcoming Surveys and Massive Data in Cosmology</p>
 </div>
-<div class="solutionbox-body">
+<div class="solutionbox-body" style="font-size: 21px;">
 <ul>
 <li><strong>Massive Data Volume</strong>: LSST will generate <strong>20 TB of raw data per night</strong> over <strong>10 years</strong>, totaling <strong>60 PB</strong>.</li>
 <li><strong>Catalog Size</strong>: The processed LSST catalog database will reach <strong>15 PB</strong>.</li>
@@ -414,16 +416,87 @@
 </div>
 </div>
 <div class="solutionbox">
-<div class="solutionbox-header">
+<div class="solutionbox-header" style="font-size: 22px;">
 <p>Cosmological Models and Pipelines</p>
 </div>
-<div class="solutionbox-body">
+<div class="solutionbox-body" style="font-size: 21px;">
 <ul>
 <li>Cosmological simulations and forward modeling can easily reach multiple terabytes in size.</li>
 <li>We need to scale up cosmological pipelines to handle these data volumes effectively.</li>
 </ul>
 </div>
 </div>
+</div></div>
+</section>
+<section id="forward-modeling-in-cosmology" class="slide level2" style="font-size: 20px;">
+<h2>Forward Modeling in Cosmology</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h4 id="weak-lensing-model">Weak Lensing Model</h4>
+<ul>
+<li><strong>Prediction</strong>:
+<ul>
+<li>A simulator generates observations from initial conditions and cosmological parameters.</li>
+</ul></li>
+<li><strong>Inference</strong>:
+<ul>
+<li>The simulated results are compared with actual observations.</li>
+<li>Optimal initial conditions and parameters are inferred to closely match the observed data.</li>
+</ul></li>
+</ul>
+<div class="solutionbox">
+<div class="solutionbox-header" style="font-size: 20px;">
+<p>Scaling Challenges</p>
+</div>
+<div class="solutionbox-body" style="font-size: 19px;">
+<ul>
+<li><strong>Resolution Today</strong>: Simulations currently use around <strong>250,000 to 130 million particles</strong>.</li>
+<li><strong>Ideal Resolution</strong>: Billion-particle simulations are necessary for high accuracy.</li>
+<li><strong>Software</strong>: Tools like <strong>JaxPM</strong> or <strong>PMWD</strong> support up to ~130 million particles on a single GPU.</li>
+</ul>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/FFI/Forward-Model.svg" class="quarto-figure quarto-figure-center" style="width:75.0%"></p>
+</figure>
+</div>
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/FFI/Forward-Model-FinalField.svg" class="quarto-figure quarto-figure-center" style="width:75.0%"></p>
+</figure>
+</div>
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="2">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/FFI/Forward-Model-Constraints.svg" class="quarto-figure quarto-figure-center" style="width:75.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+<aside class="notes">
+<ul>
+<li><strong>Simulations in Cosmology</strong>: These simulations model the universe’s evolution to reproduce observed structures, helping infer parameters like dark matter density, dark energy, and other cosmological constants.</li>
+<li><strong>Resolution Requirement</strong>: Simulations with more particles provide finer details, making convergence maps closer to observed data. Current particle counts (130 million) are still limited compared to the <strong>billion-particle simulations</strong> required for accurate cosmological inference.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="background-how-gpus-work" class="slide level2">
 <h2>Background: How GPUs Work</h2>
@@ -695,11 +768,14 @@
 <div class="solutionbox-header">
 <p><strong>Consider Scaling to multiple GPUs if:</strong></p>
 </div>
-<div class="solutionbox-body">
+<div class="solutionbox-body" style="font-size: 21px;">
 <ul>
 <li>You have a single-GPU prototype that’s working but needs significant runtime reduction.</li>
+<li>Has a significant impact on your results.
+<ul>
 <li>Using multiple GPUs can significantly decrease execution time.</li>
-<li>You have non-splittable input (e.g., fields in a cosmological simulation) that is crucial for your results.</li>
+<li>OR You have non-splittable input (e.g., fields in a cosmological simulation) that is crucial for your results.</li>
+</ul></li>
 </ul>
 </div>
 </div>
@@ -722,43 +798,56 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="how-to-measure-scaling-for-parallel-codes" class="slide level2">
+<section id="how-to-measure-scaling-for-parallel-codes" class="slide level2" style="font-size: 22px;">
 <h2>How to Measure Scaling for Parallel Codes</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><br></p>
-<h4 id="weak-scaling"><strong>Weak Scaling</strong></h4>
-<ul>
-<li>Increasing data size with a fixed number of GPUs.</li>
-</ul>
-<p><br></p>
-<div class="fragment" data-fragment-index="1">
-<!-- -->
 <h4 id="strong-scaling"><strong>Strong Scaling</strong></h4>
 <ul>
 <li>Increasing the number of GPUs to reduce runtime for a fixed data size.</li>
 </ul>
+<p><br></p>
+<div class="fragment" data-fragment-index="1">
+<!-- -->
+<h4 id="weak-scaling"><strong>Weak Scaling</strong></h4>
+<ul>
+<li>Increasing data size with a fixed number of GPUs.</li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="2">
+<div class="solutionbox">
+<div class="solutionbox-header" style="font-size: 20px;">
+<p>Evaluating Scaling Performance</p>
+</div>
+<div class="solutionbox-body" style="font-size: 19px;">
+<ul>
+<li><p><strong>Strong Scaling</strong>: Assesses performance as more GPUs are added to a fixed dataset. <em>Danger Zone</em>: Indicates the distributed code is not scaling efficiently.</p></li>
+<li><p><strong>Weak Scaling</strong>: Tests how the code handles increasing data sizes with a fixed number of GPUs. <em>Danger Zone</em>: Suggests underlying scaling issues with the code itself.</p></li>
+</ul>
+</div>
+</div>
 </div>
 </div><div class="column" style="width:50%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/HPC/WEAK_SCALING.png" style="width:70.0%"></p>
-<figcaption>Weak Scaling</figcaption>
-</figure>
-</div>
-<div class="fragment" data-fragment-index="1">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="assets/HPC/STRONG_SCALING.png" style="width:70.0%"></p>
 <figcaption>Strong Scaling</figcaption>
 </figure>
 </div>
+<div class="fragment" data-fragment-index="1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/HPC/WEAK_SCALING.png" style="width:70.0%"></p>
+<figcaption>Weak Scaling</figcaption>
+</figure>
+</div>
 </div>
 </div></div>
 <aside class="notes">
 <ul>
-<li><p><strong>Weak Scaling</strong>: Measures how well a system handles growing data sizes without increasing runtime, ideal for cases like simulating larger cosmological volumes with a fixed hardware setup.</p></li>
-<li><p><strong>Strong Scaling</strong>: Tests how effectively additional GPUs reduce runtime for a fixed dataset, useful in speeding up compute-heavy tasks like fixed-size simulations.</p></li>
+<li><p><strong>Strong Scaling</strong>: Assesses performance as more GPUs are added to a fixed dataset. <em>Danger Zone</em>: Indicates the distributed code is not scaling efficiently.</p></li>
+<li><p><strong>Weak Scaling</strong>: Tests how the code handles increasing data sizes with a fixed number of GPUs. <em>Danger Zone</em>: Suggests underlying scaling issues with the code itself.</p></li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -938,16 +1027,17 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb1-1" class="hljs-ln-code"><a></a><span class="im">import</span> jax</span>
 <span id="cb1-2" class="hljs-ln-code"><a></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
 <span id="cb1-3" class="hljs-ln-code"><a></a></span>
-<span id="cb1-4" class="hljs-ln-code"><a></a><span class="kw">def</span> gaussian(x, mean, variance):</span>
-<span id="cb1-5" class="hljs-ln-code"><a></a>      <span class="co">"""Compute Gaussian distribution for given x, mean, and variance."""</span></span>
-<span id="cb1-6" class="hljs-ln-code"><a></a>      coefficient <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> jnp.sqrt(<span class="dv">2</span> <span class="op">*</span> jnp.pi <span class="op">*</span> variance)</span>
-<span id="cb1-7" class="hljs-ln-code"><a></a>      exponent <span class="op">=</span> <span class="op">-</span>((x <span class="op">-</span> mean) <span class="op">**</span> <span class="dv">2</span>) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> variance)</span>
-<span id="cb1-8" class="hljs-ln-code"><a></a>      <span class="cf">return</span> coefficient <span class="op">*</span> jnp.exp(exponent)</span>
-<span id="cb1-9" class="hljs-ln-code"><a></a></span>
-<span id="cb1-10" class="hljs-ln-code"><a></a>mean <span class="op">=</span> <span class="fl">0.0</span></span>
-<span id="cb1-11" class="hljs-ln-code"><a></a>variance <span class="op">=</span> <span class="fl">1.0</span></span>
-<span id="cb1-12" class="hljs-ln-code"><a></a>x <span class="op">=</span> jnp.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
-<span id="cb1-13" class="hljs-ln-code"><a></a>result <span class="op">=</span> gaussian(x, mean, variance)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4" class="hljs-ln-code"><a></a></span>
+<span id="cb1-5" class="hljs-ln-code"><a></a><span class="kw">def</span> gaussian(x, mean, variance):</span>
+<span id="cb1-6" class="hljs-ln-code"><a></a>      <span class="co">"""Compute Gaussian distribution for given x, mean, and variance."""</span></span>
+<span id="cb1-7" class="hljs-ln-code"><a></a>      coefficient <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> jnp.sqrt(<span class="dv">2</span> <span class="op">*</span> jnp.pi <span class="op">*</span> variance)</span>
+<span id="cb1-8" class="hljs-ln-code"><a></a>      exponent <span class="op">=</span> <span class="op">-</span>((x <span class="op">-</span> mean) <span class="op">**</span> <span class="dv">2</span>) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> variance)</span>
+<span id="cb1-9" class="hljs-ln-code"><a></a>      <span class="cf">return</span> coefficient <span class="op">*</span> jnp.exp(exponent)</span>
+<span id="cb1-10" class="hljs-ln-code"><a></a></span>
+<span id="cb1-11" class="hljs-ln-code"><a></a>mean <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb1-12" class="hljs-ln-code"><a></a>variance <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb1-13" class="hljs-ln-code"><a></a>x <span class="op">=</span> jnp.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
+<span id="cb1-14" class="hljs-ln-code"><a></a>result <span class="op">=</span> gaussian(x, mean, variance)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="expressing-parallelism-in-jax-simple-parallelism-1" class="slide level2" data-auto-animate="true" data-visibility="uncounted">
 <h2 data-id="quarto-animate-title">Expressing Parallelism in JAX (Simple parallelism)</h2>
@@ -957,12 +1047,12 @@
 <span id="cb2-3" class="hljs-ln-code"><a></a><span class="im">from</span> jax.debug <span class="im">import</span> visualize_array_sharding</span>
 <span id="cb2-4" class="hljs-ln-code"><a></a></span>
 <span id="cb2-5" class="hljs-ln-code"><a></a><span class="kw">def</span> gaussian(x, mean, variance):</span>
-<span id="cb2-6" class="hljs-ln-code"><a></a>        <span class="co">"""Compute Gaussian distribution for given x, mean, and variance."""</span></span>
-<span id="cb2-7" class="hljs-ln-code"><a></a>        coefficient <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> jnp.sqrt(<span class="dv">2</span> <span class="op">*</span> jnp.pi <span class="op">*</span> variance)</span>
-<span id="cb2-8" class="hljs-ln-code"><a></a>        exponent <span class="op">=</span> <span class="op">-</span>((x <span class="op">-</span> mean) <span class="op">**</span> <span class="dv">2</span>) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> variance)</span>
-<span id="cb2-9" class="hljs-ln-code"><a></a>        <span class="cf">return</span> coefficient <span class="op">*</span> jnp.exp(exponent)</span>
+<span id="cb2-6" class="hljs-ln-code"><a></a>      <span class="co">"""Compute Gaussian distribution for given x, mean, and variance."""</span></span>
+<span id="cb2-7" class="hljs-ln-code"><a></a>      coefficient <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> jnp.sqrt(<span class="dv">2</span> <span class="op">*</span> jnp.pi <span class="op">*</span> variance)</span>
+<span id="cb2-8" class="hljs-ln-code"><a></a>      exponent <span class="op">=</span> <span class="op">-</span>((x <span class="op">-</span> mean) <span class="op">**</span> <span class="dv">2</span>) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> variance)</span>
+<span id="cb2-9" class="hljs-ln-code"><a></a>      <span class="cf">return</span> coefficient <span class="op">*</span> jnp.exp(exponent)</span>
 <span id="cb2-10" class="hljs-ln-code"><a></a></span>
-<span id="cb2-11" class="hljs-ln-code"><a></a>  mean <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb2-11" class="hljs-ln-code"><a></a>mean <span class="op">=</span> <span class="fl">0.0</span></span>
 <span id="cb2-12" class="hljs-ln-code"><a></a>variance <span class="op">=</span> <span class="fl">1.0</span></span>
 <span id="cb2-13" class="hljs-ln-code"><a></a>x <span class="op">=</span> jnp.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
 <span id="cb2-14" class="hljs-ln-code"><a></a>result <span class="op">=</span> gaussian(x, mean, variance)</span>
@@ -991,10 +1081,10 @@
 <span id="cb3-9" class="hljs-ln-code"><a></a>sharding <span class="op">=</span> NamedSharding(mesh , P(<span class="st">'x'</span>))</span>
 <span id="cb3-10" class="hljs-ln-code"><a></a></span>
 <span id="cb3-11" class="hljs-ln-code"><a></a><span class="kw">def</span> gaussian(x, mean, variance):</span>
-<span id="cb3-12" class="hljs-ln-code"><a></a>          <span class="co">"""Compute Gaussian distribution for given x, mean, and variance."""</span></span>
-<span id="cb3-13" class="hljs-ln-code"><a></a>          coefficient <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> jnp.sqrt(<span class="dv">2</span> <span class="op">*</span> jnp.pi <span class="op">*</span> variance)</span>
-<span id="cb3-14" class="hljs-ln-code"><a></a>          exponent <span class="op">=</span> <span class="op">-</span>((x <span class="op">-</span> mean) <span class="op">**</span> <span class="dv">2</span>) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> variance)</span>
-<span id="cb3-15" class="hljs-ln-code"><a></a>          <span class="cf">return</span> coefficient <span class="op">*</span> jnp.exp(exponent)</span>
+<span id="cb3-12" class="hljs-ln-code"><a></a>      <span class="co">"""Compute Gaussian distribution for given x, mean, and variance."""</span></span>
+<span id="cb3-13" class="hljs-ln-code"><a></a>      coefficient <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> jnp.sqrt(<span class="dv">2</span> <span class="op">*</span> jnp.pi <span class="op">*</span> variance)</span>
+<span id="cb3-14" class="hljs-ln-code"><a></a>      exponent <span class="op">=</span> <span class="op">-</span>((x <span class="op">-</span> mean) <span class="op">**</span> <span class="dv">2</span>) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> variance)</span>
+<span id="cb3-15" class="hljs-ln-code"><a></a>      <span class="cf">return</span> coefficient <span class="op">*</span> jnp.exp(exponent)</span>
 <span id="cb3-16" class="hljs-ln-code"><a></a></span>
 <span id="cb3-17" class="hljs-ln-code"><a></a>mean <span class="op">=</span> <span class="fl">0.0</span></span>
 <span id="cb3-18" class="hljs-ln-code"><a></a>variance <span class="op">=</span> <span class="fl">1.0</span></span>
@@ -1156,146 +1246,8 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="using-shard_map-for-advanced-parallelism-in-jax" class="slide level2">
-<h2>Using <code>shard_map</code> for Advanced Parallelism in JAX</h2>
-<h3 id="why-shard_map-instead-of-pmap">Why <code>shard_map</code> instead of <code>pmap</code>?</h3>
-<ul>
-<li><strong>Limitations of <code>pmap</code></strong> :
-<ul>
-<li><code>pmap</code> is effective for simple data parallelism but lacks flexibility in more complex cases.</li>
-<li><strong>Nested Parallelism</strong>: <code>pmap</code> does not handle nested parallelism well.</li>
-<li><strong>Data Layout Control</strong>: <code>pmap</code> does not offer fine-grained control over data layout.</li>
-</ul></li>
-<li><strong>Advantages of <code>shard_map</code></strong>:
-<ul>
-<li><strong>Greater Flexibility</strong>: <code>shard_map</code> allows custom parallelism patterns and fine control over data sharding.</li>
-<li><strong>Nested Parallelism Support</strong>: Suitable for complex workloads that require hierarchical parallelism.</li>
-<li><strong>Direct Device Control</strong>: Allows fine-grained control over data distribution and parallel operations.</li>
-</ul></li>
-</ul>
-<p><a href="https://jax.readthedocs.io/en/latest/jep/14273-shard-map.html#why-don-t-pmap-or-xmap-already-solve-this">JAX explaining the weakness of pmap</a></p>
-</section>
-<section id="example-nested-parallelism-with-shard_map" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Example: Nested Parallelism with <code>shard_map</code></h2>
-<p><br></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb7-1" class="hljs-ln-code"><a></a>mesh <span class="op">=</span> jax.make_mesh((<span class="dv">2</span>,<span class="dv">2</span>), (<span class="st">'x'</span>, <span class="st">'y'</span>))</span>
-<span id="cb7-2" class="hljs-ln-code"><a></a>sharding <span class="op">=</span> NamedSharding(mesh , P(<span class="st">'x'</span>, <span class="st">'y'</span>))</span>
-<span id="cb7-3" class="hljs-ln-code"><a></a>data <span class="op">=</span> jnp.arange(<span class="dv">16</span>).reshape(<span class="dv">4</span>, <span class="dv">4</span>) </span>
-<span id="cb7-4" class="hljs-ln-code"><a></a>sharded_data <span class="op">=</span> lax.with_sharding_constraint(data, sharding)</span>
-<span id="cb7-5" class="hljs-ln-code"><a></a></span>
-<span id="cb7-6" class="hljs-ln-code"><a></a><span class="at">@partial</span>(jax.pmap, axis_name<span class="op">=</span><span class="st">'x'</span> , devices<span class="op">=</span>mesh.devices[<span class="dv">0</span>])</span>
-<span id="cb7-7" class="hljs-ln-code"><a></a><span class="at">@partial</span>(jax.pmap, axis_name<span class="op">=</span><span class="st">'y'</span>, devices<span class="op">=</span>mesh.devices[<span class="dv">1</span>])</span>
-<span id="cb7-8" class="hljs-ln-code"><a></a><span class="kw">def</span> sum_and_avg_nested_pmap(x):</span>
-<span id="cb7-9" class="hljs-ln-code"><a></a>      sum_across_x <span class="op">=</span> lax.psum(x, axis_name<span class="op">=</span><span class="st">'x'</span>)</span>
-<span id="cb7-10" class="hljs-ln-code"><a></a>      avg_across_y <span class="op">=</span> lax.pmean(sum_across_x, axis_name<span class="op">=</span><span class="st">'y'</span>)  </span>
-<span id="cb7-11" class="hljs-ln-code"><a></a>      <span class="cf">return</span> avg_across_y</span>
-<span id="cb7-12" class="hljs-ln-code"><a></a></span>
-<span id="cb7-13" class="hljs-ln-code"><a></a><span class="kw">def</span> sum_and_avg_pmap(x):</span>
-<span id="cb7-14" class="hljs-ln-code"><a></a>    sum_across_x <span class="op">=</span> jax.pmap(<span class="kw">lambda</span> a: lax.psum(a, axis_name<span class="op">=</span><span class="st">'x'</span>),</span>
-<span id="cb7-15" class="hljs-ln-code"><a></a>                            axis_name<span class="op">=</span><span class="st">'x'</span>,</span>
-<span id="cb7-16" class="hljs-ln-code"><a></a>                            devices<span class="op">=</span>mesh.devices[<span class="dv">0</span>])(x.reshape(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>))</span>
-<span id="cb7-17" class="hljs-ln-code"><a></a>    avg_across_y <span class="op">=</span> jax.pmap(<span class="kw">lambda</span> a: lax.pmean(a, axis_name<span class="op">=</span><span class="st">'y'</span>),</span>
-<span id="cb7-18" class="hljs-ln-code"><a></a>                            axis_name<span class="op">=</span><span class="st">'y'</span>,</span>
-<span id="cb7-19" class="hljs-ln-code"><a></a>                            devices<span class="op">=</span>mesh.devices[<span class="dv">1</span>])(sum_across_x.reshape(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">2</span>))</span>
-<span id="cb7-20" class="hljs-ln-code"><a></a>    <span class="cf">return</span> avg_across_y.reshape(<span class="dv">4</span>, <span class="dv">4</span>)</span>
-<span id="cb7-21" class="hljs-ln-code"><a></a></span>
-<span id="cb7-22" class="hljs-ln-code"><a></a><span class="at">@partial</span>(shard_map , mesh<span class="op">=</span>mesh , in_specs<span class="op">=</span>(P(<span class="st">'x'</span>, <span class="st">'y'</span>),), out_specs<span class="op">=</span>P(<span class="st">'x'</span>))</span>
-<span id="cb7-23" class="hljs-ln-code"><a></a><span class="kw">def</span> sum_and_avg_shardmap(x):</span>
-<span id="cb7-24" class="hljs-ln-code"><a></a>      sum_across_x <span class="op">=</span> lax.psum(x, axis_name<span class="op">=</span><span class="st">'x'</span>)</span>
-<span id="cb7-25" class="hljs-ln-code"><a></a>      avg_across_y <span class="op">=</span> lax.pmean(sum_across_x, axis_name<span class="op">=</span><span class="st">'y'</span>)  </span>
-<span id="cb7-26" class="hljs-ln-code"><a></a>      <span class="cf">return</span> avg_across_y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="example-nested-parallelism-with-shard_map-1" class="slide level2" data-auto-animate="true" data-visibility="uncounted">
-<h2 data-id="quarto-animate-title">Example: Nested Parallelism with <code>shard_map</code></h2>
-<p><br></p>
-<div class="sourceCode" id="cb8" data-code-line-numbers="6-12"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb8-1" class="hljs-ln-code"><a></a>mesh <span class="op">=</span> jax.make_mesh((<span class="dv">2</span>,<span class="dv">2</span>), (<span class="st">'x'</span>, <span class="st">'y'</span>))</span>
-<span id="cb8-2" class="hljs-ln-code"><a></a>sharding <span class="op">=</span> NamedSharding(mesh , P(<span class="st">'x'</span>, <span class="st">'y'</span>))</span>
-<span id="cb8-3" class="hljs-ln-code"><a></a>data <span class="op">=</span> jnp.arange(<span class="dv">16</span>).reshape(<span class="dv">4</span>, <span class="dv">4</span>) </span>
-<span id="cb8-4" class="hljs-ln-code"><a></a>sharded_data <span class="op">=</span> lax.with_sharding_constraint(data, sharding)</span>
-<span id="cb8-5" class="hljs-ln-code"><a></a></span>
-<span id="cb8-6" class="hljs-ln-code"><a></a><span class="at">@partial</span>(jax.pmap, axis_name<span class="op">=</span><span class="st">'x'</span> , devices<span class="op">=</span>mesh.devices[<span class="dv">0</span>])</span>
-<span id="cb8-7" class="hljs-ln-code"><a></a><span class="at">@partial</span>(jax.pmap, axis_name<span class="op">=</span><span class="st">'y'</span>, devices<span class="op">=</span>mesh.devices[<span class="dv">1</span>])</span>
-<span id="cb8-8" class="hljs-ln-code"><a></a><span class="kw">def</span> sum_and_avg_nested_pmap(x):</span>
-<span id="cb8-9" class="hljs-ln-code"><a></a>      sum_across_x <span class="op">=</span> lax.psum(x, axis_name<span class="op">=</span><span class="st">'x'</span>)</span>
-<span id="cb8-10" class="hljs-ln-code"><a></a>      avg_across_y <span class="op">=</span> lax.pmean(sum_across_x, axis_name<span class="op">=</span><span class="st">'y'</span>)  </span>
-<span id="cb8-11" class="hljs-ln-code"><a></a>      <span class="cf">return</span> avg_across_y</span>
-<span id="cb8-12" class="hljs-ln-code"><a></a></span>
-<span id="cb8-13" class="hljs-ln-code"><a></a><span class="kw">def</span> sum_and_avg_pmap(x):</span>
-<span id="cb8-14" class="hljs-ln-code"><a></a>    sum_across_x <span class="op">=</span> jax.pmap(<span class="kw">lambda</span> a: lax.psum(a, axis_name<span class="op">=</span><span class="st">'x'</span>),</span>
-<span id="cb8-15" class="hljs-ln-code"><a></a>                            axis_name<span class="op">=</span><span class="st">'x'</span>,</span>
-<span id="cb8-16" class="hljs-ln-code"><a></a>                            devices<span class="op">=</span>mesh.devices[<span class="dv">0</span>])(x.reshape(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>))</span>
-<span id="cb8-17" class="hljs-ln-code"><a></a>    avg_across_y <span class="op">=</span> jax.pmap(<span class="kw">lambda</span> a: lax.pmean(a, axis_name<span class="op">=</span><span class="st">'y'</span>),</span>
-<span id="cb8-18" class="hljs-ln-code"><a></a>                            axis_name<span class="op">=</span><span class="st">'y'</span>,</span>
-<span id="cb8-19" class="hljs-ln-code"><a></a>                            devices<span class="op">=</span>mesh.devices[<span class="dv">1</span>])(sum_across_x.reshape(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">2</span>))</span>
-<span id="cb8-20" class="hljs-ln-code"><a></a>    <span class="cf">return</span> avg_across_y.reshape(<span class="dv">4</span>, <span class="dv">4</span>)</span>
-<span id="cb8-21" class="hljs-ln-code"><a></a></span>
-<span id="cb8-22" class="hljs-ln-code"><a></a><span class="at">@partial</span>(shard_map , mesh<span class="op">=</span>mesh , in_specs<span class="op">=</span>(P(<span class="st">'x'</span>, <span class="st">'y'</span>),), out_specs<span class="op">=</span>P(<span class="st">'x'</span>))</span>
-<span id="cb8-23" class="hljs-ln-code"><a></a><span class="kw">def</span> sum_and_avg_shardmap(x):</span>
-<span id="cb8-24" class="hljs-ln-code"><a></a>      sum_across_x <span class="op">=</span> lax.psum(x, axis_name<span class="op">=</span><span class="st">'x'</span>)</span>
-<span id="cb8-25" class="hljs-ln-code"><a></a>      avg_across_y <span class="op">=</span> lax.pmean(sum_across_x, axis_name<span class="op">=</span><span class="st">'y'</span>)  </span>
-<span id="cb8-26" class="hljs-ln-code"><a></a>      <span class="cf">return</span> avg_across_y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="example-nested-parallelism-with-shard_map-2" class="slide level2" data-auto-animate="true" data-visibility="uncounted">
-<h2 data-id="quarto-animate-title">Example: Nested Parallelism with <code>shard_map</code></h2>
-<p><br></p>
-<div class="sourceCode" id="cb9" data-code-line-numbers="13-21"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb9-1" class="hljs-ln-code"><a></a>mesh <span class="op">=</span> jax.make_mesh((<span class="dv">2</span>,<span class="dv">2</span>), (<span class="st">'x'</span>, <span class="st">'y'</span>))</span>
-<span id="cb9-2" class="hljs-ln-code"><a></a>sharding <span class="op">=</span> NamedSharding(mesh , P(<span class="st">'x'</span>, <span class="st">'y'</span>))</span>
-<span id="cb9-3" class="hljs-ln-code"><a></a>data <span class="op">=</span> jnp.arange(<span class="dv">16</span>).reshape(<span class="dv">4</span>, <span class="dv">4</span>) </span>
-<span id="cb9-4" class="hljs-ln-code"><a></a>sharded_data <span class="op">=</span> lax.with_sharding_constraint(data, sharding)</span>
-<span id="cb9-5" class="hljs-ln-code"><a></a></span>
-<span id="cb9-6" class="hljs-ln-code"><a></a><span class="at">@partial</span>(jax.pmap, axis_name<span class="op">=</span><span class="st">'x'</span> , devices<span class="op">=</span>mesh.devices[<span class="dv">0</span>])</span>
-<span id="cb9-7" class="hljs-ln-code"><a></a><span class="at">@partial</span>(jax.pmap, axis_name<span class="op">=</span><span class="st">'y'</span>, devices<span class="op">=</span>mesh.devices[<span class="dv">1</span>])</span>
-<span id="cb9-8" class="hljs-ln-code"><a></a><span class="kw">def</span> sum_and_avg_nested_pmap(x):</span>
-<span id="cb9-9" class="hljs-ln-code"><a></a>      sum_across_x <span class="op">=</span> lax.psum(x, axis_name<span class="op">=</span><span class="st">'x'</span>)</span>
-<span id="cb9-10" class="hljs-ln-code"><a></a>      avg_across_y <span class="op">=</span> lax.pmean(sum_across_x, axis_name<span class="op">=</span><span class="st">'y'</span>)  </span>
-<span id="cb9-11" class="hljs-ln-code"><a></a>      <span class="cf">return</span> avg_across_y</span>
-<span id="cb9-12" class="hljs-ln-code"><a></a></span>
-<span id="cb9-13" class="hljs-ln-code"><a></a><span class="kw">def</span> sum_and_avg_pmap(x):</span>
-<span id="cb9-14" class="hljs-ln-code"><a></a>    sum_across_x <span class="op">=</span> jax.pmap(<span class="kw">lambda</span> a: lax.psum(a, axis_name<span class="op">=</span><span class="st">'x'</span>),</span>
-<span id="cb9-15" class="hljs-ln-code"><a></a>                            axis_name<span class="op">=</span><span class="st">'x'</span>,</span>
-<span id="cb9-16" class="hljs-ln-code"><a></a>                            devices<span class="op">=</span>mesh.devices[<span class="dv">0</span>])(x.reshape(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>))</span>
-<span id="cb9-17" class="hljs-ln-code"><a></a>    avg_across_y <span class="op">=</span> jax.pmap(<span class="kw">lambda</span> a: lax.pmean(a, axis_name<span class="op">=</span><span class="st">'y'</span>),</span>
-<span id="cb9-18" class="hljs-ln-code"><a></a>                            axis_name<span class="op">=</span><span class="st">'y'</span>,</span>
-<span id="cb9-19" class="hljs-ln-code"><a></a>                            devices<span class="op">=</span>mesh.devices[<span class="dv">1</span>])(sum_across_x.reshape(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">2</span>))</span>
-<span id="cb9-20" class="hljs-ln-code"><a></a>    <span class="cf">return</span> avg_across_y.reshape(<span class="dv">4</span>, <span class="dv">4</span>)</span>
-<span id="cb9-21" class="hljs-ln-code"><a></a></span>
-<span id="cb9-22" class="hljs-ln-code"><a></a><span class="at">@partial</span>(shard_map , mesh<span class="op">=</span>mesh , in_specs<span class="op">=</span>(P(<span class="st">'x'</span>, <span class="st">'y'</span>),), out_specs<span class="op">=</span>P(<span class="st">'x'</span>))</span>
-<span id="cb9-23" class="hljs-ln-code"><a></a><span class="kw">def</span> sum_and_avg_shardmap(x):</span>
-<span id="cb9-24" class="hljs-ln-code"><a></a>      sum_across_x <span class="op">=</span> lax.psum(x, axis_name<span class="op">=</span><span class="st">'x'</span>)</span>
-<span id="cb9-25" class="hljs-ln-code"><a></a>      avg_across_y <span class="op">=</span> lax.pmean(sum_across_x, axis_name<span class="op">=</span><span class="st">'y'</span>)  </span>
-<span id="cb9-26" class="hljs-ln-code"><a></a>      <span class="cf">return</span> avg_across_y</span>
-<span id="cb9-27" class="hljs-ln-code"><a></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="example-nested-parallelism-with-shard_map-3" class="slide level2" data-auto-animate="true" data-visibility="uncounted">
-<h2 data-id="quarto-animate-title">Example: Nested Parallelism with <code>shard_map</code></h2>
-<p><br></p>
-<div class="sourceCode" id="cb10" data-code-line-numbers="22-26"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb10-1" class="hljs-ln-code"><a></a>mesh <span class="op">=</span> jax.make_mesh((<span class="dv">2</span>,<span class="dv">2</span>), (<span class="st">'x'</span>, <span class="st">'y'</span>))</span>
-<span id="cb10-2" class="hljs-ln-code"><a></a>sharding <span class="op">=</span> NamedSharding(mesh , P(<span class="st">'x'</span>, <span class="st">'y'</span>))</span>
-<span id="cb10-3" class="hljs-ln-code"><a></a>data <span class="op">=</span> jnp.arange(<span class="dv">16</span>).reshape(<span class="dv">4</span>, <span class="dv">4</span>) </span>
-<span id="cb10-4" class="hljs-ln-code"><a></a>sharded_data <span class="op">=</span> lax.with_sharding_constraint(data, sharding)</span>
-<span id="cb10-5" class="hljs-ln-code"><a></a></span>
-<span id="cb10-6" class="hljs-ln-code"><a></a><span class="at">@partial</span>(jax.pmap, axis_name<span class="op">=</span><span class="st">'x'</span> , devices<span class="op">=</span>mesh.devices[<span class="dv">0</span>])</span>
-<span id="cb10-7" class="hljs-ln-code"><a></a><span class="at">@partial</span>(jax.pmap, axis_name<span class="op">=</span><span class="st">'y'</span>, devices<span class="op">=</span>mesh.devices[<span class="dv">1</span>])</span>
-<span id="cb10-8" class="hljs-ln-code"><a></a><span class="kw">def</span> sum_and_avg_nested_pmap(x):</span>
-<span id="cb10-9" class="hljs-ln-code"><a></a>      sum_across_x <span class="op">=</span> lax.psum(x, axis_name<span class="op">=</span><span class="st">'x'</span>)</span>
-<span id="cb10-10" class="hljs-ln-code"><a></a>      avg_across_y <span class="op">=</span> lax.pmean(sum_across_x, axis_name<span class="op">=</span><span class="st">'y'</span>)  </span>
-<span id="cb10-11" class="hljs-ln-code"><a></a>      <span class="cf">return</span> avg_across_y</span>
-<span id="cb10-12" class="hljs-ln-code"><a></a></span>
-<span id="cb10-13" class="hljs-ln-code"><a></a><span class="kw">def</span> sum_and_avg_pmap(x):</span>
-<span id="cb10-14" class="hljs-ln-code"><a></a>    sum_across_x <span class="op">=</span> jax.pmap(<span class="kw">lambda</span> a: lax.psum(a, axis_name<span class="op">=</span><span class="st">'x'</span>),</span>
-<span id="cb10-15" class="hljs-ln-code"><a></a>                            axis_name<span class="op">=</span><span class="st">'x'</span>,</span>
-<span id="cb10-16" class="hljs-ln-code"><a></a>                            devices<span class="op">=</span>mesh.devices[<span class="dv">0</span>])(x.reshape(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>))</span>
-<span id="cb10-17" class="hljs-ln-code"><a></a>    avg_across_y <span class="op">=</span> jax.pmap(<span class="kw">lambda</span> a: lax.pmean(a, axis_name<span class="op">=</span><span class="st">'y'</span>),</span>
-<span id="cb10-18" class="hljs-ln-code"><a></a>                            axis_name<span class="op">=</span><span class="st">'y'</span>,</span>
-<span id="cb10-19" class="hljs-ln-code"><a></a>                            devices<span class="op">=</span>mesh.devices[<span class="dv">1</span>])(sum_across_x.reshape(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">2</span>))</span>
-<span id="cb10-20" class="hljs-ln-code"><a></a>    <span class="cf">return</span> avg_across_y.reshape(<span class="dv">4</span>, <span class="dv">4</span>)</span>
-<span id="cb10-21" class="hljs-ln-code"><a></a></span>
-<span id="cb10-22" class="hljs-ln-code"><a></a><span class="at">@partial</span>(shard_map , mesh<span class="op">=</span>mesh , in_specs<span class="op">=</span>(P(<span class="st">'x'</span>, <span class="st">'y'</span>),), out_specs<span class="op">=</span>P(<span class="st">'x'</span>))</span>
-<span id="cb10-23" class="hljs-ln-code"><a></a><span class="kw">def</span> sum_and_avg_shardmap(x):</span>
-<span id="cb10-24" class="hljs-ln-code"><a></a>      sum_across_x <span class="op">=</span> lax.psum(x, axis_name<span class="op">=</span><span class="st">'x'</span>)</span>
-<span id="cb10-25" class="hljs-ln-code"><a></a>      avg_across_y <span class="op">=</span> lax.pmean(sum_across_x, axis_name<span class="op">=</span><span class="st">'y'</span>)  </span>
-<span id="cb10-26" class="hljs-ln-code"><a></a>      <span class="cf">return</span> avg_across_y</span>
-<span id="cb10-27" class="hljs-ln-code"><a></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section class="slide level2">
+
 </section></section>
 <section>
 <section id="towards-infinite-scalability-with-jax" class="title-slide slide level1 center">
@@ -1378,19 +1330,19 @@
 <div class="columns">
 <div class="column" style="width:50%;">
 <h4 id="single-gpu-code">Single GPU Code</h4>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a>x <span class="op">=</span> jnp.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
-<span id="cb11-2"><a></a>mean <span class="op">=</span> <span class="fl">0.0</span></span>
-<span id="cb11-3"><a></a>variance <span class="op">=</span> <span class="fl">1.0</span></span>
-<span id="cb11-4"><a></a>result <span class="op">=</span> gaussian(x, mean, variance)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a>x <span class="op">=</span> jnp.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
+<span id="cb7-2"><a></a>mean <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb7-3"><a></a>variance <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb7-4"><a></a>result <span class="op">=</span> gaussian(x, mean, variance)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><br></p>
 <h4 id="multi-gpu-code">Multi-GPU Code</h4>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a>mesh <span class="op">=</span> jax.make_mesh((<span class="dv">8</span>,), (<span class="st">'x'</span>))</span>
-<span id="cb12-2"><a></a>sharding <span class="op">=</span> NamedSharding(mesh , P(<span class="st">'x'</span>))</span>
-<span id="cb12-3"><a></a>x <span class="op">=</span> jnp.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
-<span id="cb12-4"><a></a>x <span class="op">=</span> jax.device_put(sharding, x)</span>
-<span id="cb12-5"><a></a>mean <span class="op">=</span> <span class="fl">0.0</span></span>
-<span id="cb12-6"><a></a>variance <span class="op">=</span> <span class="fl">1.0</span></span>
-<span id="cb12-7"><a></a>result <span class="op">=</span> gaussian(x, mean, variance)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a>mesh <span class="op">=</span> jax.make_mesh((<span class="dv">8</span>,), (<span class="st">'x'</span>))</span>
+<span id="cb8-2"><a></a>sharding <span class="op">=</span> NamedSharding(mesh , P(<span class="st">'x'</span>))</span>
+<span id="cb8-3"><a></a>x <span class="op">=</span> jnp.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
+<span id="cb8-4"><a></a>x <span class="op">=</span> jax.device_put(sharding, x)</span>
+<span id="cb8-5"><a></a>mean <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb8-6"><a></a>variance <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb8-7"><a></a>result <span class="op">=</span> gaussian(x, mean, variance)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><br></p>
 <h4 id="multi-host-code">Multi-Host Code</h4>
 <div class="quarto-figure quarto-figure-center">
@@ -1441,31 +1393,31 @@
 <p><br></p>
 <div class="columns">
 <div class="column" style="width:50%;">
+<h4 id="requesting-a-slurm-job">Requesting a slurm job</h4>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a></a><span class="ex">$</span> salloc <span class="at">--gres</span><span class="op">=</span>gpu:8 <span class="at">--ntasks-per-node</span><span class="op">=</span>1 <span class="at">--nodes</span><span class="op">=</span>1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>multi-host-jax.py</strong></pre>
 </div>
-<div class="sourceCode" id="cb13" data-filename="multi-host-jax.py"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a><span class="im">import</span> jax</span>
-<span id="cb13-2"><a></a></span>
-<span id="cb13-3"><a></a>mesh <span class="op">=</span> jax.make_mesh((<span class="dv">4</span>,), (<span class="st">'x'</span>))</span>
-<span id="cb13-4"><a></a>sharding <span class="op">=</span> NamedSharding(mesh , P(<span class="st">'x'</span>))</span>
-<span id="cb13-5"><a></a></span>
-<span id="cb13-6"><a></a><span class="kw">def</span> gaussian(x, mean, variance):</span>
-<span id="cb13-7"><a></a>    ...</span>
-<span id="cb13-8"><a></a>mean <span class="op">=</span> <span class="fl">0.0</span></span>
-<span id="cb13-9"><a></a>variance <span class="op">=</span> <span class="fl">1.0</span></span>
-<span id="cb13-10"><a></a>x <span class="op">=</span> jnp.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
-<span id="cb13-11"><a></a>x <span class="op">=</span> jax.device_put(sharding, x)</span>
-<span id="cb13-12"><a></a>result <span class="op">=</span> gaussian(x, mean, variance)</span>
-<span id="cb13-13"><a></a>visualize_array_sharding(x)</span>
-<span id="cb13-14"><a></a>visualize_array_sharding(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10" data-filename="multi-host-jax.py"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a><span class="im">import</span> jax</span>
+<span id="cb10-2"><a></a></span>
+<span id="cb10-3"><a></a>mesh <span class="op">=</span> jax.make_mesh((<span class="dv">4</span>,), (<span class="st">'x'</span>))</span>
+<span id="cb10-4"><a></a>sharding <span class="op">=</span> NamedSharding(mesh , P(<span class="st">'x'</span>))</span>
+<span id="cb10-5"><a></a></span>
+<span id="cb10-6"><a></a><span class="kw">def</span> gaussian(x, mean, variance):</span>
+<span id="cb10-7"><a></a>    ...</span>
+<span id="cb10-8"><a></a>mean <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb10-9"><a></a>variance <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb10-10"><a></a>x <span class="op">=</span> jnp.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
+<span id="cb10-11"><a></a>x <span class="op">=</span> jax.device_put(sharding, x)</span>
+<span id="cb10-12"><a></a>result <span class="op">=</span> gaussian(x, mean, variance)</span>
+<span id="cb10-13"><a></a>visualize_array_sharding(x)</span>
+<span id="cb10-14"><a></a>visualize_array_sharding(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
-<h4 id="requesting-a-slurm-job">Requesting a slurm job</h4>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a></a><span class="ex">$</span> salloc <span class="at">--gres</span><span class="op">=</span>gpu:8 <span class="at">--ntasks-per-node</span><span class="op">=</span>1 <span class="at">--nodes</span><span class="op">=</span>1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><br></p>
 <h4 id="running-with-srun">Running with srun</h4>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a></a><span class="ex">$</span> srun python multi-host-jax.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a></a><span class="ex">$</span> srun python multi-host-jax.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:50%;">
 <div class="r-stack">
 <div class="quarto-figure quarto-figure-center">
@@ -1482,31 +1434,31 @@
 <p><br></p>
 <div class="columns">
 <div class="column" style="width:50%;">
+<h4 id="requesting-a-slurm-job-1">Requesting a slurm job</h4>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a></a><span class="ex">$</span> salloc <span class="at">--gres</span><span class="op">=</span>gpu:8 <span class="at">--ntasks-per-node</span><span class="op">=</span>8 <span class="at">--nodes</span><span class="op">=</span>2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>multi-host-jax.py</strong></pre>
 </div>
-<div class="sourceCode" id="cb16" data-filename="multi-host-jax.py" data-code-line-numbers="|2-3|10-11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a><span class="im">import</span> jax</span>
-<span id="cb16-2"><a></a>jax.distributed.initialize()</span>
-<span id="cb16-3"><a></a>mesh <span class="op">=</span> jax.make_mesh((<span class="dv">16</span>,), (<span class="st">'x'</span>))</span>
-<span id="cb16-4"><a></a>sharding <span class="op">=</span> NamedSharding(mesh , P(<span class="st">'x'</span>))</span>
-<span id="cb16-5"><a></a></span>
-<span id="cb16-6"><a></a><span class="kw">def</span> gaussian(x, mean, variance):</span>
-<span id="cb16-7"><a></a>    ...</span>
-<span id="cb16-8"><a></a>mean <span class="op">=</span> <span class="fl">0.0</span></span>
-<span id="cb16-9"><a></a>variance <span class="op">=</span> <span class="fl">1.0</span></span>
-<span id="cb16-10"><a></a>x <span class="op">=</span> jnp.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
-<span id="cb16-11"><a></a>x <span class="op">=</span> jax.device_put(sharding, x)</span>
-<span id="cb16-12"><a></a>result <span class="op">=</span> gaussian(x, mean, variance)</span>
-<span id="cb16-13"><a></a>visualize_array_sharding(x)</span>
-<span id="cb16-14"><a></a>visualize_array_sharding(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13" data-filename="multi-host-jax.py" data-code-line-numbers="|2-3|10-11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a><span class="im">import</span> jax</span>
+<span id="cb13-2"><a></a>jax.distributed.initialize()</span>
+<span id="cb13-3"><a></a>mesh <span class="op">=</span> jax.make_mesh((<span class="dv">16</span>,), (<span class="st">'x'</span>))</span>
+<span id="cb13-4"><a></a>sharding <span class="op">=</span> NamedSharding(mesh , P(<span class="st">'x'</span>))</span>
+<span id="cb13-5"><a></a></span>
+<span id="cb13-6"><a></a><span class="kw">def</span> gaussian(x, mean, variance):</span>
+<span id="cb13-7"><a></a>    ...</span>
+<span id="cb13-8"><a></a>mean <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb13-9"><a></a>variance <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb13-10"><a></a>x <span class="op">=</span> jnp.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
+<span id="cb13-11"><a></a>x <span class="op">=</span> jax.device_put(sharding, x) ❌ <span class="co"># DOES NOT WORK</span></span>
+<span id="cb13-12"><a></a>result <span class="op">=</span> gaussian(x, mean, variance)</span>
+<span id="cb13-13"><a></a>visualize_array_sharding(x)</span>
+<span id="cb13-14"><a></a>visualize_array_sharding(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
-<h4 id="requesting-a-slurm-job-1">Requesting a slurm job</h4>
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a></a><span class="ex">$</span> salloc <span class="at">--gres</span><span class="op">=</span>gpu:8 <span class="at">--ntasks-per-node</span><span class="op">=</span>8 <span class="at">--nodes</span><span class="op">=</span>2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><br></p>
 <h4 id="running-with-srun-1">Running with srun</h4>
-<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a></a><span class="ex">$</span> srun <span class="at">-n</span> 8 python multi-host-jax.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a></a><span class="ex">$</span> srun <span class="at">-n</span> 8 python multi-host-jax.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:50%;">
 <div class="r-stack">
 <div class="quarto-figure quarto-figure-center">
@@ -1523,31 +1475,31 @@
 <p><br></p>
 <div class="columns">
 <div class="column" style="width:50%;">
+<h4 id="requesting-a-slurm-job-2">Requesting a slurm job</h4>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a></a><span class="ex">$</span> salloc <span class="at">--gres</span><span class="op">=</span>gpu:8 <span class="at">--ntasks-per-node</span><span class="op">=</span>8 <span class="at">--nodes</span><span class="op">=</span>2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>multi-host-jax.py</strong></pre>
 </div>
-<div class="sourceCode" id="cb19" data-filename="multi-host-jax.py" data-code-line-numbers="10-11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a></a><span class="im">import</span> jax</span>
-<span id="cb19-2"><a></a>jax.distributed.initialize()</span>
-<span id="cb19-3"><a></a>mesh <span class="op">=</span> jax.make_mesh((<span class="dv">16</span>,), (<span class="st">'x'</span>))</span>
-<span id="cb19-4"><a></a>sharding <span class="op">=</span> NamedSharding(mesh , P(<span class="st">'x'</span>))</span>
-<span id="cb19-5"><a></a></span>
-<span id="cb19-6"><a></a><span class="kw">def</span> gaussian(x, mean, variance):</span>
-<span id="cb19-7"><a></a>...</span>
-<span id="cb19-8"><a></a>mean <span class="op">=</span> <span class="fl">0.0</span></span>
-<span id="cb19-9"><a></a>variance <span class="op">=</span> <span class="fl">1.0</span></span>
-<span id="cb19-10"><a></a>x <span class="op">=</span> jnp.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
-<span id="cb19-11"><a></a>x <span class="op">=</span> jax.device_put(sharding, x)</span>
-<span id="cb19-12"><a></a>result <span class="op">=</span> gaussian(x, mean, variance)</span>
-<span id="cb19-13"><a></a>visualize_array_sharding(x)</span>
-<span id="cb19-14"><a></a>visualize_array_sharding(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16" data-filename="multi-host-jax.py" data-code-line-numbers="10-11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a><span class="im">import</span> jax</span>
+<span id="cb16-2"><a></a>jax.distributed.initialize()</span>
+<span id="cb16-3"><a></a>mesh <span class="op">=</span> jax.make_mesh((<span class="dv">16</span>,), (<span class="st">'x'</span>))</span>
+<span id="cb16-4"><a></a>sharding <span class="op">=</span> NamedSharding(mesh , P(<span class="st">'x'</span>))</span>
+<span id="cb16-5"><a></a></span>
+<span id="cb16-6"><a></a><span class="kw">def</span> gaussian(x, mean, variance):</span>
+<span id="cb16-7"><a></a>    ...</span>
+<span id="cb16-8"><a></a>mean <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb16-9"><a></a>variance <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb16-10"><a></a>x <span class="op">=</span> jnp.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
+<span id="cb16-11"><a></a>x <span class="op">=</span> jax.device_put(sharding, x) ❌ <span class="co"># DOES NOT WORK</span></span>
+<span id="cb16-12"><a></a>result <span class="op">=</span> gaussian(x, mean, variance)</span>
+<span id="cb16-13"><a></a>visualize_array_sharding(x)</span>
+<span id="cb16-14"><a></a>visualize_array_sharding(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
-<h4 id="requesting-a-slurm-job-2">Requesting a slurm job</h4>
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a></a><span class="ex">$</span> salloc <span class="at">--gres</span><span class="op">=</span>gpu:8 <span class="at">--ntasks-per-node</span><span class="op">=</span>8 <span class="at">--nodes</span><span class="op">=</span>2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><br></p>
 <h4 id="running-with-srun-2">Running with srun</h4>
-<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a></a><span class="ex">$</span> srun <span class="at">-n</span> 8 python multi-host-jax.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a></a><span class="ex">$</span> srun <span class="at">-n</span> 8 python multi-host-jax.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:50%;">
 <div class="r-stack">
 <div class="quarto-figure quarto-figure-center">
@@ -1573,18 +1525,13 @@
 <h2 data-id="quarto-animate-title">Loading Data in JAX in a Multi-Host Setup</h2>
 <h4 id="a-jax-process-per-gpu-3">A JAX process per GPU</h4>
 <p><br></p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>multi-host-jax.py</strong></pre>
-</div>
-<div class="sourceCode" id="cb22" data-filename="multi-host-jax.py"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb22-1" class="hljs-ln-code"><a></a><span class="im">import</span> jax</span>
-<span id="cb22-2" class="hljs-ln-code"><a></a>jax.distributed.initialize()</span>
-<span id="cb22-3" class="hljs-ln-code"><a></a></span>
-<span id="cb22-4" class="hljs-ln-code"><a></a><span class="cf">assert</span> jax.device_count() <span class="op">==</span> <span class="dv">16</span></span>
-<span id="cb22-5" class="hljs-ln-code"><a></a></span>
-<span id="cb22-6" class="hljs-ln-code"><a></a>x <span class="op">=</span> jnp.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
-<span id="cb22-7" class="hljs-ln-code"><a></a>visualize_array_sharding(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb18-1" class="hljs-ln-code"><a></a><span class="im">import</span> jax</span>
+<span id="cb18-2" class="hljs-ln-code"><a></a>jax.distributed.initialize()</span>
+<span id="cb18-3" class="hljs-ln-code"><a></a></span>
+<span id="cb18-4" class="hljs-ln-code"><a></a><span class="cf">assert</span> jax.device_count() <span class="op">==</span> <span class="dv">16</span></span>
+<span id="cb18-5" class="hljs-ln-code"><a></a></span>
+<span id="cb18-6" class="hljs-ln-code"><a></a>x <span class="op">=</span> jnp.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
+<span id="cb18-7" class="hljs-ln-code"><a></a>visualize_array_sharding(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><br></p>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -1626,7 +1573,7 @@
 <span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
 </pre>
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 13  </span>
-<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+<span style="color: #ffffff; text-decoration-c²olor: #ffffff; background-color: #393b79">         </span>
 </pre>
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 11  </span>
 <span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
@@ -1641,20 +1588,20 @@
 <div class="code-with-filename-file">
 <pre><strong>multi-host-jax.py</strong></pre>
 </div>
-<div class="sourceCode" id="cb23" data-filename="multi-host-jax.py" data-code-line-numbers="|7-10|13-14|"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb23-1" class="hljs-ln-code"><a></a><span class="im">import</span> jax</span>
-<span id="cb23-2" class="hljs-ln-code"><a></a>jax.distributed.initialize()</span>
-<span id="cb23-3" class="hljs-ln-code"><a></a></span>
-<span id="cb23-4" class="hljs-ln-code"><a></a>mesh <span class="op">=</span> jax.make_mesh((<span class="dv">16</span>,) , (<span class="st">'x'</span>,))</span>
-<span id="cb23-5" class="hljs-ln-code"><a></a>sharding <span class="op">=</span> NamedSharding(mesh , P(<span class="st">'x'</span>))</span>
-<span id="cb23-6" class="hljs-ln-code"><a></a></span>
-<span id="cb23-7" class="hljs-ln-code"><a></a><span class="kw">def</span> distributed_linspace(start, stop, num):</span>
-<span id="cb23-8" class="hljs-ln-code"><a></a>    <span class="kw">def</span> local_linspace(indx):</span>
-<span id="cb23-9" class="hljs-ln-code"><a></a>        <span class="cf">return</span> np.linspace(start, stop, num)[indx]</span>
-<span id="cb23-10" class="hljs-ln-code"><a></a>    <span class="cf">return</span> jax.make_array_from_callback(shape<span class="op">=</span>(num,), sharding<span class="op">=</span>sharding,data_callback<span class="op">=</span>local_linspace)</span>
-<span id="cb23-11" class="hljs-ln-code"><a></a></span>
-<span id="cb23-12" class="hljs-ln-code"><a></a>x <span class="op">=</span> distributed_linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
-<span id="cb23-13" class="hljs-ln-code"><a></a><span class="cf">if</span> jax.process_index() <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb23-14" class="hljs-ln-code"><a></a>  visualize_array_sharding(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19" data-filename="multi-host-jax.py" data-code-line-numbers="|7-10|13-14|"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb19-1" class="hljs-ln-code"><a></a><span class="im">import</span> jax</span>
+<span id="cb19-2" class="hljs-ln-code"><a></a>jax.distributed.initialize()</span>
+<span id="cb19-3" class="hljs-ln-code"><a></a></span>
+<span id="cb19-4" class="hljs-ln-code"><a></a>mesh <span class="op">=</span> jax.make_mesh((<span class="dv">16</span>,) , (<span class="st">'x'</span>,))</span>
+<span id="cb19-5" class="hljs-ln-code"><a></a>sharding <span class="op">=</span> NamedSharding(mesh , P(<span class="st">'x'</span>))</span>
+<span id="cb19-6" class="hljs-ln-code"><a></a></span>
+<span id="cb19-7" class="hljs-ln-code"><a></a><span class="kw">def</span> distributed_linspace(start, stop, num):</span>
+<span id="cb19-8" class="hljs-ln-code"><a></a>    <span class="kw">def</span> local_linspace(indx):</span>
+<span id="cb19-9" class="hljs-ln-code"><a></a>        <span class="cf">return</span> np.linspace(start, stop, num)[indx]</span>
+<span id="cb19-10" class="hljs-ln-code"><a></a>    <span class="cf">return</span> jax.make_array_from_callback(shape<span class="op">=</span>(num,), sharding<span class="op">=</span>sharding,data_callback<span class="op">=</span>local_linspace)</span>
+<span id="cb19-11" class="hljs-ln-code"><a></a></span>
+<span id="cb19-12" class="hljs-ln-code"><a></a>x <span class="op">=</span> distributed_linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
+<span id="cb19-13" class="hljs-ln-code"><a></a><span class="cf">if</span> jax.process_index() <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb19-14" class="hljs-ln-code"><a></a>  visualize_array_sharding(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #843c39">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">  …  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7ba52">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #5254a3">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ad494a"> G…  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #637939"> G…  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #7b4173"> G…  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #b5cf6b"> G…  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ce6dbd"> G…  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #bd9e39"> G…  </span>
@@ -1670,25 +1617,25 @@
 <div class="code-with-filename-file">
 <pre><strong>multi-host-jax.py</strong></pre>
 </div>
-<div class="sourceCode" id="cb24" data-filename="multi-host-jax.py" data-code-line-numbers="|7-10|13-14"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb24-1" class="hljs-ln-code"><a></a><span class="im">import</span> jax</span>
-<span id="cb24-2" class="hljs-ln-code"><a></a>jax.distributed.initialize()</span>
-<span id="cb24-3" class="hljs-ln-code"><a></a></span>
-<span id="cb24-4" class="hljs-ln-code"><a></a>mesh <span class="op">=</span> jax.make_mesh((<span class="dv">16</span>,) , (<span class="st">'x'</span>,))</span>
-<span id="cb24-5" class="hljs-ln-code"><a></a>sharding <span class="op">=</span> NamedSharding(mesh , P(<span class="st">'x'</span>))</span>
-<span id="cb24-6" class="hljs-ln-code"><a></a></span>
-<span id="cb24-7" class="hljs-ln-code"><a></a><span class="kw">def</span> distributed_linspace(start, stop, num):</span>
-<span id="cb24-8" class="hljs-ln-code"><a></a>    <span class="kw">def</span> local_linspace(indx):</span>
-<span id="cb24-9" class="hljs-ln-code"><a></a>        <span class="cf">return</span> np.linspace(start, stop, num)[indx]</span>
-<span id="cb24-10" class="hljs-ln-code"><a></a>    <span class="cf">return</span> jax.make_array_from_callback(shape<span class="op">=</span>(num,), sharding<span class="op">=</span>sharding,data_callback<span class="op">=</span>local_linspace)</span>
-<span id="cb24-11" class="hljs-ln-code"><a></a></span>
-<span id="cb24-12" class="hljs-ln-code"><a></a>x <span class="op">=</span> distributed_linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
-<span id="cb24-13" class="hljs-ln-code"><a></a><span class="cf">if</span> jax.process_index() <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb24-14" class="hljs-ln-code"><a></a>  visualize_array_sharding(x)</span>
-<span id="cb24-15" class="hljs-ln-code"><a></a>mean <span class="op">=</span> <span class="fl">0.0</span></span>
-<span id="cb24-16" class="hljs-ln-code"><a></a>variance <span class="op">=</span> <span class="fl">1.0</span></span>
-<span id="cb24-17" class="hljs-ln-code"><a></a>result <span class="op">=</span> gaussian(x, mean, variance)</span>
-<span id="cb24-18" class="hljs-ln-code"><a></a><span class="cf">if</span> jax.process_index() <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb24-19" class="hljs-ln-code"><a></a>  visualize_array_sharding(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20" data-filename="multi-host-jax.py" data-code-line-numbers="|7-10|13-14"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb20-1" class="hljs-ln-code"><a></a><span class="im">import</span> jax</span>
+<span id="cb20-2" class="hljs-ln-code"><a></a>jax.distributed.initialize()</span>
+<span id="cb20-3" class="hljs-ln-code"><a></a></span>
+<span id="cb20-4" class="hljs-ln-code"><a></a>mesh <span class="op">=</span> jax.make_mesh((<span class="dv">16</span>,) , (<span class="st">'x'</span>,))</span>
+<span id="cb20-5" class="hljs-ln-code"><a></a>sharding <span class="op">=</span> NamedSharding(mesh , P(<span class="st">'x'</span>))</span>
+<span id="cb20-6" class="hljs-ln-code"><a></a></span>
+<span id="cb20-7" class="hljs-ln-code"><a></a><span class="kw">def</span> distributed_linspace(start, stop, num):</span>
+<span id="cb20-8" class="hljs-ln-code"><a></a>    <span class="kw">def</span> local_linspace(indx):</span>
+<span id="cb20-9" class="hljs-ln-code"><a></a>        <span class="cf">return</span> np.linspace(start, stop, num)[indx]</span>
+<span id="cb20-10" class="hljs-ln-code"><a></a>    <span class="cf">return</span> jax.make_array_from_callback(shape<span class="op">=</span>(num,), sharding<span class="op">=</span>sharding,data_callback<span class="op">=</span>local_linspace)</span>
+<span id="cb20-11" class="hljs-ln-code"><a></a></span>
+<span id="cb20-12" class="hljs-ln-code"><a></a>x <span class="op">=</span> distributed_linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
+<span id="cb20-13" class="hljs-ln-code"><a></a><span class="cf">if</span> jax.process_index() <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb20-14" class="hljs-ln-code"><a></a>  visualize_array_sharding(x)</span>
+<span id="cb20-15" class="hljs-ln-code"><a></a>mean <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb20-16" class="hljs-ln-code"><a></a>variance <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb20-17" class="hljs-ln-code"><a></a>result <span class="op">=</span> gaussian(x, mean, variance)</span>
+<span id="cb20-18" class="hljs-ln-code"><a></a><span class="cf">if</span> jax.process_index() <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb20-19" class="hljs-ln-code"><a></a>  visualize_array_sharding(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #843c39">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">  …  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7ba52">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #5254a3">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ad494a"> G…  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #637939"> G…  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #7b4173"> G…  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #b5cf6b"> G…  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ce6dbd"> G…  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #bd9e39"> G…  </span>
@@ -1700,6 +1647,251 @@
 <span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  0  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #843c39">  1  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">  2  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">  3  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">  4  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">  5  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">  6  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">  7  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7ba52">  8  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #5254a3">  9  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ad494a"> 10  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #637939"> 11  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #7b4173"> 12  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #b5cf6b"> 13  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ce6dbd"> 14  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #bd9e39"> 15  </span>
 <span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #843c39">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">     </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7ba52">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #5254a3">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ad494a">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #637939">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #7b4173">     </span><span style="color: #000000; text-decoration-color: #000000; background-color: #b5cf6b">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ce6dbd">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #bd9e39">     </span>
 </pre>
+</section></section>
+<section>
+<section id="multi-node-packages-in-jax-for-cosmology" class="title-slide slide level1 center">
+<h1>Multi-node packages in JAX for Cosmology</h1>
+
+</section>
+<section id="jaxdecomp-components-for-distributed-particle-mesh-simulations" class="slide level2" style="font-size: 19px;">
+<h2>jaxDecomp : Components for Distributed Particle Mesh Simulations</h2>
+<p><a href="https://github.com/DifferentiableUniverseInitiative/jaxDecomp"><img data-src="https://img.shields.io/badge/GitHub-jaxdecomp-blue?logo=github.png"></a></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h4 id="distributed-3d-fft-for-force-computation">Distributed 3D FFT for Force Computation</h4>
+<ul>
+<li>Essential for force calculations in large-scale simulations.</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h4 id="halo-exchange-for-boundary-conditions">Halo Exchange for Boundary Conditions</h4>
+<ul>
+<li>Manages boundary conditions for particles leaving the simulation domain.</li>
+</ul>
+</div></div>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout="[[1 , 1]]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/jaxDecomp/fft.svg" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/jaxDecomp/halo-exchange.svg" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="solutionbox">
+<div class="solutionbox-header" style="font-size: 19px;">
+<p>Key Features of <code>jaxDecomp</code></p>
+</div>
+<div class="solutionbox-body" style="font-size: 17px;">
+<ul>
+<li><strong>Differentiable</strong>: Fully compatible with JAX’s automatic differentiation.</li>
+<li><strong>Multi-Node Support</strong>: Works seamlessly across multiple nodes.</li>
+<li>Open-source and available on PyPI.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="performance-benchmarks-of-pfft3d" class="slide level2" style="font-size: 20px;">
+<h2>Performance benchmarks of <code>PFFT3D</code></h2>
+<h4 id="strong-scaling-1">Strong Scaling</h4>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/jaxDecomp/strong_scaling.png" class="quarto-figure quarto-figure-center" style="width:35.0%"></p>
+</figure>
+</div>
+<h4 id="weak-scaling-1">Weak scaling</h4>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/jaxDecomp/weak_scaling.png" class="quarto-figure quarto-figure-center" style="width:35.0%"></p>
+</figure>
+</div>
+</section>
+<section id="halo-exchange-in-distributed-simulations" class="slide level2">
+<h2>Halo exchange in distributed simulations</h2>
+<div class="fragment fade-in-then-out" data-fragment-index="1">
+<p><img data-src="assets/HPC/depict_gathered.png" class="absolute" style="top: 30px; right: 20px; width: 20%; "></p>
+</div>
+<div class="fragment" data-fragment-index="2">
+<p><img data-src="assets/HPC/depict_split.png" class="absolute" style="top: 30px; right: 20px; width: 20%; "></p>
+</div>
+<div class="r-stack">
+<div class="fragment fade-in-then-out" data-fragment-index="1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/initial_conditions_1024.png" class="nostretch" style="width:50.0%"></p>
+<figcaption>Initial Field</figcaption>
+</figure>
+</div>
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="2">
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout="[[1] , [1] , [1] , [1]]" data-layout-align="center">
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/initial_conditions_0_no_halo.png" class="nostretch" style="width:30.0%"></p>
+<figcaption>First slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/initial_conditions_1_no_halo.png" class="nostretch" style="width:30.0%"></p>
+<figcaption>Second slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/initial_conditions_2_no_halo.png" class="nostretch" style="width:30.0%"></p>
+<figcaption>Third slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/initial_conditions_3_no_halo.png" class="nostretch" style="width:30.0%"></p>
+<figcaption>Fourth slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="3">
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout="[[1] , [1] , [1] , [1]]" data-layout-align="center">
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_0_no_halo.png" class="nostretch" style="width:30.0%"></p>
+<figcaption>First slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_1_no_halo.png" class="nostretch" style="width:30.0%"></p>
+<figcaption>Second slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_2_no_halo.png" class="nostretch" style="width:30.0%"></p>
+<figcaption>Third slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_3_no_halo.png" class="nostretch" style="width:30.0%"></p>
+<figcaption>Fourth slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="4">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_1024_no_halo.png" class="nostretch" style="width:50.0%"></p>
+<figcaption>LPT Field</figcaption>
+</figure>
+</div>
+</div>
+<div class="fragment" data-fragment-index="5">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_1024.png" class="nostretch" style="width:50.0%"></p>
+<figcaption>LPT Field</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="jaxpm-2.0-distributed-particle-mesh-simulation" class="slide level2" data-background-image="assets/Fields/PM_1024.gif">
+<h2><span style="color: white ;">JaxPM 2.0 : Distributed Particle Mesh Simulation</span></h2>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<div class="solutionbox">
+<div class="solutionbox-header" style="font-size: 20px;">
+<p>Key Features of <code>JaxPM</code></p>
+</div>
+<div class="solutionbox-body" style="font-size: 19px;">
+<ul>
+<li><strong>Multi-Node Performance</strong>: Optimized for efficient scaling across nodes.</li>
+<li><strong>High Resolution</strong>: Capable of handling billions of particles for accurate simulations.</li>
+<li><strong>Differentiable</strong>: Compatible with JAX’s automatic differentiation (HMC, NUTS compatible).</li>
+<li><strong>Open Source</strong>: <a href="https://github.com/DifferentiableUniverseInitiative/JaxPM"><img data-src="https://img.shields.io/badge/GitHub-JaxPM-blue?logo=github.png" alt="GitHub Badge"></a></li>
+</ul>
+</div>
+</div>
+</section></section>
+<section>
+<section id="conclusion" class="title-slide slide level1 center">
+<h1>Conclusion</h1>
+
+</section>
+<section id="conclusion-enabling-scalable-cosmology-with-distributed-jax" class="slide level2" style="font-size: 22px;">
+<h2>Conclusion: Enabling Scalable Cosmology with Distributed JAX</h2>
+<div class="solutionbox">
+<div class="solutionbox-header" style="font-size: 20px;">
+<p><strong>Distributed JAX: A Game-Changer for Cosmology</strong></p>
+</div>
+<div class="solutionbox-body" style="font-size: 19px;">
+<ul>
+<li><p>The future is bright for JAX in cosmology!!</p></li>
+<li><p>JAX has transformed the landscape for scientific computing, <strong>enabling large-scale, distributed workflows</strong> in a Pythonic environment.</p></li>
+<li><p>Recent advancements (JAX 0.4.3x+) make it straightforward to scale computations across multiple GPUs and nodes.</p></li>
+<li><p><strong>Key Advantages</strong></p>
+<ul>
+<li><strong>Simplicity</strong>: JAX makes it easier than ever to write high-performance code, allowing researchers to focus on science rather than infrastructure.</li>
+<li><strong>Differentiability</strong>: JAX allows seamless differentiation of code running across hundreds of GPUs, enabling advanced inference techniques.</li>
+</ul></li>
+<li><p><strong>The Future Ahead</strong></p>
+<ul>
+<li><strong>Scaling Inference Models with Distributed <code>jaxPM</code></strong>: By integrating the new distributed <code>jaxPM</code> into existing cosmological inference models, we can achieve unprecedented levels of detail and complexity.</li>
+<li>Paving the way to fully leverage large-scale survey data for deeper insights into the universe.</li>
+</ul></li>
+</ul>
+</div>
+</div>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
