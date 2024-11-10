@@ -31,20 +31,23 @@ logo1: '<div style="display: flex; justify-content: center; align-items: center;
 ---
 
 
-## Motivation: Parallel Computing in Cosmology {background-image="assets/rubin.jpg"}
+## <span style="color: white ;">Motivation: Cosmology in the exascale era </span> {background-image="assets/rubin.jpg"} 
 
 <br />
-<br />
-<br />
+
+:::{.columns}
+
+::: {.column width="60%"}
 
 :::{.solutionbox}
 
-::: {.solutionbox-header}
+::: {.solutionbox-header style="font-size: 22px;"}
 
 Upcoming Surveys and Massive Data in Cosmology
+
 :::
 
-::::{.solutionbox-body}
+::::{.solutionbox-body style="font-size: 21px;"}
 
 - **Massive Data Volume**: LSST will generate **20 TB of raw data per night** over **10 years**, totaling **60 PB**.
 - **Catalog Size**: The processed LSST catalog database will reach **15 PB**.
@@ -57,17 +60,96 @@ Upcoming Surveys and Massive Data in Cosmology
 
 :::{.solutionbox}
 
-::: {.solutionbox-header}
+::: {.solutionbox-header style="font-size: 22px;"}
 
 Cosmological Models and Pipelines
 :::
 
-::::{.solutionbox-body}
+::::{.solutionbox-body style="font-size: 21px;"}
  - Cosmological simulations and forward modeling can easily reach multiple terabytes in size.
  - We need to scale up cosmological pipelines to handle these data volumes effectively.
 
 
 ::::
+
+:::
+
+:::
+
+:::
+
+---
+
+
+## Forward Modeling in Cosmology {style="font-size: 20px;"}
+
+:::{.columns}
+
+::: {.column width="50%"}
+
+#### Weak Lensing Model
+
+- **Prediction**:
+    - A simulator generates observations from initial conditions and cosmological parameters.
+
+- **Inference**:
+    - The simulated results are compared with actual observations.
+    - Optimal initial conditions and parameters are inferred to closely match the observed data.
+
+
+:::{.solutionbox}
+
+::: {.solutionbox-header style="font-size: 20px;"}
+
+Scaling Challenges
+
+:::
+
+::::{.solutionbox-body style="font-size: 19px;"}
+
+- **Resolution Today**: Simulations currently use around **250,000 to 130 million particles**.
+- **Ideal Resolution**: Billion-particle simulations are necessary for high accuracy.
+- **Software**: Tools like **JaxPM** or **PMWD** support up to ~130 million particles on a single GPU.
+
+::::
+
+:::
+
+:::
+
+::: {.column width="50%"}
+
+:::{.r-stack}
+
+::: {.fragment fragment-index=1 .fade-out}
+
+![](assets/FFI/Forward-Model.svg){fig-align="center" width="75%"}
+
+:::
+
+::: {.fragment fragment-index=1 .fade-in-then-out}
+
+![](assets/FFI/Forward-Model-FinalField.svg){fig-align="center" width="75%"}
+
+:::
+
+::: {.fragment fragment-index=2 .fade-in-then-out}
+
+![](assets/FFI/Forward-Model-Constraints.svg){fig-align="center" width="75%"}
+
+:::
+
+:::
+
+:::
+
+:::
+
+
+:::{.notes}
+
+- **Simulations in Cosmology**: These simulations model the universe's evolution to reproduce observed structures, helping infer parameters like dark matter density, dark energy, and other cosmological constants.
+- **Resolution Requirement**: Simulations with more particles provide finer details, making convergence maps closer to observed data. Current particle counts (130 million) are still limited compared to the **billion-particle simulations** required for accurate cosmological inference.
 
 :::
 
@@ -321,11 +403,12 @@ Cosmological Models and Pipelines
 
 :::
 
-::::{.solutionbox-body}
+::::{.solutionbox-body style="font-size: 21px;"}
 
 - You have a single-GPU prototype that’s working but needs significant runtime reduction.
-- Using multiple GPUs can significantly decrease execution time.
-- You have non-splittable input (e.g., fields in a cosmological simulation) that is crucial for your results.
+- Has a significant impact on your results.
+  - Using multiple GPUs can significantly decrease execution time.
+  - OR You have non-splittable input (e.g., fields in a cosmological simulation) that is crucial for your results.
 
 ::::
 
@@ -347,7 +430,7 @@ Cosmological Models and Pipelines
 ---
 
 
-## How to Measure Scaling for Parallel Codes
+## How to Measure Scaling for Parallel Codes {style="font-size: 22px;"}
 
 :::{.columns}
 
@@ -355,15 +438,37 @@ Cosmological Models and Pipelines
 
 <br />
 
-#### **Weak Scaling**
-- Increasing data size with a fixed number of GPUs.
+#### **Strong Scaling**
+- Increasing the number of GPUs to reduce runtime for a fixed data size.
 
 <br />
 
 ::: {.fragment fragment-index=1}
 
-#### **Strong Scaling**
-- Increasing the number of GPUs to reduce runtime for a fixed data size.
+#### **Weak Scaling**
+- Increasing data size with a fixed number of GPUs.
+
+:::
+
+:::{.fragment fragment-index=2}
+
+:::{.solutionbox}
+
+:::{.solutionbox-header style="font-size: 20px;"}
+
+Evaluating Scaling Performance
+
+:::
+
+::::{.solutionbox-body style="font-size: 19px;"}
+
+- **Strong Scaling**: Assesses performance as more GPUs are added to a fixed dataset. *Danger Zone*: Indicates the distributed code is not scaling efficiently.
+
+- **Weak Scaling**: Tests how the code handles increasing data sizes with a fixed number of GPUs. *Danger Zone*: Suggests underlying scaling issues with the code itself.
+
+::::
+
+:::
 
 :::
 
@@ -371,11 +476,11 @@ Cosmological Models and Pipelines
 
 ::: {.column width="50%"}
 
-![Weak Scaling](assets/HPC/WEAK_SCALING.png){fig-align="center" width="70%"}
+![Strong Scaling](assets/HPC/STRONG_SCALING.png){fig-align="center" width="70%"}
 
 :::{.fragment fragment-index=1}
 
-![Strong Scaling](assets/HPC/STRONG_SCALING.png){fig-align="center" width="70%"}
+![Weak Scaling](assets/HPC/WEAK_SCALING.png){fig-align="center" width="70%"}
 
 :::
 
@@ -385,9 +490,9 @@ Cosmological Models and Pipelines
 
 :::{.notes}
 
-- **Weak Scaling**: Measures how well a system handles growing data sizes without increasing runtime, ideal for cases like simulating larger cosmological volumes with a fixed hardware setup.
-  
-- **Strong Scaling**: Tests how effectively additional GPUs reduce runtime for a fixed dataset, useful in speeding up compute-heavy tasks like fixed-size simulations.
+- **Strong Scaling**: Assesses performance as more GPUs are added to a fixed dataset. *Danger Zone*: Indicates the distributed code is not scaling efficiently.
+
+- **Weak Scaling**: Tests how the code handles increasing data sizes with a fixed number of GPUs. *Danger Zone*: Suggests underlying scaling issues with the code itself.
 
 :::
 
@@ -549,6 +654,7 @@ For questions
 import jax
 import jax.numpy as jnp
 
+
 def gaussian(x, mean, variance):
       """Compute Gaussian distribution for given x, mean, and variance."""
       coefficient = 1.0 / jnp.sqrt(2 * jnp.pi * variance)
@@ -573,12 +679,12 @@ import jax.numpy as jnp
 from jax.debug import visualize_array_sharding
 
 def gaussian(x, mean, variance):
-        """Compute Gaussian distribution for given x, mean, and variance."""
-        coefficient = 1.0 / jnp.sqrt(2 * jnp.pi * variance)
-        exponent = -((x - mean) ** 2) / (2 * variance)
-        return coefficient * jnp.exp(exponent)
+      """Compute Gaussian distribution for given x, mean, and variance."""
+      coefficient = 1.0 / jnp.sqrt(2 * jnp.pi * variance)
+      exponent = -((x - mean) ** 2) / (2 * variance)
+      return coefficient * jnp.exp(exponent)
 
-  mean = 0.0
+mean = 0.0
 variance = 1.0
 x = jnp.linspace(-5, 5, 128)
 result = gaussian(x, mean, variance)
@@ -617,10 +723,10 @@ mesh = jax.make_mesh((8,), ('x'))
 sharding = NamedSharding(mesh , P('x'))
 
 def gaussian(x, mean, variance):
-          """Compute Gaussian distribution for given x, mean, and variance."""
-          coefficient = 1.0 / jnp.sqrt(2 * jnp.pi * variance)
-          exponent = -((x - mean) ** 2) / (2 * variance)
-          return coefficient * jnp.exp(exponent)
+      """Compute Gaussian distribution for given x, mean, and variance."""
+      coefficient = 1.0 / jnp.sqrt(2 * jnp.pi * variance)
+      exponent = -((x - mean) ** 2) / (2 * variance)
+      return coefficient * jnp.exp(exponent)
 
 mean = 0.0
 variance = 1.0
@@ -800,168 +906,6 @@ W
 
 ---
 
-
-## Using `shard_map` for Advanced Parallelism in JAX
-
-### Why `shard_map` instead of `pmap`?
-
-- **Limitations of `pmap`** :
-    - `pmap` is effective for simple data parallelism but lacks flexibility in more complex cases.
-    - **Nested Parallelism**: `pmap` does not handle nested parallelism well.
-    - **Data Layout Control**: `pmap` does not offer fine-grained control over data layout.
-
-- **Advantages of `shard_map`**:
-    - **Greater Flexibility**: `shard_map` allows custom parallelism patterns and fine control over data sharding.
-    - **Nested Parallelism Support**: Suitable for complex workloads that require hierarchical parallelism.
-    - **Direct Device Control**: Allows fine-grained control over data distribution and parallel operations.
-
-[JAX explaining the weakness of pmap](https://jax.readthedocs.io/en/latest/jep/14273-shard-map.html#why-don-t-pmap-or-xmap-already-solve-this)
-
----
-
-## Example: Nested Parallelism with `shard_map` {auto-animate="true"}
-
-<br />
-
-```python
-mesh = jax.make_mesh((2,2), ('x', 'y'))
-sharding = NamedSharding(mesh , P('x', 'y'))
-data = jnp.arange(16).reshape(4, 4) 
-sharded_data = lax.with_sharding_constraint(data, sharding)
-
-@partial(jax.pmap, axis_name='x' , devices=mesh.devices[0])
-@partial(jax.pmap, axis_name='y', devices=mesh.devices[1])
-def sum_and_avg_nested_pmap(x):
-      sum_across_x = lax.psum(x, axis_name='x')
-      avg_across_y = lax.pmean(sum_across_x, axis_name='y')  
-      return avg_across_y
-
-def sum_and_avg_pmap(x):
-    sum_across_x = jax.pmap(lambda a: lax.psum(a, axis_name='x'),
-                            axis_name='x',
-                            devices=mesh.devices[0])(x.reshape(2, 2, 4))
-    avg_across_y = jax.pmap(lambda a: lax.pmean(a, axis_name='y'),
-                            axis_name='y',
-                            devices=mesh.devices[1])(sum_across_x.reshape(2, 4, 2))
-    return avg_across_y.reshape(4, 4)
-
-@partial(shard_map , mesh=mesh , in_specs=(P('x', 'y'),), out_specs=P('x'))
-def sum_and_avg_shardmap(x):
-      sum_across_x = lax.psum(x, axis_name='x')
-      avg_across_y = lax.pmean(sum_across_x, axis_name='y')  
-      return avg_across_y
-
-```
-
----
-
-## Example: Nested Parallelism with `shard_map` {auto-animate="true" visibility="uncounted"}
-
-<br />
-
-```{.python code-line-numbers="6-12"}
-mesh = jax.make_mesh((2,2), ('x', 'y'))
-sharding = NamedSharding(mesh , P('x', 'y'))
-data = jnp.arange(16).reshape(4, 4) 
-sharded_data = lax.with_sharding_constraint(data, sharding)
-
-@partial(jax.pmap, axis_name='x' , devices=mesh.devices[0])
-@partial(jax.pmap, axis_name='y', devices=mesh.devices[1])
-def sum_and_avg_nested_pmap(x):
-      sum_across_x = lax.psum(x, axis_name='x')
-      avg_across_y = lax.pmean(sum_across_x, axis_name='y')  
-      return avg_across_y
-
-def sum_and_avg_pmap(x):
-    sum_across_x = jax.pmap(lambda a: lax.psum(a, axis_name='x'),
-                            axis_name='x',
-                            devices=mesh.devices[0])(x.reshape(2, 2, 4))
-    avg_across_y = jax.pmap(lambda a: lax.pmean(a, axis_name='y'),
-                            axis_name='y',
-                            devices=mesh.devices[1])(sum_across_x.reshape(2, 4, 2))
-    return avg_across_y.reshape(4, 4)
-
-@partial(shard_map , mesh=mesh , in_specs=(P('x', 'y'),), out_specs=P('x'))
-def sum_and_avg_shardmap(x):
-      sum_across_x = lax.psum(x, axis_name='x')
-      avg_across_y = lax.pmean(sum_across_x, axis_name='y')  
-      return avg_across_y
-
-```
-
----
-
-## Example: Nested Parallelism with `shard_map` {auto-animate="true" visibility="uncounted"}
-
-<br />
-
-```{.python code-line-numbers="13-21"}
-mesh = jax.make_mesh((2,2), ('x', 'y'))
-sharding = NamedSharding(mesh , P('x', 'y'))
-data = jnp.arange(16).reshape(4, 4) 
-sharded_data = lax.with_sharding_constraint(data, sharding)
-
-@partial(jax.pmap, axis_name='x' , devices=mesh.devices[0])
-@partial(jax.pmap, axis_name='y', devices=mesh.devices[1])
-def sum_and_avg_nested_pmap(x):
-      sum_across_x = lax.psum(x, axis_name='x')
-      avg_across_y = lax.pmean(sum_across_x, axis_name='y')  
-      return avg_across_y
-
-def sum_and_avg_pmap(x):
-    sum_across_x = jax.pmap(lambda a: lax.psum(a, axis_name='x'),
-                            axis_name='x',
-                            devices=mesh.devices[0])(x.reshape(2, 2, 4))
-    avg_across_y = jax.pmap(lambda a: lax.pmean(a, axis_name='y'),
-                            axis_name='y',
-                            devices=mesh.devices[1])(sum_across_x.reshape(2, 4, 2))
-    return avg_across_y.reshape(4, 4)
-
-@partial(shard_map , mesh=mesh , in_specs=(P('x', 'y'),), out_specs=P('x'))
-def sum_and_avg_shardmap(x):
-      sum_across_x = lax.psum(x, axis_name='x')
-      avg_across_y = lax.pmean(sum_across_x, axis_name='y')  
-      return avg_across_y
-
-
-```
-
----
-
-## Example: Nested Parallelism with `shard_map` {auto-animate="true" visibility="uncounted"}
-
-<br />
-
-```{.python code-line-numbers="22-26"}
-mesh = jax.make_mesh((2,2), ('x', 'y'))
-sharding = NamedSharding(mesh , P('x', 'y'))
-data = jnp.arange(16).reshape(4, 4) 
-sharded_data = lax.with_sharding_constraint(data, sharding)
-
-@partial(jax.pmap, axis_name='x' , devices=mesh.devices[0])
-@partial(jax.pmap, axis_name='y', devices=mesh.devices[1])
-def sum_and_avg_nested_pmap(x):
-      sum_across_x = lax.psum(x, axis_name='x')
-      avg_across_y = lax.pmean(sum_across_x, axis_name='y')  
-      return avg_across_y
-
-def sum_and_avg_pmap(x):
-    sum_across_x = jax.pmap(lambda a: lax.psum(a, axis_name='x'),
-                            axis_name='x',
-                            devices=mesh.devices[0])(x.reshape(2, 2, 4))
-    avg_across_y = jax.pmap(lambda a: lax.pmean(a, axis_name='y'),
-                            axis_name='y',
-                            devices=mesh.devices[1])(sum_across_x.reshape(2, 4, 2))
-    return avg_across_y.reshape(4, 4)
-
-@partial(shard_map , mesh=mesh , in_specs=(P('x', 'y'),), out_specs=P('x'))
-def sum_and_avg_shardmap(x):
-      sum_across_x = lax.psum(x, axis_name='x')
-      avg_across_y = lax.pmean(sum_across_x, axis_name='y')  
-      return avg_across_y
-
-
-```
 # Towards Infinite Scalability with JAX 
 
 ---
@@ -1109,6 +1053,14 @@ result = gaussian(x, mean, variance)
 
 ::: {.column width="50%"}
 
+#### Requesting a slurm job
+
+```bash
+$ salloc --gres=gpu:8 --ntasks-per-node=1 --nodes=1
+```
+
+<br />
+
 ```{.python filename="multi-host-jax.py"}
 import jax
 
@@ -1126,13 +1078,7 @@ visualize_array_sharding(x)
 visualize_array_sharding(result)
 
 ```
-<br />
 
-#### Requesting a slurm job
-
-```bash
-$ salloc --gres=gpu:8 --ntasks-per-node=1 --nodes=1
-```
 <br />
 
 #### Running with srun
@@ -1166,6 +1112,13 @@ $ srun python multi-host-jax.py
 
 ::: {.column width="50%"}
 
+#### Requesting a slurm job
+
+```bash
+$ salloc --gres=gpu:8 --ntasks-per-node=8 --nodes=2
+```
+<br />
+
 ```{.python filename="multi-host-jax.py" code-line-numbers="|2-3|10-11"}
 import jax
 jax.distributed.initialize()
@@ -1177,7 +1130,7 @@ def gaussian(x, mean, variance):
 mean = 0.0
 variance = 1.0
 x = jnp.linspace(-5, 5, 128)
-x = jax.device_put(sharding, x)
+x = jax.device_put(sharding, x) ❌ # DOES NOT WORK
 result = gaussian(x, mean, variance)
 visualize_array_sharding(x)
 visualize_array_sharding(result)
@@ -1185,12 +1138,6 @@ visualize_array_sharding(result)
 ```
 <br />
 
-#### Requesting a slurm job
-
-```bash
-$ salloc --gres=gpu:8 --ntasks-per-node=8 --nodes=2
-```
-<br />
 
 #### Running with srun
 
@@ -1223,6 +1170,13 @@ $ srun -n 8 python multi-host-jax.py
 
 ::: {.column width="50%"}
 
+#### Requesting a slurm job
+
+```bash
+$ salloc --gres=gpu:8 --ntasks-per-node=8 --nodes=2
+```
+<br />
+
 ```{.python filename="multi-host-jax.py" code-line-numbers="10-11"}
 import jax
 jax.distributed.initialize()
@@ -1230,11 +1184,11 @@ mesh = jax.make_mesh((16,), ('x'))
 sharding = NamedSharding(mesh , P('x'))
 
 def gaussian(x, mean, variance):
-...
+    ...
 mean = 0.0
 variance = 1.0
 x = jnp.linspace(-5, 5, 128)
-x = jax.device_put(sharding, x)
+x = jax.device_put(sharding, x) ❌ # DOES NOT WORK
 result = gaussian(x, mean, variance)
 visualize_array_sharding(x)
 visualize_array_sharding(result)
@@ -1242,12 +1196,6 @@ visualize_array_sharding(result)
 ```
 <br />
 
-#### Requesting a slurm job
-
-```bash
-$ salloc --gres=gpu:8 --ntasks-per-node=8 --nodes=2
-```
-<br />
 
 #### Running with srun
 
@@ -1292,7 +1240,7 @@ CAUTION ⚠️
 #### A JAX process per GPU
 <br />
 
-```{.python filename="multi-host-jax.py" }
+```python
 import jax
 jax.distributed.initialize()
 
@@ -1350,7 +1298,7 @@ visualize_array_sharding(x)
 <span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
 </pre>
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 13  </span>
-<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+<span style="color: #ffffff; text-decoration-c²olor: #ffffff; background-color: #393b79">         </span>
 </pre>
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 11  </span>
 <span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
@@ -1433,3 +1381,206 @@ if jax.process_index() == 0:
 <span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #843c39">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">     </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7ba52">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #5254a3">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ad494a">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #637939">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #7b4173">     </span><span style="color: #000000; text-decoration-color: #000000; background-color: #b5cf6b">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ce6dbd">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #bd9e39">     </span>
 </pre>
 
+# Multi-node packages in JAX for Cosmology
+
+---
+
+## jaxDecomp : Components for Distributed Particle Mesh Simulations  {style="font-size: 19px;"}
+[![](https://img.shields.io/badge/GitHub-jaxdecomp-blue?logo=github)](https://github.com/DifferentiableUniverseInitiative/jaxDecomp)
+
+:::{.columns}
+
+::: {.column width="50%"}
+
+#### Distributed 3D FFT for Force Computation
+
+- Essential for force calculations in large-scale simulations.
+
+:::
+
+::: {.column width="50%"}
+
+#### Halo Exchange for Boundary Conditions 
+
+- Manages boundary conditions for particles leaving the simulation domain.
+
+:::
+
+:::
+
+::: {layout="[[1 , 1]]"}
+
+![](assets/jaxDecomp/fft.svg){fig-align="center" width="90%"}
+
+![](assets/jaxDecomp/halo-exchange.svg){fig-align="center" width="70%"}
+:::
+
+:::{.solutionbox}
+
+:::{.solutionbox-header style="font-size: 19px;"}
+
+Key Features of `jaxDecomp`
+
+:::
+
+:::{.solutionbox-body style="font-size: 17px;"}
+
+- **Differentiable**: Fully compatible with JAX’s automatic differentiation.
+- **Multi-Node Support**: Works seamlessly across multiple nodes.
+- Open-source and available on PyPI.
+
+:::
+
+:::
+
+---
+
+## Performance benchmarks of `PFFT3D` {style="font-size: 20px;"}
+
+
+#### Strong Scaling
+
+![](assets/jaxDecomp/strong_scaling.png){fig-align="center" width="35%"}
+
+#### Weak scaling
+
+
+![](assets/jaxDecomp/weak_scaling.png){fig-align="center" width="35%"}
+
+ 
+
+---
+
+## Halo exchange in distributed simulations
+
+::: {.fragment fragment-index=1 .fade-in-then-out}
+
+![](assets/HPC/depict_gathered.png){.absolute top=30 right=20 width="20%"}
+
+::: 
+
+::: {.fragment fragment-index=2 }
+
+![](assets/HPC/depict_split.png){.absolute top=30 right=20 width="20%"}
+
+::: 
+
+:::{.r-stack}
+
+:::{.fragment fragment-index=1 .fade-in-then-out}
+
+![Initial Field](assets/Fields/initial_conditions_1024.png){.nostretch  width="50%"}
+
+:::
+
+:::{.fragment fragment-index=2 .fade-in-then-out}
+
+:::{layout="[[1] , [1] , [1] , [1]]" layout-valign="center" layout-align="center"}
+
+![First slice](assets/Fields/initial_conditions_0_no_halo.png){.nostretch fig-align="center" width="30%"}
+
+![Second slice](assets/Fields/initial_conditions_1_no_halo.png){.nostretch fig-align="center" width="30%"}
+
+![Third slice](assets/Fields/initial_conditions_2_no_halo.png){.nostretch fig-align="center" width="30%"}
+
+![Fourth slice](assets/Fields/initial_conditions_3_no_halo.png){.nostretch fig-align="center" width="30%"}
+
+:::
+
+:::
+
+:::{.fragment fragment-index=3 .fade-in-then-out}
+
+:::{layout="[[1] , [1] , [1] , [1]]" layout-valign="center" layout-align="center"}
+
+![First slice](assets/Fields/LPT_density_field_z0_0_no_halo.png){.nostretch fig-align="center" width="30%"}
+
+![Second slice](assets/Fields/LPT_density_field_z0_1_no_halo.png){.nostretch fig-align="center" width="30%"}
+
+![Third slice](assets/Fields/LPT_density_field_z0_2_no_halo.png){.nostretch fig-align="center" width="30%"}
+
+![Fourth slice](assets/Fields/LPT_density_field_z0_3_no_halo.png){.nostretch fig-align="center" width="30%"}
+
+:::
+
+:::
+
+:::{.fragment fragment-index=4 .fade-in-then-out}
+
+![LPT Field](assets/Fields/LPT_density_field_z0_1024_no_halo.png){.nostretch fig-align="center" width="50%"}
+
+:::
+
+
+:::{.fragment fragment-index=5}
+
+![LPT Field](assets/Fields/LPT_density_field_z0_1024.png){.nostretch fig-align="center" width="50%"}
+
+:::
+
+:::
+
+## <span style="color: white ;">JaxPM 2.0 : Distributed Particle Mesh Simulation</span> {background-image="assets/Fields/PM_1024.gif"}
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
+:::{.solutionbox}
+
+:::{.solutionbox-header style="font-size: 20px;"}
+
+Key Features of `JaxPM`
+
+:::
+
+:::{.solutionbox-body style="font-size: 19px;"}
+
+- **Multi-Node Performance**: Optimized for efficient scaling across nodes.
+- **High Resolution**: Capable of handling billions of particles for accurate simulations.
+- **Differentiable**: Compatible with JAX’s automatic differentiation (HMC, NUTS compatible).
+- **Open Source**: [![GitHub Badge](https://img.shields.io/badge/GitHub-JaxPM-blue?logo=github)](https://github.com/DifferentiableUniverseInitiative/JaxPM)
+
+:::
+
+:::
+
+# Conclusion
+
+---
+
+## Conclusion: Enabling Scalable Cosmology with Distributed JAX {style="font-size: 22px;"}
+
+:::{.solutionbox}
+
+:::{.solutionbox-header style="font-size: 20px;"}
+
+**Distributed JAX: A Game-Changer for Cosmology**  
+
+:::
+
+:::{.solutionbox-body style="font-size: 19px;"}
+
+- The future is bright for JAX in cosmology!!
+- JAX has transformed the landscape for scientific computing, **enabling large-scale, distributed workflows** in a Pythonic environment.
+- Recent advancements (JAX 0.4.3x+) make it straightforward to scale computations across multiple GPUs and nodes.
+
+- **Key Advantages**  
+  - **Simplicity**: JAX makes it easier than ever to write high-performance code, allowing researchers to focus on science rather than infrastructure.
+  - **Differentiability**: JAX allows seamless differentiation of code running across hundreds of GPUs, enabling advanced inference techniques.
+  
+- **The Future Ahead**  
+  - **Scaling Inference Models with Distributed `jaxPM`**: By integrating the new distributed `jaxPM` into existing cosmological inference models, we can achieve unprecedented levels of detail and complexity.
+  - Paving the way to fully leverage large-scale survey data for deeper insights into the universe.
+
+:::
+
+:::
