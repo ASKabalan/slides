@@ -1,0 +1,2301 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.5.57">
+
+  <meta name="author" content="Wassim Kabalan">
+  <title>Massively Parallel Computing in Cosmology with JAX</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-titled.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-titled) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-titled .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-titled .callout-title  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-titled.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-titled.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-title {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-title {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-title {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .callout.callout-titled .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-titled) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-title {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-title {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-title {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-title {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-title {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-image="assets/JZ-JAX.png" data-background-opacity="0.2" data-background-size="fill" class="center">
+  <h1 class="title">Massively Parallel Computing in Cosmology with JAX</h1>
+  <p class="author">Wassim Kabalan</p>
+  <div style=""></div>
+<div style="margin-top: 20px; text-align: center;align-items: bottom;">
+  <img data-src="assets/Logos/scipol.jpeg" style="width:18.0%"> <img data-src="assets/Logos/APC.png" style="width:15.0%"> <img data-src="assets/Logos/AstroDeep-2.png" style="width:15.0%">
+</div>
+
+</section>
+<section id="motivation-cosmology-in-the-exascale-era" class="slide level2" data-background-image="assets/rubin.jpg">
+<h2><span style="color: white ;">Motivation: Cosmology in the exascale era </span></h2>
+<p><br></p>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="solutionbox">
+<div class="solutionbox-header" style="font-size: 22px;">
+<p>Upcoming Surveys and Massive Data in Cosmology</p>
+</div>
+<div class="solutionbox-body" style="font-size: 21px;">
+<ul>
+<li><strong>Massive Data Volume</strong>: LSST will generate <strong>20 TB of raw data per night</strong> over <strong>10 years</strong>, totaling <strong>60 PB</strong>.</li>
+<li><strong>Catalog Size</strong>: The processed LSST catalog database will reach <strong>15 PB</strong>.</li>
+</ul>
+</div>
+</div>
+<div class="solutionbox">
+<div class="solutionbox-header" style="font-size: 22px;">
+<p>Cosmological Models and Pipelines</p>
+</div>
+<div class="solutionbox-body" style="font-size: 21px;">
+<ul>
+<li>Cosmological simulations and forward modeling can easily reach multiple terabytes in size.</li>
+<li>We need to scale up cosmological pipelines to handle these data volumes effectively.</li>
+</ul>
+</div>
+</div>
+</div></div>
+</section>
+<section id="forward-modeling-in-cosmology" class="slide level2" style="font-size: 20px;">
+<h2>Forward Modeling in Cosmology</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h4 id="weak-lensing-model">Weak Lensing Model</h4>
+<ul>
+<li><strong>Prediction</strong>:
+<ul>
+<li>A simulator generates observations from initial conditions and cosmological parameters.</li>
+</ul></li>
+<li><strong>Inference</strong>:
+<ul>
+<li>The simulated results are compared with actual observations.</li>
+<li>Optimal initial conditions and parameters are inferred to closely match the observed data.</li>
+</ul></li>
+</ul>
+<div class="solutionbox">
+<div class="solutionbox-header" style="font-size: 20px;">
+<p>Scaling Challenges</p>
+</div>
+<div class="solutionbox-body" style="font-size: 19px;">
+<ul>
+<li><strong>Resolution Today</strong>: Simulations currently use around <strong>250,000 to 130 million particles</strong>.</li>
+<li><strong>Ideal Resolution</strong>: Billion-particle simulations are necessary for high accuracy.</li>
+<li><strong>Software</strong>: Tools like <strong>JaxPM</strong> or <strong>PMWD</strong> support up to ~130 million particles on a single GPU.</li>
+</ul>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/FFI/Forward-Model.svg" class="quarto-figure quarto-figure-center" style="width:75.0%"></p>
+</figure>
+</div>
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/FFI/Forward-Model-FinalField.svg" class="quarto-figure quarto-figure-center" style="width:75.0%"></p>
+</figure>
+</div>
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="2">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/FFI/Forward-Model-Constraints.svg" class="quarto-figure quarto-figure-center" style="width:75.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+<aside class="notes">
+<ul>
+<li><strong>Simulations in Cosmology</strong>: These simulations model the universe’s evolution to reproduce observed structures, helping infer parameters like dark matter density, dark energy, and other cosmological constants.</li>
+<li><strong>Resolution Requirement</strong>: Simulations with more particles provide finer details, making convergence maps closer to observed data. Current particle counts (130 million) are still limited compared to the <strong>billion-particle simulations</strong> required for accurate cosmological inference.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="background-how-gpus-work" class="slide level2">
+<h2>Background: How GPUs Work</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><br></p>
+<h4 id="massive-thread-count"><strong>Massive Thread Count</strong></h4>
+<ul>
+<li>GPUs are designed with thousands of threads.</li>
+<li>Each core can handle many data elements simultaneously.</li>
+<li>The main bottleneck is memory throughput.</li>
+</ul>
+<div class="fragment" data-fragment-index="1">
+<p><br></p>
+<h4 id="optimizing-throughput-with-multiple-gpus"><strong>Optimizing Throughput with Multiple GPUs</strong>:</h4>
+<ul>
+<li>Computation is often only a fraction of total processing time.</li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="3">
+<ul>
+<li>Using multiple GPUs increases overall data throughput, enhancing performance and reducing idle time.</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/HPC/GPUS_CPU.svg" style="width:80.0%"></p>
+<figcaption>GPU threads</figcaption>
+</figure>
+</div>
+<div class="r-stack">
+<div class="fragment fade-in-then-out" data-fragment-index="1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/HPC/batching_single_gpu.svg" style="width:55.0%"></p>
+<figcaption>Single GPU throughput</figcaption>
+</figure>
+</div>
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="2">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/HPC/saturated_gpu.svg" style="width:60.0%"></p>
+<figcaption>Saturated GPU</figcaption>
+</figure>
+</div>
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="3">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/HPC/multi_gpu_saturate.svg" style="width:70.0%"></p>
+<figcaption>Multiple GPUs throughput</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+<aside class="notes">
+<ul>
+<li><p><strong>Massive Thread Count</strong>: GPUs have thousands of threads, allowing them to process large datasets in parallel. Each core can handle multiple data elements, making them ideal for parallel computing tasks.</p></li>
+<li><p><strong>Memory Throughput Bottleneck</strong>: The true bottleneck in GPU performance is often memory throughput. Even with many threads, GPU efficiency can drop if data isn’t supplied quickly enough.</p></li>
+<li><p><strong>Optimizing Throughput with Multiple GPUs</strong>: In many cases, computation is only a small portion of the total processing time. By adding more GPUs, we increase possible data throughput, reduce idle time, and ultimately improve performance for large workloads.</p></li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="background-types-of-data-parallelism" class="slide level2" style="font-size: 22px;">
+<h2>Background: Types of Data parallelism</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<h4 id="data-parallelism"><strong>Data Parallelism</strong></h4>
+<ul>
+<li><strong>Simple Parallelism</strong>: Each device processes a different subset of data independently.</li>
+</ul>
+<div class="fragment" data-fragment-index="1">
+<ul>
+<li><strong>Data Parallelism with Collective Communication</strong>:
+<ul>
+<li>Devices process data in parallel but periodically share results (e.g., for gradient averaging in training).</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="2">
+<!-- -->
+<h4 id="task-parallelism"><strong>Task Parallelism</strong></h4>
+<ul>
+<li>Each device handles a different part of the computation.</li>
+<li>The computation itself is divided between devices.</li>
+<li>Is generally more complex than data parallelism.</li>
+</ul>
+</div>
+</div><div class="column" style="width:60%;">
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/HPC/simple_data_parallel.svg" style="width:120.0%"></p>
+<figcaption>Simple Data Parallelism</figcaption>
+</figure>
+</div>
+</div>
+<div class="fragment fade-in" data-fragment-index="1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/HPC/data_parallel_collective_comm.svg" style="width:120.0%"></p>
+<figcaption>Data Parallelism with Communication</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="fragment fade-in" data-fragment-index="2">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/HPC/task_parallel.svg" style="width:120.0%"></p>
+<figcaption>Task Parallelism</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+<aside class="notes">
+<ul>
+<li><strong>Data Parallelism (Simple Parallelism)</strong>:
+<ul>
+<li>In simple data parallelism, each device processes a distinct subset of the data independently, without needing to interact with other devices during computation. This approach works best when:
+<ul>
+<li>The dataset has to be evenly split across devices.</li>
+<li>Each subset of data can be processed in isolation, which reduces the complexity and overhead of communication.</li>
+<li>Example in Cosmology: Simple data parallelism might be used in parameter estimation tasks where each GPU computes likelihoods for different portions of the dataset independently.</li>
+</ul></li>
+</ul></li>
+<li><strong>Data Parallelism with Collective Communication</strong>:
+<ul>
+<li>In many applications, devices working in parallel need to share intermediate results to ensure consistency and accuracy. For example, in distributed neural network training, devices need to periodically share gradient information to keep model weights in sync.
+<ul>
+<li>This form of parallelism is more complex than simple data parallelism, as it involves synchronizing data across devices at intervals, typically through collective communication operations.</li>
+<li><strong>Challenges</strong>:
+<ul>
+<li>Collective operations like gradient averaging can become bottlenecks as they require frequent communication between devices, which may impact scaling efficiency.</li>
+<li>In cosmology, gradient sharing can be particularly useful in distributed optimization routines where multiple GPUs are used to train machine learning models on large cosmological datasets.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Task Parallelism</strong>:
+<ul>
+<li>In task parallelism, each device handles a unique segment of the overall computation pipeline. This approach is ideal when the computation itself is modular and can be split into discrete tasks that contribute independently to the final result.
+<ul>
+<li>Unlike data parallelism, task parallelism is often sequential in nature, where each device performs a specific part of a larger computational workflow.</li>
+<li>Example in Cosmology: Task parallelism can be applied in cosmological simulations where certain calculations are interdependent. For example:
+<ul>
+<li>One device might handle the gravitational calculations, while another processes hydrodynamic interactions, with each task feeding results to the next stage.</li>
+</ul></li>
+<li><strong>Complexity</strong>:
+<ul>
+<li>Task parallelism generally requires more significant changes to the code structure and may involve custom communication protocols between tasks.</li>
+<li>This approach is commonly used in model pipelines that require heavy sequential processing, such as large language model (LLM) training (e.g., Gemini or ChatGPT) or in cosmology, where different physical components need distinct treatments in simulations.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Summary</strong>:
+<ul>
+<li>Data parallelism is typically easier to implement but may be limited by the need for collective communication.</li>
+<li>Task parallelism is more flexible in terms of workload distribution but often requires substantial restructuring of code and specific coordination between tasks, especially in long, sequential workflows.</li>
+</ul></li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="why-should-you-use-parallelism" class="slide level2">
+<h2>Why Should You Use Parallelism?</h2>
+<p><br></p>
+<h4 id="simple-cases">Simple cases</h4>
+<ul>
+<li><strong>Data Parallelism (Simple)</strong> ✅
+<ul>
+<li>If your pipeline resembles simple data parallelism, then parallelism is a good idea.</li>
+</ul></li>
+<li><strong>Data Parallelism with Simple Collectives</strong> ✅
+<ul>
+<li>Simple collectives (e.g., gradient averaging) can be easily expressed in JAX, allowing devices to share intermediate results.</li>
+</ul></li>
+</ul>
+<div class="fragment" data-fragment-index="1">
+<!-- -->
+<h4 id="complex-cases">Complex cases</h4>
+<ul>
+<li><strong>Non-splittable Input (e.g., N-body Simulation Fields)</strong> ⚠️
+<ul>
+<li>When the input is not easily batchable, like a field in an N-body simulation.</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="2">
+<ul>
+<li><p><strong>Task Parallelism</strong> ⚠️</p>
+<ul>
+<li>Useful for <strong>long sequential cosmological pipelines</strong> where each device handles a unique task in the sequence.</li>
+<li>More common in training complex models (e.g., LLMs like Gemini or ChatGPT).</li>
+</ul></li>
+</ul>
+</div>
+<aside class="notes">
+<ul>
+<li><p><strong>Data Parallelism</strong>: Ideal if your pipeline can be split into independent data chunks. JAX makes it easy to implement with <code>pmap</code> for distributing computations.</p></li>
+<li><p><strong>Collectives in Data Parallelism</strong>: Some tasks, like gradient averaging, require simple collective communication between devices. JAX provides tools to express these collectives efficiently.</p></li>
+<li><p><strong>Non-Batchable Input</strong>: In cases where data cannot be split into batches (e.g., field-based data in simulations), you may need to implement more complex collectives to coordinate data across devices.</p></li>
+<li><p><strong>Task Parallelism</strong>: Used in sequential pipelines where each device performs a unique task. This approach is more complex and requires substantial restructuring, making it common in large language model training.</p></li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="when-not-to-use-parallelism" class="slide level2">
+<h2>When Not to Use Parallelism</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<h4 id="to-keep-in-mind">To Keep in Mind</h4>
+<ul>
+<li><strong>Data Fits on a Single GPU</strong></li>
+</ul>
+<div class="fragment" data-fragment-index="1">
+<ul>
+<li><strong>Need for Complex Collectives</strong>
+<ul>
+<li>Additional GPUs can add complexity and may not yield enough performance improvement.</li>
+</ul></li>
+<li><strong>Task Parallel Model</strong>
+<ul>
+<li>Changing the pipeline or adapting to new devices often requires significant rewrites.</li>
+</ul></li>
+</ul>
+</div>
+</div><div class="column" style="width:40%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/HPC/parallelism_limitations.svg" style="width:50.0%"></p>
+<figcaption>Not fully used GPU</figcaption>
+</figure>
+</div>
+</div></div>
+<div class="fragment" data-fragment-index="2">
+<div class="solutionbox">
+<div class="solutionbox-header">
+<p><strong>Consider Scaling to multiple GPUs if:</strong></p>
+</div>
+<div class="solutionbox-body" style="font-size: 21px;">
+<ul>
+<li>You have a single-GPU prototype that’s working but needs significant runtime reduction.</li>
+<li>Has a significant impact on your results.
+<ul>
+<li>Using multiple GPUs can significantly decrease execution time.</li>
+<li>OR You have non-splittable input (e.g., fields in a cosmological simulation) that is crucial for your results.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<aside class="notes">
+<ul>
+<li><p><strong>Single-GPU Sufficiency</strong>: If all data fits on one GPU, adding more GPUs may introduce unnecessary overhead, reducing overall performance.</p></li>
+<li><p><strong>Complex Collectives</strong>: Complex collective communication (like frequent data sharing) can slow down computations. In cases where collectives are challenging, stick to a single GPU if possible.</p></li>
+<li><p><strong>Task Parallelism Complexity</strong>: Task parallel models are generally harder to adjust. Each device performs a unique task, making it more challenging to scale or modify the pipeline.</p></li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="how-to-measure-scaling-for-parallel-codes" class="slide level2" style="font-size: 22px;">
+<h2>How to Measure Scaling for Parallel Codes</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><br></p>
+<h4 id="strong-scaling"><strong>Strong Scaling</strong></h4>
+<ul>
+<li>Increasing the number of GPUs to reduce runtime for a fixed data size.</li>
+</ul>
+<p><br></p>
+<div class="fragment" data-fragment-index="1">
+<!-- -->
+<h4 id="weak-scaling"><strong>Weak Scaling</strong></h4>
+<ul>
+<li>Increasing data size with a fixed number of GPUs.</li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="2">
+<div class="solutionbox">
+<div class="solutionbox-header" style="font-size: 20px;">
+<p>Evaluating Scaling Performance</p>
+</div>
+<div class="solutionbox-body" style="font-size: 19px;">
+<ul>
+<li><p><strong>Strong Scaling</strong>: Assesses performance as more GPUs are added to a fixed dataset. <em>Danger Zone</em>: Indicates the distributed code is not scaling efficiently.</p></li>
+<li><p><strong>Weak Scaling</strong>: Tests how the code handles increasing data sizes with a fixed number of GPUs. <em>Danger Zone</em>: Suggests underlying scaling issues with the code itself.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/HPC/STRONG_SCALING.png" style="width:70.0%"></p>
+<figcaption>Strong Scaling</figcaption>
+</figure>
+</div>
+<div class="fragment" data-fragment-index="1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/HPC/WEAK_SCALING.png" style="width:70.0%"></p>
+<figcaption>Weak Scaling</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+<aside class="notes">
+<ul>
+<li><p><strong>Strong Scaling</strong>: Assesses performance as more GPUs are added to a fixed dataset. <em>Danger Zone</em>: Indicates the distributed code is not scaling efficiently.</p></li>
+<li><p><strong>Weak Scaling</strong>: Tests how the code handles increasing data sizes with a fixed number of GPUs. <em>Danger Zone</em>: Suggests underlying scaling issues with the code itself.</p></li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="environmental-impact-of-high-performance-computing" class="slide level2" style="font-size: 21px;">
+<h2>Environmental Impact of High-Performance Computing</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h4 id="perlmutter-supercomputer-nersc"><strong>Perlmutter Supercomputer (NERSC)</strong></h4>
+<ul>
+<li><strong>Location</strong>: NERSC, Berkeley Lab, California, USA</li>
+<li><strong>Compute Power</strong>: ~119 PFlops</li>
+<li><strong>GPUs</strong>: 6,144 NVIDIA A100 GPUs (Phase 1)</li>
+<li><strong>Total Nodes</strong>: 1,536 CPU nodes + 6,159 GPU nodes</li>
+<li><strong>Power Draw</strong>: ~3.2 MW/hr</li>
+</ul>
+<p><br></p>
+<h4 id="jean-zay-supercomputer-idris"><strong>Jean Zay Supercomputer (IDRIS)</strong></h4>
+<ul>
+<li><strong>Location</strong>: IDRIS, France</li>
+<li><strong>Compute Power</strong>: ~126 PFlops (FP64), 2.88 EFlops (BF/FP16)</li>
+<li><strong>GPUs</strong>: 3,704 GPUs, including V100, A100, and H100</li>
+<li><strong>Power Draw</strong>: ~1.4 MW/hr on average (as of September, without full H100 usage), leveraging France’s renewable energy grid.</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/HPC/perlmutter_supercomputer.png" style="width:80.0%"></p>
+<figcaption>Perlmutter Supercomputer</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/HPC/jean_zay_photo.png" style="width:80.0%"></p>
+<figcaption>Jean Zay Supercomputer</figcaption>
+</figure>
+</div>
+</div></div>
+
+<aside class="notes">
+<ul>
+<li><p><strong>Perlmutter</strong>: A hybrid CPU-GPU setup with over 6,000 A100 GPUs, designed for both machine learning and scientific tasks. It operates with a high power draw of ~3.2 MW/hr, but the energy-per-FLOP efficiency is optimized through extensive GPU utilization.</p></li>
+<li><p><strong>Jean Zay’s Environmental Efficiency</strong>: With its renewable energy source and GPU partitions, Jean Zay achieves significant computational power (~126 PFlops) while keeping average power consumption at ~1.4 MW/hr. The partitioned GPU setup (V100, A100, and soon H100) allows Jean Zay to scale efficiently for a variety of workloads without excessive energy use.</p></li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<aside><div>
+<p>Credit: Laurent Leger from IDRIS</p>
+</div></aside></section>
+<section>
+<section id="how-to-scale-in-jax" class="title-slide slide level1 center" style="font-size: 40px; align=center;">
+<h1>How to Scale in JAX</h1>
+
+</section>
+<section id="why-jax-for-distributed-computing" class="slide level2">
+<h2>Why JAX for Distributed Computing?</h2>
+<ul>
+<li><strong>Distributed Computing Isn’t New</strong>:
+<ul>
+<li>Tools like <strong>MPI</strong> and <strong>OpenMP</strong> are used extensively.</li>
+<li>ML frameworks like <strong>TensorFlow</strong> and <strong>PyTorch</strong> offer distributed training.</li>
+<li><strong>DiffEqFlux.jl</strong> <strong>Horovod</strong> and <strong>Ray</strong></li>
+</ul></li>
+</ul>
+<div class="fragment" data-fragment-index="1">
+<ul>
+<li><strong>Familiar and Accessible API</strong>:
+<ul>
+<li>JAX offers a <strong>NumPy-like API</strong> that is both accessible and intuitive.</li>
+<li>Python users can leverage parallelism without needing in-depth knowledge of low-level parallel frameworks like MPI.</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="2">
+<div class="solutionbox">
+<div class="solutionbox-header">
+<p><strong>Key Points</strong></p>
+</div>
+<div class="solutionbox-body">
+<ul>
+<li><strong>Pythonic Scalability</strong>: JAX allows you to write scalable, <strong>pythonic code</strong> that is compiled by XLA for performance.</li>
+<li><strong>Automatic Differentiation</strong>: JAX offers a trivial way to write diffrentiable distributed code.</li>
+<li>Same code runs on anything from a laptop to multi node supercomputer.</li>
+</ul>
+</div>
+</div>
+</div>
+<aside class="notes">
+<ul>
+<li><p><strong>Traditional Distributed Computing</strong>: MPI and OpenMP have been essential tools for achieving high-performance distributed computing in fields like cosmology. These frameworks provide fine control but often require specific parallel programming expertise.</p></li>
+<li><p><strong>Accessibility and Familiarity</strong>: JAX’s familiar, high-level syntax lowers the barrier to entry, bringing distributed computing within reach of Python users without the need to manage intricate MPI or OpenMP settings.</p></li>
+<li><p><strong>JAX’s Unique Advantages</strong>: Through XLA compilation, JAX not only scales code efficiently but also integrates differentiability, crucial for machine learning and simulations that require backpropagation. This blend of performance and flexibility sets JAX apart for scientific and AI applications.</p></li>
+</ul>
+<h3 id="talking-points-on-alternative-framework-limitations">Talking Points on Alternative Framework Limitations</h3>
+<ul>
+<li><p><strong>Open MPI</strong>: Primarily optimized for CPU-based parallelism, making it less effective on GPUs where scientific workloads in JAX often run. This can limit its efficiency for cosmology applications that leverage GPU acceleration.</p></li>
+<li><p><strong>ML Frameworks (PyTorch, TensorFlow)</strong>: While powerful for machine learning, these frameworks are ML-centric and don’t natively support the arbitrary scientific functions often needed in cosmology. Customizing these frameworks for scientific use cases requires significant additional effort.</p></li>
+<li><p><strong>DiffEqFlux.jl (Julia)</strong>: While Julia’s ecosystem is growing, it’s still limited compared to Python, particularly for scientific computing and distributed applications. This smaller ecosystem can make it harder to find compatible tools and libraries for complex cosmological simulations.</p></li>
+<li><p><strong>Horovod and Ray</strong>: Neither is natively differentiable, which means they rely on external frameworks (e.g., PyTorch or TensorFlow) for differentiation. This lack of built-in differentiability adds overhead and complexity for workflows that require gradient-based optimization, a key feature that JAX integrates seamlessly.</p></li>
+</ul>
+<p>For questions</p>
+<h3 id="pytorch-distributed">PyTorch Distributed</h3>
+<ul>
+<li><strong>Complex Setup</strong>: Requires more effort to configure distributed training, especially outside deep learning.</li>
+<li><strong>Performance Overhead</strong>: Lacks JAX’s XLA compilation, which can lead to inefficiencies in scientific applications.</li>
+<li><strong>Limited Scientific Libraries</strong>: PyTorch’s ecosystem is growing, but it still lacks the depth of JAX for scientific and physics-based computing.</li>
+</ul>
+<h3 id="tensorflow-distributed">TensorFlow Distributed</h3>
+<ul>
+<li><strong>Complex and Verbose</strong>: Distributed setup with <code>tf.distribute.Strategy</code> is often more cumbersome and requires multiple API layers.</li>
+<li><strong>Less Flexibility with Gradients</strong>: Limited flexibility in complex gradient computations compared to JAX’s functional approach.</li>
+<li><strong>Under-Optimized for Scientific Workflows</strong>: XLA support is not as performant in scientific HPC compared to JAX.</li>
+</ul>
+<h3 id="ray-with-auto-differentiation">Ray with Auto-Differentiation</h3>
+<ul>
+<li><strong>Not Natively Differentiable</strong>: Ray relies on external libraries (like PyTorch and TensorFlow) for differentiation, adding communication and synchronization overhead.</li>
+<li><strong>Focus on General Purpose Computing</strong>: Lacks specific optimizations for HPC environments and scientific computing.</li>
+<li><strong>Limited Low-Level Hardware Control</strong>: Ray abstracts device management, reducing optimization potential in specialized HPC setups.</li>
+</ul>
+<h3 id="diffeqflux.jl-julia">DiffEqFlux.jl (Julia)</h3>
+<ul>
+<li><strong>Limited Ecosystem</strong>: Julia’s ecosystem is smaller and less mature, especially for scientific computing.</li>
+<li><strong>Developing Distributed Support</strong>: Distributed computing in Julia is still evolving and less robust than in Python.</li>
+<li><strong>Learning Curve</strong>: Julia has a steeper learning curve for Python-based teams, and integration with Python infrastructure can be difficult.</li>
+</ul>
+<h3 id="mesh-tensorflow">Mesh TensorFlow</h3>
+<ul>
+<li><strong>Specialized for Transformers</strong>: Primarily designed for partitioning large transformer models, limiting flexibility in other scientific applications.</li>
+<li><strong>Complex Configuration</strong>: Mesh configuration is often challenging and may be a barrier for scientific users.</li>
+<li><strong>Tied to TensorFlow</strong>: Mesh TensorFlow’s dependency on TensorFlow makes it less intuitive for scientific computing compared to JAX’s NumPy-like API.</li>
+</ul>
+<h3 id="horovod-multi-framework">Horovod (Multi-Framework)</h3>
+<ul>
+<li><strong>Optimized for Data Parallelism in ML</strong>: Primarily suited for data parallelism in ML, not as adaptable for complex scientific workflows.</li>
+<li><strong>External Library Dependence</strong>: Requires frameworks like PyTorch or TensorFlow for auto-differentiation, adding performance overhead.</li>
+<li><strong>Limited Scientific Integration</strong>: Does not integrate well with libraries focused on physical simulations, whereas JAX has a growing ecosystem for such applications.</li>
+</ul>
+<h3 id="key-advantages-of-jax">Key Advantages of JAX</h3>
+<ul>
+<li><strong>Unified, Pythonic API</strong>: JAX’s intuitive API combines ease of use with the power of distributed computing.</li>
+<li><strong>XLA Compilation for Efficiency</strong>: Optimized for performance across devices, making it highly suitable for HPC environments.</li>
+<li><strong>Native Differentiability</strong>: Differentiability is built-in and seamlessly integrated with distributed workflows, providing a smooth experience for scientific applications.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="expressing-parallelism-in-jax-simple-parallelism" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Expressing Parallelism in JAX (Simple parallelism)</h2>
+<h4 id="example-of-computing-a-gaussian-from-data-points">Example of computing a gaussian from data Points</h4>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb1-1" class="hljs-ln-code"><a></a><span class="im">import</span> jax</span>
+<span id="cb1-2" class="hljs-ln-code"><a></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
+<span id="cb1-3" class="hljs-ln-code"><a></a></span>
+<span id="cb1-4" class="hljs-ln-code"><a></a></span>
+<span id="cb1-5" class="hljs-ln-code"><a></a><span class="kw">def</span> gaussian(x, mean, variance):</span>
+<span id="cb1-6" class="hljs-ln-code"><a></a>      <span class="co">"""Compute Gaussian distribution for given x, mean, and variance."""</span></span>
+<span id="cb1-7" class="hljs-ln-code"><a></a>      coefficient <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> jnp.sqrt(<span class="dv">2</span> <span class="op">*</span> jnp.pi <span class="op">*</span> variance)</span>
+<span id="cb1-8" class="hljs-ln-code"><a></a>      exponent <span class="op">=</span> <span class="op">-</span>((x <span class="op">-</span> mean) <span class="op">**</span> <span class="dv">2</span>) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> variance)</span>
+<span id="cb1-9" class="hljs-ln-code"><a></a>      <span class="cf">return</span> coefficient <span class="op">*</span> jnp.exp(exponent)</span>
+<span id="cb1-10" class="hljs-ln-code"><a></a></span>
+<span id="cb1-11" class="hljs-ln-code"><a></a>mean <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb1-12" class="hljs-ln-code"><a></a>variance <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb1-13" class="hljs-ln-code"><a></a>x <span class="op">=</span> jnp.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
+<span id="cb1-14" class="hljs-ln-code"><a></a>result <span class="op">=</span> gaussian(x, mean, variance)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="expressing-parallelism-in-jax-simple-parallelism-1" class="slide level2" data-auto-animate="true" data-visibility="uncounted">
+<h2 data-id="quarto-animate-title">Expressing Parallelism in JAX (Simple parallelism)</h2>
+<h4 id="example-of-computing-a-gaussian-from-data-points-1">Example of computing a gaussian from data Points</h4>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb2-1" class="hljs-ln-code"><a></a><span class="im">import</span> jax</span>
+<span id="cb2-2" class="hljs-ln-code"><a></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
+<span id="cb2-3" class="hljs-ln-code"><a></a><span class="im">from</span> jax.debug <span class="im">import</span> visualize_array_sharding</span>
+<span id="cb2-4" class="hljs-ln-code"><a></a></span>
+<span id="cb2-5" class="hljs-ln-code"><a></a><span class="kw">def</span> gaussian(x, mean, variance):</span>
+<span id="cb2-6" class="hljs-ln-code"><a></a>      <span class="co">"""Compute Gaussian distribution for given x, mean, and variance."""</span></span>
+<span id="cb2-7" class="hljs-ln-code"><a></a>      coefficient <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> jnp.sqrt(<span class="dv">2</span> <span class="op">*</span> jnp.pi <span class="op">*</span> variance)</span>
+<span id="cb2-8" class="hljs-ln-code"><a></a>      exponent <span class="op">=</span> <span class="op">-</span>((x <span class="op">-</span> mean) <span class="op">**</span> <span class="dv">2</span>) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> variance)</span>
+<span id="cb2-9" class="hljs-ln-code"><a></a>      <span class="cf">return</span> coefficient <span class="op">*</span> jnp.exp(exponent)</span>
+<span id="cb2-10" class="hljs-ln-code"><a></a></span>
+<span id="cb2-11" class="hljs-ln-code"><a></a>mean <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb2-12" class="hljs-ln-code"><a></a>variance <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb2-13" class="hljs-ln-code"><a></a>x <span class="op">=</span> jnp.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
+<span id="cb2-14" class="hljs-ln-code"><a></a>result <span class="op">=</span> gaussian(x, mean, variance)</span>
+<span id="cb2-15" class="hljs-ln-code"><a></a>visualize_array_sharding(x)</span>
+<span id="cb2-16" class="hljs-ln-code"><a></a>visualize_array_sharding(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 0  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+</pre>
+<p><br></p>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 0  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+</pre>
+</section>
+<section id="expressing-parallelism-in-jax-simple-parallelism-2" class="slide level2" data-auto-animate="true" data-visibility="uncounted">
+<h2 data-id="quarto-animate-title">Expressing Parallelism in JAX (Simple parallelism)</h2>
+<h4 id="example-of-computing-a-gaussian-from-data-points-2">Example of computing a gaussian from data Points</h4>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb3-1" class="hljs-ln-code"><a></a><span class="im">import</span> jax</span>
+<span id="cb3-2" class="hljs-ln-code"><a></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
+<span id="cb3-3" class="hljs-ln-code"><a></a><span class="im">from</span> jax.sharding <span class="im">import</span> PartitionSpec <span class="im">as</span> P, NamedSharding</span>
+<span id="cb3-4" class="hljs-ln-code"><a></a><span class="im">from</span> jax.debug <span class="im">import</span> visualize_array_sharding</span>
+<span id="cb3-5" class="hljs-ln-code"><a></a></span>
+<span id="cb3-6" class="hljs-ln-code"><a></a><span class="cf">assert</span> jax.device_count() <span class="op">==</span> <span class="dv">8</span></span>
+<span id="cb3-7" class="hljs-ln-code"><a></a></span>
+<span id="cb3-8" class="hljs-ln-code"><a></a>mesh <span class="op">=</span> jax.make_mesh((<span class="dv">8</span>,), (<span class="st">'x'</span>))</span>
+<span id="cb3-9" class="hljs-ln-code"><a></a>sharding <span class="op">=</span> NamedSharding(mesh , P(<span class="st">'x'</span>))</span>
+<span id="cb3-10" class="hljs-ln-code"><a></a></span>
+<span id="cb3-11" class="hljs-ln-code"><a></a><span class="kw">def</span> gaussian(x, mean, variance):</span>
+<span id="cb3-12" class="hljs-ln-code"><a></a>      <span class="co">"""Compute Gaussian distribution for given x, mean, and variance."""</span></span>
+<span id="cb3-13" class="hljs-ln-code"><a></a>      coefficient <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> jnp.sqrt(<span class="dv">2</span> <span class="op">*</span> jnp.pi <span class="op">*</span> variance)</span>
+<span id="cb3-14" class="hljs-ln-code"><a></a>      exponent <span class="op">=</span> <span class="op">-</span>((x <span class="op">-</span> mean) <span class="op">**</span> <span class="dv">2</span>) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> variance)</span>
+<span id="cb3-15" class="hljs-ln-code"><a></a>      <span class="cf">return</span> coefficient <span class="op">*</span> jnp.exp(exponent)</span>
+<span id="cb3-16" class="hljs-ln-code"><a></a></span>
+<span id="cb3-17" class="hljs-ln-code"><a></a>mean <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb3-18" class="hljs-ln-code"><a></a>variance <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb3-19" class="hljs-ln-code"><a></a>x <span class="op">=</span> jnp.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
+<span id="cb3-20" class="hljs-ln-code"><a></a>x <span class="op">=</span> jax.device_put(sharding, x)</span>
+<span id="cb3-21" class="hljs-ln-code"><a></a>result <span class="op">=</span> gaussian(x, mean, variance)</span>
+<span id="cb3-22" class="hljs-ln-code"><a></a>visualize_array_sharding(x)</span>
+<span id="cb3-23" class="hljs-ln-code"><a></a>visualize_array_sharding(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 0  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">  GPU 1  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">  GPU 2  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">  GPU 3  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7cb94">  GPU 4  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">  GPU 5  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">  GPU 6  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">  GPU 7  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">         </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7cb94">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">         </span>
+</pre>
+<p><br></p>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 0  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">  GPU 1  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">  GPU 2  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">  GPU 3  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7cb94">  GPU 4  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">  GPU 5  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">  GPU 6  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">  GPU 7  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">         </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7cb94">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">         </span>
+</pre>
+</section>
+<section id="expressing-parallelism-in-jax-simple-parallelism-3" class="slide level2" data-auto-animate="true" data-visibility="uncounted">
+<h2 data-id="quarto-animate-title">Expressing Parallelism in JAX (Simple parallelism)</h2>
+<h4 id="example-of-computing-a-gaussian-from-data-points-3">Example of computing a gaussian from data Points</h4>
+<div class="sourceCode" id="cb4" data-code-line-numbers="3,8,9,20"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb4-1" class="hljs-ln-code"><a></a><span class="im">import</span> jax</span>
+<span id="cb4-2" class="hljs-ln-code"><a></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
+<span id="cb4-3" class="hljs-ln-code"><a></a><span class="im">from</span> jax.sharding <span class="im">import</span> PartitionSpec <span class="im">as</span> P, NamedSharding</span>
+<span id="cb4-4" class="hljs-ln-code"><a></a><span class="im">from</span> jax.debug <span class="im">import</span> visualize_array_sharding</span>
+<span id="cb4-5" class="hljs-ln-code"><a></a></span>
+<span id="cb4-6" class="hljs-ln-code"><a></a><span class="cf">assert</span> jax.device_count() <span class="op">==</span> <span class="dv">8</span></span>
+<span id="cb4-7" class="hljs-ln-code"><a></a></span>
+<span id="cb4-8" class="hljs-ln-code"><a></a>mesh <span class="op">=</span> jax.make_mesh((<span class="dv">8</span>,), (<span class="st">'x'</span>))</span>
+<span id="cb4-9" class="hljs-ln-code"><a></a>sharding <span class="op">=</span> NamedSharding(mesh , P(<span class="st">'x'</span>))</span>
+<span id="cb4-10" class="hljs-ln-code"><a></a></span>
+<span id="cb4-11" class="hljs-ln-code"><a></a><span class="kw">def</span> gaussian(x, mean, variance):</span>
+<span id="cb4-12" class="hljs-ln-code"><a></a>  <span class="co">"""Compute Gaussian distribution for given x, mean, and variance."""</span></span>
+<span id="cb4-13" class="hljs-ln-code"><a></a>  coefficient <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> jnp.sqrt(<span class="dv">2</span> <span class="op">*</span> jnp.pi <span class="op">*</span> variance)</span>
+<span id="cb4-14" class="hljs-ln-code"><a></a>  exponent <span class="op">=</span> <span class="op">-</span>((x <span class="op">-</span> mean) <span class="op">**</span> <span class="dv">2</span>) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> variance)</span>
+<span id="cb4-15" class="hljs-ln-code"><a></a>  <span class="cf">return</span> coefficient <span class="op">*</span> jnp.exp(exponent)</span>
+<span id="cb4-16" class="hljs-ln-code"><a></a></span>
+<span id="cb4-17" class="hljs-ln-code"><a></a>mean <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb4-18" class="hljs-ln-code"><a></a>variance <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb4-19" class="hljs-ln-code"><a></a>x <span class="op">=</span> jnp.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
+<span id="cb4-20" class="hljs-ln-code"><a></a>x <span class="op">=</span> jax.device_put(sharding, x)</span>
+<span id="cb4-21" class="hljs-ln-code"><a></a>result <span class="op">=</span> gaussian(x, mean, variance)</span>
+<span id="cb4-22" class="hljs-ln-code"><a></a>visualize_array_sharding(x)</span>
+<span id="cb4-23" class="hljs-ln-code"><a></a>visualize_array_sharding(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 0  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">  GPU 1  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">  GPU 2  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">  GPU 3  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7cb94">  GPU 4  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">  GPU 5  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">  GPU 6  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">  GPU 7  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">         </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7cb94">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">         </span>
+</pre>
+<p><br></p>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 0  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">  GPU 1  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">  GPU 2  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">  GPU 3  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7cb94">  GPU 4  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">  GPU 5  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">  GPU 6  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">  GPU 7  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">         </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7cb94">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">         </span>
+</pre>
+</section>
+<section id="expressing-parallelism-in-jax-using-collectives" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Expressing Parallelism in JAX (Using collectives)</h2>
+<p><br></p>
+<h4 id="example-of-sgd-with-gradient-averaging">Example of SGD with Gradient averaging</h4>
+<p>Example from Jean-Eric’s tutorial</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb5-1" class="hljs-ln-code"><a></a><span class="im">import</span> jax</span>
+<span id="cb5-2" class="hljs-ln-code"><a></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
+<span id="cb5-3" class="hljs-ln-code"><a></a></span>
+<span id="cb5-4" class="hljs-ln-code"><a></a><span class="at">@jax.jit</span>  </span>
+<span id="cb5-5" class="hljs-ln-code"><a></a><span class="kw">def</span> gradient_descent_step(p, xi, yi, lr<span class="op">=</span><span class="fl">0.1</span>):</span>
+<span id="cb5-6" class="hljs-ln-code"><a></a>  gradients <span class="op">=</span> jax.grad(loss_fun)(p, xi, yi)</span>
+<span id="cb5-7" class="hljs-ln-code"><a></a>  <span class="cf">return</span> p <span class="op">-</span> lr <span class="op">*</span> gradients</span>
+<span id="cb5-8" class="hljs-ln-code"><a></a></span>
+<span id="cb5-9" class="hljs-ln-code"><a></a><span class="kw">def</span> minimzer(loss_fun, x_data, y_data, par_init, method, verbose<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb5-10" class="hljs-ln-code"><a></a>  ...</span>
+<span id="cb5-11" class="hljs-ln-code"><a></a><span class="co"># Example usage</span></span>
+<span id="cb5-12" class="hljs-ln-code"><a></a>par_mini_GD <span class="op">=</span> minimzer(</span>
+<span id="cb5-13" class="hljs-ln-code"><a></a>  loss_fun, </span>
+<span id="cb5-14" class="hljs-ln-code"><a></a>  x_data<span class="op">=</span>xin, </span>
+<span id="cb5-15" class="hljs-ln-code"><a></a>  y_data<span class="op">=</span>yin, </span>
+<span id="cb5-16" class="hljs-ln-code"><a></a>  par_init<span class="op">=</span>jnp.array([<span class="fl">0.</span>, <span class="fl">0.5</span>]), </span>
+<span id="cb5-17" class="hljs-ln-code"><a></a>  method<span class="op">=</span>partial(gradient_descent_step, lr<span class="op">=</span><span class="fl">0.5</span>), </span>
+<span id="cb5-18" class="hljs-ln-code"><a></a>  verbose<span class="op">=</span><span class="va">True</span></span>
+<span id="cb5-19" class="hljs-ln-code"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="expressing-parallelism-in-jax-using-collectives-1" class="slide level2" data-auto-animate="true" data-visibility="uncounted">
+<h2 data-id="quarto-animate-title">Expressing Parallelism in JAX (Using collectives)</h2>
+<p><br></p>
+<h4 id="example-of-sgd-with-gradient-averaging-1">Example of SGD with Gradient averaging</h4>
+<p>Example from Jean-Eric’s tutorial</p>
+<div class="sourceCode" id="cb6" data-code-line-numbers="3,4,8,9,12-16,21,22"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb6-1" class="hljs-ln-code"><a></a><span class="im">import</span> jax</span>
+<span id="cb6-2" class="hljs-ln-code"><a></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
+<span id="cb6-3" class="hljs-ln-code"><a></a><span class="im">from</span> jax.experimental.shard_map <span class="im">import</span> shard_map</span>
+<span id="cb6-4" class="hljs-ln-code"><a></a><span class="im">from</span> jax.sharding <span class="im">import</span> PartitionSpec <span class="im">as</span> P, NamedSharding</span>
+<span id="cb6-5" class="hljs-ln-code"><a></a></span>
+<span id="cb6-6" class="hljs-ln-code"><a></a><span class="cf">assert</span> jax.device_count() <span class="op">==</span> <span class="dv">8</span></span>
+<span id="cb6-7" class="hljs-ln-code"><a></a></span>
+<span id="cb6-8" class="hljs-ln-code"><a></a>mesh <span class="op">=</span> jax.make_mesh((<span class="dv">8</span>,), (<span class="st">'x'</span>))</span>
+<span id="cb6-9" class="hljs-ln-code"><a></a>sharding <span class="op">=</span> NamedSharding(mesh , P(<span class="st">'x'</span>))</span>
+<span id="cb6-10" class="hljs-ln-code"><a></a></span>
+<span id="cb6-11" class="hljs-ln-code"><a></a><span class="at">@jax.jit</span> </span>
+<span id="cb6-12" class="hljs-ln-code"><a></a><span class="at">@partial</span>(shard_map, mesh <span class="op">=</span> mesh , in_specs<span class="op">=</span>P(<span class="st">'x'</span>), out_spec<span class="op">=</span>P(<span class="st">'x'</span>))</span>
+<span id="cb6-13" class="hljs-ln-code"><a></a><span class="kw">def</span> gradient_descent_step(p, xi, yi, lr<span class="op">=</span><span class="fl">0.1</span>):</span>
+<span id="cb6-14" class="hljs-ln-code"><a></a>      per_device_gradients <span class="op">=</span> jax.grad(loss_fun)(p, xi, yi)</span>
+<span id="cb6-15" class="hljs-ln-code"><a></a>      avg_gradients <span class="op">=</span> jax.lax.pmean(per_device_gradients, axis_name<span class="op">=</span><span class="st">'x'</span>)</span>
+<span id="cb6-16" class="hljs-ln-code"><a></a>      <span class="cf">return</span> p <span class="op">-</span> lr <span class="op">*</span> avg_gradients</span>
+<span id="cb6-17" class="hljs-ln-code"><a></a></span>
+<span id="cb6-18" class="hljs-ln-code"><a></a><span class="kw">def</span> minimzer(loss_fun, x_data, y_data, par_init, method, verbose<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb6-19" class="hljs-ln-code"><a></a>     ...</span>
+<span id="cb6-20" class="hljs-ln-code"><a></a>  <span class="co"># Example usage</span></span>
+<span id="cb6-21" class="hljs-ln-code"><a></a>xin <span class="op">=</span> jax.device_put(sharding, xin)</span>
+<span id="cb6-22" class="hljs-ln-code"><a></a>yin <span class="op">=</span> jax.device_put(sharding, yin)</span>
+<span id="cb6-23" class="hljs-ln-code"><a></a>par_mini_GD <span class="op">=</span> minimzer(</span>
+<span id="cb6-24" class="hljs-ln-code"><a></a>        loss_fun, </span>
+<span id="cb6-25" class="hljs-ln-code"><a></a>        x_data<span class="op">=</span>xin, </span>
+<span id="cb6-26" class="hljs-ln-code"><a></a>        y_data<span class="op">=</span>yin, </span>
+<span id="cb6-27" class="hljs-ln-code"><a></a>        par_init<span class="op">=</span>jnp.array([<span class="fl">0.</span>, <span class="fl">0.5</span>]), </span>
+<span id="cb6-28" class="hljs-ln-code"><a></a>        method<span class="op">=</span>partial(gradient_descent_step, lr<span class="op">=</span><span class="fl">0.5</span>), </span>
+<span id="cb6-29" class="hljs-ln-code"><a></a>        verbose<span class="op">=</span><span class="va">True</span></span>
+<span id="cb6-30" class="hljs-ln-code"><a></a>    )</span>
+<span id="cb6-31" class="hljs-ln-code"><a></a>W</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="jax-collective-operations-for-parallel-computing" class="slide level2" style="font-size: 21px;">
+<h2>JAX Collective Operations for Parallel Computing</h2>
+<h3 id="overview-of-jax-collectives-in-jax.lax.p-functions">Overview of JAX Collectives in <code>jax.lax.p*</code> Functions</h3>
+<ul>
+<li><strong><code>lax.pmean</code></strong>
+<ul>
+<li>Computes the mean of arrays across devices. Useful for averaging gradients in distributed training.</li>
+</ul></li>
+<li><strong><code>lax.ppermute</code></strong>
+<ul>
+<li>Permutes data across devices in a specified order. Very usefull in cosmological simulations.</li>
+</ul></li>
+<li><strong><code>lax.all_to_all</code></strong>
+<ul>
+<li>Exchanges data between devices in a controlled manner. Useful for custom data exchange patterns in distributed computing.</li>
+</ul></li>
+<li><strong><code>lax.pmax</code> / <code>lax.pmin</code></strong>
+<ul>
+<li>Computes the element-wise maximum/minimum across devices. Often used in situations where you want to find the maximum or minimum of a distributed dataset.</li>
+</ul></li>
+<li><strong><code>lax.psum</code></strong>
+<ul>
+<li>Sums arrays across devices. Commonly used for aggregating gradients or other values in distributed settings.</li>
+</ul></li>
+<li><strong><code>lax.pall</code></strong>
+<ul>
+<li>Checks if all values across devices are <code>True</code>. Often used for collective boolean checks across distributed data.</li>
+</ul></li>
+</ul>
+<aside class="notes">
+<ul>
+<li><strong>Gradient Aggregation</strong>: In distributed training, <code>pmean</code> is commonly used to average gradients from multiple devices, ensuring each device updates with the same gradient.</li>
+<li><strong>Logical Collectives</strong>: Operators like <code>pand</code>, <code>por</code>, and <code>pall</code> allow distributed boolean logic operations, which can help in synchronization or conditional checks in parallel code.</li>
+<li><strong>Flexible Data Distribution</strong>: <code>ppermute</code> allows data rearrangement across devices, making it useful in more complex parallelism setups or for rearranging distributed data for specific computations.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="towards-infinite-scalability-with-jax" class="title-slide slide level1 center">
+<h1>Towards Infinite Scalability with JAX</h1>
+
+</section>
+<section id="a-node-vs-a-supercomputer" class="slide level2" style="font-size: 21px;">
+<h2>A Node vs a Supercomputer</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<h3 id="differences-in-scale">Differences in Scale</h3>
+<ul>
+<li><strong>Single GPU</strong>:
+<ul>
+<li>Maximum memory: <strong>80 GB</strong></li>
+</ul></li>
+<li><strong>Single Node (Octocore)</strong>:
+<ul>
+<li>Maximum memory: <strong>640 GB</strong></li>
+<li>Contains multiple GPUs (e.g., 8 A100 GPUs) connected via high-speed interconnects.</li>
+</ul></li>
+<li><strong>Multi-Node Cluster</strong>:
+<ul>
+<li><strong>Infinite Memory</strong> 🎉</li>
+<li>Connects multiple nodes, allowing scaling across potentially thousands of GPUs.</li>
+</ul></li>
+</ul>
+<div class="solutionbox">
+<div class="solutionbox-header" style="font-size: 20px;">
+<p>Multi-Node scalability with Jean Zay</p>
+</div>
+<div class="solutionbox-body" style="font-size: 20px;">
+<ul>
+<li>Up to 30TB of memory using all 48 nodes of Jean Zay</li>
+<li>Is enough to run a 15 billion particle simulation.</li>
+</ul>
+</div>
+</div>
+</div><div class="column" style="width:40%;">
+<div data-layout-nrows="3">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/HPC/single_A100.png" class="quarto-figure quarto-figure-center" style="width:40.0%"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/HPC/node_A100.png" style="width:40.0%"></p>
+<figcaption><span class="citation" data-cites="credit">@credit</span>: NVIDIA</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/HPC/cluster.jpg" style="width:40.0%"></p>
+<figcaption><span class="citation" data-cites="credit">@credit</span>: servethehome.com</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+<aside class="notes">
+<ul>
+<li><p><strong>Single GPU</strong>: GPUs have powerful cores but are limited by memory. With a max memory of 80 GB, they are ideal for tasks that fit within this memory constraint, often used for model training or inference.</p></li>
+<li><p><strong>Single Node (Octocore)</strong>: An octocore node can host multiple GPUs (e.g., 8 GPUs) and has larger memory (up to 640 GB), enabling it to handle larger datasets. This setup is common in high-performance servers.</p></li>
+<li><p><strong>Multi-Node Cluster</strong>: By connecting nodes in a distributed cluster, we achieve “infinite” scalability in terms of memory and compute. JAX can take advantage of this via distributed parallelism, making it ideal for cosmological simulations and other large-scale scientific computations.</p></li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="scaling-jax-on-a-single-gpu-vs.-multi-host-setup" class="slide level2">
+<h2>Scaling JAX on a Single GPU vs.&nbsp;Multi-Host Setup</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h4 id="single-gpu-code">Single GPU Code</h4>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a>x <span class="op">=</span> jnp.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
+<span id="cb7-2"><a></a>mean <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb7-3"><a></a>variance <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb7-4"><a></a>result <span class="op">=</span> gaussian(x, mean, variance)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<h4 id="multi-gpu-code">Multi-GPU Code</h4>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a>mesh <span class="op">=</span> jax.make_mesh((<span class="dv">8</span>,), (<span class="st">'x'</span>))</span>
+<span id="cb8-2"><a></a>sharding <span class="op">=</span> NamedSharding(mesh , P(<span class="st">'x'</span>))</span>
+<span id="cb8-3"><a></a>x <span class="op">=</span> jnp.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
+<span id="cb8-4"><a></a>x <span class="op">=</span> jax.device_put(sharding, x)</span>
+<span id="cb8-5"><a></a>mean <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb8-6"><a></a>variance <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb8-7"><a></a>result <span class="op">=</span> gaussian(x, mean, variance)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<h4 id="multi-host-code">Multi-Host Code</h4>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Symboles/question-mark-512.png" class="quarto-figure quarto-figure-center" style="width:20.0%"></p>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div data-layout-nrows="3" data-layout-align="center">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/HPC/jax-1gpu.svg" class="quarto-figure quarto-figure-center" style="width:15.0%"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/HPC/jax-1node.svg" class="quarto-figure quarto-figure-center" style="width:25.0%"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/HPC/jax-multi-node.svg" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
+</figure>
+</div>
+</div>
+</div></div>
+<aside class="notes">
+<ul>
+<li><strong>Single GPU Code</strong>: This example demonstrates using <code>jax.pmap</code> for parallel computation on a single GPU.</li>
+<li><strong>Multi-Host Setup</strong>: The code placeholder highlights the need for additional configuration to distribute JAX computations across multiple hosts, allowing for large-scale distributed workloads.</li>
+<li><strong>Single GPU vs Multi-Host</strong>: JAX makes it easy to parallelize across local devices (GPUs on the same host), but multi-host configurations require further setup and are used for even larger-scale tasks.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="scaling-jax-on-a-single-gpu-vs.-multi-host-setup-1" class="slide level2" style="font-size: 22px;" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Scaling JAX on a Single GPU vs.&nbsp;Multi-Host Setup</h2>
+<h4 id="a-jax-process-per-gpu">A JAX process per GPU</h4>
+<p><br></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h4 id="requesting-a-slurm-job">Requesting a slurm job</h4>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a></a><span class="ex">$</span> salloc <span class="at">--gres</span><span class="op">=</span>gpu:8 <span class="at">--ntasks-per-node</span><span class="op">=</span>1 <span class="at">--nodes</span><span class="op">=</span>1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>multi-host-jax.py</strong></pre>
+</div>
+<div class="sourceCode" id="cb10" data-filename="multi-host-jax.py"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a><span class="im">import</span> jax</span>
+<span id="cb10-2"><a></a></span>
+<span id="cb10-3"><a></a>mesh <span class="op">=</span> jax.make_mesh((<span class="dv">4</span>,), (<span class="st">'x'</span>))</span>
+<span id="cb10-4"><a></a>sharding <span class="op">=</span> NamedSharding(mesh , P(<span class="st">'x'</span>))</span>
+<span id="cb10-5"><a></a></span>
+<span id="cb10-6"><a></a><span class="kw">def</span> gaussian(x, mean, variance):</span>
+<span id="cb10-7"><a></a>    ...</span>
+<span id="cb10-8"><a></a>mean <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb10-9"><a></a>variance <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb10-10"><a></a>x <span class="op">=</span> jnp.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
+<span id="cb10-11"><a></a>x <span class="op">=</span> jax.device_put(sharding, x)</span>
+<span id="cb10-12"><a></a>result <span class="op">=</span> gaussian(x, mean, variance)</span>
+<span id="cb10-13"><a></a>visualize_array_sharding(x)</span>
+<span id="cb10-14"><a></a>visualize_array_sharding(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<h4 id="running-with-srun">Running with srun</h4>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a></a><span class="ex">$</span> srun python multi-host-jax.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:50%;">
+<div class="r-stack">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/HPC/jax-1node.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div></div>
+</section>
+<section id="scaling-jax-on-a-single-gpu-vs.-multi-host-setup-2" class="slide level2" style="font-size: 22px;" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Scaling JAX on a Single GPU vs.&nbsp;Multi-Host Setup</h2>
+<h4 id="a-jax-process-per-gpu-1">A JAX process per GPU</h4>
+<p><br></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h4 id="requesting-a-slurm-job-1">Requesting a slurm job</h4>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a></a><span class="ex">$</span> salloc <span class="at">--gres</span><span class="op">=</span>gpu:8 <span class="at">--ntasks-per-node</span><span class="op">=</span>8 <span class="at">--nodes</span><span class="op">=</span>2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>multi-host-jax.py</strong></pre>
+</div>
+<div class="sourceCode" id="cb13" data-filename="multi-host-jax.py" data-code-line-numbers="|2-3|10-11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a><span class="im">import</span> jax</span>
+<span id="cb13-2"><a></a>jax.distributed.initialize()</span>
+<span id="cb13-3"><a></a>mesh <span class="op">=</span> jax.make_mesh((<span class="dv">16</span>,), (<span class="st">'x'</span>))</span>
+<span id="cb13-4"><a></a>sharding <span class="op">=</span> NamedSharding(mesh , P(<span class="st">'x'</span>))</span>
+<span id="cb13-5"><a></a></span>
+<span id="cb13-6"><a></a><span class="kw">def</span> gaussian(x, mean, variance):</span>
+<span id="cb13-7"><a></a>    ...</span>
+<span id="cb13-8"><a></a>mean <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb13-9"><a></a>variance <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb13-10"><a></a>x <span class="op">=</span> jnp.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
+<span id="cb13-11"><a></a>x <span class="op">=</span> jax.device_put(sharding, x) ❌ <span class="co"># DOES NOT WORK</span></span>
+<span id="cb13-12"><a></a>result <span class="op">=</span> gaussian(x, mean, variance)</span>
+<span id="cb13-13"><a></a>visualize_array_sharding(x)</span>
+<span id="cb13-14"><a></a>visualize_array_sharding(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<h4 id="running-with-srun-1">Running with srun</h4>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a></a><span class="ex">$</span> srun <span class="at">-n</span> 8 python multi-host-jax.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:50%;">
+<div class="r-stack">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/HPC/jax-multi-node.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div></div>
+</section>
+<section id="scaling-jax-on-a-single-gpu-vs.-multi-host-setup-3" class="slide level2" style="font-size: 22px;" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Scaling JAX on a Single GPU vs.&nbsp;Multi-Host Setup</h2>
+<h4 id="a-jax-process-per-gpu-2">A JAX process per GPU</h4>
+<p><br></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h4 id="requesting-a-slurm-job-2">Requesting a slurm job</h4>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a></a><span class="ex">$</span> salloc <span class="at">--gres</span><span class="op">=</span>gpu:8 <span class="at">--ntasks-per-node</span><span class="op">=</span>8 <span class="at">--nodes</span><span class="op">=</span>2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>multi-host-jax.py</strong></pre>
+</div>
+<div class="sourceCode" id="cb16" data-filename="multi-host-jax.py" data-code-line-numbers="10-11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a><span class="im">import</span> jax</span>
+<span id="cb16-2"><a></a>jax.distributed.initialize()</span>
+<span id="cb16-3"><a></a>mesh <span class="op">=</span> jax.make_mesh((<span class="dv">16</span>,), (<span class="st">'x'</span>))</span>
+<span id="cb16-4"><a></a>sharding <span class="op">=</span> NamedSharding(mesh , P(<span class="st">'x'</span>))</span>
+<span id="cb16-5"><a></a></span>
+<span id="cb16-6"><a></a><span class="kw">def</span> gaussian(x, mean, variance):</span>
+<span id="cb16-7"><a></a>    ...</span>
+<span id="cb16-8"><a></a>mean <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb16-9"><a></a>variance <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb16-10"><a></a>x <span class="op">=</span> jnp.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
+<span id="cb16-11"><a></a>x <span class="op">=</span> jax.device_put(sharding, x) ❌ <span class="co"># DOES NOT WORK</span></span>
+<span id="cb16-12"><a></a>result <span class="op">=</span> gaussian(x, mean, variance)</span>
+<span id="cb16-13"><a></a>visualize_array_sharding(x)</span>
+<span id="cb16-14"><a></a>visualize_array_sharding(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<h4 id="running-with-srun-2">Running with srun</h4>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a></a><span class="ex">$</span> srun <span class="at">-n</span> 8 python multi-host-jax.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:50%;">
+<div class="r-stack">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/HPC/jax-multi-node.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+<div class="solutionbox">
+<div class="solutionbox-header" style="font-size: 18px;">
+<p>CAUTION ⚠️</p>
+</div>
+<div class="solutionbox-body" style="font-size: 18px;">
+<ul>
+<li><code>jax.device_put</code> does not work with multi-host setups.</li>
+<li>Allocating a jax numpy array does not have the same behavior as single node setups.</li>
+</ul>
+</div>
+</div>
+</div></div>
+</section>
+<section id="loading-data-in-jax-in-a-multi-host-setup" class="slide level2" style="font-size: 22px;" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Loading Data in JAX in a Multi-Host Setup</h2>
+<h4 id="a-jax-process-per-gpu-3">A JAX process per GPU</h4>
+<p><br></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb18-1" class="hljs-ln-code"><a></a><span class="im">import</span> jax</span>
+<span id="cb18-2" class="hljs-ln-code"><a></a>jax.distributed.initialize()</span>
+<span id="cb18-3" class="hljs-ln-code"><a></a></span>
+<span id="cb18-4" class="hljs-ln-code"><a></a><span class="cf">assert</span> jax.device_count() <span class="op">==</span> <span class="dv">16</span></span>
+<span id="cb18-5" class="hljs-ln-code"><a></a></span>
+<span id="cb18-6" class="hljs-ln-code"><a></a>x <span class="op">=</span> jnp.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
+<span id="cb18-7" class="hljs-ln-code"><a></a>visualize_array_sharding(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 0  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+</pre>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 2  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+</pre>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 1  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+</pre>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 3  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+</pre>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 14  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+</pre>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 8  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+</pre>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 7  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+</pre>
+</div><div class="column" style="width:50%;">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 5  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+</pre>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 6  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+</pre>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 4  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+</pre>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 15  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+</pre>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 12  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+</pre>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 13  </span>
+<span style="color: #ffffff; text-decoration-c²olor: #ffffff; background-color: #393b79">         </span>
+</pre>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 11  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+</pre>
+</div></div>
+</section>
+<section id="loading-data-in-jax-in-a-multi-host-setup-1" class="slide level2" style="font-size: 22px;" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Loading Data in JAX in a Multi-Host Setup</h2>
+<h4 id="a-jax-process-per-gpu-4">A JAX process per GPU</h4>
+<p><br></p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>multi-host-jax.py</strong></pre>
+</div>
+<div class="sourceCode" id="cb19" data-filename="multi-host-jax.py" data-code-line-numbers="|7-10|13-14|"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb19-1" class="hljs-ln-code"><a></a><span class="im">import</span> jax</span>
+<span id="cb19-2" class="hljs-ln-code"><a></a>jax.distributed.initialize()</span>
+<span id="cb19-3" class="hljs-ln-code"><a></a></span>
+<span id="cb19-4" class="hljs-ln-code"><a></a>mesh <span class="op">=</span> jax.make_mesh((<span class="dv">16</span>,) , (<span class="st">'x'</span>,))</span>
+<span id="cb19-5" class="hljs-ln-code"><a></a>sharding <span class="op">=</span> NamedSharding(mesh , P(<span class="st">'x'</span>))</span>
+<span id="cb19-6" class="hljs-ln-code"><a></a></span>
+<span id="cb19-7" class="hljs-ln-code"><a></a><span class="kw">def</span> distributed_linspace(start, stop, num):</span>
+<span id="cb19-8" class="hljs-ln-code"><a></a>    <span class="kw">def</span> local_linspace(indx):</span>
+<span id="cb19-9" class="hljs-ln-code"><a></a>        <span class="cf">return</span> np.linspace(start, stop, num)[indx]</span>
+<span id="cb19-10" class="hljs-ln-code"><a></a>    <span class="cf">return</span> jax.make_array_from_callback(shape<span class="op">=</span>(num,), sharding<span class="op">=</span>sharding,data_callback<span class="op">=</span>local_linspace)</span>
+<span id="cb19-11" class="hljs-ln-code"><a></a></span>
+<span id="cb19-12" class="hljs-ln-code"><a></a>x <span class="op">=</span> distributed_linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
+<span id="cb19-13" class="hljs-ln-code"><a></a><span class="cf">if</span> jax.process_index() <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb19-14" class="hljs-ln-code"><a></a>  visualize_array_sharding(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #843c39">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">  …  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7ba52">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #5254a3">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ad494a"> G…  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #637939"> G…  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #7b4173"> G…  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #b5cf6b"> G…  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ce6dbd"> G…  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #bd9e39"> G…  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  0  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #843c39">  1  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">  2  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">  3  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">  4  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">  5  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">  6  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">  7  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7ba52">  8  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #5254a3">  9  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ad494a"> 10  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #637939"> 11  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #7b4173"> 12  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #b5cf6b"> 13  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ce6dbd"> 14  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #bd9e39"> 15  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #843c39">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">     </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7ba52">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #5254a3">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ad494a">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #637939">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #7b4173">     </span><span style="color: #000000; text-decoration-color: #000000; background-color: #b5cf6b">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ce6dbd">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #bd9e39">     </span>
+</pre>
+</section>
+<section id="loading-data-in-jax-in-a-multi-host-setup-2" class="slide level2" style="font-size: 22px;" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Loading Data in JAX in a Multi-Host Setup</h2>
+<h4 id="a-jax-process-per-gpu-5">A JAX process per GPU</h4>
+<p><br></p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>multi-host-jax.py</strong></pre>
+</div>
+<div class="sourceCode" id="cb20" data-filename="multi-host-jax.py" data-code-line-numbers="|7-10|13-14"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb20-1" class="hljs-ln-code"><a></a><span class="im">import</span> jax</span>
+<span id="cb20-2" class="hljs-ln-code"><a></a>jax.distributed.initialize()</span>
+<span id="cb20-3" class="hljs-ln-code"><a></a></span>
+<span id="cb20-4" class="hljs-ln-code"><a></a>mesh <span class="op">=</span> jax.make_mesh((<span class="dv">16</span>,) , (<span class="st">'x'</span>,))</span>
+<span id="cb20-5" class="hljs-ln-code"><a></a>sharding <span class="op">=</span> NamedSharding(mesh , P(<span class="st">'x'</span>))</span>
+<span id="cb20-6" class="hljs-ln-code"><a></a></span>
+<span id="cb20-7" class="hljs-ln-code"><a></a><span class="kw">def</span> distributed_linspace(start, stop, num):</span>
+<span id="cb20-8" class="hljs-ln-code"><a></a>    <span class="kw">def</span> local_linspace(indx):</span>
+<span id="cb20-9" class="hljs-ln-code"><a></a>        <span class="cf">return</span> np.linspace(start, stop, num)[indx]</span>
+<span id="cb20-10" class="hljs-ln-code"><a></a>    <span class="cf">return</span> jax.make_array_from_callback(shape<span class="op">=</span>(num,), sharding<span class="op">=</span>sharding,data_callback<span class="op">=</span>local_linspace)</span>
+<span id="cb20-11" class="hljs-ln-code"><a></a></span>
+<span id="cb20-12" class="hljs-ln-code"><a></a>x <span class="op">=</span> distributed_linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
+<span id="cb20-13" class="hljs-ln-code"><a></a><span class="cf">if</span> jax.process_index() <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb20-14" class="hljs-ln-code"><a></a>  visualize_array_sharding(x)</span>
+<span id="cb20-15" class="hljs-ln-code"><a></a>mean <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb20-16" class="hljs-ln-code"><a></a>variance <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb20-17" class="hljs-ln-code"><a></a>result <span class="op">=</span> gaussian(x, mean, variance)</span>
+<span id="cb20-18" class="hljs-ln-code"><a></a><span class="cf">if</span> jax.process_index() <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb20-19" class="hljs-ln-code"><a></a>  visualize_array_sharding(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #843c39">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">  …  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7ba52">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #5254a3">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ad494a"> G…  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #637939"> G…  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #7b4173"> G…  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #b5cf6b"> G…  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ce6dbd"> G…  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #bd9e39"> G…  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  0  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #843c39">  1  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">  2  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">  3  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">  4  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">  5  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">  6  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">  7  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7ba52">  8  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #5254a3">  9  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ad494a"> 10  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #637939"> 11  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #7b4173"> 12  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #b5cf6b"> 13  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ce6dbd"> 14  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #bd9e39"> 15  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #843c39">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">     </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7ba52">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #5254a3">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ad494a">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #637939">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #7b4173">     </span><span style="color: #000000; text-decoration-color: #000000; background-color: #b5cf6b">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ce6dbd">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #bd9e39">     </span>
+</pre>
+<p><br></p>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #843c39">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">  …  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7ba52">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #5254a3">  …  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ad494a"> G…  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #637939"> G…  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #7b4173"> G…  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #b5cf6b"> G…  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ce6dbd"> G…  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #bd9e39"> G…  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  0  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #843c39">  1  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">  2  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">  3  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">  4  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">  5  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">  6  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">  7  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7ba52">  8  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #5254a3">  9  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ad494a"> 10  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #637939"> 11  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #7b4173"> 12  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #b5cf6b"> 13  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ce6dbd"> 14  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #bd9e39"> 15  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #843c39">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">     </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7ba52">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #5254a3">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ad494a">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #637939">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #7b4173">     </span><span style="color: #000000; text-decoration-color: #000000; background-color: #b5cf6b">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ce6dbd">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #bd9e39">     </span>
+</pre>
+</section></section>
+<section>
+<section id="multi-node-packages-in-jax-for-cosmology" class="title-slide slide level1 center">
+<h1>Multi-node packages in JAX for Cosmology</h1>
+
+</section>
+<section id="jaxdecomp-components-for-distributed-particle-mesh-simulations" class="slide level2" style="font-size: 19px;">
+<h2>jaxDecomp : Components for Distributed Particle Mesh Simulations</h2>
+<p><a href="https://github.com/DifferentiableUniverseInitiative/jaxDecomp"><img data-src="https://img.shields.io/badge/GitHub-jaxdecomp-blue?logo=github.png"></a></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h4 id="distributed-3d-fft-for-force-computation">Distributed 3D FFT for Force Computation</h4>
+<ul>
+<li>Essential for force calculations in large-scale simulations.</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h4 id="halo-exchange-for-boundary-conditions">Halo Exchange for Boundary Conditions</h4>
+<ul>
+<li>Manages boundary conditions for particles leaving the simulation domain.</li>
+</ul>
+</div></div>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout="[[1 , 1]]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/jaxDecomp/fft.svg" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/jaxDecomp/halo-exchange.svg" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="solutionbox">
+<div class="solutionbox-header" style="font-size: 19px;">
+<p>Key Features of <code>jaxDecomp</code></p>
+</div>
+<div class="solutionbox-body" style="font-size: 17px;">
+<ul>
+<li><strong>Differentiable</strong>: Fully compatible with JAX’s automatic differentiation.</li>
+<li><strong>Multi-Node Support</strong>: Works seamlessly across multiple nodes.</li>
+<li>Open-source and available on PyPI.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="performance-benchmarks-of-pfft3d" class="slide level2" style="font-size: 20px;">
+<h2>Performance benchmarks of <code>PFFT3D</code></h2>
+<h4 id="strong-scaling-1">Strong Scaling</h4>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/jaxDecomp/strong_scaling.png" class="quarto-figure quarto-figure-center" style="width:35.0%"></p>
+</figure>
+</div>
+<h4 id="weak-scaling-1">Weak scaling</h4>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/jaxDecomp/weak_scaling.png" class="quarto-figure quarto-figure-center" style="width:35.0%"></p>
+</figure>
+</div>
+</section>
+<section id="halo-exchange-in-distributed-simulations" class="slide level2">
+<h2>Halo exchange in distributed simulations</h2>
+<div class="fragment fade-in-then-out" data-fragment-index="1">
+<p><img data-src="assets/HPC/depict_gathered.png" class="absolute" style="top: 30px; right: 20px; width: 20%; "></p>
+</div>
+<div class="fragment" data-fragment-index="2">
+<p><img data-src="assets/HPC/depict_split.png" class="absolute" style="top: 30px; right: 20px; width: 20%; "></p>
+</div>
+<div class="r-stack">
+<div class="fragment fade-in-then-out" data-fragment-index="1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/initial_conditions_1024.png" class="nostretch" style="width:50.0%"></p>
+<figcaption>Initial Field</figcaption>
+</figure>
+</div>
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="2">
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout="[[1] , [1] , [1] , [1]]" data-layout-align="center">
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/initial_conditions_0_no_halo.png" class="nostretch" style="width:30.0%"></p>
+<figcaption>First slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/initial_conditions_1_no_halo.png" class="nostretch" style="width:30.0%"></p>
+<figcaption>Second slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/initial_conditions_2_no_halo.png" class="nostretch" style="width:30.0%"></p>
+<figcaption>Third slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/initial_conditions_3_no_halo.png" class="nostretch" style="width:30.0%"></p>
+<figcaption>Fourth slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="3">
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout="[[1] , [1] , [1] , [1]]" data-layout-align="center">
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_0_no_halo.png" class="nostretch" style="width:30.0%"></p>
+<figcaption>First slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_1_no_halo.png" class="nostretch" style="width:30.0%"></p>
+<figcaption>Second slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_2_no_halo.png" class="nostretch" style="width:30.0%"></p>
+<figcaption>Third slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_3_no_halo.png" class="nostretch" style="width:30.0%"></p>
+<figcaption>Fourth slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="4">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_1024_no_halo.png" class="nostretch" style="width:50.0%"></p>
+<figcaption>LPT Field</figcaption>
+</figure>
+</div>
+</div>
+<div class="fragment" data-fragment-index="5">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_1024.png" class="nostretch" style="width:50.0%"></p>
+<figcaption>LPT Field</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="jaxpm-2.0-distributed-particle-mesh-simulation" class="slide level2" data-background-image="assets/Fields/PM_1024.gif">
+<h2><span style="color: white ;">JaxPM 2.0 : Distributed Particle Mesh Simulation</span></h2>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<div class="solutionbox">
+<div class="solutionbox-header" style="font-size: 20px;">
+<p>Key Features of <code>JaxPM</code></p>
+</div>
+<div class="solutionbox-body" style="font-size: 19px;">
+<ul>
+<li><strong>Multi-Node Performance</strong>: Optimized for efficient scaling across nodes.</li>
+<li><strong>High Resolution</strong>: Capable of handling billions of particles for accurate simulations.</li>
+<li><strong>Differentiable</strong>: Compatible with JAX’s automatic differentiation (HMC, NUTS compatible).</li>
+<li><strong>Open Source</strong>: <a href="https://github.com/DifferentiableUniverseInitiative/JaxPM"><img data-src="https://img.shields.io/badge/GitHub-JaxPM-blue?logo=github.png" alt="GitHub Badge"></a></li>
+</ul>
+</div>
+</div>
+</section></section>
+<section>
+<section id="conclusion" class="title-slide slide level1 center">
+<h1>Conclusion</h1>
+
+</section>
+<section id="conclusion-enabling-scalable-cosmology-with-distributed-jax" class="slide level2" style="font-size: 22px;">
+<h2>Conclusion: Enabling Scalable Cosmology with Distributed JAX</h2>
+<div class="solutionbox">
+<div class="solutionbox-header" style="font-size: 20px;">
+<p><strong>Distributed JAX: A Game-Changer for Cosmology</strong></p>
+</div>
+<div class="solutionbox-body" style="font-size: 19px;">
+<ul>
+<li><p>The future is bright for JAX in cosmology!!</p></li>
+<li><p>JAX has transformed the landscape for scientific computing, <strong>enabling large-scale, distributed workflows</strong> in a Pythonic environment.</p></li>
+<li><p>Recent advancements (JAX 0.4.3x+) make it straightforward to scale computations across multiple GPUs and nodes.</p></li>
+<li><p><strong>Key Advantages</strong></p>
+<ul>
+<li><strong>Simplicity</strong>: JAX makes it easier than ever to write high-performance code, allowing researchers to focus on science rather than infrastructure.</li>
+<li><strong>Differentiability</strong>: JAX allows seamless differentiation of code running across hundreds of GPUs, enabling advanced inference techniques.</li>
+</ul></li>
+<li><p><strong>The Future Ahead</strong></p>
+<ul>
+<li><strong>Scaling Inference Models with Distributed <code>jaxPM</code></strong>: By integrating the new distributed <code>jaxPM</code> into existing cosmological inference models, we can achieve unprecedented levels of detail and complexity.</li>
+<li>Paving the way to fully leverage large-scale survey data for deeper insights into the universe.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div class="quarto-auto-generated-content">
+<div class="footer footer-default">
+
+</div>
+</div>
+</section></section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'slide',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp("https:\/\/ASKabalan\.github\.io\/slides\/");
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>
