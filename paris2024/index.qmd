@@ -31,6 +31,41 @@ logo1: '<div style="display: flex; justify-content: center; align-items: center;
 ---
 
 
+## Goals for This Presentation {style="font-size: 28px;"}
+
+:::{.solutionbox}
+
+::: {.solutionbox-header style="font-size: 26px;"}
+
+Key Goals
+
+:::
+
+::::{.solutionbox-body style="font-size: 24px;"}
+
+- **Motivation**: Understand the value of full-field inference in cosmology.
+<br />
+<br />
+- **Background on Parallelism**: Learn how GPUs work and key scaling concepts.
+<br />
+<br />
+- **When to Use (and Avoid) Parallelism**: Discover the benefits and limitations.
+<br />
+<br />
+- **Scaling with JAX**: Explore techniques for scaling computations in JAX.
+<br />
+<br />
+- **Distributed Tools for Cosmology**: Get an overview of multi-node packages like `jaxDecomp` and `jaxPM`.
+<br />
+<br />
+- **Hands-On Practice**: Apply these concepts in interactive notebooks.
+
+::::
+
+:::
+
+---
+
 ## <span style="color: white ;">Motivation: Cosmology in the exascale era </span> {background-image="assets/rubin.jpg"} 
 
 <br />
@@ -153,6 +188,8 @@ Scaling Challenges
 
 :::
 
+
+# Background on Parallel Computing
 
 ---
 
@@ -500,6 +537,12 @@ Evaluating Scaling Performance
 
 ## Environmental Impact of High-Performance Computing {style="font-size: 21px;"}
 
+:::{.r-stack}
+
+:::{.fragment fragment-index=1 .semi-fade-out}
+
+:::{.r-stack-item}
+
 :::{.columns}
 
 ::: {.column width="50%"}
@@ -526,6 +569,44 @@ Evaluating Scaling Performance
 ![Perlmutter Supercomputer](assets/HPC/perlmutter_supercomputer.png){fig-align="center" width="80%"}
 
 ![Jean Zay Supercomputer](assets/HPC/jean_zay_photo.png){fig-align="center" width="80%"}
+
+:::
+
+:::
+
+:::
+
+:::
+
+:::{.fragment fragment-index=1}
+
+:::{.r-stack-item}
+
+:::{.solutionbox}
+
+::: {.solutionbox-header style="font-size: 26px;"}
+
+**Environmental Benefits of Efficient Parallel Computing**
+
+:::
+
+::::{.solutionbox-body style="font-size: 24px;"}
+
+<br />
+
+- Higher throughput moves computations closer to peak FLOPS.
+<br />
+- Operating near peak FLOPS ensures more effective use of computational resources.
+<br />
+- More computations are achieved per unit of energy, improving energy efficiency.
+
+<br />
+
+::::
+
+:::
+
+:::
 
 :::
 
@@ -731,7 +812,7 @@ def gaussian(x, mean, variance):
 mean = 0.0
 variance = 1.0
 x = jnp.linspace(-5, 5, 128)
-x = jax.device_put(sharding, x)
+x = jax.device_put(x, sharding)
 result = gaussian(x, mean, variance)
 visualize_array_sharding(x)
 visualize_array_sharding(result)
@@ -777,7 +858,7 @@ def gaussian(x, mean, variance):
 mean = 0.0
 variance = 1.0
 x = jnp.linspace(-5, 5, 128)
-x = jax.device_put(sharding, x)
+x = jax.device_put(x, sharding)
 result = gaussian(x, mean, variance)
 visualize_array_sharding(x)
 visualize_array_sharding(result)
@@ -837,7 +918,7 @@ par_mini_GD = minimzer(
 
 Example from Jean-Eric's tutorial
 
-```{.python code-line-numbers="3,4,8,9,12-16,21,22"}
+```{.python code-line-numbers="3,4,8,9,12-16,21,22|8,9|21,22|12-16"}
 import jax
 import jax.numpy as jnp
 from jax.experimental.shard_map import shard_map
@@ -858,8 +939,8 @@ def gradient_descent_step(p, xi, yi, lr=0.1):
 def minimzer(loss_fun, x_data, y_data, par_init, method, verbose=True):
      ...
   # Example usage
-xin = jax.device_put(sharding, xin)
-yin = jax.device_put(sharding, yin)
+xin = jax.device_put(xin, sharding)
+yin = jax.device_put(yin, sharding)
 par_mini_GD = minimzer(
         loss_fun, 
         x_data=xin, 
@@ -868,7 +949,6 @@ par_mini_GD = minimzer(
         method=partial(gradient_descent_step, lr=0.5), 
         verbose=True
     )
-W
 ```
 
 ---
@@ -903,8 +983,6 @@ W
 - **Flexible Data Distribution**: `ppermute` allows data rearrangement across devices, making it useful in more complex parallelism setups or for rearranging distributed data for specific computations.
 
 :::
-
----
 
 # Towards Infinite Scalability with JAX 
 
@@ -1001,7 +1079,7 @@ result = gaussian(x, mean, variance)
 mesh = jax.make_mesh((8,), ('x'))
 sharding = NamedSharding(mesh , P('x'))
 x = jnp.linspace(-5, 5, 128)
-x = jax.device_put(sharding, x)
+x = jax.device_put(x, sharding)
 mean = 0.0
 variance = 1.0
 result = gaussian(x, mean, variance)
@@ -1044,7 +1122,7 @@ result = gaussian(x, mean, variance)
 
 ---
 
-## Scaling JAX on a Single GPU vs. Multi-Host Setup {style="font-size: 22px;" auto-animate="true"}
+## Scaling JAX on a Single GPU vs. Multi-Host Setup {style="font-size: 22px;" auto-animate="true" visibility="uncounted"}
 
 #### A JAX process per GPU
 <br />
@@ -1072,7 +1150,7 @@ def gaussian(x, mean, variance):
 mean = 0.0
 variance = 1.0
 x = jnp.linspace(-5, 5, 128)
-x = jax.device_put(sharding, x)
+x = jax.device_put(x, sharding)
 result = gaussian(x, mean, variance)
 visualize_array_sharding(x)
 visualize_array_sharding(result)
@@ -1103,7 +1181,7 @@ $ srun python multi-host-jax.py
 
 ---
 
-## Scaling JAX on a Single GPU vs. Multi-Host Setup {style="font-size: 22px;" auto-animate="true"}
+## Scaling JAX on a Single GPU vs. Multi-Host Setup {style="font-size: 22px;" auto-animate="true" visibility="uncounted"}
 
 #### A JAX process per GPU
 <br />
@@ -1130,7 +1208,7 @@ def gaussian(x, mean, variance):
 mean = 0.0
 variance = 1.0
 x = jnp.linspace(-5, 5, 128)
-x = jax.device_put(sharding, x) ❌ # DOES NOT WORK
+x = jax.device_put(x, sharding) ❌ # DOES NOT WORK
 result = gaussian(x, mean, variance)
 visualize_array_sharding(x)
 visualize_array_sharding(result)
@@ -1161,7 +1239,7 @@ $ srun -n 8 python multi-host-jax.py
 
 ---
 
-## Scaling JAX on a Single GPU vs. Multi-Host Setup {style="font-size: 22px;" auto-animate="true"}
+## Scaling JAX on a Single GPU vs. Multi-Host Setup {style="font-size: 22px;" auto-animate="true" visibility="uncounted"}
 
 #### A JAX process per GPU
 <br />
@@ -1185,10 +1263,10 @@ sharding = NamedSharding(mesh , P('x'))
 
 def gaussian(x, mean, variance):
     ...
-mean = 0.0
+mean = 0
 variance = 1.0
 x = jnp.linspace(-5, 5, 128)
-x = jax.device_put(sharding, x) ❌ # DOES NOT WORK
+x = jax.device_put(x, sharding) ❌ # DOES NOT WORK
 result = gaussian(x, mean, variance)
 visualize_array_sharding(x)
 visualize_array_sharding(result)
@@ -1310,7 +1388,7 @@ visualize_array_sharding(x)
 
 ---
 
-## Loading Data in JAX in a Multi-Host Setup {style="font-size: 22px;" auto-animate="true"}
+## Loading Data in JAX in a Multi-Host Setup {style="font-size: 22px;" auto-animate="true" visibility="uncounted"}
 
 #### A JAX process per GPU
 <br />
@@ -1340,12 +1418,12 @@ if jax.process_index() == 0:
 
 ---
 
-## Loading Data in JAX in a Multi-Host Setup {style="font-size: 22px;" auto-animate="true"}
+## Loading Data in JAX in a Multi-Host Setup {style="font-size: 22px;" auto-animate="true" visibility="uncounted"}
 
 #### A JAX process per GPU
 <br />
 
-```{.python filename="multi-host-jax.py" code-line-numbers="|7-10|13-14"}
+```{.python filename="multi-host-jax.py" code-line-numbers="|4,5|15-17"}
 import jax
 jax.distributed.initialize()
 
@@ -1402,7 +1480,7 @@ if jax.process_index() == 0:
 
 #### Halo Exchange for Boundary Conditions 
 
-- Manages boundary conditions for particles leaving the simulation domain.
+- Manages boundary conditions or particles leaving the simulation domain.
 
 :::
 
@@ -1437,17 +1515,45 @@ Key Features of `jaxDecomp`
 
 ## Performance benchmarks of `PFFT3D` {style="font-size: 20px;"}
 
+<br />
+<br />
+
+:::{.columns}
+
+::: {.column width="50%"}
 
 #### Strong Scaling
 
-![](assets/jaxDecomp/strong_scaling.png){fig-align="center" width="35%"}
+![](assets/jaxDecomp/strong_scaling.png){fig-align="center" width="85%"}
+
+:::
+
+::: {.column width="50%"}
 
 #### Weak scaling
 
 
-![](assets/jaxDecomp/weak_scaling.png){fig-align="center" width="35%"}
+![](assets/jaxDecomp/weak_scaling.png){fig-align="center" width="85%"}
 
- 
+:::
+
+:::
+
+:::{.solutionbox}
+
+:::{.solutionbox-header style="font-size: 19px;"}
+
+Key takeaway
+
+:::
+
+:::{.solutionbox-body style="font-size: 17px;"}
+
+In strong scaling, performance decreases when moving from single-node to multi-node setups due to slower inter-node communication. This overhead is balanced by the added compute power of more nodes.
+
+:::
+
+:::
 
 ---
 
