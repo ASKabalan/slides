@@ -836,6 +836,8 @@
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><br></p>
+<div class="fragment" data-fragment-index="1">
+<!-- -->
 <h4 id="strong-scaling"><strong>Strong Scaling</strong></h4>
 <ul>
 <li>Increasing the number of GPUs to reduce runtime for a fixed data size.</li>
@@ -845,7 +847,8 @@
 <p>Assesses performance as more GPUs are added to a fixed dataset. <span style="color:#f74853;"><em>Danger Zone</em></span>⚠️: Indicates the distributed code is not scaling efficiently.</p>
 </div>
 </div>
-<div class="fragment" data-fragment-index="1">
+</div>
+<div class="fragment" data-fragment-index="2">
 <!-- -->
 <h4 id="weak-scaling"><strong>Weak Scaling</strong></h4>
 <ul>
@@ -858,12 +861,14 @@
 </div>
 </div>
 </div><div class="column" style="width:50%;">
+<div class="fragment" data-fragment-index="1">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="assets/HPC/STRONG_SCALING.png" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
 </figure>
 </div>
-<div class="fragment" data-fragment-index="1">
+</div>
+<div class="fragment" data-fragment-index="2">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="assets/HPC/WEAK_SCALING.png" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
@@ -898,10 +903,9 @@
 <h4 id="perlmutter-supercomputer-nersc"><strong>Perlmutter Supercomputer (NERSC)</strong></h4>
 <ul>
 <li><strong>Location</strong>: NERSC, Berkeley Lab, California, USA</li>
-<li><strong>Compute Power</strong>: ~119 PFlops</li>
-<li><strong>GPUs</strong>: 6,144 NVIDIA A100 GPUs (Phase 1)</li>
-<li><strong>Total Nodes</strong>: 1,536 CPU nodes + 6,159 GPU nodes</li>
-<li><strong>Power Draw</strong>: ~3.2 MW/hr</li>
+<li><strong>Compute Power</strong>: ~170 PFlops</li>
+<li><strong>GPUs</strong>: 7,208 NVIDIA A100 GPUs</li>
+<li><strong>Power Draw</strong>: ~ 3-4 MW</li>
 </ul>
 <p><br></p>
 <h4 id="jean-zay-supercomputer-idris"><strong>Jean Zay Supercomputer (IDRIS)</strong></h4>
@@ -909,7 +913,7 @@
 <li><strong>Location</strong>: IDRIS, France</li>
 <li><strong>Compute Power</strong>: ~126 PFlops (FP64), 2.88 EFlops (BF/FP16)</li>
 <li><strong>GPUs</strong>: 3,704 GPUs, including V100, A100, and H100</li>
-<li><strong>Power Draw</strong>: ~1.4 MW/hr on average (as of September, without full H100 usage), leveraging France’s renewable energy grid.</li>
+<li><strong>Power Draw</strong>: ~1.4 MW on average (as of September, without full H100 usage), leveraging France’s renewable energy grid.</li>
 </ul>
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
@@ -1254,22 +1258,33 @@
 <div class="columns">
 <div class="column" style="width:60%;">
 <h3 id="differences-in-scale">Differences in Scale</h3>
+<div class="fragment" data-fragment-index="1">
 <ul>
 <li><strong>Single GPU</strong>:
 <ul>
 <li>Maximum memory: <strong>80 GB</strong></li>
 </ul></li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="2">
+<ul>
 <li><strong>Single Node (Octocore)</strong>:
 <ul>
 <li>Maximum memory: <strong>640 GB</strong></li>
 <li>Contains multiple GPUs (e.g., 8 A100 GPUs) connected via high-speed interconnects.</li>
 </ul></li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="3">
+<ul>
 <li><strong>Multi-Node Cluster</strong>:
 <ul>
 <li><strong>Infinite Memory</strong> 🎉</li>
 <li>Connects multiple nodes, allowing scaling across potentially thousands of GPUs.</li>
 </ul></li>
 </ul>
+</div>
+<div class="fragment" data-fragment-index="4">
 <div class="solutionbox">
 <div class="solutionbox-header" style="font-size: 20px;">
 <p>Multi-Node scalability with Jean Zay</p>
@@ -1281,24 +1296,31 @@
 </ul>
 </div>
 </div>
+</div>
 </div><div class="column" style="width:40%;">
 <div data-layout-nrows="3">
+<div class="fragment" data-fragment-index="1">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/HPC/single_A100.png" class="quarto-figure quarto-figure-center" style="width:40.0%"></p>
+<p><img data-src="assets/HPC/single_A100.png" class="quarto-figure quarto-figure-center" style="width:55.0%"></p>
 </figure>
 </div>
+</div>
+<div class="fragment" data-fragment-index="2">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/HPC/node_A100.png" style="width:40.0%"></p>
+<p><img data-src="assets/HPC/node_A100.png" style="width:53.0%"></p>
 <figcaption><span class="citation" data-cites="credit">@credit</span>: NVIDIA</figcaption>
 </figure>
 </div>
+</div>
+<div class="fragment" data-fragment-index="3">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/HPC/cluster.jpg" style="width:40.0%"></p>
+<p><img data-src="assets/HPC/cluster.jpg" style="width:53.0%"></p>
 <figcaption><span class="citation" data-cites="credit">@credit</span>: servethehome.com</figcaption>
 </figure>
+</div>
 </div>
 </div>
 </div></div>
@@ -1754,7 +1776,7 @@
 <div>
 
 </div>
-<div class="quarto-layout-panel" data-layout-align="center" data-layout="[[1] , [1] , [1] , [1]]">
+<div class="quarto-layout-panel" data-layout="[[1] , [1] , [1] , [1]]" data-layout-align="center">
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -1801,7 +1823,7 @@
 <div>
 
 </div>
-<div class="quarto-layout-panel" data-layout-align="center" data-layout="[[1] , [1] , [1] , [1]]">
+<div class="quarto-layout-panel" data-layout="[[1] , [1] , [1] , [1]]" data-layout-align="center">
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
