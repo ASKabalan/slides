@@ -476,6 +476,8 @@ Scaling Challenges
 
 <br />
 
+::: {.fragment fragment-index=1}
+
 #### **Strong Scaling**
 - Increasing the number of GPUs to reduce runtime for a fixed data size.
 
@@ -489,7 +491,9 @@ Assesses performance as more GPUs are added to a fixed dataset. <span style="col
 
 :::
 
-::: {.fragment fragment-index=1}
+:::
+
+::: {.fragment fragment-index=2}
 
 #### **Weak Scaling**
 - Increasing data size with a fixed number of GPUs.
@@ -510,9 +514,13 @@ Tests how the code handles increasing data sizes with a fixed number of GPUs. <s
 
 ::: {.column width="50%"}
 
+::: {.fragment fragment-index=1}
+
 ![](assets/HPC/STRONG_SCALING.png){fig-align="center" width="70%"}
 
-:::{.fragment fragment-index=1}
+:::
+
+:::{.fragment fragment-index=2}
 
 ![](assets/HPC/WEAK_SCALING.png){fig-align="center" width="70%"}
 
@@ -546,10 +554,9 @@ Tests how the code handles increasing data sizes with a fixed number of GPUs. <s
 
 #### **Perlmutter Supercomputer (NERSC)**
 - **Location**: NERSC, Berkeley Lab, California, USA
-- **Compute Power**: ~119 PFlops
-- **GPUs**: 6,144 NVIDIA A100 GPUs (Phase 1)
-- **Total Nodes**: 1,536 CPU nodes + 6,159 GPU nodes
-- **Power Draw**: ~3.2 MW/hr
+- **Compute Power**: ~170 PFlops
+- **GPUs**: 7,208 NVIDIA A100 GPUs
+- **Power Draw**: ~ 3-4 MW
 
 <br />
 
@@ -557,7 +564,7 @@ Tests how the code handles increasing data sizes with a fixed number of GPUs. <s
 - **Location**: IDRIS, France
 - **Compute Power**: ~126 PFlops (FP64), 2.88 EFlops (BF/FP16)
 - **GPUs**: 3,704 GPUs, including V100, A100, and H100
-- **Power Draw**: ~1.4 MW/hr on average (as of September, without full H100 usage), leveraging France’s renewable energy grid.
+- **Power Draw**: ~1.4 MW on average (as of September, without full H100 usage), leveraging France’s renewable energy grid.
 
 :::
 
@@ -913,17 +920,30 @@ par_mini_GD = minimzer(
 
 ### Differences in Scale 
 
+:::{.fragment fragment-index=1}
+
 - **Single GPU**:
     - Maximum memory: **80 GB**
+
+:::
+
+:::{.fragment fragment-index=2}
 
 - **Single Node (Octocore)**:
     - Maximum memory: **640 GB**
     - Contains multiple GPUs (e.g., 8 A100 GPUs) connected via high-speed interconnects.
 
+:::
+
+:::{.fragment fragment-index=3}
+
 - **Multi-Node Cluster**:
     - **Infinite Memory** 🎉
     - Connects multiple nodes, allowing scaling across potentially thousands of GPUs.
 
+:::
+
+:::{.fragment fragment-index=4}
 
 :::{.solutionbox} 
 
@@ -944,16 +964,29 @@ Multi-Node scalability with Jean Zay
 
 :::
 
+:::
+
 ::: {.column width="40%"}
 
 ::: {layout-nrows=3}
 
-![](assets/HPC/single_A100.png){fig-align="center" width="40%"}
+:::{.fragment fragment-index=1}
 
-![@credit: NVIDIA](assets/HPC/node_A100.png){fig-align="center" width="40%"}
+![](assets/HPC/single_A100.png){fig-align="center" width="55%"}
 
+:::
 
-![@credit: servethehome.com](assets/HPC/cluster.jpg){fig-align="center" width="40%"}
+:::{.fragment fragment-index=2}
+
+![@credit: NVIDIA](assets/HPC/node_A100.png){fig-align="center" width="53%"}
+
+:::
+
+:::{.fragment fragment-index=3}
+
+![@credit: servethehome.com](assets/HPC/cluster.jpg){fig-align="center" width="53%"}
+
+:::
 
 :::
 
