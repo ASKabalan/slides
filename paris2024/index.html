@@ -399,6 +399,24 @@
 </div>
 
 </section>
+<section id="goals-for-this-presentation" class="slide level2" style="font-size: 28px;">
+<h2>Goals for This Presentation</h2>
+<div class="solutionbox">
+<div class="solutionbox-header" style="font-size: 26px;">
+<p>Key Goals</p>
+</div>
+<div class="solutionbox-body" style="font-size: 24px;">
+<ul>
+<li><strong>Motivation</strong>: Understand the value of full-field inference in cosmology. <br> <br></li>
+<li><strong>Background on Parallelism</strong>: Learn how GPUs work and key scaling concepts. <br> <br></li>
+<li><strong>When to Use (and Avoid) Parallelism</strong>: Discover the benefits and limitations. <br> <br></li>
+<li><strong>Scaling with JAX</strong>: Explore techniques for scaling computations in JAX. <br> <br></li>
+<li><strong>Distributed Tools for Cosmology</strong>: Get an overview of multi-node packages like <code>jaxDecomp</code> and <code>jaxPM</code>. <br> <br></li>
+<li><strong>Hands-On Practice</strong>: Apply these concepts in interactive notebooks.</li>
+</ul>
+</div>
+</div>
+</section>
 <section id="motivation-cosmology-in-the-exascale-era" class="slide level2" data-background-image="assets/rubin.jpg">
 <h2><span style="color: white ;">Motivation: Cosmology in the exascale era </span></h2>
 <p><br></p>
@@ -497,6 +515,11 @@
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
+</section>
+<section>
+<section id="background-on-parallel-computing" class="title-slide slide level1 center">
+<h1>Background on Parallel Computing</h1>
+
 </section>
 <section id="background-how-gpus-work" class="slide level2">
 <h2>Background: How GPUs Work</h2>
@@ -863,6 +886,9 @@
 </section>
 <section id="environmental-impact-of-high-performance-computing" class="slide level2" style="font-size: 21px;">
 <h2>Environmental Impact of High-Performance Computing</h2>
+<div class="r-stack">
+<div class="fragment semi-fade-out" data-fragment-index="1">
+<div class="r-stack-item">
 <div class="columns">
 <div class="column" style="width:50%;">
 <h4 id="perlmutter-supercomputer-nersc"><strong>Perlmutter Supercomputer (NERSC)</strong></h4>
@@ -895,6 +921,27 @@
 </figure>
 </div>
 </div></div>
+</div>
+</div>
+<div class="fragment" data-fragment-index="1">
+<div class="r-stack-item">
+<div class="solutionbox">
+<div class="solutionbox-header" style="font-size: 26px;">
+<p><strong>Environmental Benefits of Efficient Parallel Computing</strong></p>
+</div>
+<div class="solutionbox-body" style="font-size: 24px;">
+<p><br></p>
+<ul>
+<li>Higher throughput moves computations closer to peak FLOPS. <br></li>
+<li>Operating near peak FLOPS ensures more effective use of computational resources. <br></li>
+<li>More computations are achieved per unit of energy, improving energy efficiency.</li>
+</ul>
+<p><br></p>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 <aside class="notes">
 <ul>
@@ -914,7 +961,7 @@
       }</style></aside>
 <aside><div>
 <p>Credit: Laurent Leger from IDRIS</p>
-</div></aside></section>
+</div></aside></section></section>
 <section>
 <section id="how-to-scale-in-jax" class="title-slide slide level1 center" style="font-size: 40px; align=center;">
 <h1>How to Scale in JAX</h1>
@@ -1089,7 +1136,7 @@
 <span id="cb3-17" class="hljs-ln-code"><a></a>mean <span class="op">=</span> <span class="fl">0.0</span></span>
 <span id="cb3-18" class="hljs-ln-code"><a></a>variance <span class="op">=</span> <span class="fl">1.0</span></span>
 <span id="cb3-19" class="hljs-ln-code"><a></a>x <span class="op">=</span> jnp.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
-<span id="cb3-20" class="hljs-ln-code"><a></a>x <span class="op">=</span> jax.device_put(sharding, x)</span>
+<span id="cb3-20" class="hljs-ln-code"><a></a>x <span class="op">=</span> jax.device_put(x, sharding)</span>
 <span id="cb3-21" class="hljs-ln-code"><a></a>result <span class="op">=</span> gaussian(x, mean, variance)</span>
 <span id="cb3-22" class="hljs-ln-code"><a></a>visualize_array_sharding(x)</span>
 <span id="cb3-23" class="hljs-ln-code"><a></a>visualize_array_sharding(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1124,7 +1171,7 @@
 <span id="cb4-17" class="hljs-ln-code"><a></a>mean <span class="op">=</span> <span class="fl">0.0</span></span>
 <span id="cb4-18" class="hljs-ln-code"><a></a>variance <span class="op">=</span> <span class="fl">1.0</span></span>
 <span id="cb4-19" class="hljs-ln-code"><a></a>x <span class="op">=</span> jnp.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
-<span id="cb4-20" class="hljs-ln-code"><a></a>x <span class="op">=</span> jax.device_put(sharding, x)</span>
+<span id="cb4-20" class="hljs-ln-code"><a></a>x <span class="op">=</span> jax.device_put(x, sharding)</span>
 <span id="cb4-21" class="hljs-ln-code"><a></a>result <span class="op">=</span> gaussian(x, mean, variance)</span>
 <span id="cb4-22" class="hljs-ln-code"><a></a>visualize_array_sharding(x)</span>
 <span id="cb4-23" class="hljs-ln-code"><a></a>visualize_array_sharding(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1167,7 +1214,7 @@
 <p><br></p>
 <h4 id="example-of-sgd-with-gradient-averaging-1">Example of SGD with Gradient averaging</h4>
 <p>Example from Jean-Eric’s tutorial</p>
-<div class="sourceCode" id="cb6" data-code-line-numbers="3,4,8,9,12-16,21,22"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb6-1" class="hljs-ln-code"><a></a><span class="im">import</span> jax</span>
+<div class="sourceCode" id="cb6" data-code-line-numbers="3,4,8,9,12-16,21,22|8,9|21,22|12-16"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb6-1" class="hljs-ln-code"><a></a><span class="im">import</span> jax</span>
 <span id="cb6-2" class="hljs-ln-code"><a></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
 <span id="cb6-3" class="hljs-ln-code"><a></a><span class="im">from</span> jax.experimental.shard_map <span class="im">import</span> shard_map</span>
 <span id="cb6-4" class="hljs-ln-code"><a></a><span class="im">from</span> jax.sharding <span class="im">import</span> PartitionSpec <span class="im">as</span> P, NamedSharding</span>
@@ -1187,8 +1234,8 @@
 <span id="cb6-18" class="hljs-ln-code"><a></a><span class="kw">def</span> minimzer(loss_fun, x_data, y_data, par_init, method, verbose<span class="op">=</span><span class="va">True</span>):</span>
 <span id="cb6-19" class="hljs-ln-code"><a></a>     ...</span>
 <span id="cb6-20" class="hljs-ln-code"><a></a>  <span class="co"># Example usage</span></span>
-<span id="cb6-21" class="hljs-ln-code"><a></a>xin <span class="op">=</span> jax.device_put(sharding, xin)</span>
-<span id="cb6-22" class="hljs-ln-code"><a></a>yin <span class="op">=</span> jax.device_put(sharding, yin)</span>
+<span id="cb6-21" class="hljs-ln-code"><a></a>xin <span class="op">=</span> jax.device_put(xin, sharding)</span>
+<span id="cb6-22" class="hljs-ln-code"><a></a>yin <span class="op">=</span> jax.device_put(yin, sharding)</span>
 <span id="cb6-23" class="hljs-ln-code"><a></a>par_mini_GD <span class="op">=</span> minimzer(</span>
 <span id="cb6-24" class="hljs-ln-code"><a></a>        loss_fun, </span>
 <span id="cb6-25" class="hljs-ln-code"><a></a>        x_data<span class="op">=</span>xin, </span>
@@ -1196,8 +1243,7 @@
 <span id="cb6-27" class="hljs-ln-code"><a></a>        par_init<span class="op">=</span>jnp.array([<span class="fl">0.</span>, <span class="fl">0.5</span>]), </span>
 <span id="cb6-28" class="hljs-ln-code"><a></a>        method<span class="op">=</span>partial(gradient_descent_step, lr<span class="op">=</span><span class="fl">0.5</span>), </span>
 <span id="cb6-29" class="hljs-ln-code"><a></a>        verbose<span class="op">=</span><span class="va">True</span></span>
-<span id="cb6-30" class="hljs-ln-code"><a></a>    )</span>
-<span id="cb6-31" class="hljs-ln-code"><a></a>W</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-30" class="hljs-ln-code"><a></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="jax-collective-operations-for-parallel-computing" class="slide level2" style="font-size: 21px;">
 <h2>JAX Collective Operations for Parallel Computing</h2>
@@ -1245,9 +1291,6 @@
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</section>
-<section class="slide level2">
-
 </section></section>
 <section>
 <section id="towards-infinite-scalability-with-jax" class="title-slide slide level1 center">
@@ -1339,7 +1382,7 @@
 <div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a>mesh <span class="op">=</span> jax.make_mesh((<span class="dv">8</span>,), (<span class="st">'x'</span>))</span>
 <span id="cb8-2"><a></a>sharding <span class="op">=</span> NamedSharding(mesh , P(<span class="st">'x'</span>))</span>
 <span id="cb8-3"><a></a>x <span class="op">=</span> jnp.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
-<span id="cb8-4"><a></a>x <span class="op">=</span> jax.device_put(sharding, x)</span>
+<span id="cb8-4"><a></a>x <span class="op">=</span> jax.device_put(x, sharding)</span>
 <span id="cb8-5"><a></a>mean <span class="op">=</span> <span class="fl">0.0</span></span>
 <span id="cb8-6"><a></a>variance <span class="op">=</span> <span class="fl">1.0</span></span>
 <span id="cb8-7"><a></a>result <span class="op">=</span> gaussian(x, mean, variance)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1387,7 +1430,7 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="scaling-jax-on-a-single-gpu-vs.-multi-host-setup-1" class="slide level2" style="font-size: 22px;" data-auto-animate="true">
+<section id="scaling-jax-on-a-single-gpu-vs.-multi-host-setup-1" class="slide level2" style="font-size: 22px;" data-auto-animate="true" data-visibility="uncounted">
 <h2 data-id="quarto-animate-title">Scaling JAX on a Single GPU vs.&nbsp;Multi-Host Setup</h2>
 <h4 id="a-jax-process-per-gpu">A JAX process per GPU</h4>
 <p><br></p>
@@ -1410,7 +1453,7 @@
 <span id="cb10-8"><a></a>mean <span class="op">=</span> <span class="fl">0.0</span></span>
 <span id="cb10-9"><a></a>variance <span class="op">=</span> <span class="fl">1.0</span></span>
 <span id="cb10-10"><a></a>x <span class="op">=</span> jnp.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
-<span id="cb10-11"><a></a>x <span class="op">=</span> jax.device_put(sharding, x)</span>
+<span id="cb10-11"><a></a>x <span class="op">=</span> jax.device_put(x, sharding)</span>
 <span id="cb10-12"><a></a>result <span class="op">=</span> gaussian(x, mean, variance)</span>
 <span id="cb10-13"><a></a>visualize_array_sharding(x)</span>
 <span id="cb10-14"><a></a>visualize_array_sharding(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1428,7 +1471,7 @@
 </div>
 </div></div>
 </section>
-<section id="scaling-jax-on-a-single-gpu-vs.-multi-host-setup-2" class="slide level2" style="font-size: 22px;" data-auto-animate="true">
+<section id="scaling-jax-on-a-single-gpu-vs.-multi-host-setup-2" class="slide level2" style="font-size: 22px;" data-auto-animate="true" data-visibility="uncounted">
 <h2 data-id="quarto-animate-title">Scaling JAX on a Single GPU vs.&nbsp;Multi-Host Setup</h2>
 <h4 id="a-jax-process-per-gpu-1">A JAX process per GPU</h4>
 <p><br></p>
@@ -1451,7 +1494,7 @@
 <span id="cb13-8"><a></a>mean <span class="op">=</span> <span class="fl">0.0</span></span>
 <span id="cb13-9"><a></a>variance <span class="op">=</span> <span class="fl">1.0</span></span>
 <span id="cb13-10"><a></a>x <span class="op">=</span> jnp.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
-<span id="cb13-11"><a></a>x <span class="op">=</span> jax.device_put(sharding, x) ❌ <span class="co"># DOES NOT WORK</span></span>
+<span id="cb13-11"><a></a>x <span class="op">=</span> jax.device_put(x, sharding) ❌ <span class="co"># DOES NOT WORK</span></span>
 <span id="cb13-12"><a></a>result <span class="op">=</span> gaussian(x, mean, variance)</span>
 <span id="cb13-13"><a></a>visualize_array_sharding(x)</span>
 <span id="cb13-14"><a></a>visualize_array_sharding(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1469,7 +1512,7 @@
 </div>
 </div></div>
 </section>
-<section id="scaling-jax-on-a-single-gpu-vs.-multi-host-setup-3" class="slide level2" style="font-size: 22px;" data-auto-animate="true">
+<section id="scaling-jax-on-a-single-gpu-vs.-multi-host-setup-3" class="slide level2" style="font-size: 22px;" data-auto-animate="true" data-visibility="uncounted">
 <h2 data-id="quarto-animate-title">Scaling JAX on a Single GPU vs.&nbsp;Multi-Host Setup</h2>
 <h4 id="a-jax-process-per-gpu-2">A JAX process per GPU</h4>
 <p><br></p>
@@ -1489,10 +1532,10 @@
 <span id="cb16-5"><a></a></span>
 <span id="cb16-6"><a></a><span class="kw">def</span> gaussian(x, mean, variance):</span>
 <span id="cb16-7"><a></a>    ...</span>
-<span id="cb16-8"><a></a>mean <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb16-8"><a></a>mean <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb16-9"><a></a>variance <span class="op">=</span> <span class="fl">1.0</span></span>
 <span id="cb16-10"><a></a>x <span class="op">=</span> jnp.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">128</span>)</span>
-<span id="cb16-11"><a></a>x <span class="op">=</span> jax.device_put(sharding, x) ❌ <span class="co"># DOES NOT WORK</span></span>
+<span id="cb16-11"><a></a>x <span class="op">=</span> jax.device_put(x, sharding) ❌ <span class="co"># DOES NOT WORK</span></span>
 <span id="cb16-12"><a></a>result <span class="op">=</span> gaussian(x, mean, variance)</span>
 <span id="cb16-13"><a></a>visualize_array_sharding(x)</span>
 <span id="cb16-14"><a></a>visualize_array_sharding(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1580,7 +1623,7 @@
 </pre>
 </div></div>
 </section>
-<section id="loading-data-in-jax-in-a-multi-host-setup-1" class="slide level2" style="font-size: 22px;" data-auto-animate="true">
+<section id="loading-data-in-jax-in-a-multi-host-setup-1" class="slide level2" style="font-size: 22px;" data-auto-animate="true" data-visibility="uncounted">
 <h2 data-id="quarto-animate-title">Loading Data in JAX in a Multi-Host Setup</h2>
 <h4 id="a-jax-process-per-gpu-4">A JAX process per GPU</h4>
 <p><br></p>
@@ -1609,7 +1652,7 @@
 <span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #843c39">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">     </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7ba52">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #5254a3">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ad494a">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #637939">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #7b4173">     </span><span style="color: #000000; text-decoration-color: #000000; background-color: #b5cf6b">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ce6dbd">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #bd9e39">     </span>
 </pre>
 </section>
-<section id="loading-data-in-jax-in-a-multi-host-setup-2" class="slide level2" style="font-size: 22px;" data-auto-animate="true">
+<section id="loading-data-in-jax-in-a-multi-host-setup-2" class="slide level2" style="font-size: 22px;" data-auto-animate="true" data-visibility="uncounted">
 <h2 data-id="quarto-animate-title">Loading Data in JAX in a Multi-Host Setup</h2>
 <h4 id="a-jax-process-per-gpu-5">A JAX process per GPU</h4>
 <p><br></p>
@@ -1617,7 +1660,7 @@
 <div class="code-with-filename-file">
 <pre><strong>multi-host-jax.py</strong></pre>
 </div>
-<div class="sourceCode" id="cb20" data-filename="multi-host-jax.py" data-code-line-numbers="|7-10|13-14"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb20-1" class="hljs-ln-code"><a></a><span class="im">import</span> jax</span>
+<div class="sourceCode" id="cb20" data-filename="multi-host-jax.py" data-code-line-numbers="|4,5|15-17"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb20-1" class="hljs-ln-code"><a></a><span class="im">import</span> jax</span>
 <span id="cb20-2" class="hljs-ln-code"><a></a>jax.distributed.initialize()</span>
 <span id="cb20-3" class="hljs-ln-code"><a></a></span>
 <span id="cb20-4" class="hljs-ln-code"><a></a>mesh <span class="op">=</span> jax.make_mesh((<span class="dv">16</span>,) , (<span class="st">'x'</span>,))</span>
@@ -1665,7 +1708,7 @@
 </div><div class="column" style="width:50%;">
 <h4 id="halo-exchange-for-boundary-conditions">Halo Exchange for Boundary Conditions</h4>
 <ul>
-<li>Manages boundary conditions for particles leaving the simulation domain.</li>
+<li>Manages boundary conditions or particles leaving the simulation domain.</li>
 </ul>
 </div></div>
 <div>
@@ -1704,17 +1747,30 @@
 </section>
 <section id="performance-benchmarks-of-pfft3d" class="slide level2" style="font-size: 20px;">
 <h2>Performance benchmarks of <code>PFFT3D</code></h2>
+<p><br> <br></p>
+<div class="columns">
+<div class="column" style="width:50%;">
 <h4 id="strong-scaling-1">Strong Scaling</h4>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/jaxDecomp/strong_scaling.png" class="quarto-figure quarto-figure-center" style="width:35.0%"></p>
+<p><img data-src="assets/jaxDecomp/strong_scaling.png" class="quarto-figure quarto-figure-center" style="width:85.0%"></p>
 </figure>
 </div>
+</div><div class="column" style="width:50%;">
 <h4 id="weak-scaling-1">Weak scaling</h4>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/jaxDecomp/weak_scaling.png" class="quarto-figure quarto-figure-center" style="width:35.0%"></p>
+<p><img data-src="assets/jaxDecomp/weak_scaling.png" class="quarto-figure quarto-figure-center" style="width:85.0%"></p>
 </figure>
+</div>
+</div></div>
+<div class="solutionbox">
+<div class="solutionbox-header" style="font-size: 19px;">
+<p>Key takeaway</p>
+</div>
+<div class="solutionbox-body" style="font-size: 17px;">
+<p>In strong scaling, performance decreases when moving from single-node to multi-node setups due to slower inter-node communication. This overhead is balanced by the added compute power of more nodes.</p>
+</div>
 </div>
 </section>
 <section id="halo-exchange-in-distributed-simulations" class="slide level2">
