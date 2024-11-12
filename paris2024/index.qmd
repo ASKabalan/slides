@@ -10,55 +10,49 @@ format:
     transition: slide
     background-transition: slide
     presentation-size: max-scale
+    highlight-style: github
     slide-number: true
     template-partials:
       - css/title-slide.html
 output: revealjs
 
-code-block-border-left: "#31BAE9"
 title-slide-attributes:
   data-background-image: "assets/JZ-JAX.png"
   data-background-size: fill
   data-background-opacity: "0.2"
 
 
-logo1: '<div style="display: flex; justify-content: center; align-items: center; height: 100%; gap: 200px;">
-  ![](assets/Logos/scipol.jpeg){width=18%}
-  ![](assets/Logos/APC.png){width=15%}  
-  ![](assets/Logos/AstroDeep-2.png){width=15%}
-</div>'
-
+logo1 : '
+<div style="display: flex; justify-content: space-around; align-items: center; layout-valign="middle">
+  <img src="assets/Logos/AstroDeep-2.png" style="width: 25%;"/>
+  <img src="assets/Logos/APC.png" style="width: 15%;"/>
+  <img src="assets/Logos/scipol-removebg-preview.png" style="width: 25%;"/>
+</div>
+'
 ---
 
-
-## Goals for This Presentation {style="font-size: 28px;"}
+## Goals for This Presentation 
 
 :::{.solutionbox}
 
-::: {.solutionbox-header style="font-size: 26px;"}
+::::{.solutionbox-body style="font-size: 22px; border-radius: 10px; border: 2px solid #521463;"}
 
-Key Goals
-
-:::
-
-::::{.solutionbox-body style="font-size: 24px;"}
-
-- **Motivation**: Understand the value of full-field inference in cosmology.
+- <span style="color:#521463; font-size: 28px;">**Motivation**</span>: Understand the value of full-field inference in cosmology.
 <br />
 <br />
-- **Background on Parallelism**: Learn how GPUs work and key scaling concepts.
+- <span style="color:#521463; font-size: 28px;">**Background on Parallelism**</span>: Learn how GPUs work and key scaling concepts.
 <br />
 <br />
-- **When to Use (and Avoid) Parallelism**: Discover the benefits and limitations.
+- <span style="color:#521463; font-size: 28px;">**When to Use (and Avoid) Parallelism**</span>: Discover the benefits and limitations.
 <br />
 <br />
-- **Scaling with JAX**: Explore techniques for scaling computations in JAX.
+- <span style="color:#521463; font-size: 28px;">**Scaling with JAX**</span>: Explore techniques for scaling computations in JAX.
 <br />
 <br />
-- **Distributed Tools for Cosmology**: Get an overview of multi-node packages like `jaxDecomp` and `jaxPM`.
+- <span style="color:#521463; font-size: 28px;">**Distributed Tools for Cosmology**</span>: Get an overview of multi-node packages like `jaxDecomp` and `jaxPM`.
 <br />
 <br />
-- **Hands-On Practice**: Apply these concepts in interactive notebooks.
+- <span style="color:#521463; font-size: 28px;">**Hands-On Practice**</span>: Apply these concepts in interactive notebooks.
 
 ::::
 
@@ -66,7 +60,7 @@ Key Goals
 
 ---
 
-## <span style="color: white ;">Motivation: Cosmology in the exascale era </span> {background-image="assets/rubin.jpg"} 
+## <span style="color: white ;">Motivation: Cosmology in the Exascale Era </span> {background-image="assets/rubin.jpg"} 
 
 <br />
 
@@ -113,6 +107,12 @@ Cosmological Models and Pipelines
 
 :::
 
+:::{.notes}
+
+will explain scaling in here
+
+:::
+
 ---
 
 
@@ -148,7 +148,7 @@ Scaling Challenges
 
 ::::
 
-:::
+::::
 
 :::
 
@@ -189,11 +189,12 @@ Scaling Challenges
 :::
 
 
-# Background on Parallel Computing
+# Background on Parallel Computing with GPUs {style="font-size: 35px; align=center;"}
+
 
 ---
 
-## Background: How GPUs Work
+## How GPUs Work
 
 :::{.columns}
 
@@ -268,7 +269,7 @@ Scaling Challenges
 
 ---
 
-## Background: Types of Data parallelism  {style="font-size: 22px;"}
+## Types of Data parallelism  {style="font-size: 22px;"}
 
 :::{.columns}
 
@@ -400,7 +401,7 @@ Scaling Challenges
 
 ---
 
-## When Not to Use Parallelism 
+## When **NOT** to Use Parallelism 
 
 :::{.columns}
 
@@ -478,30 +479,26 @@ Scaling Challenges
 #### **Strong Scaling**
 - Increasing the number of GPUs to reduce runtime for a fixed data size.
 
-<br />
+:::{.solutionbox}
+
+::::{.solutionbox-body style="font-size: 19px;"}
+
+Assesses performance as more GPUs are added to a fixed dataset. <span style="color:#f74853;">*Danger Zone*</span>⚠️: Indicates the distributed code is not scaling efficiently.
+
+::::
+
+:::
 
 ::: {.fragment fragment-index=1}
 
 #### **Weak Scaling**
 - Increasing data size with a fixed number of GPUs.
 
-:::
-
-:::{.fragment fragment-index=2}
-
 :::{.solutionbox}
-
-:::{.solutionbox-header style="font-size: 20px;"}
-
-Evaluating Scaling Performance
-
-:::
 
 ::::{.solutionbox-body style="font-size: 19px;"}
 
-- **Strong Scaling**: Assesses performance as more GPUs are added to a fixed dataset. *Danger Zone*: Indicates the distributed code is not scaling efficiently.
-
-- **Weak Scaling**: Tests how the code handles increasing data sizes with a fixed number of GPUs. *Danger Zone*: Suggests underlying scaling issues with the code itself.
+Tests how the code handles increasing data sizes with a fixed number of GPUs. <span style="color:#f74853;">*Danger Zone*</span>⚠️: Suggests underlying scaling issues with the code itself.
 
 ::::
 
@@ -513,11 +510,11 @@ Evaluating Scaling Performance
 
 ::: {.column width="50%"}
 
-![Strong Scaling](assets/HPC/STRONG_SCALING.png){fig-align="center" width="70%"}
+![](assets/HPC/STRONG_SCALING.png){fig-align="center" width="70%"}
 
 :::{.fragment fragment-index=1}
 
-![Weak Scaling](assets/HPC/WEAK_SCALING.png){fig-align="center" width="70%"}
+![](assets/HPC/WEAK_SCALING.png){fig-align="center" width="70%"}
 
 :::
 
@@ -624,7 +621,7 @@ Credit: Laurent Leger from IDRIS
 
 :::
 
-# How to Scale in JAX {style="font-size: 40px; align=center;"}
+# How to Scale in JAX {style="font-size: 35px; align=center;"}
 
 ---
 
@@ -727,130 +724,19 @@ For questions
 
 ---
 
-## Expressing Parallelism in JAX (Simple parallelism) {auto-animate="true"}
+## Expressing Parallelism in JAX (Simple parallelism) {transition="slide-in none-out"}
 
 #### Example of computing a gaussian from data Points
 
 ```Python
 import jax
 import jax.numpy as jnp
-
-
-def gaussian(x, mean, variance):
-      """Compute Gaussian distribution for given x, mean, and variance."""
-      coefficient = 1.0 / jnp.sqrt(2 * jnp.pi * variance)
-      exponent = -((x - mean) ** 2) / (2 * variance)
-      return coefficient * jnp.exp(exponent)
-
-mean = 0.0
-variance = 1.0
-x = jnp.linspace(-5, 5, 128)
-result = gaussian(x, mean, variance)
-
+from jax.debug import visualize_array_sharding
 ```
-
-## Expressing Parallelism in JAX (Simple parallelism) {auto-animate="true" visibility="uncounted"}
-
-#### Example of computing a gaussian from data Points
-
+<br />
 
 ```Python
-import jax
-import jax.numpy as jnp
-from jax.debug import visualize_array_sharding
-
 def gaussian(x, mean, variance):
-      """Compute Gaussian distribution for given x, mean, and variance."""
-      coefficient = 1.0 / jnp.sqrt(2 * jnp.pi * variance)
-      exponent = -((x - mean) ** 2) / (2 * variance)
-      return coefficient * jnp.exp(exponent)
-
-mean = 0.0
-variance = 1.0
-x = jnp.linspace(-5, 5, 128)
-result = gaussian(x, mean, variance)
-visualize_array_sharding(x)
-visualize_array_sharding(result)
-
-```
-
-<br />
-
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 0  </span>
-<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
-</pre>
-
-<br />
-
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 0  </span>
-<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
-</pre>
-
-
-## Expressing Parallelism in JAX (Simple parallelism) {auto-animate="true" visibility="uncounted"}
-
-#### Example of computing a gaussian from data Points
-
-
-```Python
-import jax
-import jax.numpy as jnp
-from jax.sharding import PartitionSpec as P, NamedSharding
-from jax.debug import visualize_array_sharding
-
-assert jax.device_count() == 8
-
-mesh = jax.make_mesh((8,), ('x'))
-sharding = NamedSharding(mesh , P('x'))
-
-def gaussian(x, mean, variance):
-      """Compute Gaussian distribution for given x, mean, and variance."""
-      coefficient = 1.0 / jnp.sqrt(2 * jnp.pi * variance)
-      exponent = -((x - mean) ** 2) / (2 * variance)
-      return coefficient * jnp.exp(exponent)
-
-mean = 0.0
-variance = 1.0
-x = jnp.linspace(-5, 5, 128)
-x = jax.device_put(x, sharding)
-result = gaussian(x, mean, variance)
-visualize_array_sharding(x)
-visualize_array_sharding(result)
-
-```
-
-<br />
-
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 0  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">  GPU 1  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">  GPU 2  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">  GPU 3  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7cb94">  GPU 4  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">  GPU 5  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">  GPU 6  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">  GPU 7  </span>
-<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">         </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7cb94">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">         </span>
-</pre>
-
-<br />
-
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 0  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">  GPU 1  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">  GPU 2  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">  GPU 3  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7cb94">  GPU 4  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">  GPU 5  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">  GPU 6  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">  GPU 7  </span>
-<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">         </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7cb94">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">         </span>
-</pre>
-
----
-
-## Expressing Parallelism in JAX (Simple parallelism) {auto-animate="true" visibility="uncounted"}
-
-#### Example of computing a gaussian from data Points
-
-
-```{.python code-line-numbers="3,8,9,20"}
-import jax
-import jax.numpy as jnp
-from jax.sharding import PartitionSpec as P, NamedSharding
-from jax.debug import visualize_array_sharding
-
-assert jax.device_count() == 8
-
-mesh = jax.make_mesh((8,), ('x'))
-sharding = NamedSharding(mesh , P('x'))
-
-def gaussian(x, mean, variance):
-  """Compute Gaussian distribution for given x, mean, and variance."""
   coefficient = 1.0 / jnp.sqrt(2 * jnp.pi * variance)
   exponent = -((x - mean) ** 2) / (2 * variance)
   return coefficient * jnp.exp(exponent)
@@ -858,36 +744,79 @@ def gaussian(x, mean, variance):
 mean = 0.0
 variance = 1.0
 x = jnp.linspace(-5, 5, 128)
+result = gaussian(x, mean, variance)
+visualize_array_sharding(x)
+visualize_array_sharding(result)
+```
+
+:::{.fragment fragment-index=1}
+
+<br />
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 0  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+</pre>
+
+<br />
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 0  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span>
+</pre>
+
+:::
+
+
+## Expressing Parallelism in JAX (Simple parallelism) {visibility="uncounted" transition="none-in slide-out"}
+
+#### Example of computing a gaussian from data Points
+
+```{.Python code-line-numbers="|3"}
+assert jax.device_count() == 8
+
+from jax.sharding import PartitionSpec as P, NamedSharding
+```
+<br />
+
+```{.Python code-line-numbers="|6,7|12|6,7,12"}
+def gaussian(x, mean, variance):
+  coefficient = 1.0 / jnp.sqrt(2 * jnp.pi * variance)
+  exponent = -((x - mean) ** 2) / (2 * variance)
+  return coefficient * jnp.exp(exponent)
+
+mesh = jax.make_mesh((8,), ('x'))
+sharding = NamedSharding(mesh , P('x'))
+
+mean = 0.0
+variance = 1.0
+x = jnp.linspace(-5, 5, 128)
 x = jax.device_put(x, sharding)
 result = gaussian(x, mean, variance)
 visualize_array_sharding(x)
 visualize_array_sharding(result)
-
 ```
 
-<br />
-
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 0  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">  GPU 1  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">  GPU 2  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">  GPU 3  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7cb94">  GPU 4  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">  GPU 5  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">  GPU 6  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">  GPU 7  </span>
-<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">         </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7cb94">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">         </span>
-</pre>
 
 <br />
 
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 0  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">  GPU 1  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">  GPU 2  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">  GPU 3  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7cb94">  GPU 4  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">  GPU 5  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">  GPU 6  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">  GPU 7  </span>
 <span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">         </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7cb94">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">         </span>
 </pre>
+
+<br />
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  GPU 0  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">  GPU 1  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">  GPU 2  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">  GPU 3  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7cb94">  GPU 4  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">  GPU 5  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">  GPU 6  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">  GPU 7  </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">         </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7cb94">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">         </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">         </span>
+</pre>
+
+
+---
 
 ## Expressing Parallelism in JAX (Using collectives) {auto-animate="true"}
 
-<br />
-
-#### Example of SGD with Gradient averaging
-
-Example from Jean-Eric's tutorial
+#### Example of SGD with Gradient averaging (from Jean-Eric's tutorial)
 
 ```Python
-import jax
-import jax.numpy as jnp
+
 
 @jax.jit  
 def gradient_descent_step(p, xi, yi, lr=0.1):
@@ -912,25 +841,13 @@ par_mini_GD = minimzer(
 
 ## Expressing Parallelism in JAX (Using collectives) {auto-animate="true" visibility="uncounted"}
 
-<br />
+#### Example of SGD with Gradient averaging (from Jean-Eric's tutorial)
 
-#### Example of SGD with Gradient averaging
-
-Example from Jean-Eric's tutorial
-
-```{.python code-line-numbers="3,4,8,9,12-16,21,22|8,9|21,22|12-16"}
-import jax
-import jax.numpy as jnp
+```{.python code-line-numbers="|1,4|6|7|13-14|3-8"}
 from jax.experimental.shard_map import shard_map
-from jax.sharding import PartitionSpec as P, NamedSharding
-
-assert jax.device_count() == 8
-
-mesh = jax.make_mesh((8,), ('x'))
-sharding = NamedSharding(mesh , P('x'))
 
 @jax.jit 
-@partial(shard_map, mesh = mesh , in_specs=P('x'), out_spec=P('x'))
+@partial(shard_map, mesh=mesh , in_specs=P('x'), out_spec=P('x'))
 def gradient_descent_step(p, xi, yi, lr=0.1):
       per_device_gradients = jax.grad(loss_fun)(p, xi, yi)
       avg_gradients = jax.lax.pmean(per_device_gradients, axis_name='x')
@@ -958,24 +875,20 @@ par_mini_GD = minimzer(
 
 ### Overview of JAX Collectives in `jax.lax.p*` Functions
 
-- **`lax.pmean`**  
-  - Computes the mean of arrays across devices. Useful for averaging gradients in distributed training.
-  
-- **`lax.ppermute`**  
-  - Permutes data across devices in a specified order. Very usefull in cosmological simulations.
+<br />
 
-- **`lax.all_to_all`**  
-  - Exchanges data between devices in a controlled manner. Useful for custom data exchange patterns in distributed computing.
+:::{.solutionbox}
 
-- **`lax.pmax` / `lax.pmin`**  
-  - Computes the element-wise maximum/minimum across devices. Often used in situations where you want to find the maximum or minimum of a distributed dataset.
+::: {.solutionbox-body}
 
-- **`lax.psum`**  
-  - Sums arrays across devices. Commonly used for aggregating gradients or other values in distributed settings.
-
-- **`lax.pall`**  
-  - Checks if all values across devices are `True`. Often used for collective boolean checks across distributed data.
-
+| **Function**           | **Description**                                                                                                                                              |
+|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **`lax.pmean`**        | Computes the mean of arrays across devices. Useful for averaging gradients in distributed training.                                                         |
+| **`lax.ppermute`**     | Permutes data across devices in a specified order. Very useful in cosmological simulations.                                                                 |
+| **`lax.all_to_all`**   | Exchanges data between devices in a controlled manner. Useful for custom data exchange patterns in distributed computing.                                   |
+| **`lax.pmax` / `lax.pmin`** | Computes the element-wise maximum/minimum across devices. Often used in situations where you want to find the maximum or minimum of a distributed dataset. |
+| **`lax.psum`**         | Sums arrays across devices. Commonly used for aggregating gradients or other values in distributed settings.                                                |
+| **`lax.pall`**         | Checks if all values across devices are `True`. Often used for collective boolean checks across distributed data.                                           |
 :::{.notes}
 
 - **Gradient Aggregation**: In distributed training, `pmean` is commonly used to average gradients from multiple devices, ensuring each device updates with the same gradient.
@@ -984,7 +897,11 @@ par_mini_GD = minimzer(
 
 :::
 
-# Towards Infinite Scalability with JAX 
+:::
+
+:::
+
+# Towards Infinite Scalability with JAX {style="font-size: 40px; align=center;"}
 
 ---
 
@@ -1459,53 +1376,76 @@ if jax.process_index() == 0:
 <span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #843c39">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">     </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7ba52">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #5254a3">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ad494a">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #637939">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #7b4173">     </span><span style="color: #000000; text-decoration-color: #000000; background-color: #b5cf6b">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ce6dbd">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #bd9e39">     </span>
 </pre>
 
-# Multi-node packages in JAX for Cosmology
+# Multi-node packages in JAX for Cosmology {style="font-size: 40px; align=center;"}
 
 ---
 
-## jaxDecomp : Components for Distributed Particle Mesh Simulations  {style="font-size: 19px;"}
-[![](https://img.shields.io/badge/GitHub-jaxdecomp-blue?logo=github)](https://github.com/DifferentiableUniverseInitiative/jaxDecomp)
+## jaxDecomp : Components for Distributed Particle Mesh Simulations {style="font-size: 22px;"} 
 
 :::{.columns}
 
 ::: {.column width="50%"}
 
-#### Distributed 3D FFT for Force Computation
+[![](https://img.shields.io/badge/GitHub-jaxdecomp-blue?logo=github)](https://github.com/DifferentiableUniverseInitiative/jaxDecomp)
 
-- Essential for force calculations in large-scale simulations.
+### Key Features
+
+:::{.fragment fragment-index=1}
+
+
+- **Distributed 3D FFT**
+  - Essential for force calculations in large-scale simulations.
+
+:::
+
+:::{.fragment fragment-index=2}
+
+- **Halo Exchange** for Boundary Conditions 
+  - Manages boundary conditions or particles leaving the simulation domain.
+
+:::
+
+:::{.fragment fragment-index=3}
+
+- **Fully Differentiable**
+  - Can be used with differentiable simulations.
+
+:::
+
+:::{.fragment fragment-index=4}
+
+- **Multi-Node Supports**  
+  - Works seamlessly across multiple nodes.
+
+:::
+
+:::{.fragment fragment-index=5}
+
+- Supports Different Sharding strategies
+
+:::
+
+:::{.fragment fragment-index=6}
+
+- Open-source and available on **PyPI** 
+
+:::
 
 :::
 
 ::: {.column width="50%"}
 
-#### Halo Exchange for Boundary Conditions 
+:::{.fragment fragment-index=1}
 
-- Manages boundary conditions or particles leaving the simulation domain.
-
-:::
+![](assets/jaxDecomp/fft.svg){fig-align="center" width="80%"}
 
 :::
 
-::: {layout="[[1 , 1]]"}
-
-![](assets/jaxDecomp/fft.svg){fig-align="center" width="90%"}
+:::{.fragment fragment-index=2}
 
 ![](assets/jaxDecomp/halo-exchange.svg){fig-align="center" width="70%"}
-:::
-
-:::{.solutionbox}
-
-:::{.solutionbox-header style="font-size: 19px;"}
-
-Key Features of `jaxDecomp`
 
 :::
-
-:::{.solutionbox-body style="font-size: 17px;"}
-
-- **Differentiable**: Fully compatible with JAX’s automatic differentiation.
-- **Multi-Node Support**: Works seamlessly across multiple nodes.
-- Open-source and available on PyPI.
 
 :::
 
@@ -1524,7 +1464,7 @@ Key Features of `jaxDecomp`
 
 #### Strong Scaling
 
-![](assets/jaxDecomp/strong_scaling.png){fig-align="center" width="85%"}
+![](assets/jaxDecomp/strong_scaling.png){fig-align="center" width="95%"}
 
 :::
 
@@ -1533,23 +1473,7 @@ Key Features of `jaxDecomp`
 #### Weak scaling
 
 
-![](assets/jaxDecomp/weak_scaling.png){fig-align="center" width="85%"}
-
-:::
-
-:::
-
-:::{.solutionbox}
-
-:::{.solutionbox-header style="font-size: 19px;"}
-
-Key takeaway
-
-:::
-
-:::{.solutionbox-body style="font-size: 17px;"}
-
-In strong scaling, performance decreases when moving from single-node to multi-node setups due to slower inter-node communication. This overhead is balanced by the added compute power of more nodes.
+![](assets/jaxDecomp/weak_scaling.png){fig-align="center" width="95%"}
 
 :::
 
@@ -1628,10 +1552,17 @@ In strong scaling, performance decreases when moving from single-node to multi-n
 
 ## <span style="color: white ;">JaxPM 2.0 : Distributed Particle Mesh Simulation</span> {background-image="assets/Fields/PM_1024.gif"}
 <br />
-<br />
-<br />
-<br />
-<br />
+
+<div style="text-align: Right; color: white; font-size: 13px">
+  Box size: 1G Mpc/h<br>
+  Resolution: $1024^3$<br>
+  Number of particles: *1 billion*<br>
+  Number of snapshots: 10<br>
+  Halo size: 128<br>
+  Number of GPU used : 32<br>
+  time taken : 45s<br>
+</div>
+
 <br />
 <br />
 <br />
@@ -1639,6 +1570,8 @@ In strong scaling, performance decreases when moving from single-node to multi-n
 <br />
 <br />
 
+
+:::{.fragment fragment-index=1 }
 
 :::{.solutionbox}
 
@@ -1654,6 +1587,8 @@ Key Features of `JaxPM`
 - **High Resolution**: Capable of handling billions of particles for accurate simulations.
 - **Differentiable**: Compatible with JAX’s automatic differentiation (HMC, NUTS compatible).
 - **Open Source**: [![GitHub Badge](https://img.shields.io/badge/GitHub-JaxPM-blue?logo=github)](https://github.com/DifferentiableUniverseInitiative/JaxPM)
+
+:::
 
 :::
 
@@ -1675,7 +1610,7 @@ Key Features of `JaxPM`
 
 :::{.solutionbox-body style="font-size: 19px;"}
 
-- The future is bright for JAX in cosmology!!
+- The future is bright for JAX in cosmology 🎉🎉!!
 - JAX has transformed the landscape for scientific computing, **enabling large-scale, distributed workflows** in a Pythonic environment.
 - Recent advancements (JAX 0.4.3x+) make it straightforward to scale computations across multiple GPUs and nodes.
 
