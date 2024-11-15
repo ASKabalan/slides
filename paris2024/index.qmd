@@ -37,154 +37,44 @@ logo1 : '
 
 ::::{.solutionbox-body style="font-size: 22px; border-radius: 10px; border: 2px solid #521463;"}
 
-- <span style="color:#521463; font-size: 28px;">**Motivation**</span>: Understand the value of full-field inference in cosmology.
+- <span style="color:#521463; font-size: 28px;">**Understand the Basics of Parallelism**</span>: Learn how parallelism works and its importance for high-performance computing.
 <br />
 <br />
-- <span style="color:#521463; font-size: 28px;">**Background on Parallelism**</span>: Learn how GPUs work and key scaling concepts.
+- <span style="color:#521463; font-size: 28px;">**Know When (and When Not) to Parallelize**</span>: Discover when it is beneficial to parallelize your code and when it's better to avoid it.
 <br />
 <br />
 - <span style="color:#521463; font-size: 28px;">**When to Use (and Avoid) Parallelism**</span>: Discover the benefits and limitations.
 <br />
 <br />
-- <span style="color:#521463; font-size: 28px;">**Scaling with JAX**</span>: Explore techniques for scaling computations in JAX.
+- <span style="color:#521463; font-size: 28px;">**Scale Code Using JAX**</span>: Explore techniques to scale your computations using JAX for large-scale tasks.
 <br />
 <br />
-- <span style="color:#521463; font-size: 28px;">**Distributed Tools for Cosmology**</span>: Get an overview of multi-node packages like `jaxDecomp` and `jaxPM`.
-<br />
-<br />
-- <span style="color:#521463; font-size: 28px;">**Hands-On Practice**</span>: Apply these concepts in interactive notebooks.
-
+- <span style="color:#521463; font-size: 28px;">**Hands-On Tutorials**</span>: Apply the concepts discussed with interactive code examples and tutorials.
 ::::
-
-:::
-
----
-
-## <span style="color: white ;">Motivation: Cosmology in the Exascale Era </span> {background-image="assets/rubin.jpg"} 
-
-<br />
-
-:::{.columns}
-
-::: {.column width="60%"}
-
-:::{.solutionbox}
-
-::: {.solutionbox-header style="font-size: 22px;"}
-
-Upcoming Surveys and Massive Data in Cosmology
-
-:::
-
-::::{.solutionbox-body style="font-size: 21px;"}
-
-- **Massive Data Volume**: LSST will generate **20 TB of raw data per night** over **10 years**, totaling **60 PB**.
-- **Catalog Size**: The processed LSST catalog database will reach **15 PB**.
-
-::::
-
-
-:::
-
-
-:::{.solutionbox}
-
-::: {.solutionbox-header style="font-size: 22px;"}
-
-Cosmological Models and Pipelines
-:::
-
-::::{.solutionbox-body style="font-size: 21px;"}
- - Cosmological simulations and forward modeling can easily reach multiple terabytes in size.
- - We need to scale up cosmological pipelines to handle these data volumes effectively.
-
-
-::::
-
-:::
-
-:::
 
 :::
 
 :::{.notes}
 
-will explain scaling in here
+- **Understand the Basics of Parallelism:**
+  - "First, we’ll start with the **fundamentals of parallelism** — understanding how parallel computing works."
+  - "We’ll look at different **types of parallelism**, such as task parallelism and data parallelism, and see how they are applied in computational problems."
+  - "It’s important to get a solid understanding of these basic concepts before we dive into how to scale them effectively in cosmology."
 
-:::
+- **Know When (and When Not) to Parallelize:**
+  - "Next, we’ll cover a critical aspect: knowing **when to use parallelism** and, just as importantly, **when not to use it**."
+  - "While parallelism can offer huge speedups, not all problems are suitable for parallelization. In fact, sometimes parallelism can make things slower due to overhead. I’ll show you how to identify the right cases for parallelism and how to avoid it when it’s not the best approach."
 
----
+- **Scale Code Using JAX:**
+  - "Then, we’ll explore how to **scale your code using JAX**."
+  - "JAX makes it easy to scale computations by automatically taking advantage of GPUs. We’ll also look at how your code might change depending on the parallelism strategy you choose. JAX allows for flexible parallelization strategies, so you can tailor it to your specific needs."
 
+- **Hands-On Tutorials:**
+  - "Finally, we’ll wrap up with **hands-on tutorials**. We’ll work through interactive code examples so you can see firsthand how these concepts are implemented in practice."
+  - "These examples will give you the opportunity to apply what we’ve discussed and see the power of parallel computing in action."
 
-## Forward Modeling in Cosmology {style="font-size: 20px;"}
-
-:::{.columns}
-
-::: {.column width="50%"}
-
-#### Weak Lensing Model
-
-- **Prediction**:
-    - A simulator generates observations from initial conditions and cosmological parameters.
-
-- **Inference**:
-    - The simulated results are compared with actual observations.
-    - Optimal initial conditions and parameters are inferred to closely match the observed data.
-
-
-:::{.solutionbox}
-
-::: {.solutionbox-header style="font-size: 20px;"}
-
-Scaling Challenges
-
-:::
-
-::::{.solutionbox-body style="font-size: 19px;"}
-
-- **Resolution Today**: Simulations currently use around **250,000 to 130 million particles**.
-- **Ideal Resolution**: Billion-particle simulations are necessary for high accuracy.
-- **Software**: Tools like **JaxPM** or **PMWD** support up to ~130 million particles on a single GPU.
-
-::::
-
-::::
-
-:::
-
-::: {.column width="50%"}
-
-:::{.r-stack}
-
-::: {.fragment fragment-index=1 .fade-out}
-
-![](assets/FFI/Forward-Model.svg){fig-align="center" width="75%"}
-
-:::
-
-::: {.fragment fragment-index=1 .fade-in-then-out}
-
-![](assets/FFI/Forward-Model-FinalField.svg){fig-align="center" width="75%"}
-
-:::
-
-::: {.fragment fragment-index=2 .fade-in-then-out}
-
-![](assets/FFI/Forward-Model-Constraints.svg){fig-align="center" width="75%"}
-
-:::
-
-:::
-
-:::
-
-:::
-
-
-:::{.notes}
-
-- **Simulations in Cosmology**: These simulations model the universe's evolution to reproduce observed structures, helping infer parameters like dark matter density, dark energy, and other cosmological constants.
-- **Resolution Requirement**: Simulations with more particles provide finer details, making convergence maps closer to observed data. Current particle counts (130 million) are still limited compared to the **billion-particle simulations** required for accurate cosmological inference.
+- **Transition:**
+  - "Now that we know what we aim to cover, let’s dive into the basics of parallelism and lay the groundwork for the rest of the talk."
 
 :::
 
@@ -205,7 +95,6 @@ Scaling Challenges
 #### **Massive Thread Count**
 - GPUs are designed with thousands of threads.
 - Each core can handle many data elements simultaneously.
-- The main bottleneck is memory throughput.
 
 
 ::: {.fragment fragment-index=1}
@@ -213,12 +102,13 @@ Scaling Challenges
 <br />
 
 
-#### **Optimizing Throughput with Multiple GPUs**:
+#### **The main bottleneck is memory throughput**
 - Computation is often only a fraction of total processing time.
 
 :::
 
 ::: {.fragment fragment-index=3}
+#### **Optimizing Throughput with Multiple GPUs**:
 
 - Using multiple GPUs increases overall data throughput, enhancing performance and reducing idle time.
 
@@ -258,13 +148,25 @@ Scaling Challenges
 
 ::: {.notes}
 
+- **Introduction to GPUs:**
+  - "GPUs are designed for high-throughput, parallel computation. Unlike CPUs, which are optimized for single-threaded tasks, **GPUs have thousands of threads**, allowing them to process large datasets in parallel. This makes them ideal for tasks like simulations and large-scale data processing."
 
-- **Massive Thread Count**: GPUs have thousands of threads, allowing them to process large datasets in parallel. Each core can handle multiple data elements, making them ideal for parallel computing tasks.
-  
-- **Memory Throughput Bottleneck**: The true bottleneck in GPU performance is often memory throughput. Even with many threads, GPU efficiency can drop if data isn't supplied quickly enough.
+- **Massive Thread Count:**
+  - "Each **core** in a GPU  can do certain steps of the compuation."
 
-- **Optimizing Throughput with Multiple GPUs**: In many cases, computation is only a small portion of the total processing time. By adding more GPUs, we increase possible data throughput, reduce idle time, and ultimately improve performance for large workloads.
+**NEXT**
 
+- **Memory Throughput Bottleneck:**
+  - "However, even with so many threads, the true **bottleneck** in GPU performance is often **memory throughput**. If the GPU doesn't receive data quickly enough, even the large number of cores can’t operate at full capacity. In other words, GPUs can process a lot of data in parallel, but only if they’re fed enough data to keep all those cores busy."
+  - "As you can see in the illustration, when the GPU becomes **saturated**, it can no longer process new data until the current batch is fully processed. This results in idle time, where the GPU isn’t doing any useful computation, even though it’s fully capable of processing more data."
+
+
+**NEXT**
+
+- **Optimizing Throughput with Multiple GPUs:**
+  - "This leads us to the concept of **optimizing throughput with multiple GPUs**."
+  - "In many workloads, especially in cosmology and other large-scale computations, the **computation** is only a small portion of the total processing time. A significant amount of time is spent waiting for data, transferring it, or processing smaller chunks of data that can’t be fully parallelized."
+  - "By adding more GPUs, we can **increase the total data throughput**, **reduce idle time**, and ultimately **improve overall performance**. With multiple GPUs working in parallel, the data is distributed more effectively, reducing bottlenecks and allowing us to handle larger and more complex datasets."
 :::
 
 ---
@@ -328,35 +230,33 @@ Scaling Challenges
 
 ::: {.notes}
 
-- **Data Parallelism (Simple Parallelism)**: 
-    - In simple data parallelism, each device processes a distinct subset of the data independently, without needing to interact with other devices during computation. This approach works best when:
-      - The dataset has to be evenly split across devices.
-      - Each subset of data can be processed in isolation, which reduces the complexity and overhead of communication.
-      - Example in Cosmology: Simple data parallelism might be used in parameter estimation tasks where each GPU computes likelihoods for different portions of the dataset independently.
+In the computer science world, there are many types of parallelism, they untimately fall into two categories: **data parallelism** and **task parallelism**.
 
-- **Data Parallelism with Collective Communication**:
-    - In many applications, devices working in parallel need to share intermediate results to ensure consistency and accuracy. For example, in distributed neural network training, devices need to periodically share gradient information to keep model weights in sync.
-      - This form of parallelism is more complex than simple data parallelism, as it involves synchronizing data across devices at intervals, typically through collective communication operations.
-      - **Challenges**:
-         - Collective operations like gradient averaging can become bottlenecks as they require frequent communication between devices, which may impact scaling efficiency.
-         - In cosmology, gradient sharing can be particularly useful in distributed optimization routines where multiple GPUs are used to train machine learning models on large cosmological datasets.
+- **Data Parallelism (Simple Parallelism):**
+  - "In **data parallelism**, each device processes a different subset of the data independently. This approach is ideal when:
+    - The data can be evenly split across devices.
+    - Each subset can be processed without interaction with other devices."
+  - "In cosmology, simple data parallelism could be used, for example, in **parameter estimation tasks** where each GPU computes the likelihood for different portions of the dataset independently."
 
-- **Task Parallelism**:
-    - In task parallelism, each device handles a unique segment of the overall computation pipeline. This approach is ideal when the computation itself is modular and can be split into discrete tasks that contribute independently to the final result.
-      - Unlike data parallelism, task parallelism is often sequential in nature, where each device performs a specific part of a larger computational workflow.
-      - Example in Cosmology: Task parallelism can be applied in cosmological simulations where certain calculations are interdependent. For example:
-        - One device might handle the gravitational calculations, while another processes hydrodynamic interactions, with each task feeding results to the next stage.
-      - **Complexity**:
-         - Task parallelism generally requires more significant changes to the code structure and may involve custom communication protocols between tasks.
-         - This approach is commonly used in model pipelines that require heavy sequential processing, such as large language model (LLM) training (e.g., Gemini or ChatGPT) or in cosmology, where different physical components need distinct treatments in simulations.
+**NEXT**
 
-- **Summary**: 
-    - Data parallelism is typically easier to implement but may be limited by the need for collective communication.
-    - Task parallelism is more flexible in terms of workload distribution but often requires substantial restructuring of code and specific coordination between tasks, especially in long, sequential workflows.
+- **Data Parallelism with Collective Communication:**
+  - "In **data parallelism with collective communication**, devices process data in parallel but need to share intermediate results periodically."
+  - "For example, in **distributed training** of machine learning models, GPUs periodically exchange **gradient information** to keep models in sync."
+  - "This approach is more complex because it requires synchronization between devices, adding **communication overhead**."
+  - "Challenges arise in the form of bottlenecks during the communication phase, which can limit scalability and affect overall efficiency."
+
+**NEXT**
+
+- **Task Parallelism:**
+  - "In **task parallelism**, each device handles a unique part of the computation."
+  - "This is useful when the computation can be split into discrete tasks that contribute independently to the final result.
+  - "Unlike data parallelism, task parallelism typically requires more complex coordination and may involve **custom communication protocols** between tasks."
+  - This is used extensively in **large language models** 
 
 :::
 
-## Why Should You Use Parallelism?
+## When Should You Use Parallelism?
 
 <br />
 
@@ -389,13 +289,28 @@ Scaling Challenges
 
 :::{.notes}
 
-- **Data Parallelism**: Ideal if your pipeline can be split into independent data chunks. JAX makes it easy to implement with `pmap` for distributing computations.
-  
-- **Collectives in Data Parallelism**: Some tasks, like gradient averaging, require simple collective communication between devices. JAX provides tools to express these collectives efficiently.
+- **Data Parallelism (Simple)**: 
+  - "If your pipeline follows a simple data parallelism structure, where the dataset can be split across devices and each device processes a portion independently, parallelism is a good idea."
+  - This is usually a no-brainer, as it’s a straightforward way to speed up computations with minimal overhead.
 
-- **Non-Batchable Input**: In cases where data cannot be split into batches (e.g., field-based data in simulations), you may need to implement more complex collectives to coordinate data across devices.
+**NEXT**
 
-- **Task Parallelism**: Used in sequential pipelines where each device performs a unique task. This approach is more complex and requires substantial restructuring, making it common in large language model training.
+- **Data Parallelism with Simple Collectives**: ✅
+  - "When you need to share intermediate results (like **gradient averaging**) between devices, parallelism is still a great fit."
+  - I most cases, this is a good idea as it allows devices to work independently but still communicate when needed.
+
+**NEXT**
+
+- **Non-splittable Input (e.g., N-body Simulation Fields)**: ⚠️
+  - "When the input data can’t be easily divided into independent chunks, parallelism can become challenging. For instance, in an **N-body simulation**, where the simulation field might be a continuous dataset that doesn't naturally split into batches, you'll need a more advanced approach."
+  - "In such cases, we have to use data parallelism with more complex collectives, which can introduce overhead and reduce efficiency."
+
+**NEXT**
+
+- **Task Parallelism**: ⚠️
+  - "Task parallelism is often used when a computational pipeline is long and sequential, where each task performed by a device is distinct."
+  - "This is common in **large language model (LLM)** training, like models such as **Gemini** or **ChatGPT**, and models that have billions of parameters."
+  - "Task parallelism often requires **significant restructuring** of your pipeline and may involve custom communication protocols between tasks. It’s more complex than data parallelism, and it’s not always the best option unless your task demands it."
 
 :::
 
@@ -416,6 +331,11 @@ Scaling Challenges
 - **Need for Complex Collectives**  
     - Additional GPUs can add complexity and may not yield enough performance improvement.
 
+
+:::
+
+::: {.fragment fragment-index=2}
+
 - **Task Parallel Model**  
     - Changing the pipeline or adapting to new devices often requires significant rewrites.
 
@@ -431,7 +351,7 @@ Scaling Challenges
 
 :::
 
-::: {.fragment fragment-index=2}
+::: {.fragment fragment-index=3}
 
 :::{.solutionbox}
 
@@ -456,11 +376,28 @@ Scaling Challenges
 
 :::{.notes}
 
-- **Single-GPU Sufficiency**: If all data fits on one GPU, adding more GPUs may introduce unnecessary overhead, reducing overall performance.
-  
-- **Complex Collectives**: Complex collective communication (like frequent data sharing) can slow down computations. In cases where collectives are challenging, stick to a single GPU if possible.
+- **Data Fits on a Single GPU**: ❌
+  - "If your data fits comfortably on a single GPU and the computation can be done efficiently without needing to distribute the workload, then adding more GPUs won’t offer much benefit."
+  - "In such cases, you’re better off sticking with a single GPU, as parallelism would just introduce unnecessary complexity."
 
-- **Task Parallelism Complexity**: Task parallel models are generally harder to adjust. Each device performs a unique task, making it more challenging to scale or modify the pipeline.
+**NEXT**
+
+- **Need for Complex Collectives**: ❌
+  - "When the task requires **complex collective operations**, adding more GPUs can actually increase the **overhead** and **communication complexity**."
+  - "For example, if your workload demands frequent data synchronization between GPUs (such as gradient averaging), the added communication costs may outweigh the benefits of parallelism."
+
+**NEXT**
+
+- **Task Parallel Model**: ❌
+  - "When your computational pipeline is structured for **task parallelism**, it may require substantial changes to accommodate multiple GPUs."
+  - "Adapting the pipeline to new devices can be a major task, often requiring **significant rewrites** of the codebase to handle the distributed nature of parallelism."
+
+**NEXT**
+
+- **Consider Scaling to Multiple GPUs If**:
+  - "You have a single-GPU prototype that’s working, but it requires a **significant runtime reduction**."
+  - "If reducing execution time has a **huge impact** on your results, scaling to multiple GPUs can provide the needed speedup."
+  - "Or, if you have **non-splittable input** (like fields in a cosmological simulation) that are critical to your results, adding GPUs could be essential for improving performance while handling larger, more complex datasets."
 
 :::
 
@@ -532,9 +469,17 @@ Tests how the code handles increasing data sizes with a fixed number of GPUs. <s
 
 :::{.notes}
 
-- **Strong Scaling**: Assesses performance as more GPUs are added to a fixed dataset. *Danger Zone*: Indicates the distributed code is not scaling efficiently.
+- **Strong Scaling**:
+  - "Strong scaling tests how your code performs when you add more GPUs to a fixed dataset, aiming to reduce runtime. If adding more GPUs doesn't significantly decrease the runtime, it’s a sign that your code is not scaling efficiently."
+  - "This is a critical metric for evaluating how well your code can handle the increasing parallelism and whether it benefits from more GPUs."
+  - "*Danger Zone* ⚠️: If you see little to no reduction in runtime as more GPUs are added, this indicates that your parallel code is facing scalability issues."
 
-- **Weak Scaling**: Tests how the code handles increasing data sizes with a fixed number of GPUs. *Danger Zone*: Suggests underlying scaling issues with the code itself.
+**NEXT**
+
+- **Weak Scaling**:
+  - "Weak scaling, on the other hand, tests how your code handles an increasing dataset with a fixed number of GPUs."
+  - "This is useful for understanding how the code can handle larger data sizes and whether it can maintain performance as the workload increases."
+  - "*Danger Zone* ⚠️: If the performance doesn’t improve with an increase in data size, this suggests there are underlying scaling issues in the code itself."
 
 :::
 
@@ -622,19 +567,38 @@ Credit: Laurent Leger from IDRIS
 
 :::{.notes}
 
-- **Perlmutter**: A hybrid CPU-GPU setup with over 6,000 A100 GPUs, designed for both machine learning and scientific tasks. It operates with a high power draw of ~3.2 MW/hr, but the energy-per-FLOP efficiency is optimized through extensive GPU utilization.
-  
-- **Jean Zay’s Environmental Efficiency**: With its renewable energy source and GPU partitions, Jean Zay achieves significant computational power (~126 PFlops) while keeping average power consumption at ~1.4 MW/hr. The partitioned GPU setup (V100, A100, and soon H100) allows Jean Zay to scale efficiently for a variety of workloads without excessive energy use.
+- **Perlmutter Supercomputer (NERSC)**:
+  - "Perlmutter, located at NERSC in California, USA, is one of the most powerful supercomputers in the world, capable of 170 petaflops of compute power."
+**NEXT**
+
+- **Jean Zay Supercomputer (IDRIS)**:
+  - "The Jean Zay Supercomputer, located at IDRIS in France, is another impressive example, with a compute power of around 126 petaflops 
+
+
+- **What are FLOPs?**:
+  - "FLOPs stand for Floating Point Operations per Second, which is a measure of computational performance. Essentially, it refers to how many floating-point calculations a system can perform in one second."
+
+**How does this impact the environment?**
+
+**NEXT**
+
+- **Environmental Benefits of Efficient Parallel Computing**:
+  - "Efficient parallel computing, when operated near peak FLOPS, maximizes the number of computations per unit of energy. This means that when we optimize the throughput of these supercomputers, we're not just increasing speed, but also improving energy efficiency."
+  - "By ensuring that we use computational resources more effectively, we can reduce the environmental footprint of these massive computational infrastructures."
 
 :::
 
 # How to Scale in JAX {style="font-size: 35px; align=center;"}
 
+:::{.notes}
+
+Let's get to the interesting part
+
+:::
+
 ---
 
 ## Why JAX for Distributed Computing?
-
-
 
 - **Distributed Computing Isn’t New**:
    - Tools like **MPI** and **OpenMP** are used extensively.
@@ -672,6 +636,8 @@ Credit: Laurent Leger from IDRIS
 ::: 
 
 :::{.notes}
+
+Why ami laser focused on JAX
 
 - **Traditional Distributed Computing**: MPI and OpenMP have been essential tools for achieving high-performance distributed computing in fields like cosmology. These frameworks provide fine control but often require specific parallel programming expertise.
   
@@ -773,6 +739,20 @@ visualize_array_sharding(result)
 :::
 
 
+:::{.notes}
+
+Objective: Compute the Gaussian distribution for a range of points using data parallelism.
+
+The function gaussian computes the value for each point in the range independently, which is perfect for parallelism.
+
+**NEXT**
+
+We can use a very convinient tool from JAX to see where the data is stored on the GPU. This is called `visualize_array_sharding`.
+
+In here we see that the data is stored on a the first and default GPU. which is to be expected since we have not specified any parallelism strategy.
+
+:::
+
 ## Expressing Parallelism in JAX (Simple parallelism) {visibility="uncounted" transition="none-in slide-out"}
 
 #### Example of computing a gaussian from data Points
@@ -816,6 +796,30 @@ visualize_array_sharding(result)
 </pre>
 
 
+:::{.notes}
+
+Now by using the sharding module from jax we can set up a strategy.
+
+Two new JAX objects to learn:
+
+a. **Mesh**: Represents the collection of devices (GPUs) available for computation. In this case, we have 8 GPUs in the mesh.
+
+b. **Sharding**: Specifies how data is distributed across the mesh. In this case, we use NamedSharding to distribute the data across the mesh.
+
+You might think that the sharding is redundant but we will see later how it can be used to express more than one dimension of parallelism.
+
+**NEXT**
+
+By using `jax.device_put` we can put the data on the GPU. This is a very convinient way to move data to the GPU.
+
+Notice that the output of the function has the same sharding as the input data.
+
+**NEXT**
+
+Most importantly, I did not touch the original function, I let JAX do all the work
+
+:::
+
 ---
 
 ## Expressing Parallelism in JAX (Using collectives) {auto-animate="true"}
@@ -843,6 +847,25 @@ par_mini_GD = minimzer(
 )
 
 ```
+
+:::{.notes}
+
+**Parallel Execution**:
+- The **gradient descent step** function is executed in parallel across multiple devices. Each device computes the gradients independently based on its subset of the data. This is achieved by using the `@partial(shard_map, mesh=mesh, in_specs=P('x'), out_spec=P('x'))` decorator, which ensures that the function is applied across devices with proper mapping for parallel execution.
+
+
+**Compute Gradients per Device**:
+- For each device, the gradients with respect to the loss function are computed using `jax.grad(loss_fun)(p, xi, yi)`. This means each device will compute the gradients using only its local data, and the gradients will be different depending on the device's data partition.
+
+**Collective Communication**:
+- Once the gradients are computed on each device, **`jax.lax.pmean()`** is used to average the gradients across all devices. This is the collective communication step, ensuring that all devices have synchronized, averaged gradients before any updates are made to the model parameters. This ensures the consistency of gradient updates across devices.
+
+**Sharding the Data**:
+- The data (`xin`, `yin`) is distributed (or "sharded") across the available devices using `jax.device_put()`. Each device gets a portion of the input data. This enables parallel execution by splitting the data into smaller chunks that can be processed in parallel, with each device working on its own data subset.
+
+
+
+:::
 
 ---
 
@@ -875,6 +898,27 @@ par_mini_GD = minimzer(
     )
 ```
 
+:::{.notes}
+
+
+
+**Parallel Execution**:
+- The **gradient descent step** function is executed in parallel across multiple devices. Each device computes the gradients independently based on its subset of the data. This is achieved by using the `@partial(shard_map, mesh=mesh, in_specs=P('x'), out_spec=P('x'))` decorator, which ensures that the function is applied across devices with proper mapping for parallel execution.
+
+
+**Compute Gradients per Device**:
+- For each device, the gradients with respect to the loss function are computed using `jax.grad(loss_fun)(p, xi, yi)`. This means each device will compute the gradients using only its local data, and the gradients will be different depending on the device's data partition.
+
+**Collective Communication**:
+- Once the gradients are computed on each device, **`jax.lax.pmean()`** is used to average the gradients across all devices. This is the collective communication step, ensuring that all devices have synchronized, averaged gradients before any updates are made to the model parameters. This ensures the consistency of gradient updates across devices.
+
+**Sharding the Data**:
+- The data (`xin`, `yin`) is distributed (or "sharded") across the available devices using `jax.device_put()`. Each device gets a portion of the input data. This enables parallel execution by splitting the data into smaller chunks that can be processed in parallel, with each device working on its own data subset.
+
+
+
+:::
+
 ---
 
 
@@ -898,9 +942,12 @@ par_mini_GD = minimzer(
 | **`lax.pall`**         | Checks if all values across devices are `True`. Often used for collective boolean checks across distributed data.                                           |
 :::{.notes}
 
+JAX offers a range of collective operations through the jax.lax.p* functions, enabling efficient parallelism across multiple devices in distributed computing tasks. Here's a breakdown of the most commonly used functions:
+
 - **Gradient Aggregation**: In distributed training, `pmean` is commonly used to average gradients from multiple devices, ensuring each device updates with the same gradient.
 - **Logical Collectives**: Operators like `pand`, `por`, and `pall` allow distributed boolean logic operations, which can help in synchronization or conditional checks in parallel code.
 - **Flexible Data Distribution**: `ppermute` allows data rearrangement across devices, making it useful in more complex parallelism setups or for rearranging distributed data for specific computations.
+- **Data Exchange**: `all_to_all` provides a controlled way to exchange data between devices, useful for custom data exchange patterns in distributed computing.
 
 :::
 
@@ -996,9 +1043,16 @@ Multi-Node scalability with Jean Zay
 
 :::{.notes}
 
+So far, we've focused on scaling within a single, but we have not yet explored how to achieve truly infinite scalability across an unlimited number of nodes
+First, let's understand the differences in scale between a single GPU, a single node, and a multi-node cluster.
+
+**NEXT**
+
 - **Single GPU**: GPUs have powerful cores but are limited by memory. With a max memory of 80 GB, they are ideal for tasks that fit within this memory constraint, often used for model training or inference.
+**NEXT**
   
 - **Single Node (Octocore)**: An octocore node can host multiple GPUs (e.g., 8 GPUs) and has larger memory (up to 640 GB), enabling it to handle larger datasets. This setup is common in high-performance servers.
+**NEXT**
 
 - **Multi-Node Cluster**: By connecting nodes in a distributed cluster, we achieve "infinite" scalability in terms of memory and compute. JAX can take advantage of this via distributed parallelism, making it ideal for cosmological simulations and other large-scale scientific computations.
 
@@ -1064,9 +1118,11 @@ result = gaussian(x, mean, variance)
 
 :::{.notes}
 
-- **Single GPU Code**: This example demonstrates using `jax.pmap` for parallel computation on a single GPU.
-- **Multi-Host Setup**: The code placeholder highlights the need for additional configuration to distribute JAX computations across multiple hosts, allowing for large-scale distributed workloads.
-- **Single GPU vs Multi-Host**: JAX makes it easy to parallelize across local devices (GPUs on the same host), but multi-host configurations require further setup and are used for even larger-scale tasks.
+We all know now how to run JAX code on a single GPU
+
+We learned how to distribute across GPUs on a single node
+
+But how do we distribute across multiple nodes?
 
 :::
 
@@ -1129,6 +1185,21 @@ $ srun python multi-host-jax.py
 
 :::
 
+:::{.notes}
+
+
+
+In this example, we are utilizing **8 GPUs** within a single node.
+
+The code we previously discussed runs seamlessly on this setup.
+
+However, the limitation here is that we are confined to **only 8 GPUs**.
+
+
+**NEXT**
+
+:::
+
 ---
 
 ## Scaling JAX on a Single GPU vs. Multi-Host Setup {style="font-size: 22px;" auto-animate="true" visibility="uncounted"}
@@ -1186,6 +1257,28 @@ $ srun -n 8 python multi-host-jax.py
 :::
 
 :::
+
+:::{.notes}
+
+
+In this case, we're requesting **8 GPUs per node**, but now across **2 nodes**.
+
+Notice that we had to set **tasks per node to 8**.
+
+When working with multiple hosts, we need to run **multiple processes**—we can't simply have a single process span across two nodes.
+
+The implication here is that we are running the same code multiple times, in this case, **16 times** (for 16 GPUs).
+
+We need to call `jax.distributed.initialize()` to inform JAX that multiple processes are now running, and we have access to **16 GPUs**.
+
+**NEXT**
+
+However, simply allocating a JAX NumPy array and using `device_put()` does not work as expected in this multi-node setup.
+
+
+:::
+
+
 
 ---
 
@@ -1336,6 +1429,20 @@ visualize_array_sharding(x)
 
 :::
 
+:::{.notes}
+
+To undestand why we visualize_array_sharding the array that we allocated
+
+we see that it has been allocated 16 times, one for each process.
+An identical array.
+
+Which is not the behavior of a single node setup.
+
+**NEXT**
+
+:::
+
+
 ---
 
 ## Loading Data in JAX in a Multi-Host Setup {style="font-size: 22px;" auto-animate="true" visibility="uncounted"}
@@ -1365,6 +1472,16 @@ if jax.process_index() == 0:
 <span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">  0  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #843c39">  1  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">  2  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">  3  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">  4  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">  5  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">  6  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">  7  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7ba52">  8  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #5254a3">  9  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ad494a"> 10  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #637939"> 11  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #7b4173"> 12  </span><span style="color: #000000; text-decoration-color: #000000; background-color: #b5cf6b"> 13  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ce6dbd"> 14  </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #bd9e39"> 15  </span>
 <span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #843c39">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">     </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7ba52">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #5254a3">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ad494a">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #637939">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #7b4173">     </span><span style="color: #000000; text-decoration-color: #000000; background-color: #b5cf6b">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ce6dbd">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #bd9e39">     </span>
 </pre>
+
+
+:::{.notes}
+
+
+To correctly load a distributed array in a multi-host setup, we need to define a function that tells JAX how to construct the array from slices.
+
+This function takes a **slicing index** as an argument, allowing JAX to understand how to distribute the data across the different devices and nodes.
+
+:::
 
 ---
 
@@ -1409,7 +1526,22 @@ if jax.process_index() == 0:
 <span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #393b79">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #843c39">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #6b6ecf">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #d6616b">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8ca252">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #a55194">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #8c6d31">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #de9ed6">     </span><span style="color: #000000; text-decoration-color: #000000; background-color: #e7ba52">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #5254a3">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ad494a">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #637939">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #7b4173">     </span><span style="color: #000000; text-decoration-color: #000000; background-color: #b5cf6b">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #ce6dbd">     </span><span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #bd9e39">     </span>
 </pre>
 
+:::{.notes}
+
+We can now use the distributed array in a computation and visualize the result.
+We can use the exact same function as before
+All collectives work the same the only thing that changes is the way we load the data.
+
+:::
+
 # Multi-node packages in JAX for Cosmology {style="font-size: 40px; align=center;"}
+
+:::{.notes}
+
+Let's now look at example of usage in cosmology.
+
+
+:::
 
 ---
 
@@ -1484,6 +1616,22 @@ if jax.process_index() == 0:
 
 :::
 
+:::{.notes}
+
+- **Introduction to jaxDecomp**:  
+  - Let's start with **jaxDecomp**, an open-source package designed specifically for **distributed 3D Fast Fourier Transforms (FFT)** using JAX. 
+
+
+- **Key Features**:  
+  - **Distributed 3D FFT**: This core feature is essential for performing FFTs across distributed systems, making it highly effective for force calculations or solving partial differential equations in large-scale simulations. 
+  - **Halo Exchange for Boundary Conditions**: A critical feature that manages boundary conditions in distributed simulations, ensuring proper handling of particles or data that leave or enter the simulation domain. This maintains the accuracy and continuity of simulations across multiple nodes.
+  - **Fully Differentiable**: The package is fully differentiable, which means it integrates well with JAX’s automatic differentiation capabilities. This makes it ideal for simulations where optimization or gradient-based methods are required.
+  - **Multi-Node Support**: jaxDecomp scales across multiple nodes, allowing users to take full advantage of large-scale distributed systems, such as supercomputers or cloud clusters.
+  - **Supports Different Sharding Strategies**: jaxDecomp provides flexible data sharding options, which helps in distributing data efficiently across devices, ensuring optimal parallel computation.
+  - **Open-source**: jaxDecomp is an open-source library available for anyone to use. You can easily install it via **PyPI** or access the code on **GitHub**.
+
+:::
+
 ---
 
 ## Performance benchmarks of `PFFT3D` {style="font-size: 20px;"}
@@ -1509,6 +1657,20 @@ if jax.process_index() == 0:
 ![](assets/jaxDecomp/weak_scaling.png){fig-align="center" width="95%"}
 
 :::
+
+:::
+
+:::{.notes}
+
+
+- **Performance Benchmarks**:  
+  - Now, let's take a look at the performance benchmarks for `PFFT3D`, the distributed 3D FFT implementation in **jaxDecomp**. These benchmarks focus on two types of scaling: **strong scaling** and **weak scaling**.
+  
+- **Key Takeaway**:  
+  - While the scaling does not perfectly match the theoretical expectations, these results are still valuable as they reflect real-world conditions where network bandwidth and node interconnects impact performance. The bump observed is typical in distributed systems and is something to account for when planning the scaling of large simulations or computations.
+
+- You can see that I was able to fit a double precision 4096^3 FFT in 5 secondes on 256 GPUs.
+For info 4096^3 is 64 billion points and 1 TO of data.
 
 :::
 
@@ -1582,6 +1744,16 @@ if jax.process_index() == 0:
 :::
 
 :::
+
+:::{.notes}
+
+Halo exchange is essential in distributed simulations where we need to manage boundary conditions. In cosmological simulations, each node (or slice) of the simulation only has a portion of the data, so the boundary values at the edges need to be exchanged between neighboring nodes to maintain accuracy.
+
+Where do all this fit in
+
+:::
+
+---
 
 ## <span style="color: white ;">JaxPM 2.0 : Distributed Particle Mesh Simulation</span> {background-image="assets/Fields/PM_1024.gif"}
 <br />
@@ -1658,3 +1830,339 @@ Key Features of `JaxPM`
 :::
 
 :::
+
+:::{.fragment fragment-index=1}
+
+:::{.solutionbox}
+
+:::{.solutionbox-header style="font-size: 20px;"}
+
+**Tutorials and Exercises**  
+
+:::
+
+:::{.solutionbox-body style="font-size: 19px;"}
+
+https://github.com/ASKabalan/Tutorials/blob/main/Cophy2024/Exercises/01_MultiDevice_With_JAX.ipynb
+
+:::
+
+:::
+
+:::
+
+:::{.notes}
+
+
+- **Introduction to JAX’s Impact on Cosmology**:
+  - The future of JAX in cosmology is incredibly promising! 🎉🎉 With its rapid advancements, JAX has revolutionized scientific computing, especially in the field of cosmology. It enables **large-scale, distributed workflows**, making it easier to scale computations across multiple GPUs and nodes without sacrificing ease of use or flexibility.
+
+- **Key Advantages**:
+  - **Simplicity**: One of the standout features of JAX is its **simplicity**. The ability to write high-performance code in a Pythonic manner allows researchers to focus on the science and not the complexity of infrastructure. The learning curve for using JAX is significantly reduced, empowering scientists to leverage cutting-edge computational techniques without the steep overhead typically associated with parallelism or distributed computing.
+  - **Differentiability**: Another key benefit is **differentiability**. JAX allows for automatic differentiation of complex models that run across hundreds or thousands of GPUs, making it easier to integrate advanced inference techniques. This is especially powerful in cosmology, where we need to optimize models across vast datasets and large-scale simulations.
+
+- **Looking to the Future**:
+  - **Scaling Inference Models with Distributed `jaxPM`**: Looking ahead, JAX's ability to scale inference models through tools like **distributed `jaxPM`** will open new doors. By incorporating this into cosmological inference models, we can simulate more complex phenomena at much higher resolutions, giving us the power to explore more detailed and intricate patterns in the universe's behavior. The integration of these tools promises to provide new insights into large-scale structures in the universe.
+  - **Leveraging Large-Scale Survey Data**: The future of cosmology also depends on fully harnessing the potential of **large-scale survey data**. With JAX, researchers will be able to process and analyze these massive datasets with unprecedented efficiency, leading to deeper insights and a better understanding of our universe’s fundamental properties.
+
+- **Summary**:
+  - JAX is changing the landscape of cosmology by providing tools that allow us to easily scale our computational workflows, differentiate complex models, and unlock the potential of distributed computing. With continuous advancements and the growing support of large-scale computing systems, the future of cosmology looks brighter than ever! 🌌
+
+:::
+
+# Extra slides
+
+---
+
+## Using `shard_map` for Advanced Parallelism in JAX
+
+### Why `shard_map` instead of `pmap`?
+
+- **Limitations of `pmap`** :
+    - `pmap` is effective for simple data parallelism but lacks flexibility in more complex cases.
+    - **Nested Parallelism**: `pmap` does not handle nested parallelism well.
+    - **Data Layout Control**: `pmap` does not offer fine-grained control over data layout.
+
+- **Advantages of `shard_map`**:
+    - **Greater Flexibility**: `shard_map` allows custom parallelism patterns and fine control over data sharding.
+    - **Nested Parallelism Support**: Suitable for complex workloads that require hierarchical parallelism.
+    - **Direct Device Control**: Allows fine-grained control over data distribution and parallel operations.
+
+[JAX explaining the weakness of pmap](https://jax.readthedocs.io/en/latest/jep/14273-shard-map.html#why-don-t-pmap-or-xmap-already-solve-this)
+
+---
+
+## Example: Nested Parallelism with `shard_map` {auto-animate="true"}
+
+<br />
+
+```python
+mesh = jax.make_mesh((2,2), ('x', 'y'))
+sharding = NamedSharding(mesh , P('x', 'y'))
+data = jnp.arange(16).reshape(4, 4) 
+sharded_data = lax.with_sharding_constraint(data, sharding)
+
+@partial(jax.pmap, axis_name='x' , devices=mesh.devices[0])
+@partial(jax.pmap, axis_name='y', devices=mesh.devices[1])
+def sum_and_avg_nested_pmap(x):
+      sum_across_x = lax.psum(x, axis_name='x')
+      avg_across_y = lax.pmean(sum_across_x, axis_name='y')  
+      return avg_across_y
+
+def sum_and_avg_pmap(x):
+    sum_across_x = jax.pmap(lambda a: lax.psum(a, axis_name='x'),
+                            axis_name='x',
+                            devices=mesh.devices[0])(x.reshape(2, 2, 4))
+    avg_across_y = jax.pmap(lambda a: lax.pmean(a, axis_name='y'),
+                            axis_name='y',
+                            devices=mesh.devices[1])(sum_across_x.reshape(2, 4, 2))
+    return avg_across_y.reshape(4, 4)
+
+@partial(shard_map , mesh=mesh , in_specs=(P('x', 'y'),), out_specs=P('x'))
+def sum_and_avg_shardmap(x):
+      sum_across_x = lax.psum(x, axis_name='x')
+      avg_across_y = lax.pmean(sum_across_x, axis_name='y')  
+      return avg_across_y
+
+```
+
+---
+
+## Example: Nested Parallelism with `shard_map` {auto-animate="true" visibility="uncounted"}
+
+<br />
+
+```{.python code-line-numbers="6-12"}
+mesh = jax.make_mesh((2,2), ('x', 'y'))
+sharding = NamedSharding(mesh , P('x', 'y'))
+data = jnp.arange(16).reshape(4, 4) 
+sharded_data = lax.with_sharding_constraint(data, sharding)
+
+@partial(jax.pmap, axis_name='x' , devices=mesh.devices[0])
+@partial(jax.pmap, axis_name='y', devices=mesh.devices[1])
+def sum_and_avg_nested_pmap(x):
+      sum_across_x = lax.psum(x, axis_name='x')
+      avg_across_y = lax.pmean(sum_across_x, axis_name='y')  
+      return avg_across_y
+
+def sum_and_avg_pmap(x):
+    sum_across_x = jax.pmap(lambda a: lax.psum(a, axis_name='x'),
+                            axis_name='x',
+                            devices=mesh.devices[0])(x.reshape(2, 2, 4))
+    avg_across_y = jax.pmap(lambda a: lax.pmean(a, axis_name='y'),
+                            axis_name='y',
+                            devices=mesh.devices[1])(sum_across_x.reshape(2, 4, 2))
+    return avg_across_y.reshape(4, 4)
+
+@partial(shard_map , mesh=mesh , in_specs=(P('x', 'y'),), out_specs=P('x'))
+def sum_and_avg_shardmap(x):
+      sum_across_x = lax.psum(x, axis_name='x')
+      avg_across_y = lax.pmean(sum_across_x, axis_name='y')  
+      return avg_across_y
+
+```
+
+---
+
+## Example: Nested Parallelism with `shard_map` {auto-animate="true" visibility="uncounted"}
+
+<br />
+
+```{.python code-line-numbers="13-21"}
+mesh = jax.make_mesh((2,2), ('x', 'y'))
+sharding = NamedSharding(mesh , P('x', 'y'))
+data = jnp.arange(16).reshape(4, 4) 
+sharded_data = lax.with_sharding_constraint(data, sharding)
+
+@partial(jax.pmap, axis_name='x' , devices=mesh.devices[0])
+@partial(jax.pmap, axis_name='y', devices=mesh.devices[1])
+def sum_and_avg_nested_pmap(x):
+      sum_across_x = lax.psum(x, axis_name='x')
+      avg_across_y = lax.pmean(sum_across_x, axis_name='y')  
+      return avg_across_y
+
+def sum_and_avg_pmap(x):
+    sum_across_x = jax.pmap(lambda a: lax.psum(a, axis_name='x'),
+                            axis_name='x',
+                            devices=mesh.devices[0])(x.reshape(2, 2, 4))
+    avg_across_y = jax.pmap(lambda a: lax.pmean(a, axis_name='y'),
+                            axis_name='y',
+                            devices=mesh.devices[1])(sum_across_x.reshape(2, 4, 2))
+    return avg_across_y.reshape(4, 4)
+
+@partial(shard_map , mesh=mesh , in_specs=(P('x', 'y'),), out_specs=P('x'))
+def sum_and_avg_shardmap(x):
+      sum_across_x = lax.psum(x, axis_name='x')
+      avg_across_y = lax.pmean(sum_across_x, axis_name='y')  
+      return avg_across_y
+
+
+```
+
+---
+
+## Example: Nested Parallelism with `shard_map` {auto-animate="true" visibility="uncounted"}
+
+<br />
+
+```{.python code-line-numbers="22-26"}
+mesh = jax.make_mesh((2,2), ('x', 'y'))
+sharding = NamedSharding(mesh , P('x', 'y'))
+data = jnp.arange(16).reshape(4, 4) 
+sharded_data = lax.with_sharding_constraint(data, sharding)
+
+@partial(jax.pmap, axis_name='x' , devices=mesh.devices[0])
+@partial(jax.pmap, axis_name='y', devices=mesh.devices[1])
+def sum_and_avg_nested_pmap(x):
+      sum_across_x = lax.psum(x, axis_name='x')
+      avg_across_y = lax.pmean(sum_across_x, axis_name='y')  
+      return avg_across_y
+
+def sum_and_avg_pmap(x):
+    sum_across_x = jax.pmap(lambda a: lax.psum(a, axis_name='x'),
+                            axis_name='x',
+                            devices=mesh.devices[0])(x.reshape(2, 2, 4))
+    avg_across_y = jax.pmap(lambda a: lax.pmean(a, axis_name='y'),
+                            axis_name='y',
+                            devices=mesh.devices[1])(sum_across_x.reshape(2, 4, 2))
+    return avg_across_y.reshape(4, 4)
+
+@partial(shard_map , mesh=mesh , in_specs=(P('x', 'y'),), out_specs=P('x'))
+def sum_and_avg_shardmap(x):
+      sum_across_x = lax.psum(x, axis_name='x')
+      avg_across_y = lax.pmean(sum_across_x, axis_name='y')  
+      return avg_across_y
+
+
+```
+
+---
+
+## <span style="color: white ;">Motivation: Cosmology in the Exascale Era </span> {background-image="assets/rubin.jpg"} 
+
+<br />
+
+:::{.columns}
+
+::: {.column width="60%"}
+
+:::{.solutionbox}
+
+::: {.solutionbox-header style="font-size: 22px;"}
+
+Upcoming Surveys and Massive Data in Cosmology
+
+:::
+
+::::{.solutionbox-body style="font-size: 21px;"}
+
+- **Massive Data Volume**: LSST will generate **20 TB of raw data per night** over **10 years**, totaling **60 PB**.
+- **Catalog Size**: The processed LSST catalog database will reach **15 PB**.
+
+::::
+
+
+:::
+
+
+:::{.solutionbox}
+
+::: {.solutionbox-header style="font-size: 22px;"}
+
+Cosmological Models and Pipelines
+:::
+
+::::{.solutionbox-body style="font-size: 21px;"}
+ - Cosmological simulations and forward modeling can easily reach multiple terabytes in size.
+ - We need to scale up cosmological pipelines to handle these data volumes effectively.
+
+
+::::
+
+:::
+
+:::
+
+:::
+
+:::{.notes}
+
+will explain scaling in here
+
+:::
+
+---
+
+
+## Forward Modeling in Cosmology {style="font-size: 20px;"}
+
+:::{.columns}
+
+::: {.column width="50%"}
+
+#### Weak Lensing Model
+
+- **Prediction**:
+    - A simulator generates observations from initial conditions and cosmological parameters.
+
+- **Inference**:
+    - The simulated results are compared with actual observations.
+    - Optimal initial conditions and parameters are inferred to closely match the observed data.
+
+
+:::{.solutionbox}
+
+::: {.solutionbox-header style="font-size: 20px;"}
+
+Scaling Challenges
+
+:::
+
+::::{.solutionbox-body style="font-size: 19px;"}
+
+- **Resolution Today**: Simulations currently use around **250,000 to 130 million particles**.
+- **Ideal Resolution**: Billion-particle simulations are necessary for high accuracy.
+- **Software**: Tools like **JaxPM** or **PMWD** support up to ~130 million particles on a single GPU.
+
+::::
+
+::::
+
+:::
+
+::: {.column width="50%"}
+
+:::{.r-stack}
+
+::: {.fragment fragment-index=1 .fade-out}
+
+![](assets/FFI/Forward-Model.svg){fig-align="center" width="75%"}
+
+:::
+
+::: {.fragment fragment-index=1 .fade-in-then-out}
+
+![](assets/FFI/Forward-Model-FinalField.svg){fig-align="center" width="75%"}
+
+:::
+
+::: {.fragment fragment-index=2 .fade-in-then-out}
+
+![](assets/FFI/Forward-Model-Constraints.svg){fig-align="center" width="75%"}
+
+:::
+
+:::
+
+:::
+
+:::
+
+
+:::{.notes}
+
+- **Simulations in Cosmology**: These simulations model the universe's evolution to reproduce observed structures, helping infer parameters like dark matter density, dark energy, and other cosmological constants.
+- **Resolution Requirement**: Simulations with more particles provide finer details, making convergence maps closer to observed data. Current particle counts (130 million) are still limited compared to the **billion-particle simulations** required for accurate cosmological inference.
+
+:::
+
