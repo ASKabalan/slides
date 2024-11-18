@@ -1545,6 +1545,108 @@ Let's now look at example of usage in cosmology.
 
 ---
 
+
+## Forward Modeling in Cosmology {style="font-size: 20px;"}
+
+:::{.columns}
+
+::: {.column width="50%"}
+
+#### Weak Lensing Model
+
+- **Prediction**:
+    - A simulator generates observations from initial conditions and cosmological parameters.
+
+- **Inference**:
+    - The simulated results are compared with actual observations.
+    - Optimal initial conditions and parameters are inferred to closely match the observed data.
+
+
+:::{.fragment fragment-index=2}
+
+:::{.solutionbox}
+
+::: {.solutionbox-header style="font-size: 20px;"}
+
+Scaling Challenges
+
+:::
+
+::::{.solutionbox-body style="font-size: 19px;"}
+
+
+- **Software**: Existing tools like **JaxPM** or **PMWD** already exist.
+- **Resolution Today**: these differentiable simulators currently support up to **130 million particles** $512^3$.
+- **Ideal Resolution**: Billion-particle simulations are necessary for high accuracy  $1024^3$ and more.
+- (See **Hugo's** and **Justine's** talks for more details)
+- We need to scale up to multiple GPUs and nodes to reach the required resolution.
+
+::::
+
+::::
+
+:::
+
+:::
+
+::: {.column width="50%"}
+
+:::{.r-stack}
+
+::: {.fragment fragment-index=1 .fade-out}
+
+![Forward Modeling (Prediction)](assets/FFI/Forward-Model.svg){fig-align="center" width="100%"}
+
+:::
+
+::: {.fragment fragment-index=1 .fade-in}
+
+![Forward Modeling (Inference)](assets/FFI/Forward-Model-Constraints.svg){fig-align="center" width="100%"}
+
+:::
+
+:::
+
+:::
+
+:::
+
+
+:::{.notes}
+
+**So before diving into multi-node tools for cosmology, let's see how they can benefit forward modeling.**  
+- Forward modeling is a cornerstone of cosmological inference, linking theoretical predictions with observed data.
+
+In forward modeling, the goal is to replace an explicit likelihood function with a simulator. The process involves:  
+
+
+1. **Prediction**:
+   - The simulator generates synthetic observables, such as convergence maps, using initial conditions and cosmological parameters.
+   - These observables mimic the universe's large-scale structure under specific physical assumptions.
+
+2. **Inference**:
+   - Simulated results are compared to actual observations (e.g., from telescopes).
+   - Through iterative refinement, we infer the parameters that best match the observed universe, like dark matter density or Hubble constant.
+
+
+1. **Resolution Today**:
+   - Simulations operate with 250,000–130 million particles (512^3).
+   - These scales capture broad features but miss finer details essential for precision cosmology.
+
+2. **Ideal Resolution**:
+   - Billion-particle simulations are critical for matching the accuracy demanded by modern cosmological surveys.
+   - These simulations uncover small-scale phenomena like non-linear clustering.
+
+3. **Tools**:
+   - Tools like **JaxPM** and **PMWD** handle simulations up to 130 million particles on a single GPU.
+   - Scaling beyond this requires multi-node, distributed approaches.
+
+
+:::
+
+
+---
+
 ## jaxDecomp : Components for Distributed Particle Mesh Simulations {style="font-size: 22px;"} 
 
 :::{.columns}
@@ -1582,15 +1684,8 @@ Let's now look at example of usage in cosmology.
 - **Multi-Node Supports**  
   - Works seamlessly across multiple nodes.
 
-:::
-
-:::{.fragment fragment-index=5}
 
 - Supports Different Sharding strategies
-
-:::
-
-:::{.fragment fragment-index=6}
 
 - Open-source and available on **PyPI** 
 
@@ -1645,7 +1740,7 @@ Let's now look at example of usage in cosmology.
 
 #### Strong Scaling
 
-![](assets/jaxDecomp/strong_scaling.png){fig-align="center" width="95%"}
+![](assets/jaxDecomp/strong_scaling.png){fig-align="center" width="100%"}
 
 :::
 
@@ -1654,7 +1749,7 @@ Let's now look at example of usage in cosmology.
 #### Weak scaling
 
 
-![](assets/jaxDecomp/weak_scaling.png){fig-align="center" width="95%"}
+![](assets/jaxDecomp/weak_scaling.png){fig-align="center" width="100%"}
 
 :::
 
@@ -2093,76 +2188,4 @@ will explain scaling in here
 
 ---
 
-
-## Forward Modeling in Cosmology {style="font-size: 20px;"}
-
-:::{.columns}
-
-::: {.column width="50%"}
-
-#### Weak Lensing Model
-
-- **Prediction**:
-    - A simulator generates observations from initial conditions and cosmological parameters.
-
-- **Inference**:
-    - The simulated results are compared with actual observations.
-    - Optimal initial conditions and parameters are inferred to closely match the observed data.
-
-
-:::{.solutionbox}
-
-::: {.solutionbox-header style="font-size: 20px;"}
-
-Scaling Challenges
-
-:::
-
-::::{.solutionbox-body style="font-size: 19px;"}
-
-- **Resolution Today**: Simulations currently use around **250,000 to 130 million particles**.
-- **Ideal Resolution**: Billion-particle simulations are necessary for high accuracy.
-- **Software**: Tools like **JaxPM** or **PMWD** support up to ~130 million particles on a single GPU.
-
-::::
-
-::::
-
-:::
-
-::: {.column width="50%"}
-
-:::{.r-stack}
-
-::: {.fragment fragment-index=1 .fade-out}
-
-![](assets/FFI/Forward-Model.svg){fig-align="center" width="75%"}
-
-:::
-
-::: {.fragment fragment-index=1 .fade-in-then-out}
-
-![](assets/FFI/Forward-Model-FinalField.svg){fig-align="center" width="75%"}
-
-:::
-
-::: {.fragment fragment-index=2 .fade-in-then-out}
-
-![](assets/FFI/Forward-Model-Constraints.svg){fig-align="center" width="75%"}
-
-:::
-
-:::
-
-:::
-
-:::
-
-
-:::{.notes}
-
-- **Simulations in Cosmology**: These simulations model the universe's evolution to reproduce observed structures, helping infer parameters like dark matter density, dark energy, and other cosmological constants.
-- **Resolution Requirement**: Simulations with more particles provide finer details, making convergence maps closer to observed data. Current particle counts (130 million) are still limited compared to the **billion-particle simulations** required for accurate cosmological inference.
-
-:::
 
