@@ -2,7 +2,7 @@
 title: "Massively Parallel Computing in Cosmology with JAX"
 
 author: "Wassim Kabalan"
-
+footer: "GDR CoPhy,IAP , 2024"
 format:
   revealjs:
     theme: [default, css/custom.scss]
@@ -1965,11 +1965,11 @@ https://github.com/ASKabalan/Tutorials/blob/main/Cophy2024/Exercises/01_MultiDev
 
 :::
 
-# Extra slides
+# Extra slides {visibility="uncounted"}
 
 ---
 
-## Using `shard_map` for Advanced Parallelism in JAX
+## Using `shard_map` for Advanced Parallelism in JAX {visibility="uncounted"}
 
 ### Why `shard_map` instead of `pmap`?
 
@@ -1987,7 +1987,7 @@ https://github.com/ASKabalan/Tutorials/blob/main/Cophy2024/Exercises/01_MultiDev
 
 ---
 
-## Example: Nested Parallelism with `shard_map` {auto-animate="true"}
+## Example: Nested Parallelism with `shard_map` {auto-animate="true" visibility="uncounted"}
 
 <br />
 
@@ -2133,7 +2133,7 @@ def sum_and_avg_shardmap(x):
 
 ---
 
-## <span style="color: white ;">Motivation: Cosmology in the Exascale Era </span> {background-image="assets/rubin.jpg"} 
+## <span style="color: white ;">Motivation: Cosmology in the Exascale Era </span> {background-image="assets/rubin.jpg" visibility="uncounted"} 
 
 <br />
 
