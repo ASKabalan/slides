@@ -637,7 +637,7 @@ Let's get to the interesting part
 
 :::{.notes}
 
-Why ami laser focused on JAX
+Why am i laser focused on JAX
 
 - **Traditional Distributed Computing**: MPI and OpenMP have been essential tools for achieving high-performance distributed computing in fields like cosmology. These frameworks provide fine control but often require specific parallel programming expertise.
   
