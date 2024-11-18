@@ -149,7 +149,7 @@ logo1 : '
 ::: {.notes}
 
 - **Introduction to GPUs:**
-  - "GPUs are designed for high-throughput, parallel computation. Unlike CPUs, which are optimized for single-threaded tasks, **GPUs have thousands of threads**, allowing them to process large datasets in parallel. This makes them ideal for tasks like simulations and large-scale data processing."
+  - "GPUs are designed for **high-throughput**, parallel computation. Unlike CPUs, which are optimized for single-threaded tasks, **GPUs have thousands of threads**, allowing them to process large datasets in parallel. This makes them ideal for tasks like simulations and large-scale data processing."
 
 - **Massive Thread Count:**
   - "Each **core** in a GPU  can do certain steps of the compuation."
@@ -562,7 +562,7 @@ Tests how the code handles increasing data sizes with a fixed number of GPUs. <s
 :::
 
 ::: aside
-Credit: Laurent Leger from IDRIS
+Credit: Laurent Leger from IDRIS and Nestor Demeure from NERSC
 :::
 
 :::{.notes}
