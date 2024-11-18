@@ -1,7 +1,9 @@
 ---
 title: "Massively Parallel Computing in Cosmology with JAX"
 
-author: "Wassim Kabalan"
+author: 
+  - name: "<span style='font-size: larger;'>Wassim Kabalan</span>"
+  - name : "<span style='font-size: Smaller;'>François Lanusse, Alexandre Boucaud, Josquin Errard</span>"
 footer: "GDR CoPhy,IAP , 2024"
 format:
   revealjs:
