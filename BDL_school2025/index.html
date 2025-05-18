@@ -1218,11 +1218,158 @@ P(\Omega \mid \text{Obs})
 <div class="sourceCode" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a></a>idata <span class="op">=</span> az.from_dict(posterior<span class="op">=</span>samples.position)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
+<section>
 <section id="examples-bayesian-inference-for-cosmology" class="title-slide slide level1 center">
 <h1>Examples: Bayesian Inference for Cosmology</h1>
 
+</section>
+<section id="power-spectrum-inference-with-jax-cosmo" class="slide level2">
+<h2>Power Spectrum Inference with jax-cosmo</h2>
+<div class="fragment fade-in" data-fragment-index="1">
+<h4 id="step-1-simulate-cosmological-data">Step 1: Simulate Cosmological Data</h4>
+<p><strong>Define a fiducial cosmology to generate synthetic observations</strong></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a></a>fiducial_cosmo <span class="op">=</span> jc.Planck15()</span>
+<span id="cb20-2"><a></a>ell <span class="op">=</span> jnp.logspace(<span class="dv">1</span>, <span class="dv">3</span>)  <span class="co"># Multipole range for power spectrum</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Set up two redshift bins for galaxy populations</strong></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a></a>nz1 <span class="op">=</span> jc.redshift.smail_nz(<span class="fl">1.</span>, <span class="fl">2.</span>, <span class="fl">1.</span>)</span>
+<span id="cb21-2"><a></a>nz2 <span class="op">=</span> jc.redshift.smail_nz(<span class="fl">1.</span>, <span class="fl">2.</span>, <span class="fl">0.5</span>)</span>
+<span id="cb21-3"><a></a>nzs <span class="op">=</span> [nz1, nz2]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Define observational probes: weak lensing and number counts</strong></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a></a>probes <span class="op">=</span> [</span>
+<span id="cb22-2"><a></a>    jc.probes.WeakLensing(nzs, sigma_e<span class="op">=</span><span class="fl">0.26</span>),</span>
+<span id="cb22-3"><a></a>    jc.probes.NumberCounts(nzs, jc.bias.constant_linear_bias(<span class="fl">1.</span>))</span>
+<span id="cb22-4"><a></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Generate synthetic data using the fiducial cosmology</strong></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a></a><span class="co"># </span></span>
+<span id="cb23-2"><a></a>mu, cov <span class="op">=</span> jc.angular_cl.gaussian_cl_covariance_and_mean(fiducial_cosmo, ell, probes)</span>
+<span id="cb23-3"><a></a>rng_key <span class="op">=</span> jax.random.PRNGKey(<span class="dv">0</span>)</span>
+<span id="cb23-4"><a></a>noise <span class="op">=</span> jax.random.multivariate_normal(rng_key, jnp.zeros_like(mu), cov)</span>
+<span id="cb23-5"><a></a>data <span class="op">=</span> mu <span class="op">+</span> noise  <span class="co"># Fake observations</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment fade-in" data-fragment-index="2">
+<h4 id="step-2-define-the-numpyro-model">Step 2: Define the NumPyro Model</h4>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a></a><span class="co"># Define a NumPyro probabilistic model to infer cosmological parameters</span></span>
+<span id="cb24-2"><a></a><span class="kw">def</span> model(data):</span>
+<span id="cb24-3"><a></a>    Omega_c <span class="op">=</span> numpyro.sample(<span class="st">"Omega_c"</span>, dist.Uniform(<span class="fl">0.1</span>, <span class="fl">0.5</span>))</span>
+<span id="cb24-4"><a></a>    sigma8 <span class="op">=</span> numpyro.sample(<span class="st">"sigma8"</span>, dist.Uniform(<span class="fl">0.6</span>, <span class="fl">1.0</span>))</span>
+<span id="cb24-5"><a></a>    </span>
+<span id="cb24-6"><a></a>    <span class="co"># Forward model: compute theoretical prediction given parameters</span></span>
+<span id="cb24-7"><a></a>    cosmo <span class="op">=</span> jc.Planck15(Omega_c<span class="op">=</span>Omega_c, sigma8<span class="op">=</span>sigma8)</span>
+<span id="cb24-8"><a></a>    mu, cov <span class="op">=</span> jc.angular_cl.gaussian_cl_covariance_and_mean(cosmo, ell, probes)</span>
+<span id="cb24-9"><a></a>    </span>
+<span id="cb24-10"><a></a>    <span class="co"># Likelihood: multivariate Gaussian over angular power spectra</span></span>
+<span id="cb24-11"><a></a>    numpyro.sample(<span class="st">"obs"</span>, dist.MultivariateNormal(mu, cov), obs<span class="op">=</span>data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="simulation-based-inference-with-forward-models" class="slide level2" style="font-size: 18px;">
+<h2>Simulation-Based Inference with Forward Models</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="r-stack">
+<div class="fragment fade-in-then-out" data-fragment-index="1">
+<p><strong>Bayesian Inference using power spectrum data:</strong></p>
+</div>
+<div class="fragment fade-in" data-fragment-index="2">
+<p><strong>Bayesian Inference using full field data:</strong></p>
+</div>
+</div>
+<div class="r-stack">
+<div class="fragment fade-in-then-out" data-fragment-index="1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/bayes/bayes_pipeline_latent.svg" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="2">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/bayes/FFI_full.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+<div class="fragment fade-int" data-fragment-index="3">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/bayes/FFI_full_tuto.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:40%;">
+<div class="fragment fade-in" data-fragment-index="1">
+<ul>
+<li><strong>Recap:</strong> Bayesian inference maps theory + data → posterior</li>
+</ul>
+</div>
+<div class="fragment fade-in" data-fragment-index="2">
+<ul>
+<li><strong>Cosmological Forward models</strong>
+<ul>
+<li>Start from cosmological + latent parameters</li>
+<li>Sample initial conditions</li>
+<li>Evolve using <strong>N-body simulations</strong></li>
+<li><strong>Predict convergence maps</strong> in tomographic bins</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment fade-in" data-fragment-index="3">
+<ul>
+<li><strong>Simulation-Based Inference</strong>
+<ul>
+<li>Compare predictions to real <strong>survey maps</strong></li>
+<li>Build a <strong>likelihood</strong> from the forward model</li>
+<li>Infer cosmological parameters from <strong>full field data</strong></li>
+</ul></li>
+</ul>
+</div>
+</div></div>
+<div class="fragment fade-in" data-fragment-index="4">
+<div class="solutionbox">
+<div class="solutionbox-header" style="font-size: 20px;">
+<p><strong>Full Field vs.&nbsp;Summary Statistics</strong></p>
+</div>
+<div class="solutionbox-body" style="font-size: 18px;">
+<ul>
+<li>Preserves <strong>non-Gaussian</strong> structure lost in summaries</li>
+<li>Enables tighter constraints in <strong>nonlinear regimes</strong></li>
+<li>Especially useful in <strong>high-dimensional</strong> inference problems</li>
+<li>See: <em>Zeghal et al.&nbsp;(2024), Leclercq et al.&nbsp;(2021)</em></li>
+<li>🔜 Two talks on this topic this Thursday</li>
+</ul>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="conclusion" class="title-slide slide level1 center">
+<h1>Conclusion</h1>
 
 </section>
+<section id="conclusion-why-bayesian-inference" class="slide level2">
+<h2>Conclusion: Why Bayesian Inference?</h2>
+<h3 id="key-takeaways">🔑 Key Takeaways</h3>
+<ul>
+<li><p><strong>Bayesian modeling</strong> lets you build flexible, extensible pipelines — from analytical likelihoods to full forward simulations.</p></li>
+<li><p>The <strong>JAX ecosystem</strong> (NumPyro, BlackJAX, jax-cosmo…) lets you focus on <strong>modeling</strong>, not math details.</p></li>
+<li><p><strong>Gradients + differentiable simulators</strong> scale inference to complex, high-dimensional problems — efficiently and transparently.</p></li>
+<li><p>Bayesian tools are now mature, fast, and usable — even for large cosmological models.</p></li>
+</ul>
+<div class="solutionbox">
+<div class="solutionbox-header" style="font-size: 20px;">
+<p><strong>Hands-On Notebooks:</strong></p>
+</div>
+<div class="solutionbox-body" style="font-size: 18px;">
+<ul>
+<li>Beginner Bayesian Inference with NumPyro &amp; Blackjax <a href="https://github.com/ASKabalan/Tutorials/blob/main/BDL2025/Exercises/01_Beginner.ipynb">here</a></li>
+<li>Intermediate Bayesian Inference with NumPyro &amp; Blackjax <a href="https://github.com/ASKabalan/Tutorials/blob/main/BDL2025/Exercises/02_Intermediate.ipynb">here</a></li>
+<li>some of the animation were made using this <a href="https://github.com/ASKabalan/slides/blob/main/BDL_school2025/illustrations/numpyro.ipynb">notebook</a></li>
+</ul>
+</div>
+</div>
+
+
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
