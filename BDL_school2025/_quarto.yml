@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: .
+  exclude:
+    - illustrations/
 
 website:
   title: "Bayesian Inference for Cosmology with JAX"
