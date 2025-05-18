@@ -1,0 +1,1078 @@
+---
+title: "Bayesian Inference for Cosmology with JAX"
+
+author: 
+  - name: "<span style='font-size: larger;'>Wassim Kabalan</span>"
+  - name : "<span style='font-size: Smaller;'>Alexandre Boucaud, François Lanusse</span>"
+footer: "Bayesian Deep Learning Workshop , 2025"
+format:
+  revealjs:
+    theme: [default, css/custom.scss]
+    incremental: false   
+    transition: slide
+    background-transition: slide
+    presentation-size: max-scale
+    highlight-style: github
+    slide-number: true
+    template-partials:
+      - css/title-slide.html
+output: revealjs
+
+title-slide-attributes:
+  data-background-image: "assets/JZ-JAX.png"
+  data-background-size: fill
+  data-background-opacity: "0.2"
+
+
+logo1 : '
+<div style="display: flex; justify-content: space-around; align-items: center; layout-valign="middle">
+  <img src="assets/Logos/AstroDeep-2.png" style="width: 35%;"/>
+  <img src="assets/Logos/APC.png" style="width: 20%;"/>
+  <img src="assets/Logos/scipol.png" style="width: 35%;"/>
+</div>
+'
+---
+
+## Goals for This Presentation 
+
+:::{.solutionbox}
+
+::::{.solutionbox-body style="font-size: 22px; border-radius: 10px; border: 2px solid #3b0a68;"}
+
+- <span style="color:#3b0a68; font-size: 26px;">**Understand Cosmological Inference**</span>: Learn how we go from observations to cosmological parameters.
+<br /><br />
+- <span style="color:#3b0a68; font-size: 26px;">**From χ² to Bayesian Inference**</span>: See how Bayesian modeling generalizes classical approaches.
+<br /><br />
+- <span style="color:#3b0a68; font-size: 26px;">**Learn Forward Modeling and Hierarchical Models**</span>: Understand generative models and field-level inference.
+<br /><br />
+- <span style="color:#3b0a68; font-size: 26px;">**Explore Modern Tools (JAX, NumPyro, BlackJAX)**</span>: Use practical libraries for scalable inference.
+<br /><br />
+- <span style="color:#3b0a68; font-size: 26px;">**Prepare for Hands-On Notebooks**</span>: Apply Bayesian techniques in real examples using JAX.
+
+::::
+
+:::
+
+:::{.notes}
+
+- **Understand the Basics of Parallelism:**
+  - "First, we’ll start with the **fundamentals of parallelism** — understanding how parallel computing works."
+  - "We’ll look at different **types of parallelism**, such as task parallelism and data parallelism, and see how they are applied in computational problems."
+  - "It’s important to get a solid understanding of these basic concepts before we dive into how to scale them effectively in cosmology."
+
+- **Know When (and When Not) to Parallelize:**
+  - "Next, we’ll cover a critical aspect: knowing **when to use parallelism** and, just as importantly, **when not to use it**."
+  - "While parallelism can offer huge speedups, not all problems are suitable for parallelization. In fact, sometimes parallelism can make things slower due to overhead. I’ll show you how to identify the right cases for parallelism and how to avoid it when it’s not the best approach."
+
+- **Scale Code Using JAX:**
+  - "Then, we’ll explore how to **scale your code using JAX**."
+  - "JAX makes it easy to scale computations by automatically taking advantage of GPUs. We’ll also look at how your code might change depending on the parallelism strategy you choose. JAX allows for flexible parallelization strategies, so you can tailor it to your specific needs."
+
+- **Hands-On Tutorials:**
+  - "Finally, we’ll wrap up with **hands-on tutorials**. We’ll work through interactive code examples so you can see firsthand how these concepts are implemented in practice."
+  - "These examples will give you the opportunity to apply what we’ve discussed and see the power of parallel computing in action."
+
+- **Transition:**
+  - "Now that we know what we aim to cover, let’s dive into the basics of parallelism and lay the groundwork for the rest of the talk."
+
+:::
+
+
+# Background :  Inference in Cosmology: The Big Picture 
+
+---
+
+## Inference in Cosmology: The Frequentist Pipeline {style="font-size: 21px;"}
+
+
+:::{.columns}
+
+:::: {.column width="70%"}
+
+<br/>
+
+::::: {.r-stack}
+
+:::::: {.fragment fragment-index=1 .fade-in-then-out}
+
+![](assets/bayes/freq_pipeline_0.svg){fig-align="center" width="100%"}
+
+::::::
+
+:::::: {.fragment fragment-index=2 .fade-in-then-out}
+
+![](assets/bayes/freq_pipeline_1.svg){fig-align="center" width="100%"}
+
+::::::
+
+:::::: {.fragment fragment-index=3 .fade-in-then-out}
+
+![](assets/bayes/freq_pipeline_2.svg){fig-align="center" width="100%"}
+
+::::::
+
+:::::: {.fragment fragment-index=4 .fade-in-then-out}
+
+![](assets/bayes/freq_pipeline_3.svg){fig-align="center" width="100%"}
+
+::::::
+
+:::::: {.fragment fragment-index=5 .fade-in}
+
+![](assets/bayes/freq_pipeline_4.svg){fig-align="center" width="100%"}
+
+::::::
+
+:::::
+
+::::
+
+:::: {.column width="30%"}
+
+
+:::::: {.fragment fragment-index=1 .fade-in}
+- **cosmological parameters** (Ω): matter density, dark energy, etc.
+::::::
+
+:::::: {.fragment fragment-index=2 .fade-in}
+- Predict observables: **CMB, galaxies, lensing**
+::::::
+
+:::::: {.fragment fragment-index=3 .fade-in}
+- Extract **summary statistics**: $P(k)$, $C_\ell$ , 2PCF
+::::::
+
+:::::: {.fragment fragment-index=4 .fade-in}
+- Compute **likelihood**: $L(\Omega \vert data)$
+::::::
+
+:::::: {.fragment fragment-index=5 .fade-in}
+- Estimate $\hat{\Omega}$ via **maximization** ($\chi^2$ fitting)
+::::::
+:::::: {.fragment fragment-index=6 .fade-in}
+
+
+:::{.solutionbox}
+
+::: {.solutionbox-header style="font-size: 20px;"}
+
+**Frequentist Toolbox**
+
+:::
+
+::::{.solutionbox-body style="font-size: 18px;"}
+
+- $\chi^2$ analysis
+- 2-point correlation function (2PCF)
+- Power spectrum fitting: $P(k)$, $C_\ell$ 
+
+::::
+
+:::
+
+:::::: 
+
+::::
+
+:::
+
+---
+
+## Inference in Cosmology: The Bayesian Pipeline {style="font-size: 21px;"}
+
+
+:::{.columns}
+
+:::: {.column width="70%"}
+
+<br/>
+
+::::: {.r-stack}
+
+:::::: {.fragment fragment-index=1 .fade-in-then-out}
+
+![](assets/bayes/freq_pipeline_2.svg){fig-align="center" width="100%"}
+
+::::::
+
+:::::: {.fragment fragment-index=2 .fade-in-then-out}
+
+![](assets/bayes/bayes_pipeline_0.svg){fig-align="center" width="100%"}
+
+::::::
+
+:::::: {.fragment fragment-index=3 .fade-in-then-out}
+
+![](assets/bayes/bayes_pipeline_1.svg){fig-align="center" width="100%"}
+
+::::::
+
+:::::: {.fragment fragment-index=4 .fade-in}
+
+![](assets/bayes/bayes_pipeline_2.svg){fig-align="center" width="100%"}
+
+::::::
+
+:::::
+
+::::
+
+:::: {.column width="30%"}
+
+
+:::::: {.fragment fragment-index=1 .fade-in}
+- Start from **summary statistics**: $P(k)$, $C_\ell$ , 2PCF
+::::::
+
+:::::: {.fragment fragment-index=2 .fade-in}
+- Sample from a **Prior** $P(\Omega)$
+::::::
+
+:::::: {.fragment fragment-index=3 .fade-in}
+- Compute **likelihood**: $L(Obs \vert \Omega)$
+::::::
+
+:::::: {.fragment fragment-index=4 .fade-in}
+- Sampler from the **Posterior** $P(\Omega \vert Obs)$
+::::::
+
+
+
+:::::: {.fragment fragment-index=6 .fade-in}
+
+
+:::{.solutionbox}
+
+::: {.solutionbox-header style="font-size: 20px;"}
+
+**Bayesian Toolbox**
+
+:::
+
+::::{.solutionbox-body style="font-size: 18px;"}
+
+- Priors encode beliefs: $P(\Omega)$  
+- Hierarchical Bayesian Modeling (HBM)
+- Probabilistic programming (e.g., **NumPyro**)
+- Gradient-based samplers: **HMC**, **NUTS**
+
+::::
+
+:::
+
+
+:::::: 
+
+::::
+
+:::
+
+
+---
+
+
+
+
+## Inference in Cosmology: The Bayesian Pipeline {style="font-size: 18px;" auto-animate=true}
+
+
+:::{.columns}
+
+:::: {.column width="70%"}
+
+<br/>
+
+![](assets/bayes/bayes_pipeline_latent.svg){fig-align="center" width="100%"}
+
+::::
+
+:::: {.column width="30%"}
+
+
+:::::: {.fragment fragment-index=1 .fade-in}
+* **Prior**: Theory-driven assumptions $P(\Omega)$
+::::::
+:::::: {.fragment fragment-index=2 .fade-in}
+* **Latent variables**: Hidden/unobserved $z \sim P(z \mid \Omega)$
+::::::
+:::::: {.fragment fragment-index=3 .fade-in}
+* **Likelihood**: Generates observables $P(\text{Obs} \mid \Omega, z)$
+::::::
+:::::: {.fragment fragment-index=4 .fade-in}
+* **Posterior**: infer $P(\Omega \mid \text{Obs})$
+::::::
+
+::::
+
+:::
+
+
+## Inference in Cosmology: The Bayesian Pipeline {style="font-size: 18px;" auto-animate=true}
+
+:::{.columns}
+
+:::: {.column width="15%"}
+
+<br/>
+
+![](assets/bayes/bayes_pipeline_latent.svg){fig-align="middle" width="100%"}
+
+::::
+
+:::: {.column width="85%"}
+
+
+
+
+**Bayes’ Rule with all components:**
+
+> Full decomposition of the posterior. The denominator marginalizes over all possible parameters.
+
+::::: {.r-stack}
+
+:::::: {.fragment fragment-index=1 .fade-in-then-out}
+
+$$
+\underbrace{P(\Omega \mid \text{Obs})}_{\text{Posterior}}
+= \frac{
+    \underbrace{P(\text{Obs} \mid \Omega)}_{\text{Likelihood}} 
+    \cdot 
+    \underbrace{P(\Omega)}_{\text{Prior}}
+}{
+    \underbrace{
+        \int P(\text{Obs} \mid \Omega) P(\Omega) \, d\Omega
+    }_{\text{Evidence}}
+}
+$$
+
+::::::
+:::::: {.fragment fragment-index=2 .fade-in}
+
+$$
+\underbrace{P(\Omega \mid \text{Obs})}_{\text{Posterior}}
+= \frac{
+    \underbrace{\int P(\text{Obs} \mid \Omega, z)\, P(z \mid \Omega)\, dz}_{\text{Likelihood (marginalized over latent $z$)}} 
+    \cdot 
+    \underbrace{P(\Omega)}_{\text{Prior}}
+}{
+    \underbrace{
+        \int \left[ \int P(\text{Obs} \mid \Omega, z)\, P(z \mid \Omega)\, dz \right] P(\Omega)\, d\Omega
+    }_{\text{Evidence}}
+}
+$$
+
+::::::
+::::
+
+::::
+
+:::
+
+
+:::::: {.fragment fragment-index=3 .fade-in}
+
+> In practice, we drop the evidence term when sampling — it’s a constant.
+
+$$
+P(\Omega \mid \text{Obs}) 
+\propto 
+\underbrace{\int P(\text{Obs} \mid \Omega, z)\, P(z \mid \Omega) \, dz}_{\text{Marginal Likelihood}} 
+\cdot 
+\underbrace{P(\Omega)}_{\text{Prior}}
+$$
+
+::::::
+
+:::::: {.fragment fragment-index=4 .fade-in}
+
+$$
+\log P(\Omega \mid \text{Obs}) 
+= \log P(\text{Obs} \mid \Omega) + \log P(\Omega)
+$$
+
+::::::
+
+:::::: {.fragment fragment-index=5 .fade-in}
+
+:::{.solutionbox}
+
+::: {.solutionbox-header style="font-size: 17px;"}
+
+**Bayes’ Rule in Practice**
+
+:::
+
+::::{.solutionbox-body style="font-size: 15px;"}
+
+* The **posterior** combines theory (prior) and data (likelihood) to infer cosmological parameters.
+* **Latent variables** $z$ encode hidden structure (e.g., initial fields, nuisance parameters).
+* The **evidence** is often ignored during sampling (it’s constant).
+* **Model comparison** via the Bayes Factor:
+
+  $$
+  \text{Bayes Factor} = \frac{P(\text{Obs} \mid \mathcal{M}_1)}{P(\text{Obs} \mid \mathcal{M}_2)}
+  $$
+
+::::
+
+:::
+
+::::::
+
+---
+
+## Two Roads to Inference: Frequentist and Bayesian {style="font-size: 20px;" }
+
+
+![](assets/bayes/freq_vs_bayes.png){.absolute top=-50 left=900 width="20%"}
+
+::: aside
+@image credit:Wayne Stewart 
+:::
+
+:::{.solutionbox}
+
+::::{.solutionbox-header style="font-size: 20px;"}
+**Conceptual Differences**
+::::
+
+::: {.solutionbox-body style="font-size: 18px;"}
+
+
+
+| **Concept**          | **Frequentist**                                             | **Bayesian**                                               |
+| -------------------- | ----------------------------------------------------------- | ---------------------------------------------------------- |
+| **Parameters**       | **Fixed** but unknown                                       | **Random variables** with a prior                          |
+| **Goal**             | **Point estimate** (e.g. MLE)                               | **Full distribution** (posterior over parameters)          |
+| **Uncertainty**      | From **data variability**                                   | From **parameter uncertainty** (posterior)                 |
+| **Prior Knowledge**  | **Not used**                                                | **Explicitly included** via prior $P(\Omega)$            |
+| **Interval Meaning** | **Confidence interval**: “95% of experiments contain truth” | **Credible interval**: “95% chance truth is in this range” |
+| **Likelihood Role**  | Central in **$\chi^2$ minimization**, fits                  | Combined with **prior** to form posterior                  |
+| **Inference Output** | **Best-fit estimate** + error bars                          | **Posterior distribution**                                 |
+| **Tooling**          | **Optimization** (e.g. χ², maximum likelihood)              | **Sampling** (e.g. MCMC, HMC, NUTS)                        |
+
+:::
+
+:::
+
+::: {.columns}
+
+:::: {.column width="90%"}
+
+Although these approaches are often contrasted, **they’re not mutually exclusive**.
+Modern workflows — like **causal inference** in [*Statistical Rethinking*](https://www.youtube.com/watch?v=FdnMWdICdRs) — draw on both perspectives.
+Bayesian methods offer a formal way to **combine theory and data**, especially powerful when simulations are involved.
+
+::::
+
+:::: {.column width="10%"}
+
+![Statistical Rethinking](assets/bayes/stat_rethink.jpg){fig-align="center" width="100%"}
+
+::::
+
+::::
+
+<br/>
+
+
+# 🛠️ The Mechanics of Inference  
+
+## Sampling the Posterior: The Core Loop {style="font-size: 20px;" }
+
+:::{.columns}
+
+:::: {.column width="60%"}
+
+![](assets/bayes/inference_loop.svg){fig-align="center" width="75%"}
+::::
+
+
+:::: {.column width="40%"}
+
+**The Sampling Loop:**
+
+:::::: {.fragment fragment-index=1 .fade-in}
+- Start from a sample $(\Omega^t, z^t)$  
+::::::
+:::::: {.fragment fragment-index=2 .fade-in}
+- Propose new sample $(\Omega', z')$
+::::::
+:::::: {.fragment fragment-index=3 .fade-in}
+- Compute **acceptance probability**
+::::::
+:::::: {.fragment fragment-index=4 .fade-in}
+- Accept or reject proposal
+::::::
+:::::: {.fragment fragment-index=5 .fade-in}
+- Repeat and store accepted samples ⟶ **posterior**
+::::::
+
+:::::: {.fragment fragment-index=6 .fade-in}
+**Goal:** Explore the full shape of the posterior  
+(even in high-dim, non-Gaussian spaces)
+::::::
+
+
+:::::: {.fragment fragment-index=7 .fade-in}
+::: {.solutionbox}
+
+::::{.solutionbox-header style="font-size: 20px;"}
+**Key Takeaways**
+::::
+
+::::{.solutionbox-body style="font-size: 18px;"}
+
+* Most samplers follow this **accept/reject loop**
+* Differ by how they propose samples:
+  – Random walk (e.g., MH)
+  – Gradient-guided (e.g., HMC, NUTS)
+* Some skip rejection (e.g., Langevin, VI)
+
+::::
+
+:::
+
+::::::
+
+
+::::
+:::
+
+---
+
+### Sampling Algorithms at a Glance {style="font-size: 20px;" }
+
+:::{.columns}
+
+:::: {.column width="60%"}
+
+:::::: {.fragment fragment-index=1 .fade-in}
+
+
+**Metropolis-Hastings (MCMC)**
+
+* **Propose**: Random walk
+  $\Omega' \sim \mathcal{N}(\Omega^t, \sigma^2)$
+* **Accept**:
+
+  $$
+  \alpha = \min\left(1, \frac{P(\text{Obs} \mid \Omega') P(\Omega')}{P(\text{Obs} \mid \Omega^t) P(\Omega^t)}\right)
+  $$
+::::::
+:::::: {.fragment fragment-index=2 .fade-in}
+
+
+**Hamiltonian Monte Carlo (HMC)**
+
+* **Propose**: Simulate physics
+  Trajectory via gradients $\nabla\_\Omega \log P(\text{Obs} \mid \Omega)$
+* **Accept**:
+  Based on Hamiltonian energy conservation.
+  $\alpha = \min(1, e^{\mathcal{H}(\Omega^t, p^t) - \mathcal{H}(\Omega', p')})$
+::::::
+:::::: {.fragment fragment-index=3 .fade-in}
+
+
+**NUTS (No-U-Turn Sampler)**
+  Same as HMC, but auto-tunes:
+
+  * Step size
+  * Trajectory length (stops before looping back)
+::::::
+
+::::
+
+:::: {.column width="40%"}
+
+:::::: {.fragment fragment-index=1 .fade-in}
+![](assets/Samplers/MCMC.gif){fig-align="center" width="80%" style="border: 2px solid black; padding: 2px;"}
+::::::
+:::::: {.fragment fragment-index=2 .fade-in}
+![](assets/Samplers/HMC.gif){fig-align="center" width="80%" style="border: 2px solid black; padding: 2px;"}
+::::::
+
+:::::: {.fragment fragment-index=3 .fade-in}
+![](assets/Samplers/NUTS.gif){fig-align="center" width="80%" style="border: 2px solid black; padding: 2px;"}
+::::::
+
+
+::::
+
+:::
+
+<br/>
+<br/>
+
+::: aside
+@credit: https://github.com/chi-feng/mcmc-demo
+:::
+
+
+
+
+
+
+## Gradient-Based Sampling in Action  {style="font-size: 20px;" auto-animate=true}
+
+
+:::{.columns}
+
+:::: {.column width="50%"}
+
+::::: {.r-stack}
+
+:::::: {.fragment fragment-index=1 .fade-in-then-out}
+
+![HMC: Gaussian Posterior](assets/Samplers/gaussian_hmc.gif){fig-align="center" width="60%"}
+
+::::::
+
+:::::: {.fragment fragment-index=2 .fade-in}
+![HMC: Gaussian Posterior](assets/Samplers/gaussian_hmc_density.png){fig-align="center" width="60%"}
+::::::
+:::::
+
+::::: {.r-stack}
+
+:::::: {.fragment fragment-index=3 .fade-in-then-out}
+
+![HMC: Banana Posterior](assets/Samplers/banana_hmc.gif){fig-align="center" width="60%"}
+
+::::::
+
+:::::: {.fragment fragment-index=4 .fade-in}
+![HMC: Banana Posterior](assets/Samplers/banana_hmc_density.png){fig-align="center" width="60%"}
+::::::
+:::::
+
+
+::::
+
+:::: {.column width="50%"}
+
+::::: {.r-stack}
+
+:::::: {.fragment fragment-index=1 .fade-in-then-out}
+
+![MCMC: Gaussian Posterior](assets/Samplers/gaussian_mcmc.gif){fig-align="center" width="60%"}
+
+::::::
+
+:::::: {.fragment fragment-index=2 .fade-in}
+![MCMC: Gaussian Posterior](assets/Samplers/gaussian_mcmc_density.png){fig-align="center" width="60%"}
+::::::
+:::::
+
+::::: {.r-stack}
+
+:::::: {.fragment fragment-index=3 .fade-in-then-out}
+
+![MCMC: Banana Posterior](assets/Samplers/banana_mcmc.gif){fig-align="center" width="60%"}
+
+::::::
+
+:::::: {.fragment fragment-index=4 .fade-in}
+![MCMC: Banana Posterior](assets/Samplers/banana_mcmc_density.png){fig-align="center" width="60%"}
+::::::
+:::::
+
+
+::::
+:::
+
+
+## Gradient-Based Sampling in Action    {style="font-size: 20px;" auto-animate=true}
+
+
+:::{.columns}
+
+:::: {.column width="10%"}
+![HMC: Gaussian Posterior](assets/Samplers/gaussian_hmc_density.png){fig-align="center" width="60%"}
+::::
+:::: {.column width="10%"}
+![HMC: Banana Posterior](assets/Samplers/banana_hmc_density.png){fig-align="center" width="60%"}
+::::
+
+:::: {.column width="10%"}
+![MCMC: Gaussian Posterior](assets/Samplers/gaussian_mcmc_density.png){fig-align="center" width="60%"}
+::::
+:::: {.column width="10%"}
+![MCMC: Banana Posterior](assets/Samplers/banana_mcmc_density.png){fig-align="center" width="60%"}
+::::
+
+:::: {.column width="60%"}
+
+* In high dimensions, **random walk proposals** (MCMC) often land in low-probability regions ⟶ low acceptance.
+* To maintain acceptance, step size must shrink like **$1/\sqrt{d}$** ⟶ very slow exploration.
+* **HMC uses gradients** to follow high-probability paths ⟶ **better samples, fewer steps**.
+
+::::
+
+:::
+
+
+::::: {.r-stack}
+
+:::::: {.fragment fragment-index=1 .fade-in-then-out}
+
+![Sampling Without Gradients ](assets/Samplers/samples_only.png){fig-align="center" width="60%"}
+
+::::::
+
+:::::: {.fragment fragment-index=2 .fade-in}
+
+![Sampling With Gradients ](assets/Samplers/samples_with_gradients.png){fig-align="center" width="60%"}
+
+::::::
+
+:::::
+
+
+
+## Differentiable Inference with JAX {style="font-size: 20px;"}
+
+When it comes to **gradients**, always think of **JAX**.
+
+<br/>
+
+::: {.columns}
+:::: {.column width="50%"}
+
+
+**An Easy pythonic API**
+
+```{.Python code-line-numbers="|11"}
+import jax
+import jax.numpy as jnp
+from jax import random
+
+def sample_prior(key):
+    return random.normal(key, shape=(3,))  # Ω ~ N(0, 1)
+
+def log_prob(omega):
+    return -0.5 * jnp.sum(omega**2)  # log p(Ω) ∝ -Ω²
+
+log_prob_jit = jax.jit(log_prob)
+```
+
+:::::: {.fragment fragment-index=2 .fade-in}
+
+**Easily accessible gradients using GRAD**
+
+```python
+omegas = ... # Sampled Ω
+gradients = jax.grad(log_prob_jit)(omegas)
+```
+
+::::::
+
+:::::: {.fragment fragment-index=3 .fade-in}
+
+**Supports vectorization using VMAP**
+
+```python
+def generate_samples(seeds):
+    key = jax.random.PRNGKey(seeds)
+    omega = sample_prior(key)
+    return omega
+seeds = jnp.arange(0, 1000)
+omegas = jax.vmap(generate_samples)(seeds)
+```
+
+::::::
+
+::::
+:::: {.column width="50%"}
+
+![](assets/Logos/JaxLogo.png){fig-align="center" width="80%"}
+
+::::
+
+:::
+
+
+# Practical Bayesian Modeling & Inference with JAX
+
+
+
+## A Recipe for Bayesian Inference
+
+
+::::{.columns}
+
+:::: {.column width="50%"}
+
+
+:::::: {.fragment fragment-index=2 .fade-in}
+**1. Probabilistic Programming Language (PPL)** *NumPyro*:
+
+```python
+import numpyro
+import numpyro.distributions as dist
+
+def model():
+    omega_m = numpyro.sample("Ωₘ", dist.Uniform(0.1, 0.5))
+    sigma8 = numpyro.sample("σ₈", dist.Normal(0.8, 0.1))
+```
+
+::::::
+:::::: {.fragment fragment-index=3 .fade-in}
+**2. Computing Likelihoods** *JAX-Cosmo*:
+```python
+import jax_cosmo as jc
+def likelihood(cosmo_params):
+    mu, cov = jc.angular_cl.gaussian_cl_covariance_and_mean(
+        cosmo_params, ell, probes
+    )
+    return jc.likelihood.gaussian_log_likelihood(data, mu, cov)
+```
+
+
+::::::
+:::::: {.fragment fragment-index=4 .fade-in}
+**3. Sampling the Posterior** *NumPyro & Blackjax*:
+
+```python
+from numpyro.infer import MCMC, NUTS
+
+kernel = NUTS(model)
+mcmc = MCMC(kernel, num_warmup=500, num_samples=1000)
+mcmc.run(random.PRNGKey(0))
+samples = mcmc.get_samples()
+```
+
+::::::
+:::::: {.fragment fragment-index=5 .fade-in}
+**4. Visualizing the Posterior** *ArviZ*:
+```python
+import arviz as az
+samples = mcmc.get_samples()
+az.plot_pair(samples, marginals=True)
+```
+::::::
+
+::::
+
+
+:::: {.column width="50%"}
+
+::::: {.r-stack}
+
+:::::: {.fragment fragment-index=1 .fade-in-then-out}
+![](assets/bayes/shopping_cart_0.svg){fig-align="center" width="40%"}
+::::::
+:::::: {.fragment fragment-index=2 .fade-in-then-out}
+![](assets/bayes/shopping_cart_1.svg){fig-align="center" width="40%"}
+::::::
+:::::: {.fragment fragment-index=3 .fade-in-then-out}
+![](assets/bayes/shopping_cart_2.svg){fig-align="center" width="40%"}
+::::::
+:::::: {.fragment fragment-index=4 .fade-in-then-out}
+![](assets/bayes/shopping_cart_3.svg){fig-align="center" width="40%"}
+::::::
+:::::: {.fragment fragment-index=5 .fade-in-then-out}
+![](assets/bayes/shopping_cart_4.svg){fig-align="center" width="40%"}
+::::::
+
+::::
+
+::::: {.r-stack}
+
+:::::: {.fragment fragment-index=1 .fade-in-then-out}
+![](assets/bayes/bayes_full.svg){fig-align="center" width="100%"}
+::::::
+:::::: {.fragment fragment-index=2 .fade-in-then-out}
+![](assets/bayes/bayes_prior.svg){fig-align="center" width="100%"}
+::::::
+:::::: {.fragment fragment-index=3 .fade-in-then-out}
+![](assets/bayes/bayes_likelihood.svg){fig-align="center" width="100%"}
+::::::
+:::::: {.fragment fragment-index=4 .fade-in-then-out}
+![](assets/bayes/bayes_sample.svg){fig-align="center" width="100%"}
+::::::
+:::::: {.fragment fragment-index=5 .fade-in-then-out}
+![](assets/bayes/post_corner.png){fig-align="center" width="100%"}
+<div style="text-align: center; font-size: 12px;">@credit: Zeghal et al. (2409.17975)</div>
+::::::
+:::::
+
+::::
+
+:::
+
+---
+
+##  Sampler Comparison Table {style="font-size: 26px;"}
+
+:::{.solutionbox}
+
+::: {.solutionbox-body style="font-size: 18px;"}
+
+| Sampler        | Library            | Uses Gradient | Auto-Tuning | Rejection | Best For                         | Notes                              |
+| -------------- | ------------------ | ------------- | ----------- | --------- | -------------------------------- | ---------------------------------- |
+| **MCMC (SA)**  | NumPyro            | ❌             | ❌           | ✅         | Simple low-dim models            | No gradients; slow mixing          |
+| **HMC**        | NumPyro / BlackJAX | ✅             | ❌           | ✅         | High-dim continuous posteriors   | Needs tuned step size & trajectory |
+| **NUTS**       | NumPyro / BlackJAX | ✅             | ✅           | ✅         | General-purpose inference        | Adaptive HMC                       |
+| **MALA**       | BlackJAX           | ✅             | ❌           | ✅         | Local proposals w/ gradients     | Stochastic gradient steps          |
+| **MCLMC**      | BlackJAX           | ✅             | ✅ (via L)   | ❌         | Large latent spaces              | Unadjusted Langevin dynamics       |
+| **Adj. MCLMC** | BlackJAX           | ✅             | Manual (L)  | ✅         | Bias-controlled Langevin sampler | Includes MH step     
+
+
+:::
+
+:::
+
+For more information check Simons et al. (2025), [§2.2.3, arXiv:2504.20130](https://arxiv.org/pdf/2504.20130)
+
+---
+
+### Numpyro: Tips & Tricks for Bayesian Modeling
+
+
+**`numpyro.handlers.seed`: Fix randomness for reproducibility**
+
+```python
+from numpyro.handlers import seed
+seeded_model = seed(model, rng_key)
+```
+
+**`numpyro.handlers.trace`: Inspect internal execution and sample sites**
+
+```python
+from numpyro.handlers import trace
+tr = trace(model).get_trace()
+print(tr["omega"])
+```
+
+
+**`numpyro.handlers.condition`: Clamp a variable to observed or fixed value**
+
+```python
+from numpyro.handlers import condition
+conditioned_model = condition(model, data={"omega": 0.3})
+```
+
+**`numpyro.handlers.substitute`: Replace variables with fixed values (e.g., MAP estimates)**
+
+```python
+from numpyro.handlers import substitute
+subbed_model = substitute(model, data={"omega": 0.3})
+```
+
+**`numpyro.handlers.reparam`: Reparameterize a site to improve geometry**
+
+```python
+from numpyro.infer.reparam import LocScaleReparam
+from numpyro.handlers import reparam
+
+reparammed_model = reparam(model, config={"z": LocScaleReparam()})
+```
+
+## A Minimal Bayesian Linear Model {style="font-size: 18px;"}
+
+**Define a simple linear model:**
+```{.Python code-line-numbers="|1-8|10-16"}
+true_w = 2.0
+true_b = -1.0
+num_points = 100
+
+rng_key = jax.random.PRNGKey(0)
+x_data = jnp.linspace(-3, 3, num_points)
+noise = jax.random.normal(rng_key, shape=(num_points,)) * 0.3
+y_data = true_w * x_data + true_b + noise
+
+def linear_regression(x, y=None):
+    w = numpyro.sample("w", dist.Normal(0, 1))
+    b = numpyro.sample("b", dist.Normal(0, 1))
+    sigma = numpyro.sample("sigma", dist.Exponential(1.0))
+
+    mean = w * x + b
+    numpyro.sample("obs", dist.Normal(mean, sigma), obs=y)
+```
+
+:::: {.fragment fragment-index=1 .fade-in}
+**Run the model using NUTS:**
+```python
+kernel = numpyro.infer.NUTS(linear_regression)
+mcmc = numpyro.infer.MCMC(kernel, num_warmup=500, num_samples=1000)
+mcmc.run(rng_key, x=x_data, y=y_data)
+```
+::::
+:::: {.fragment fragment-index=2 .fade-in}
+**Posterior corner plot using arviz + corner**
+```python
+idata = az.from_numpyro(mcmc)
+posterior_array = az.extract(idata, var_names=["w", "b", "sigma"]).to_array().values.T
+
+fig = corner.corner(
+    posterior_array,
+    labels=["w", "b", "σ"],
+    truths=[true_w, true_b, None],
+    show_titles=True
+)
+plt.show()
+```
+::::
+
+--- 
+
+## Using BlackJax and NumPyro
+
+> BlackJax is NOT a PPL, so you need to combine it with a PPL like NumPyro or PyMC.
+
+:::: {.fragment fragment-index=1 .fade-in}
+
+**Initialize model and extract the log-probability function**
+
+```python
+rng_key, init_key = jax.random.split(rng_key)
+init_params, potential_fn, *_ = initialize_model(
+    init_key, model, model_args=(x_data,), model_kwargs={"y": y_data}, dynamic_args=True
+)
+
+logdensity_fn = lambda position: -potential_fn(x_data, y=y_data)(position)
+initial_position = init_params.z
+```
+::::
+
+
+:::: {.fragment fragment-index=2 .fade-in}
+
+**Run warm-up to adapt step size and mass matrix using BlackJAX's window adaptation**
+
+```python
+num_warmup = 2000
+adapt = blackjax.window_adaptation(blackjax.nuts, logdensity_fn, target_acceptance_rate=0.8)
+rng_key, warmup_key = jax.random.split(rng_key)
+(last_state, parameters), _ = adapt.run(warmup_key, initial_position, num_warmup)
+kernel = blackjax.nuts(logdensity_fn, **parameters).step
+```
+::::
+:::: {.fragment fragment-index=3 .fade-in}
+
+**Run BlackJAX NUTS sampling using `lax.scan`**
+
+```python
+def run_blackjax_sampling(rng_key, state, kernel, num_samples=1000):
+    def one_step(state, key):
+        state, info = kernel(key, state)
+        return state, state
+
+    keys = jax.random.split(rng_key, num_samples)
+    _, samples = jax.lax.scan(one_step, state, keys)
+    return samples
+
+samples = run_blackjax_sampling(rng_key, last_state, kernel)
+```
+::::
+:::: {.fragment fragment-index=4 .fade-in}
+
+**Convert BlackJAX output to ArviZ InferenceData**
+
+```python
+idata = az.from_dict(posterior=samples.position)
+```
+::::
+
+# Examples: Bayesian Inference for Cosmology
