@@ -1076,3 +1076,203 @@ idata = az.from_dict(posterior=samples.position)
 ::::
 
 # Examples: Bayesian Inference for Cosmology
+
+## Power Spectrum Inference with jax-cosmo
+
+:::: {.fragment fragment-index=1 .fade-in}
+
+#### Step 1: Simulate Cosmological Data
+
+**Define a fiducial cosmology to generate synthetic observations**
+
+```python
+fiducial_cosmo = jc.Planck15()
+ell = jnp.logspace(1, 3)  # Multipole range for power spectrum
+```
+**Set up two redshift bins for galaxy populations**
+
+```python
+nz1 = jc.redshift.smail_nz(1., 2., 1.)
+nz2 = jc.redshift.smail_nz(1., 2., 0.5)
+nzs = [nz1, nz2]
+```
+**Define observational probes: weak lensing and number counts**
+
+```python
+probes = [
+    jc.probes.WeakLensing(nzs, sigma_e=0.26),
+    jc.probes.NumberCounts(nzs, jc.bias.constant_linear_bias(1.))
+]
+```
+
+**Generate synthetic data using the fiducial cosmology**
+
+```python
+# 
+mu, cov = jc.angular_cl.gaussian_cl_covariance_and_mean(fiducial_cosmo, ell, probes)
+rng_key = jax.random.PRNGKey(0)
+noise = jax.random.multivariate_normal(rng_key, jnp.zeros_like(mu), cov)
+data = mu + noise  # Fake observations
+```
+
+::::
+
+:::: {.fragment fragment-index=2 .fade-in}
+
+#### Step 2: Define the NumPyro Model
+
+```python
+# Define a NumPyro probabilistic model to infer cosmological parameters
+def model(data):
+    Omega_c = numpyro.sample("Omega_c", dist.Uniform(0.1, 0.5))
+    sigma8 = numpyro.sample("sigma8", dist.Uniform(0.6, 1.0))
+    
+    # Forward model: compute theoretical prediction given parameters
+    cosmo = jc.Planck15(Omega_c=Omega_c, sigma8=sigma8)
+    mu, cov = jc.angular_cl.gaussian_cl_covariance_and_mean(cosmo, ell, probes)
+    
+    # Likelihood: multivariate Gaussian over angular power spectra
+    numpyro.sample("obs", dist.MultivariateNormal(mu, cov), obs=data)
+```
+
+::::
+
+
+---
+
+## Simulation-Based Inference with Forward Models {style="font-size: 18px;"}
+
+
+::: {.columns}
+
+:::: {.column width="60%"}
+
+::: {.r-stack}
+
+:::: {.fragment fragment-index=1 .fade-in-then-out}
+**Bayesian Inference using power spectrum data:**
+::::
+
+:::: {.fragment fragment-index=2 .fade-in}
+**Bayesian Inference using full field data:**
+::::
+
+:::
+
+::: {.r-stack}
+
+:::: {.fragment fragment-index=1 .fade-in-then-out}
+
+![](assets/bayes/bayes_pipeline_latent.svg){fig-align="center" width="80%"}
+
+::::
+
+:::: {.fragment fragment-index=2 .fade-in-then-out}
+
+
+![](assets/bayes/FFI_full.svg){fig-align="center" width="100%"}
+
+
+::::
+:::: {.fragment fragment-index=3 .fade-int}
+
+
+![](assets/bayes/FFI_full_tuto.svg){fig-align="center" width="100%"}
+
+
+::::
+
+
+:::
+
+::::
+
+:::: {.column width="40%"}
+
+:::: {.fragment fragment-index=1 .fade-in}
+
+  - **Recap:** Bayesian inference maps theory + data → posterior
+
+::::
+
+:::: {.fragment fragment-index=2 .fade-in}
+
+  - **Cosmological Forward models**
+    - Start from cosmological + latent parameters
+    - Sample initial conditions
+    - Evolve using **N-body simulations**
+    - **Predict convergence maps** in tomographic bins
+
+::::
+:::: {.fragment fragment-index=3 .fade-in}
+  - **Simulation-Based Inference**
+    * Compare predictions to real **survey maps**
+    * Build a **likelihood** from the forward model
+    * Infer cosmological parameters from **full field data**
+::::
+
+
+::::
+
+:::
+
+
+:::: {.fragment fragment-index=4 .fade-in}
+
+
+::: {.solutionbox}
+
+::::{.solutionbox-header style="font-size: 20px;"}
+
+**Full Field vs. Summary Statistics**
+::::
+
+::::{.solutionbox-body style="font-size: 18px;"}
+
+
+* Preserves **non-Gaussian** structure lost in summaries
+* Enables tighter constraints in **nonlinear regimes**
+* Especially useful in **high-dimensional** inference problems
+* See: *Zeghal et al. (2024), Leclercq et al. (2021)*
+* 🔜 Two talks on this topic this Thursday
+
+::::
+
+:::
+
+::::
+
+# Conclusion
+
+##  Conclusion: Why Bayesian Inference?
+
+### 🔑 Key Takeaways
+
+* **Bayesian modeling** lets you build flexible, extensible pipelines
+  — from analytical likelihoods to full forward simulations.
+
+* The **JAX ecosystem** (NumPyro, BlackJAX, jax-cosmo...)
+  lets you focus on **modeling**, not math details.
+
+* **Gradients + differentiable simulators** scale inference to
+  complex, high-dimensional problems — efficiently and transparently.
+
+* Bayesian tools are now mature, fast, and usable
+  — even for large cosmological models.
+
+:::{.solutionbox}
+
+::: {.solutionbox-header style="font-size: 20px;"}
+  **Hands-On Notebooks:**
+:::
+
+::::{.solutionbox-body style="font-size: 18px;"}
+
+  - Beginner Bayesian Inference with NumPyro & Blackjax [here](https://github.com/ASKabalan/Tutorials/blob/main/BDL2025/Exercises/01_Beginner.ipynb)
+  - Intermediate Bayesian Inference with NumPyro & Blackjax [here](https://github.com/ASKabalan/Tutorials/blob/main/BDL2025/Exercises/02_Intermediate.ipynb)
+  - some of the animation were made using this [notebook](https://github.com/ASKabalan/slides/blob/main/BDL_school2025/illustrations/numpyro.ipynb)
+
+::::
+
+:::
+
