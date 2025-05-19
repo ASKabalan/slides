@@ -216,45 +216,19 @@
 </ul>
 </div>
 </div>
-<aside class="notes">
+<section id="speaker-notes" class="notes">
+<h3>🎙️ Speaker Notes</h3>
+<p><strong>[Slide Title: “Goals for This Presentation”]</strong></p>
+<p>“Let me walk you through what we’re aiming to cover today.”</p>
 <ul>
-<li><strong>Understand the Basics of Parallelism:</strong>
-<ul>
-<li>“First, we’ll start with the <strong>fundamentals of parallelism</strong> — understanding how parallel computing works.”</li>
-<li>“We’ll look at different <strong>types of parallelism</strong>, such as task parallelism and data parallelism, and see how they are applied in computational problems.”</li>
-<li>“It’s important to get a solid understanding of these basic concepts before we dive into how to scale them effectively in cosmology.”</li>
-</ul></li>
-<li><strong>Know When (and When Not) to Parallelize:</strong>
-<ul>
-<li>“Next, we’ll cover a critical aspect: knowing <strong>when to use parallelism</strong> and, just as importantly, <strong>when not to use it</strong>.”</li>
-<li>“While parallelism can offer huge speedups, not all problems are suitable for parallelization. In fact, sometimes parallelism can make things slower due to overhead. I’ll show you how to identify the right cases for parallelism and how to avoid it when it’s not the best approach.”</li>
-</ul></li>
-<li><strong>Scale Code Using JAX:</strong>
-<ul>
-<li>“Then, we’ll explore how to <strong>scale your code using JAX</strong>.”</li>
-<li>“JAX makes it easy to scale computations by automatically taking advantage of GPUs. We’ll also look at how your code might change depending on the parallelism strategy you choose. JAX allows for flexible parallelization strategies, so you can tailor it to your specific needs.”</li>
-</ul></li>
-<li><strong>Hands-On Tutorials:</strong>
-<ul>
-<li>“Finally, we’ll wrap up with <strong>hands-on tutorials</strong>. We’ll work through interactive code examples so you can see firsthand how these concepts are implemented in practice.”</li>
-<li>“These examples will give you the opportunity to apply what we’ve discussed and see the power of parallel computing in action.”</li>
-</ul></li>
-<li><strong>Transition:</strong>
-<ul>
-<li>“Now that we know what we aim to cover, let’s dive into the basics of parallelism and lay the groundwork for the rest of the talk.”</li>
-</ul></li>
+<li><p><strong>First</strong>, we’ll build an understanding of <strong>cosmological inference</strong> — how we move from raw observational data to constraints on cosmological parameters. This includes both the intuition and the mathematical machinery behind it.</p></li>
+<li><p><strong>Second</strong>, we’ll see how <strong>Bayesian inference</strong> generalizes the classical approach. Instead of just optimizing a χ², we model uncertainty and latent structure more fully.</p></li>
+<li><p><strong>Third</strong>, we’ll dive into <strong>forward modeling</strong> and <strong>hierarchical models</strong>. These are especially relevant in modern cosmology where we simulate the full data generation process and marginalize over latent variables.</p></li>
+<li><p>Then we’ll explore some of the <strong>modern tools</strong> that make all of this practical: <strong>JAX</strong> for fast, differentiable computing; <strong>NumPyro</strong> for probabilistic programming; and <strong>BlackJAX</strong> for flexible sampling.</p></li>
+<li><p>Finally, the goal is for you to leave prepared for the <strong>hands-on notebooks</strong>, where you’ll implement and explore real inference pipelines using JAX-based tools.</p></li>
 </ul>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+<p>The goal of this is to able to start doing bayesian inference .. so if you have any questions, please ask them during the presentation.</p>
+</section>
 </section>
 <section>
 <section id="background-inference-in-cosmology-the-big-picture" class="title-slide slide level1 center">
@@ -344,6 +318,33 @@
 </div>
 </div>
 </div></div>
+<aside class="notes">
+<p>“This is the traditional approach many of you are already familiar with — the frequentist pipeline.”</p>
+<ul>
+<li><p>We start with a set of <strong>cosmological parameters</strong>, denoted here as <strong>Ω</strong> — this could include things like the matter density, dark energy equation of state, etc.</p></li>
+<li><p>These parameters are used to predict observable quantities, such as the <strong>CMB power spectrum</strong>, <strong>galaxy clustering</strong>, or <strong>weak lensing shear</strong>.</p></li>
+<li><p>From the data, we extract <strong>summary statistics</strong> — typically things like <strong>2-point correlation functions</strong>, <strong>power spectra</strong> (P(k), C_ℓ), or other reduced forms of the data.</p></li>
+<li><p>Then, we compute a <strong>likelihood</strong> — usually assuming a Gaussian form for the summary statistics — and estimate parameters by <strong>maximizing this likelihood</strong>. That gives us a point estimate <strong>Ω̂</strong>.</p></li>
+<li><p>This pipeline works well when:</p>
+<ul>
+<li>You have a reliable analytic likelihood,</li>
+<li>The summary statistics are informative,</li>
+<li>And the assumptions (e.g.&nbsp;Gaussianity, linear regime) hold.</li>
+</ul></li>
+<li><p>The box in the lower right shows what’s typically in the frequentist toolbox — <strong>χ² fitting</strong>, <strong>2PCF</strong>, and so on.</p></li>
+</ul>
+<p>“This pipeline is efficient and interpretable — but as we’ll see, it has limitations when you move beyond simple, low-dimensional, or linear models.”</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="inference-in-cosmology-the-bayesian-pipeline" class="slide level2" style="font-size: 21px;">
 <h2>Inference in Cosmology: The Bayesian Pipeline</h2>
@@ -418,6 +419,25 @@
 </div>
 </div>
 </div></div>
+<aside class="notes">
+<p>Start by emphasizing that, like the frequentist pipeline, the Bayesian version also begins with summary statistics like power spectra. But instead of finding a best-fit point estimate, the Bayesian approach defines a <strong>probabilistic model</strong> over cosmological parameters.</p>
+<p>Now show image 2:</p>
+<ul>
+<li>We sample from a <strong>prior</strong> over parameters, combine it with a <strong>likelihood</strong> based on the observed data, and use this to compute the <strong>posterior</strong>.</li>
+<li>This posterior captures all uncertainty, correlations, and degeneracies.</li>
+<li>The Bayesian toolbox lets us extend models easily — hierarchical structure, latent fields, flexible priors — and perform inference using modern tools like NumPyro and gradient-based samplers (e.g.&nbsp;NUTS, HMC).</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="inference-in-cosmology-the-bayesian-pipeline-1" class="slide level2" style="font-size: 18px;" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Inference in Cosmology: The Bayesian Pipeline</h2>
@@ -534,6 +554,50 @@ P(\Omega \mid \text{Obs})
 </div>
 </div>
 </div>
+<aside class="notes">
+<p><strong>Speaker Notes for This Sequence:</strong></p>
+<hr>
+<p><strong>STEP 1:</strong></p>
+<p>We now extend the Bayesian pipeline by introducing <strong>latent variables</strong> — denoted <em>z</em>. These are hidden, unobserved quantities such as initial conditions, noise fields, or instrumental effects.</p>
+<ul>
+<li><p>The <strong>prior</strong> encodes our belief over cosmological parameters Ω. It’s <strong>unobserved</strong>, <strong>unknown</strong>, and is the <strong>target of inference</strong>.</p></li>
+<li><p>The <strong>latent variables</strong> <em>z</em> are also <strong>unobserved</strong> and <strong>unknown</strong>, but they are <strong>conditional on the prior</strong> — they depend on Ω and are integrated out (marginalized) during inference.</p></li>
+<li><p>The <strong>likelihood</strong> is a forward model that generates observables given both the prior and latent structure: <span class="math inline">\(\mathcal{L}(\text{Obs} \mid \Omega, z)\)</span></p></li>
+<li><p>The <strong>posterior</strong> combines all of these: it tells us how probable different cosmological parameters are, given the data and the model structure: <span class="math inline">\(P(\Omega \mid \text{Obs}) \propto \int \mathcal{L}(\text{Obs} \mid \Omega, z) \, P(z \mid \Omega) \, dz \cdot P(\Omega)\)</span></p></li>
+</ul>
+<p>This hierarchical view is what powers modern cosmological inference.</p>
+<p><strong>STEP 2:</strong></p>
+<p>Here’s a polished version of your speaker notes for that section:</p>
+<hr>
+<p>We now move to the full <strong>Bayesian formula</strong> — starting without latent variables:</p>
+<p>This gives us the <strong>posterior</strong> as the product of the <strong>likelihood</strong> and the <strong>prior</strong>, normalized by the <strong>evidence</strong>. The evidence <span class="math inline">\(P(\text{Obs})\)</span> ensures the posterior is a proper probability distribution.</p>
+<p>Now, when we introduce <strong>latent variables</strong> <span class="math inline">\(z\)</span>, the likelihood itself becomes an integral over those:</p>
+<p>This marginal likelihood accounts for the full hidden structure.</p>
+<p>In practice, we <strong>ignore the evidence</strong> term when sampling:</p>
+<ul>
+<li>It’s <strong>constant for a given model</strong> — so it doesn’t affect posterior shape.</li>
+<li>It’s <strong>computationally expensive</strong> to compute (requires full integration).</li>
+<li>But: it’s <strong>very useful for comparing models</strong>.</li>
+</ul>
+<hr>
+<p><strong>Summary</strong>:</p>
+<ul>
+<li>We sample directly from the <strong>posterior</strong>, which combines <strong>prior</strong> and <strong>likelihood</strong>.</li>
+<li><strong>Latent variables</strong> model hidden or uncertain structure — like initial conditions.</li>
+<li>The <strong>evidence</strong> is dropped during sampling, but becomes important in <strong>model comparison</strong> using the <strong>Bayes Factor</strong>:</li>
+</ul>
+<p>This tells us which model is better supported by the data.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="two-roads-to-inference-frequentist-and-bayesian" class="slide level2" style="font-size: 20px;">
 <h2>Two Roads to Inference: Frequentist and Bayesian</h2>
@@ -614,6 +678,29 @@ P(\Omega \mid \text{Obs})
 </div>
 </div></div>
 <p><br></p>
+<aside class="notes">
+<p>This slide lays out a direct comparison between the <strong>frequentist</strong> and <strong>Bayesian</strong> approaches.</p>
+<p>We’re highlighting not just the philosophical differences, but also the <strong>practical consequences</strong>.</p>
+<p>A few key contrasts to emphasize:</p>
+<ul>
+<li><p><strong>Parameters</strong>: In frequentist stats, parameters are fixed but unknown. In Bayesian stats, they’re <strong>random variables</strong> — we assign distributions to represent our uncertainty.</p></li>
+<li><p><strong>Goal</strong>: Frequentists usually aim for a <strong>point estimate</strong> (like the MLE). Bayesians aim to recover the <strong>entire posterior distribution</strong>.</p></li>
+<li><p><strong>Uncertainty</strong>: Frequentists focus on <strong>data variability</strong> — uncertainty from random samples. Bayesians focus on <strong>parameter uncertainty</strong> — how uncertain we are about the parameters given the data.</p></li>
+<li><p><strong>Intervals</strong>: The interpretations are totally different. A frequentist says, “95% of the time, this interval contains the truth.” A Bayesian says, “There’s a 95% chance the truth is in this interval.”</p></li>
+<li><p><strong>Tooling</strong>: Optimization vs.&nbsp;sampling. Frequentists often rely on <strong>curve fitting</strong>, minimization, etc. Bayesian workflows rely on <strong>sampling</strong> (MCMC, HMC, NUTS).</p></li>
+</ul>
+<p>Make sure the audience sees this isn’t about choosing sides. As the bottom note says — they’re <strong>not mutually exclusive</strong>. A lot of modern workflows combine both perspectives.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 <aside><div>
 <p><span class="citation" data-cites="image">@image</span> credit:Wayne Stewart</p>
 </div></aside></section></section>
@@ -678,6 +765,33 @@ P(\Omega \mid \text{Obs})
 </div>
 </div>
 </div></div>
+<aside class="notes">
+<p>This slide illustrates the core mechanism behind most MCMC samplers — the accept/reject loop.</p>
+<p>We start with a current sample from the posterior, say <span class="math inline">\((\Omega^t, z^t)\)</span>. The sampler then proposes a new point <span class="math inline">\((\Omega', z')\)</span>, using some rule — it might be a random walk, or it might use gradients like in HMC or NUTS.</p>
+<p>Next, we compute the <strong>acceptance probability</strong> — this depends on how likely the new sample is under the posterior compared to the current one.</p>
+<p>Then we make a decision:</p>
+<ul>
+<li>If the new sample is more likely (or meets some acceptance threshold), we accept it and add it to the chain.</li>
+<li>If not, we reject it and store the current one again.</li>
+</ul>
+<p>This process repeats to build a chain of samples. The accepted ones collectively approximate the posterior distribution.</p>
+<p>On the right, the key takeaways:</p>
+<ul>
+<li>Most samplers use this loop.</li>
+<li>The difference lies in how they generate proposals — basic methods use random walks, while advanced methods use gradients.</li>
+<li>Some newer algorithms avoid rejection altogether — like variational inference or some Langevin-based flows — but the classic accept/reject structure remains fundamental to many MCMC approaches.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section class="slide level2">
 
@@ -733,6 +847,27 @@ P(\Omega \mid \text{Obs})
 </div></div>
 <p><br> <br></p>
 
+<aside class="notes">
+<p>This slide gives a quick overview of three core MCMC algorithms.</p>
+<p>We start with <strong>Metropolis-Hastings (MH)</strong>: It proposes a new sample using a simple random walk — typically from a Normal centered on the current value. The acceptance probability is the ratio of posteriors — new over old — and we accept based on how much better the new sample fits. You can see on the diagram: it just takes a small step and checks whether to keep it.</p>
+<p>Next, <strong>Hamiltonian Monte Carlo (HMC)</strong>: Rather than proposing random jumps, HMC uses gradients to simulate a physical trajectory through parameter space — like a particle rolling through a potential landscape. This allows it to make larger moves that still preserve the posterior distribution. Acceptance here is based on energy conservation, using a Hamiltonian formulation.</p>
+<p>Finally, <strong>NUTS (No-U-Turn Sampler)</strong>: This builds on HMC, but it adds smart tuning:</p>
+<ul>
+<li>It automatically adjusts step size</li>
+<li>It stops the trajectory before looping back on itself — hence “No-U-Turn” This makes NUTS a great default sampler in most PPLs — it avoids a lot of manual tuning and works well out of the box.</li>
+</ul>
+<p>Together, these illustrate a spectrum: from simple MH to advanced gradient-based samplers — and show how modern samplers make use of geometry to efficiently explore high-dimensional spaces.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 <aside><div>
 <p><span class="citation" data-cites="credit">@credit</span>: https://github.com/chi-feng/mcmc-demo</p>
 </div></aside></section>
@@ -871,6 +1006,55 @@ P(\Omega \mid \text{Obs})
 </div>
 </div>
 </div>
+<aside class="notes">
+<p>In this slide we compare HMC and traditional MCMC in two scenarios:</p>
+<hr>
+<h3 id="top-row-gaussian-posterior">Top row: <strong>Gaussian posterior</strong></h3>
+<ul>
+<li>HMC (left) aligns well with the true density contours — samples are well spread.</li>
+<li>MCMC (right) struggles a bit — it’s noisy, slightly distorted, and shows <strong>correlated samples</strong>.</li>
+<li>That’s because MCMC does a random walk, which is inefficient even in simple geometries.</li>
+</ul>
+<hr>
+<h3 id="bottom-row-banana-shaped-posterior">Bottom row: <strong>Banana-shaped posterior</strong></h3>
+<ul>
+<li>This is a <strong>nonlinear</strong>, curved posterior — a much harder target.</li>
+<li>HMC (left) still tracks the true shape well using its gradient information.</li>
+<li>MCMC (right) again struggles: it oversamples in wrong regions and can’t explore the full space.</li>
+</ul>
+<hr>
+<h3 id="key-point">Key Point:</h3>
+<p>HMC shines when the geometry is tricky. Its gradients guide proposals along the posterior, unlike MCMC’s aimless wandering.</p>
+<p>This motivates why we use HMC or NUTS in high-dimensional, curved, or strongly correlated problems — like cosmology.</p>
+<p><strong>Slide: Sampling Without Gradients</strong></p>
+<ul>
+<li>This shows how traditional MCMC struggles when sampling from complex distributions.</li>
+<li>Here, proposals are based on <strong>random walks</strong>, which means they can easily jump into low-probability regions.</li>
+<li>As a result, many proposals are rejected — leading to inefficient sampling.</li>
+<li>To maintain high acceptance, samplers reduce step size — but this slows down exploration dramatically, especially in high dimensions.</li>
+<li>You can see the samples (blue dots) under-sample the second peak and have poor coverage overall.</li>
+</ul>
+<hr>
+<p><strong>Slide: Sampling With Gradients</strong></p>
+<ul>
+<li>Now we add <strong>gradient information</strong> — this is what HMC uses.</li>
+<li>Gradients give the sampler a sense of “direction,” pointing it toward high-probability areas.</li>
+<li>Instead of random jumps, we simulate <strong>trajectories</strong> that follow the shape of the distribution.</li>
+<li>This enables much better exploration with fewer steps.</li>
+<li>As a result, samples land more effectively across both peaks and better represent the target distribution.</li>
+<li>This illustrates why gradient-based samplers like HMC or NUTS perform so well in high-dimensional, structured problems.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="differentiable-inference-with-jax" class="slide level2" style="font-size: 20px;">
 <h2>Differentiable Inference with JAX</h2>
@@ -911,6 +1095,28 @@ P(\Omega \mid \text{Obs})
 </figure>
 </div>
 </div></div>
+<aside class="notes">
+<ul>
+<li>This is why JAX is such a natural fit for inference: it’s fully differentiable and built around <strong>gradients</strong>.</li>
+<li>On the left we show three core ideas that power modern inference.</li>
+</ul>
+<p><strong>First block</strong>: JAX gives you a familiar NumPy-like API, with tools like <code>jit</code> to compile and optimize code. You define a prior, a log-prob function, and wrap it in <code>jit</code> — easy and fast.</p>
+<p><strong>Second block</strong>: With <code>jax.grad</code>, you can differentiate any function. That means you get gradients of the log-posterior “for free,” which is exactly what HMC or variational inference need.</p>
+<p><strong>Third block</strong>: JAX scales easily — use <code>vmap</code> to vectorize your function across many seeds, particles, or chains. This is a huge win when doing amortized inference or simulation-based methods.</p>
+<ul>
+<li>Altogether, JAX provides the <strong>gradient plumbing</strong> for probabilistic inference — while remaining readable and fast.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section></section>
 <section>
 <section id="practical-bayesian-modeling-inference-with-jax" class="title-slide slide level1 center">
@@ -1029,6 +1235,41 @@ P(\Omega \mid \text{Obs})
 </div>
 </div>
 </div></div>
+<aside class="notes">
+<p>Here are the speaker notes for the two slides:</p>
+<hr>
+<p><strong>Slide 1: “A Recipe for Bayesian Inference”</strong></p>
+<ul>
+<li><p>Now let’s break Bayesian inference into a practical workflow.</p></li>
+<li><p>First, we define our model using a <strong>probabilistic programming language</strong> — here, NumPyro. This is where we encode the prior and the structure of the model.</p></li>
+<li><p>Second, we use a tool like <strong>JAX-Cosmo</strong> to compute the likelihood. This connects cosmological parameters to observable predictions — such as angular power spectra.</p></li>
+<li><p>Third, we use <strong>MCMC</strong> or <strong>BlackJAX</strong> to sample from the posterior.</p>
+<ul>
+<li>This is where sampling happens, and where gradient-based methods like NUTS come into play.</li>
+</ul></li>
+<li><p>Finally, we extract posterior samples to analyze uncertainty and parameter correlations.</p></li>
+</ul>
+<p>The graphic on the right summarizes this logic visually: from prior → likelihood → posterior → sample.</p>
+<hr>
+<p><strong>Slide 2: “A Recipe for Bayesian Inference (Full Loop)”</strong></p>
+<ul>
+<li>This slide extends the recipe with the <strong>final step: visualization</strong>.</li>
+<li>After sampling, we can summarize and visualize the posterior with tools like <strong>ArviZ</strong>.</li>
+<li>The corner plot on the right shows the joint and marginal distributions — a key diagnostic to assess whether inference worked and how parameters are correlated.</li>
+<li>The dashed vs.&nbsp;solid lines show different inference strategies — possibly <strong>explicit</strong> (forward simulations) vs <strong>implicit</strong> likelihoods.</li>
+</ul>
+<p>The takeaway is that with JAX, NumPyro, and JAX-Cosmo, we have a <strong>modular pipeline</strong> for Bayesian inference — from model definition to visual diagnostics.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="sampler-comparison-table" class="slide level2" style="font-size: 26px;">
 <h2>Sampler Comparison Table</h2>
@@ -1115,6 +1356,36 @@ P(\Omega \mid \text{Obs})
 </div>
 </div>
 <p>For more information check Simons et al.&nbsp;(2025), <a href="https://arxiv.org/pdf/2504.20130">§2.2.3, arXiv:2504.20130</a></p>
+<aside class="notes">
+<p><strong>Speaker Notes – Sampler Comparison Table</strong></p>
+<p>This table gives a high-level overview of common samplers available in NumPyro and BlackJAX, organized by key features.</p>
+<ul>
+<li><p><strong>MCMC (SA)</strong>: This is standard Metropolis-Hastings — no gradients, no tuning, but it’s simple and useful for low-dimensional problems. Slow mixing is a drawback.</p></li>
+<li><p><strong>HMC</strong>: Hamiltonian Monte Carlo improves mixing by using gradients to simulate physics-based trajectories. It requires tuning for step size and path length, so it’s more manual.</p></li>
+<li><p><strong>NUTS</strong>: No-U-Turn Sampler is HMC with built-in auto-tuning. It adapts step size and path length during warm-up, making it the default choice for general-purpose inference in NumPyro and BlackJAX.</p></li>
+<li><p><strong>MALA</strong>: Metropolis-Adjusted Langevin Algorithm uses gradients for local proposals. It’s a good middle ground — cheaper than full HMC, but more efficient than MH.</p></li>
+<li><p><strong>MCLMC</strong>: Stochastic Langevin dynamics with <strong>no rejection</strong> step. Useful in large latent spaces, often in simulator-based models, but biased due to lack of correction.</p></li>
+<li><p><strong>Adjusted MCLMC</strong>: Same as MCLMC, but now with a Metropolis-Hastings correction step. This helps reduce bias, at the cost of a little more computation.</p></li>
+</ul>
+<p><strong>Main idea:</strong> Pick the right sampler based on:</p>
+<ul>
+<li>whether you can compute gradients</li>
+<li>dimensionality of the posterior</li>
+<li>whether you need auto-tuning or not</li>
+<li>whether you want unbiased samples (with rejection) or not.</li>
+</ul>
+<p>Final note: This is a simplified summary. For real applications, benchmarking is always best.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section class="slide level2">
 
@@ -1137,6 +1408,27 @@ P(\Omega \mid \text{Obs})
 <span id="cb12-2"><a></a><span class="im">from</span> numpyro.handlers <span class="im">import</span> reparam</span>
 <span id="cb12-3"><a></a></span>
 <span id="cb12-4"><a></a>reparammed_model <span class="op">=</span> reparam(model, config<span class="op">=</span>{<span class="st">"z"</span>: LocScaleReparam()})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<aside class="notes">
+<p>This slide gives a quick preview of useful <code>numpyro.handlers</code> you’ll see in the notebooks.</p>
+<ul>
+<li><strong><code>seed</code></strong> lets you fix randomness for reproducibility — critical for testing or debugging.</li>
+<li><strong><code>trace</code></strong> inspects your model’s internal execution and samples — great for seeing what actually gets sampled.</li>
+<li><strong><code>condition</code></strong> clamps a variable to a fixed value — useful for simulating data from a known model.</li>
+<li><strong><code>substitute</code></strong> is similar, but lets you plug in values like MAP estimates.</li>
+<li><strong><code>reparam</code></strong> lets you reparameterize tricky sample sites to improve posterior geometry and sampling.</li>
+</ul>
+<p>We’ll practice using all of these interactively in the notebooks.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="a-minimal-bayesian-linear-model" class="slide level2" style="font-size: 18px;">
 <h2>A Minimal Bayesian Linear Model</h2>
@@ -1176,6 +1468,26 @@ P(\Omega \mid \text{Obs})
 <span id="cb15-9"><a></a>)</span>
 <span id="cb15-10"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<aside class="notes">
+<p>This slide walks through the first notebook exercise — a minimal Bayesian linear regression model using NumPyro.</p>
+<ul>
+<li>First block defines synthetic data: we’re sampling noisy <code>y</code> values from a true line <code>y = 2x - 1</code>.</li>
+<li>The <code>linear_regression</code> function defines a probabilistic model: priors on slope <code>w</code>, intercept <code>b</code>, and noise <code>sigma</code>.</li>
+<li>We use NUTS from NumPyro to sample from the posterior — no likelihood math needed manually.</li>
+<li>Finally, the bottom cell visualizes the posterior using <code>corner.py</code> and ArviZ. You’ll see how the true parameters compare to the inferred distributions.</li>
+</ul>
+<p>This is the foundation — you’ll implement and modify this directly during the hands-on.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="using-blackjax-and-numpyro" class="slide level2">
 <h2>Using BlackJax and NumPyro</h2>
@@ -1217,6 +1529,27 @@ P(\Omega \mid \text{Obs})
 <p><strong>Convert BlackJAX output to ArviZ InferenceData</strong></p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a></a>idata <span class="op">=</span> az.from_dict(posterior<span class="op">=</span>samples.position)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<aside class="notes">
+<p>This slide shows how to use BlackJAX for sampling when you already have a model defined in NumPyro.</p>
+<ul>
+<li>First, we extract the <strong>log-probability function</strong> from a NumPyro model using <code>initialize_model</code>. This lets us use BlackJAX with the same model.</li>
+<li>We define a <code>logdensity_fn</code>, which BlackJAX expects — it just wraps the potential function with a negative sign.</li>
+<li>Next, we run <strong>adaptive warm-up</strong> with <code>blackjax.window_adaptation</code>. This tunes step size and mass matrix like NumPyro does.</li>
+<li>Then, we sample using <code>blackjax.nuts</code> with a loop written using <code>jax.lax.scan</code> for speed and JIT compatibility.</li>
+<li>Finally, we convert the raw samples to an ArviZ-friendly format with <code>az.from_dict</code>.</li>
+</ul>
+<p>Key point: BlackJAX is super fast and modular, but not a full PPL — so you bring your own model definition.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section></section>
 <section>
 <section id="examples-bayesian-inference-for-cosmology" class="title-slide slide level1 center">
@@ -1240,11 +1573,10 @@ P(\Omega \mid \text{Obs})
 <span id="cb22-3"><a></a>    jc.probes.NumberCounts(nzs, jc.bias.constant_linear_bias(<span class="fl">1.</span>))</span>
 <span id="cb22-4"><a></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Generate synthetic data using the fiducial cosmology</strong></p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a></a><span class="co"># </span></span>
-<span id="cb23-2"><a></a>mu, cov <span class="op">=</span> jc.angular_cl.gaussian_cl_covariance_and_mean(fiducial_cosmo, ell, probes)</span>
-<span id="cb23-3"><a></a>rng_key <span class="op">=</span> jax.random.PRNGKey(<span class="dv">0</span>)</span>
-<span id="cb23-4"><a></a>noise <span class="op">=</span> jax.random.multivariate_normal(rng_key, jnp.zeros_like(mu), cov)</span>
-<span id="cb23-5"><a></a>data <span class="op">=</span> mu <span class="op">+</span> noise  <span class="co"># Fake observations</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a></a>mu, cov <span class="op">=</span> jc.angular_cl.gaussian_cl_covariance_and_mean(fiducial_cosmo, ell, probes)</span>
+<span id="cb23-2"><a></a>rng_key <span class="op">=</span> jax.random.PRNGKey(<span class="dv">0</span>)</span>
+<span id="cb23-3"><a></a>noise <span class="op">=</span> jax.random.multivariate_normal(rng_key, jnp.zeros_like(mu), cov)</span>
+<span id="cb23-4"><a></a>data <span class="op">=</span> mu <span class="op">+</span> noise  <span class="co"># Fake observations</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment fade-in" data-fragment-index="2">
 <h4 id="step-2-define-the-numpyro-model">Step 2: Define the NumPyro Model</h4>
@@ -1260,6 +1592,33 @@ P(\Omega \mid \text{Obs})
 <span id="cb24-10"><a></a>    <span class="co"># Likelihood: multivariate Gaussian over angular power spectra</span></span>
 <span id="cb24-11"><a></a>    numpyro.sample(<span class="st">"obs"</span>, dist.MultivariateNormal(mu, cov), obs<span class="op">=</span>data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<aside class="notes">
+<p>This slide introduces a basic end-to-end inference workflow using <code>jax-cosmo</code> and <code>NumPyro</code>.</p>
+<p><strong>Step 1: Simulate synthetic cosmological data</strong></p>
+<ul>
+<li>We start with a fiducial cosmology using <code>jc.Planck15()</code>.</li>
+<li>Define a multipole range (<code>ell</code>) and two redshift distributions for tomographic bins.</li>
+<li>Create weak lensing and number count probes.</li>
+<li>Then, using the angular power spectrum mean and covariance from <code>jax_cosmo</code>, we generate mock observations by adding Gaussian noise.</li>
+</ul>
+<p><strong>Step 2: Define the NumPyro model</strong></p>
+<ul>
+<li>The model samples two parameters: <code>Omega_c</code> and <code>sigma8</code>.</li>
+<li>A new cosmology object is constructed with those parameters.</li>
+<li>Then the power spectrum prediction is computed and matched to data with a multivariate Gaussian likelihood.</li>
+</ul>
+<p>This setup mirrors what we do in practice: forward-model observables, simulate noisy data, and recover parameters via inference.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="simulation-based-inference-with-forward-models" class="slide level2" style="font-size: 18px;">
 <h2>Simulation-Based Inference with Forward Models</h2>
@@ -1340,6 +1699,38 @@ P(\Omega \mid \text{Obs})
 </div>
 </div>
 </div>
+<aside class="notes">
+<p><strong>Speaker Notes for Final Slide (Full Field Inference):</strong></p>
+<ul>
+<li><p>We now shift to the most general and flexible form of inference — using <strong>full field data</strong>.</p></li>
+<li><p>This means we <strong>don’t extract summary statistics</strong> like <span class="math inline">\(C_\ell\)</span> — instead, we model the forward process end-to-end, including simulations.</p></li>
+<li><p>The green box shows the <strong>core components</strong> of this forward model pipeline:</p>
+<ul>
+<li>Start by <strong>sampling cosmological + latent parameters</strong> (e.g., initial conditions)</li>
+<li>Use an <strong>N-body simulation</strong> to evolve structure</li>
+<li>Predict observables (e.g., weak lensing convergence maps)</li>
+<li>Compare the simulated maps to real observations to construct a <strong>likelihood</strong></li>
+</ul></li>
+<li><p>This approach <strong>preserves non-Gaussian information</strong>, which is critical in the nonlinear regime.</p></li>
+<li><p>We’ll focus specifically on the contents of the green box in the hands-on notebook:</p>
+<ul>
+<li>Sampling initial fields</li>
+<li>Running a small-scale N-body simulation</li>
+<li>Building a likelihood from simulation output</li>
+</ul></li>
+<li><p>It’s an extremely powerful method, and the frontier of cosmological inference.</p></li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section></section>
 <section>
 <section id="conclusion" class="title-slide slide level1 center">
@@ -1348,6 +1739,7 @@ P(\Omega \mid \text{Obs})
 </section>
 <section id="conclusion-why-bayesian-inference" class="slide level2">
 <h2>Conclusion: Why Bayesian Inference?</h2>
+<p><br> <br></p>
 <h3 id="key-takeaways">🔑 Key Takeaways</h3>
 <ul>
 <li><p><strong>Bayesian modeling</strong> lets you build flexible, extensible pipelines — from analytical likelihoods to full forward simulations.</p></li>
@@ -1367,6 +1759,36 @@ P(\Omega \mid \text{Obs})
 </ul>
 </div>
 </div>
+<h4 id="thank-you-for-your-attention">Thank you for your attention!</h4>
+<aside class="notes">
+<p><strong>Speaker Notes – Conclusion Slide</strong></p>
+<ul>
+<li><p>Let’s wrap up with some key takeaways on <strong>why Bayesian inference matters</strong>, especially in cosmology:</p>
+<ul>
+<li><p>First, <strong>Bayesian modeling is modular and flexible</strong>. It gives us a way to go from simple analytic models to full simulator-based pipelines — all under one framework.</p></li>
+<li><p>The <strong>JAX ecosystem</strong> — NumPyro, BlackJAX, jax-cosmo — gives you a complete toolchain. You don’t have to worry about math-heavy derivations or custom samplers. You can focus on the science and modeling.</p></li>
+<li><p>A major strength is the ability to leverage <strong>gradients and differentiable simulators</strong>. That means you can scale inference even for models with thousands or millions of parameters — like field-level inference.</p></li>
+<li><p>And importantly, the tools are <strong>mature and fast</strong>. These aren’t just research toys — they’re ready for real problems.</p></li>
+</ul></li>
+<li><p>Now it’s your turn. You’ll have access to <strong>two hands-on notebooks</strong>:</p>
+<ul>
+<li>One walks you through Bayesian regression and cosmological inference with NumPyro.</li>
+<li>The other dives into field-level inference and simulation-based modeling.</li>
+</ul></li>
+<li><p>This is where things become tangible — you’ll code your own inference pipeline, simulate structure formation, and run real MCMC samplers.</p></li>
+<li><p>That’s the power of combining <strong>Bayesian ideas</strong> with <strong>modern tools</strong> — and that’s where the future of cosmological inference is headed.</p></li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 
 
 </section></section>
