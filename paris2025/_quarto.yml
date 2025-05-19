@@ -1,0 +1,13 @@
+project:
+  type: website
+  output-dir: .
+
+
+website:
+  title: "JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations"
+  navbar:
+    left:
+      - href: index.qmd
+
+
+
