@@ -76,9 +76,6 @@ so if you have any questions, please ask them during the presentation.
 :::
 
 
----
-
-
 # Background :  Inference in Cosmology: The Big Picture 
 
 ---
@@ -1678,7 +1675,7 @@ This setup mirrors what we do in practice: forward-model observables, simulate n
 
   - Beginner Bayesian Inference with NumPyro & Blackjax [here](https://github.com/ASKabalan/Tutorials/blob/main/BDL2025/Exercises/01_Beginner.ipynb)
   - Intermediate Bayesian Inference with NumPyro & Blackjax [here](https://github.com/ASKabalan/Tutorials/blob/main/BDL2025/Exercises/02_Intermediate.ipynb)
-  - some of the animation were made using this [notebook](https://github.com/ASKabalan/slides/blob/main/BDL_school2025/illustrations/numpyro.ipynb)
+  - some of the animation were made using this [notebook](https://github.com/ASKabalan/Tutorials/blob/main/BDL2025/illustrations/numpyro.ipynb)
 
 ::::
 
