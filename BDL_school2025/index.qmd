@@ -1,9 +1,9 @@
 ---
-title: "Bayesian Inference for Cosmology with JAX"
+title: '<span style="color:#ffffff; font-size: largest;">Bayesian Inference for Cosmology with JAX</span>'
 
 author: 
-  - name: "<span style='font-size: larger;'>Wassim Kabalan</span>"
-  - name : "<span style='font-size: Smaller;'>Alexandre Boucaud, François Lanusse</span>"
+  - name: "<span style='color:#ffffff; font-size: larger;'>Wassim Kabalan</span>"
+  - name : "<span style='color:#ffffff; font-size: Smaller;'>Alexandre Boucaud, François Lanusse</span>"
 footer: "Bayesian Deep Learning Workshop , 2025"
 format:
   revealjs:
@@ -19,9 +19,9 @@ format:
 output: revealjs
 
 title-slide-attributes:
-  data-background-image: "assets/titles/bayes_title.png"
+  data-background-image: "assets/titles/bayes_title_1.png"
   data-background-size: fill
-  data-background-opacity: "0.5"
+  data-background-opacity: "0.8"
 
 
 logo1 : '
@@ -53,13 +53,10 @@ logo1 : '
 
 :::
 
-:::{.notes}
+
+::: {.notes}
 
 
-
-### 🎙️ Speaker Notes
-
-**\[Slide Title: "Goals for This Presentation"]**
 
 "Let me walk you through what we’re aiming to cover today."
 
@@ -77,6 +74,9 @@ The goal of this is to able to start doing bayesian inference ..
 so if you have any questions, please ask them during the presentation. 
 
 :::
+
+
+---
 
 
 # Background :  Inference in Cosmology: The Big Picture 
