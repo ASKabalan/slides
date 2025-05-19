@@ -350,6 +350,55 @@
     "text": "Motivation: Cosmology in the Exascale Era \n\n\n\n\n\nUpcoming Surveys and Massive Data in Cosmology\n\n\n\nMassive Data Volume: LSST will generate 20 TB of raw data per night over 10 years, totaling 60 PB.\nCatalog Size: The processed LSST catalog database will reach 15 PB.\n\n\n\n\n\nCosmological Models and Pipelines\n\n\n\nCosmological simulations and forward modeling can easily reach multiple terabytes in size.\nWe need to scale up cosmological pipelines to handle these data volumes effectively.\n\n\n\n\n\nwill explain scaling in here"
   },
   {
+    "objectID": "paris2025/index.html#goals-for-this-presentation",
+    "href": "paris2025/index.html#goals-for-this-presentation",
+    "title": "JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations",
+    "section": "Goals for This Presentation",
+    "text": "Goals for This Presentation\n  \n\n\n\nUnderstand Field-Level Inference in Cosmology  \nDeep Dive into Particle Mesh Simulation  \nWeak Lensing and Lightcone Modeling  \nSampling with MCMC  \nExplore Distributed, Differentiable N-body Simulations  \nConnect Distributed Simulation and Inference"
+  },
+  {
+    "objectID": "paris2025/index.html#inference-in-cosmology-the-frequentist-pipeline",
+    "href": "paris2025/index.html#inference-in-cosmology-the-frequentist-pipeline",
+    "title": "JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations",
+    "section": "Inference in Cosmology: The Frequentist Pipeline",
+    "text": "Inference in Cosmology: The Frequentist Pipeline\n\n\n\n\n\n\n\n\n\n\n\n\n\ncosmological parameters (Ω): matter density, dark energy, etc.\nPredict observables: CMB, galaxies, lensing\nExtract summary statistics: \\(P(k)\\), \\(C_\\ell\\) , 2PCF\nCompute likelihood: \\(L(\\Omega \\vert data)\\)\nEstimate \\(\\hat{\\Omega}\\) via maximization (\\(\\chi^2\\) fitting)\n\n\n\n\n\nLimits of Summary Statistics\n\n\n\nSummary statistics are lossy\n\nThe power spectrum captures only Gaussian information\n\nHigher-order statistics (e.g. bispectrum, peak counts):\n⤷ difficult to model and interpret\n⤷ computationally expensive\n⤷ sensitive to systematics\n\nIn the nonlinear regime, these issues worsen"
+  },
+  {
+    "objectID": "paris2025/index.html#from-summary-statistics-to-full-field-inference",
+    "href": "paris2025/index.html#from-summary-statistics-to-full-field-inference",
+    "title": "JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations",
+    "section": "From Summary Statistics to Full Field Inference",
+    "text": "From Summary Statistics to Full Field Inference\n\n\n \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n🔒 Implicit (Likelihood-Free) Inference\n\nSimulator is a blackbox\n\nNo tractable likelihood\n\nOnly sample from the joint distribution\nExample : Simulation-based inference (SBI)\n\n\n \n\n🔍 Explicit (Full-Field) Inference\n\nFull-field forward model is differentiable and structured\n\nLikelihood defined in pixel space\n\nJointly infer cosmology + latent fields\n\nCaptures all available information\nExample : Hierarchical Bayesian Modeling (HBM)\n\n\n\n\n\n\nTakeaway\n\n\nTo unlock the full information in cosmological data,\nwe must move from summary-based inference → to structured, gradient-based field-level inference."
+  },
+  {
+    "objectID": "paris2025/index.html#particle-mesh-simulations",
+    "href": "paris2025/index.html#particle-mesh-simulations",
+    "title": "JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations",
+    "section": "Particle Mesh Simulations",
+    "text": "Particle Mesh Simulations\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCompute Forces via PM method\n\nStart with particles \\((\\mathbf{x}_i, \\mathbf{p}_i)\\)\n\nInterpolate to mesh: \\(\\rho(\\mathbf{x})\\)\n\nSolve Poisson’s Equation: \\[\n\\nabla^2 \\phi = -4\\pi G \\rho\n\\]\nIn Fourier space: \\[\n\\mathbf{f}(\\mathbf{k}) = i\\mathbf{k}k^{-2}\\rho(\\mathbf{k})\n\\]\n\n\n\n\nTime Evolution via ODE\n\nPM uses Kick-Drift-Kick (symplectic) scheme:\n\nDrift: \\(\\mathbf{x} \\leftarrow \\mathbf{x} + \\Delta a \\cdot \\mathbf{v}\\)\nKick: \\(\\mathbf{v} \\leftarrow \\mathbf{v} + \\Delta a \\cdot \\nabla \\phi\\)\n\nTreated as a differentiable ODE system in JAXPM\n\n\n\n\n\n\n\nFast and scalable approximation to gravity.\nA cycle of FFTs and interpolations.\nSacrifices small-scale accuracy for speed and differentiability."
+  },
+  {
+    "objectID": "paris2025/index.html#explicit-full-field-inference-1",
+    "href": "paris2025/index.html#explicit-full-field-inference-1",
+    "title": "JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations",
+    "section": "Explicit (Full-Field) Inference",
+    "text": "Explicit (Full-Field) Inference"
+  },
+  {
+    "objectID": "paris2025/index.html#distributed-fast-fourier-transform",
+    "href": "paris2025/index.html#distributed-fast-fourier-transform",
+    "title": "JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations",
+    "section": "Distributed Fast Fourier Transform",
+    "text": "Distributed Fast Fourier Transform\n➢  only operation that requires communication is the FFT\n\nJaxdecomp\n\n\nimport jax\nimport jax.numpy as jnp\n\nfield = jax.random.normal(jax.random.PRNGKey(0), (1024, 1024, 1024))\nk_field = jnp.fft.fftn(field)\n\n\n\n\nL’opération qui nécessite le plus de communication dans une simulation distribuée est la transformée de Fourier rapide (FFT).\nL’utilisation sur un seul GPU est triviale"
+  },
+  {
+    "objectID": "paris2025/index.html#distributed-fast-fourier-transform-1",
+    "href": "paris2025/index.html#distributed-fast-fourier-transform-1",
+    "title": "JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations",
+    "section": "Distributed Fast Fourier Transform",
+    "text": "Distributed Fast Fourier Transform\n➢  only operation that requires communication is the FFT\n\nJaxdecomp\n\n DifferentiableUniverseInitiative/jaxDecomp\n\n\n\n\nimport jax\nimport jax.numpy as jnp\nimport jaxdecomp\n\nmesh = jax.make_mesh((2, 2), axis_names=('x', 'y'))\nsharding = jax.sharding.NamedSharding(mesh, P('x', 'y'))\n\n# Create gaussian field distributed across the mesh\nfield = jax.make_array_from_single_device_arrays(\n        shape=mesh_shape,\n        sharding=sharding,\n        arrays=[jax.random.normal(jax.random.PRNGKey(rank), (512, 512, 1024))])\n\nk_field = jaxdecomp.fft.pfft3d(field)\n\n\n\n\nJaxDecomp features\n\n\n➢  jaxDecomp supports 2D and 1D decompositions\n➢  Works for multi-node FFTs\n➢  is differentiable\n➢  The package is also provided as a standalone library"
+  },
+  {
     "objectID": "csi2024/index.html#accelerating-bayesian-inference-in-cosmology",
     "href": "csi2024/index.html#accelerating-bayesian-inference-in-cosmology",
     "title": "CSI Presentation 2024",
