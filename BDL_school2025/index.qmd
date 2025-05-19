@@ -19,9 +19,9 @@ format:
 output: revealjs
 
 title-slide-attributes:
-  data-background-image: "assets/JZ-JAX.png"
+  data-background-image: "assets/titles/bayes_title.png"
   data-background-size: fill
-  data-background-opacity: "0.2"
+  data-background-opacity: "0.5"
 
 
 logo1 : '
