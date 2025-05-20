@@ -1667,38 +1667,33 @@ This setup mirrors what we do in practice: forward-model observables, simulate n
 
 <br/>
 <br/>
+<br/>
 
-### 🔑 Key Takeaways
 
-* **Bayesian modeling** lets you build flexible, extensible pipelines
+### Key Takeaways
+
+* **Bayesian modeling** enables flexible, end-to-end inference pipelines
   — from analytical likelihoods to full forward simulations.
 
 * The **JAX ecosystem** (NumPyro, BlackJAX, jax-cosmo...)
-  lets you focus on **modeling**, not math details.
+  lets you focus on **modeling**, not low-level math.
 
-* **Gradients + differentiable simulators** scale inference to
-  complex, high-dimensional problems — efficiently and transparently.
+* **Gradients + differentiable simulators** make inference scalable
+  — even in complex, high-dimensional models.
 
-* Bayesian tools are now mature, fast, and usable
-  — even for large cosmological models.
-  
-* Distributed, differentiable N-body simulations are now feasible — enabling full-field inference at survey scale.
+* These tools are now **mature, fast, and usable**
+  — and already applied to realistic cosmological settings.
 
-:::{.solutionbox}
+### Future Work
 
-::: {.solutionbox-header style="font-size: 20px;"}
-  **Hands-On Notebooks:**
-:::
+* **Distributed, differentiable N-body simulations**
+  enable full-field inference at survey scale.
 
-::::{.solutionbox-body style="font-size: 18px;"}
+* We look forward to applying these models
+  to **real survey data** in upcoming projects.
 
-  - Beginner Bayesian Inference with NumPyro & Blackjax [here](https://github.com/ASKabalan/Tutorials/blob/main/BDL2025/Exercises/01_Beginner.ipynb)
-  - Intermediate Bayesian Inference with NumPyro & Blackjax [here](https://github.com/ASKabalan/Tutorials/blob/main/BDL2025/Exercises/02_Intermediate.ipynb)
-  - some of the animation were made using this [notebook](https://github.com/ASKabalan/Tutorials/blob/main/BDL2025/illustrations/HMC_vs_MCMC.ipynb)
-
-::::
-
-:::
+<br/>
+<br/>
 
 #### Thank you for your attention!
 
@@ -1726,5 +1721,30 @@ This setup mirrors what we do in practice: forward-model observables, simulate n
 
 * That’s the power of combining **Bayesian ideas** with **modern tools** — and that’s where the future of cosmological inference is headed.
 
+
+:::
+
+
+## Hands on notebooks
+
+<br/>
+<br/>
+
+<br/>
+<br/>
+
+:::{.solutionbox}
+
+::: {.solutionbox-header style="font-size: 22px;"}
+  **Hands-On Notebooks:**
+:::
+
+::::{.solutionbox-body style="font-size: 20px;"}
+
+  - Beginner Bayesian Inference with NumPyro & Blackjax [here](https://github.com/ASKabalan/Tutorials/blob/main/BDL2025/Exercises/01_Beginner.ipynb)
+  - Intermediate Bayesian Inference with NumPyro & Blackjax [here](https://github.com/ASKabalan/Tutorials/blob/main/BDL2025/Exercises/02_Intermediate.ipynb)
+  - some of the animation were made using this [notebook](https://github.com/ASKabalan/Tutorials/blob/main/BDL2025/illustrations/HMC_vs_MCMC.ipynb)
+
+::::
 
 :::
