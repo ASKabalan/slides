@@ -1681,6 +1681,8 @@ This setup mirrors what we do in practice: forward-model observables, simulate n
 
 * Bayesian tools are now mature, fast, and usable
   — even for large cosmological models.
+  
+* Distributed, differentiable N-body simulations are now feasible — enabling full-field inference at survey scale.
 
 :::{.solutionbox}
 
