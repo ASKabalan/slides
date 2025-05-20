@@ -1561,14 +1561,16 @@ This setup mirrors what we do in practice: forward-model observables, simulate n
 
 ::::
 
-:::: {.fragment fragment-index=2 .fade-in-then-out}
+:::: {.fragment fragment-index=2 .fade-in}
+:::: {.fragment fragment-index=4 .fade-out}
 
 
 ![](assets/bayes/FFI_full.svg){fig-align="center" width="100%"}
 
 
 ::::
-:::: {.fragment fragment-index=4 .fade-int}
+::::
+:::: {.fragment fragment-index=4 .fade-in}
 
 
 ![](assets/bayes/FFI_full_tuto.svg){fig-align="center" width="100%"}
