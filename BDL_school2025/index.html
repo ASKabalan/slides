@@ -354,7 +354,7 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="inference-in-cosmology-the-bayesian-pipeline" class="slide level2" style="font-size: 21px;">
+<section id="inference-in-cosmology-the-bayesian-pipeline" class="slide level2" style="font-size: 20px;">
 <h2>Inference in Cosmology: The Bayesian Pipeline</h2>
 <div class="columns">
 <div class="column" style="width:70%;">
@@ -483,14 +483,14 @@
 <section id="inference-in-cosmology-the-bayesian-pipeline-2" class="slide level2" style="font-size: 18px;" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Inference in Cosmology: The Bayesian Pipeline</h2>
 <div class="columns">
-<div class="column" style="width:15%;">
+<div class="column" style="width:10%;">
 <p><br></p>
 <div class="quarto-figure quarto-figure-middle">
 <figure>
 <p><img data-src="assets/bayes/bayes_pipeline_latent.svg" class="quarto-figure quarto-figure-middle" style="width:100.0%"></p>
 </figure>
 </div>
-</div><div class="column" style="width:85%;">
+</div><div class="column" style="width:90%;">
 <p><strong>Bayes’ Rule with all components:</strong></p>
 <blockquote>
 <p>Full decomposition of the posterior. The denominator marginalizes over all possible parameters.</p>
@@ -526,6 +526,8 @@
 </div>
 </div>
 </div></div>
+<div class="columns">
+<div class="column" style="width:50%;">
 <div class="fragment fade-in" data-fragment-index="3">
 <blockquote>
 <p>In practice, we drop the evidence term when sampling — it’s a constant.</p>
@@ -544,6 +546,7 @@ P(\Omega \mid \text{Obs})
 = \log P(\text{Obs} \mid \Omega) + \log P(\Omega)
 \]</span></p>
 </div>
+</div><div class="column" style="width:50%;">
 <div class="fragment fade-in" data-fragment-index="5">
 <div class="solutionbox">
 <div class="solutionbox-header" style="font-size: 17px;">
@@ -562,6 +565,7 @@ P(\Omega \mid \text{Obs})
 </div>
 </div>
 </div>
+</div></div>
 <aside class="notes">
 <p><strong>Speaker Notes for This Sequence:</strong></p>
 <hr>
@@ -720,13 +724,13 @@ P(\Omega \mid \text{Obs})
 <section id="sampling-the-posterior-the-core-loop" class="slide level2" style="font-size: 20px;">
 <h2>Sampling the Posterior: The Core Loop</h2>
 <div class="columns">
-<div class="column" style="width:60%;">
+<div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="assets/bayes/inference_loop.svg" class="quarto-figure quarto-figure-center" style="width:75.0%"></p>
 </figure>
 </div>
-</div><div class="column" style="width:40%;">
+</div><div class="column" style="width:50%;">
 <p><strong>The Sampling Loop:</strong></p>
 <div class="fragment fade-in" data-fragment-index="1">
 <ul>
@@ -805,7 +809,7 @@ P(\Omega \mid \text{Obs})
 
 <h3 style="font-size: 20px;" id="sampling-algorithms-at-a-glance">Sampling Algorithms at a Glance</h3>
 <div class="columns">
-<div class="column" style="width:60%;">
+<div class="column" style="width:65%;">
 <div class="fragment fade-in" data-fragment-index="1">
 <p><strong>Metropolis-Hastings (MCMC)</strong></p>
 <ul>
@@ -830,7 +834,7 @@ P(\Omega \mid \text{Obs})
 <li>Trajectory length (stops before looping back)</li>
 </ul>
 </div>
-</div><div class="column" style="width:40%;">
+</div><div class="column" style="width:35%;">
 <div class="fragment fade-in" data-fragment-index="1">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -887,7 +891,7 @@ P(\Omega \mid \text{Obs})
 <div class="fragment fade-in-then-out" data-fragment-index="1">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/Samplers/gaussian_hmc.gif" style="width:60.0%"></p>
+<p><img data-src="assets/Samplers/gaussian_hmc.gif" style="width:50.0%"></p>
 <figcaption>HMC: Gaussian Posterior</figcaption>
 </figure>
 </div>
@@ -895,7 +899,7 @@ P(\Omega \mid \text{Obs})
 <div class="fragment fade-in" data-fragment-index="2">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/Samplers/gaussian_hmc_density.png" style="width:60.0%"></p>
+<p><img data-src="assets/Samplers/gaussian_hmc_density.png" style="width:50.0%"></p>
 <figcaption>HMC: Gaussian Posterior</figcaption>
 </figure>
 </div>
@@ -905,7 +909,7 @@ P(\Omega \mid \text{Obs})
 <div class="fragment fade-in-then-out" data-fragment-index="3">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/Samplers/banana_hmc.gif" style="width:60.0%"></p>
+<p><img data-src="assets/Samplers/banana_hmc.gif" style="width:50.0%"></p>
 <figcaption>HMC: Banana Posterior</figcaption>
 </figure>
 </div>
@@ -913,7 +917,7 @@ P(\Omega \mid \text{Obs})
 <div class="fragment fade-in" data-fragment-index="4">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/Samplers/banana_hmc_density.png" style="width:60.0%"></p>
+<p><img data-src="assets/Samplers/banana_hmc_density.png" style="width:50.0%"></p>
 <figcaption>HMC: Banana Posterior</figcaption>
 </figure>
 </div>
@@ -924,7 +928,7 @@ P(\Omega \mid \text{Obs})
 <div class="fragment fade-in-then-out" data-fragment-index="1">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/Samplers/gaussian_mcmc.gif" style="width:60.0%"></p>
+<p><img data-src="assets/Samplers/gaussian_mcmc.gif" style="width:50.0%"></p>
 <figcaption>MCMC: Gaussian Posterior</figcaption>
 </figure>
 </div>
@@ -932,7 +936,7 @@ P(\Omega \mid \text{Obs})
 <div class="fragment fade-in" data-fragment-index="2">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/Samplers/gaussian_mcmc_density.png" style="width:60.0%"></p>
+<p><img data-src="assets/Samplers/gaussian_mcmc_density.png" style="width:50.0%"></p>
 <figcaption>MCMC: Gaussian Posterior</figcaption>
 </figure>
 </div>
@@ -942,7 +946,7 @@ P(\Omega \mid \text{Obs})
 <div class="fragment fade-in-then-out" data-fragment-index="3">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/Samplers/banana_mcmc.gif" style="width:60.0%"></p>
+<p><img data-src="assets/Samplers/banana_mcmc.gif" style="width:50.0%"></p>
 <figcaption>MCMC: Banana Posterior</figcaption>
 </figure>
 </div>
@@ -950,7 +954,7 @@ P(\Omega \mid \text{Obs})
 <div class="fragment fade-in" data-fragment-index="4">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/Samplers/banana_mcmc_density.png" style="width:60.0%"></p>
+<p><img data-src="assets/Samplers/banana_mcmc_density.png" style="width:50.0%"></p>
 <figcaption>MCMC: Banana Posterior</figcaption>
 </figure>
 </div>
@@ -964,28 +968,28 @@ P(\Omega \mid \text{Obs})
 <div class="column" style="width:10%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/Samplers/gaussian_hmc_density.png" style="width:60.0%"></p>
+<p><img data-src="assets/Samplers/gaussian_hmc_density.png" style="width:50.0%"></p>
 <figcaption>HMC: Gaussian Posterior</figcaption>
 </figure>
 </div>
 </div><div class="column" style="width:10%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/Samplers/banana_hmc_density.png" style="width:60.0%"></p>
+<p><img data-src="assets/Samplers/banana_hmc_density.png" style="width:50.0%"></p>
 <figcaption>HMC: Banana Posterior</figcaption>
 </figure>
 </div>
 </div><div class="column" style="width:10%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/Samplers/gaussian_mcmc_density.png" style="width:60.0%"></p>
+<p><img data-src="assets/Samplers/gaussian_mcmc_density.png" style="width:50.0%"></p>
 <figcaption>MCMC: Gaussian Posterior</figcaption>
 </figure>
 </div>
 </div><div class="column" style="width:10%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/Samplers/banana_mcmc_density.png" style="width:60.0%"></p>
+<p><img data-src="assets/Samplers/banana_mcmc_density.png" style="width:50.0%"></p>
 <figcaption>MCMC: Banana Posterior</figcaption>
 </figure>
 </div>
@@ -1000,7 +1004,7 @@ P(\Omega \mid \text{Obs})
 <div class="fragment fade-in-then-out" data-fragment-index="1">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/Samplers/samples_only.png" style="width:60.0%"></p>
+<p><img data-src="assets/Samplers/samples_only.png" style="width:50.0%"></p>
 <figcaption>Sampling Without Gradients</figcaption>
 </figure>
 </div>
@@ -1008,7 +1012,7 @@ P(\Omega \mid \text{Obs})
 <div class="fragment fade-in" data-fragment-index="2">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/Samplers/samples_with_gradients.png" style="width:60.0%"></p>
+<p><img data-src="assets/Samplers/samples_with_gradients.png" style="width:50.0%"></p>
 <figcaption>Sampling With Gradients</figcaption>
 </figure>
 </div>
@@ -1134,7 +1138,7 @@ P(\Omega \mid \text{Obs})
 <section id="a-recipe-for-bayesian-inference" class="slide level2">
 <h2>A Recipe for Bayesian Inference</h2>
 <div class="columns">
-<div class="column" style="width:50%;">
+<div class="column" style="width:60%;">
 <div class="fragment fade-in" data-fragment-index="2">
 <p><strong>1. Probabilistic Programming Language (PPL)</strong> <em>NumPyro</em>:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="im">import</span> numpyro</span>
@@ -1168,7 +1172,7 @@ P(\Omega \mid \text{Obs})
 <span id="cb7-2"><a></a>samples <span class="op">=</span> mcmc.get_samples()</span>
 <span id="cb7-3"><a></a>az.plot_pair(samples, marginals<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div><div class="column" style="width:50%;">
+</div><div class="column" style="width:40%;">
 <div class="r-stack">
 <div class="fragment fade-in-then-out" data-fragment-index="1">
 <div class="quarto-figure quarto-figure-center">
@@ -1210,33 +1214,33 @@ P(\Omega \mid \text{Obs})
 <div class="fragment fade-in-then-out" data-fragment-index="1">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/bayes/bayes_full.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+<p><img data-src="assets/bayes/bayes_full.svg" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
 <div class="fragment fade-in-then-out" data-fragment-index="2">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/bayes/bayes_prior.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+<p><img data-src="assets/bayes/bayes_prior.svg" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
 <div class="fragment fade-in-then-out" data-fragment-index="3">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/bayes/bayes_likelihood.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+<p><img data-src="assets/bayes/bayes_likelihood.svg" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
 <div class="fragment fade-in-then-out" data-fragment-index="4">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/bayes/bayes_sample.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+<p><img data-src="assets/bayes/bayes_sample.svg" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
 <div class="fragment fade-in-then-out" data-fragment-index="5">
-<img data-src="assets/bayes/post_corner.png" class="quarto-figure quarto-figure-center" style="width:100.0%">
+<img data-src="assets/bayes/post_corner.png" class="quarto-figure quarto-figure-center" style="width:70.0%">
 <div style="text-align: center; font-size: 12px;">
 <span class="citation" data-cites="credit">@credit</span>: Zeghal et al.&nbsp;(2409.17975)
 </div>
@@ -1497,7 +1501,7 @@ P(\Omega \mid \text{Obs})
           display:block!important;
       }</style></aside>
 </section>
-<section id="using-blackjax-and-numpyro" class="slide level2">
+<section id="using-blackjax-and-numpyro" class="slide level2" style="font-size: 18px;">
 <h2>Using BlackJax and NumPyro</h2>
 <blockquote>
 <p>BlackJax is NOT a PPL, so you need to combine it with a PPL like NumPyro or PyMC.</p>
@@ -1564,7 +1568,7 @@ P(\Omega \mid \text{Obs})
 <h1>Examples: Bayesian Inference for Cosmology</h1>
 
 </section>
-<section id="power-spectrum-inference-with-jax-cosmo" class="slide level2">
+<section id="power-spectrum-inference-with-jax-cosmo" class="slide level2" style="font-size: 18px;">
 <h2>Power Spectrum Inference with jax-cosmo</h2>
 <div class="fragment fade-in" data-fragment-index="1">
 <h4 id="step-1-simulate-cosmological-data">Step 1: Simulate Cosmological Data</h4>
@@ -1690,13 +1694,12 @@ P(\Omega \mid \text{Obs})
 </ul></li>
 </ul>
 </div>
-</div></div>
 <div class="fragment fade-in" data-fragment-index="4">
 <div class="solutionbox">
-<div class="solutionbox-header" style="font-size: 20px;">
+<div class="solutionbox-header" style="font-size: 19px;">
 <p><strong>Full Field vs.&nbsp;Summary Statistics</strong></p>
 </div>
-<div class="solutionbox-body" style="font-size: 18px;">
+<div class="solutionbox-body" style="font-size: 16px;">
 <ul>
 <li>Preserves <strong>non-Gaussian</strong> structure lost in summaries</li>
 <li>Enables tighter constraints in <strong>nonlinear regimes</strong></li>
@@ -1707,6 +1710,7 @@ P(\Omega \mid \text{Obs})
 </div>
 </div>
 </div>
+</div></div>
 <aside class="notes">
 <p><strong>Speaker Notes for Final Slide (Full Field Inference):</strong></p>
 <ul>
