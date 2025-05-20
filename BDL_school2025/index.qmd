@@ -160,7 +160,7 @@ so if you have any questions, please ask them during the presentation.
 
 ::::{.solutionbox-body style="font-size: 18px;"}
 
-- $\chi^2$ analysis
+- Optimizers/Gradient descent
 - 2-point correlation function (2PCF)
 - Power spectrum fitting: $P(k)$, $C_\ell$ 
 
