@@ -203,8 +203,8 @@
 </div>
 
 </section>
-<section id="goals-for-this-presentation" class="slide level2">
-<h2>Goals for This Presentation</h2>
+<section id="outline-for-this-presentation" class="slide level2">
+<h2>Outline for This Presentation</h2>
 <div class="solutionbox">
 <div class="solutionbox-body" style="font-size: 22px; border-radius: 10px; border: 2px solid #3b0a68;">
 <ul>
@@ -1283,6 +1283,170 @@ P(\Omega \mid \text{Obs})
           display:block!important;
       }</style></aside>
 </section>
+<section id="a-minimal-bayesian-linear-model" class="slide level2" style="font-size: 18px;">
+<h2>A Minimal Bayesian Linear Model</h2>
+<p><strong>Define a simple linear model:</strong></p>
+<div class="sourceCode" id="cb8" data-code-line-numbers="|1-8|10-16"><pre class="sourceCode numberSource Python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a>true_w <span class="op">=</span> <span class="fl">2.0</span></span>
+<span id="cb8-2"><a></a>true_b <span class="op">=</span> <span class="op">-</span><span class="fl">1.0</span></span>
+<span id="cb8-3"><a></a>num_points <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb8-4"><a></a></span>
+<span id="cb8-5"><a></a>rng_key <span class="op">=</span> jax.random.PRNGKey(<span class="dv">0</span>)</span>
+<span id="cb8-6"><a></a>x_data <span class="op">=</span> jnp.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, num_points)</span>
+<span id="cb8-7"><a></a>noise <span class="op">=</span> jax.random.normal(rng_key, shape<span class="op">=</span>(num_points,)) <span class="op">*</span> <span class="fl">0.3</span></span>
+<span id="cb8-8"><a></a>y_data <span class="op">=</span> true_w <span class="op">*</span> x_data <span class="op">+</span> true_b <span class="op">+</span> noise</span>
+<span id="cb8-9"><a></a></span>
+<span id="cb8-10"><a></a><span class="kw">def</span> linear_regression(x, y<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb8-11"><a></a>    w <span class="op">=</span> numpyro.sample(<span class="st">"w"</span>, dist.Normal(<span class="fl">1.</span>, <span class="fl">2.</span>))</span>
+<span id="cb8-12"><a></a>    b <span class="op">=</span> numpyro.sample(<span class="st">"b"</span>, dist.Normal(<span class="fl">0.</span>, <span class="fl">2.</span>))  <span class="co"># Fixed the second parameter</span></span>
+<span id="cb8-13"><a></a>    sigma <span class="op">=</span> numpyro.sample(<span class="st">"sigma"</span>, dist.Exponential(<span class="fl">1.0</span>))</span>
+<span id="cb8-14"><a></a></span>
+<span id="cb8-15"><a></a>    mean <span class="op">=</span> w <span class="op">*</span> x <span class="op">+</span> b</span>
+<span id="cb8-16"><a></a>    numpyro.sample(<span class="st">"obs"</span>, dist.Normal(mean, sigma), obs<span class="op">=</span>y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment fade-in" data-fragment-index="1">
+<p><strong>Run the model using NUTS:</strong></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a>kernel <span class="op">=</span> numpyro.infer.NUTS(linear_regression)</span>
+<span id="cb9-2"><a></a>mcmc <span class="op">=</span> numpyro.infer.MCMC(kernel, num_warmup<span class="op">=</span><span class="dv">500</span>, num_samples<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb9-3"><a></a>mcmc.run(rng_key, x<span class="op">=</span>x_data, y<span class="op">=</span>y_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment fade-in" data-fragment-index="2">
+<p><strong>Posterior corner plot using arviz + corner</strong></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a>idata <span class="op">=</span> az.from_numpyro(mcmc)</span>
+<span id="cb10-2"><a></a>posterior_array <span class="op">=</span> az.extract(idata, var_names<span class="op">=</span>[<span class="st">"w"</span>, <span class="st">"b"</span>, <span class="st">"sigma"</span>]).to_array().values.T</span>
+<span id="cb10-3"><a></a></span>
+<span id="cb10-4"><a></a>fig <span class="op">=</span> corner.corner(</span>
+<span id="cb10-5"><a></a>    posterior_array,</span>
+<span id="cb10-6"><a></a>    labels<span class="op">=</span>[<span class="st">"w"</span>, <span class="st">"b"</span>, <span class="st">"σ"</span>],</span>
+<span id="cb10-7"><a></a>    truths<span class="op">=</span>[true_w, true_b, <span class="va">None</span>],</span>
+<span id="cb10-8"><a></a>    show_titles<span class="op">=</span><span class="va">True</span></span>
+<span id="cb10-9"><a></a>)</span>
+<span id="cb10-10"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<aside class="notes">
+<p>This slide walks through the first notebook exercise — a minimal Bayesian linear regression model using NumPyro.</p>
+<ul>
+<li>First block defines synthetic data: we’re sampling noisy <code>y</code> values from a true line <code>y = 2x - 1</code>.</li>
+<li>The <code>linear_regression</code> function defines a probabilistic model: priors on slope <code>w</code>, intercept <code>b</code>, and noise <code>sigma</code>.</li>
+<li>We use NUTS from NumPyro to sample from the posterior — no likelihood math needed manually.</li>
+<li>Finally, the bottom cell visualizes the posterior using <code>corner.py</code> and ArviZ. You’ll see how the true parameters compare to the inferred distributions.</li>
+</ul>
+<p>This is the foundation — you’ll implement and modify this directly during the hands-on.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+
+<h3 id="numpyro-tips-tricks-for-bayesian-modeling">Numpyro: Tips &amp; Tricks for Bayesian Modeling</h3>
+<p><strong><code>numpyro.handlers.seed</code>: Fix randomness for reproducibility</strong></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a><span class="im">from</span> numpyro.handlers <span class="im">import</span> seed</span>
+<span id="cb11-2"><a></a>seeded_model <span class="op">=</span> seed(model, rng_key)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong><code>numpyro.handlers.trace</code>: Inspect internal execution and sample sites</strong></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a><span class="im">from</span> numpyro.handlers <span class="im">import</span> trace</span>
+<span id="cb12-2"><a></a>tr <span class="op">=</span> trace(model).get_trace()</span>
+<span id="cb12-3"><a></a><span class="bu">print</span>(tr[<span class="st">"omega"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong><code>numpyro.handlers.condition</code>: Clamp a variable to observed or fixed value</strong></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a><span class="im">from</span> numpyro.handlers <span class="im">import</span> condition</span>
+<span id="cb13-2"><a></a>conditioned_model <span class="op">=</span> condition(model, data<span class="op">=</span>{<span class="st">"omega"</span>: <span class="fl">0.3</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong><code>numpyro.handlers.substitute</code>: Replace variables with fixed values (e.g., MAP estimates)</strong></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a><span class="im">from</span> numpyro.handlers <span class="im">import</span> substitute</span>
+<span id="cb14-2"><a></a>subbed_model <span class="op">=</span> substitute(model, data<span class="op">=</span>{<span class="st">"omega"</span>: <span class="fl">0.3</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong><code>numpyro.handlers.reparam</code>: Reparameterize a site to improve geometry</strong></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a><span class="im">from</span> numpyro.infer.reparam <span class="im">import</span> LocScaleReparam</span>
+<span id="cb15-2"><a></a><span class="im">from</span> numpyro.handlers <span class="im">import</span> reparam</span>
+<span id="cb15-3"><a></a></span>
+<span id="cb15-4"><a></a>reparammed_model <span class="op">=</span> reparam(model, config<span class="op">=</span>{<span class="st">"z"</span>: LocScaleReparam()})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<aside class="notes">
+<p>This slide gives a quick preview of useful <code>numpyro.handlers</code> you’ll see in the notebooks.</p>
+<ul>
+<li><strong><code>seed</code></strong> lets you fix randomness for reproducibility — critical for testing or debugging.</li>
+<li><strong><code>trace</code></strong> inspects your model’s internal execution and samples — great for seeing what actually gets sampled.</li>
+<li><strong><code>condition</code></strong> clamps a variable to a fixed value — useful for simulating data from a known model.</li>
+<li><strong><code>substitute</code></strong> is similar, but lets you plug in values like MAP estimates.</li>
+<li><strong><code>reparam</code></strong> lets you reparameterize tricky sample sites to improve posterior geometry and sampling.</li>
+</ul>
+<p>We’ll practice using all of these interactively in the notebooks.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="using-blackjax-and-numpyro" class="slide level2" style="font-size: 18px;">
+<h2>Using BlackJax and NumPyro</h2>
+<blockquote>
+<p>BlackJax is NOT a PPL, so you need to combine it with a PPL like NumPyro or PyMC.</p>
+</blockquote>
+<div class="fragment fade-in" data-fragment-index="1">
+<p><strong>Initialize model and extract the log-probability function</strong></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a>rng_key, init_key <span class="op">=</span> jax.random.split(rng_key)</span>
+<span id="cb16-2"><a></a>init_params, potential_fn, <span class="op">*</span>_ <span class="op">=</span> initialize_model(</span>
+<span id="cb16-3"><a></a>    init_key, model, model_args<span class="op">=</span>(x_data,), model_kwargs<span class="op">=</span>{<span class="st">"y"</span>: y_data}, dynamic_args<span class="op">=</span><span class="va">True</span></span>
+<span id="cb16-4"><a></a>)</span>
+<span id="cb16-5"><a></a></span>
+<span id="cb16-6"><a></a>logdensity_fn <span class="op">=</span> <span class="kw">lambda</span> position: <span class="op">-</span>potential_fn(x_data, y<span class="op">=</span>y_data)(position)</span>
+<span id="cb16-7"><a></a>initial_position <span class="op">=</span> init_params.z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment fade-in" data-fragment-index="2">
+<p><strong>Run warm-up to adapt step size and mass matrix using BlackJAX’s window adaptation</strong></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a></a>num_warmup <span class="op">=</span> <span class="dv">2000</span></span>
+<span id="cb17-2"><a></a>adapt <span class="op">=</span> blackjax.window_adaptation(blackjax.nuts, logdensity_fn, target_acceptance_rate<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb17-3"><a></a>rng_key, warmup_key <span class="op">=</span> jax.random.split(rng_key)</span>
+<span id="cb17-4"><a></a>(last_state, parameters), _ <span class="op">=</span> adapt.run(warmup_key, initial_position, num_warmup)</span>
+<span id="cb17-5"><a></a>kernel <span class="op">=</span> blackjax.nuts(logdensity_fn, <span class="op">**</span>parameters).step</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment fade-in" data-fragment-index="3">
+<p><strong>Run BlackJAX NUTS sampling using <code>lax.scan</code></strong></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a></a><span class="kw">def</span> run_blackjax_sampling(rng_key, state, kernel, num_samples<span class="op">=</span><span class="dv">1000</span>):</span>
+<span id="cb18-2"><a></a>    <span class="kw">def</span> one_step(state, key):</span>
+<span id="cb18-3"><a></a>        state, info <span class="op">=</span> kernel(key, state)</span>
+<span id="cb18-4"><a></a>        <span class="cf">return</span> state, state</span>
+<span id="cb18-5"><a></a></span>
+<span id="cb18-6"><a></a>    keys <span class="op">=</span> jax.random.split(rng_key, num_samples)</span>
+<span id="cb18-7"><a></a>    _, samples <span class="op">=</span> jax.lax.scan(one_step, state, keys)</span>
+<span id="cb18-8"><a></a>    <span class="cf">return</span> samples</span>
+<span id="cb18-9"><a></a></span>
+<span id="cb18-10"><a></a>samples <span class="op">=</span> run_blackjax_sampling(rng_key, last_state, kernel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment fade-in" data-fragment-index="4">
+<p><strong>Convert BlackJAX output to ArviZ InferenceData</strong></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a></a>idata <span class="op">=</span> az.from_dict(posterior<span class="op">=</span>samples.position)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<aside class="notes">
+<p>This slide shows how to use BlackJAX for sampling when you already have a model defined in NumPyro.</p>
+<ul>
+<li>First, we extract the <strong>log-probability function</strong> from a NumPyro model using <code>initialize_model</code>. This lets us use BlackJAX with the same model.</li>
+<li>We define a <code>logdensity_fn</code>, which BlackJAX expects — it just wraps the potential function with a negative sign.</li>
+<li>Next, we run <strong>adaptive warm-up</strong> with <code>blackjax.window_adaptation</code>. This tunes step size and mass matrix like NumPyro does.</li>
+<li>Then, we sample using <code>blackjax.nuts</code> with a loop written using <code>jax.lax.scan</code> for speed and JIT compatibility.</li>
+<li>Finally, we convert the raw samples to an ArviZ-friendly format with <code>az.from_dict</code>.</li>
+</ul>
+<p>Key point: BlackJAX is super fast and modular, but not a full PPL — so you bring your own model definition.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
 <section id="sampler-comparison-table" class="slide level2" style="font-size: 26px;">
 <h2>Sampler Comparison Table</h2>
 <div class="solutionbox">
@@ -1398,170 +1562,6 @@ P(\Omega \mid \text{Obs})
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</section>
-<section class="slide level2">
-
-<h3 id="numpyro-tips-tricks-for-bayesian-modeling">Numpyro: Tips &amp; Tricks for Bayesian Modeling</h3>
-<p><strong><code>numpyro.handlers.seed</code>: Fix randomness for reproducibility</strong></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="im">from</span> numpyro.handlers <span class="im">import</span> seed</span>
-<span id="cb8-2"><a></a>seeded_model <span class="op">=</span> seed(model, rng_key)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong><code>numpyro.handlers.trace</code>: Inspect internal execution and sample sites</strong></p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a><span class="im">from</span> numpyro.handlers <span class="im">import</span> trace</span>
-<span id="cb9-2"><a></a>tr <span class="op">=</span> trace(model).get_trace()</span>
-<span id="cb9-3"><a></a><span class="bu">print</span>(tr[<span class="st">"omega"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong><code>numpyro.handlers.condition</code>: Clamp a variable to observed or fixed value</strong></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a><span class="im">from</span> numpyro.handlers <span class="im">import</span> condition</span>
-<span id="cb10-2"><a></a>conditioned_model <span class="op">=</span> condition(model, data<span class="op">=</span>{<span class="st">"omega"</span>: <span class="fl">0.3</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong><code>numpyro.handlers.substitute</code>: Replace variables with fixed values (e.g., MAP estimates)</strong></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a><span class="im">from</span> numpyro.handlers <span class="im">import</span> substitute</span>
-<span id="cb11-2"><a></a>subbed_model <span class="op">=</span> substitute(model, data<span class="op">=</span>{<span class="st">"omega"</span>: <span class="fl">0.3</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong><code>numpyro.handlers.reparam</code>: Reparameterize a site to improve geometry</strong></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a><span class="im">from</span> numpyro.infer.reparam <span class="im">import</span> LocScaleReparam</span>
-<span id="cb12-2"><a></a><span class="im">from</span> numpyro.handlers <span class="im">import</span> reparam</span>
-<span id="cb12-3"><a></a></span>
-<span id="cb12-4"><a></a>reparammed_model <span class="op">=</span> reparam(model, config<span class="op">=</span>{<span class="st">"z"</span>: LocScaleReparam()})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<aside class="notes">
-<p>This slide gives a quick preview of useful <code>numpyro.handlers</code> you’ll see in the notebooks.</p>
-<ul>
-<li><strong><code>seed</code></strong> lets you fix randomness for reproducibility — critical for testing or debugging.</li>
-<li><strong><code>trace</code></strong> inspects your model’s internal execution and samples — great for seeing what actually gets sampled.</li>
-<li><strong><code>condition</code></strong> clamps a variable to a fixed value — useful for simulating data from a known model.</li>
-<li><strong><code>substitute</code></strong> is similar, but lets you plug in values like MAP estimates.</li>
-<li><strong><code>reparam</code></strong> lets you reparameterize tricky sample sites to improve posterior geometry and sampling.</li>
-</ul>
-<p>We’ll practice using all of these interactively in the notebooks.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="a-minimal-bayesian-linear-model" class="slide level2" style="font-size: 18px;">
-<h2>A Minimal Bayesian Linear Model</h2>
-<p><strong>Define a simple linear model:</strong></p>
-<div class="sourceCode" id="cb13" data-code-line-numbers="|1-8|10-16"><pre class="sourceCode numberSource Python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a>true_w <span class="op">=</span> <span class="fl">2.0</span></span>
-<span id="cb13-2"><a></a>true_b <span class="op">=</span> <span class="op">-</span><span class="fl">1.0</span></span>
-<span id="cb13-3"><a></a>num_points <span class="op">=</span> <span class="dv">100</span></span>
-<span id="cb13-4"><a></a></span>
-<span id="cb13-5"><a></a>rng_key <span class="op">=</span> jax.random.PRNGKey(<span class="dv">0</span>)</span>
-<span id="cb13-6"><a></a>x_data <span class="op">=</span> jnp.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, num_points)</span>
-<span id="cb13-7"><a></a>noise <span class="op">=</span> jax.random.normal(rng_key, shape<span class="op">=</span>(num_points,)) <span class="op">*</span> <span class="fl">0.3</span></span>
-<span id="cb13-8"><a></a>y_data <span class="op">=</span> true_w <span class="op">*</span> x_data <span class="op">+</span> true_b <span class="op">+</span> noise</span>
-<span id="cb13-9"><a></a></span>
-<span id="cb13-10"><a></a><span class="kw">def</span> linear_regression(x, y<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb13-11"><a></a>    w <span class="op">=</span> numpyro.sample(<span class="st">"w"</span>, dist.Normal(<span class="dv">0</span>, <span class="dv">1</span>))</span>
-<span id="cb13-12"><a></a>    b <span class="op">=</span> numpyro.sample(<span class="st">"b"</span>, dist.Normal(<span class="dv">0</span>, <span class="dv">1</span>))</span>
-<span id="cb13-13"><a></a>    sigma <span class="op">=</span> numpyro.sample(<span class="st">"sigma"</span>, dist.Exponential(<span class="fl">1.0</span>))</span>
-<span id="cb13-14"><a></a></span>
-<span id="cb13-15"><a></a>    mean <span class="op">=</span> w <span class="op">*</span> x <span class="op">+</span> b</span>
-<span id="cb13-16"><a></a>    numpyro.sample(<span class="st">"obs"</span>, dist.Normal(mean, sigma), obs<span class="op">=</span>y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="fragment fade-in" data-fragment-index="1">
-<p><strong>Run the model using NUTS:</strong></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a>kernel <span class="op">=</span> numpyro.infer.NUTS(linear_regression)</span>
-<span id="cb14-2"><a></a>mcmc <span class="op">=</span> numpyro.infer.MCMC(kernel, num_warmup<span class="op">=</span><span class="dv">500</span>, num_samples<span class="op">=</span><span class="dv">1000</span>)</span>
-<span id="cb14-3"><a></a>mcmc.run(rng_key, x<span class="op">=</span>x_data, y<span class="op">=</span>y_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="fragment fade-in" data-fragment-index="2">
-<p><strong>Posterior corner plot using arviz + corner</strong></p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a>idata <span class="op">=</span> az.from_numpyro(mcmc)</span>
-<span id="cb15-2"><a></a>posterior_array <span class="op">=</span> az.extract(idata, var_names<span class="op">=</span>[<span class="st">"w"</span>, <span class="st">"b"</span>, <span class="st">"sigma"</span>]).to_array().values.T</span>
-<span id="cb15-3"><a></a></span>
-<span id="cb15-4"><a></a>fig <span class="op">=</span> corner.corner(</span>
-<span id="cb15-5"><a></a>    posterior_array,</span>
-<span id="cb15-6"><a></a>    labels<span class="op">=</span>[<span class="st">"w"</span>, <span class="st">"b"</span>, <span class="st">"σ"</span>],</span>
-<span id="cb15-7"><a></a>    truths<span class="op">=</span>[true_w, true_b, <span class="va">None</span>],</span>
-<span id="cb15-8"><a></a>    show_titles<span class="op">=</span><span class="va">True</span></span>
-<span id="cb15-9"><a></a>)</span>
-<span id="cb15-10"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<aside class="notes">
-<p>This slide walks through the first notebook exercise — a minimal Bayesian linear regression model using NumPyro.</p>
-<ul>
-<li>First block defines synthetic data: we’re sampling noisy <code>y</code> values from a true line <code>y = 2x - 1</code>.</li>
-<li>The <code>linear_regression</code> function defines a probabilistic model: priors on slope <code>w</code>, intercept <code>b</code>, and noise <code>sigma</code>.</li>
-<li>We use NUTS from NumPyro to sample from the posterior — no likelihood math needed manually.</li>
-<li>Finally, the bottom cell visualizes the posterior using <code>corner.py</code> and ArviZ. You’ll see how the true parameters compare to the inferred distributions.</li>
-</ul>
-<p>This is the foundation — you’ll implement and modify this directly during the hands-on.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="using-blackjax-and-numpyro" class="slide level2" style="font-size: 18px;">
-<h2>Using BlackJax and NumPyro</h2>
-<blockquote>
-<p>BlackJax is NOT a PPL, so you need to combine it with a PPL like NumPyro or PyMC.</p>
-</blockquote>
-<div class="fragment fade-in" data-fragment-index="1">
-<p><strong>Initialize model and extract the log-probability function</strong></p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a>rng_key, init_key <span class="op">=</span> jax.random.split(rng_key)</span>
-<span id="cb16-2"><a></a>init_params, potential_fn, <span class="op">*</span>_ <span class="op">=</span> initialize_model(</span>
-<span id="cb16-3"><a></a>    init_key, model, model_args<span class="op">=</span>(x_data,), model_kwargs<span class="op">=</span>{<span class="st">"y"</span>: y_data}, dynamic_args<span class="op">=</span><span class="va">True</span></span>
-<span id="cb16-4"><a></a>)</span>
-<span id="cb16-5"><a></a></span>
-<span id="cb16-6"><a></a>logdensity_fn <span class="op">=</span> <span class="kw">lambda</span> position: <span class="op">-</span>potential_fn(x_data, y<span class="op">=</span>y_data)(position)</span>
-<span id="cb16-7"><a></a>initial_position <span class="op">=</span> init_params.z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="fragment fade-in" data-fragment-index="2">
-<p><strong>Run warm-up to adapt step size and mass matrix using BlackJAX’s window adaptation</strong></p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a></a>num_warmup <span class="op">=</span> <span class="dv">2000</span></span>
-<span id="cb17-2"><a></a>adapt <span class="op">=</span> blackjax.window_adaptation(blackjax.nuts, logdensity_fn, target_acceptance_rate<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb17-3"><a></a>rng_key, warmup_key <span class="op">=</span> jax.random.split(rng_key)</span>
-<span id="cb17-4"><a></a>(last_state, parameters), _ <span class="op">=</span> adapt.run(warmup_key, initial_position, num_warmup)</span>
-<span id="cb17-5"><a></a>kernel <span class="op">=</span> blackjax.nuts(logdensity_fn, <span class="op">**</span>parameters).step</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="fragment fade-in" data-fragment-index="3">
-<p><strong>Run BlackJAX NUTS sampling using <code>lax.scan</code></strong></p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a></a><span class="kw">def</span> run_blackjax_sampling(rng_key, state, kernel, num_samples<span class="op">=</span><span class="dv">1000</span>):</span>
-<span id="cb18-2"><a></a>    <span class="kw">def</span> one_step(state, key):</span>
-<span id="cb18-3"><a></a>        state, info <span class="op">=</span> kernel(key, state)</span>
-<span id="cb18-4"><a></a>        <span class="cf">return</span> state, state</span>
-<span id="cb18-5"><a></a></span>
-<span id="cb18-6"><a></a>    keys <span class="op">=</span> jax.random.split(rng_key, num_samples)</span>
-<span id="cb18-7"><a></a>    _, samples <span class="op">=</span> jax.lax.scan(one_step, state, keys)</span>
-<span id="cb18-8"><a></a>    <span class="cf">return</span> samples</span>
-<span id="cb18-9"><a></a></span>
-<span id="cb18-10"><a></a>samples <span class="op">=</span> run_blackjax_sampling(rng_key, last_state, kernel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="fragment fade-in" data-fragment-index="4">
-<p><strong>Convert BlackJAX output to ArviZ InferenceData</strong></p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a></a>idata <span class="op">=</span> az.from_dict(posterior<span class="op">=</span>samples.position)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<aside class="notes">
-<p>This slide shows how to use BlackJAX for sampling when you already have a model defined in NumPyro.</p>
-<ul>
-<li>First, we extract the <strong>log-probability function</strong> from a NumPyro model using <code>initialize_model</code>. This lets us use BlackJAX with the same model.</li>
-<li>We define a <code>logdensity_fn</code>, which BlackJAX expects — it just wraps the potential function with a negative sign.</li>
-<li>Next, we run <strong>adaptive warm-up</strong> with <code>blackjax.window_adaptation</code>. This tunes step size and mass matrix like NumPyro does.</li>
-<li>Then, we sample using <code>blackjax.nuts</code> with a loop written using <code>jax.lax.scan</code> for speed and JIT compatibility.</li>
-<li>Finally, we convert the raw samples to an ArviZ-friendly format with <code>az.from_dict</code>.</li>
-</ul>
-<p>Key point: BlackJAX is super fast and modular, but not a full PPL — so you bring your own model definition.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section></section>
 <section>
 <section id="examples-bayesian-inference-for-cosmology" class="title-slide slide level1 center">
@@ -1632,8 +1632,8 @@ P(\Omega \mid \text{Obs})
           display:block!important;
       }</style></aside>
 </section>
-<section id="simulation-based-inference-with-forward-models" class="slide level2" style="font-size: 18px;">
-<h2>Simulation-Based Inference with Forward Models</h2>
+<section id="full-field-inference-with-forward-models" class="slide level2" style="font-size: 18px;">
+<h2>Full Field Inference with Forward Models</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="r-stack">
@@ -1659,7 +1659,7 @@ P(\Omega \mid \text{Obs})
 </figure>
 </div>
 </div>
-<div class="fragment fade-int" data-fragment-index="3">
+<div class="fragment fade-int" data-fragment-index="4">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="assets/bayes/FFI_full_tuto.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
@@ -1705,7 +1705,7 @@ P(\Omega \mid \text{Obs})
 <li>Enables tighter constraints in <strong>nonlinear regimes</strong></li>
 <li>Especially useful in <strong>high-dimensional</strong> inference problems</li>
 <li>See: <em>Zeghal et al.&nbsp;(2024), Leclercq et al.&nbsp;(2021)</em></li>
-<li>🔜 a talk on this topic this Thursday by Hugo</li>
+<li>🔜 a talk on this topic this Thursday</li>
 </ul>
 </div>
 </div>

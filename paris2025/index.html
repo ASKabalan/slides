@@ -373,7 +373,7 @@ we must move from summary-based inference → to structured, gradient-based fiel
 <div class="fragment fade-in" data-fragment-index="1">
 <h3 id="compute-forces-via-pm-method">Compute Forces via PM method</h3>
 <ul>
-<li><strong>Start with particles</strong> <span class="math inline">\((\mathbf{x}_i, \mathbf{p}_i)\)</span><br>
+<li><strong>Start with particles</strong> <span class="math inline">\(\mathbf{x}_i, \mathbf{p}_i\)</span><br>
 </li>
 <li>Interpolate to mesh: <span class="math inline">\(\rho(\mathbf{x})\)</span><br>
 </li>
@@ -410,8 +410,8 @@ we must move from summary-based inference → to structured, gradient-based fiel
 </div>
 </div>
 </section>
-<section id="explicit-full-field-inference-1" class="slide level2">
-<h2>Explicit (Full-Field) Inference</h2>
+<section id="explicit-full-field-inference-weak-lensing" class="slide level2">
+<h2>Explicit Full-Field Inference (Weak Lensing)</h2>
 <div class="r-stack">
 <div class="fragment fade-in-then-out" data-fragment-index="1">
 <div class="quarto-figure quarto-figure-center">
@@ -432,7 +432,119 @@ we must move from summary-based inference → to structured, gradient-based fiel
 <section>
 <section id="modeling-weak-lensing-with-lightcone-projections" class="title-slide slide level1 center">
 <h1>Modeling Weak Lensing with Lightcone Projections</h1>
-
+<p>TODO</p>
+<ul>
+<li>Make Memory plots</li>
+<li>Make accuracy plots</li>
+<li>remaining slides</li>
+<li>Make biased Omega and Sigma8</li>
+</ul>
+</section>
+<section id="lightcone-model-from-3d-structure-to-lensing-observables" class="slide level2" style="font-size: 19px;">
+<h2>Lightcone Model: From 3D Structure to Lensing Observables</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="r-stack">
+<div class="fragment fade-in-then-out" data-fragment-index="1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/how_converge.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="2">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/lightcone_0.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="3">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/lightcone_1.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="4">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/lightcone_2.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="5">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/lightcone_3.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:40%;">
+<div class="fragment fade-in" data-fragment-index="2">
+<ul>
+<li>We simulate the large-scale structure<br>
+forward in time and take snapshots at scale factor <span class="math inline">\(a_i\)</span></li>
+</ul>
+</div>
+<div class="fragment fade-in" data-fragment-index="3">
+<ul>
+<li>A lightcone connects these simulations<br>
+to an observer at <span class="math inline">\(a = 1\)</span></li>
+</ul>
+</div>
+<div class="fragment fade-in" data-fragment-index="3">
+<ul>
+<li>We slice the volume into 2D mass planes<br>
+across comoving distance bins</li>
+</ul>
+</div>
+<div class="fragment fade-in" data-fragment-index="4">
+<ul>
+<li>Each redshift bin receives contributions<br>
+from the slabs in front of it</li>
+<li>Born approximation</li>
+</ul>
+</div>
+<div class="fragment fade-in" data-fragment-index="5">
+<div class="solutionbox">
+<div class="solutionbox-header">
+<p>Born Approximation for Convergence</p>
+</div>
+<div class="solutionbox-body" style="font-size: 18px;">
+<p><span class="math display">\[
+\kappa(\boldsymbol{\theta}) = \int_0^{r_s} dr \, W(r, r_s) \, \delta(\boldsymbol{\theta}, r)
+\]</span></p>
+<p>Where the lensing weight is:</p>
+<p><span class="math display">\[
+W(r, r_s) = \frac{3}{2} \, \Omega_m \, \left( \frac{H_0}{c} \right)^2 \, \frac{r}{a(r)} \left(1 - \frac{r}{r_s} \right)
+\]</span></p>
+</div>
+</div>
+</div>
+</div></div>
+<p>::::</p>
+<p>:::</p>
+</section>
+<section id="explicit-full-field-inference-sampling" class="slide level2">
+<h2>Explicit Full-Field Inference (sampling)</h2>
+<div class="r-stack">
+<div class="fragment fade-in-then-out" data-fragment-index="1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/bayes/FFI_full.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+<div class="fragment fade-in" data-fragment-index="2">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/FFI/FFI_sample_focus.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="distributed-fast-fourier-transform" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Distributed Fast Fourier Transform</h2>
