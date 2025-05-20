@@ -33,7 +33,7 @@ logo1 : '
 '
 ---
 
-## Goals for This Presentation 
+## Outline for This Presentation 
 
 :::{.solutionbox}
 
@@ -1201,60 +1201,68 @@ The takeaway is that with JAX, NumPyro, and JAX-Cosmo, we have a **modular pipel
 
 ---
 
-##  Sampler Comparison Table {style="font-size: 26px;"}
+## A Minimal Bayesian Linear Model {style="font-size: 18px;"}
 
-:::{.solutionbox}
+**Define a simple linear model:**
+```{.Python code-line-numbers="|1-8|10-16"}
+true_w = 2.0
+true_b = -1.0
+num_points = 100
 
-::: {.solutionbox-body style="font-size: 18px;"}
+rng_key = jax.random.PRNGKey(0)
+x_data = jnp.linspace(-3, 3, num_points)
+noise = jax.random.normal(rng_key, shape=(num_points,)) * 0.3
+y_data = true_w * x_data + true_b + noise
 
-| Sampler        | Library            | Uses Gradient | Auto-Tuning | Rejection | Best For                         | Notes                              |
-| -------------- | ------------------ | ------------- | ----------- | --------- | -------------------------------- | ---------------------------------- |
-| **MCMC (SA)**  | NumPyro            | ❌             | ❌           | ✅         | Simple low-dim models            | No gradients; slow mixing          |
-| **HMC**        | NumPyro / BlackJAX | ✅             | ❌           | ✅         | High-dim continuous posteriors   | Needs tuned step size & trajectory |
-| **NUTS**       | NumPyro / BlackJAX | ✅             | ✅           | ✅         | General-purpose inference        | Adaptive HMC                       |
-| **MALA**       | BlackJAX           | ✅             | ❌           | ✅         | Local proposals w/ gradients     | Stochastic gradient steps          |
-| **MCLMC**      | BlackJAX           | ✅             | ✅ (via L)   | ❌         | Large latent spaces              | Unadjusted Langevin dynamics       |
-| **Adj. MCLMC** | BlackJAX           | ✅             | Manual (L)  | ✅         | Bias-controlled Langevin sampler | Includes MH step     
+def linear_regression(x, y=None):
+    w = numpyro.sample("w", dist.Normal(1., 2.))
+    b = numpyro.sample("b", dist.Normal(0., 2.))  # Fixed the second parameter
+    sigma = numpyro.sample("sigma", dist.Exponential(1.0))
 
+    mean = w * x + b
+    numpyro.sample("obs", dist.Normal(mean, sigma), obs=y)
+```
 
-:::
+:::: {.fragment fragment-index=1 .fade-in}
+**Run the model using NUTS:**
+```python
+kernel = numpyro.infer.NUTS(linear_regression)
+mcmc = numpyro.infer.MCMC(kernel, num_warmup=500, num_samples=1000)
+mcmc.run(rng_key, x=x_data, y=y_data)
+```
+::::
+:::: {.fragment fragment-index=2 .fade-in}
+**Posterior corner plot using arviz + corner**
+```python
+idata = az.from_numpyro(mcmc)
+posterior_array = az.extract(idata, var_names=["w", "b", "sigma"]).to_array().values.T
 
-:::
-
-For more information check Simons et al. (2025), [§2.2.3, arXiv:2504.20130](https://arxiv.org/pdf/2504.20130)
-
+fig = corner.corner(
+    posterior_array,
+    labels=["w", "b", "σ"],
+    truths=[true_w, true_b, None],
+    show_titles=True
+)
+plt.show()
+```
+::::
 
 ::: {.notes}
 
-**Speaker Notes – Sampler Comparison Table**
+This slide walks through the first notebook exercise — a minimal Bayesian linear regression model using NumPyro.
 
-This table gives a high-level overview of common samplers available in NumPyro and BlackJAX, organized by key features.
+* First block defines synthetic data: we're sampling noisy `y` values from a true line `y = 2x - 1`.
+* The `linear_regression` function defines a probabilistic model: priors on slope `w`, intercept `b`, and noise `sigma`.
+* We use NUTS from NumPyro to sample from the posterior — no likelihood math needed manually.
+* Finally, the bottom cell visualizes the posterior using `corner.py` and ArviZ. You’ll see how the true parameters compare to the inferred distributions.
 
-* **MCMC (SA)**: This is standard Metropolis-Hastings — no gradients, no tuning, but it’s simple and useful for low-dimensional problems. Slow mixing is a drawback.
-
-* **HMC**: Hamiltonian Monte Carlo improves mixing by using gradients to simulate physics-based trajectories. It requires tuning for step size and path length, so it’s more manual.
-
-* **NUTS**: No-U-Turn Sampler is HMC with built-in auto-tuning. It adapts step size and path length during warm-up, making it the default choice for general-purpose inference in NumPyro and BlackJAX.
-
-* **MALA**: Metropolis-Adjusted Langevin Algorithm uses gradients for local proposals. It's a good middle ground — cheaper than full HMC, but more efficient than MH.
-
-* **MCLMC**: Stochastic Langevin dynamics with **no rejection** step. Useful in large latent spaces, often in simulator-based models, but biased due to lack of correction.
-
-* **Adjusted MCLMC**: Same as MCLMC, but now with a Metropolis-Hastings correction step. This helps reduce bias, at the cost of a little more computation.
-
-**Main idea:** Pick the right sampler based on:
-
-* whether you can compute gradients
-* dimensionality of the posterior
-* whether you need auto-tuning or not
-* whether you want unbiased samples (with rejection) or not.
-
-Final note: This is a simplified summary. For real applications, benchmarking is always best.
+This is the foundation — you’ll implement and modify this directly during the hands-on.
 
 
 :::
 
----
+--- 
+
 
 ### Numpyro: Tips & Tricks for Bayesian Modeling
 
@@ -1312,68 +1320,6 @@ We’ll practice using all of these interactively in the notebooks.
 
 
 :::
-
-## A Minimal Bayesian Linear Model {style="font-size: 18px;"}
-
-**Define a simple linear model:**
-```{.Python code-line-numbers="|1-8|10-16"}
-true_w = 2.0
-true_b = -1.0
-num_points = 100
-
-rng_key = jax.random.PRNGKey(0)
-x_data = jnp.linspace(-3, 3, num_points)
-noise = jax.random.normal(rng_key, shape=(num_points,)) * 0.3
-y_data = true_w * x_data + true_b + noise
-
-def linear_regression(x, y=None):
-    w = numpyro.sample("w", dist.Normal(0, 1))
-    b = numpyro.sample("b", dist.Normal(0, 1))
-    sigma = numpyro.sample("sigma", dist.Exponential(1.0))
-
-    mean = w * x + b
-    numpyro.sample("obs", dist.Normal(mean, sigma), obs=y)
-```
-
-:::: {.fragment fragment-index=1 .fade-in}
-**Run the model using NUTS:**
-```python
-kernel = numpyro.infer.NUTS(linear_regression)
-mcmc = numpyro.infer.MCMC(kernel, num_warmup=500, num_samples=1000)
-mcmc.run(rng_key, x=x_data, y=y_data)
-```
-::::
-:::: {.fragment fragment-index=2 .fade-in}
-**Posterior corner plot using arviz + corner**
-```python
-idata = az.from_numpyro(mcmc)
-posterior_array = az.extract(idata, var_names=["w", "b", "sigma"]).to_array().values.T
-
-fig = corner.corner(
-    posterior_array,
-    labels=["w", "b", "σ"],
-    truths=[true_w, true_b, None],
-    show_titles=True
-)
-plt.show()
-```
-::::
-
-::: {.notes}
-
-This slide walks through the first notebook exercise — a minimal Bayesian linear regression model using NumPyro.
-
-* First block defines synthetic data: we're sampling noisy `y` values from a true line `y = 2x - 1`.
-* The `linear_regression` function defines a probabilistic model: priors on slope `w`, intercept `b`, and noise `sigma`.
-* We use NUTS from NumPyro to sample from the posterior — no likelihood math needed manually.
-* Finally, the bottom cell visualizes the posterior using `corner.py` and ArviZ. You’ll see how the true parameters compare to the inferred distributions.
-
-This is the foundation — you’ll implement and modify this directly during the hands-on.
-
-
-:::
-
---- 
 
 ## Using BlackJax and NumPyro {style="font-size: 18px;"}
 
@@ -1444,6 +1390,61 @@ This slide shows how to use BlackJAX for sampling when you already have a model 
 * Finally, we convert the raw samples to an ArviZ-friendly format with `az.from_dict`.
 
 Key point: BlackJAX is super fast and modular, but not a full PPL — so you bring your own model definition.
+
+
+:::
+
+---
+
+##  Sampler Comparison Table {style="font-size: 26px;"}
+
+:::{.solutionbox}
+
+::: {.solutionbox-body style="font-size: 18px;"}
+
+| Sampler        | Library            | Uses Gradient | Auto-Tuning | Rejection | Best For                         | Notes                              |
+| -------------- | ------------------ | ------------- | ----------- | --------- | -------------------------------- | ---------------------------------- |
+| **MCMC (SA)**  | NumPyro            | ❌             | ❌           | ✅         | Simple low-dim models            | No gradients; slow mixing          |
+| **HMC**        | NumPyro / BlackJAX | ✅             | ❌           | ✅         | High-dim continuous posteriors   | Needs tuned step size & trajectory |
+| **NUTS**       | NumPyro / BlackJAX | ✅             | ✅           | ✅         | General-purpose inference        | Adaptive HMC                       |
+| **MALA**       | BlackJAX           | ✅             | ❌           | ✅         | Local proposals w/ gradients     | Stochastic gradient steps          |
+| **MCLMC**      | BlackJAX           | ✅             | ✅ (via L)   | ❌         | Large latent spaces              | Unadjusted Langevin dynamics       |
+| **Adj. MCLMC** | BlackJAX           | ✅             | Manual (L)  | ✅         | Bias-controlled Langevin sampler | Includes MH step     
+
+
+:::
+
+:::
+
+For more information check Simons et al. (2025), [§2.2.3, arXiv:2504.20130](https://arxiv.org/pdf/2504.20130)
+
+
+::: {.notes}
+
+**Speaker Notes – Sampler Comparison Table**
+
+This table gives a high-level overview of common samplers available in NumPyro and BlackJAX, organized by key features.
+
+* **MCMC (SA)**: This is standard Metropolis-Hastings — no gradients, no tuning, but it’s simple and useful for low-dimensional problems. Slow mixing is a drawback.
+
+* **HMC**: Hamiltonian Monte Carlo improves mixing by using gradients to simulate physics-based trajectories. It requires tuning for step size and path length, so it’s more manual.
+
+* **NUTS**: No-U-Turn Sampler is HMC with built-in auto-tuning. It adapts step size and path length during warm-up, making it the default choice for general-purpose inference in NumPyro and BlackJAX.
+
+* **MALA**: Metropolis-Adjusted Langevin Algorithm uses gradients for local proposals. It's a good middle ground — cheaper than full HMC, but more efficient than MH.
+
+* **MCLMC**: Stochastic Langevin dynamics with **no rejection** step. Useful in large latent spaces, often in simulator-based models, but biased due to lack of correction.
+
+* **Adjusted MCLMC**: Same as MCLMC, but now with a Metropolis-Hastings correction step. This helps reduce bias, at the cost of a little more computation.
+
+**Main idea:** Pick the right sampler based on:
+
+* whether you can compute gradients
+* dimensionality of the posterior
+* whether you need auto-tuning or not
+* whether you want unbiased samples (with rejection) or not.
+
+Final note: This is a simplified summary. For real applications, benchmarking is always best.
 
 
 :::
@@ -1533,7 +1534,7 @@ This setup mirrors what we do in practice: forward-model observables, simulate n
 
 ---
 
-## Simulation-Based Inference with Forward Models {style="font-size: 18px;"}
+## Full Field Inference with Forward Models {style="font-size: 18px;"}
 
 
 ::: {.columns}
@@ -1567,7 +1568,7 @@ This setup mirrors what we do in practice: forward-model observables, simulate n
 
 
 ::::
-:::: {.fragment fragment-index=3 .fade-int}
+:::: {.fragment fragment-index=4 .fade-int}
 
 
 ![](assets/bayes/FFI_full_tuto.svg){fig-align="center" width="100%"}
@@ -1622,7 +1623,7 @@ This setup mirrors what we do in practice: forward-model observables, simulate n
 * Enables tighter constraints in **nonlinear regimes**
 * Especially useful in **high-dimensional** inference problems
 * See: *Zeghal et al. (2024), Leclercq et al. (2021)*
-* 🔜 a talk on this topic this Thursday by Hugo
+* 🔜 a talk on this topic this Thursday
 
 ::::
 
