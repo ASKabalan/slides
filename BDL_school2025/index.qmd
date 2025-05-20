@@ -203,7 +203,7 @@ so if you have any questions, please ask them during the presentation.
 
 ---
 
-## Inference in Cosmology: The Bayesian Pipeline {style="font-size: 21px;"}
+## Inference in Cosmology: The Bayesian Pipeline {style="font-size: 20px;"}
 
 
 :::{.columns}
@@ -352,7 +352,7 @@ Now show image 2:
 
 :::{.columns}
 
-:::: {.column width="15%"}
+:::: {.column width="10%"}
 
 <br/>
 
@@ -360,7 +360,7 @@ Now show image 2:
 
 ::::
 
-:::: {.column width="85%"}
+:::: {.column width="90%"}
 
 
 
@@ -410,6 +410,12 @@ $$
 :::
 
 
+
+
+::: {.columns}
+
+:::: {.column width="50%"}
+
 :::::: {.fragment fragment-index=3 .fade-in}
 
 > In practice, we drop the evidence term when sampling — it’s a constant.
@@ -432,6 +438,10 @@ $$
 $$
 
 ::::::
+
+::::
+
+::::: {.column width="50%"}
 
 :::::: {.fragment fragment-index=5 .fade-in}
 
@@ -459,6 +469,10 @@ $$
 :::
 
 ::::::
+
+::::
+
+:::
 
 
 ::: {.notes}
@@ -614,13 +628,13 @@ Make sure the audience sees this isn’t about choosing sides. As the bottom not
 
 :::{.columns}
 
-:::: {.column width="60%"}
+:::: {.column width="50%"}
 
 ![](assets/bayes/inference_loop.svg){fig-align="center" width="75%"}
 ::::
 
 
-:::: {.column width="40%"}
+:::: {.column width="50%"}
 
 **The Sampling Loop:**
 
@@ -701,7 +715,7 @@ On the right, the key takeaways:
 
 :::{.columns}
 
-:::: {.column width="60%"}
+:::: {.column width="65%"}
 
 :::::: {.fragment fragment-index=1 .fade-in}
 
@@ -739,7 +753,7 @@ On the right, the key takeaways:
 
 ::::
 
-:::: {.column width="40%"}
+:::: {.column width="35%"}
 
 :::::: {.fragment fragment-index=1 .fade-in}
 ![](assets/Samplers/MCMC.gif){fig-align="center" width="80%" style="border: 2px solid black; padding: 2px;"}
@@ -803,12 +817,12 @@ Together, these illustrate a spectrum: from simple MH to advanced gradient-based
 
 :::::: {.fragment fragment-index=1 .fade-in-then-out}
 
-![HMC: Gaussian Posterior](assets/Samplers/gaussian_hmc.gif){fig-align="center" width="60%"}
+![HMC: Gaussian Posterior](assets/Samplers/gaussian_hmc.gif){fig-align="center" width="50%"}
 
 ::::::
 
 :::::: {.fragment fragment-index=2 .fade-in}
-![HMC: Gaussian Posterior](assets/Samplers/gaussian_hmc_density.png){fig-align="center" width="60%"}
+![HMC: Gaussian Posterior](assets/Samplers/gaussian_hmc_density.png){fig-align="center" width="50%"}
 ::::::
 :::::
 
@@ -816,12 +830,12 @@ Together, these illustrate a spectrum: from simple MH to advanced gradient-based
 
 :::::: {.fragment fragment-index=3 .fade-in-then-out}
 
-![HMC: Banana Posterior](assets/Samplers/banana_hmc.gif){fig-align="center" width="60%"}
+![HMC: Banana Posterior](assets/Samplers/banana_hmc.gif){fig-align="center" width="50%"}
 
 ::::::
 
 :::::: {.fragment fragment-index=4 .fade-in}
-![HMC: Banana Posterior](assets/Samplers/banana_hmc_density.png){fig-align="center" width="60%"}
+![HMC: Banana Posterior](assets/Samplers/banana_hmc_density.png){fig-align="center" width="50%"}
 ::::::
 :::::
 
@@ -834,12 +848,12 @@ Together, these illustrate a spectrum: from simple MH to advanced gradient-based
 
 :::::: {.fragment fragment-index=1 .fade-in-then-out}
 
-![MCMC: Gaussian Posterior](assets/Samplers/gaussian_mcmc.gif){fig-align="center" width="60%"}
+![MCMC: Gaussian Posterior](assets/Samplers/gaussian_mcmc.gif){fig-align="center" width="50%"}
 
 ::::::
 
 :::::: {.fragment fragment-index=2 .fade-in}
-![MCMC: Gaussian Posterior](assets/Samplers/gaussian_mcmc_density.png){fig-align="center" width="60%"}
+![MCMC: Gaussian Posterior](assets/Samplers/gaussian_mcmc_density.png){fig-align="center" width="50%"}
 ::::::
 :::::
 
@@ -847,12 +861,12 @@ Together, these illustrate a spectrum: from simple MH to advanced gradient-based
 
 :::::: {.fragment fragment-index=3 .fade-in-then-out}
 
-![MCMC: Banana Posterior](assets/Samplers/banana_mcmc.gif){fig-align="center" width="60%"}
+![MCMC: Banana Posterior](assets/Samplers/banana_mcmc.gif){fig-align="center" width="50%"}
 
 ::::::
 
 :::::: {.fragment fragment-index=4 .fade-in}
-![MCMC: Banana Posterior](assets/Samplers/banana_mcmc_density.png){fig-align="center" width="60%"}
+![MCMC: Banana Posterior](assets/Samplers/banana_mcmc_density.png){fig-align="center" width="50%"}
 ::::::
 :::::
 
@@ -867,17 +881,17 @@ Together, these illustrate a spectrum: from simple MH to advanced gradient-based
 :::{.columns}
 
 :::: {.column width="10%"}
-![HMC: Gaussian Posterior](assets/Samplers/gaussian_hmc_density.png){fig-align="center" width="60%"}
+![HMC: Gaussian Posterior](assets/Samplers/gaussian_hmc_density.png){fig-align="center" width="50%"}
 ::::
 :::: {.column width="10%"}
-![HMC: Banana Posterior](assets/Samplers/banana_hmc_density.png){fig-align="center" width="60%"}
+![HMC: Banana Posterior](assets/Samplers/banana_hmc_density.png){fig-align="center" width="50%"}
 ::::
 
 :::: {.column width="10%"}
-![MCMC: Gaussian Posterior](assets/Samplers/gaussian_mcmc_density.png){fig-align="center" width="60%"}
+![MCMC: Gaussian Posterior](assets/Samplers/gaussian_mcmc_density.png){fig-align="center" width="50%"}
 ::::
 :::: {.column width="10%"}
-![MCMC: Banana Posterior](assets/Samplers/banana_mcmc_density.png){fig-align="center" width="60%"}
+![MCMC: Banana Posterior](assets/Samplers/banana_mcmc_density.png){fig-align="center" width="50%"}
 ::::
 
 :::: {.column width="60%"}
@@ -895,13 +909,13 @@ Together, these illustrate a spectrum: from simple MH to advanced gradient-based
 
 :::::: {.fragment fragment-index=1 .fade-in-then-out}
 
-![Sampling Without Gradients ](assets/Samplers/samples_only.png){fig-align="center" width="60%"}
+![Sampling Without Gradients ](assets/Samplers/samples_only.png){fig-align="center" width="50%"}
 
 ::::::
 
 :::::: {.fragment fragment-index=2 .fade-in}
 
-![Sampling With Gradients ](assets/Samplers/samples_with_gradients.png){fig-align="center" width="60%"}
+![Sampling With Gradients ](assets/Samplers/samples_with_gradients.png){fig-align="center" width="50%"}
 
 ::::::
 
@@ -1051,7 +1065,7 @@ This is a huge win when doing amortized inference or simulation-based methods.
 
 ::::{.columns}
 
-:::: {.column width="50%"}
+:::: {.column width="60%"}
 
 
 :::::: {.fragment fragment-index=2 .fade-in}
@@ -1105,7 +1119,7 @@ az.plot_pair(samples, marginals=True)
 ::::
 
 
-:::: {.column width="50%"}
+:::: {.column width="40%"}
 
 ::::: {.r-stack}
 
@@ -1130,19 +1144,19 @@ az.plot_pair(samples, marginals=True)
 ::::: {.r-stack}
 
 :::::: {.fragment fragment-index=1 .fade-in-then-out}
-![](assets/bayes/bayes_full.svg){fig-align="center" width="100%"}
+![](assets/bayes/bayes_full.svg){fig-align="center" width="70%"}
 ::::::
 :::::: {.fragment fragment-index=2 .fade-in-then-out}
-![](assets/bayes/bayes_prior.svg){fig-align="center" width="100%"}
+![](assets/bayes/bayes_prior.svg){fig-align="center" width="70%"}
 ::::::
 :::::: {.fragment fragment-index=3 .fade-in-then-out}
-![](assets/bayes/bayes_likelihood.svg){fig-align="center" width="100%"}
+![](assets/bayes/bayes_likelihood.svg){fig-align="center" width="70%"}
 ::::::
 :::::: {.fragment fragment-index=4 .fade-in-then-out}
-![](assets/bayes/bayes_sample.svg){fig-align="center" width="100%"}
+![](assets/bayes/bayes_sample.svg){fig-align="center" width="70%"}
 ::::::
 :::::: {.fragment fragment-index=5 .fade-in-then-out}
-![](assets/bayes/post_corner.png){fig-align="center" width="100%"}
+![](assets/bayes/post_corner.png){fig-align="center" width="70%"}
 <div style="text-align: center; font-size: 12px;">@credit: Zeghal et al. (2409.17975)</div>
 ::::::
 :::::
@@ -1361,7 +1375,7 @@ This is the foundation — you’ll implement and modify this directly during th
 
 --- 
 
-## Using BlackJax and NumPyro
+## Using BlackJax and NumPyro {style="font-size: 18px;"}
 
 > BlackJax is NOT a PPL, so you need to combine it with a PPL like NumPyro or PyMC.
 
@@ -1436,7 +1450,7 @@ Key point: BlackJAX is super fast and modular, but not a full PPL — so you bri
 
 # Examples: Bayesian Inference for Cosmology
 
-## Power Spectrum Inference with jax-cosmo
+## Power Spectrum Inference with jax-cosmo {style="font-size: 18px;"}
 
 :::: {.fragment fragment-index=1 .fade-in}
 
@@ -1591,22 +1605,17 @@ This setup mirrors what we do in practice: forward-model observables, simulate n
 ::::
 
 
-::::
-
-:::
-
-
 :::: {.fragment fragment-index=4 .fade-in}
 
 
 ::: {.solutionbox}
 
-::::{.solutionbox-header style="font-size: 20px;"}
+::::{.solutionbox-header style="font-size: 19px;"}
 
 **Full Field vs. Summary Statistics**
 ::::
 
-::::{.solutionbox-body style="font-size: 18px;"}
+::::{.solutionbox-body style="font-size: 16px;"}
 
 
 * Preserves **non-Gaussian** structure lost in summaries
@@ -1620,6 +1629,11 @@ This setup mirrors what we do in practice: forward-model observables, simulate n
 :::
 
 ::::
+
+::::
+
+:::
+
 
 ::: {.notes}
 
