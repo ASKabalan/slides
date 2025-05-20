@@ -251,7 +251,7 @@ we must move from summary-based inference → to structured, gradient-based fiel
 
 ###  Compute Forces via PM method
 
-- **Start with particles** $(\mathbf{x}_i, \mathbf{p}_i)$  
+- **Start with particles** $\mathbf{x}_i, \mathbf{p}_i$  
 - Interpolate to mesh: $\rho(\mathbf{x})$  
 - Solve Poisson’s Equation:
   $$
@@ -299,7 +299,7 @@ we must move from summary-based inference → to structured, gradient-based fiel
 
 ---
 
-## Explicit (Full-Field) Inference
+## Explicit Full-Field Inference (Weak Lensing)
 
 ::: {.r-stack}
 
@@ -314,6 +314,126 @@ we must move from summary-based inference → to structured, gradient-based fiel
 
 
 # Modeling Weak Lensing with Lightcone Projections
+
+
+TODO
+
+- Make Memory plots
+- Make accuracy plots
+- remaining slides 
+- Make biased Omega and Sigma8
+
+
+---
+
+## Lightcone Model: From 3D Structure to Lensing Observables {style="font-size: 19px;"}
+
+
+:::: {.columns}
+:::: {.column width="60%"}
+
+::::: {.r-stack}
+
+:::::: {.fragment fragment-index=1 .fade-in-then-out}
+![](assets/latest/how_converge.svg){fig-align="center" width="100%"}
+::::::
+
+:::::: {.fragment fragment-index=2 .fade-in-then-out}
+![](assets/latest/lightcone_0.svg){fig-align="center" width="100%"}
+::::::
+
+:::::: {.fragment fragment-index=3 .fade-in-then-out}
+![](assets/latest/lightcone_1.svg){fig-align="center" width="100%"}
+::::::
+
+:::::: {.fragment fragment-index=4 .fade-in-then-out}
+![](assets/latest/lightcone_2.svg){fig-align="center" width="100%"}
+::::::
+
+:::::: {.fragment fragment-index=5 .fade-in-then-out}
+![](assets/latest/lightcone_3.svg){fig-align="center" width="100%"}
+::::::
+
+:::::
+
+::::
+
+:::: {.column width="40%"}
+
+:::::: {.fragment fragment-index=2 .fade-in}
+- We simulate the large-scale structure  
+  forward in time and take snapshots at scale factor $a_i$
+::::::
+
+:::::: {.fragment fragment-index=3 .fade-in}
+- A lightcone connects these simulations  
+  to an observer at $a = 1$
+::::::
+
+:::::: {.fragment fragment-index=3 .fade-in}
+- We slice the volume into 2D mass planes  
+  across comoving distance bins
+::::::
+
+:::::: {.fragment fragment-index=4 .fade-in}
+- Each redshift bin receives contributions  
+  from the slabs in front of it
+- Born approximation 
+::::::
+
+
+
+:::::: {.fragment fragment-index=5 .fade-in}
+
+:::{.solutionbox}
+
+::: {.solutionbox-header}
+Born Approximation for Convergence
+:::
+
+:::: {.solutionbox-body style="font-size: 18px;"}
+
+$$
+\kappa(\boldsymbol{\theta}) = \int_0^{r_s} dr \, W(r, r_s) \, \delta(\boldsymbol{\theta}, r)
+$$
+
+Where the lensing weight is:
+
+$$
+W(r, r_s) = \frac{3}{2} \, \Omega_m \, \left( \frac{H_0}{c} \right)^2 \, \frac{r}{a(r)} \left(1 - \frac{r}{r_s} \right)
+$$
+
+::::
+
+:::
+
+::::::
+
+::::
+
+:::
+
+::::
+
+:::
+
+
+
+
+---
+
+## Explicit Full-Field Inference (sampling)
+
+::: {.r-stack}
+
+::::: {.fragment fragment-index=1 .fade-in-then-out}
+![](assets/bayes/FFI_full.svg){fig-align="center" width="100%"}
+:::::
+::::: {.fragment fragment-index=2 .fade-in}
+![](assets/FFI/FFI_sample_focus.svg){fig-align="center" width="100%"}
+:::::
+
+:::
 
 
 ---
