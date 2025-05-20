@@ -1622,7 +1622,7 @@ This setup mirrors what we do in practice: forward-model observables, simulate n
 * Enables tighter constraints in **nonlinear regimes**
 * Especially useful in **high-dimensional** inference problems
 * See: *Zeghal et al. (2024), Leclercq et al. (2021)*
-* 🔜 Two talks on this topic this Thursday
+* 🔜 a talk on this topic this Thursday by Hugo
 
 ::::
 
