@@ -15,6 +15,7 @@ format:
     presentation-size: max-scale
     highlight-style: github
     slide-number: true
+    pdfSeparateFragments: true
     template-partials:
       - css/title-slide.html
 output: revealjs
@@ -361,6 +362,26 @@ $$
 
 ---
 
+## The Impact of inaccurate simulations on Physical Modeling
+
+::: {.columns}
+
+:::: {.column width="50%"}
+
+![](assets/bayes/FFI_full.svg){fig-align="center" width="80%"}
+
+::::
+
+:::: {.column width="50%"}
+
+![](assets/latest/illu_compressor.svg){fig-align="center" width="80%"}
+
+::::
+
+:::
+
+---
+
 ## Approximating the Small Scales {style="font-size: 19px;"}
 
 ::: {.columns}
@@ -506,7 +527,6 @@ Modern high-end GPUs cap at **~80 GB**, so even a single box **requires multi-GP
 :::
 
 
----
 
 # Distributed Simulation with JAXPM
 
@@ -670,7 +690,7 @@ The Cloud-In-Cell (CIC) scheme spreads particle mass to nearby grid points using
 
 ---
 
-## Distributed Cloud In Cell (CIC) Interpolation {style="font-size: 20px;"}
+## Distributed Cloud In Cell (CIC) Interpolation {style="font-size: 19px;"}
 
 Cloud-In-Cell (CIC) requires particles to paint to nearby grid cells — even across subdomain boundaries.  
 To avoid loss of mass and ensure correct gradients, we apply **halo exchange** and synchronize the overlapping regions.
@@ -717,4 +737,291 @@ To avoid loss of mass and ensure correct gradients, we apply **halo exchange** a
 
 :::
 
+
+::: {.solutionbox}
+:::: {.solutionbox-body style="font-size: 18px;"}
+Halo exchange ensures correct mass deposition and gradient flow across domain boundaries — essential for differentiable simulations.
+::::
+:::
+
+---
+
+## Why Halo Exchange Matters in Distributed Simulations {style="font-size: 22px;"}
+
+::: {.fragment fragment-index=1 .fade-in-then-out}
+
+![](assets/HPC/depict_split.png){.absolute top=30 right=20 width="20%"}
+
+::: 
+
+::: {.fragment fragment-index=2 }
+
+![](assets/HPC/depict_gathered.png){.absolute top=30 right=20 width="20%"}
+
+::: 
+
+
+
+Without halo exchange, subdomain boundaries introduce visible artifacts in the final field.  
+This breaks the smoothness of the result — **even when each local computation is correct**.
+
+
+::: {.columns}
+
+:::: {.column width="50%"}
+
+:::{.r-stack}
+
+
+:::{.fragment fragment-index=1 .fade-in-then-out}
+
+:::{layout="[[1] , [1] , [1] , [1]]" layout-valign="center" layout-align="center"}
+
+![First slice](assets/Fields/LPT_density_field_z0_0_no_halo.png){.nostretch fig-align="center" width="400px"}
+
+![Second slice](assets/Fields/LPT_density_field_z0_1_no_halo.png){.nostretch fig-align="center" width="400px"}
+
+![Third slice](assets/Fields/LPT_density_field_z0_2_no_halo.png){.nostretch fig-align="center" width="400px"}
+
+![Fourth slice](assets/Fields/LPT_density_field_z0_3_no_halo.png){.nostretch fig-align="center" width="400px"}
+
+:::
+
+:::
+
+:::{.fragment fragment-index=2 .fade-in}
+
+
+![LPT Field](assets/Fields/LPT_density_field_z0_1024_no_halo.png){.nostretch fig-align="center" width="400px"}
+
+:::
+
+::::
+
+
+:::
+
+
+:::: {.column width="50%"}
+
+
+:::{.r-stack}
+
+:::{.fragment fragment-index=2 .fade-in-then-out   style="visibility: hidden;"}
+
+:::{layout="[[1] , [1] , [1] , [1]]" layout-valign="center" layout-align="center"}
+
+![First slice](assets/Fields/LPT_density_field_z0_0_no_halo.png){.nostretch fig-align="center" width="400px"}
+
+![Second slice](assets/Fields/LPT_density_field_z0_1_no_halo.png){.nostretch fig-align="center" width="400px"}
+
+![Third slice](assets/Fields/LPT_density_field_z0_2_no_halo.png){.nostretch fig-align="center" width="400px"}
+
+![Fourth slice](assets/Fields/LPT_density_field_z0_3_no_halo.png){.nostretch fig-align="center" width="400px"}
+
+:::
+
+:::
+
+:::{.fragment fragment-index=3 .fade-in}
+
+![LPT Field](assets/Fields/LPT_density_field_z0_1024.png){.nostretch fig-align="center" width="400px"}
+
+:::
+
+:::
+
+::::
+
+:::
+
+
+---
+
+
+## jaxDecomp: Halo Exchange for Distributed Simulations {style="font-size: 22px;"}
+
+[![](https://img.shields.io/badge/GitHub-jaxdecomp-blue?logo=github)](https://github.com/DifferentiableUniverseInitiative/jaxDecomp)
+
+:::{.fragment fragment-index=1}
+
+* Part of the `jaxdecomp` package — **fully differentiable** and **JAX-compatible**
+* **Easy to use** and works transparently across **GPUs and nodes**
+* Open source and available on **PyPI**
+
+:::
+
+:::{.fragment fragment-index=2}
+
+![](assets/Fields/CIC/Halo_Exchange.svg){fig-align="center" width="60%"}
+
+:::
+
+# Differentiating Through Time Integration
+
+::: {.rstack}
+
+![](assets/bayes/FFI_full.svg){fig-align="center" width="30%"}
+
+:::
+
+---
+
+## Autodiff in ![](assets/Logos/JaxLogo.png){width="5%"} 101
+
+
+<br/>
+<br/>
+
+::: {.columns}
+
+:::: {.column width="50%"}
+
+::::: {.fragment fragment-index=1 .fade-in}
+
+### A simple function:
+
+$$
+f(x, y)
+$$
+
+To differentiate it, autodiff systems track:
+
+- The tangents: $\dot{x}$, $\dot{y}$
+- The inputs: $x$, $y$
+
+
+:::::
+
+::::
+
+:::: {.column width="50%"}
+
+::::: {.fragment fragment-index=2 .fade-in}
+
+### Applied to time integration:
+
+In a simple **Kick-Drift scheme**:
+
+$$
+\begin{align}
+d_{i+1} &= d_i + v_i \, \Delta t \\
+v_{i+1} &= v_i + F(d_{i+1}) \, \Delta t
+\end{align}
+$$
+
+To compute gradients, we must store:
+
+- Every $d_i$, $v_i$
+- And their **tangent vectors** for backpropagation
+
+:::::
+
+::::
+
+:::
+
+::::: {.fragment fragment-index=3 .fade-in}
+
+
+::: {.solutionbox}
+
+::: {.solutionbox-header}
+The Problem
+:::
+
+::: {.solutionbox-body}
+
+* This leads to a **linear memory footprint** — each additional step increases memory cost
+
+* Reducing the number of steps leads to **miss estimating small-scale structure**
+  → Just like how **low resolution underestimates power on small scales**
+
+:::
+:::
+
+:::::
+
+---
+
+## The Adjoint Trick: Backprop Without Storing Everything (**Preliminary**)
+
+![](assets/Logos/JaxLogo.png){.absolute top=30 right=10 width="5%"}
+
+::: {.columns}
+
+:::: {.column width="40%"}
+
+* Instead of storing the full trajectory...
+
+* We use the **reverse adjoint method**:
+
+  * Save only the final state
+  * **Re-integrate backward in time** to get gradients
+
+
+::: {.mathbox}
+
+**Forward Pass (Kick-Drift)**:
+
+$$
+\begin{aligned}
+d_{i+1} &= d_i + v_i \, \Delta t \\
+v_{i+1} &= v_i + F(d_{i+1}) \, \Delta t
+\end{aligned}
+$$
+
+**Reverse Pass (Adjoint Method)**:
+
+$$
+\begin{aligned}
+v_i &= v_{i+1} - F(d_{i+1}) \, \Delta t \\
+d_i &= d_{i+1} - v_i \, \Delta t
+\end{aligned}
+$$
+
+:::
+
+::::
+
+:::: {.column width="60%"}
+
+![Memory vs. Checkpoints](assets/latest/memory_vs_checkpoints.png){fig-align="center" width="100%"}
+
+::::
+
+:::
+
+::: {.solutionbox}
+
+:::: {.solutionbox-header}
+Reverse Adjoint method
+::::
+
+:::: {.solutionbox-body}
+
+- ✅ Memory stays constant, regardless of the number of steps
+- ⚠️ Requires a second pass through the simulation
+- For A 10 step 1024³ Full PM Lightcone pipeline, it requires 5 times less memory than the checkpoint approach
+
+::::
+
+:::
+
+
+
+# Putting It All Together
+
+---
+
+## Sampling in Differentiable Simulations (**Preliminary**) {style="font-size: 19px;"}
+
+
+::: {layout-ncol=2}
+
+![Forward Field-Level Model](assets/latest/FFI_split.svg){fig-align="center" width="100%"}
+
+![JAX Sampling Flow](assets/latest/Key_split.svg){fig-align="center" width="100%"}
+
+::::
 
