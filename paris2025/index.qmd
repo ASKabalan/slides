@@ -299,21 +299,21 @@ Even higher-order statistics (like bispectrum or 3-point correlations) still red
 
 ::::: {.r-stack}
 
-:::::: {.fragment fragment-index=1 .fade-in-then-out}
+:::::: {.fragment fragment-index=1 .fade-out}
 ![](assets/latest/how_converge.svg){fig-align="center" width="80%"}
 ::::::
 
 
 
-:::::: {.fragment fragment-index=2 .fade-in-then-out}
+:::::: {.fragment fragment-index=1 .fade-in-then-out}
 ![](assets/latest/lightcone_1.svg){fig-align="center" width="100%"}
 ::::::
 
-:::::: {.fragment fragment-index=3 .fade-in-then-out}
+:::::: {.fragment fragment-index=2 .fade-in-then-out}
 ![](assets/latest/lightcone_2.svg){fig-align="center" width="100%"}
 ::::::
 
-:::::: {.fragment fragment-index=4 .fade-in-then-out}
+:::::: {.fragment fragment-index=3 .fade-in-then-out}
 ![](assets/latest/lightcone_3.svg){fig-align="center" width="100%"}
 ::::::
 
@@ -323,14 +323,14 @@ Even higher-order statistics (like bispectrum or 3-point correlations) still red
 
 :::: {.column width="40%"}
 
-:::::: {.fragment fragment-index=2 .fade-in}
+:::::: {.fragment fragment-index=1 .fade-in}
 - Simulate structure formation over time, taking snapshots at key redshifts
 - Stitch these snapshots into a **lightcone**, mimicking the observer’s view of the universe
 - Combine contributions from all slabs to form convergence maps
 - Use the Born approximation to simplify the lensing calculation
 ::::::
 
-:::::: {.fragment fragment-index=4 .fade-in}
+:::::: {.fragment fragment-index=3 .fade-in}
 
 :::{.solutionbox}
 
@@ -1069,11 +1069,7 @@ What JAXPM v0.1.5 Supports
 
 :::: {.column width="50%"}
 
-:::::: {.fragment fragment-index=1 .fade-in}
-
 ![Dynamic Resolution Grid](assets/latest/dynamic_grid.svg){fig-align="center" width="50%"}
-
-::::::
 
 
 ::::
@@ -1090,40 +1086,16 @@ What JAXPM v0.1.5 Supports
 -  &emsp;It's still an approximation — it does **not match the accuracy** of solving on a uniformly fine grid
 -  &emsp;At high fidelity, fine-grid solvers outperform multigrid in recovering small-scale structure — critical for unbiased inference
 
-:::{.solutionbox}
-
-::: {.solutionbox-header style="font-size: 19px;"}
- **Takeaway**  
-:::
-
-:::: {.solutionbox-body style="font-size: 18px;"}
-
-For reliable inference, **uniform fine-resolution simulations** are still the gold standard — ensuring accurate gradients and unbiased posteriors.
 
 ::::
-
-:::
-::::
-
-
-
 
 :::: {.column width="50%"}
 
 
 ::::: {.r-stack}
 
-:::::: {.fragment fragment-index=2 .fade-in-then-out}
-
-![Multigrid](assets/latest/multi_grid_0.svg){fig-align="center" width="70%"}
-
-::::::
-
-:::::: {.fragment fragment-index=3 .fade-in}
 
 ![Multigrid](assets/latest/multi_grid_1.svg){fig-align="center" width="70%"}
-
-::::::
 
 :::::
 
