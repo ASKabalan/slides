@@ -348,28 +348,28 @@
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="r-stack">
-<div class="fragment fade-in-then-out" data-fragment-index="1">
+<div class="fragment fade-out" data-fragment-index="1">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="assets/latest/how_converge.svg" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
 </figure>
 </div>
 </div>
-<div class="fragment fade-in-then-out" data-fragment-index="2">
+<div class="fragment fade-in-then-out" data-fragment-index="1">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="assets/latest/lightcone_1.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
-<div class="fragment fade-in-then-out" data-fragment-index="3">
+<div class="fragment fade-in-then-out" data-fragment-index="2">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="assets/latest/lightcone_2.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
-<div class="fragment fade-in-then-out" data-fragment-index="4">
+<div class="fragment fade-in-then-out" data-fragment-index="3">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="assets/latest/lightcone_3.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
@@ -378,7 +378,7 @@
 </div>
 </div>
 </div><div class="column" style="width:40%;">
-<div class="fragment fade-in" data-fragment-index="2">
+<div class="fragment fade-in" data-fragment-index="1">
 <ul>
 <li>Simulate structure formation over time, taking snapshots at key redshifts</li>
 <li>Stitch these snapshots into a <strong>lightcone</strong>, mimicking the observer’s view of the universe</li>
@@ -386,7 +386,7 @@
 <li>Use the Born approximation to simplify the lensing calculation</li>
 </ul>
 </div>
-<div class="fragment fade-in" data-fragment-index="4">
+<div class="fragment fade-in" data-fragment-index="3">
 <div class="solutionbox">
 <div class="solutionbox-header">
 <p>Born Approximation for Convergence</p>
@@ -731,7 +731,7 @@ v_i = \sum_{\mathbf{j}} g(\mathbf{j}) \prod_{d=1}^{D} \left(1 - \left|p_i^d - j_
 <div class="r-stack">
 <div class="fragment fade-in-then-out" data-fragment-index="1">
 <h3 id="without-halo-exchange-not-distributed">Without Halo Exchange (Not Distributed)</h3>
-<div class="quarto-layout-panel" data-align="center" data-layout-ncol="3">
+<div class="quarto-layout-panel" data-layout-ncol="3" data-align="center">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
@@ -762,7 +762,7 @@ v_i = \sum_{\mathbf{j}} g(\mathbf{j}) \prod_{d=1}^{D} \left(1 - \left|p_i^d - j_
 </div>
 <div class="fragment fade-in" data-fragment-index="2">
 <h3 id="with-halo-exchange-distributed">With Halo Exchange (Distributed)</h3>
-<div class="quarto-layout-panel" data-align="center" data-layout-ncol="3">
+<div class="quarto-layout-panel" data-layout-ncol="3" data-align="center">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
@@ -807,7 +807,7 @@ This breaks the smoothness of the result — <strong>even when each local comput
 <div class="column" style="width:50%;">
 <div class="r-stack">
 <div class="fragment fade-in-then-out" data-fragment-index="1">
-<div class="quarto-layout-panel" data-layout-align="center" data-layout="[[1] , [1] , [1] , [1]]">
+<div class="quarto-layout-panel" data-layout="[[1] , [1] , [1] , [1]]" data-layout-align="center">
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -862,7 +862,7 @@ This breaks the smoothness of the result — <strong>even when each local comput
 </div><div class="column" style="width:50%;">
 <div class="r-stack">
 <div class="fragment fade-in-then-out" data-fragment-index="2" style="visibility: hidden;">
-<div class="quarto-layout-panel" data-layout-align="center" data-layout="[[1] , [1] , [1] , [1]]">
+<div class="quarto-layout-panel" data-layout="[[1] , [1] , [1] , [1]]" data-layout-align="center">
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -1099,13 +1099,11 @@ d_i &amp;= d_{i+1} - v_i \, \Delta t
 <li>  very difficult to differentialte and slow to compute</li>
 </ul>
 </div><div class="column" style="width:50%;">
-<div class="fragment fade-in" data-fragment-index="1">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="assets/latest/dynamic_grid.svg" style="width:50.0%"></p>
 <figcaption>Dynamic Resolution Grid</figcaption>
 </figure>
-</div>
 </div>
 </div></div>
 <div class="columns">
@@ -1116,31 +1114,13 @@ d_i &amp;= d_{i+1} - v_i \, \Delta t
 <li> It’s still an approximation — it does <strong>not match the accuracy</strong> of solving on a uniformly fine grid</li>
 <li> At high fidelity, fine-grid solvers outperform multigrid in recovering small-scale structure — critical for unbiased inference</li>
 </ul>
-<div class="solutionbox">
-<div class="solutionbox-header" style="font-size: 19px;">
-<p><strong>Takeaway</strong></p>
-</div>
-<div class="solutionbox-body" style="font-size: 18px;">
-<p>For reliable inference, <strong>uniform fine-resolution simulations</strong> are still the gold standard — ensuring accurate gradients and unbiased posteriors.</p>
-</div>
-</div>
 </div><div class="column" style="width:50%;">
 <div class="r-stack">
-<div class="fragment fade-in-then-out" data-fragment-index="2">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/latest/multi_grid_0.svg" style="width:70.0%"></p>
-<figcaption>Multigrid</figcaption>
-</figure>
-</div>
-</div>
-<div class="fragment fade-in" data-fragment-index="3">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="assets/latest/multi_grid_1.svg" style="width:70.0%"></p>
 <figcaption>Multigrid</figcaption>
 </figure>
-</div>
 </div>
 </div>
 </div></div>
