@@ -10,6 +10,7 @@
   <meta name="generator" content="quarto-1.7.31">
 
   <meta name="author" content="Wassim Kabalan">
+  <meta name="author" content="Alexandre Boucaud, François Lanusse">
   <title>JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -129,6 +130,7 @@
 <section id="title-slide" data-background-image="assets/titles/bayes_title_1.png" data-background-opacity="0.8" data-background-size="fill" class="center">
   <h1 class="title"><span style="color:#ffffff; font-size: largest;">JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations</span></h1>
   <p class="author"><span style="color:#ffffff; font-size: larger;">Wassim Kabalan</span></p>
+  <p class="author"><span style="font-size: Smaller;">Alexandre Boucaud, François Lanusse</span></p>
   <div style=""></div>
 <div style="margin-top: 20px; text-align: center;align-items: bottom;">
   <div style="display: flex; justify-content: space-around; align-items: center; layout-valign=" middle"=""> <img src="assets/Logos/AstroDeep-2.png" style="width: 35%;"> <img src="assets/Logos/APC.png" style="width: 20%;"> <img src="assets/Logos/scipol.png" style="width: 35%;"> </div>
@@ -696,7 +698,10 @@ v_i = \sum_{\mathbf{j}} g(\mathbf{j}) \prod_{d=1}^{D} \left(1 - \left|p_i^d - j_
 </section>
 <section id="distributed-cloud-in-cell-cic-interpolation" class="slide level2" style="font-size: 20px;">
 <h2>Distributed Cloud In Cell (CIC) Interpolation</h2>
-<div class="quarto-layout-panel" data-layout-ncol="3">
+<p>Cloud-In-Cell (CIC) requires particles to paint to nearby grid cells — even across subdomain boundaries.<br>
+To avoid loss of mass and ensure correct gradients, we apply <strong>halo exchange</strong> and synchronize the overlapping regions.</p>
+<h3 id="without-halo-exchange">Without Halo Exchange</h3>
+<div class="quarto-layout-panel" data-align="center" data-layout-ncol="3">
 <div class="quarto-layout-row">
 <div class="fragment fade-in quarto-layout-cell" data-fragment-index="1" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
@@ -724,9 +729,12 @@ v_i = \sum_{\mathbf{j}} g(\mathbf{j}) \prod_{d=1}^{D} \left(1 - \left|p_i^d - j_
 </div>
 </div>
 </div>
-<div class="quarto-layout-panel" data-layout-ncol="3">
+<div class="fragment fade-in" data-fragment-index="4">
+<h3 id="with-halo-exchange">With Halo Exchange</h3>
+</div>
+<div class="quarto-layout-panel" data-align="center" data-layout-ncol="3">
 <div class="quarto-layout-row">
-<div class="fragment fade-in quarto-layout-cell" data-fragment-index="1" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="fragment fade-in quarto-layout-cell" data-fragment-index="4" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="assets/latest/D_CIC_Paint_3.svg" style="width:65.0%"></p>
@@ -734,7 +742,7 @@ v_i = \sum_{\mathbf{j}} g(\mathbf{j}) \prod_{d=1}^{D} \left(1 - \left|p_i^d - j_
 </figure>
 </div>
 </div>
-<div class="fragment fade-in quarto-layout-cell" data-fragment-index="2" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="fragment fade-in quarto-layout-cell" data-fragment-index="5" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="assets/latest/D_CIC_Paint_4.svg" style="width:65.0%"></p>
@@ -742,7 +750,7 @@ v_i = \sum_{\mathbf{j}} g(\mathbf{j}) \prod_{d=1}^{D} \left(1 - \left|p_i^d - j_
 </figure>
 </div>
 </div>
-<div class="fragment fade-in quarto-layout-cell" data-fragment-index="3" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="fragment fade-in quarto-layout-cell" data-fragment-index="6" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="assets/latest/D_CIC_Paint_5.svg" style="width:65.0%"></p>

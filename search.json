@@ -438,7 +438,7 @@
     "href": "paris2025/index.html#distributed-cloud-in-cell-cic-interpolation",
     "title": "JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations",
     "section": "Distributed Cloud In Cell (CIC) Interpolation",
-    "text": "Distributed Cloud In Cell (CIC) Interpolation\n\n\n\n\n\n\nSub Domain 1 (Particles)\n\n\n\n\n\n\n\nSub Domain 1 (Grid)\n\n\n\n\n\n\n\nSub Domain 1 (Read out)\n\n\n\n\n\n\n\n\n\n\n\nSub Domain 1 & Halo (Particles)\n\n\n\n\n\n\n\nSub Domain 1 & Halo (Grid)\n\n\n\n\n\n\n\nSub Domain 2 & Halo (Grid)"
+    "text": "Distributed Cloud In Cell (CIC) Interpolation\nCloud-In-Cell (CIC) requires particles to paint to nearby grid cells — even across subdomain boundaries.\nTo avoid loss of mass and ensure correct gradients, we apply halo exchange and synchronize the overlapping regions.\nWithout Halo Exchange\n\n\n\n\n\n\nSub Domain 1 (Particles)\n\n\n\n\n\n\n\nSub Domain 1 (Grid)\n\n\n\n\n\n\n\nSub Domain 1 (Read out)\n\n\n\n\n\n\nWith Halo Exchange\n\n\n\n\n\n\n\nSub Domain 1 & Halo (Particles)\n\n\n\n\n\n\n\nSub Domain 1 & Halo (Grid)\n\n\n\n\n\n\n\nSub Domain 2 & Halo (Grid)"
   },
   {
     "objectID": "csi2024/index.html#accelerating-bayesian-inference-in-cosmology",
