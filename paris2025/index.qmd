@@ -3,7 +3,6 @@ title: '<span style="color:#ffffff; font-size: largest;">JAXPM: A JAX-Based Fram
 
 author: 
   - name: "<span style='color:#ffffff; font-size: larger;'>Wassim Kabalan</span>"
-  - name : "<span style='color:#ffffff; font-size: Smaller;'>Alexandre Boucaud, François Lanusse</span>"
 footer: "Bayesian Deep Learning Workshop , 2025"
 format:
   revealjs:
@@ -70,81 +69,7 @@ logo1 : '
 
 
 
-# Background :  Inference in Cosmology: The Big Picture 
-
----
-
-## Inference in Cosmology: The Frequentist Pipeline {style="font-size: 20px;"}
-
-
-:::{.columns}
-
-:::: {.column width="55%"}
-
-<br/>
-
-
-:::::: {.fragment fragment-index=1 .fade-in}
-
-![](assets/bayes/freq_pipeline_4.svg){fig-align="center" width="100%"}
-
-::::::
-
-
-
-::::
-
-:::: {.column width="45%"}
-
-
-:::::: {.fragment fragment-index=2 .fade-in}
-- **cosmological parameters** (Ω): matter density, dark energy, etc.
-- Predict observables: **CMB, galaxies, lensing**
-- Extract **summary statistics**: $P(k)$, $C_\ell$ , 2PCF
-- Compute **likelihood**: $L(\Omega \vert data)$
-- Estimate $\hat{\Omega}$ via **maximization** ($\chi^2$ fitting)
-::::::
-
-
-:::::: {.fragment fragment-index=3 .fade-in}
-
-:::{.solutionbox}
-
-::: {.solutionbox-header style="font-size: 19px;"}
-
-**Limits of Summary Statistics**
-
-:::
-
-::::{.solutionbox-body style="font-size: 18px;"}
-
-- Summary statistics are **lossy**  
-- The power spectrum captures only **Gaussian** information  
-- Higher-order statistics (e.g. bispectrum, peak counts):  
-  ⤷ *difficult to model and interpret*  
-  ⤷ *computationally expensive*  
-  ⤷ *sensitive to systematics*  
-- In the **nonlinear regime**, these issues worsen  
-
-::::
-
-:::
-
-:::::: 
-
-::::
-
-:::
-
-
-:::{.notes}
-
-:::
-
-
----
-
-## From Summary Statistics to Full Field Inference {style="font-size: 20px;"}
+## Simulation Based Inference in Cosmology {style="font-size: 20px;"}
 
 :::: {.columns}
 
@@ -179,7 +104,7 @@ logo1 : '
 
 :::::: {.fragment fragment-index=1 .fade-in}
 
-### 🔒 Implicit (Likelihood-Free) Inference
+### Implicit (Likelihood-Free) Inference
 
 - Simulator is a **blackbox**  
 - No tractable likelihood  
@@ -193,7 +118,7 @@ logo1 : '
 
 :::::: {.fragment fragment-index=2 .fade-in}
 
-### 🔍 Explicit (Full-Field) Inference
+### Explicit (Full-Field) Inference
 
 - **Full-field forward model** is differentiable and structured  
 - Likelihood defined in pixel space  
@@ -248,6 +173,7 @@ we must move from summary-based inference → to structured, gradient-based fiel
 
 ::::: {.fragment fragment-index=1 .fade-in}
 
+add PMWD JAXPM BORG
 
 ###  Compute Forces via PM method
 
@@ -297,9 +223,8 @@ we must move from summary-based inference → to structured, gradient-based fiel
 
 :::::
 
----
+# Modeling Weak Lensing with Lightcone Projections
 
-## Explicit Full-Field Inference (Weak Lensing)
 
 ::: {.r-stack}
 
@@ -312,24 +237,12 @@ we must move from summary-based inference → to structured, gradient-based fiel
 
 :::
 
-
-# Modeling Weak Lensing with Lightcone Projections
-
-
-TODO
-
-- Make Memory plots
-- Make accuracy plots
-- remaining slides 
-- Make biased Omega and Sigma8
-
-
 ---
 
 ## Lightcone Model: From 3D Structure to Lensing Observables {style="font-size: 19px;"}
 
 
-:::: {.columns}
+::: {.columns}
 :::: {.column width="60%"}
 
 ::::: {.r-stack}
@@ -381,8 +294,6 @@ TODO
 - Born approximation 
 ::::::
 
-
-
 :::::: {.fragment fragment-index=5 .fade-in}
 
 :::{.solutionbox}
@@ -413,149 +324,393 @@ $$
 
 :::
 
-::::
-
-:::
-
-
 
 
 ---
 
-## Explicit Full-Field Inference (sampling)
-
-::: {.r-stack}
-
-::::: {.fragment fragment-index=1 .fade-in-then-out}
-![](assets/bayes/FFI_full.svg){fig-align="center" width="100%"}
-:::::
-::::: {.fragment fragment-index=2 .fade-in}
-![](assets/FFI/FFI_sample_focus.svg){fig-align="center" width="100%"}
-:::::
-
-:::
+## Can we start doing inference?
 
 
----
+#### The impact of resolution on simulation accuracy
 
-## Distributed Fast Fourier Transform {auto-animate="true"}
 
-➢  &emsp;only operation that requires communication is the FFT
+::: {layout-ncol=3}
+![512^3 Resolution mesh](assets/Fields/LPT_density_field_z0_512.png){fig-align="center" width="75%"}
 
-<br/>
+![256^3 Resolution mesh](assets/Fields/LPT_density_field_z0_256.png){fig-align="center" width="75%"}
 
-#### Jaxdecomp
-
-:::: {.columns}
-
-::: {.column width="50%"}
-
-```python
-import jax
-import jax.numpy as jnp
-
-field = jax.random.normal(jax.random.PRNGKey(0), (1024, 1024, 1024))
-k_field = jnp.fft.fftn(field)
-```
+![64^3 Resolution mesh](assets/Fields/LPT_density_field_z0_64.png){fig-align="center" width="75%"}
 
 :::
 
-::: {.column width="50%"}
+:::: {.fragment fragment-index=1 .fade-in}
+
+::: {layout-ncol=2}
+
+![Power Spectrum Comparison](assets/latest/power_spectrum_comparison.png){fig-align="center" width="80%"}
+
+![Biased Posterior Plot](assets/latest/biased_posterior_plot.png){fig-align="center" width="60%"}
 
 :::
 
 ::::
 
-:::{.notes}
-
-L'opération qui nécessite le plus de communication dans une simulation distribuée est la transformée de Fourier rapide (FFT).
-
-L'utilisation sur un seul GPU est triviale
-
-:::
+<br/>
 
 ---
 
-## Distributed Fast Fourier Transform {auto-animate="true"}
+## Approximating the Small Scales {style="font-size: 19px;"}
 
-➢  &emsp;only operation that requires communication is the FFT
+::: {.columns}
 
+:::: {.column width="50%"}
+<br/>
 <br/>
 
-#### Jaxdecomp
 
-<p style="display: flex; align-items: center; position: absolute; top: 10px; left: 600px;">
-  <img src="assets/Logos/github_logo.png" alt="GitHub Logo" style="width: 5%; margin-right: 10px;">
-  <a href="https://github.com/DifferentiableUniverseInitiative/jaxDecomp">DifferentiableUniverseInitiative/jaxDecomp</a>
-</p>
+#### Dynamic resultion grid
 
-:::: {.columns}
+-  &emsp;We can use a dynamic resolution that automatically refines the grid to match the density regaions blabla
+-  &emsp; very difficult to differentialte and slow to compute
 
-::: {.column width="50%"}
+::::
 
 
-::: {.r-stack}
+:::: {.column width="50%"}
 
-```python
-import jax
-import jax.numpy as jnp
-import jaxdecomp
+:::::: {.fragment fragment-index=1 .fade-in}
 
-mesh = jax.make_mesh((2, 2), axis_names=('x', 'y'))
-sharding = jax.sharding.NamedSharding(mesh, P('x', 'y'))
+![Dynamic Resolution Grid](assets/latest/dynamic_grid.svg){fig-align="center" width="50%"}
 
-# Create gaussian field distributed across the mesh
-field = jax.make_array_from_single_device_arrays(
-        shape=mesh_shape,
-        sharding=sharding,
-        arrays=[jax.random.normal(jax.random.PRNGKey(rank), (512, 512, 1024))])
+::::::
 
-k_field = jaxdecomp.fft.pfft3d(field)
-```
 
+::::
 
 :::
 
-:::{.fragment fragment-index=1}
+::: {.columns}
+
+:::: {.column width="50%"}
+
+#### Multigrid Methods
+
+-  &emsp;Multigrid solves the Poisson equation efficiently by combining coarse and fine grids
+-  &emsp;It's still an approximation — it does **not match the accuracy** of solving on a uniformly fine grid
+-  &emsp;At high fidelity, fine-grid solvers outperform multigrid in recovering small-scale structure — critical for unbiased inference
+
+:::{.solutionbox}
+
+::: {.solutionbox-header style="font-size: 19px;"}
+ **Takeaway**  
+:::
+
+:::: {.solutionbox-body style="font-size: 18px;"}
+
+For reliable inference, **uniform fine-resolution simulations** are still the gold standard — ensuring accurate gradients and unbiased posteriors.
+
+::::
+
+:::
+::::
+
+
+
+
+:::: {.column width="50%"}
+
+
+::::: {.r-stack}
+
+:::::: {.fragment fragment-index=2 .fade-in-then-out}
+
+![Multigrid](assets/latest/multi_grid_0.svg){fig-align="center" width="70%"}
+
+::::::
+
+:::::: {.fragment fragment-index=3 .fade-in}
+
+![Multigrid](assets/latest/multi_grid_1.svg){fig-align="center" width="70%"}
+
+::::::
+
+:::::
+
+
+
+::::
+
+:::
+
+
+---
+
+## Scaling Up: The LSST Challenge
+
+::: {.columns}
+
+:::: {.column width="50%"}
+
+#### LSST Scan Range
+
+-  Covers ~**18,000 deg²** (~44% of the sky)
+-  Redshift reach: up to **z ≈ 3**
+-  Arcminute-scale resolution
+-  Requires simulations spanning thousands of Mpc in depth and width
+
+::::
+
+:::: {.column width="50%"}
+
+![LSST Survey Footprint](assets/latest/lsst_footprint.png){fig-align="center" width="90%"}
+
+::::
+
+:::
+
+- Simulating even a **(1 Gpc/h)³** subvolume at **1024³ mesh resolution** requires:
+  - ~**48 GB** of memory for a simulation with a single snapshot
+  - Gradient-based inference and multi-step evolution push that beyond **100–200 GB**
+
+
+::: {.columns}
+
+:::: {.column width="70%"}
 
 
 :::{.solutionbox}
 
-::::{.solutionbox-header}
+::: {.solutionbox-header style="font-size: 19px;"}
+ **Takeaway**  
+:::
 
-JaxDecomp features
+:::: {.solutionbox-body style="font-size: 18px;"}
 
-::::
-
-::::{.solutionbox-body}
-
-➢  &emsp;jaxDecomp supports 2D and 1D decompositions
-
-➢  &emsp;Works for multi-node FFTs
-
-➢  &emsp;is differentiable
-
-➢  &emsp;The package is also provided as a standalone library
-
+LSST-scale cosmological inference demands **multiple (Gpc/h)³ simulations** at high resolution.  
+Modern high-end GPUs cap at **~80 GB**, so even a single box **requires multi-GPU distributed simulation** — both for memory and compute scalability.
 
 ::::
 
 :::
 
-:::
+::::
+
+:::: {.column width="30%"}
+
+![Jean Zay HPC - IDRIS](assets/HPC/jean_zay_photo.png){fig-align="center" width="90%"}
+
+::::
 
 :::
 
-::: {.column width="50%"}
+
+---
+
+# Distributed Simulation with JAXPM
+
+
+---
+
+
+## Distributed Particle Mesh Simulation {style="font-size: 20px;"}
+
+
+::: {.columns}
+
+:::: {.column width="50%"}
+
+::::: {.r-stack}
+
+::::::: {.fragment fragment-index=1 .fade-in-then-out}
+![Particle Mesh Simulation](assets/latest/PM_pipeline.svg){fig-align="center" width="100%"}
+:::::::
+
+::::::: {.fragment fragment-index=2 .fade-in-then-out}
+![Particle Mesh Simulation](assets/latest/pm_laplace_kernel.svg){fig-align="center" width="100%"}
+:::::::
+
+::::::: {.fragment fragment-index=3 .fade-in}
+![Particle Mesh Simulation](assets/latest/pm_fft.svg){fig-align="center" width="100%"}
+:::::::
+
+:::::
+
+::::
+
+:::: {.column width="50%"}
+
+:::::: {.fragment fragment-index=2 .fade-in}
+
+#### Force Computation is Easy to Parallelize
+
+- Poisson’s equation in Fourier space:  
+  $$
+  \nabla^2 \phi = -4\pi G \rho
+  $$
+
+- Gravitational force in Fourier space:  
+  $$
+  \mathbf{f}(\mathbf{k}) = i\mathbf{k}k^{-2}\rho(\mathbf{k})
+  $$
+
+- Each Fourier mode $\mathbf{k}$ can be computed independently using JAX  
+- Perfect for large-scale, parallel GPU execution
+
+![](assets/Logos/JaxLogo.png){fig-align="center" width="20%"}
+
+::::::
+
+:::::: {.fragment fragment-index=4 .fade-in}
+
+:::{.solutionbox}
+
+:::: {.solutionbox-body style="font-size: 26px;"}
+**Fourier Transform requires global communication**
+::::
+
+:::
+
+
+::::::
+
+::::
+
+:::
+
+
+---
+
+## jaxDecomp: Distributed 3D FFT for Particle Mesh Simulations {style="font-size: 22px;"}
+
+[![](https://img.shields.io/badge/GitHub-jaxdecomp-blue?logo=github)](https://github.com/DifferentiableUniverseInitiative/jaxDecomp)
+
+:::{.fragment fragment-index=1}
+
+- **Distributed 3D FFT** using **domain decomposition**  
+- **Fully differentiable**, runs on **multi-GPU and multi-node** setups  
+- Designed as a **drop-in replacement** for `jax.numpy.fft.fftn`  
+- Open source and available on **PyPI**
+:::
 
 :::{.fragment fragment-index=2}
 
-![](assets/Fields/CIC/FFT-Op.svg){.nostretch fig-align="center" width="100%"}
+![](assets/jaxDecomp/fft.svg){fig-align="center" width="60%"}
 
 :::
 
-::: 
+
+---
+
+
+## Distributed Particle Mesh Simulation {style="font-size: 20px;"}
+
+::: {.r-stack}
+
+![Particle Mesh Simulation](assets/latest/pm_cic.svg){fig-align="center" width="60%"}
+
+:::
+
+---
+
+## Cloud In Cell (CIC) Interpolation {style="font-size: 19px;"}
+
+::: {layout-ncol=2}
+
+:::: {.r-stack}
+
+::::: {.fragment fragment-index=1 .fade-out}
+
+![](assets/latest/particles_animation.gif){fig-align="center" width="80%"}
+
+:::::
+
+::::: {.fragment fragment-index=1 .fade-in}
+
+![](assets/latest/particles_last_frame.png){fig-align="center" width="55%"}
+
+:::::
 
 ::::
 
+:::: {.r-stack}
+
+::::: {.fragment fragment-index=1 .fade-out}
+
+![](assets/latest/field_animation.gif){fig-align="center" width="80%"}
+
+:::::
+
+::::: {.fragment fragment-index=1 .fade-in}
+
+![](assets/latest/field_last_frame.png){fig-align="center" width="55%"}
+
+:::::
+
+::::
+
+:::
+
+
+### Mass Assignment and Readout {style="font-size: 19px;"}
+
+The Cloud-In-Cell (CIC) scheme spreads particle mass to nearby grid points using a linear kernel:
+
+- **Paint to Grid** (mass deposition):
+  $$
+  g(\mathbf{j}) = \sum_i m_i \prod_{d=1}^{D} \left(1 - \left|p_i^d - j_d\right|\right)
+  $$
+
+- **Read from Grid** (force interpolation):
+  $$
+  v_i = \sum_{\mathbf{j}} g(\mathbf{j}) \prod_{d=1}^{D} \left(1 - \left|p_i^d - j_d\right|\right)
+  $$
+
+
+---
+
+## Distributed Cloud In Cell (CIC) Interpolation {style="font-size: 20px;"}
+
+::: {layout-ncol=3}
+
+::::: {.fragment fragment-index=1 .fade-in}
+
+![Sub Domain 1 (Particles)](assets/latest/D_CIC_Paint_0.svg){fig-align="center" width="65%"}
+
+:::::
+
+::::: {.fragment fragment-index=2 .fade-in}
+
+![Sub Domain 1 (Grid)](assets/latest/D_CIC_Paint_1.svg){fig-align="center" width="65%"}
+
+:::::
+
+::::: {.fragment fragment-index=3 .fade-in}
+
+![Sub Domain 1 (Read out)](assets/latest/D_CIC_Paint_2.svg){fig-align="center" width="65%"}
+
+:::::
+
+:::
+
+:::::: {layout-ncol=3}
+
+::::: {.fragment fragment-index=1 .fade-in}
+
+![Sub Domain 1 & Halo (Particles)](assets/latest/D_CIC_Paint_3.svg){fig-align="center" width="65%"}
+
+:::::
+
+::::: {.fragment fragment-index=2 .fade-in}
+
+![Sub Domain 1 & Halo (Grid)](assets/latest/D_CIC_Paint_4.svg){fig-align="center" width="65%"}
+
+:::::
+
+::::: {.fragment fragment-index=3 .fade-in}
+
+![Sub Domain 2 & Halo (Grid)](assets/latest/D_CIC_Paint_5.svg){fig-align="center" width="65%"}
+
+:::::
+
+:::
 
