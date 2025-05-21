@@ -3,6 +3,8 @@ title: '<span style="color:#ffffff; font-size: largest;">JAXPM: A JAX-Based Fram
 
 author: 
   - name: "<span style='color:#ffffff; font-size: larger;'>Wassim Kabalan</span>"
+  - name : "<span style='font-size: Smaller;'>Alexandre Boucaud, François Lanusse</span>"
+
 footer: "Bayesian Deep Learning Workshop , 2025"
 format:
   revealjs:
@@ -670,47 +672,49 @@ The Cloud-In-Cell (CIC) scheme spreads particle mass to nearby grid points using
 
 ## Distributed Cloud In Cell (CIC) Interpolation {style="font-size: 20px;"}
 
-::: {layout-ncol=3}
+Cloud-In-Cell (CIC) requires particles to paint to nearby grid cells — even across subdomain boundaries.  
+To avoid loss of mass and ensure correct gradients, we apply **halo exchange** and synchronize the overlapping regions.
+
+
+
+### Without Halo Exchange
+
+::: {layout-ncol=3 align="center"}
 
 ::::: {.fragment fragment-index=1 .fade-in}
-
 ![Sub Domain 1 (Particles)](assets/latest/D_CIC_Paint_0.svg){fig-align="center" width="65%"}
-
 :::::
 
 ::::: {.fragment fragment-index=2 .fade-in}
-
 ![Sub Domain 1 (Grid)](assets/latest/D_CIC_Paint_1.svg){fig-align="center" width="65%"}
-
 :::::
 
 ::::: {.fragment fragment-index=3 .fade-in}
-
 ![Sub Domain 1 (Read out)](assets/latest/D_CIC_Paint_2.svg){fig-align="center" width="65%"}
-
 :::::
 
 :::
 
-:::::: {layout-ncol=3}
+::::: {.fragment fragment-index=4 .fade-in}
 
-::::: {.fragment fragment-index=1 .fade-in}
+### With Halo Exchange
 
+::::::
+
+::: {layout-ncol=3 align="center"}
+
+::::: {.fragment fragment-index=4 .fade-in}
 ![Sub Domain 1 & Halo (Particles)](assets/latest/D_CIC_Paint_3.svg){fig-align="center" width="65%"}
-
 :::::
 
-::::: {.fragment fragment-index=2 .fade-in}
-
+::::: {.fragment fragment-index=5 .fade-in}
 ![Sub Domain 1 & Halo (Grid)](assets/latest/D_CIC_Paint_4.svg){fig-align="center" width="65%"}
-
 :::::
 
-::::: {.fragment fragment-index=3 .fade-in}
-
+::::: {.fragment fragment-index=6 .fade-in}
 ![Sub Domain 2 & Halo (Grid)](assets/latest/D_CIC_Paint_5.svg){fig-align="center" width="65%"}
-
 :::::
 
 :::
+
 
