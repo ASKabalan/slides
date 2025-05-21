@@ -442,6 +442,23 @@ W(r, r_s) = \frac{3}{2} \, \Omega_m \, \left( \frac{H_0}{c} \right)^2 \, \frac{r
 </div>
 <p><br></p>
 </section>
+<section id="the-impact-of-inaccurate-simulations-on-physical-modeling" class="slide level2">
+<h2>The Impact of inaccurate simulations on Physical Modeling</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/bayes/FFI_full.svg" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/illu_compressor.svg" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
+</figure>
+</div>
+</div></div>
+</section>
 <section id="approximating-the-small-scales" class="slide level2" style="font-size: 19px;">
 <h2>Approximating the Small Scales</h2>
 <div class="columns">
@@ -544,9 +561,6 @@ Modern high-end GPUs cap at <strong>~80 GB</strong>, so even a single box <stron
 </figure>
 </div>
 </div></div>
-</section>
-<section class="slide level2">
-
 </section></section>
 <section>
 <section id="distributed-simulation-with-jaxpm" class="title-slide slide level1 center">
@@ -696,12 +710,12 @@ v_i = \sum_{\mathbf{j}} g(\mathbf{j}) \prod_{d=1}^{D} \left(1 - \left|p_i^d - j_
 \]</span></p></li>
 </ul>
 </section>
-<section id="distributed-cloud-in-cell-cic-interpolation" class="slide level2" style="font-size: 20px;">
+<section id="distributed-cloud-in-cell-cic-interpolation" class="slide level2" style="font-size: 19px;">
 <h2>Distributed Cloud In Cell (CIC) Interpolation</h2>
 <p>Cloud-In-Cell (CIC) requires particles to paint to nearby grid cells — even across subdomain boundaries.<br>
 To avoid loss of mass and ensure correct gradients, we apply <strong>halo exchange</strong> and synchronize the overlapping regions.</p>
 <h3 id="without-halo-exchange">Without Halo Exchange</h3>
-<div class="quarto-layout-panel" data-align="center" data-layout-ncol="3">
+<div class="quarto-layout-panel" data-layout-ncol="3" data-align="center">
 <div class="quarto-layout-row">
 <div class="fragment fade-in quarto-layout-cell" data-fragment-index="1" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
@@ -732,7 +746,7 @@ To avoid loss of mass and ensure correct gradients, we apply <strong>halo exchan
 <div class="fragment fade-in" data-fragment-index="4">
 <h3 id="with-halo-exchange">With Halo Exchange</h3>
 </div>
-<div class="quarto-layout-panel" data-align="center" data-layout-ncol="3">
+<div class="quarto-layout-panel" data-layout-ncol="3" data-align="center">
 <div class="quarto-layout-row">
 <div class="fragment fade-in quarto-layout-cell" data-fragment-index="4" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
@@ -755,6 +769,288 @@ To avoid loss of mass and ensure correct gradients, we apply <strong>halo exchan
 <figure>
 <p><img data-src="assets/latest/D_CIC_Paint_5.svg" style="width:65.0%"></p>
 <figcaption>Sub Domain 2 &amp; Halo (Grid)</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="solutionbox">
+<div class="solutionbox-body" style="font-size: 18px;">
+<p>Halo exchange ensures correct mass deposition and gradient flow across domain boundaries — essential for differentiable simulations.</p>
+</div>
+</div>
+</section>
+<section id="why-halo-exchange-matters-in-distributed-simulations" class="slide level2" style="font-size: 22px;">
+<h2>Why Halo Exchange Matters in Distributed Simulations</h2>
+<div class="fragment fade-in-then-out" data-fragment-index="1">
+<p><img data-src="assets/HPC/depict_split.png" class="absolute" style="top: 30px; right: 20px; width: 20%; "></p>
+</div>
+<div class="fragment" data-fragment-index="2">
+<p><img data-src="assets/HPC/depict_gathered.png" class="absolute" style="top: 30px; right: 20px; width: 20%; "></p>
+</div>
+<p>Without halo exchange, subdomain boundaries introduce visible artifacts in the final field.<br>
+This breaks the smoothness of the result — <strong>even when each local computation is correct</strong>.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="r-stack">
+<div class="fragment fade-in-then-out" data-fragment-index="1">
+<div class="quarto-layout-panel" data-layout-align="center" data-layout="[[1] , [1] , [1] , [1]]">
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_0_no_halo.png" class="nostretch" width="400"></p>
+<figcaption>First slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_1_no_halo.png" class="nostretch" width="400"></p>
+<figcaption>Second slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_2_no_halo.png" class="nostretch" width="400"></p>
+<figcaption>Third slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_3_no_halo.png" class="nostretch" width="400"></p>
+<figcaption>Fourth slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in" data-fragment-index="2">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_1024_no_halo.png" class="nostretch" width="400"></p>
+<figcaption>LPT Field</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="r-stack">
+<div class="fragment fade-in-then-out" data-fragment-index="2" style="visibility: hidden;">
+<div class="quarto-layout-panel" data-layout-align="center" data-layout="[[1] , [1] , [1] , [1]]">
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_0_no_halo.png" class="nostretch" width="400"></p>
+<figcaption>First slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_1_no_halo.png" class="nostretch" width="400"></p>
+<figcaption>Second slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_2_no_halo.png" class="nostretch" width="400"></p>
+<figcaption>Third slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_3_no_halo.png" class="nostretch" width="400"></p>
+<figcaption>Fourth slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in" data-fragment-index="3">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_1024.png" class="nostretch" width="400"></p>
+<figcaption>LPT Field</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="jaxdecomp-halo-exchange-for-distributed-simulations" class="slide level2" style="font-size: 22px;">
+<h2>jaxDecomp: Halo Exchange for Distributed Simulations</h2>
+<p><a href="https://github.com/DifferentiableUniverseInitiative/jaxDecomp"><img data-src="https://img.shields.io/badge/GitHub-jaxdecomp-blue?logo=github.png"></a></p>
+<div class="fragment" data-fragment-index="1">
+<ul>
+<li>Part of the <code>jaxdecomp</code> package — <strong>fully differentiable</strong> and <strong>JAX-compatible</strong></li>
+<li><strong>Easy to use</strong> and works transparently across <strong>GPUs and nodes</strong></li>
+<li>Open source and available on <strong>PyPI</strong></li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="2">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/CIC/Halo_Exchange.svg" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</section></section>
+<section>
+<section id="differentiating-through-time-integration" class="title-slide slide level1 center">
+<h1>Differentiating Through Time Integration</h1>
+<div class="rstack">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/bayes/FFI_full.svg" class="quarto-figure quarto-figure-center" style="width:30.0%"></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="autodiff-in-101" class="slide level2">
+<h2>Autodiff in <img data-src="assets/Logos/JaxLogo.png" style="width:5.0%"> 101</h2>
+<p><br> <br></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="fragment fade-in" data-fragment-index="1">
+<h3 id="a-simple-function">A simple function:</h3>
+<p><span class="math display">\[
+f(x, y)
+\]</span></p>
+<p>To differentiate it, autodiff systems track:</p>
+<ul>
+<li>The tangents: <span class="math inline">\(\dot{x}\)</span>, <span class="math inline">\(\dot{y}\)</span></li>
+<li>The inputs: <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span></li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="fragment fade-in" data-fragment-index="2">
+<h3 id="applied-to-time-integration">Applied to time integration:</h3>
+<p>In a simple <strong>Kick-Drift scheme</strong>:</p>
+<p><span class="math display">\[
+\begin{align}
+d_{i+1} &amp;= d_i + v_i \, \Delta t \\
+v_{i+1} &amp;= v_i + F(d_{i+1}) \, \Delta t
+\end{align}
+\]</span></p>
+<p>To compute gradients, we must store:</p>
+<ul>
+<li>Every <span class="math inline">\(d_i\)</span>, <span class="math inline">\(v_i\)</span></li>
+<li>And their <strong>tangent vectors</strong> for backpropagation</li>
+</ul>
+</div>
+</div></div>
+<div class="fragment fade-in" data-fragment-index="3">
+<div class="solutionbox">
+<div class="solutionbox-header">
+<p>The Problem</p>
+</div>
+<div class="solutionbox-body">
+<ul>
+<li><p>This leads to a <strong>linear memory footprint</strong> — each additional step increases memory cost</p></li>
+<li><p>Reducing the number of steps leads to <strong>miss estimating small-scale structure</strong> → Just like how <strong>low resolution underestimates power on small scales</strong></p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="the-adjoint-trick-backprop-without-storing-everything-preliminary" class="slide level2">
+<h2>The Adjoint Trick: Backprop Without Storing Everything (<strong>Preliminary</strong>)</h2>
+<p><img data-src="assets/Logos/JaxLogo.png" class="absolute" style="top: 30px; right: 10px; width: 5%; "></p>
+<div class="columns">
+<div class="column" style="width:40%;">
+<ul>
+<li><p>Instead of storing the full trajectory…</p></li>
+<li><p>We use the <strong>reverse adjoint method</strong>:</p>
+<ul>
+<li>Save only the final state</li>
+<li><strong>Re-integrate backward in time</strong> to get gradients</li>
+</ul></li>
+</ul>
+<div class="mathbox">
+<p><strong>Forward Pass (Kick-Drift)</strong>:</p>
+<p><span class="math display">\[
+\begin{aligned}
+d_{i+1} &amp;= d_i + v_i \, \Delta t \\
+v_{i+1} &amp;= v_i + F(d_{i+1}) \, \Delta t
+\end{aligned}
+\]</span></p>
+<p><strong>Reverse Pass (Adjoint Method)</strong>:</p>
+<p><span class="math display">\[
+\begin{aligned}
+v_i &amp;= v_{i+1} - F(d_{i+1}) \, \Delta t \\
+d_i &amp;= d_{i+1} - v_i \, \Delta t
+\end{aligned}
+\]</span></p>
+</div>
+</div><div class="column" style="width:60%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/memory_vs_checkpoints.png" style="width:100.0%"></p>
+<figcaption>Memory vs.&nbsp;Checkpoints</figcaption>
+</figure>
+</div>
+</div></div>
+<div class="solutionbox">
+<div class="solutionbox-header">
+<p>Reverse Adjoint method</p>
+</div>
+<div class="solutionbox-body">
+<ul>
+<li>✅ Memory stays constant, regardless of the number of steps</li>
+<li>⚠️ Requires a second pass through the simulation</li>
+<li>For A 10 step 1024³ Full PM Lightcone pipeline, it requires 5 times less memory than the checkpoint approach</li>
+</ul>
+</div>
+</div>
+</section></section>
+<section>
+<section id="putting-it-all-together" class="title-slide slide level1 center">
+<h1>Putting It All Together</h1>
+
+</section>
+<section id="sampling-in-differentiable-simulations-preliminary" class="slide level2" style="font-size: 19px;">
+<h2>Sampling in Differentiable Simulations (<strong>Preliminary</strong>)</h2>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/FFI_split.svg" style="width:100.0%"></p>
+<figcaption>Forward Field-Level Model</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/Key_split.svg" style="width:100.0%"></p>
+<figcaption>JAX Sampling Flow</figcaption>
 </figure>
 </div>
 </div>
@@ -793,7 +1089,7 @@ To avoid loss of mass and ensure correct gradients, we apply <strong>halo exchan
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'pdfSeparateFragments': false,
+'pdfSeparateFragments': true,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,

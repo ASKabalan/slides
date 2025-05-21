@@ -392,6 +392,13 @@
     "text": "Can we start doing inference?\nThe impact of resolution on simulation accuracy\n\n\n\n\n\n\n512^3 Resolution mesh\n\n\n\n\n\n\n\n256^3 Resolution mesh\n\n\n\n\n\n\n\n64^3 Resolution mesh\n\n\n\n\n\n\n\n\n\n\n\n\nPower Spectrum Comparison\n\n\n\n\n\n\n\nBiased Posterior Plot"
   },
   {
+    "objectID": "paris2025/index.html#the-impact-of-inaccurate-simulations-on-physical-modeling",
+    "href": "paris2025/index.html#the-impact-of-inaccurate-simulations-on-physical-modeling",
+    "title": "JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations",
+    "section": "The Impact of inaccurate simulations on Physical Modeling",
+    "text": "The Impact of inaccurate simulations on Physical Modeling"
+  },
+  {
     "objectID": "paris2025/index.html#approximating-the-small-scales",
     "href": "paris2025/index.html#approximating-the-small-scales",
     "title": "JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations",
@@ -438,7 +445,42 @@
     "href": "paris2025/index.html#distributed-cloud-in-cell-cic-interpolation",
     "title": "JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations",
     "section": "Distributed Cloud In Cell (CIC) Interpolation",
-    "text": "Distributed Cloud In Cell (CIC) Interpolation\nCloud-In-Cell (CIC) requires particles to paint to nearby grid cells — even across subdomain boundaries.\nTo avoid loss of mass and ensure correct gradients, we apply halo exchange and synchronize the overlapping regions.\nWithout Halo Exchange\n\n\n\n\n\n\nSub Domain 1 (Particles)\n\n\n\n\n\n\n\nSub Domain 1 (Grid)\n\n\n\n\n\n\n\nSub Domain 1 (Read out)\n\n\n\n\n\n\nWith Halo Exchange\n\n\n\n\n\n\n\nSub Domain 1 & Halo (Particles)\n\n\n\n\n\n\n\nSub Domain 1 & Halo (Grid)\n\n\n\n\n\n\n\nSub Domain 2 & Halo (Grid)"
+    "text": "Distributed Cloud In Cell (CIC) Interpolation\nCloud-In-Cell (CIC) requires particles to paint to nearby grid cells — even across subdomain boundaries.\nTo avoid loss of mass and ensure correct gradients, we apply halo exchange and synchronize the overlapping regions.\nWithout Halo Exchange\n\n\n\n\n\n\nSub Domain 1 (Particles)\n\n\n\n\n\n\n\nSub Domain 1 (Grid)\n\n\n\n\n\n\n\nSub Domain 1 (Read out)\n\n\n\n\n\n\nWith Halo Exchange\n\n\n\n\n\n\n\nSub Domain 1 & Halo (Particles)\n\n\n\n\n\n\n\nSub Domain 1 & Halo (Grid)\n\n\n\n\n\n\n\nSub Domain 2 & Halo (Grid)\n\n\n\n\n\n\n\nHalo exchange ensures correct mass deposition and gradient flow across domain boundaries — essential for differentiable simulations."
+  },
+  {
+    "objectID": "paris2025/index.html#why-halo-exchange-matters-in-distributed-simulations",
+    "href": "paris2025/index.html#why-halo-exchange-matters-in-distributed-simulations",
+    "title": "JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations",
+    "section": "Why Halo Exchange Matters in Distributed Simulations",
+    "text": "Why Halo Exchange Matters in Distributed Simulations\n\n\n\n\n\n\nWithout halo exchange, subdomain boundaries introduce visible artifacts in the final field.\nThis breaks the smoothness of the result — even when each local computation is correct.\n\n\n\n\n\n\n\n\n\n\nFirst slice\n\n\n\n\n\n\n\n\n\nSecond slice\n\n\n\n\n\n\n\n\n\nThird slice\n\n\n\n\n\n\n\n\n\nFourth slice\n\n\n\n\n\n\n\n\n\n\nLPT Field\n\n\n\n\n\n\n\n\n\n\n\n\n\nFirst slice\n\n\n\n\n\n\n\n\n\nSecond slice\n\n\n\n\n\n\n\n\n\nThird slice\n\n\n\n\n\n\n\n\n\nFourth slice\n\n\n\n\n\n\n\n\n\n\nLPT Field"
+  },
+  {
+    "objectID": "paris2025/index.html#jaxdecomp-halo-exchange-for-distributed-simulations",
+    "href": "paris2025/index.html#jaxdecomp-halo-exchange-for-distributed-simulations",
+    "title": "JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations",
+    "section": "jaxDecomp: Halo Exchange for Distributed Simulations",
+    "text": "jaxDecomp: Halo Exchange for Distributed Simulations\n\n\n\nPart of the jaxdecomp package — fully differentiable and JAX-compatible\nEasy to use and works transparently across GPUs and nodes\nOpen source and available on PyPI"
+  },
+  {
+    "objectID": "paris2025/index.html#autodiff-in-101",
+    "href": "paris2025/index.html#autodiff-in-101",
+    "title": "JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations",
+    "section": "Autodiff in  101",
+    "text": "Autodiff in  101\n \n\n\n\nA simple function:\n\\[\nf(x, y)\n\\]\nTo differentiate it, autodiff systems track:\n\nThe tangents: \\(\\dot{x}\\), \\(\\dot{y}\\)\nThe inputs: \\(x\\), \\(y\\)\n\n\n\n\nApplied to time integration:\nIn a simple Kick-Drift scheme:\n\\[\n\\begin{align}\nd_{i+1} &= d_i + v_i \\, \\Delta t \\\\\nv_{i+1} &= v_i + F(d_{i+1}) \\, \\Delta t\n\\end{align}\n\\]\nTo compute gradients, we must store:\n\nEvery \\(d_i\\), \\(v_i\\)\nAnd their tangent vectors for backpropagation\n\n\n\n\n\n\nThe Problem\n\n\n\nThis leads to a linear memory footprint — each additional step increases memory cost\nReducing the number of steps leads to miss estimating small-scale structure → Just like how low resolution underestimates power on small scales"
+  },
+  {
+    "objectID": "paris2025/index.html#the-adjoint-trick-backprop-without-storing-everything-preliminary",
+    "href": "paris2025/index.html#the-adjoint-trick-backprop-without-storing-everything-preliminary",
+    "title": "JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations",
+    "section": "The Adjoint Trick: Backprop Without Storing Everything (Preliminary)",
+    "text": "The Adjoint Trick: Backprop Without Storing Everything (Preliminary)\n\n\n\n\nInstead of storing the full trajectory…\nWe use the reverse adjoint method:\n\nSave only the final state\nRe-integrate backward in time to get gradients\n\n\n\nForward Pass (Kick-Drift):\n\\[\n\\begin{aligned}\nd_{i+1} &= d_i + v_i \\, \\Delta t \\\\\nv_{i+1} &= v_i + F(d_{i+1}) \\, \\Delta t\n\\end{aligned}\n\\]\nReverse Pass (Adjoint Method):\n\\[\n\\begin{aligned}\nv_i &= v_{i+1} - F(d_{i+1}) \\, \\Delta t \\\\\nd_i &= d_{i+1} - v_i \\, \\Delta t\n\\end{aligned}\n\\]\n\n\n\n\n\nMemory vs. Checkpoints\n\n\n\n\n\nReverse Adjoint method\n\n\n\n✅ Memory stays constant, regardless of the number of steps\n⚠️ Requires a second pass through the simulation\nFor A 10 step 1024³ Full PM Lightcone pipeline, it requires 5 times less memory than the checkpoint approach"
+  },
+  {
+    "objectID": "paris2025/index.html#sampling-in-differentiable-simulations-preliminary",
+    "href": "paris2025/index.html#sampling-in-differentiable-simulations-preliminary",
+    "title": "JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations",
+    "section": "Sampling in Differentiable Simulations (Preliminary)",
+    "text": "Sampling in Differentiable Simulations (Preliminary)\n\n\n\n\n\n\nForward Field-Level Model\n\n\n\n\n\n\n\nJAX Sampling Flow"
   },
   {
     "objectID": "csi2024/index.html#accelerating-bayesian-inference-in-cosmology",
