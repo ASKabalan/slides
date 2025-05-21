@@ -130,43 +130,94 @@
 <section id="title-slide" data-background-image="assets/titles/bayes_title_1.png" data-background-opacity="0.8" data-background-size="fill" class="center">
   <h1 class="title"><span style="color:#ffffff; font-size: largest;">JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations</span></h1>
   <p class="author"><span style="color:#ffffff; font-size: larger;">Wassim Kabalan</span></p>
-  <p class="author"><span style="font-size: Smaller;">Alexandre Boucaud, François Lanusse</span></p>
+  <p class="author"><span style="color:#ffffff; font-size: Smaller;">Alexandre Boucaud, François Lanusse</span></p>
   <div style=""></div>
 <div style="margin-top: 20px; text-align: center;align-items: bottom;">
   <div style="display: flex; justify-content: space-around; align-items: center; layout-valign=" middle"=""> <img src="assets/Logos/AstroDeep-2.png" style="width: 35%;"> <img src="assets/Logos/APC.png" style="width: 20%;"> <img src="assets/Logos/scipol.png" style="width: 35%;"> </div>
 </div>
 
 </section>
-<section id="goals-for-this-presentation" class="slide level2">
-<h2>Goals for This Presentation</h2>
+<section id="outline-for-this-presentation" class="slide level2">
+<h2>Outline for This Presentation</h2>
 <p><br> <br> <br></p>
 <div class="solutionbox">
 <div class="solutionbox-body" style="font-size: 22px; border-radius: 10px; border: 2px solid #3b0a68;">
 <ul>
-<li><span style="color:#1a237e; font-size: 26px;"><strong>Understand Field-Level Inference in Cosmology</strong></span> <br> <br></li>
-<li><span style="color:#1a237e; font-size: 26px;"><strong>Deep Dive into Particle Mesh Simulation</strong></span> <br> <br></li>
-<li><span style="color:#1a237e; font-size: 26px;"><strong>Weak Lensing and Lightcone Modeling</strong></span> <br> <br></li>
-<li><span style="color:#1a237e; font-size: 26px;"><strong>Sampling with MCMC</strong></span> <br> <br></li>
-<li><span style="color:#1a237e; font-size: 26px;"><strong>Explore Distributed, Differentiable N-body Simulations</strong></span> <br> <br></li>
-<li><span style="color:#1a237e; font-size: 26px;"><strong>Connect Distributed Simulation and Inference</strong></span></li>
+<li><span style="color:#1a237e; font-size: 26px;"><strong>Beyond Summary Statistics Inference in Cosmology</strong></span> <br> <br></li>
+<li><span style="color:#1a237e; font-size: 26px;"><strong>Building N-body Simulators for Cosmological Inference</strong></span> <br> <br></li>
+<li><span style="color:#1a237e; font-size: 26px;"><strong>Modeling Observables: Weak Lensing &amp; Lightcones</strong></span> <br> <br></li>
+<li><span style="color:#1a237e; font-size: 26px;"><strong>Scaling Up: Distributed, Differentiable Simulations</strong></span></li>
 </ul>
 </div>
 </div>
 </section>
-<section id="simulation-based-inference-in-cosmology" class="slide level2" style="font-size: 20px;">
-<h2>Simulation Based Inference in Cosmology</h2>
+<section id="the-traditional-approach-to-cosmological-inference" class="slide level2" style="font-size: 22px;">
+<h2>The Traditional Approach to Cosmological Inference</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><br></p>
+<div class="r-stack">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/bayes/freq_pipeline_4.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><br> <br></p>
+<ul>
+<li><strong>cosmological parameters</strong> (Ω): matter density, dark energy, etc.</li>
+<li>Predict observables: <strong>CMB, galaxies, lensing</strong></li>
+<li>Extract <strong>summary statistics</strong>: <span class="math inline">\(P(k)\)</span>, <span class="math inline">\(C_\ell\)</span> , 2PCF</li>
+<li>Compute <strong>likelihood</strong>: <span class="math inline">\(L(\Omega \vert data)\)</span></li>
+<li>Estimate <span class="math inline">\(\hat{\Omega}\)</span> via <strong>maximization</strong> (<span class="math inline">\(\chi^2\)</span> fitting)</li>
+</ul>
+<div class="fragment fade-in" data-fragment-index="1">
+<div class="solutionbox">
+<div class="solutionbox-header" style="font-size: 20px;">
+<p><strong>Summary Statistics Based Inference</strong></p>
+</div>
+<div class="solutionbox-body" style="font-size: 18px;">
+<ul>
+<li>Traditional inference uses <strong>summary statistics</strong> to compress data.</li>
+<li>Power spectrum fitting: <span class="math inline">\(P(k)\)</span>, <span class="math inline">\(C_\ell\)</span></li>
+<li>It misses complex, non-linear structure in the data</li>
+</ul>
+</div>
+</div>
+</div>
+</div></div>
+<aside class="notes">
+<p>“Most of modern cosmological inference pipelines rely on summary statistics — things like the power spectrum P(k)P(k) or angular power spectrum CℓCℓ​.”</p>
+<p>“These work well under the assumption that most of the information is encoded in second-order statistics — basically, the correlations between pairs of points.”</p>
+<p>“But this approach ignores all the higher-order structure — the full non-linear complexity that emerges in the formation of cosmic structure.”</p>
+<p>Even higher-order statistics (like bispectrum or 3-point correlations) still reduce the data, and fail to capture the entire structure or allow for fully Bayesian inference over the field.</p>
+<p>“And that’s the motivation for moving beyond summary statistics…”</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="from-summary-statistics-to-full-field-inference---weak-lensing-example" class="slide level2" style="font-size: 19px;">
+<h2>From Summary Statistics to Full-Field Inference - Weak Lensing Example</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
-<p><br> <br></p>
 <div class="r-stack">
-<div class="fragment fade-in-then-out" data-fragment-index="1">
+<div class="fragment fade-out" data-fragment-index="1">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="assets/FFI/implicit_inference.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
-<div class="fragment fade-in" data-fragment-index="2">
+<div class="fragment fade-in" data-fragment-index="1">
 <div class="fragment fade-out" data-fragment-index="4">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -184,65 +235,67 @@
 </div>
 </div>
 </div><div class="column" style="width:40%;">
-<div class="fragment fade-in" data-fragment-index="1">
+<p><br></p>
 <h3 id="implicit-likelihood-free-inference">Implicit (Likelihood-Free) Inference</h3>
 <ul>
 <li>Simulator is a <strong>blackbox</strong><br>
 </li>
 <li>No tractable likelihood<br>
 </li>
-<li>Only sample from the joint distribution</li>
+<li>Only sample from the joint distribution <span class="math inline">\(p(Obs \vert \Omega)\)</span></li>
 <li>Example : <strong>Simulation-based inference (SBI)</strong></li>
 </ul>
-</div>
-<p><br> <br></p>
-<div class="fragment fade-in" data-fragment-index="2">
+<div class="fragment fade-in" data-fragment-index="1">
 <h3 id="explicit-full-field-inference">Explicit (Full-Field) Inference</h3>
 <ul>
-<li><strong>Full-field forward model</strong> is differentiable and structured<br>
-</li>
-<li>Likelihood defined in pixel space<br>
-</li>
-<li>Jointly infer cosmology + latent fields<br>
-</li>
-<li>Captures <strong>all available information</strong></li>
+<li><strong>Forward model</strong> is differentiable</li>
+<li>Likelihood in pixel space</li>
+<li>Treat the simulator as a probabilistic model and perform inference over the joint posterior <span class="math inline">\(p(Obs \vert \Omega , z)\)</span></li>
 <li>Example : <strong>Hierarchical Bayesian Modeling (HBM)</strong></li>
 </ul>
 </div>
 </div></div>
 <div class="fragment fade-in" data-fragment-index="3">
 <div class="solutionbox">
-<div class="solutionbox-header" style="font-size: 20px;">
-<p><strong>Takeaway</strong></p>
-</div>
-<div class="solutionbox-body" style="font-size: 18px;">
-<p>To unlock the full information in cosmological data,<br>
-we must move from summary-based inference → to structured, gradient-based field-level inference.</p>
-</div>
+<div class="solutionbox-body" style="font-size: 18px; border: 3px solid;">
+<ul>
+<li>We need fast and <strong>differentiable simulators</strong> to enable gradient-based inference in cosmology.</li>
+<li><strong>Particle Mesh</strong> (PM) simulations are a promising approach.</li>
+</ul>
 </div>
 </div>
+</div>
+<aside class="notes">
+
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
-<section id="particle-mesh-simulations" class="slide level2" style="font-size: 20px;">
+<section id="particle-mesh-simulations" class="slide level2" style="font-size: 19px;">
 <h2>Particle Mesh Simulations</h2>
 <div class="columns">
-<div class="column" style="width:45%;">
-<div class="fragment fade-in" data-fragment-index="1">
+<div class="column" style="width:40%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="assets/latest/PM_forces.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
 </div>
-</div>
-<div class="fragment" data-fragment-index="2.fade-in">
+<div class="fragment" data-fragment-index="1.fade-in">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="assets/latest/PM_interpolate.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
-</div><div class="column" style="width:55%;">
-<div class="fragment fade-in" data-fragment-index="1">
-<p>add PMWD JAXPM BORG</p>
+</div><div class="column" style="width:60%;">
 <h3 id="compute-forces-via-pm-method">Compute Forces via PM method</h3>
 <ul>
 <li><strong>Start with particles</strong> <span class="math inline">\(\mathbf{x}_i, \mathbf{p}_i\)</span><br>
@@ -256,9 +309,7 @@ we must move from summary-based inference → to structured, gradient-based fiel
 \mathbf{f}(\mathbf{k}) = i\mathbf{k}k^{-2}\rho(\mathbf{k})
 \]</span></li>
 </ul>
-</div>
-<p><br></p>
-<div class="fragment fade-in" data-fragment-index="2">
+<div class="fragment fade-in" data-fragment-index="1">
 <h3 id="time-evolution-via-ode">Time Evolution via ODE</h3>
 <ul>
 <li>PM uses <strong>Kick-Drift-Kick</strong> (symplectic) scheme:
@@ -266,76 +317,59 @@ we must move from summary-based inference → to structured, gradient-based fiel
 <li>Drift: <span class="math inline">\(\mathbf{x} \leftarrow \mathbf{x} + \Delta a \cdot \mathbf{v}\)</span></li>
 <li>Kick: <span class="math inline">\(\mathbf{v} \leftarrow \mathbf{v} + \Delta a \cdot \nabla \phi\)</span></li>
 </ul></li>
-<li>Treated as a <strong>differentiable ODE system</strong> in JAXPM</li>
 </ul>
 </div>
 </div></div>
-<div class="fragment fade-in" data-fragment-index="3">
+<div class="fragment fade-in" data-fragment-index="2">
 <div class="solutionbox">
-<div class="solutionbox-body" style="font-size: 18px;">
+<div class="solutionbox-body" style="font-size: 18px; border: 3px solid;">
 <ul>
 <li>Fast and scalable approximation to gravity.</li>
 <li>A cycle of FFTs and interpolations.</li>
 <li>Sacrifices small-scale accuracy for speed and differentiability.</li>
+<li>Current implementations <strong>JAXPM v0.1</strong>, <strong>PMWD</strong> and <strong>BORG</strong>.</li>
 </ul>
 </div>
 </div>
 </div>
 </section>
-<section>
-<section id="modeling-weak-lensing-with-lightcone-projections" class="title-slide slide level1 center">
-<h1>Modeling Weak Lensing with Lightcone Projections</h1>
+<section id="from-3d-structure-to-lensing-observables" class="slide level2" style="font-size: 19px;">
+<h2>From 3D Structure to Lensing Observables</h2>
 <div class="r-stack">
-<div class="fragment fade-in-then-out" data-fragment-index="1">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/bayes/FFI_full.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-<div class="fragment fade-in" data-fragment-index="2">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="assets/FFI/FFI_wl_focus.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
-</div>
 </section>
-<section id="lightcone-model-from-3d-structure-to-lensing-observables" class="slide level2" style="font-size: 19px;">
-<h2>Lightcone Model: From 3D Structure to Lensing Observables</h2>
+<section id="from-3d-structure-to-lensing-observables-1" class="slide level2" data-visibility="uncounted" style="font-size: 19px;">
+<h2>From 3D Structure to Lensing Observables</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="r-stack">
 <div class="fragment fade-in-then-out" data-fragment-index="1">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/latest/how_converge.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+<p><img data-src="assets/latest/how_converge.svg" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
 </figure>
 </div>
 </div>
 <div class="fragment fade-in-then-out" data-fragment-index="2">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/latest/lightcone_0.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+<p><img data-src="assets/latest/lightcone_1.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 <div class="fragment fade-in-then-out" data-fragment-index="3">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/latest/lightcone_1.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-<div class="fragment fade-in-then-out" data-fragment-index="4">
-<div class="quarto-figure quarto-figure-center">
-<figure>
 <p><img data-src="assets/latest/lightcone_2.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
-<div class="fragment fade-in-then-out" data-fragment-index="5">
+<div class="fragment fade-in-then-out" data-fragment-index="4">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="assets/latest/lightcone_3.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
@@ -346,30 +380,13 @@ we must move from summary-based inference → to structured, gradient-based fiel
 </div><div class="column" style="width:40%;">
 <div class="fragment fade-in" data-fragment-index="2">
 <ul>
-<li>We simulate the large-scale structure<br>
-forward in time and take snapshots at scale factor <span class="math inline">\(a_i\)</span></li>
-</ul>
-</div>
-<div class="fragment fade-in" data-fragment-index="3">
-<ul>
-<li>A lightcone connects these simulations<br>
-to an observer at <span class="math inline">\(a = 1\)</span></li>
-</ul>
-</div>
-<div class="fragment fade-in" data-fragment-index="3">
-<ul>
-<li>We slice the volume into 2D mass planes<br>
-across comoving distance bins</li>
+<li>Simulate structure formation over time, taking snapshots at key redshifts</li>
+<li>Stitch these snapshots into a <strong>lightcone</strong>, mimicking the observer’s view of the universe</li>
+<li>Combine contributions from all slabs to form convergence maps</li>
+<li>Use the Born approximation to simplify the lensing calculation</li>
 </ul>
 </div>
 <div class="fragment fade-in" data-fragment-index="4">
-<ul>
-<li>Each redshift bin receives contributions<br>
-from the slabs in front of it</li>
-<li>Born approximation</li>
-</ul>
-</div>
-<div class="fragment fade-in" data-fragment-index="5">
 <div class="solutionbox">
 <div class="solutionbox-header">
 <p>Born Approximation for Convergence</p>
@@ -387,8 +404,25 @@ W(r, r_s) = \frac{3}{2} \, \Omega_m \, \left( \frac{H_0}{c} \right)^2 \, \frac{r
 </div>
 </div></div>
 </section>
-<section id="can-we-start-doing-inference" class="slide level2">
-<h2>Can we start doing inference?</h2>
+<section>
+<section id="can-we-start-doing-inference" class="title-slide slide level1 center">
+<h1>Can we start doing inference?</h1>
+<aside class="notes">
+<p>“So we’ve built a forward model — from cosmology to lensing maps. Now comes the big question: can we start doing inference?” (click)</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+
 <h4 id="the-impact-of-resolution-on-simulation-accuracy">The impact of resolution on simulation accuracy</h4>
 <div class="quarto-layout-panel" data-layout-ncol="3">
 <div class="quarto-layout-row">
@@ -396,7 +430,7 @@ W(r, r_s) = \frac{3}{2} \, \Omega_m \, \left( \frac{H_0}{c} \right)^2 \, \frac{r
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="assets/Fields/LPT_density_field_z0_512.png" style="width:75.0%"></p>
-<figcaption>512^3 Resolution mesh</figcaption>
+<figcaption><span class="math inline">\(512^3\)</span> Resolution mesh</figcaption>
 </figure>
 </div>
 </div>
@@ -404,7 +438,7 @@ W(r, r_s) = \frac{3}{2} \, \Omega_m \, \left( \frac{H_0}{c} \right)^2 \, \frac{r
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="assets/Fields/LPT_density_field_z0_256.png" style="width:75.0%"></p>
-<figcaption>256^3 Resolution mesh</figcaption>
+<figcaption><span class="math inline">\(256^3\)</span> Resolution mesh</figcaption>
 </figure>
 </div>
 </div>
@@ -412,7 +446,7 @@ W(r, r_s) = \frac{3}{2} \, \Omega_m \, \left( \frac{H_0}{c} \right)^2 \, \frac{r
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="assets/Fields/LPT_density_field_z0_64.png" style="width:75.0%"></p>
-<figcaption>64^3 Resolution mesh</figcaption>
+<figcaption><span class="math inline">\(64^3\)</span> Resolution mesh</figcaption>
 </figure>
 </div>
 </div>
@@ -425,15 +459,15 @@ W(r, r_s) = \frac{3}{2} \, \Omega_m \, \left( \frac{H_0}{c} \right)^2 \, \frac{r
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="assets/latest/power_spectrum_comparison.png" style="width:80.0%"></p>
-<figcaption>Power Spectrum Comparison</figcaption>
+<figcaption>-</figcaption>
 </figure>
 </div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/latest/biased_posterior_plot.png" style="width:60.0%"></p>
-<figcaption>Biased Posterior Plot</figcaption>
+<p><img data-src="assets/latest/biased_posterior_plot.png" style="width:50.0%"></p>
+<figcaption>Biased Posterior</figcaption>
 </figure>
 </div>
 </div>
@@ -441,23 +475,618 @@ W(r, r_s) = \frac{3}{2} \, \Omega_m \, \left( \frac{H_0}{c} \right)^2 \, \frac{r
 </div>
 </div>
 <p><br></p>
+<aside class="notes">
+<p>“Well… not yet. Not if we care about accuracy.” “Here’s what happens as we vary the resolution of the simulation mesh. Visually, the structure starts to break down. But more importantly, we lose power on small scales — and that directly biases the inferred cosmological parameters.” “So even if our inference machinery is technically running — the science is wrong.” “Low-resolution simulations introduce a significant systematic bias in the inferred parameters — even if the rest of the pipeline is perfect.”</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
-<section id="the-impact-of-inaccurate-simulations-on-physical-modeling" class="slide level2">
-<h2>The Impact of inaccurate simulations on Physical Modeling</h2>
+<section id="when-the-simulator-fails-the-model-fails" class="slide level2">
+<h2>When the Simulator Fails, the Model Fails</h2>
+<h4 id="inference-is-only-as-good-as-the-simulator-it-depends-on.">Inference is only as good as the simulator it depends on.</h4>
+
+<img data-src="assets/latest/illu_compressor.svg" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><div class="solutionbox">
+<div class="solutionbox-body" style="font-size: 18px; border: 3px solid;">
+<ul>
+<li>If we want to model complex phenomena like galaxy painting, baryonic feedback, or non-linear structure formation, our simulator must be not only fast, but also physically accurate.</li>
+<li>A decent resolution for weak lensing requires about 1 grid cell per Mpc/h — both for angular resolution and structure fidelity.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="scaling-up-the-simulation-volume-the-lsst-challenge" class="slide level2" style="font-size: 20px;">
+<h2>Scaling Up the simulation volume: The LSST Challenge</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/bayes/FFI_full.svg" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
-</figure>
-</div>
+<h4 id="lsst-scan-range">LSST Scan Range</h4>
+<ul>
+<li>Covers ~<strong>18,000 deg²</strong> (~44% of the sky)</li>
+<li>Redshift reach: up to <strong>z ≈ 3</strong></li>
+<li>Arcminute-scale resolution</li>
+<li>Requires simulations spanning thousands of Mpc in depth and width</li>
+</ul>
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/latest/illu_compressor.svg" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
+<p><img data-src="assets/latest/lsst_footprint.png" style="width:70.0%"></p>
+<figcaption>LSST Survey Footprint</figcaption>
 </figure>
 </div>
 </div></div>
+<ul>
+<li>Simulating even a <strong>(1 Gpc/h)³</strong> subvolume at <strong>1024³ mesh resolution</strong> requires:
+<ul>
+<li>~<strong>54 GB</strong> of memory for a simulation with a single snapshot</li>
+<li>Gradient-based inference and multi-step evolution push that beyond <strong>100–200 GB</strong></li>
+</ul></li>
+</ul>
+<div class="columns">
+<div class="column" style="width:70%;">
+<div class="solutionbox">
+<div class="solutionbox-header" style="font-size: 19px;">
+<p><strong>Takeaway</strong></p>
+</div>
+<div class="solutionbox-body" style="font-size: 18px;">
+<ul>
+<li>LSST-scale cosmological inference demands <strong>multiple (Gpc/h)³ simulations</strong> at high resolution.<br>
+Modern high-end GPUs cap at <strong>~80 GB</strong>, so even a single box <strong>requires multi-GPU distributed simulation</strong> — both for memory and compute scalability.</li>
+</ul>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/HPC/jean_zay_photo.png" style="width:90.0%"></p>
+<figcaption>Jean Zay HPC - IDRIS</figcaption>
+</figure>
+</div>
+</div></div>
+</section></section>
+<section>
+<section id="we-need-scalable-distributed-simulations" class="title-slide slide level1 center">
+<h1>We Need Scalable Distributed Simulations</h1>
+
+</section>
+<section id="distributed-particle-mesh-simulation" class="slide level2" style="font-size: 20px;">
+<h2>Distributed Particle Mesh Simulation</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/PM_pipeline.svg" style="width:100.0%"></p>
+<figcaption>Particle Mesh Simulation</figcaption>
+</figure>
+</div>
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/pm_laplace_kernel.svg" style="width:100.0%"></p>
+<figcaption>Particle Mesh Simulation</figcaption>
+</figure>
+</div>
+</div>
+<div class="fragment fade-in" data-fragment-index="2">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/pm_fft.svg" style="width:100.0%"></p>
+<figcaption>Particle Mesh Simulation</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="fragment fade-in" data-fragment-index="1">
+<h4 id="force-computation-is-easy-to-parallelize">Force Computation is Easy to Parallelize</h4>
+<ul>
+<li><p>Poisson’s equation in Fourier space:<br>
+<span class="math display">\[
+\nabla^2 \phi = -4\pi G \rho
+\]</span></p></li>
+<li><p>Gravitational force in Fourier space:<br>
+<span class="math display">\[
+\mathbf{f}(\mathbf{k}) = i\mathbf{k}k^{-2}\rho(\mathbf{k})
+\]</span></p></li>
+<li><p>Each Fourier mode <span class="math inline">\(\mathbf{k}\)</span> can be computed independently using JAX<br>
+</p></li>
+<li><p>Perfect for large-scale, parallel GPU execution</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Logos/JaxLogo.png" class="quarto-figure quarto-figure-center" style="width:20.0%"></p>
+</figure>
+</div>
+</div>
+<div class="fragment fade-in" data-fragment-index="3">
+<div class="solutionbox">
+<div class="solutionbox-body" style="font-size: 26px;">
+<p><strong>Fourier Transform requires global communication</strong></p>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="jaxdecomp-distributed-3d-fft-and-halo-exchange" class="slide level2" style="font-size: 20px;">
+<h2>jaxDecomp: Distributed 3D FFT and Halo Exchange</h2>
+<p><a href="https://github.com/DifferentiableUniverseInitiative/jaxDecomp"><img data-src="https://img.shields.io/badge/GitHub-jaxdecomp-blue?logo=github.png"></a></p>
+<ul>
+<li><strong>Distributed 3D FFT</strong> using <strong>domain decomposition</strong><br>
+</li>
+<li><strong>Fully differentiable</strong>, runs on <strong>multi-GPU and multi-node</strong> setups<br>
+</li>
+<li>Designed as a <strong>drop-in replacement</strong> for <code>jax.numpy.fft.fftn</code><br>
+</li>
+<li>Open source and available on <strong>PyPI</strong> <span class="math inline">\(\Rightarrow\)</span> <code>pip install jaxdecomp</code></li>
+<li><strong>Halo exchange</strong> for mass conservation across subdomains</li>
+</ul>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/jaxDecomp/fft.svg" style="width:90.0%"></p>
+<figcaption>FFT</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/CIC/Halo_Exchange.svg" style="width:75.0%"></p>
+<figcaption>Halo Exchange</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="distributed-particle-mesh-simulation-1" class="slide level2" style="font-size: 20px;">
+<h2>Distributed Particle Mesh Simulation</h2>
+<div class="r-stack">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/pm_cic.svg" style="width:60.0%"></p>
+<figcaption>Particle Mesh Simulation</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="cloud-in-cell-cic-interpolation" class="slide level2" style="font-size: 19px;">
+<h2>Cloud In Cell (CIC) Interpolation</h2>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="r-stack quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="fragment fade-out" data-fragment-index="1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/particles_animation.gif" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+<div class="fragment fade-in" data-fragment-index="1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/particles_last_frame.png" class="quarto-figure quarto-figure-center" style="width:55.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="r-stack quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="fragment fade-out" data-fragment-index="1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/field_animation.gif" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+<div class="fragment fade-in" data-fragment-index="1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/field_last_frame.png" class="quarto-figure quarto-figure-center" style="width:55.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h3 style="font-size: 19px;" id="mass-assignment-and-readout">Mass Assignment and Readout</h3>
+<p>The Cloud-In-Cell (CIC) scheme spreads particle mass to nearby grid points using a linear kernel:</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li><strong>Paint to Grid</strong> (mass deposition): <span class="math display">\[
+g(\mathbf{j}) = \sum_i m_i \prod_{d=1}^{D} \left(1 - \left|p_i^d - j_d\right|\right)
+\]</span></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li><strong>Read from Grid</strong> (force interpolation): <span class="math display">\[
+v_i = \sum_{\mathbf{j}} g(\mathbf{j}) \prod_{d=1}^{D} \left(1 - \left|p_i^d - j_d\right|\right)
+\]</span></li>
+</ul>
+</div></div>
+</section>
+<section id="distributed-cloud-in-cell-cic-interpolation" class="slide level2" style="font-size: 19px;">
+<h2>Distributed Cloud In Cell (CIC) Interpolation</h2>
+<ul>
+<li><p>In distributed simulations, <strong>each subdomain handles a portion of the global domain</strong></p></li>
+<li><p><strong>Boundary conditions</strong> are crucial to ensure physical continuity across subdomain edges</p></li>
+<li><p><strong>CIC interpolation</strong> assigns and reads mass from nearby grid cells — potentially crossing subdomain boundaries</p></li>
+<li><p>To avoid discontinuities or mass loss, we apply <strong>halo exchange</strong>:</p>
+<ul>
+<li>Subdomains <strong>share overlapping edge data</strong> with neighbors</li>
+<li>Ensures <strong>correct mass assignment and gradient flow</strong> across boundaries</li>
+</ul></li>
+</ul>
+<div class="r-stack">
+<div class="fragment fade-in-then-out" data-fragment-index="1">
+<h3 id="without-halo-exchange-not-distributed">Without Halo Exchange (Not Distributed)</h3>
+<div class="quarto-layout-panel" data-align="center" data-layout-ncol="3">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/D_CIC_Paint_0.svg" style="width:65.0%"></p>
+<figcaption>Sub Domain 1 (Particles)</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/D_CIC_Paint_1.svg" style="width:65.0%"></p>
+<figcaption>Sub Domain 1 (Grid)</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/D_CIC_Paint_2.svg" style="width:65.0%"></p>
+<figcaption>Sub Domain 1 (Read out)</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in" data-fragment-index="2">
+<h3 id="with-halo-exchange-distributed">With Halo Exchange (Distributed)</h3>
+<div class="quarto-layout-panel" data-align="center" data-layout-ncol="3">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/D_CIC_Paint_3.svg" style="width:65.0%"></p>
+<figcaption>Sub Domain 1 &amp; Halo (Particles)</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/D_CIC_Paint_4.svg" style="width:65.0%"></p>
+<figcaption>Sub Domain 1 &amp; Halo (Grid)</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/D_CIC_Paint_5.svg" style="width:65.0%"></p>
+<figcaption>Sub Domain 2 &amp; Halo (Grid)</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="why-halo-exchange-matters-in-distributed-simulations" class="slide level2" style="font-size: 20px;">
+<h2>Why Halo Exchange Matters in Distributed Simulations</h2>
+<div class="fragment fade-in-then-out" data-fragment-index="1">
+<p><img data-src="assets/HPC/depict_split.png" class="absolute" style="top: 30px; right: 20px; width: 20%; "></p>
+</div>
+<div class="fragment" data-fragment-index="2">
+<p><img data-src="assets/HPC/depict_gathered.png" class="absolute" style="top: 30px; right: 20px; width: 20%; "></p>
+</div>
+<p>Without halo exchange, subdomain boundaries introduce visible artifacts in the final field.<br>
+This breaks the smoothness of the result — <strong>even when each local computation is correct</strong>.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="r-stack">
+<div class="fragment fade-in-then-out" data-fragment-index="1">
+<div class="quarto-layout-panel" data-layout-align="center" data-layout="[[1] , [1] , [1] , [1]]">
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_0_no_halo.png" class="nostretch" style="width:50.0%"></p>
+<figcaption>First slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_1_no_halo.png" class="nostretch" style="width:50.0%"></p>
+<figcaption>Second slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_2_no_halo.png" class="nostretch" style="width:50.0%"></p>
+<figcaption>Third slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_3_no_halo.png" class="nostretch" style="width:50.0%"></p>
+<figcaption>Fourth slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in" data-fragment-index="2">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_1024_no_halo.png" class="nostretch" style="width:80.0%"></p>
+<figcaption>No Halo Artifacts</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="r-stack">
+<div class="fragment fade-in-then-out" data-fragment-index="2" style="visibility: hidden;">
+<div class="quarto-layout-panel" data-layout-align="center" data-layout="[[1] , [1] , [1] , [1]]">
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_0_no_halo.png" class="nostretch" style="width:50.0%"></p>
+<figcaption>First slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_1_no_halo.png" class="nostretch" style="width:50.0%"></p>
+<figcaption>Second slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_2_no_halo.png" class="nostretch" style="width:50.0%"></p>
+<figcaption>Third slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_3_no_halo.png" class="nostretch" style="width:50.0%"></p>
+<figcaption>Fourth slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in" data-fragment-index="3">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_1024.png" class="nostretch" style="width:80.0%"></p>
+<figcaption>With Halo no Artifacts</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section></section>
+<section>
+<section id="what-about-the-gradients" class="title-slide slide level1 center">
+<h1>What About the Gradients?</h1>
+
+</section>
+<section id="backpropagating-through-ode-integration" class="slide level2" style="font-size: 20px;">
+<h2>Backpropagating Through ODE Integration</h2>
+<p><br> <br></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="why-gradients-are-costly">Why Gradients Are Costly</h3>
+<p>To compute gradients through a simulation, we need to track:</p>
+<ul>
+<li>All intermediate positions: <span class="math inline">\(d_i\)</span></li>
+<li>All velocities: <span class="math inline">\(v_i\)</span></li>
+<li>And their tangent vectors for backpropagation</li>
+</ul>
+<p>Even though each update is simple, <strong>autodiff requires storing the full history</strong>.</p>
+</div><div class="column" style="width:50%;">
+<div class="fragment fade-in" data-fragment-index="2">
+<h3 id="example-kick-drift-integration">Example: Kick-Drift Integration</h3>
+<p>A typical update step looks like:</p>
+<p><span class="math display">\[
+\begin{aligned}
+d_{i+1} &amp;= d_i + v_i \, \Delta t \\\\
+v_{i+1} &amp;= v_i + F(d_{i+1}) \, \Delta t
+\end{aligned}
+\]</span></p>
+<p>Over many steps, the memory demand scales <strong>linearly</strong> — which becomes a bottleneck for large simulations.</p>
+</div>
+</div></div>
+<div class="fragment fade-in" data-fragment-index="3">
+<div class="solutionbox">
+<div class="solutionbox-header">
+<p>Why This Is a Problem in Practice</p>
+</div>
+<div class="solutionbox-body">
+<ul>
+<li><p>Storing intermediate states for autodiff causes <strong>memory to scale linearly</strong> with the number of steps.</p></li>
+<li><p>Example costs at full resolution:</p>
+<ul>
+<li><strong>(1 Gpc/h)³</strong>, 10 steps → ~<strong>500 GB</strong></li>
+<li><strong>(2 Gpc/h)³</strong>, 10 steps → ~<strong>4.2 TB</strong></li>
+</ul></li>
+<li><p>This severely limits how many time steps or how large a volume we can afford — even with many GPUs.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="reverse-adjoint-gradient-propagation-without-trajectory-storage-preliminary" class="slide level2" style="font-size: 19px;">
+<h2>Reverse Adjoint: Gradient Propagation Without Trajectory Storage (<strong>Preliminary</strong>)</h2>
+<p><img data-src="assets/Logos/JaxLogo.png" class="absolute" style="top: 30px; right: 10px; width: 5%; "></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li><p>Instead of storing the full trajectory…</p></li>
+<li><p>We use the <strong>reverse adjoint method</strong>:</p>
+<ul>
+<li>Save only the <strong>final state</strong></li>
+<li><strong>Re-integrate backward in time</strong> to compute gradients</li>
+</ul></li>
+</ul>
+<div class="mathbox">
+<p><strong>Forward Pass (Kick-Drift)</strong></p>
+<p><span class="math display">\[
+\begin{aligned}
+d_{i+1} &amp;= d_i + v_i \, \Delta t \\
+v_{i+1} &amp;= v_i + F(d_{i+1}) \, \Delta t
+\end{aligned}
+\]</span></p>
+<p><strong>Reverse Pass (Adjoint Method)</strong></p>
+<p><span class="math display">\[
+\begin{aligned}
+v_i &amp;= v_{i+1} - F(d_{i+1}) \, \Delta t \\
+d_i &amp;= d_{i+1} - v_i \, \Delta t
+\end{aligned}
+\]</span></p>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="fragment fade-in" data-fragment-index="1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/memory_vs_checkpoints.png" style="width:100.0%"></p>
+<figcaption>Memory vs.&nbsp;Checkpoints</figcaption>
+</figure>
+</div>
+<div class="caption" style="font-size: 14px; margin-top: 0.5rem;">
+<ul>
+<li><strong>Checkpointing</strong> saves intermediate simulation states periodically to reduce memory — but still grows with the number of steps.</li>
+<li><strong>Reverse Adjoint</strong> recomputes on demand, keeping memory constant.</li>
+</ul>
+</div>
+</div>
+</div></div>
+<div class="fragment fade-in" data-fragment-index="2">
+<div class="solutionbox">
+<div class="solutionbox-header" style="font-size: 19px;">
+<p>Reverse Adjoint Method</p>
+</div>
+<div class="solutionbox-body" style="font-size: 18px;">
+<ul>
+<li><strong>Constant memory</strong> regardless of number of steps</li>
+<li><strong>Requires a second simulation pass</strong> for gradient computation</li>
+<li>In a 10-step 1024³ Lightcone simulation, reverse adjoint uses <strong>5× less memory</strong> than checkpointing (∼100 GB vs ∼500 GB)</li>
+</ul>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="putting-it-all-together" class="title-slide slide level1 center">
+<h1>Putting It All Together</h1>
+
+</section>
+<section id="jaxpm-v0.1.5-differentiable-scalable-simulations" class="slide level2" data-background-image="assets/Fields/LPT_density_field_z0_2048.png" data-background-opacity="0.2" style="font-size: 20px;">
+<h2><span style="color:black">JAXPM v0.1.5: Differentiable, Scalable Simulations </span></h2>
+<p><a href="https://github.com/DifferentiableUniverseInitiative/JaxPM"><img data-src="https://img.shields.io/badge/GitHub-jaxpm-blue?logo=github.png"></a></p>
+<p><br> <br> <br></p>
+<div class="solutionbox">
+<div class="solutionbox-header">
+<p>What JAXPM v0.1.5 Supports</p>
+</div>
+<div class="solutionbox-body">
+<ul>
+<li><p><strong>Multi-GPU and Multi-Node</strong> simulation with distributed domain decomposition (Successfully ran 2048³ on 256 GPUs)</p></li>
+<li><p><strong>End-to-end differentiability</strong>, including force computation and interpolation</p></li>
+<li><p>Compatible with a custom JAX compatible Reverse <strong>Adjoint solver</strong> for memory-efficient gradients</p></li>
+<li><p>Supports full <strong>PM Lightcone Weak Lensing</strong></p></li>
+<li><p>Available on <strong>PyPI</strong>: <code>pip install jaxpm</code></p></li>
+<li><p>Built on top of <code>jaxdecomp</code> for distributed 3D FFT</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="current-capabilities-road-ahead" class="slide level2" style="font-size: 20px;">
+<h2>Current Capabilities &amp; Road Ahead</h2>
+<div class="solutionbox">
+<div class="solutionbox-header">
+<p><strong>What We’ve Achieved So Far</strong></p>
+</div>
+<div class="solutionbox-body">
+<ul>
+<li><p>Built a <strong>scalable, differentiable</strong> N-body simulation pipeline (<strong>JAXPM</strong>)</p></li>
+<li><p>Enables <strong>forward modeling and sampling</strong> in large cosmological volumes, paving the way toward full LSST-scale inference</p></li>
+<li><p>Preliminary performance:</p>
+<ul>
+<li>~20 s per 512×512×1024 simulation on 64×A100 GPUs</li>
+<li>&lt;1 TB memory for full 10-step lightcone</li>
+<li>Stable gradients over 100-sample tests</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<p><br></p>
+<div class="solutionbox">
+<div class="solutionbox-header">
+<p><strong>Ongoing and Future Work</strong></p>
+</div>
+<div class="solutionbox-body">
+<ul>
+<li><p>Scale to <strong>larger simulation volumes</strong> (e.g., 2 Gpc/h and beyond)</p></li>
+<li><p>Apply to real <strong>DES</strong> data as a stepping stone toward <strong>LSST</strong></p></li>
+<li><p>Incorporate <strong>more accurate weak lensing physics</strong>:</p>
+<ul>
+<li>Higher-fidelity <strong>shear</strong> &amp; <strong>spherical convergence maps</strong></li>
+</ul></li>
+<li><p>Complete <strong>validation</strong>, and extract <strong>cosmological parameter constraints</strong></p></li>
+</ul>
+</div>
+</div>
 </section>
 <section id="approximating-the-small-scales" class="slide level2" style="font-size: 19px;">
 <h2>Approximating the Small Scales</h2>
@@ -515,547 +1144,6 @@ W(r, r_s) = \frac{3}{2} \, \Omega_m \, \left( \frac{H_0}{c} \right)^2 \, \frac{r
 </div>
 </div>
 </div></div>
-</section>
-<section id="scaling-up-the-lsst-challenge" class="slide level2">
-<h2>Scaling Up: The LSST Challenge</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<h4 id="lsst-scan-range">LSST Scan Range</h4>
-<ul>
-<li>Covers ~<strong>18,000 deg²</strong> (~44% of the sky)</li>
-<li>Redshift reach: up to <strong>z ≈ 3</strong></li>
-<li>Arcminute-scale resolution</li>
-<li>Requires simulations spanning thousands of Mpc in depth and width</li>
-</ul>
-</div><div class="column" style="width:50%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/latest/lsst_footprint.png" style="width:90.0%"></p>
-<figcaption>LSST Survey Footprint</figcaption>
-</figure>
-</div>
-</div></div>
-<ul>
-<li>Simulating even a <strong>(1 Gpc/h)³</strong> subvolume at <strong>1024³ mesh resolution</strong> requires:
-<ul>
-<li>~<strong>48 GB</strong> of memory for a simulation with a single snapshot</li>
-<li>Gradient-based inference and multi-step evolution push that beyond <strong>100–200 GB</strong></li>
-</ul></li>
-</ul>
-<div class="columns">
-<div class="column" style="width:70%;">
-<div class="solutionbox">
-<div class="solutionbox-header" style="font-size: 19px;">
-<p><strong>Takeaway</strong></p>
-</div>
-<div class="solutionbox-body" style="font-size: 18px;">
-<p>LSST-scale cosmological inference demands <strong>multiple (Gpc/h)³ simulations</strong> at high resolution.<br>
-Modern high-end GPUs cap at <strong>~80 GB</strong>, so even a single box <strong>requires multi-GPU distributed simulation</strong> — both for memory and compute scalability.</p>
-</div>
-</div>
-</div><div class="column" style="width:30%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/HPC/jean_zay_photo.png" style="width:90.0%"></p>
-<figcaption>Jean Zay HPC - IDRIS</figcaption>
-</figure>
-</div>
-</div></div>
-</section></section>
-<section>
-<section id="distributed-simulation-with-jaxpm" class="title-slide slide level1 center">
-<h1>Distributed Simulation with JAXPM</h1>
-
-</section>
-<section id="distributed-particle-mesh-simulation" class="slide level2" style="font-size: 20px;">
-<h2>Distributed Particle Mesh Simulation</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="r-stack">
-<div class="fragment fade-in-then-out" data-fragment-index="1">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/latest/PM_pipeline.svg" style="width:100.0%"></p>
-<figcaption>Particle Mesh Simulation</figcaption>
-</figure>
-</div>
-</div>
-<div class="fragment fade-in-then-out" data-fragment-index="2">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/latest/pm_laplace_kernel.svg" style="width:100.0%"></p>
-<figcaption>Particle Mesh Simulation</figcaption>
-</figure>
-</div>
-</div>
-<div class="fragment fade-in" data-fragment-index="3">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/latest/pm_fft.svg" style="width:100.0%"></p>
-<figcaption>Particle Mesh Simulation</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="fragment fade-in" data-fragment-index="2">
-<h4 id="force-computation-is-easy-to-parallelize">Force Computation is Easy to Parallelize</h4>
-<ul>
-<li><p>Poisson’s equation in Fourier space:<br>
-<span class="math display">\[
-\nabla^2 \phi = -4\pi G \rho
-\]</span></p></li>
-<li><p>Gravitational force in Fourier space:<br>
-<span class="math display">\[
-\mathbf{f}(\mathbf{k}) = i\mathbf{k}k^{-2}\rho(\mathbf{k})
-\]</span></p></li>
-<li><p>Each Fourier mode <span class="math inline">\(\mathbf{k}\)</span> can be computed independently using JAX<br>
-</p></li>
-<li><p>Perfect for large-scale, parallel GPU execution</p></li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Logos/JaxLogo.png" class="quarto-figure quarto-figure-center" style="width:20.0%"></p>
-</figure>
-</div>
-</div>
-<div class="fragment fade-in" data-fragment-index="4">
-<div class="solutionbox">
-<div class="solutionbox-body" style="font-size: 26px;">
-<p><strong>Fourier Transform requires global communication</strong></p>
-</div>
-</div>
-</div>
-</div></div>
-</section>
-<section id="jaxdecomp-distributed-3d-fft-for-particle-mesh-simulations" class="slide level2" style="font-size: 22px;">
-<h2>jaxDecomp: Distributed 3D FFT for Particle Mesh Simulations</h2>
-<p><a href="https://github.com/DifferentiableUniverseInitiative/jaxDecomp"><img data-src="https://img.shields.io/badge/GitHub-jaxdecomp-blue?logo=github.png"></a></p>
-<div class="fragment" data-fragment-index="1">
-<ul>
-<li><strong>Distributed 3D FFT</strong> using <strong>domain decomposition</strong><br>
-</li>
-<li><strong>Fully differentiable</strong>, runs on <strong>multi-GPU and multi-node</strong> setups<br>
-</li>
-<li>Designed as a <strong>drop-in replacement</strong> for <code>jax.numpy.fft.fftn</code><br>
-</li>
-<li>Open source and available on <strong>PyPI</strong></li>
-</ul>
-</div>
-<div class="fragment" data-fragment-index="2">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/jaxDecomp/fft.svg" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
-</figure>
-</div>
-</div>
-</section>
-<section id="distributed-particle-mesh-simulation-1" class="slide level2" style="font-size: 20px;">
-<h2>Distributed Particle Mesh Simulation</h2>
-<div class="r-stack">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/latest/pm_cic.svg" style="width:60.0%"></p>
-<figcaption>Particle Mesh Simulation</figcaption>
-</figure>
-</div>
-</div>
-</section>
-<section id="cloud-in-cell-cic-interpolation" class="slide level2" style="font-size: 19px;">
-<h2>Cloud In Cell (CIC) Interpolation</h2>
-<div class="quarto-layout-panel" data-layout-ncol="2">
-<div class="quarto-layout-row">
-<div class="r-stack quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="fragment fade-out" data-fragment-index="1">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/latest/particles_animation.gif" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
-</figure>
-</div>
-</div>
-<div class="fragment fade-in" data-fragment-index="1">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/latest/particles_last_frame.png" class="quarto-figure quarto-figure-center" style="width:55.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="r-stack quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="fragment fade-out" data-fragment-index="1">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/latest/field_animation.gif" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
-</figure>
-</div>
-</div>
-<div class="fragment fade-in" data-fragment-index="1">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/latest/field_last_frame.png" class="quarto-figure quarto-figure-center" style="width:55.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-<h3 style="font-size: 19px;" id="mass-assignment-and-readout">Mass Assignment and Readout</h3>
-<p>The Cloud-In-Cell (CIC) scheme spreads particle mass to nearby grid points using a linear kernel:</p>
-<ul>
-<li><p><strong>Paint to Grid</strong> (mass deposition): <span class="math display">\[
-g(\mathbf{j}) = \sum_i m_i \prod_{d=1}^{D} \left(1 - \left|p_i^d - j_d\right|\right)
-\]</span></p></li>
-<li><p><strong>Read from Grid</strong> (force interpolation): <span class="math display">\[
-v_i = \sum_{\mathbf{j}} g(\mathbf{j}) \prod_{d=1}^{D} \left(1 - \left|p_i^d - j_d\right|\right)
-\]</span></p></li>
-</ul>
-</section>
-<section id="distributed-cloud-in-cell-cic-interpolation" class="slide level2" style="font-size: 19px;">
-<h2>Distributed Cloud In Cell (CIC) Interpolation</h2>
-<p>Cloud-In-Cell (CIC) requires particles to paint to nearby grid cells — even across subdomain boundaries.<br>
-To avoid loss of mass and ensure correct gradients, we apply <strong>halo exchange</strong> and synchronize the overlapping regions.</p>
-<h3 id="without-halo-exchange">Without Halo Exchange</h3>
-<div class="quarto-layout-panel" data-layout-ncol="3" data-align="center">
-<div class="quarto-layout-row">
-<div class="fragment fade-in quarto-layout-cell" data-fragment-index="1" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/latest/D_CIC_Paint_0.svg" style="width:65.0%"></p>
-<figcaption>Sub Domain 1 (Particles)</figcaption>
-</figure>
-</div>
-</div>
-<div class="fragment fade-in quarto-layout-cell" data-fragment-index="2" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/latest/D_CIC_Paint_1.svg" style="width:65.0%"></p>
-<figcaption>Sub Domain 1 (Grid)</figcaption>
-</figure>
-</div>
-</div>
-<div class="fragment fade-in quarto-layout-cell" data-fragment-index="3" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/latest/D_CIC_Paint_2.svg" style="width:65.0%"></p>
-<figcaption>Sub Domain 1 (Read out)</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div class="fragment fade-in" data-fragment-index="4">
-<h3 id="with-halo-exchange">With Halo Exchange</h3>
-</div>
-<div class="quarto-layout-panel" data-layout-ncol="3" data-align="center">
-<div class="quarto-layout-row">
-<div class="fragment fade-in quarto-layout-cell" data-fragment-index="4" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/latest/D_CIC_Paint_3.svg" style="width:65.0%"></p>
-<figcaption>Sub Domain 1 &amp; Halo (Particles)</figcaption>
-</figure>
-</div>
-</div>
-<div class="fragment fade-in quarto-layout-cell" data-fragment-index="5" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/latest/D_CIC_Paint_4.svg" style="width:65.0%"></p>
-<figcaption>Sub Domain 1 &amp; Halo (Grid)</figcaption>
-</figure>
-</div>
-</div>
-<div class="fragment fade-in quarto-layout-cell" data-fragment-index="6" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/latest/D_CIC_Paint_5.svg" style="width:65.0%"></p>
-<figcaption>Sub Domain 2 &amp; Halo (Grid)</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div class="solutionbox">
-<div class="solutionbox-body" style="font-size: 18px;">
-<p>Halo exchange ensures correct mass deposition and gradient flow across domain boundaries — essential for differentiable simulations.</p>
-</div>
-</div>
-</section>
-<section id="why-halo-exchange-matters-in-distributed-simulations" class="slide level2" style="font-size: 22px;">
-<h2>Why Halo Exchange Matters in Distributed Simulations</h2>
-<div class="fragment fade-in-then-out" data-fragment-index="1">
-<p><img data-src="assets/HPC/depict_split.png" class="absolute" style="top: 30px; right: 20px; width: 20%; "></p>
-</div>
-<div class="fragment" data-fragment-index="2">
-<p><img data-src="assets/HPC/depict_gathered.png" class="absolute" style="top: 30px; right: 20px; width: 20%; "></p>
-</div>
-<p>Without halo exchange, subdomain boundaries introduce visible artifacts in the final field.<br>
-This breaks the smoothness of the result — <strong>even when each local computation is correct</strong>.</p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="r-stack">
-<div class="fragment fade-in-then-out" data-fragment-index="1">
-<div class="quarto-layout-panel" data-layout-align="center" data-layout="[[1] , [1] , [1] , [1]]">
-<div class="quarto-layout-row quarto-layout-valign-center">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Fields/LPT_density_field_z0_0_no_halo.png" class="nostretch" width="400"></p>
-<figcaption>First slice</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-center">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Fields/LPT_density_field_z0_1_no_halo.png" class="nostretch" width="400"></p>
-<figcaption>Second slice</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-center">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Fields/LPT_density_field_z0_2_no_halo.png" class="nostretch" width="400"></p>
-<figcaption>Third slice</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-center">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Fields/LPT_density_field_z0_3_no_halo.png" class="nostretch" width="400"></p>
-<figcaption>Fourth slice</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="fragment fade-in" data-fragment-index="2">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Fields/LPT_density_field_z0_1024_no_halo.png" class="nostretch" width="400"></p>
-<figcaption>LPT Field</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="r-stack">
-<div class="fragment fade-in-then-out" data-fragment-index="2" style="visibility: hidden;">
-<div class="quarto-layout-panel" data-layout-align="center" data-layout="[[1] , [1] , [1] , [1]]">
-<div class="quarto-layout-row quarto-layout-valign-center">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Fields/LPT_density_field_z0_0_no_halo.png" class="nostretch" width="400"></p>
-<figcaption>First slice</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-center">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Fields/LPT_density_field_z0_1_no_halo.png" class="nostretch" width="400"></p>
-<figcaption>Second slice</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-center">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Fields/LPT_density_field_z0_2_no_halo.png" class="nostretch" width="400"></p>
-<figcaption>Third slice</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-center">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Fields/LPT_density_field_z0_3_no_halo.png" class="nostretch" width="400"></p>
-<figcaption>Fourth slice</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="fragment fade-in" data-fragment-index="3">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Fields/LPT_density_field_z0_1024.png" class="nostretch" width="400"></p>
-<figcaption>LPT Field</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div></div>
-</section>
-<section id="jaxdecomp-halo-exchange-for-distributed-simulations" class="slide level2" style="font-size: 22px;">
-<h2>jaxDecomp: Halo Exchange for Distributed Simulations</h2>
-<p><a href="https://github.com/DifferentiableUniverseInitiative/jaxDecomp"><img data-src="https://img.shields.io/badge/GitHub-jaxdecomp-blue?logo=github.png"></a></p>
-<div class="fragment" data-fragment-index="1">
-<ul>
-<li>Part of the <code>jaxdecomp</code> package — <strong>fully differentiable</strong> and <strong>JAX-compatible</strong></li>
-<li><strong>Easy to use</strong> and works transparently across <strong>GPUs and nodes</strong></li>
-<li>Open source and available on <strong>PyPI</strong></li>
-</ul>
-</div>
-<div class="fragment" data-fragment-index="2">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Fields/CIC/Halo_Exchange.svg" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
-</figure>
-</div>
-</div>
-</section></section>
-<section>
-<section id="differentiating-through-time-integration" class="title-slide slide level1 center">
-<h1>Differentiating Through Time Integration</h1>
-<div class="rstack">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/bayes/FFI_full.svg" class="quarto-figure quarto-figure-center" style="width:30.0%"></p>
-</figure>
-</div>
-</div>
-</section>
-<section id="autodiff-in-101" class="slide level2">
-<h2>Autodiff in <img data-src="assets/Logos/JaxLogo.png" style="width:5.0%"> 101</h2>
-<p><br> <br></p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="fragment fade-in" data-fragment-index="1">
-<h3 id="a-simple-function">A simple function:</h3>
-<p><span class="math display">\[
-f(x, y)
-\]</span></p>
-<p>To differentiate it, autodiff systems track:</p>
-<ul>
-<li>The tangents: <span class="math inline">\(\dot{x}\)</span>, <span class="math inline">\(\dot{y}\)</span></li>
-<li>The inputs: <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span></li>
-</ul>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="fragment fade-in" data-fragment-index="2">
-<h3 id="applied-to-time-integration">Applied to time integration:</h3>
-<p>In a simple <strong>Kick-Drift scheme</strong>:</p>
-<p><span class="math display">\[
-\begin{align}
-d_{i+1} &amp;= d_i + v_i \, \Delta t \\
-v_{i+1} &amp;= v_i + F(d_{i+1}) \, \Delta t
-\end{align}
-\]</span></p>
-<p>To compute gradients, we must store:</p>
-<ul>
-<li>Every <span class="math inline">\(d_i\)</span>, <span class="math inline">\(v_i\)</span></li>
-<li>And their <strong>tangent vectors</strong> for backpropagation</li>
-</ul>
-</div>
-</div></div>
-<div class="fragment fade-in" data-fragment-index="3">
-<div class="solutionbox">
-<div class="solutionbox-header">
-<p>The Problem</p>
-</div>
-<div class="solutionbox-body">
-<ul>
-<li><p>This leads to a <strong>linear memory footprint</strong> — each additional step increases memory cost</p></li>
-<li><p>Reducing the number of steps leads to <strong>miss estimating small-scale structure</strong> → Just like how <strong>low resolution underestimates power on small scales</strong></p></li>
-</ul>
-</div>
-</div>
-</div>
-</section>
-<section id="the-adjoint-trick-backprop-without-storing-everything-preliminary" class="slide level2">
-<h2>The Adjoint Trick: Backprop Without Storing Everything (<strong>Preliminary</strong>)</h2>
-<p><img data-src="assets/Logos/JaxLogo.png" class="absolute" style="top: 30px; right: 10px; width: 5%; "></p>
-<div class="columns">
-<div class="column" style="width:40%;">
-<ul>
-<li><p>Instead of storing the full trajectory…</p></li>
-<li><p>We use the <strong>reverse adjoint method</strong>:</p>
-<ul>
-<li>Save only the final state</li>
-<li><strong>Re-integrate backward in time</strong> to get gradients</li>
-</ul></li>
-</ul>
-<div class="mathbox">
-<p><strong>Forward Pass (Kick-Drift)</strong>:</p>
-<p><span class="math display">\[
-\begin{aligned}
-d_{i+1} &amp;= d_i + v_i \, \Delta t \\
-v_{i+1} &amp;= v_i + F(d_{i+1}) \, \Delta t
-\end{aligned}
-\]</span></p>
-<p><strong>Reverse Pass (Adjoint Method)</strong>:</p>
-<p><span class="math display">\[
-\begin{aligned}
-v_i &amp;= v_{i+1} - F(d_{i+1}) \, \Delta t \\
-d_i &amp;= d_{i+1} - v_i \, \Delta t
-\end{aligned}
-\]</span></p>
-</div>
-</div><div class="column" style="width:60%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/latest/memory_vs_checkpoints.png" style="width:100.0%"></p>
-<figcaption>Memory vs.&nbsp;Checkpoints</figcaption>
-</figure>
-</div>
-</div></div>
-<div class="solutionbox">
-<div class="solutionbox-header">
-<p>Reverse Adjoint method</p>
-</div>
-<div class="solutionbox-body">
-<ul>
-<li>✅ Memory stays constant, regardless of the number of steps</li>
-<li>⚠️ Requires a second pass through the simulation</li>
-<li>For A 10 step 1024³ Full PM Lightcone pipeline, it requires 5 times less memory than the checkpoint approach</li>
-</ul>
-</div>
-</div>
-</section></section>
-<section>
-<section id="putting-it-all-together" class="title-slide slide level1 center">
-<h1>Putting It All Together</h1>
-
-</section>
-<section id="sampling-in-differentiable-simulations-preliminary" class="slide level2" style="font-size: 19px;">
-<h2>Sampling in Differentiable Simulations (<strong>Preliminary</strong>)</h2>
-<div class="quarto-layout-panel" data-layout-ncol="2">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/latest/FFI_split.svg" style="width:100.0%"></p>
-<figcaption>Forward Field-Level Model</figcaption>
-</figure>
-</div>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/latest/Key_split.svg" style="width:100.0%"></p>
-<figcaption>JAX Sampling Flow</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
 
 
 </section></section>
