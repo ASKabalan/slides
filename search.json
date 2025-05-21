@@ -364,60 +364,81 @@
     "text": "Goals for This Presentation\n  \n\n\n\nUnderstand Field-Level Inference in Cosmology  \nDeep Dive into Particle Mesh Simulation  \nWeak Lensing and Lightcone Modeling  \nSampling with MCMC  \nExplore Distributed, Differentiable N-body Simulations  \nConnect Distributed Simulation and Inference"
   },
   {
-    "objectID": "paris2025/index.html#inference-in-cosmology-the-frequentist-pipeline",
-    "href": "paris2025/index.html#inference-in-cosmology-the-frequentist-pipeline",
+    "objectID": "paris2025/index.html#simulation-based-inference-in-cosmology",
+    "href": "paris2025/index.html#simulation-based-inference-in-cosmology",
     "title": "JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations",
-    "section": "Inference in Cosmology: The Frequentist Pipeline",
-    "text": "Inference in Cosmology: The Frequentist Pipeline\n\n\n\n\n\n\n\n\n\n\n\n\n\ncosmological parameters (Ω): matter density, dark energy, etc.\nPredict observables: CMB, galaxies, lensing\nExtract summary statistics: \\(P(k)\\), \\(C_\\ell\\) , 2PCF\nCompute likelihood: \\(L(\\Omega \\vert data)\\)\nEstimate \\(\\hat{\\Omega}\\) via maximization (\\(\\chi^2\\) fitting)\n\n\n\n\n\nLimits of Summary Statistics\n\n\n\nSummary statistics are lossy\n\nThe power spectrum captures only Gaussian information\n\nHigher-order statistics (e.g. bispectrum, peak counts):\n⤷ difficult to model and interpret\n⤷ computationally expensive\n⤷ sensitive to systematics\n\nIn the nonlinear regime, these issues worsen"
-  },
-  {
-    "objectID": "paris2025/index.html#from-summary-statistics-to-full-field-inference",
-    "href": "paris2025/index.html#from-summary-statistics-to-full-field-inference",
-    "title": "JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations",
-    "section": "From Summary Statistics to Full Field Inference",
-    "text": "From Summary Statistics to Full Field Inference\n\n\n \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n🔒 Implicit (Likelihood-Free) Inference\n\nSimulator is a blackbox\n\nNo tractable likelihood\n\nOnly sample from the joint distribution\nExample : Simulation-based inference (SBI)\n\n\n \n\n🔍 Explicit (Full-Field) Inference\n\nFull-field forward model is differentiable and structured\n\nLikelihood defined in pixel space\n\nJointly infer cosmology + latent fields\n\nCaptures all available information\nExample : Hierarchical Bayesian Modeling (HBM)\n\n\n\n\n\n\nTakeaway\n\n\nTo unlock the full information in cosmological data,\nwe must move from summary-based inference → to structured, gradient-based field-level inference."
+    "section": "Simulation Based Inference in Cosmology",
+    "text": "Simulation Based Inference in Cosmology\n\n\n \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nImplicit (Likelihood-Free) Inference\n\nSimulator is a blackbox\n\nNo tractable likelihood\n\nOnly sample from the joint distribution\nExample : Simulation-based inference (SBI)\n\n\n \n\nExplicit (Full-Field) Inference\n\nFull-field forward model is differentiable and structured\n\nLikelihood defined in pixel space\n\nJointly infer cosmology + latent fields\n\nCaptures all available information\nExample : Hierarchical Bayesian Modeling (HBM)\n\n\n\n\n\n\nTakeaway\n\n\nTo unlock the full information in cosmological data,\nwe must move from summary-based inference → to structured, gradient-based field-level inference."
   },
   {
     "objectID": "paris2025/index.html#particle-mesh-simulations",
     "href": "paris2025/index.html#particle-mesh-simulations",
     "title": "JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations",
     "section": "Particle Mesh Simulations",
-    "text": "Particle Mesh Simulations\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCompute Forces via PM method\n\nStart with particles \\(\\mathbf{x}_i, \\mathbf{p}_i\\)\n\nInterpolate to mesh: \\(\\rho(\\mathbf{x})\\)\n\nSolve Poisson’s Equation: \\[\n\\nabla^2 \\phi = -4\\pi G \\rho\n\\]\nIn Fourier space: \\[\n\\mathbf{f}(\\mathbf{k}) = i\\mathbf{k}k^{-2}\\rho(\\mathbf{k})\n\\]\n\n\n\n\nTime Evolution via ODE\n\nPM uses Kick-Drift-Kick (symplectic) scheme:\n\nDrift: \\(\\mathbf{x} \\leftarrow \\mathbf{x} + \\Delta a \\cdot \\mathbf{v}\\)\nKick: \\(\\mathbf{v} \\leftarrow \\mathbf{v} + \\Delta a \\cdot \\nabla \\phi\\)\n\nTreated as a differentiable ODE system in JAXPM\n\n\n\n\n\n\n\nFast and scalable approximation to gravity.\nA cycle of FFTs and interpolations.\nSacrifices small-scale accuracy for speed and differentiability."
-  },
-  {
-    "objectID": "paris2025/index.html#explicit-full-field-inference-weak-lensing",
-    "href": "paris2025/index.html#explicit-full-field-inference-weak-lensing",
-    "title": "JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations",
-    "section": "Explicit Full-Field Inference (Weak Lensing)",
-    "text": "Explicit Full-Field Inference (Weak Lensing)"
+    "text": "Particle Mesh Simulations\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nadd PMWD JAXPM BORG\nCompute Forces via PM method\n\nStart with particles \\(\\mathbf{x}_i, \\mathbf{p}_i\\)\n\nInterpolate to mesh: \\(\\rho(\\mathbf{x})\\)\n\nSolve Poisson’s Equation: \\[\n\\nabla^2 \\phi = -4\\pi G \\rho\n\\]\nIn Fourier space: \\[\n\\mathbf{f}(\\mathbf{k}) = i\\mathbf{k}k^{-2}\\rho(\\mathbf{k})\n\\]\n\n\n\n\nTime Evolution via ODE\n\nPM uses Kick-Drift-Kick (symplectic) scheme:\n\nDrift: \\(\\mathbf{x} \\leftarrow \\mathbf{x} + \\Delta a \\cdot \\mathbf{v}\\)\nKick: \\(\\mathbf{v} \\leftarrow \\mathbf{v} + \\Delta a \\cdot \\nabla \\phi\\)\n\nTreated as a differentiable ODE system in JAXPM\n\n\n\n\n\n\n\nFast and scalable approximation to gravity.\nA cycle of FFTs and interpolations.\nSacrifices small-scale accuracy for speed and differentiability."
   },
   {
     "objectID": "paris2025/index.html#lightcone-model-from-3d-structure-to-lensing-observables",
     "href": "paris2025/index.html#lightcone-model-from-3d-structure-to-lensing-observables",
     "title": "JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations",
     "section": "Lightcone Model: From 3D Structure to Lensing Observables",
-    "text": "Lightcone Model: From 3D Structure to Lensing Observables\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWe simulate the large-scale structure\nforward in time and take snapshots at scale factor \\(a_i\\)\n\n\n\n\nA lightcone connects these simulations\nto an observer at \\(a = 1\\)\n\n\n\n\nWe slice the volume into 2D mass planes\nacross comoving distance bins\n\n\n\n\nEach redshift bin receives contributions\nfrom the slabs in front of it\nBorn approximation\n\n\n\n\n\nBorn Approximation for Convergence\n\n\n\\[\n\\kappa(\\boldsymbol{\\theta}) = \\int_0^{r_s} dr \\, W(r, r_s) \\, \\delta(\\boldsymbol{\\theta}, r)\n\\]\nWhere the lensing weight is:\n\\[\nW(r, r_s) = \\frac{3}{2} \\, \\Omega_m \\, \\left( \\frac{H_0}{c} \\right)^2 \\, \\frac{r}{a(r)} \\left(1 - \\frac{r}{r_s} \\right)\n\\]\n\n\n\n\n::::\n:::"
+    "text": "Lightcone Model: From 3D Structure to Lensing Observables\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWe simulate the large-scale structure\nforward in time and take snapshots at scale factor \\(a_i\\)\n\n\n\n\nA lightcone connects these simulations\nto an observer at \\(a = 1\\)\n\n\n\n\nWe slice the volume into 2D mass planes\nacross comoving distance bins\n\n\n\n\nEach redshift bin receives contributions\nfrom the slabs in front of it\nBorn approximation\n\n\n\n\n\nBorn Approximation for Convergence\n\n\n\\[\n\\kappa(\\boldsymbol{\\theta}) = \\int_0^{r_s} dr \\, W(r, r_s) \\, \\delta(\\boldsymbol{\\theta}, r)\n\\]\nWhere the lensing weight is:\n\\[\nW(r, r_s) = \\frac{3}{2} \\, \\Omega_m \\, \\left( \\frac{H_0}{c} \\right)^2 \\, \\frac{r}{a(r)} \\left(1 - \\frac{r}{r_s} \\right)\n\\]"
   },
   {
-    "objectID": "paris2025/index.html#explicit-full-field-inference-sampling",
-    "href": "paris2025/index.html#explicit-full-field-inference-sampling",
+    "objectID": "paris2025/index.html#can-we-start-doing-inference",
+    "href": "paris2025/index.html#can-we-start-doing-inference",
     "title": "JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations",
-    "section": "Explicit Full-Field Inference (sampling)",
-    "text": "Explicit Full-Field Inference (sampling)"
+    "section": "Can we start doing inference?",
+    "text": "Can we start doing inference?\nThe impact of resolution on simulation accuracy\n\n\n\n\n\n\n512^3 Resolution mesh\n\n\n\n\n\n\n\n256^3 Resolution mesh\n\n\n\n\n\n\n\n64^3 Resolution mesh\n\n\n\n\n\n\n\n\n\n\n\n\nPower Spectrum Comparison\n\n\n\n\n\n\n\nBiased Posterior Plot"
   },
   {
-    "objectID": "paris2025/index.html#distributed-fast-fourier-transform",
-    "href": "paris2025/index.html#distributed-fast-fourier-transform",
+    "objectID": "paris2025/index.html#approximating-the-small-scales",
+    "href": "paris2025/index.html#approximating-the-small-scales",
     "title": "JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations",
-    "section": "Distributed Fast Fourier Transform",
-    "text": "Distributed Fast Fourier Transform\n➢  only operation that requires communication is the FFT\n\nJaxdecomp\n\n\nimport jax\nimport jax.numpy as jnp\n\nfield = jax.random.normal(jax.random.PRNGKey(0), (1024, 1024, 1024))\nk_field = jnp.fft.fftn(field)\n\n\n\n\nL’opération qui nécessite le plus de communication dans une simulation distribuée est la transformée de Fourier rapide (FFT).\nL’utilisation sur un seul GPU est triviale"
+    "section": "Approximating the Small Scales",
+    "text": "Approximating the Small Scales\n\n\n \nDynamic resultion grid\n\n We can use a dynamic resolution that automatically refines the grid to match the density regaions blabla\n  very difficult to differentialte and slow to compute\n\n\n\n\n\n\nDynamic Resolution Grid\n\n\n\n\n\n\nMultigrid Methods\n\n Multigrid solves the Poisson equation efficiently by combining coarse and fine grids\n It’s still an approximation — it does not match the accuracy of solving on a uniformly fine grid\n At high fidelity, fine-grid solvers outperform multigrid in recovering small-scale structure — critical for unbiased inference\n\n\n\nTakeaway\n\n\nFor reliable inference, uniform fine-resolution simulations are still the gold standard — ensuring accurate gradients and unbiased posteriors.\n\n\n\n\n\n\n\n\nMultigrid\n\n\n\n\n\n\n\nMultigrid"
   },
   {
-    "objectID": "paris2025/index.html#distributed-fast-fourier-transform-1",
-    "href": "paris2025/index.html#distributed-fast-fourier-transform-1",
+    "objectID": "paris2025/index.html#scaling-up-the-lsst-challenge",
+    "href": "paris2025/index.html#scaling-up-the-lsst-challenge",
     "title": "JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations",
-    "section": "Distributed Fast Fourier Transform",
-    "text": "Distributed Fast Fourier Transform\n➢  only operation that requires communication is the FFT\n\nJaxdecomp\n\n DifferentiableUniverseInitiative/jaxDecomp\n\n\n\n\nimport jax\nimport jax.numpy as jnp\nimport jaxdecomp\n\nmesh = jax.make_mesh((2, 2), axis_names=('x', 'y'))\nsharding = jax.sharding.NamedSharding(mesh, P('x', 'y'))\n\n# Create gaussian field distributed across the mesh\nfield = jax.make_array_from_single_device_arrays(\n        shape=mesh_shape,\n        sharding=sharding,\n        arrays=[jax.random.normal(jax.random.PRNGKey(rank), (512, 512, 1024))])\n\nk_field = jaxdecomp.fft.pfft3d(field)\n\n\n\n\nJaxDecomp features\n\n\n➢  jaxDecomp supports 2D and 1D decompositions\n➢  Works for multi-node FFTs\n➢  is differentiable\n➢  The package is also provided as a standalone library"
+    "section": "Scaling Up: The LSST Challenge",
+    "text": "Scaling Up: The LSST Challenge\n\n\nLSST Scan Range\n\nCovers ~18,000 deg² (~44% of the sky)\nRedshift reach: up to z ≈ 3\nArcminute-scale resolution\nRequires simulations spanning thousands of Mpc in depth and width\n\n\n\n\n\nLSST Survey Footprint\n\n\n\n\nSimulating even a (1 Gpc/h)³ subvolume at 1024³ mesh resolution requires:\n\n~48 GB of memory for a simulation with a single snapshot\nGradient-based inference and multi-step evolution push that beyond 100–200 GB\n\n\n\n\n\n\nTakeaway\n\n\nLSST-scale cosmological inference demands multiple (Gpc/h)³ simulations at high resolution.\nModern high-end GPUs cap at ~80 GB, so even a single box requires multi-GPU distributed simulation — both for memory and compute scalability.\n\n\n\n\n\n\nJean Zay HPC - IDRIS"
+  },
+  {
+    "objectID": "paris2025/index.html#distributed-particle-mesh-simulation",
+    "href": "paris2025/index.html#distributed-particle-mesh-simulation",
+    "title": "JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations",
+    "section": "Distributed Particle Mesh Simulation",
+    "text": "Distributed Particle Mesh Simulation\n\n\n\n\n\n\n\nParticle Mesh Simulation\n\n\n\n\n\n\n\nParticle Mesh Simulation\n\n\n\n\n\n\n\nParticle Mesh Simulation\n\n\n\n\n\n\nForce Computation is Easy to Parallelize\n\nPoisson’s equation in Fourier space:\n\\[\n\\nabla^2 \\phi = -4\\pi G \\rho\n\\]\nGravitational force in Fourier space:\n\\[\n\\mathbf{f}(\\mathbf{k}) = i\\mathbf{k}k^{-2}\\rho(\\mathbf{k})\n\\]\nEach Fourier mode \\(\\mathbf{k}\\) can be computed independently using JAX\n\nPerfect for large-scale, parallel GPU execution\n\n\n\n\n\n\n\n\n\n\nFourier Transform requires global communication"
+  },
+  {
+    "objectID": "paris2025/index.html#jaxdecomp-distributed-3d-fft-for-particle-mesh-simulations",
+    "href": "paris2025/index.html#jaxdecomp-distributed-3d-fft-for-particle-mesh-simulations",
+    "title": "JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations",
+    "section": "jaxDecomp: Distributed 3D FFT for Particle Mesh Simulations",
+    "text": "jaxDecomp: Distributed 3D FFT for Particle Mesh Simulations\n\n\n\nDistributed 3D FFT using domain decomposition\n\nFully differentiable, runs on multi-GPU and multi-node setups\n\nDesigned as a drop-in replacement for jax.numpy.fft.fftn\n\nOpen source and available on PyPI"
+  },
+  {
+    "objectID": "paris2025/index.html#distributed-particle-mesh-simulation-1",
+    "href": "paris2025/index.html#distributed-particle-mesh-simulation-1",
+    "title": "JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations",
+    "section": "Distributed Particle Mesh Simulation",
+    "text": "Distributed Particle Mesh Simulation\n\n\n\n\nParticle Mesh Simulation"
+  },
+  {
+    "objectID": "paris2025/index.html#cloud-in-cell-cic-interpolation",
+    "href": "paris2025/index.html#cloud-in-cell-cic-interpolation",
+    "title": "JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations",
+    "section": "Cloud In Cell (CIC) Interpolation",
+    "text": "Cloud In Cell (CIC) Interpolation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMass Assignment and Readout\nThe Cloud-In-Cell (CIC) scheme spreads particle mass to nearby grid points using a linear kernel:\n\nPaint to Grid (mass deposition): \\[\ng(\\mathbf{j}) = \\sum_i m_i \\prod_{d=1}^{D} \\left(1 - \\left|p_i^d - j_d\\right|\\right)\n\\]\nRead from Grid (force interpolation): \\[\nv_i = \\sum_{\\mathbf{j}} g(\\mathbf{j}) \\prod_{d=1}^{D} \\left(1 - \\left|p_i^d - j_d\\right|\\right)\n\\]"
+  },
+  {
+    "objectID": "paris2025/index.html#distributed-cloud-in-cell-cic-interpolation",
+    "href": "paris2025/index.html#distributed-cloud-in-cell-cic-interpolation",
+    "title": "JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations",
+    "section": "Distributed Cloud In Cell (CIC) Interpolation",
+    "text": "Distributed Cloud In Cell (CIC) Interpolation\n\n\n\n\n\n\nSub Domain 1 (Particles)\n\n\n\n\n\n\n\nSub Domain 1 (Grid)\n\n\n\n\n\n\n\nSub Domain 1 (Read out)\n\n\n\n\n\n\n\n\n\n\n\nSub Domain 1 & Halo (Particles)\n\n\n\n\n\n\n\nSub Domain 1 & Halo (Grid)\n\n\n\n\n\n\n\nSub Domain 2 & Halo (Grid)"
   },
   {
     "objectID": "csi2024/index.html#accelerating-bayesian-inference-in-cosmology",
