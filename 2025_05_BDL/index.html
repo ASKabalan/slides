@@ -159,7 +159,7 @@
 <div class="r-stack">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/bayes/freq_pipeline_4.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+<p><img data-src="assets/latest/trad_cosmo.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -172,6 +172,7 @@
 <li>Compute <strong>likelihood</strong>: <span class="math inline">\(L(\Omega \vert data)\)</span></li>
 <li>Estimate <span class="math inline">\(\hat{\Omega}\)</span> via <strong>maximization</strong> (<span class="math inline">\(\chi^2\)</span> fitting)</li>
 </ul>
+</div></div>
 <div class="fragment fade-in" data-fragment-index="1">
 <div class="solutionbox">
 <div class="solutionbox-header" style="font-size: 20px;">
@@ -186,7 +187,6 @@
 </div>
 </div>
 </div>
-</div></div>
 <aside class="notes">
 <p>“Most of modern cosmological inference pipelines rely on summary statistics — things like the power spectrum P(k)P(k) or angular power spectrum CℓCℓ​.”</p>
 <p>“These work well under the assumption that most of the information is encoded in second-order statistics — basically, the correlations between pairs of points.”</p>
@@ -205,79 +205,203 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="from-summary-statistics-to-full-field-inference---weak-lensing-example" class="slide level2" style="font-size: 19px;">
-<h2>From Summary Statistics to Full-Field Inference - Weak Lensing Example</h2>
-<div class="columns">
-<div class="column" style="width:60%;">
+<section id="the-traditional-approach-to-cosmological-inference-1" class="slide level2" style="font-size: 22px;">
+<h2>The Traditional Approach to Cosmological Inference</h2>
+<p><br></p>
 <div class="r-stack">
 <div class="fragment fade-out" data-fragment-index="1">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/FFI/implicit_inference.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+<p><img data-src="assets/latest/summ_stat.png" style="width:80.0%" data-text-align="right"></p>
+<figcaption>Credit: Natalia Porqueres</figcaption>
 </figure>
 </div>
 </div>
 <div class="fragment fade-in" data-fragment-index="1">
-<div class="fragment fade-out" data-fragment-index="4">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/bayes/FFI_full.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+<p><img data-src="assets/latest/bad_posterior.png" style="width:50.0%"></p>
+<figcaption><a href="https://arxiv.org/abs/2403.02314">Jeffrey et al.&nbsp;(2024)</a></figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div class="fragment fade-in" data-fragment-index="4">
+<div class="solutionbox">
+<div class="solutionbox-body" style="font-size: 26px;">
+<ul>
+<li><strong>Summary statistics (e.g.&nbsp;P(k)) discard the non-Gaussian features.</strong></li>
+<li><strong>Gradient-based curve fitting does not recover the true posterior shape.</strong></li>
+</ul>
+</div>
+</div>
+</section>
+<section>
+<section id="how-to-maximize-the-information-gain" class="title-slide slide level1 center">
+<h1>How to maximize the information gain?</h1>
+
+</section>
+<section id="from-summary-statistics-to-likelihood-free-inference" class="slide level2" style="font-size: 19px;">
+<h2>From Summary Statistics to Likelihood Free Inference</h2>
+<p><br></p>
+<div class="r-stack">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/FFI/FFI_nbody_focus.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+<p><img data-src="assets/latest/likelihood_free_cosmo.svg" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
 </figure>
+</div>
+</div>
+<div class="fragment fade-in" data-fragment-index="1">
+<h3 id="bayes-theorem">Bayes’ Theorem</h3>
+<p><span class="math display">\[
+p(\theta \mid x_0) \propto p(x_0 \mid \theta) \cdot p(\theta)
+\]</span></p>
+<ul>
+<li><strong>Prior</strong>: Encodes our assumptions about parameters <span class="math inline">\(\theta\)</span></li>
+<li><strong>Likelihood</strong>: How likely the data <span class="math inline">\(x_0\)</span> is given <span class="math inline">\(\theta\)</span></li>
+<li><strong>Posterior</strong>: What we want to learn — how data updates our belief about <span class="math inline">\(\theta\)</span></li>
+</ul>
+</div>
+<div class="fragment fade-in" data-fragment-index="2">
+<div class="solutionbox">
+<div class="solutionbox-body" style="font-size: 24px;">
+<ul>
+<li><strong>Simulators become the bridge between cosmological parameters and observables.</strong></li>
+<li><strong>How to use simulators allow us to go beyond summary statistics?</strong></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="from-summary-statistics-to-likelihood-free-inference-1" class="slide level2" style="font-size: 19px;">
+<h2>From Summary Statistics to Likelihood Free Inference</h2>
+<p><br></p>
+<div class="columns">
+<div class="column" style="width:60%;">
+<h4 id="implicit-inference"><strong>Implicit Inference</strong></h4>
+<ul>
+<li><p>Treats the simulator as a <strong>black box</strong> — we only require the ability to simulate <span class="math inline">\((\theta, x)\)</span> pairs.</p></li>
+<li><p>No need for an explicit likelihood — instead, use <strong>simulation-based inference</strong> (SBI) techniques</p></li>
+<li><p>Often relies on <strong>compression</strong> to summary statistics <span class="math inline">\(t = f_\phi(x)\)</span>, then approximates <span class="math inline">\(p(\theta \mid t)\)</span>.</p></li>
+</ul>
+<p><br></p>
+<h4 id="explicit-inference"><strong>Explicit Inference</strong></h4>
+<ul>
+<li><p>Requires a <strong>differentiable forward model</strong> or simulator.</p></li>
+<li><p>Treat the simulator as a probabilistic model and perform inference over the joint posterior <span class="math inline">\(p(x \mid \theta, z)\)</span></p></li>
+<li><p>Computationally demanding — but provides <strong>exact control over the statistical model</strong>.</p></li>
+</ul>
+</div><div class="column" style="width:40%;">
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/likelihood_free_SBI.svg" style="width:80.0%"></p>
+<figcaption>Implicit Inference</figcaption>
+</figure>
+</div>
+</div>
+<div class="fragment fade-in" data-fragment-index="1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/likelihood_free_ffi.svg" style="width:90.0%"></p>
+<figcaption>Explicit Inference</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="implicit-inference-1" class="slide level2" style="font-size: 20px;">
+<h2>Implicit inference</h2>
+<h4 id="simulation-based-inference-loop">Simulation-Based Inference Loop</h4>
+<ul>
+<li>Sample parameters <span class="math inline">\(\theta_i \sim p(\theta)\)</span></li>
+<li>Run simulator <span class="math inline">\(x_i = p(x \vert \theta_i)\)</span></li>
+<li>Compress observables <span class="math inline">\(t_i = f_\phi(x_i)\)</span></li>
+<li>Train a <strong>density estimator</strong> <span class="math inline">\(\hat{p}_\Phi(\theta \mid f_\phi(x))\)</span></li>
+</ul>
+<div class="r-stack">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/illu_compressor.svg" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
+</figure>
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="2">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/neural_comp.png" class="quarto-figure quarto-figure-center" style="width:40.0%"></p>
+</figure>
+</div>
+</div>
+<div class="fragment fade-in" data-fragment-index="3">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/normal_flows.png" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="fragment fade-in" data-fragment-index="1">
+<div class="solutionbox">
+<div class="solutionbox-body" style="font-size: 19px;">
+<ul>
+<li><strong>Neural Summarisation (Zeghal &amp; Lanzieri et al 2025).</strong></li>
+<li><strong>Normalizing Flows (Zeghal et al.&nbsp;2022).</strong></li>
+<li><strong>✅ Works with non-differentiable or stochastic simulators</strong></li>
+<li><strong>❌ Requires an optimal compression function <span class="math inline">\(f_\phi\)</span></strong></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="explicit-inference-1" class="slide level2" style="font-size: 20px;">
+<h2>Explicit inference</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p>The goal is to reconstruct the <strong>entire latent structure</strong> of the Universe — not just compress it into summary statistics. To do this, we jointly infer:</p>
+<p><span class="math display">\[
+p(\theta, z \mid x) \propto p(x \mid \theta, z) \, p(z \mid \theta) \, p(\theta)
+\]</span></p>
+<p><strong>Where:</strong></p>
+<ul>
+<li><p><span class="math inline">\(\theta\)</span>: cosmological parameters (e.g.&nbsp;matter density, dark energy, etc.)</p></li>
+<li><p><span class="math inline">\(z\)</span>: latent fields (e.g.&nbsp;initial conditions of the density field)</p></li>
+<li><p><span class="math inline">\(x\)</span>: observed data (e.g.&nbsp;convergence maps or galaxy fields)</p></li>
+</ul>
+<div class="fragment fade-in" data-fragment-index="1">
+<div class="solutionbox">
+<div class="solutionbox-header" style="font-size: 19px;">
+<p>The challenge of explicit inference</p>
+</div>
+<div class="solutionbox-body" style="font-size: 16px;">
+<ul>
+<li><p>The latent variables <span class="math inline">\(z\)</span> typically live in <strong>very high-dimensional spaces</strong> — with millions of degrees of freedom.</p></li>
+<li><p>Sampling in this space is <strong>intractable using traditional inference techniques</strong>.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="fragment fade-in" data-fragment-index="1">
+<div class="solutionbox">
+<div class="solutionbox-body" style="font-size: 16px;">
+<ul>
+<li>We need samplers that can scale efficiently to high-dimensional latent spaces and Exploit <strong>gradients</strong> from differentiable simulators</li>
+<li>This makes <strong>differentiable simulators</strong> essential for modern cosmological inference.</li>
+<li><strong>Particle Mesh (PM)</strong> simulations offer a scalable and differentiable solution.</li>
+</ul>
 </div>
 </div>
 </div>
 </div><div class="column" style="width:40%;">
-<p><br></p>
-<h3 id="implicit-likelihood-free-inference">Implicit (Likelihood-Free) Inference</h3>
-<ul>
-<li>Simulator is a <strong>blackbox</strong><br>
-</li>
-<li>No tractable likelihood<br>
-</li>
-<li>Only sample from the joint distribution <span class="math inline">\(p(Obs \vert \Omega)\)</span></li>
-<li>Example : <strong>Simulation-based inference (SBI)</strong></li>
-</ul>
-<div class="fragment fade-in" data-fragment-index="1">
-<h3 id="explicit-full-field-inference">Explicit (Full-Field) Inference</h3>
-<ul>
-<li><strong>Forward model</strong> is differentiable</li>
-<li>Likelihood in pixel space</li>
-<li>Treat the simulator as a probabilistic model and perform inference over the joint posterior <span class="math inline">\(p(Obs \vert \Omega , z)\)</span></li>
-<li>Example : <strong>Hierarchical Bayesian Modeling (HBM)</strong></li>
-</ul>
+<div class="r-stack">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/likelihood_free_ffi.svg" style="width:90.0%"></p>
+<figcaption>Explicit Inference</figcaption>
+</figure>
+</div>
 </div>
 </div></div>
-<div class="fragment fade-in" data-fragment-index="3">
-<div class="solutionbox">
-<div class="solutionbox-body" style="font-size: 18px; border: 3px solid;">
-<ul>
-<li>We need fast and <strong>differentiable simulators</strong> to enable gradient-based inference in cosmology.</li>
-<li><strong>Particle Mesh</strong> (PM) simulations are a promising approach.</li>
-</ul>
-</div>
-</div>
-</div>
-<aside class="notes">
-
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section id="particle-mesh-simulations" class="slide level2" style="font-size: 19px;">
 <h2>Particle Mesh Simulations</h2>
@@ -332,18 +456,28 @@
 </div>
 </div>
 </div>
-</section>
-<section id="from-3d-structure-to-lensing-observables" class="slide level2" style="font-size: 19px;">
-<h2>From 3D Structure to Lensing Observables</h2>
+</section></section>
+<section>
+<section id="using-full-field-inference-with-weak-lensing" class="title-slide slide level1 center">
+<h1>Using Full-Field Inference with Weak Lensing</h1>
 <div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/bayes/FFI_full.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+<div class="fragment fade-in" data-fragment-index="1">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="assets/FFI/FFI_wl_focus.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
+</div>
 </section>
-<section id="from-3d-structure-to-lensing-observables-1" class="slide level2" data-visibility="uncounted" style="font-size: 19px;">
+<section id="from-3d-structure-to-lensing-observables" class="slide level2" data-visibility="uncounted" style="font-size: 19px;">
 <h2>From 3D Structure to Lensing Observables</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
@@ -403,7 +537,7 @@ W(r, r_s) = \frac{3}{2} \, \Omega_m \, \left( \frac{H_0}{c} \right)^2 \, \frac{r
 </div>
 </div>
 </div></div>
-</section>
+</section></section>
 <section>
 <section id="can-we-start-doing-inference" class="title-slide slide level1 center">
 <h1>Can we start doing inference?</h1>
@@ -731,7 +865,7 @@ v_i = \sum_{\mathbf{j}} g(\mathbf{j}) \prod_{d=1}^{D} \left(1 - \left|p_i^d - j_
 <div class="r-stack">
 <div class="fragment fade-in-then-out" data-fragment-index="1">
 <h3 id="without-halo-exchange-not-distributed">Without Halo Exchange (Not Distributed)</h3>
-<div class="quarto-layout-panel" data-layout-ncol="3" data-align="center">
+<div class="quarto-layout-panel" data-align="center" data-layout-ncol="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
@@ -762,7 +896,7 @@ v_i = \sum_{\mathbf{j}} g(\mathbf{j}) \prod_{d=1}^{D} \left(1 - \left|p_i^d - j_
 </div>
 <div class="fragment fade-in" data-fragment-index="2">
 <h3 id="with-halo-exchange-distributed">With Halo Exchange (Distributed)</h3>
-<div class="quarto-layout-panel" data-layout-ncol="3" data-align="center">
+<div class="quarto-layout-panel" data-align="center" data-layout-ncol="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
@@ -1073,17 +1207,12 @@ d_i &amp;= d_{i+1} - v_i \, \Delta t
 <p><br></p>
 <div class="solutionbox">
 <div class="solutionbox-header">
-<p><strong>Ongoing and Future Work</strong></p>
+<p><strong>For discussion</strong></p>
 </div>
 <div class="solutionbox-body">
 <ul>
-<li><p>Scale to <strong>larger simulation volumes</strong> (e.g., 2 Gpc/h and beyond)</p></li>
-<li><p>Apply to real <strong>DES</strong> data as a stepping stone toward <strong>LSST</strong></p></li>
-<li><p>Incorporate <strong>more accurate weak lensing physics</strong>:</p>
-<ul>
-<li>Higher-fidelity <strong>shear</strong> &amp; <strong>spherical convergence maps</strong></li>
-</ul></li>
-<li><p>Complete <strong>validation</strong>, and extract <strong>cosmological parameter constraints</strong></p></li>
+<li><p><strong>Using Scattering Transform to compress the data with SBI</strong></p></li>
+<li><p><strong>Using Excplicit Inference for CMB r estimation</strong></p></li>
 </ul>
 </div>
 </div>
