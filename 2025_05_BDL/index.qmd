@@ -79,7 +79,7 @@ logo1 : '
 ::::: {.r-stack}
 
 
-![](assets/bayes/freq_pipeline_4.svg){fig-align="center" width="100%"}
+![](assets/latest/trad_cosmo.svg){fig-align="center" width="100%"}
 
 :::::
 
@@ -97,6 +97,11 @@ logo1 : '
 - Extract **summary statistics**: $P(k)$, $C_\ell$ , 2PCF
 - Compute **likelihood**: $L(\Omega \vert data)$
 - Estimate $\hat{\Omega}$ via **maximization** ($\chi^2$ fitting)
+
+
+::::
+
+:::
 
 :::::: {.fragment fragment-index=1 .fade-in}
 
@@ -121,9 +126,6 @@ logo1 : '
 
 :::::: 
 
-::::
-
-:::
 
 ::: {.notes}
 
@@ -141,79 +143,248 @@ Even higher-order statistics (like bispectrum or 3-point correlations) still red
 
 ---
 
+## The Traditional Approach to Cosmological Inference {style="font-size: 22px;"}
 
-## From Summary Statistics to Full-Field Inference - Weak Lensing Example {style="font-size: 19px;"}
 
-:::: {.columns}
+<br/>
+
+::: {.r-stack}
+
+:::::: {.fragment fragment-index=1 .fade-out}
+![Credit: Natalia Porqueres](assets/latest/summ_stat.png){fig-align="center" width="80%" text-align="right"}
+::::::
+:::::: {.fragment fragment-index=1 .fade-in}
+![[Jeffrey et al. (2024)](https://arxiv.org/abs/2403.02314)](assets/latest/bad_posterior.png){fig-align="center" width="50%"}
+::::::
+:::
+
+:::{.solutionbox}
+
+:::: {.solutionbox-body style="font-size: 26px;"}
+ - **Summary statistics (e.g. P(k)) discard the non-Gaussian features.**
+ - **Gradient-based curve fitting does not recover the true posterior shape.**
+::::
+
+:::
+
+#  How to maximize the information gain? 
+
+---
+
+## From Summary Statistics to Likelihood Free Inference {style="font-size: 19px;"}
+
+<br/>
+
+::: {.r-stack}
+![](assets/latest/likelihood_free_cosmo.svg){fig-align="center" width="60%"}
+:::
+
+
+:::::: {.fragment fragment-index=1 .fade-in}
+
+### Bayes’ Theorem
+
+$$
+p(\theta \mid x_0) \propto p(x_0 \mid \theta) \cdot p(\theta)
+$$
+
+* **Prior**: Encodes our assumptions about parameters $\theta$
+* **Likelihood**: How likely the data $x_0$ is given $\theta$
+* **Posterior**: What we want to learn — how data updates our belief about $\theta$
+
+::::::
+
+:::::: {.fragment fragment-index=2 .fade-in}
+
+
+
+::: {.solutionbox}
+
+:::: {.solutionbox-body style="font-size: 24px;"}
+
+* **Simulators become the bridge between cosmological parameters and observables.**
+* **How to use simulators allow us to go beyond summary statistics?**
+::::
+
+:::
+
+::::::
+
+---
+
+## From Summary Statistics to Likelihood Free Inference {style="font-size: 19px;"}
+
+
+<br/>
+
+::: {.columns}
+
 
 :::: {.column width="60%"}
 
-::::: {.r-stack}
+#### **Implicit Inference**
 
-:::::: {.fragment fragment-index=1 .fade-out}
-![](assets/FFI/implicit_inference.svg){fig-align="center" width="100%"}
-::::::
+* Treats the simulator as a **black box** — we only require the ability to simulate $(\theta, x)$ pairs.
 
-:::::: {.fragment fragment-index=1 .fade-in}
-:::::: {.fragment fragment-index=4 .fade-out}
-![](assets/bayes/FFI_full.svg){fig-align="center" width="100%"}
-::::::
-::::::
+* No need for an explicit likelihood — instead, use **simulation-based inference** (SBI) techniques
 
-:::::: {.fragment fragment-index=4 .fade-in}
-![](assets/FFI/FFI_nbody_focus.svg){fig-align="center" width="100%"}
-::::::
+* Often relies on **compression** to summary statistics $t = f_\phi(x)$, then approximates $p(\theta \mid t)$.
 
-:::::
+
+<br/>
+
+#### **Explicit Inference**
+
+* Requires a **differentiable forward model** or simulator.
+
+* Treat the simulator as a probabilistic model and perform inference over the joint posterior $p(x \mid \theta, z)$
+
+* Computationally demanding — but provides **exact control over the statistical model**.
 
 ::::
 
 :::: {.column width="40%"}
 
-<br/>
 
 
-### Implicit (Likelihood-Free) Inference
+::: {.r-stack}
 
-- Simulator is a **blackbox**  
-- No tractable likelihood  
-- Only sample from the joint distribution $p(Obs \vert \Omega)$
-- Example : **Simulation-based inference (SBI)**
+:::::: {.fragment fragment-index=1 .fade-out}
+![Implicit Inference](assets/latest/likelihood_free_SBI.svg){fig-align="center" width="80%"}
+::::::
+
+:::::: {.fragment fragment-index=1 .fade-in}
+
+![Explicit Inference](assets/latest/likelihood_free_ffi.svg){fig-align="center" width="90%"}
+
+::::
+
+
+:::
+
+::::
+
+:::
+
+---
+
+
+
+## Implicit inference {style="font-size: 20px;"}
+
+#### Simulation-Based Inference Loop 
+
+ - Sample parameters $\theta_i \sim p(\theta)$
+ - Run simulator $x_i = p(x \vert \theta_i)$
+ - Compress observables $t_i = f_\phi(x_i)$
+ - Train a **density estimator** $\hat{p}_\Phi(\theta \mid f_\phi(x))$
+
+::: {.r-stack}
+
+![](assets/latest/illu_compressor.svg){fig-align="center" width="70%"}
+
+:::::: {.fragment fragment-index=2 .fade-in-then-out}
+
+![](assets/latest/neural_comp.png){fig-align="center" width="40%"}
+::::::
+
+:::::: {.fragment fragment-index=3 .fade-in}
+
+![](assets/latest/normal_flows.png){fig-align="center" width="60%"}
+::::::
+
+:::
+
+:::::: {.fragment fragment-index=1 .fade-in}
+
+::: {.solutionbox}
+
+:::: {.solutionbox-body style="font-size: 19px;"}
+
+* **Neural Summarisation (Zeghal & Lanzieri et al 2025).**
+* **Normalizing Flows (Zeghal et al. 2022).**
+* **✅ Works with non-differentiable or stochastic simulators**
+* **❌ Requires an optimal compression function $f_\phi$**
+::::
+
+:::
+
+::::::
+
+---
+
+## Explicit inference {style="font-size: 20px;"}
+
+::: {.columns}
+
+:::: {.column width="60%"}
+
+The goal is to reconstruct the **entire latent structure** of the Universe — not just compress it into summary statistics.
+To do this, we jointly infer:
+
+$$
+p(\theta, z \mid x) \propto p(x \mid \theta, z) \, p(z \mid \theta) \, p(\theta)
+$$
+
+**Where:**
+
+* $\theta$: cosmological parameters (e.g. matter density, dark energy, etc.)
+
+* $z$: latent fields (e.g. initial conditions of the density field)
+
+* $x$: observed data (e.g. convergence maps or galaxy fields)
+
 
 
 :::::: {.fragment fragment-index=1 .fade-in}
 
-### Explicit (Full-Field) Inference
+::: {.solutionbox}
 
-- **Forward model** is differentiable 
-- Likelihood in pixel space 
-- Treat the simulator as a probabilistic model and perform inference over the joint posterior $p(Obs \vert \Omega , z)$
-- Example : **Hierarchical Bayesian Modeling (HBM)**
-::::::
-
-::::
+::: {.solutionbox-header style="font-size: 19px;"}
+The challenge of explicit inference
 
 :::
 
-:::::: {.fragment fragment-index=3 .fade-in}
+:::: {.solutionbox-body style="font-size: 16px;"}
 
-:::{.solutionbox}
+* The latent variables $z$ typically live in **very high-dimensional spaces** — with millions of degrees of freedom.
 
+* Sampling in this space is **intractable using traditional inference techniques**.
 
-
-:::: {.solutionbox-body style="font-size: 18px; border: 3px solid;"}
- - We need fast and **differentiable simulators** to enable gradient-based inference in cosmology.
- - **Particle Mesh** (PM) simulations are a promising approach.
 ::::
 
 :::
 
 ::::::
 
-::: {.notes}
 
+:::::: {.fragment fragment-index=1 .fade-in}
+
+::: {.solutionbox}
+
+:::: {.solutionbox-body style="font-size: 16px;"}
+
+* We need samplers that can scale efficiently to high-dimensional latent spaces and Exploit **gradients** from differentiable simulators
+* This makes **differentiable simulators** essential for modern cosmological inference.
+* **Particle Mesh (PM)** simulations offer a scalable and differentiable solution.
+::::
 
 :::
+
+::::::
+
+::::
+
+:::: {.column width="40%"}
+
+::: {.r-stack}
+![Explicit Inference](assets/latest/likelihood_free_ffi.svg){fig-align="center" width="90%"}
+:::
+
+::::
+
+:::
+
 
 ---
 
@@ -280,13 +451,20 @@ Even higher-order statistics (like bispectrum or 3-point correlations) still red
 
 :::::
 
----
 
-## From 3D Structure to Lensing Observables {style="font-size: 19px;"}
+# Using Full-Field Inference with Weak Lensing
 
 ::: {.r-stack}
 
+:::::: {.fragment fragment-index=1 .fade-out}
+![](assets/bayes/FFI_full.svg){fig-align="center" width="100%"}
+::::::
+
+:::::: {.fragment fragment-index=1 .fade-in}
+
 ![](assets/FFI/FFI_wl_focus.svg){fig-align="center" width="100%"}
+
+::::::
 
 :::
 
@@ -852,6 +1030,7 @@ Over many steps, the memory demand scales **linearly** — which becomes a bottl
 
 :::::
 
+
 ::::
 
 :::
@@ -1031,18 +1210,14 @@ What JAXPM v0.1.5 Supports
 ::: {.solutionbox}
 
 :::: {.solutionbox-header}
-**Ongoing and Future Work**
+**For discussion**
 ::::
 
 :::: {.solutionbox-body}
 
-* Scale to **larger simulation volumes** (e.g., 2 Gpc/h and beyond)
-* Apply to real **DES** data as a stepping stone toward **LSST**
-* Incorporate **more accurate weak lensing physics**:
+ - **Using Scattering Transform to compress the data with SBI**
 
-  * Higher-fidelity **shear** & **spherical convergence maps**
-* Complete **validation**, and extract **cosmological parameter constraints**
-
+ - **Using Excplicit Inference for CMB r estimation**
 
 ::::
 
