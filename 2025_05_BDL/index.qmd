@@ -1223,7 +1223,7 @@ What JAXPM v0.1.5 Supports
 
 :::
 
----
+# Extra slides
 
 ## Approximating the Small Scales {style="font-size: 19px;"}
 
@@ -1273,8 +1273,6 @@ What JAXPM v0.1.5 Supports
 ![Multigrid](assets/latest/multi_grid_1.svg){fig-align="center" width="70%"}
 
 :::::
-
-
 
 ::::
 
