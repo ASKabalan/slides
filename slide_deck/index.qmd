@@ -1,0 +1,15 @@
+---
+title: "Slide Deck"
+
+author: "Wassim Kabalan"
+title-slide-attributes:
+  data-background-image: "assets/00_Images/titles/bayes_title.png"
+  data-background-size: fill
+  data-background-opacity: "0.5"
+format:
+  revealjs:
+    theme: css/custom.scss
+    incremental: false   
+    transition: slide
+    background-transition: slide
+---
