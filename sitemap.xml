@@ -1,31 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://ASKabalan.github.io/slides/2024_10_CSI/index.html</loc>
-    <lastmod>2025-06-08T08:51:20.289Z</lastmod>
-  </url>
-  <url>
     <loc>https://ASKabalan.github.io/slides/2025_05_BDL/index.html</loc>
-    <lastmod>2025-06-08T08:51:20.290Z</lastmod>
+    <lastmod>2025-07-16T09:15:14.089Z</lastmod>
   </url>
   <url>
-    <loc>https://ASKabalan.github.io/slides/2024_06_LSST_FR/index.html</loc>
-    <lastmod>2025-06-08T08:51:20.289Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ASKabalan.github.io/slides/template/index.html</loc>
-    <lastmod>2025-06-08T08:51:21.415Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ASKabalan.github.io/slides/2024_11_CoPhy/index.html</loc>
-    <lastmod>2025-06-08T08:51:20.290Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ASKabalan.github.io/slides/2025_05_BDL_School/index.html</loc>
-    <lastmod>2025-06-08T08:51:20.291Z</lastmod>
+    <loc>https://ASKabalan.github.io/slides/slide_deck/index.html</loc>
+    <lastmod>2025-07-16T09:15:15.220Z</lastmod>
   </url>
   <url>
     <loc>https://ASKabalan.github.io/slides/index.html</loc>
-    <lastmod>2025-06-08T08:51:21.414Z</lastmod>
+    <lastmod>2025-07-16T09:15:15.220Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ASKabalan.github.io/slides/2025_07_CSI/index.html</loc>
+    <lastmod>2025-07-16T09:15:14.089Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ASKabalan.github.io/slides/template/index.html</loc>
+    <lastmod>2025-07-16T09:15:15.220Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ASKabalan.github.io/slides/2024_11_CoPhy/index.html</loc>
+    <lastmod>2025-07-16T09:15:14.088Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ASKabalan.github.io/slides/2024_06_LSST_FR/index.html</loc>
+    <lastmod>2025-07-16T09:15:14.087Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ASKabalan.github.io/slides/2025_05_BDL_School/index.html</loc>
+    <lastmod>2025-07-16T09:15:14.089Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ASKabalan.github.io/slides/2024_10_CSI/index.html</loc>
+    <lastmod>2025-07-16T09:15:14.088Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ASKabalan.github.io/slides/example_diagram/diagram.html</loc>
+    <lastmod>2025-07-16T09:15:15.218Z</lastmod>
   </url>
 </urlset>

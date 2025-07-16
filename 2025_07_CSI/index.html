@@ -6,12 +6,11 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-234273d1456647dabc34a594ac50e507.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.7.32">
 
   <meta name="author" content="Wassim Kabalan">
-  <meta name="author" content="Alexandre Boucaud, François Lanusse">
-  <title>JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations</title>
+  <title>CSI Presentation 2025</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -29,6 +28,72 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-8b3c6da0781682310500f0ce9cbdf807.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -127,27 +192,492 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-image="assets/titles/bayes_title_1.png" data-background-opacity="0.8" data-background-size="fill" class="center">
-  <h1 class="title"><span style="color:#ffffff; font-size: largest;">JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations</span></h1>
-  <p class="author"><span style="color:#ffffff; font-size: larger;">Wassim Kabalan</span></p>
-  <p class="author"><span style="color:#ffffff; font-size: Smaller;">Alexandre Boucaud, François Lanusse</span></p>
+<section id="title-slide" data-background-image="assets/titles/llst_first_l.webp" data-background-opacity="0.5" data-background-size="fill" class="center">
+  <h1 class="title">CSI Presentation 2025</h1>
+  <p class="author">Wassim Kabalan</p>
   <div style=""></div>
 <div style="margin-top: 20px; text-align: center;align-items: bottom;">
-  <div style="display: flex; justify-content: space-around; align-items: center; layout-valign=" middle"=""> <img src="assets/Logos/AstroDeep-2.png" style="width: 35%;"> <img src="assets/Logos/APC.png" style="width: 20%;"> <img src="assets/Logos/scipol.png" style="width: 35%;"> </div>
+  <img data-src="assets/Logos/AIM.png" class="quarto-figure quarto-figure-center" style="width:10.0%"> <img data-src="assets/Logos/APC.png" class="quarto-figure quarto-figure-center" style="width:10.0%"> <img data-src="assets/Logos/AstroDeep-2.png" class="quarto-figure quarto-figure-center" style="width:10.0%"> <img data-src="assets/Logos/scipol.jpeg" class="quarto-figure quarto-figure-center" style="width:10.0%">
 </div>
 
 </section>
-<section id="outline-for-this-presentation" class="slide level2">
-<h2>Outline for This Presentation</h2>
-<p><br> <br> <br></p>
-<div class="solutionbox">
-<div class="solutionbox-body" style="font-size: 22px; border-radius: 10px; border: 2px solid #3b0a68;">
+<section id="summary-of-projects" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Summary of projects</h2>
+<p><br></p>
+<div data-id="Projects">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Projects/ALL_Projects.svg" class="" style="width:70.0%"></p>
+<figcaption>Projects</figcaption>
+</figure>
+</div>
+</div>
+<aside class="notes">
+<p>Mon sujet de recherche est à cheval entre deux domaines : <strong>la séparation des composants du CMB</strong> dans le cadre du projet <strong>SciPol</strong>, et <strong>le lentillage gravitationnel faible</strong> avec <strong>AstroDeep</strong>. Je vais vous présenter ces deux projets plus en détail dans les prochaines diapositives.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section>
+<section id="cmb-component-separation" class="title-slide slide level1 center">
+<h1>CMB Component Separation</h1>
+
+</section>
+<section id="cosmic-microwave-background---scipol" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Cosmic Microwave Background - Scipol</h2>
+<p><br></p>
+<div data-id="Projects">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Projects/Scipol.svg" class="" style="width:70.0%"></p>
+<figcaption>Projects</figcaption>
+</figure>
+</div>
+</div>
+<aside class="notes">
+<p>On commence par la separation de composants pour le fond diffus cosmologique</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="cosmic-microwave-background" class="slide level2">
+<h2>Cosmic Microwave Background</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/CMB/CMB-Planck.png" class="nostretch quarto-figure quarto-figure-center" style="width:75.0%"></p>
+</figure>
+</div>
+<div class="fragment" data-fragment-index="1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/CMB/Equal_symbol.svg" class="nostretch quarto-figure quarto-figure-center" style="width:10.0%"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/CMB/eb-modes.png" class="nostretch quarto-figure quarto-figure-center" style="width:45.0%"></p>
+</figure>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
 <ul>
-<li><span style="color:#1a237e; font-size: 26px;"><strong>Beyond Summary Statistics Inference in Cosmology</strong></span> <br> <br></li>
-<li><span style="color:#1a237e; font-size: 26px;"><strong>Building N-body Simulators for Cosmological Inference</strong></span> <br> <br></li>
-<li><span style="color:#1a237e; font-size: 26px;"><strong>Modeling Observables: Weak Lensing &amp; Lightcones</strong></span> <br> <br></li>
-<li><span style="color:#1a237e; font-size: 26px;"><strong>Scaling Up: Distributed, Differentiable Simulations</strong></span></li>
+<li>The <strong>Cosmic Microwave Background (CMB)</strong> is the afterglow of the Big Bang, providing a snapshot of the early universe.</li>
 </ul>
+<div class="fragment" data-fragment-index="1">
+<ul>
+<li>The CMB is polarized, consisting of <strong>E and B modes</strong>.</li>
+<li><strong>E modes</strong> are curl-free, generated by density fluctuations.</li>
+<li><strong>B modes</strong> could be evidence of primordial gravitational waves, indicating cosmic inflation.</li>
+<li><strong>The tensor-to-scalar</strong> ratio <span class="math inline">\(r\)</span>, which is the ratio of the tensor power spectrum to the scalar power spectrum</li>
+</ul>
+</div>
+</div></div>
+<aside class="notes">
+<p>Le fond diffus cosmologique, ou CMB, est le rayonnement fossile du Big Bang, qui nous offre une image de l’univers primitif.</p>
+<p>Le CMB est polarisé et se compose de deux types de modes : les <strong>E modes</strong> et les <strong>B modes</strong>.</p>
+<p>Les <strong>E modes</strong> ont un champ rotationnel nul et sont générés par les fluctuations de densité dans l’univers. En revanche, les <strong>B modes</strong>, qui possèdent un champ rotationnel, pourraient indiquer la présence d’ondes gravitationnelles primordiales.</p>
+<p>Un paramètre clé lié à ces <strong>B modes</strong> est le <strong>rapport tensor-surface</strong> <span class="math inline">\(r\)</span>, qui mesure la force relative des ondes gravitationnelles par rapport aux perturbations de densité, ce qui nous aide à mieux comprendre l’inflation cosmique.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="cosmic-microwave-background-1" class="slide level2">
+<h2>Cosmic Microwave Background</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/CMB/CMB-Planck.png" class="nostretch quarto-figure quarto-figure-center" style="width:35.0%"></p>
+</figure>
+</div>
+<div class="fragment" data-fragment-index="1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/CMB/Plus_symbol.svg" class="nostretch quarto-figure quarto-figure-center" style="width:10.0%"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/CMB/dust_planck.png" class="nostretch quarto-figure quarto-figure-center" style="width:35.0%"></p>
+</figure>
+</div>
+</div>
+<div class="fragment" data-fragment-index="2">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/CMB/Plus_symbol.svg" class="nostretch quarto-figure quarto-figure-center" style="width:10.0%"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/CMB/synch-planck.png" class="nostretch quarto-figure quarto-figure-center" style="width:35.0%"></p>
+</figure>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>The <strong>Cosmic Microwave Background (CMB)</strong> signal is obscured by various <strong>foregrounds</strong>, making it challenging to detect the true cosmological information.</li>
+</ul>
+<div class="fragment" data-fragment-index="1">
+<ul>
+<li><strong>Dust</strong>: Emission from galactic dust adds significant noise to the CMB, particularly affecting polarization measurements.</li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="2">
+<ul>
+<li><strong>Synchrotron Radiation</strong>: Electrons spiraling in the galaxy’s magnetic fields produce synchrotron radiation, another major contaminant.</li>
+</ul>
+</div>
+<p><br> <br></p>
+<div class="fragment" data-fragment-index="3">
+<h3 id="component-seperation-methods">Component seperation methods</h3>
+<ul>
+<li><strong>Blind Methods</strong>: Like <strong>SMICA</strong> (Spectral Matching Independent Component Analysis)</li>
+<li><strong>Parametric Methods</strong>: Like <strong>FGbuster</strong> (Foreground Buster)</li>
+</ul>
+</div>
+<p><br> <br></p>
+</div></div>
+<aside class="notes">
+<p>Le signal du fond diffus cosmologique, ou CMB, est en réalité obscurci par plusieurs avant-plans, ce qui rend difficile l’extraction des informations cosmologiques réelles.</p>
+<p>L’un des contaminants principaux est la poussière galactique. Cette poussière émet du rayonnement qui ajoute un bruit significatif au CMB, affectant particulièrement les mesures de polarisation.</p>
+<p><strong>NEXT</strong></p>
+<p>Un autre contaminant majeur est la radiation synchrotron. Elle est produite par des électrons en spirale dans les champs magnétiques de notre galaxie, ce qui vient encore plus brouiller le signal cosmologique que l’on souhaite observer.</p>
+<p><strong>AFTER</strong></p>
+<p>Pour pouvoir extraire une valeur fiable du rapport <span class="math inline">\(r\)</span>, il est crucial de séparer ou de “démixer” ces composants. Le signal du CMB est mêlé à diverses émissions parasites.</p>
+<p>Il existe différentes méthodes pour cela, principalement des méthodes aveugles comme SMICA, qui fonctionnent sans connaissances préalables des avant-plans, et des méthodes paramétriques comme FGbuster, qui reposent sur la modélisation explicite des avant-plans.</p>
+<p>Dans cette présentation, nous allons nous concentrer sur les méthodes paramétriques. Celles-ci nous permettent d’utiliser des modèles pour les avant-plans et d’améliorer la précision du processus de séparation.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="cmb-component-separation-1" class="slide level2">
+<h2>CMB Component Separation</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="fragment" data-fragment-index="1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/CMB/dust_planck.png" class="nostretch quarto-figure quarto-figure-center" style="width:45.0%"></p>
+</figure>
+</div>
+</div>
+<div class="fragment" data-fragment-index="2">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/CMB/synch-planck.png" class="nostretch quarto-figure quarto-figure-center" style="width:45.0%"></p>
+</figure>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="fragment" data-fragment-index="1">
+<p><strong>Modified Blackbody SED of Dust:</strong></p>
+<p><span class="math display">\[
+\boxed{s_{\mathrm{d}}(\nu) = A_{\mathrm{d}} \cdot \frac{\nu}{\exp\left(\frac{h\nu}{k \color{red}{T_{\mathrm{d}}}}\right) - 1} \cdot \frac{\exp\left(\frac{h\nu_{0}}{k \color{red}{T_{\mathrm{d}}}}\right) - 1}{\nu_{0}} \cdot \left(\frac{\nu}{\nu_{0}}\right)^{\color{blue}{\beta}}}
+\]</span></p>
+</div>
+<div class="fragment" data-fragment-index="2">
+<p><strong>Power Law of Synchrotron Emission:</strong></p>
+<p><span class="math display">\[
+\boxed{s_{\text{synch}}(\nu) = \left(\frac{\nu}{\nu_0}\right)^{\color{green}{\beta_{\text{pl}}}}}
+\]</span></p>
+</div>
+</div></div>
+<div class="fragment" data-fragment-index="3">
+<h4 id="signal-representation">Signal Representation</h4>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><span class="math display">\[
+\boxed{\mathbf{d} = \mathbf{A} \mathbf{s} + \mathbf{n}}
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><span class="math display">\[
+\boxed{\mathbf{d} = \color{green}{A_{\text{synch}}} \cdot s_{\text{synch}} + \color{blue}{A_{\mathrm{d}}} \cdot s_{\mathrm{d}} + A_{\text{cmb}} \cdot s_{\text{cmb}} + \mathbf{n}}
+\]</span></p>
+</div></div>
+</div>
+<div class="fragment" data-fragment-index="4">
+<h4 id="likelihood-function">Likelihood Function</h4>
+<p><span class="math display">\[
+\boxed{
+\begin{aligned}
+-2 \ln \mathcal{L}_{\text{data}}(\mathbf{s}, \boldsymbol{\beta}) &amp;= \text{const} \\
+&amp;\quad + \sum_{p} \left( \mathbf{d}_p - \mathbf{A}_p \mathbf{s}_p \right)^T \mathbf{N}_p^{-1} \left( \mathbf{d}_p - \mathbf{A}_p \mathbf{s}_p \right)
+\end{aligned}
+}
+\]</span></p>
+</div>
+<div class="r-stack">
+<div class="fragment fade-in-then-out" data-fragment-index="5">
+<h4 id="minimization-for-component-separation">Minimization for Component Separation</h4>
+<p><span class="math display">\[
+\boxed{\mathbf{s} = \left( \mathbf{A}^T \mathbf{N}^{-1} \mathbf{d} \right)^T \left( \mathbf{A}^T \mathbf{N}^{-1} \mathbf{A} \right)^{-1} \mathbf{A}^T \mathbf{N}^{-1} \mathbf{d}}
+\]</span></p>
+</div>
+<div class="fragment" fragm:ent-index="6">
+<h4 id="minimization-for-component-separation-1">Minimization for Component Separation</h4>
+<p><span class="math display">\[
+\boxed{\mathcal{L}(\color{blue}{\beta_d}, \color{red}{T_d}, \color{green}{\beta_{\text{pl}}}) = \left( \mathbf{A}^T \mathbf{N}^{-1} \mathbf{d} \right)^T  \left( \mathbf{A}^T \mathbf{N}^{-1} \mathbf{A} \right)^{-1} \mathbf{A}^T \mathbf{N}^{-1} \mathbf{d}}
+\]</span></p>
+</div>
+</div>
+<aside class="notes">
+<p>Dans cette diapositive, je vais expliquer comment on modélise la séparation des composantes du CMB à partir des données observées.</p>
+<p>Nous avons d’abord <strong>deux composantes principales</strong> qui contaminent le signal CMB pur : - <strong>La poussière galactique</strong>, modélisée par une loi de corps noir modifiée. Elle est une des sources d’émission la plus importante à haute fréquence. - <strong>Le rayonnement synchrotron</strong>, produit par les électrons en spirale dans les champs magnétiques de la galaxie, qui est une source dominante à basse fréquence.</p>
+<p>On représente ensuite le signal <strong>d</strong> par une combinaison linéaire des contributions de chaque composant multipliées par leur matrice de mélange respective, plus un bruit <strong>n</strong>.</p>
+<p>L’objectif de la séparation des composantes est de maximiser la vraisemblance de nos données modélisées par rapport aux données observées. Cela se fait par une <strong>minimisation</strong>, représentée par l’équation en bas de la diapositive.</p>
+<p>La méthode que nous utilisons ici est <strong>paramétrique</strong>, où chaque composante a un modèle physique avec des paramètres spécifiques comme <strong><span class="math inline">\(\beta\)</span></strong>, <strong><span class="math inline">\(T_d\)</span></strong> pour la poussière et <strong><span class="math inline">\(\beta_{pl}\)</span></strong> pour le synchrotron.</p>
+<p>À la fin, nous obtenons la partie CMB de la matrice de mélange, à partir de laquelle nous allons pouvoir estimer le <strong>ratio tenseur-spectral <span class="math inline">\(r\)</span></strong>, un paramètre clé pour contraindre les modèles d’inflation cosmique.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="furax-framework" class="title-slide slide level1 center">
+<h1>FURAX Framework</h1>
+
+</section>
+<section id="the-furax-minimization-process-so-litebird" class="slide level2">
+<h2>The FURAX Minimization Process <img data-src="assets/Logos/so.webp" class="nostretch" style="width:5.0%" data-fig-valign="center" alt="SO"> <img data-src="assets/Logos/litebird.png" class="nostretch" style="width:7.0%" data-fig-valign="center" alt="LiteBIRD"></h2>
+<p>We build a modular, physical model of the sky using linear operators, then solve for the components with a direct minimization of the likelihood.</p>
+<p><br></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="building-the-physical-model">Building the Physical Model</h3>
+<p>Define each sky component as a <code>FURAX</code> operator:</p>
+<p><br></p>
+<div class="sourceCode" id="cb1" style="font-size: 1.1em;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="co"># Define each physical component</span></span>
+<span id="cb1-2"><a></a>cmb <span class="op">=</span> CMBOperator(nu, ...)</span>
+<span id="cb1-3"><a></a>dust <span class="op">=</span> DustOperator(nu, temp<span class="op">=</span>params[<span class="st">"T_d"</span>], </span>
+<span id="cb1-4"><a></a>                    beta<span class="op">=</span>params[<span class="st">"beta_d"</span>], ...)</span>
+<span id="cb1-5"><a></a>synchrotron <span class="op">=</span> SynchrotronOperator(nu, </span>
+<span id="cb1-6"><a></a>                beta<span class="op">=</span>params[<span class="st">"beta_pl"</span>], ...)</span>
+<span id="cb1-7"><a></a></span>
+<span id="cb1-8"><a></a><span class="co"># Combine into a single mixing matrix</span></span>
+<span id="cb1-9"><a></a>A <span class="op">=</span> MixingMatrixOperator(cmb<span class="op">=</span>cmb, dust<span class="op">=</span>dust, </span>
+<span id="cb1-10"><a></a>                        synchrotron<span class="op">=</span>synchrotron)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<p><strong>Key Features:</strong> - <strong>Modular Design</strong>: Each component is independent - <strong>Physical Models</strong>: Based on emission mechanisms<br>
+- <strong>Differentiable</strong>: Full JAX integration</p>
+</div><div class="column" style="width:50%;">
+<h3 id="solving-for-the-signal">Solving for the Signal</h3>
+<p>The likelihood minimization is solved analytically as:</p>
+<p><br></p>
+<p><span class="math display">\[\mathbf{\hat{s}} = (\mathbf{A}^T \mathbf{N}^{-1} \mathbf{A})^{-1} \mathbf{A}^T \mathbf{N}^{-1} \mathbf{d}\]</span></p>
+<p><br></p>
+<p>In <code>FURAX</code>, this is implemented with linear operators for maximum efficiency and differentiability:</p>
+<p><br></p>
+<div class="sourceCode" id="cb2" style="font-size: 1.1em;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="co"># Solve for the best-fit signal 's'</span></span>
+<span id="cb2-2"><a></a>AND <span class="op">=</span> (A.T <span class="op">@</span> N.I)(d)</span>
+<span id="cb2-3"><a></a>s <span class="op">=</span> (A.T <span class="op">@</span> N.I <span class="op">@</span> A).I(AND)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<p><strong>Advantages:</strong> - <strong>Direct Solution</strong>: No iterative fitting required - <strong>GPU Accelerated</strong>: Efficient linear algebra - <strong>Stable</strong>: Numerically robust implementation</p>
+</div></div>
+<aside class="notes">
+<p>FURAX represents a major advancement in CMB component separation methodology. Rather than working with explicit matrices, we build a modular, operator-based model of the sky where each physical component (CMB, dust, synchrotron) is represented as a differentiable linear operator.</p>
+<p>The key innovation is the direct analytical solution of the likelihood minimization problem. Instead of iterative fitting, we solve the generalized least squares problem directly using the operator framework. This approach is both more efficient and more stable than traditional methods.</p>
+<p>The linear operator implementation ensures that all computations remain differentiable and GPU-accelerated through JAX, enabling gradient-based optimization and large-scale analysis that would be computationally prohibitive with traditional matrix-based approaches.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="our-innovation-data-driven-adaptive-clustering" class="slide level2">
+<h2>Our Innovation: Data-Driven Adaptive Clustering</h2>
+<p>We move beyond fixed sky patches by using K-means clustering to define optimal, data-driven regions for foreground modeling.</p>
+<p><br></p>
+<div class="columns">
+<div class="column" style="width:60%;">
+<h3 id="traditional-approach">Traditional Approach</h3>
+<ul>
+<li><strong>Fixed, predefined sky regions</strong></li>
+<li>Often arbitrary boundaries</li>
+<li>Cannot adapt to local foreground complexity</li>
+<li>Limited by rigid HEALPix resolution constraints</li>
+</ul>
+<p><br></p>
+<h3 id="our-data-driven-method">Our Data-Driven Method</h3>
+<ul>
+<li><strong>Spherical K-means clustering</strong></li>
+<li>Boundaries emerge from the data itself</li>
+<li>Adapts to spatial foreground variability</li>
+<li>Optimizes clustering configuration via grid search</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/CMB/kmeans_patch_layout.png" class="" style="width:60.0%"></p>
+<figcaption>An example sky partition into clusters optimized by K-means clustering. Each color represents a distinct region sharing common spectral parameters.</figcaption>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="the-objective-minimizing-cmb-variance" class="slide level2">
+<h2>The Objective: Minimizing CMB Variance</h2>
+<p>We select the best clustering model by finding the one that minimizes the variance in the recovered CMB map.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/CMB/variance_likelihood_distributions.png" class="" style="width:100.0%"></p>
+<figcaption>Distribution of CMB map variance for different clustering strategies. K-means clustering (blue) achieves the lowest variance, indicating optimal foreground modeling.</figcaption>
+</figure>
+</div>
+<h3 id="grid-search-strategy">Grid Search Strategy</h3>
+<p><strong>Configuration Space</strong>: <span class="math inline">\(\mathcal{G} = \{K_{\beta_d}\} \times \{K_{T_d}\} \times \{K_{\beta_s}\}\)</span></p>
+<p>For each clustering configuration: 1. <strong>Fit spectral parameters</strong> <span class="math inline">\(\boldsymbol{\beta}\)</span> via likelihood maximization 2. <strong>Reconstruct CMB component</strong> using optimal parameters<br>
+3. <strong>Compute variance</strong> <span class="math inline">\(\sigma^2_{\mathrm{CMB}}\)</span> across noise realizations 4. <strong>Select configuration</strong> with minimum variance</p>
+<p><span class="math display">\[\sigma^2_{\mathrm{CMB}} = \left\langle \mathrm{Var}_{i} \left[ \hat{s}^{(i)}_{\mathrm{CMB}} \right] \right\rangle_{\text{pixels}}\]</span></p>
+</section>
+<section id="the-engine-the-furax-framework" class="slide level2">
+<h2>The Engine: The FURAX Framework</h2>
+<p>This entire pipeline is implemented in FURAX, a JAX-powered, end-to-end differentiable framework for component separation.</p>
+<div class="columns">
+<div class="column" style="width:60%;">
+<h3 id="key-framework-features">Key Framework Features</h3>
+<p><strong>Modular Architecture</strong> - Linear operator-based design - Differentiable spectral models - GPU-accelerated computation</p>
+<p><br></p>
+<p><strong>Scalable Optimization</strong> - L-BFGS with exact gradients - Distributed grid search framework - Millions of likelihood evaluations</p>
+<p><br></p>
+<p><strong>End-to-End Pipeline</strong> - Multi-frequency input maps - Adaptive clustering selection - Component reconstruction - Cosmological parameter inference</p>
+<p><br></p>
+<p><strong>Performance</strong> - 1000+ GPU-hours for full study - 2M+ component separation runs - Robust convergence and stability</p>
+</div><div class="column" style="width:40%;">
+<p><br></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/CMB/FURAX-CS-transparent.png" class="" style="width:90.0%"></p>
+<figcaption>Complete FURAX analysis pipeline from multi-frequency observations to cosmological parameter constraints. The framework integrates adaptive clustering, operator-based minimization, and distributed grid search.</figcaption>
+</figure>
+</div>
+</div></div>
+<aside class="notes">
+<p>The FURAX framework is the computational engine that makes this data-driven approach practically feasible. Built on JAX, it provides a fully differentiable, GPU-accelerated environment for parametric component separation at scale.</p>
+<p>The framework integrates several key innovations: the modular, operator-based design allows us to build complex mixing matrices without explicit matrix construction; the automatic differentiation provides exact gradients for stable optimization; and the distributed computation framework enables exhaustive exploration of the clustering configuration space.</p>
+<p>The pipeline diagram shows the complete workflow: starting from multi-frequency sky maps, the framework performs adaptive clustering, solves for the optimal spectral parameters using our operator-based minimization, reconstructs clean component maps, and finally computes cosmological parameter constraints. This end-to-end approach ensures that the clustering optimization directly targets the final science objectives.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="results-and-validation" class="title-slide slide level1 center">
+<h1>Results and Validation</h1>
+
+</section>
+<section id="result-1-reduced-systematic-residuals" class="slide level2">
+<h2>Result 1: Reduced Systematic Residuals</h2>
+<p>Our adaptive method significantly reduces systematic foreground leakage, leading to cleaner CMB maps.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><br> <br></p>
+<p><strong>Single-Patch Reference</strong> - Significantly higher residuals - Large-scale systematic contamination - <strong>Biased cosmological inference</strong></p>
+<p><strong>Key Insight</strong> <em>Minimizing CMB variance leads to better control of systematic residuals that matter for cosmological parameter estimation.</em></p>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/CMB/cmb_recon.png" class="" style="width:100.0%"></p>
+<figcaption>CMB reconstruction comparison showing residual maps for different spatial modeling approaches. Our K-means clustering method (bottom) achieves substantially cleaner reconstruction compared to traditional single-patch and multi-resolution methods.</figcaption>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="result-2-tighter-and-unbiased-constraints-on-r" class="slide level2">
+<h2>Result 2: Tighter and Unbiased Constraints on <em>r</em></h2>
+<h3 id="scientific-impact">Scientific Impact</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><br> <br></p>
+<p><strong>K-means Clustering (Our Method)</strong> - <strong>Unbiased</strong>: <span class="math inline">\(\hat{r} = 4.55 \times 10^{-4}\)</span> (true r = 0) - <strong>Precise</strong>: Tightest credible interval - <strong>Robust</strong>: Stable across noise realizations</p>
+<p><br></p>
+<p><strong>Multi-Resolution Methods</strong> - Slight positive bias - Broader uncertainty intervals - Sensitivity to configuration choices</p>
+<p><br></p>
+<p><strong>Single Global Patch</strong> - <strong>Severely biased</strong>: Significant overestimate of r - Artificially tight constraints - Dominated by systematic residuals</p>
+<p><br></p>
+<p><strong>Bottom Line</strong> <em>Data-driven clustering directly translates to more reliable cosmological science, enabling robust constraints on primordial gravitational waves.</em></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/CMB/r_likelihood_distribution.png" class="" style="width:100.0%"></p>
+<figcaption>Tensor-to-scalar ratio likelihood distributions comparing different spatial modeling approaches. K-means clustering (blue) achieves the tightest and most unbiased constraints on r, centered on the true value r=0.</figcaption>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="summary-of-projects-1" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Summary of projects</h2>
+<div data-id="Projects">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Projects/ALL_Projects.svg" class="" style="width:70.0%"></p>
+<figcaption>Projects</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="large-scale-structure---astrodeep" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Large Scale Structure - AstroDeep</h2>
+<div data-id="Projects">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Projects/WL.svg" class="" style="width:70.0%"></p>
+<figcaption>Projects</figcaption>
+</figure>
 </div>
 </div>
 </section>
@@ -234,7 +764,7 @@
 </ul>
 </div>
 </div>
-</section>
+</section></section>
 <section>
 <section id="how-to-maximize-the-information-gain" class="title-slide slide level1 center">
 <h1>How to maximize the information gain?</h1>
@@ -941,7 +1471,7 @@ This breaks the smoothness of the result — <strong>even when each local comput
 <div class="column" style="width:50%;">
 <div class="r-stack">
 <div class="fragment fade-in-then-out" data-fragment-index="1">
-<div class="quarto-layout-panel" data-layout="[[1] , [1] , [1] , [1]]" data-layout-align="center">
+<div class="quarto-layout-panel" data-layout-align="center" data-layout="[[1] , [1] , [1] , [1]]">
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -996,7 +1526,7 @@ This breaks the smoothness of the result — <strong>even when each local comput
 </div><div class="column" style="width:50%;">
 <div class="r-stack">
 <div class="fragment fade-in-then-out" data-fragment-index="2" style="visibility: hidden;">
-<div class="quarto-layout-panel" data-layout="[[1] , [1] , [1] , [1]]" data-layout-align="center">
+<div class="quarto-layout-panel" data-layout-align="center" data-layout="[[1] , [1] , [1] , [1]]">
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -1185,86 +1715,111 @@ d_i &amp;= d_{i+1} - v_i \, \Delta t
 </div>
 </div>
 </section>
-<section id="current-capabilities-road-ahead" class="slide level2" style="font-size: 20px;">
-<h2>Current Capabilities &amp; Road Ahead</h2>
+<section id="attended-conferences" class="slide level2">
+<h2>Attended Conferences</h2>
 <div class="solutionbox">
 <div class="solutionbox-header">
-<p><strong>What We’ve Achieved So Far</strong></p>
+<p>French Conferences</p>
 </div>
 <div class="solutionbox-body">
 <ul>
-<li><p>Built a <strong>scalable, differentiable</strong> N-body simulation pipeline (<strong>JAXPM</strong>)</p></li>
-<li><p>Enables <strong>forward modeling and sampling</strong> in large cosmological volumes, paving the way toward full LSST-scale inference</p></li>
-<li><p>Preliminary performance:</p>
-<ul>
-<li>~20 s per 512×512×1024 simulation on 64×A100 GPUs</li>
-<li>&lt;1 TB memory for full 10-step lightcone</li>
-<li>Stable gradients over 100-sample tests</li>
-</ul></li>
+<li><strong>IAP</strong> 2023 Machine Learning-</li>
+<li><strong>LSST France 2023</strong> Lyon, France</li>
+<li><strong>LSST France 2024</strong> Marseille, France <strong>(Talk)</strong></li>
+<li><strong>IAP GDR CoPhy Tools 2024</strong> Paris, France <strong>(Talk)</strong></li>
+<li><strong>COLOURS 2025</strong> Orsay, France</li>
+<li><strong><em>[Upcomming Conference]</em></strong> SO F2F <strong>(Poster)</strong></li>
+<li><strong><em>[Upcomming Hackathon]</em></strong> AISSAI Hackathon <strong>(Hackathon + Workshop)</strong></li>
 </ul>
 </div>
 </div>
-<p><br></p>
 <div class="solutionbox">
 <div class="solutionbox-header">
-<p><strong>For discussion</strong></p>
+<p>International Conferences</p>
 </div>
 <div class="solutionbox-body">
 <ul>
-<li><p><strong>Using Scattering Transform to compress the data with SBI</strong></p></li>
-<li><p><strong>Using Excplicit Inference for CMB r estimation</strong></p></li>
+<li><strong>Moriond Cosmology 2023</strong> La Thuile, Italy <strong>(Poster)</strong></li>
+<li><strong>LSST DESC 2023</strong> Zurich, Switzerland</li>
+<li><strong>JAXTronomy 2024</strong> Flatiron, New York, USA <strong>(Hackathon)</strong></li>
 </ul>
 </div>
 </div>
-</section></section>
-<section>
-<section id="extra-slides" class="title-slide slide level1 center">
-<h1>Extra slides</h1>
-
 </section>
-<section id="approximating-the-small-scales" class="slide level2" style="font-size: 19px;">
-<h2>Approximating the Small Scales</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
+<section id="papers-code" class="slide level2">
+<h2>Papers &amp; Code</h2>
 <p><br> <br></p>
-<h4 id="dynamic-resultion-grid">Dynamic resultion grid</h4>
+<div class="solutionbox">
+<div class="solutionbox-header">
+<p>Current/Submitted papers</p>
+</div>
+<div class="solutionbox-body">
 <ul>
-<li> We can use a dynamic resolution that automatically refines the grid to match the density regaions blabla</li>
-<li>  very difficult to differentialte and slow to compute</li>
+<li>Infrared Radiometric Image Classification and Segmentation of Cloud Structure Using ML <span style="color:darkblue;"><strong>(Sommer et al.&nbsp;2024, Published)</strong></span></li>
+<li><strong>JaxDecomp</strong>: A Distributed Fast Fourier Transform Library <span style="color:darkblue;"><strong>(submitted)</strong></span></li>
+<li><strong>Furax</strong>: MultiPatch Component Separation <span style="color:darkblue;"><strong>(to be submitted soon)</strong></span></li>
+<li><strong>JaxPM</strong>: A Differentiable Particle-Mesh Simulation <span style="color:darkblue;"><strong>(Kabalan et al.&nbsp;in prep.)</strong></span></li>
 </ul>
-</div><div class="column" style="width:50%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/latest/dynamic_grid.svg" style="width:50.0%"></p>
-<figcaption>Dynamic Resolution Grid</figcaption>
-</figure>
 </div>
-</div></div>
-<div class="columns">
-<div class="column" style="width:50%;">
-<h4 id="multigrid-methods">Multigrid Methods</h4>
+</div>
+<div class="solutionbox">
+<div class="solutionbox-header">
+<p>Future papers</p>
+</div>
+<div class="solutionbox-body">
 <ul>
-<li> Multigrid solves the Poisson equation efficiently by combining coarse and fine grids</li>
-<li> It’s still an approximation — it does <strong>not match the accuracy</strong> of solving on a uniformly fine grid</li>
-<li> At high fidelity, fine-grid solvers outperform multigrid in recovering small-scale structure — critical for unbiased inference</li>
+<li><strong>Cosmological Inference with Full-Field Inference (DES data)</strong> <span style="color:darkblue;"><strong>(Kabalan et al.&nbsp;in prep.)</strong></span></li>
 </ul>
-</div><div class="column" style="width:50%;">
-<div class="r-stack">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/latest/multi_grid_1.svg" style="width:70.0%"></p>
-<figcaption>Multigrid</figcaption>
-</figure>
 </div>
 </div>
-</div></div>
+<div class="solutionbox">
+<div class="solutionbox-header">
+<p>Software</p>
+</div>
+<div class="solutionbox-body">
+<p>➢  <a href="https://github.com/DifferentiableUniverseInitiative/jaxDecomp">jaxDecomp</a> : Distributed FFT operations and halo exchange <strong>(Released)</strong><br>
+➢  <a href="https://github.com/DifferentiableUniverseInitiative/jaxPM">jaxPM</a> : Distributed Particle-Mesh simulations <strong>(Released)</strong><br>
+➢  <a href="https://gitlab.in2p3.fr/scipol/furax">Furax</a> : Minimization of the spectral likelihood for CMB component separation <strong>(Released)</strong><br>
+➢  <a href="https://astro-informatics.github.io/s2fft/">S2FFT</a> : Accelerated spherical harmonics transforms <strong>(Released)</strong><br>
+➢  <a href="https://github.com/CMBSciPol/jax-healpy">jax_healpy</a> : Healpix port for JAX</p>
+</div>
+</div>
+</section>
+<section id="formations" class="slide level2">
+<h2>Formations</h2>
+<div style="font-size: 285%">
+<div class="solutionbox">
+<div class="solutionbox-header">
+<p>divers</p>
+</div>
+<div class="solutionbox-body">
+<ul>
+<li>Euclid summer school (2023)</li>
+<li>AISSAI AstroInfo Hackathon 2023, Frejus, France</li>
+<li><strong>Physics informed neural networks</strong> with the IDRIS team (Jean-zay super computer) <strong>(2024)</strong></li>
+</ul>
+</div>
+</div>
+<div class="solutionbox">
+<div class="solutionbox-header">
+<p>Cours Ecole Doctorale</p>
+</div>
+<div class="solutionbox-body">
+<ul>
+<li><strong>QCD</strong> with Matteo Cacciari <strong>(2023)</strong></li>
+<li>Statistic class with Prof Marco Bomben <strong>(2025)</strong></li>
+<li>Cosmology with prof. Jim Bartlett <strong>(2025)</strong></li>
+</ul>
+</div>
+</div>
 
 
+</div>
 </section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
-<p>Bayesian Deep Learning Workshop , 2025</p>
+<p>CSI Presentation 2025</p>
 </div>
 </div></div>
 
