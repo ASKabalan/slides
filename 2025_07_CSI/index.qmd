@@ -1743,6 +1743,7 @@ French Conferences
 - **LSST France 2023** Lyon, France
 - **LSST France 2024** Marseille, France **(Talk)**
 - **IAP GDR CoPhy Tools 2024** Paris, France **(Talk)**
+- **CMB France 2024** Paris, France 2024
 - **COLOURS 2025** Orsay, France
 - ***[Upcomming Conference]*** SO F2F **(Poster)**
 - ***[Upcomming Hackathon]*** AISSAI Hackathon **(Hackathon + Workshop)**
