@@ -493,14 +493,12 @@ This entire pipeline is implemented in FURAX, a JAX-powered, end-to-end differen
 - Differentiable spectral models
 - GPU-accelerated computation
 
-<br/>
 
 **Scalable Optimization**
 - L-BFGS with exact gradients
 - Distributed grid search framework
 - Millions of likelihood evaluations
 
-<br/>
 
 **End-to-End Pipeline**
 - Multi-frequency input maps
@@ -508,7 +506,6 @@ This entire pipeline is implemented in FURAX, a JAX-powered, end-to-end differen
 - Component reconstruction
 - Cosmological parameter inference
 
-<br/>
 
 **Performance**
 - 1000+ GPU-hours for full study
@@ -519,9 +516,7 @@ This entire pipeline is implemented in FURAX, a JAX-powered, end-to-end differen
 
 ::: {.column width="40%"}
 
-<br/>
-
-![Complete FURAX analysis pipeline from multi-frequency observations to cosmological parameter constraints. The framework integrates adaptive clustering, operator-based minimization, and distributed grid search.](assets/CMB/FURAX-CS-transparent.png){.nostretch fig-align="center" width="90%"}
+![Complete FURAX analysis pipeline from multi-frequency observations to cosmological parameter constraints. The framework integrates adaptive clustering, operator-based minimization, and distributed grid search.](assets/CMB/FURAX-CS-transparent.png){.nostretch fig-align="center" width="80%"}
 
 :::
 
@@ -1829,9 +1824,6 @@ International Conferences
 
  
 ## Papers & Code
-
-<br />
-
 :::{.solutionbox}
 
 ::::{.solutionbox-header}
@@ -1840,7 +1832,7 @@ Current/Submitted papers
 
 ::::
 
-::::{.solutionbox-body}
+::::{.solutionbox-body style="font-size: 18px;"}
 
 - Infrared Radiometric Image Classification and Segmentation of Cloud Structure Using ML <span style="color:darkblue;">**(Sommer et al. 2024, Published)**</span>
 - **JaxDecomp**: A Distributed Fast Fourier Transform Library <span style="color:darkblue;">**(submitted)**</span>
@@ -1860,7 +1852,7 @@ Future papers
 
 ::::
 
-::::{.solutionbox-body}
+::::{.solutionbox-body style="font-size: 18px;"}
 
 - **Cosmological Inference with Full-Field Inference (DES data)** <span style="color:darkblue;">**(Kabalan et al. in prep.)**</span>
 - **B Mode Purifaction with jax_healpy** <span style="color:darkblue;">**(With Magdy)**</span>
@@ -1877,7 +1869,7 @@ Software
 
 ::::
 
-::::{.solutionbox-body}
+::::{.solutionbox-body style="font-size: 18px;"}
 
 ➢  &emsp;[jaxDecomp](https://github.com/DifferentiableUniverseInitiative/jaxDecomp) : Distributed FFT operations and halo exchange \
 ➢  &emsp;[jaxPM](https://github.com/DifferentiableUniverseInitiative/jaxPM) : Distributed Particle-Mesh simulations  \
