@@ -1844,7 +1844,7 @@ Current/Submitted papers
 
 - Infrared Radiometric Image Classification and Segmentation of Cloud Structure Using ML <span style="color:darkblue;">**(Sommer et al. 2024, Published)**</span>
 - **JaxDecomp**: A Distributed Fast Fourier Transform Library <span style="color:darkblue;">**(submitted)**</span>
-- **Component Separation**: MultiPatch Component Separation <span style="color:darkblue;">**(Kabalan et al. in preparation)**</span>
+- **Component Separation**: MultiPatch Component Separation <span style="color:darkblue;">**(Kabalan et al. to be submitted)**</span>
 - **Furax**: Accelerated Linear Algebra in JAX <span style="color:darkblue;">**(Chanial et al. in preparation)**</span>
 - **JaxPM**: A Differentiable Particle-Mesh Simulation <span style="color:darkblue;">**(Kabalan et al. in prep.)**</span>
 
@@ -1863,6 +1863,7 @@ Future papers
 ::::{.solutionbox-body}
 
 - **Cosmological Inference with Full-Field Inference (DES data)** <span style="color:darkblue;">**(Kabalan et al. in prep.)**</span>
+- **B Mode Purifaction with jax_healpy** <span style="color:darkblue;">**(With Magdy)**</span>
 
 ::::
 
@@ -1883,6 +1884,7 @@ Software
 ➢  &emsp;[Furax](https://gitlab.in2p3.fr/scipol/furax) : Minimization of the spectral likelihood for CMB component separation \
 ➢  &emsp;[S2FFT](https://astro-informatics.github.io/s2fft/) : Accelerated spherical harmonics transforms \
 ➢  &emsp;[jax_healpy](https://github.com/CMBSciPol/jax-healpy) : Healpix port for JAX with the CMB-SciPol team \
+➢  &emsp;[jax_grid_search](https://github.com/asKabalan/jax-grid-search) : Distributed Grid Search for Hyperparameter Tuning \
 
 ::::
 
