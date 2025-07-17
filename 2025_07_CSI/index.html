@@ -1415,7 +1415,7 @@ v_i = \sum_{\mathbf{j}} g(\mathbf{j}) \prod_{d=1}^{D} \left(1 - \left|p_i^d - j_
 <div class="r-stack">
 <div class="fragment fade-in-then-out" data-fragment-index="1">
 <h3 id="without-halo-exchange-not-distributed">Without Halo Exchange (Not Distributed)</h3>
-<div class="quarto-layout-panel" data-align="center" data-layout-ncol="3">
+<div class="quarto-layout-panel" data-layout-ncol="3" data-align="center">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
@@ -1446,7 +1446,7 @@ v_i = \sum_{\mathbf{j}} g(\mathbf{j}) \prod_{d=1}^{D} \left(1 - \left|p_i^d - j_
 </div>
 <div class="fragment fade-in" data-fragment-index="2">
 <h3 id="with-halo-exchange-distributed">With Halo Exchange (Distributed)</h3>
-<div class="quarto-layout-panel" data-align="center" data-layout-ncol="3">
+<div class="quarto-layout-panel" data-layout-ncol="3" data-align="center">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
@@ -1491,7 +1491,7 @@ This breaks the smoothness of the result — <strong>even when each local comput
 <div class="column" style="width:50%;">
 <div class="r-stack">
 <div class="fragment fade-in-then-out" data-fragment-index="1">
-<div class="quarto-layout-panel" data-layout-align="center" data-layout="[[1] , [1] , [1] , [1]]">
+<div class="quarto-layout-panel" data-layout="[[1] , [1] , [1] , [1]]" data-layout-align="center">
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -1546,7 +1546,7 @@ This breaks the smoothness of the result — <strong>even when each local comput
 </div><div class="column" style="width:50%;">
 <div class="r-stack">
 <div class="fragment fade-in-then-out" data-fragment-index="2" style="visibility: hidden;">
-<div class="quarto-layout-panel" data-layout-align="center" data-layout="[[1] , [1] , [1] , [1]]">
+<div class="quarto-layout-panel" data-layout="[[1] , [1] , [1] , [1]]" data-layout-align="center">
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -1812,7 +1812,7 @@ d_i &amp;= d_{i+1} - v_i \, \Delta t
 <ul>
 <li>Infrared Radiometric Image Classification and Segmentation of Cloud Structure Using ML <span style="color:darkblue;"><strong>(Sommer et al.&nbsp;2024, Published)</strong></span></li>
 <li><strong>JaxDecomp</strong>: A Distributed Fast Fourier Transform Library <span style="color:darkblue;"><strong>(submitted)</strong></span></li>
-<li><strong>Component Separation</strong>: MultiPatch Component Separation <span style="color:darkblue;"><strong>(Kabalan et al.&nbsp;in preparation)</strong></span></li>
+<li><strong>Component Separation</strong>: MultiPatch Component Separation <span style="color:darkblue;"><strong>(Kabalan et al.&nbsp;to be submitted)</strong></span></li>
 <li><strong>Furax</strong>: Accelerated Linear Algebra in JAX <span style="color:darkblue;"><strong>(Chanial et al.&nbsp;in preparation)</strong></span></li>
 <li><strong>JaxPM</strong>: A Differentiable Particle-Mesh Simulation <span style="color:darkblue;"><strong>(Kabalan et al.&nbsp;in prep.)</strong></span></li>
 </ul>
@@ -1825,6 +1825,7 @@ d_i &amp;= d_{i+1} - v_i \, \Delta t
 <div class="solutionbox-body">
 <ul>
 <li><strong>Cosmological Inference with Full-Field Inference (DES data)</strong> <span style="color:darkblue;"><strong>(Kabalan et al.&nbsp;in prep.)</strong></span></li>
+<li><strong>B Mode Purifaction with jax_healpy</strong> <span style="color:darkblue;"><strong>(With Magdy)</strong></span></li>
 </ul>
 </div>
 </div>
@@ -1838,6 +1839,7 @@ d_i &amp;= d_{i+1} - v_i \, \Delta t
 ➢  <a href="https://gitlab.in2p3.fr/scipol/furax">Furax</a> : Minimization of the spectral likelihood for CMB component separation<br>
 ➢  <a href="https://astro-informatics.github.io/s2fft/">S2FFT</a> : Accelerated spherical harmonics transforms<br>
 ➢  <a href="https://github.com/CMBSciPol/jax-healpy">jax_healpy</a> : Healpix port for JAX with the CMB-SciPol team<br>
+➢  <a href="https://github.com/asKabalan/jax-grid-search">jax_grid_search</a> : Distributed Grid Search for Hyperparameter Tuning<br>
 </p>
 </div>
 </div>
