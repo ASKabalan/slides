@@ -1,10 +1,12 @@
 ---
-title: '<span style="color:#ffffff; font-size: largest;">Bayesian Inference for Cosmology with JAX</span>'
+title: 'Bayesian Inference for Cosmology with JAX'
 
-author: 
+author:
   - name: "<span style='color:#ffffff; font-size: larger;'>Wassim Kabalan</span>"
   - name : "<span style='color:#ffffff; font-size: Smaller;'>Alexandre Boucaud, François Lanusse</span>"
 footer: "Bayesian Deep Learning Workshop , 2025"
+date: "May 2025"
+image: "../assets/placeholder.png"
 format:
   revealjs:
     theme: [default, css/custom.scss]

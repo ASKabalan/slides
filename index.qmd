@@ -1,9 +1,29 @@
 ---
-title: "Wassim's slides"
-author: "Wassim Kabalan"
-
+title: "Wassim's Talks"
 format:
   html:
-    theme: cosmo
-    toc: true
+    theme: [cosmo, css/custom.scss]
+    toc: false
+    body-classes: home-double
+listing:
+    type: table
+    sort: "date desc"
+    fields: [date, title, image]
+    contents:
+        - "2024_06_LSST_FR"
+        - "2024_11_CoPhy"
+        - "2025_05_BDL"
+        - "2025_05_BDL_School"
+    table-striped: false
+    table-hover: false
+    field-display-names:
+        date: "Year"
+        title: "Title"
+        image: "Preview"
 ---
+
+:::{.callout-note appearance="simple"}
+Visit my website: <https://askabalan.github.io>
+:::
+
+## Academic Presentations

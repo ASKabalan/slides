@@ -1,11 +1,13 @@
 ---
-title: '<span style="color:#ffffff; font-size: largest;">JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations</span>'
+title: 'JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations'
 
 author: 
-  - name: "<span style='color:#ffffff; font-size: larger;'>Wassim Kabalan</span>"
-  - name : "<span style='color:#ffffff; font-size: Smaller;'>Alexandre Boucaud, François Lanusse</span>"
+  - name: "Wassim Kabalan"
+  - name : "Alexandre Boucaud, François Lanusse"
 
 footer: "Bayesian Deep Learning Workshop , 2025"
+date: "May 2025"
+image: "../assets/placeholder.png"
 format:
   revealjs:
     theme: [default, css/custom.scss]

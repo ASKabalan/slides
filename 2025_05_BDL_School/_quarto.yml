@@ -2,7 +2,6 @@ project:
   type: website
   output-dir: .
 
-
 website:
   title: "Bayesian Inference for Cosmology with JAX"
   navbar:

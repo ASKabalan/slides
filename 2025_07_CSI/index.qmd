@@ -2,6 +2,8 @@
 title: "CSI Presentation 2025"
 author: "Wassim Kabalan"
 footer: "CSI Presentation 2025"
+date: "Jul 2025"
+image: "../assets/placeholder.png"
 format:
   revealjs:
     theme: [default, css/custom.scss]

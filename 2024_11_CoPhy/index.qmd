@@ -5,6 +5,8 @@ author:
   - name: "<span style='font-size: larger;'>Wassim Kabalan</span>"
   - name : "<span style='font-size: Smaller;'>François Lanusse, Alexandre Boucaud, Josquin Errard</span>"
 footer: "GDR CoPhy,IAP , 2024"
+date: "Nov 2024"
+image: "../assets/placeholder.png"
 format:
   revealjs:
     theme: [default, css/custom.scss]

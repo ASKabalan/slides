@@ -48,7 +48,6 @@ $solution-body-font-size: 20px;
   background-size: 0.9rem 0.9rem;
   margin-top: .5rem;
   padding-right: 1.25rem;
-  background-image: url('screwdriver-wrench-solid.png');
 }
 
 .solutionbox-header {
@@ -92,3 +91,79 @@ figcaption {
   text-align: center;
 }
 
+// Listing title styling for website
+.listing-item .title a,
+.listing-item h3 a,
+.listing-title a {
+  color: black !important;
+  text-decoration: none;
+}
+
+// Invisible table styling for presentations listing
+.quarto-listing-table table {
+  border: none !important;
+  border-collapse: collapse;
+
+  th, td {
+    border: none !important;
+    padding: 15px 20px;
+    vertical-align: middle;
+  }
+
+  thead {
+    display: none; // Hide table headers completely
+  }
+
+  tbody tr {
+    border-bottom: 1px solid #eee;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  // Style the date column (year)
+  td:first-child {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #666;
+    width: 100px;
+  }
+
+  // Style the title column
+  td:nth-child(2) {
+    font-size: 1.1em;
+
+    a, a *, span, span * {
+      color: rgb(255, 0, 0) !important;
+      text-decoration: none;
+      font-size: inherit !important;
+
+      &:hover {
+        color: #007acc !important;
+      }
+    }
+  }
+
+  // Style the image column
+  td:last-child {
+    width: 150px;
+    text-align: center;
+
+    img {
+      max-width: 120px;
+      max-height: 80px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+  }
+}
+
+// Scale font sizing for the landing page without affecting reveal.js decks
+body.home-double {
+  font-size: 200%;
+}
