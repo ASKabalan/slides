@@ -6,11 +6,12 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-234273d1456647dabc34a594ac50e507.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.32">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.25">
 
   <meta name="author" content="Wassim Kabalan">
   <meta name="author" content="Alexandre Boucaud, François Lanusse">
+  <meta name="dcterms.date" content="2025-05-01">
   <title>Bayesian Inference for Cosmology with JAX</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -96,7 +97,7 @@
     code span.vs { color: #032f62; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-8b3c6da0781682310500f0ce9cbdf807.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-3c873f18547054f99bff4f425341ae38.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -194,9 +195,10 @@
     <div class="slides">
 
 <section id="title-slide" data-background-image="assets/titles/bayes_title_1.png" data-background-opacity="0.8" data-background-size="fill" class="center">
-  <h1 class="title"><span style="color:#ffffff; font-size: largest;">Bayesian Inference for Cosmology with JAX</span></h1>
+  <h1 class="title">Bayesian Inference for Cosmology with JAX</h1>
   <p class="author"><span style="color:#ffffff; font-size: larger;">Wassim Kabalan</span></p>
   <p class="author"><span style="color:#ffffff; font-size: Smaller;">Alexandre Boucaud, François Lanusse</span></p>
+  <p class="date">2025-05-01</p>
   <div style=""></div>
 <div style="margin-top: 20px; text-align: center;align-items: bottom;">
   <div style="display: flex; justify-content: space-around; align-items: center; layout-valign=" middle"=""> <img src="assets/Logos/AstroDeep-2.png" style="width: 35%;"> <img src="assets/Logos/APC.png" style="width: 20%;"> <img src="assets/Logos/scipol.png" style="width: 35%;"> </div>
@@ -1075,7 +1077,7 @@ P(\Omega \mid \text{Obs})
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>An Easy pythonic API</strong></p>
-<div class="sourceCode" id="cb1" data-code-line-numbers="|11"><pre class="sourceCode numberSource Python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> jax</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-code-line-numbers="|11"><pre class="sourceCode numberSource Python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> jax</span>
 <span id="cb1-2"><a></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
 <span id="cb1-3"><a></a><span class="im">from</span> jax <span class="im">import</span> random</span>
 <span id="cb1-4"><a></a></span>
@@ -1085,20 +1087,20 @@ P(\Omega \mid \text{Obs})
 <span id="cb1-8"><a></a><span class="kw">def</span> log_prob(omega):</span>
 <span id="cb1-9"><a></a>    <span class="cf">return</span> <span class="op">-</span><span class="fl">0.5</span> <span class="op">*</span> jnp.<span class="bu">sum</span>(omega<span class="op">**</span><span class="dv">2</span>)  <span class="co"># log p(Ω) ∝ -Ω²</span></span>
 <span id="cb1-10"><a></a></span>
-<span id="cb1-11"><a></a>log_prob_jit <span class="op">=</span> jax.jit(log_prob)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-11"><a></a>log_prob_jit <span class="op">=</span> jax.jit(log_prob)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment fade-in" data-fragment-index="2">
 <p><strong>Easily accessible gradients using GRAD</strong></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a>omegas <span class="op">=</span> ... <span class="co"># Sampled Ω</span></span>
-<span id="cb2-2"><a></a>gradients <span class="op">=</span> jax.grad(log_prob_jit)(omegas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a>omegas <span class="op">=</span> ... <span class="co"># Sampled Ω</span></span>
+<span id="cb2-2"><a></a>gradients <span class="op">=</span> jax.grad(log_prob_jit)(omegas)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="fragment fade-in" data-fragment-index="3">
 <p><strong>Supports vectorization using VMAP</strong></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="kw">def</span> generate_samples(seeds):</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="kw">def</span> generate_samples(seeds):</span>
 <span id="cb3-2"><a></a>    key <span class="op">=</span> jax.random.PRNGKey(seeds)</span>
 <span id="cb3-3"><a></a>    omega <span class="op">=</span> sample_prior(key)</span>
 <span id="cb3-4"><a></a>    <span class="cf">return</span> omega</span>
 <span id="cb3-5"><a></a>seeds <span class="op">=</span> jnp.arange(<span class="dv">0</span>, <span class="dv">1000</span>)</span>
-<span id="cb3-6"><a></a>omegas <span class="op">=</span> jax.vmap(generate_samples)(seeds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-6"><a></a>omegas <span class="op">=</span> jax.vmap(generate_samples)(seeds)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
@@ -1141,36 +1143,36 @@ P(\Omega \mid \text{Obs})
 <div class="column" style="width:60%;">
 <div class="fragment fade-in" data-fragment-index="2">
 <p><strong>1. Probabilistic Programming Language (PPL)</strong> <em>NumPyro</em>:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="im">import</span> numpyro</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="im">import</span> numpyro</span>
 <span id="cb4-2"><a></a><span class="im">import</span> numpyro.distributions <span class="im">as</span> dist</span>
 <span id="cb4-3"><a></a></span>
 <span id="cb4-4"><a></a><span class="kw">def</span> model():</span>
 <span id="cb4-5"><a></a>    omega_m <span class="op">=</span> numpyro.sample(<span class="st">"Ωₘ"</span>, dist.Uniform(<span class="fl">0.1</span>, <span class="fl">0.5</span>))</span>
-<span id="cb4-6"><a></a>    sigma8 <span class="op">=</span> numpyro.sample(<span class="st">"σ₈"</span>, dist.Normal(<span class="fl">0.8</span>, <span class="fl">0.1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-6"><a></a>    sigma8 <span class="op">=</span> numpyro.sample(<span class="st">"σ₈"</span>, dist.Normal(<span class="fl">0.8</span>, <span class="fl">0.1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="fragment fade-in" data-fragment-index="3">
 <p><strong>2. Computing Likelihoods</strong> <em>JAX-Cosmo</em>:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="im">import</span> jax_cosmo <span class="im">as</span> jc</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="im">import</span> jax_cosmo <span class="im">as</span> jc</span>
 <span id="cb5-2"><a></a><span class="kw">def</span> likelihood(cosmo_params):</span>
 <span id="cb5-3"><a></a>    mu, cov <span class="op">=</span> jc.angular_cl.gaussian_cl_covariance_and_mean(</span>
 <span id="cb5-4"><a></a>        cosmo_params, ell, probes</span>
 <span id="cb5-5"><a></a>    )</span>
-<span id="cb5-6"><a></a>    <span class="cf">return</span> jc.likelihood.gaussian_log_likelihood(data, mu, cov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-6"><a></a>    <span class="cf">return</span> jc.likelihood.gaussian_log_likelihood(data, mu, cov)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="fragment fade-in" data-fragment-index="4">
 <p><strong>3. Sampling the Posterior</strong> <em>NumPyro &amp; Blackjax</em>:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="im">from</span> numpyro.infer <span class="im">import</span> MCMC, NUTS</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="im">from</span> numpyro.infer <span class="im">import</span> MCMC, NUTS</span>
 <span id="cb6-2"><a></a></span>
 <span id="cb6-3"><a></a>kernel <span class="op">=</span> NUTS(model)</span>
 <span id="cb6-4"><a></a>mcmc <span class="op">=</span> MCMC(kernel, num_warmup<span class="op">=</span><span class="dv">500</span>, num_samples<span class="op">=</span><span class="dv">1000</span>)</span>
 <span id="cb6-5"><a></a>mcmc.run(random.PRNGKey(<span class="dv">0</span>))</span>
-<span id="cb6-6"><a></a>samples <span class="op">=</span> mcmc.get_samples()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-6"><a></a>samples <span class="op">=</span> mcmc.get_samples()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="fragment fade-in" data-fragment-index="5">
 <p><strong>4. Visualizing the Posterior</strong> <em>ArviZ</em>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="im">import</span> arviz <span class="im">as</span> az</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="im">import</span> arviz <span class="im">as</span> az</span>
 <span id="cb7-2"><a></a>samples <span class="op">=</span> mcmc.get_samples()</span>
-<span id="cb7-3"><a></a>az.plot_pair(samples, marginals<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-3"><a></a>az.plot_pair(samples, marginals<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div><div class="column" style="width:40%;">
 <div class="r-stack">
@@ -1286,7 +1288,7 @@ P(\Omega \mid \text{Obs})
 <section id="a-minimal-bayesian-linear-model" class="slide level2" style="font-size: 18px;">
 <h2>A Minimal Bayesian Linear Model</h2>
 <p><strong>Define a simple linear model:</strong></p>
-<div class="sourceCode" id="cb8" data-code-line-numbers="|1-8|10-16"><pre class="sourceCode numberSource Python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a>true_w <span class="op">=</span> <span class="fl">2.0</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" data-code-line-numbers="|1-8|10-16"><pre class="sourceCode numberSource Python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a>true_w <span class="op">=</span> <span class="fl">2.0</span></span>
 <span id="cb8-2"><a></a>true_b <span class="op">=</span> <span class="op">-</span><span class="fl">1.0</span></span>
 <span id="cb8-3"><a></a>num_points <span class="op">=</span> <span class="dv">100</span></span>
 <span id="cb8-4"><a></a></span>
@@ -1301,16 +1303,16 @@ P(\Omega \mid \text{Obs})
 <span id="cb8-13"><a></a>    sigma <span class="op">=</span> numpyro.sample(<span class="st">"sigma"</span>, dist.Exponential(<span class="fl">1.0</span>))</span>
 <span id="cb8-14"><a></a></span>
 <span id="cb8-15"><a></a>    mean <span class="op">=</span> w <span class="op">*</span> x <span class="op">+</span> b</span>
-<span id="cb8-16"><a></a>    numpyro.sample(<span class="st">"obs"</span>, dist.Normal(mean, sigma), obs<span class="op">=</span>y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-16"><a></a>    numpyro.sample(<span class="st">"obs"</span>, dist.Normal(mean, sigma), obs<span class="op">=</span>y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment fade-in" data-fragment-index="1">
 <p><strong>Run the model using NUTS:</strong></p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a>kernel <span class="op">=</span> numpyro.infer.NUTS(linear_regression)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a>kernel <span class="op">=</span> numpyro.infer.NUTS(linear_regression)</span>
 <span id="cb9-2"><a></a>mcmc <span class="op">=</span> numpyro.infer.MCMC(kernel, num_warmup<span class="op">=</span><span class="dv">500</span>, num_samples<span class="op">=</span><span class="dv">1000</span>)</span>
-<span id="cb9-3"><a></a>mcmc.run(rng_key, x<span class="op">=</span>x_data, y<span class="op">=</span>y_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-3"><a></a>mcmc.run(rng_key, x<span class="op">=</span>x_data, y<span class="op">=</span>y_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="fragment fade-in" data-fragment-index="2">
 <p><strong>Posterior corner plot using arviz + corner</strong></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a>idata <span class="op">=</span> az.from_numpyro(mcmc)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a>idata <span class="op">=</span> az.from_numpyro(mcmc)</span>
 <span id="cb10-2"><a></a>posterior_array <span class="op">=</span> az.extract(idata, var_names<span class="op">=</span>[<span class="st">"w"</span>, <span class="st">"b"</span>, <span class="st">"sigma"</span>]).to_array().values.T</span>
 <span id="cb10-3"><a></a></span>
 <span id="cb10-4"><a></a>fig <span class="op">=</span> corner.corner(</span>
@@ -1319,7 +1321,7 @@ P(\Omega \mid \text{Obs})
 <span id="cb10-7"><a></a>    truths<span class="op">=</span>[true_w, true_b, <span class="va">None</span>],</span>
 <span id="cb10-8"><a></a>    show_titles<span class="op">=</span><span class="va">True</span></span>
 <span id="cb10-9"><a></a>)</span>
-<span id="cb10-10"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-10"><a></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <aside class="notes">
 <p>This slide walks through the first notebook exercise — a minimal Bayesian linear regression model using NumPyro.</p>
@@ -1346,23 +1348,23 @@ P(\Omega \mid \text{Obs})
 
 <h3 id="numpyro-tips-tricks-for-bayesian-modeling">Numpyro: Tips &amp; Tricks for Bayesian Modeling</h3>
 <p><strong><code>numpyro.handlers.seed</code>: Fix randomness for reproducibility</strong></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a><span class="im">from</span> numpyro.handlers <span class="im">import</span> seed</span>
-<span id="cb11-2"><a></a>seeded_model <span class="op">=</span> seed(model, rng_key)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a><span class="im">from</span> numpyro.handlers <span class="im">import</span> seed</span>
+<span id="cb11-2"><a></a>seeded_model <span class="op">=</span> seed(model, rng_key)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong><code>numpyro.handlers.trace</code>: Inspect internal execution and sample sites</strong></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a><span class="im">from</span> numpyro.handlers <span class="im">import</span> trace</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a><span class="im">from</span> numpyro.handlers <span class="im">import</span> trace</span>
 <span id="cb12-2"><a></a>tr <span class="op">=</span> trace(model).get_trace()</span>
-<span id="cb12-3"><a></a><span class="bu">print</span>(tr[<span class="st">"omega"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-3"><a></a><span class="bu">print</span>(tr[<span class="st">"omega"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong><code>numpyro.handlers.condition</code>: Clamp a variable to observed or fixed value</strong></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a><span class="im">from</span> numpyro.handlers <span class="im">import</span> condition</span>
-<span id="cb13-2"><a></a>conditioned_model <span class="op">=</span> condition(model, data<span class="op">=</span>{<span class="st">"omega"</span>: <span class="fl">0.3</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a><span class="im">from</span> numpyro.handlers <span class="im">import</span> condition</span>
+<span id="cb13-2"><a></a>conditioned_model <span class="op">=</span> condition(model, data<span class="op">=</span>{<span class="st">"omega"</span>: <span class="fl">0.3</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong><code>numpyro.handlers.substitute</code>: Replace variables with fixed values (e.g., MAP estimates)</strong></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a><span class="im">from</span> numpyro.handlers <span class="im">import</span> substitute</span>
-<span id="cb14-2"><a></a>subbed_model <span class="op">=</span> substitute(model, data<span class="op">=</span>{<span class="st">"omega"</span>: <span class="fl">0.3</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a><span class="im">from</span> numpyro.handlers <span class="im">import</span> substitute</span>
+<span id="cb14-2"><a></a>subbed_model <span class="op">=</span> substitute(model, data<span class="op">=</span>{<span class="st">"omega"</span>: <span class="fl">0.3</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong><code>numpyro.handlers.reparam</code>: Reparameterize a site to improve geometry</strong></p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a><span class="im">from</span> numpyro.infer.reparam <span class="im">import</span> LocScaleReparam</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a><span class="im">from</span> numpyro.infer.reparam <span class="im">import</span> LocScaleReparam</span>
 <span id="cb15-2"><a></a><span class="im">from</span> numpyro.handlers <span class="im">import</span> reparam</span>
 <span id="cb15-3"><a></a></span>
-<span id="cb15-4"><a></a>reparammed_model <span class="op">=</span> reparam(model, config<span class="op">=</span>{<span class="st">"z"</span>: LocScaleReparam()})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-4"><a></a>reparammed_model <span class="op">=</span> reparam(model, config<span class="op">=</span>{<span class="st">"z"</span>: LocScaleReparam()})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <aside class="notes">
 <p>This slide gives a quick preview of useful <code>numpyro.handlers</code> you’ll see in the notebooks.</p>
 <ul>
@@ -1392,25 +1394,25 @@ P(\Omega \mid \text{Obs})
 </blockquote>
 <div class="fragment fade-in" data-fragment-index="1">
 <p><strong>Initialize model and extract the log-probability function</strong></p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a>rng_key, init_key <span class="op">=</span> jax.random.split(rng_key)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a>rng_key, init_key <span class="op">=</span> jax.random.split(rng_key)</span>
 <span id="cb16-2"><a></a>init_params, potential_fn, <span class="op">*</span>_ <span class="op">=</span> initialize_model(</span>
 <span id="cb16-3"><a></a>    init_key, model, model_args<span class="op">=</span>(x_data,), model_kwargs<span class="op">=</span>{<span class="st">"y"</span>: y_data}, dynamic_args<span class="op">=</span><span class="va">True</span></span>
 <span id="cb16-4"><a></a>)</span>
 <span id="cb16-5"><a></a></span>
 <span id="cb16-6"><a></a>logdensity_fn <span class="op">=</span> <span class="kw">lambda</span> position: <span class="op">-</span>potential_fn(x_data, y<span class="op">=</span>y_data)(position)</span>
-<span id="cb16-7"><a></a>initial_position <span class="op">=</span> init_params.z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-7"><a></a>initial_position <span class="op">=</span> init_params.z</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="fragment fade-in" data-fragment-index="2">
 <p><strong>Run warm-up to adapt step size and mass matrix using BlackJAX’s window adaptation</strong></p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a></a>num_warmup <span class="op">=</span> <span class="dv">2000</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a></a>num_warmup <span class="op">=</span> <span class="dv">2000</span></span>
 <span id="cb17-2"><a></a>adapt <span class="op">=</span> blackjax.window_adaptation(blackjax.nuts, logdensity_fn, target_acceptance_rate<span class="op">=</span><span class="fl">0.8</span>)</span>
 <span id="cb17-3"><a></a>rng_key, warmup_key <span class="op">=</span> jax.random.split(rng_key)</span>
 <span id="cb17-4"><a></a>(last_state, parameters), _ <span class="op">=</span> adapt.run(warmup_key, initial_position, num_warmup)</span>
-<span id="cb17-5"><a></a>kernel <span class="op">=</span> blackjax.nuts(logdensity_fn, <span class="op">**</span>parameters).step</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-5"><a></a>kernel <span class="op">=</span> blackjax.nuts(logdensity_fn, <span class="op">**</span>parameters).step</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="fragment fade-in" data-fragment-index="3">
 <p><strong>Run BlackJAX NUTS sampling using <code>lax.scan</code></strong></p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a></a><span class="kw">def</span> run_blackjax_sampling(rng_key, state, kernel, num_samples<span class="op">=</span><span class="dv">1000</span>):</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a></a><span class="kw">def</span> run_blackjax_sampling(rng_key, state, kernel, num_samples<span class="op">=</span><span class="dv">1000</span>):</span>
 <span id="cb18-2"><a></a>    <span class="kw">def</span> one_step(state, key):</span>
 <span id="cb18-3"><a></a>        state, info <span class="op">=</span> kernel(key, state)</span>
 <span id="cb18-4"><a></a>        <span class="cf">return</span> state, state</span>
@@ -1419,11 +1421,11 @@ P(\Omega \mid \text{Obs})
 <span id="cb18-7"><a></a>    _, samples <span class="op">=</span> jax.lax.scan(one_step, state, keys)</span>
 <span id="cb18-8"><a></a>    <span class="cf">return</span> samples</span>
 <span id="cb18-9"><a></a></span>
-<span id="cb18-10"><a></a>samples <span class="op">=</span> run_blackjax_sampling(rng_key, last_state, kernel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-10"><a></a>samples <span class="op">=</span> run_blackjax_sampling(rng_key, last_state, kernel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="fragment fade-in" data-fragment-index="4">
 <p><strong>Convert BlackJAX output to ArviZ InferenceData</strong></p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a></a>idata <span class="op">=</span> az.from_dict(posterior<span class="op">=</span>samples.position)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a></a>idata <span class="op">=</span> az.from_dict(posterior<span class="op">=</span>samples.position)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <aside class="notes">
 <p>This slide shows how to use BlackJAX for sampling when you already have a model defined in NumPyro.</p>
@@ -1573,26 +1575,26 @@ P(\Omega \mid \text{Obs})
 <div class="fragment fade-in" data-fragment-index="1">
 <h4 id="step-1-simulate-cosmological-data">Step 1: Simulate Cosmological Data</h4>
 <p><strong>Define a fiducial cosmology to generate synthetic observations</strong></p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a></a>fiducial_cosmo <span class="op">=</span> jc.Planck15()</span>
-<span id="cb20-2"><a></a>ell <span class="op">=</span> jnp.logspace(<span class="dv">1</span>, <span class="dv">3</span>)  <span class="co"># Multipole range for power spectrum</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a></a>fiducial_cosmo <span class="op">=</span> jc.Planck15()</span>
+<span id="cb20-2"><a></a>ell <span class="op">=</span> jnp.logspace(<span class="dv">1</span>, <span class="dv">3</span>)  <span class="co"># Multipole range for power spectrum</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Set up two redshift bins for galaxy populations</strong></p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a></a>nz1 <span class="op">=</span> jc.redshift.smail_nz(<span class="fl">1.</span>, <span class="fl">2.</span>, <span class="fl">1.</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a></a>nz1 <span class="op">=</span> jc.redshift.smail_nz(<span class="fl">1.</span>, <span class="fl">2.</span>, <span class="fl">1.</span>)</span>
 <span id="cb21-2"><a></a>nz2 <span class="op">=</span> jc.redshift.smail_nz(<span class="fl">1.</span>, <span class="fl">2.</span>, <span class="fl">0.5</span>)</span>
-<span id="cb21-3"><a></a>nzs <span class="op">=</span> [nz1, nz2]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-3"><a></a>nzs <span class="op">=</span> [nz1, nz2]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Define observational probes: weak lensing and number counts</strong></p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a></a>probes <span class="op">=</span> [</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a></a>probes <span class="op">=</span> [</span>
 <span id="cb22-2"><a></a>    jc.probes.WeakLensing(nzs, sigma_e<span class="op">=</span><span class="fl">0.26</span>),</span>
 <span id="cb22-3"><a></a>    jc.probes.NumberCounts(nzs, jc.bias.constant_linear_bias(<span class="fl">1.</span>))</span>
-<span id="cb22-4"><a></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-4"><a></a>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Generate synthetic data using the fiducial cosmology</strong></p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a></a>mu, cov <span class="op">=</span> jc.angular_cl.gaussian_cl_covariance_and_mean(fiducial_cosmo, ell, probes)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a></a>mu, cov <span class="op">=</span> jc.angular_cl.gaussian_cl_covariance_and_mean(fiducial_cosmo, ell, probes)</span>
 <span id="cb23-2"><a></a>rng_key <span class="op">=</span> jax.random.PRNGKey(<span class="dv">0</span>)</span>
 <span id="cb23-3"><a></a>noise <span class="op">=</span> jax.random.multivariate_normal(rng_key, jnp.zeros_like(mu), cov)</span>
-<span id="cb23-4"><a></a>data <span class="op">=</span> mu <span class="op">+</span> noise  <span class="co"># Fake observations</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-4"><a></a>data <span class="op">=</span> mu <span class="op">+</span> noise  <span class="co"># Fake observations</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="fragment fade-in" data-fragment-index="2">
 <h4 id="step-2-define-the-numpyro-model">Step 2: Define the NumPyro Model</h4>
-<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a></a><span class="co"># Define a NumPyro probabilistic model to infer cosmological parameters</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a></a><span class="co"># Define a NumPyro probabilistic model to infer cosmological parameters</span></span>
 <span id="cb24-2"><a></a><span class="kw">def</span> model(data):</span>
 <span id="cb24-3"><a></a>    Omega_c <span class="op">=</span> numpyro.sample(<span class="st">"Omega_c"</span>, dist.Uniform(<span class="fl">0.1</span>, <span class="fl">0.5</span>))</span>
 <span id="cb24-4"><a></a>    sigma8 <span class="op">=</span> numpyro.sample(<span class="st">"sigma8"</span>, dist.Uniform(<span class="fl">0.6</span>, <span class="fl">1.0</span>))</span>
@@ -1602,7 +1604,7 @@ P(\Omega \mid \text{Obs})
 <span id="cb24-8"><a></a>    mu, cov <span class="op">=</span> jc.angular_cl.gaussian_cl_covariance_and_mean(cosmo, ell, probes)</span>
 <span id="cb24-9"><a></a>    </span>
 <span id="cb24-10"><a></a>    <span class="co"># Likelihood: multivariate Gaussian over angular power spectra</span></span>
-<span id="cb24-11"><a></a>    numpyro.sample(<span class="st">"obs"</span>, dist.MultivariateNormal(mu, cov), obs<span class="op">=</span>data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-11"><a></a>    numpyro.sample(<span class="st">"obs"</span>, dist.MultivariateNormal(mu, cov), obs<span class="op">=</span>data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <aside class="notes">
 <p>This slide introduces a basic end-to-end inference workflow using <code>jax-cosmo</code> and <code>NumPyro</code>.</p>
@@ -2006,7 +2008,7 @@ P(\Omega \mid \text{Obs})
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -2080,13 +2082,14 @@ P(\Omega \mid \text{Obs})
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

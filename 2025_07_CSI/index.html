@@ -6,10 +6,11 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.32">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.25">
 
   <meta name="author" content="Wassim Kabalan">
+  <meta name="dcterms.date" content="2025-07-01">
   <title>CSI Presentation 2025</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -95,7 +96,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-8b3c6da0781682310500f0ce9cbdf807.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-3c873f18547054f99bff4f425341ae38.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -195,6 +196,7 @@
 <section id="title-slide" data-background-image="assets/titles/llst_first_l.webp" data-background-opacity="0.5" data-background-size="fill" class="center">
   <h1 class="title">CSI Presentation 2025</h1>
   <p class="author">Wassim Kabalan</p>
+  <p class="date">2025-07-01</p>
   <div style=""></div>
 <div style="margin-top: 20px; text-align: center;align-items: bottom;">
   <img data-src="assets/Logos/AIM.png" class="quarto-figure quarto-figure-center" style="width:10.0%"> <img data-src="assets/Logos/APC.png" class="quarto-figure quarto-figure-center" style="width:10.0%"> <img data-src="assets/Logos/AstroDeep-2.png" class="quarto-figure quarto-figure-center" style="width:10.0%"> <img data-src="assets/Logos/scipol.jpeg" class="quarto-figure quarto-figure-center" style="width:10.0%">
@@ -480,7 +482,7 @@
 <h3 id="building-the-physical-model">Building the Physical Model</h3>
 <p>Define each sky component as a <code>FURAX</code> operator:</p>
 <p><br></p>
-<div class="sourceCode" id="cb1" style="font-size: 1.1em;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="co"># Define each physical component</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="font-size: 1.1em;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="co"># Define each physical component</span></span>
 <span id="cb1-2"><a></a>cmb <span class="op">=</span> CMBOperator(nu, ...)</span>
 <span id="cb1-3"><a></a>dust <span class="op">=</span> DustOperator(nu, temp<span class="op">=</span>params[<span class="st">"T_d"</span>], </span>
 <span id="cb1-4"><a></a>                    beta<span class="op">=</span>params[<span class="st">"beta_d"</span>], ...)</span>
@@ -489,7 +491,7 @@
 <span id="cb1-7"><a></a></span>
 <span id="cb1-8"><a></a><span class="co"># Combine into a single mixing matrix</span></span>
 <span id="cb1-9"><a></a>A <span class="op">=</span> MixingMatrixOperator(cmb<span class="op">=</span>cmb, dust<span class="op">=</span>dust, </span>
-<span id="cb1-10"><a></a>                        synchrotron<span class="op">=</span>synchrotron)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-10"><a></a>                        synchrotron<span class="op">=</span>synchrotron)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><br></p>
 <p><strong>Key Features:</strong> - <strong>Modular Design</strong>: Each component is independent - <strong>Physical Models</strong>: Based on emission mechanisms<br>
 - <strong>Differentiable</strong>: Full JAX integration</p>
@@ -501,9 +503,9 @@
 <p><br></p>
 <p>In <code>FURAX</code>, this is implemented with linear operators for maximum efficiency and differentiability:</p>
 <p><br></p>
-<div class="sourceCode" id="cb2" style="font-size: 1.1em;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="co"># Solve for the best-fit signal 's'</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="font-size: 1.1em;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="co"># Solve for the best-fit signal 's'</span></span>
 <span id="cb2-2"><a></a>AND <span class="op">=</span> (A.T <span class="op">@</span> N.I)(d)</span>
-<span id="cb2-3"><a></a>s <span class="op">=</span> (A.T <span class="op">@</span> N.I <span class="op">@</span> A).I(AND)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-3"><a></a>s <span class="op">=</span> (A.T <span class="op">@</span> N.I <span class="op">@</span> A).I(AND)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><br></p>
 <p><strong>Advantages:</strong> - <strong>Direct Solution</strong>: No iterative fitting required - <strong>GPU Accelerated</strong>: Efficient linear algebra - <strong>Stable</strong>: Numerically robust implementation</p>
 </div></div>
@@ -1411,7 +1413,7 @@ v_i = \sum_{\mathbf{j}} g(\mathbf{j}) \prod_{d=1}^{D} \left(1 - \left|p_i^d - j_
 <div class="r-stack">
 <div class="fragment fade-in-then-out" data-fragment-index="1">
 <h3 id="without-halo-exchange-not-distributed">Without Halo Exchange (Not Distributed)</h3>
-<div class="quarto-layout-panel" data-layout-ncol="3" data-align="center">
+<div class="quarto-layout-panel" data-align="center" data-layout-ncol="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
@@ -1442,7 +1444,7 @@ v_i = \sum_{\mathbf{j}} g(\mathbf{j}) \prod_{d=1}^{D} \left(1 - \left|p_i^d - j_
 </div>
 <div class="fragment fade-in" data-fragment-index="2">
 <h3 id="with-halo-exchange-distributed">With Halo Exchange (Distributed)</h3>
-<div class="quarto-layout-panel" data-layout-ncol="3" data-align="center">
+<div class="quarto-layout-panel" data-align="center" data-layout-ncol="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
@@ -2059,7 +2061,7 @@ d_i &amp;= d_{i+1} - v_i \, \Delta t
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -2133,13 +2135,14 @@ d_i &amp;= d_{i+1} - v_i \, \Delta t
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

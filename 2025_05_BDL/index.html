@@ -6,11 +6,12 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-234273d1456647dabc34a594ac50e507.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.32">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.25">
 
   <meta name="author" content="Wassim Kabalan">
   <meta name="author" content="Alexandre Boucaud, François Lanusse">
+  <meta name="dcterms.date" content="2025-05-01">
   <title>JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -30,7 +31,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-8b3c6da0781682310500f0ce9cbdf807.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-3c873f18547054f99bff4f425341ae38.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -128,9 +129,10 @@
     <div class="slides">
 
 <section id="title-slide" data-background-image="assets/titles/bayes_title_1.png" data-background-opacity="0.8" data-background-size="fill" class="center">
-  <h1 class="title"><span style="color:#ffffff; font-size: largest;">JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations</span></h1>
-  <p class="author"><span style="color:#ffffff; font-size: larger;">Wassim Kabalan</span></p>
-  <p class="author"><span style="color:#ffffff; font-size: Smaller;">Alexandre Boucaud, François Lanusse</span></p>
+  <h1 class="title">JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations</h1>
+  <p class="author">Wassim Kabalan</p>
+  <p class="author">Alexandre Boucaud, François Lanusse</p>
+  <p class="date">2025-05-01</p>
   <div style=""></div>
 <div style="margin-top: 20px; text-align: center;align-items: bottom;">
   <div style="display: flex; justify-content: space-around; align-items: center; layout-valign=" middle"=""> <img src="assets/Logos/AstroDeep-2.png" style="width: 35%;"> <img src="assets/Logos/APC.png" style="width: 20%;"> <img src="assets/Logos/scipol.png" style="width: 35%;"> </div>
@@ -865,7 +867,7 @@ v_i = \sum_{\mathbf{j}} g(\mathbf{j}) \prod_{d=1}^{D} \left(1 - \left|p_i^d - j_
 <div class="r-stack">
 <div class="fragment fade-in-then-out" data-fragment-index="1">
 <h3 id="without-halo-exchange-not-distributed">Without Halo Exchange (Not Distributed)</h3>
-<div class="quarto-layout-panel" data-align="center" data-layout-ncol="3">
+<div class="quarto-layout-panel" data-layout-ncol="3" data-align="center">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
@@ -896,7 +898,7 @@ v_i = \sum_{\mathbf{j}} g(\mathbf{j}) \prod_{d=1}^{D} \left(1 - \left|p_i^d - j_
 </div>
 <div class="fragment fade-in" data-fragment-index="2">
 <h3 id="with-halo-exchange-distributed">With Halo Exchange (Distributed)</h3>
-<div class="quarto-layout-panel" data-align="center" data-layout-ncol="3">
+<div class="quarto-layout-panel" data-layout-ncol="3" data-align="center">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
@@ -1450,7 +1452,7 @@ d_i &amp;= d_{i+1} - v_i \, \Delta t
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1524,13 +1526,14 @@ d_i &amp;= d_{i+1} - v_i \, \Delta t
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy
