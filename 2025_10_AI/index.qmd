@@ -1,0 +1,1540 @@
+---
+title: "Generative AI with JAX"
+subtitle: "after CNNs"
+author: "Wassim Kabalan"
+footer: "AISSAI School 2025"
+date: "October 2025"
+format:
+  revealjs:
+    theme: [default, css/custom.scss]
+    incremental: false
+    transition: slide
+    background-transition: slide
+    presentation-size: max-scale
+    highlight-style: github
+    slide-number: true
+    pdfSeparateFragments: true
+    template-partials:
+      - css/title-slide.html
+output: revealjs
+
+code-block-border-left: "#31BAE9"
+title-slide-attributes:
+  data-background-image: "assets/titles/bayes_title.png"
+  data-background-size: fill
+  data-background-opacity: "0.8"
+
+logo1 : '
+<div style="display: flex; justify-content: space-around; align-items: center; layout-valign="middle">
+  <img src="assets/Logos/AstroDeep-2.png" style="width: 35%;"/>
+  <img src="assets/Logos/APC.png" style="width: 20%;"/>
+  <img src="assets/Logos/scipol.png" style="width: 35%;"/>
+</div>
+'
+
+---
+
+## Outline for This Presentation 
+
+<br/>
+<br/>
+<br/>
+
+
+::::::: {.solutionbox}
+
+::::{.solutionbox-body style="font-size: 22px;"}
+
+
+- <span style="color:#1a237e; font-size: 26px;">**Introduction to Generative AI**</span>
+<br/>
+<span style="color:#1a237e;">Understand the mathematical meaning of generating data</span>
+<br/>
+<br/>
+- <span style="color:#1a237e; font-size: 26px;">**Deep dive into Generative Models**</span>
+<br/>
+<span style="color:#1a237e;">Explore the different framework and state of the art ways of generative AI</span>
+<br/>
+<br/>
+- <span style="color:#1a237e; font-size: 26px;">**JAX eco system**</span>
+<br/>
+<span style="color:#1a237e;">Learn core JAX transforms (jit, vmap, pmap) and Flax tooling</span>
+<br/>
+<br/>
+- <span style="color:#1a237e; font-size: 26px;">**Hands on tutorial**</span>
+<br/>
+<br/>
+<span style="color:#1a237e;">Explore how generative AI can be used for cosmological inference</span>
+
+
+::::
+
+::::
+
+::: {.notes}
+This workshop covers three main sections: first, we'll explore different generative AI models and their mathematical properties. Then we'll introduce JAX and its ecosystem for high-performance computing. Finally, we'll apply these techniques to real cosmology problems with hands-on notebooks.
+::::
+
+# What is Generative AI?
+
+## What does "generate" mean?
+
+::: {.columns}
+:::: {.column width="50%"}
+:::: {.fragment .fade-in fragment-index=1}
+![Generated faces example](assets/generated_faces.jpg){width=90% }
+::::
+:::
+
+:::::: {.column width="50%"}
+:::: {.r-stack}
+::::: {.fragment .fade-in-then-out fragment-index=2}
+![](assets/generated/discrete_select.png){width=100%}
+:::::
+
+::::: {.fragment .fade-in fragment-index=3}
+![](assets/generated/continuos_generate.png){width=100%}
+:::::
+
+::::
+
+:::
+
+::::
+
+:::{.solutionbox .fragment .fade-in fragment-index=4}
+:::: {.solutionbox-header style="font-size: 20px;"}
+Key Idea: Generative AI
+::::
+::::{.solutionbox-body style="font-size: 18px;"}
+- Generative AI is about learning the underlying distribution $p(\text{data})$ and sampling from it to generate images.
+- The output of a generative model is a new data point.
+- Green point marks a selected/generated draw.
+- <span style="color:#1a237e;"><strong>Generative</strong></span> is intrinsically related to <span style="color:#1a237e;"><strong>probability distributions</strong></span>.
+::::
+:::
+
+
+
+
+::: {.notes}
+Generative AI is about learning probability distributions over data. Unlike discrete lookup tables, generative models learn continuous distributions and can sample entirely new data points. The key is modeling $p(\text{data})$ accurately enough to generate realistic samples.
+:::
+
+# Generative Models
+
+## Generative Adversarial Networks (GANs)
+
+::: {.columns}
+:::: {.column width="50%"}
+::::: {.fragment fragment-index=1 .fade-in}
+
+<br/>
+<br/>
+
+![GAN Architecture](assets/gan_diagram.png){width=100%; .img-border-2}
+:::::
+::::
+
+:::: {.column width="50%"}
+::::: {.fragment fragment-index=2 .fade-in}
+![](assets/gan_title.png){width=95%}
+
+::::: {.solutionbox}
+::::{.solutionbox-body style="font-size: 18px;"}
+$$\min_G \max_D \mathbb{E}_{x\sim p_\text{data}}[\log D(x)] + \mathbb{E}_{z\sim p(z)}[\log(1 - D(G(z)))]$$
+
+- Loss function
+  - Generator: produces samples G(z) to fool D
+  - Discriminator: estimates real vs fake probability D(·)
+::::
+:::
+
+:::::
+
+::::
+
+
+::::: {.fragment fragment-index=3 .fade-in}
+
+:::{.solutionbox }
+::: {.solutionbox-header style="font-size: 20px;"}
+Advantages and Limitations
+:::
+::::{.solutionbox-body style="font-size: 18px;"}
+- Advantages: sharp samples; flexible implicit modeling; no explicit likelihood.
+- Limitations: unstable training; mode collapse; sensitive to architecture and tricks.
+::::
+:::
+
+:::::
+
+:::
+
+## Limitations with GANs
+
+::: {.columns}
+:::: {.column width="50%"}
+
+::::: {.fragment fragment-index=1 .fade-in}
+
+### Unstable learning
+
+![Nash equilibrium illustration](assets/gan/nash_equilibrium.png){width=100%}
+
+:::::
+
+::::: {.fragment fragment-index=2 .fade-in}
+
+### Mode collapse
+
+![Mode collapse](assets/gan/mode_collapse.png){width=100%}
+
+:::::
+
+::::
+
+:::: {.column width="50%"}
+
+::::: {.fragment fragment-index=3 .fade-in}
+### Vanishing gradients
+![Vanishing gradients](assets/gan/GAN_vanishing_gradient.png){width=65% .img-border-2}
+:::::
+
+::::: {.fragment fragment-index=4 .fade-in}
+:::::: {.solutionbox}
+::::::: {.solutionbox-header style="font-size: 20px;"}
+Some possible solutions
+:::::::
+:::::::{.solutionbox-body style="font-size: 18px;"}
+- Use WGAN for more stable training and stronger gradients.
+- Add gradient penalty (WGAN-GP) to keep the critic smooth.
+:::::::
+::::::
+:::::
+::::
+:::
+
+---
+
+## Variational Autoencoders (VAEs)
+
+::: {.columns}
+:::: {.column width="55%"}
+
+::::: {.r-stack}
+
+:::::: {.fragment fragment-index=1 .fade-in-then-out}
+![Autoencoder architecture](../assets/vae/autoencoder-schema.png){width=65% .img-border-2}
+::::::
+
+:::::: {.fragment fragment-index=2 .fade-in}
+![VAE architecture](../assets/vae_arch.png){width=95% .img-border-2}
+::::::
+
+:::::
+
+:::::: {.fragment fragment-index=5 .fade-in}
+:::{.solutionbox}
+
+:::: {.solutionbox-header style="font-size: 20px;"}
+
+VAE takeaways
+
+::::
+
+::::{.solutionbox-body style="font-size: 18px;"}
+- VAE learn optimal compression into the latent space
+- Represents a dataset by an easy to sample gaussian distribution
+- Compared to GAN gives a better access to probability distribution
+- Produces blurrier images than GANs
+::::
+
+:::
+::::::
+
+::::
+
+:::: {.column width="45%"}
+
+:::::: {.fragment fragment-index=1 .fade-in}
+![VAE paper title](../assets/vae_title.png){width=100%}
+::::::
+
+:::::: {.fragment fragment-index=2 .fade-in}
+
+Evidence Lower Bound (ELBO):
+
+$$\mathcal{L} = \mathbb{E}_{q_\phi(z|x)}[\log p_\theta(x|z)] - \text{KL}(q_\phi(z|x)\|p(z))$$
+
+- **Reconstruction**: decoder quality
+- **KL Divergence**: latent regularization
+
+Reparameterization trick:
+$$z = \mu + \sigma \odot \epsilon, \quad \epsilon \sim \mathcal{N}(0,I)$$
+::::::
+
+::::
+
+:::
+
+
+
+
+
+
+::: {.notes}
+VAEs use an encoder-decoder architecture with a probabilistic latent space. The encoder outputs mean and log-variance for a Gaussian posterior. The reparameterization trick allows backpropagation through the stochastic sampling. The ELBO balances reconstruction quality against matching a prior distribution, typically standard normal.
+:::
+
+## VAE — Why KL matters (β-VAE) {.smaller}
+
+::::: {.columns}
+:::::: {.column width="50%"}
+
+:::: {.fragment fragment-index=1 .fade-in}
+**Without KL regularization**:
+
+![Unregularized](../assets/vae_no_kl.png){width=60% .img-border-2}
+
+Latent space is unstructured
+::::
+
+:::
+
+:::::: {.column width="50%"}
+
+:::: {.fragment fragment-index=2 .fade-in}
+**With KL regularization**:
+
+![Regularized](../assets/vae_with_kl.png){width=60% .img-border-2}
+
+Organized, continuous latent space
+::::
+
+:::
+::::
+
+:::: {.fragment fragment-index=3 .fade-in}
+
+**β-VAE objective**:
+
+$$\mathcal{L}_\beta = \mathbb{E}[\log p_\theta(x|z)] - \beta \cdot \text{KL}(q_\phi(z|x)\|p(z))$$
+
+- $\beta > 1$: More disentanglement, less reconstruction
+- $\beta < 1$: Better reconstruction, less structure
+- **Limitation**: Gaussian prior can bias toward simpler shapes
+
+::::
+
+::: {.notes}
+The KL term is crucial for organizing the latent space. Without it, the encoder can map inputs to arbitrary regions making interpolation meaningless. Beta-VAE introduces a hyperparameter β to control the tradeoff between reconstruction quality and latent space disentanglement. Higher β encourages more interpretable latent dimensions but may reduce reconstruction fidelity.
+:::
+
+## VAE in Cosmology (Deblending) {.smaller}
+
+::: {.absolute bottom=20 right=20 width="12%"}
+![Binh Nguyen](https://avatars.githubusercontent.com/u/93823951?v=4){width=100% .img-border-2}
+:::
+
+::::: {.columns}
+:::::: {.column width="50%"}
+
+![Deblender architecture](TASK/images/deblender_diagram.png){width=85% .img-border-2}
+
+![Distribution e1/e2](TASK/images/distribution_e1_e2_recon_pred_no_filtered.png){width=95% .img-border-2}
+:::
+
+:::::: {.column width="50%"}
+
+![Reconstructions](TASK/images/recons_t2.png){width=95% .img-border-2}
+:::
+::::
+
+
+::: {.notes}
+In cosmology, VAEs are used for galaxy deblending and morphology analysis. The latent representation can compress galaxy images efficiently. However, the Gaussian prior assumption can bias reconstructions toward rounder shapes, which is problematic for weak lensing studies that need accurate ellipticity measurements. This motivates using more flexible priors like normalizing flows.
+:::
+
+## Normalizing Flows (Flow-based Generative Models)
+
+![Flow intuition (© Lilian Weng, Lil’Log)](../assets/flow_diagram.png){width=60% .img-border-2 fig-align="center"}
+
+::: {.columns}
+::: {.column width="60%"}
+
+Mappings: $f(x) \to y$, $g(y) = z$; $z = g_{\theta}(x) = g_K \circ \cdots \circ g_1(x)$
+
+**Log-likelihood**
+
+$$\log p_{\theta}(x) = \log p_Z\big(g_{\theta}(x)\big)
+  + \sum_{k=1}^{K} \log \left|\det J_{g_k}\right|$$
+
+:::
+
+::: {.column width="40%"}
+
+![](../assets/rezende_title.png){width=100% .img-border-2}
+<p style="text-align:center; font-size: 12px; margin-top: 2px;">Rezende & Mohamed (2015)</p>
+
+:::
+:::
+
+:::{.solutionbox}
+
+:::: {.solutionbox-header style="font-size: 20px;"}
+In short
+::::
+
+:::: {.solutionbox-body style="font-size: 16px;"}
+- Gaussianize data: $z = g_{\theta}(x) \approx \mathcal{N}(0, I)$.
+- Exact likelihood: $\log p_{\theta}(x) = \log p_Z(z) + \sum_k \log|\det J_{g_k}|$.
+- Generate via inverse: $x = f_{\theta}(z)$, $z \sim p_Z$.
+::::
+
+:::
+
+::: {.notes}
+Flows learn an invertible transform mapping a simple base $p_Z$ (e.g., $\mathcal{N}(0,I)$) to the data distribution. Training maximizes the exact likelihood via the change-of-variables formula with tractable log-determinants.
+:::
+
+## Flow Models: Shared Building Blocks
+
+::: {.columns}
+::: {.column width="40%"}
+
+- **ActNorm (per-feature affine)**
+
+  - Learned per-channel shift/scale; invertible; stabilizes early training.
+  - <span style="font-size: 15px;">
+    $$y = \sigma \odot x + \mu, \qquad \log|\det J| = \sum_i \log|\sigma_i|$$
+    <span style="font-size: 13px;">(for images multiply by $H\!\times\!W$)</span>
+    </span>
+
+- **Invertible 1×1 conv (mixing across channels)**
+
+  - Learned $(C\times C)$ mixing at each pixel; LU‑parameterization gives fast log‑det.
+  - <span style="font-size: 15px;">
+    $$y_{:,h,w} = W\,x_{:,h,w}, \qquad \log|\det J| = H\!\times\!W\cdot\log|\det W|$$
+    </span>
+
+- **Affine coupling (RealNVP/Glow)**
+
+  - Split features; NN on one half predicts scale/shift for the other.
+  - <span style="font-size: 15px;">
+    $$x=(x_a,x_b),\quad y_a=x_a,\quad y_b=x_b\odot e^{s(x_a)}+t(x_a)$$
+    $$\log|\det J|=\sum s(x_a), \qquad x_b=(y_b-t)\odot e^{-s}$$
+    </span>
+
+- **Autoregressive transform (MAF / IAF)**
+
+  - Masked dependencies make $J$ triangular. <span style="font-size: 15px;">$$y_i=\sigma_i(x_{<i})\,x_i+\mu_i(x_{<i}), \qquad \log|\det J|=\sum_i\log|\sigma_i|$$</span>
+  - <span style="font-size: 13px;">Speed note: MAF = fast density, IAF = fast sampling.</span>
+
+:::{.solutionbox}
+:::: {.solutionbox-header style="font-size: 20px;"}
+Key insight
+::::
+:::: {.solutionbox-body style="font-size: 18px;"}
+Design layers so $J$ is triangular or has a constant log‑det ⇒ $\log|\det J|$ becomes a simple sum (no large determinants).
+::::
+:::
+
+<span style="font-size: 14px;">Overall flow: $h_0=x,\; h_k=g_k(h_{k-1}),\; z=h_K$, \;$\log p_\theta(x)=\log p_Z(z)+\sum_k \log\left|\det \tfrac{\partial g_k}{\partial h_{k-1}}\right|$</span>
+
+:::
+
+::: {.column width="60%"}
+
+![Glow step](../assets/glow_step.png){width=95% fig-cap="ActNorm → invertible 1×1 conv → affine coupling"}
+
+:::
+:::
+
+
+ 
+
+::: {.notes}
+Recap the three reusable blocks and stress why their Jacobians give cheap log‑det: coupling/autoregressive are triangular, 1×1 conv has constant log‑det.
+:::
+
+## Flow‑VAE: Where the Flow Lives
+
+::: {.columns}
+::: {.column width="58%"}
+
+### Posterior flow
+- Make $q_\phi(z\mid x)$ flexible by flowing the encoder sample before decoding.
+  <span style="font-size: 15px; display:block; margin-top:4px;">
+  $$\log q_\phi(z_K\mid x)=\log\mathcal N(z_0;\mu,\sigma^2)\; -\; \sum_k \log\left|\det \tfrac{\partial g_k}{\partial h_{k-1}}\right|$$
+  $$\text{ELBO piece: }\mathbb E[\log p_\theta(x\mid z_K)] + \log p(z_K) - \log q_\phi(z_K\mid x)$$
+  </span>
+  <span style="font-size: 13px;">Implementation: prefer coupling / IAF (parallel sampling).</span>
+
+### Prior flow
+- Define $p_\psi(z)$ by pushing a base Normal through a flow; use the inverse to evaluate $\log p_\psi(z)$ in the KL.
+  <span style="font-size: 15px; display:block; margin-top:4px;">
+  $$\log p_\psi(z)=\log \mathcal N\big(f^{-1}(z)\big)\; +\; \sum_k \log\left|\det \tfrac{\partial f_k}{\partial h_{k-1}}\right|$$
+  </span>
+  <span style="font-size: 13px;">Implementation: prefer MAF for fast log‑density.</span>
+
+:::{.solutionbox}
+:::: {.solutionbox-header style="font-size: 20px;"}
+Rule of thumb
+::::
+:::: {.solutionbox-body style="font-size: 18px;"}
+Posterior → coupling/IAF. Prior → MAF. Use both if needed.
+::::
+:::
+
+:::
+
+::: {.column width="42%"}
+
+```text
+Posterior flow
+x → enc → z0 → g → zK → dec → x̂
+(adds −Σ log|det J_g| to log q)
+
+Prior flow
+z0 ~ N(0, I) → f → zK → dec
+(use f^{-1} to compute log p(z))
+```
+
+:::
+:::
+
+## Diffusion / Score-Based Models {.smaller}
+
+:::: {.columns}
+::: {.column width="55%"}
+![DDPM process](../assets/ddpm_box.png){width=100%}
+
+![Diffusion visualization](../assets/diffusion_spiral.png){width=80%}
+:::
+
+::: {.column width="45%"}
+![](../assets/ddpm_title.png){width=95%}
+
+**Idea**: Learn to reverse a noising process
+
+- **Forward**: $q(x_t|x_{t-1}) = \mathcal{N}(\sqrt{1-\beta_t}x_{t-1}, \beta_t I)$
+- **Reverse**: $p_\theta(x_{t-1}|x_t)$ learned by neural net
+
+::: {.callout-tip}
+## State-of-the-Art
+Diffusion models achieve SOTA image quality (DALL·E 2, Stable Diffusion) with excellent mode coverage
+:::
+
+:::
+::::
+
+::: {.notes}
+Diffusion models gradually add noise to data in the forward process, then learn to denoise in the reverse process. A neural network predicts the noise at each step. This iterative refinement leads to high-quality, diverse samples with excellent mode coverage. Diffusion models are now SOTA for image generation, used in systems like DALL·E 2 and Stable Diffusion.
+:::
+
+## Model Comparison Table
+
+| Model | Pros | Cons |
+|-------|------|------|
+| **VAE** | - Explicit likelihood<br>- Fast sampling<br>- Good global structure | - Blurry outputs<br>- Prior bias (Gaussian)<br>- Limited expressiveness |
+| **GAN** | - Sharp, high-quality images<br>- Fast sampling | - Training instability<br>- Mode collapse<br>- No likelihood |
+| **Flow** | - Exact likelihood<br>- Invertible<br>- Flexible distributions | - Computationally expensive<br>- Architecture constraints<br>- Difficult to scale |
+| **Diffusion** | - SOTA quality<br>- Excellent mode coverage<br>- Stable training | - Slow sampling (many steps)<br>- Computationally intensive<br>- Careful tuning required |
+
+::: {.notes}
+Each generative model family has distinct tradeoffs. VAEs offer fast training and sampling but produce blurry outputs. GANs generate sharp images but are unstable to train. Flows provide exact likelihoods but are computationally expensive. Diffusion models achieve the best quality but require many sampling steps. Choose based on your application requirements.
+:::
+
+## Evaluating Generators {.smaller}
+
+:::: {.columns}
+::: {.column width="50%"}
+
+::: {.callout-note}
+## Fréchet Inception Distance (FID)
+
+$$\text{FID} = \|\mu_r - \mu_g\|^2 + \text{Tr}(\Sigma_r + \Sigma_g - 2(\Sigma_r \Sigma_g)^{1/2})$$
+
+- Compare distribution statistics in Inception feature space
+- Lower is better
+- Measures **quality** and **diversity**
+:::
+
+:::
+
+::: {.column width="50%"}
+
+::: {.callout-note}
+## Precision & Recall
+
+- **Precision**: generated samples are realistic
+- **Recall**: model covers all modes
+- Disentangles quality vs coverage
+- Detects mode collapse
+:::
+
+:::
+::::
+
+**Important**: Likelihood-based metrics (ELBO, NLL) only available for explicit models (VAE, Flow)
+
+For science applications, **task-specific evaluation** is crucial!
+
+::: {.notes}
+FID compares the statistics of real and generated samples in a deep feature space, capturing both quality and diversity. Precision and Recall metrics disentangle these aspects: precision measures if generated samples are realistic, recall measures if all data modes are covered. This is crucial for detecting mode collapse. For scientific applications, always validate with task-specific metrics relevant to your domain.
+:::
+
+# JAX Ecosystem
+
+## What is JAX? {.smaller}
+
+:::: {.columns}
+::: {.column width="55%"}
+![JAX and OpenXLA](../assets/jax_openxla.png){width=95%}
+:::
+
+::: {.column width="45%"}
+
+::: {.callout-tip}
+## NumPy + Transformations
+
+JAX = NumPy API + **composable function transformations**
+
+- `grad`: automatic differentiation
+- `jit`: JIT compilation (XLA)
+- `vmap`: automatic vectorization
+- `pmap`: parallelization across devices
+:::
+
+**Key principles**:
+
+- Functional programming
+- Pure functions (no side effects)
+- Explicit randomness (PRNG keys)
+- Works on CPU, GPU, TPU
+
+:::
+::::
+
+::: {.notes}
+JAX provides a NumPy-compatible API with powerful function transformations. grad computes derivatives, jit compiles to optimized XLA code, vmap vectorizes operations, and pmap parallelizes across devices. JAX enforces functional programming: functions must be pure without side effects. Randomness is explicit via PRNG key splitting. The same code runs efficiently on CPU, GPU, or TPU through XLA compilation.
+:::
+
+## JAX vs PyTorch {.smaller}
+
+:::: {.columns}
+::: {.column width="50%"}
+
+**PyTorch**:
+
+```python
+import torch
+
+x = torch.randn(10, 5)
+w = torch.randn(5, 3, requires_grad=True)
+
+y = x @ w
+loss = y.sum()
+loss.backward()
+
+# Gradient in w.grad
+print(w.grad)
+```
+
+- Object-oriented
+- Implicit state (grad stored in tensors)
+- Global random state
+
+:::
+
+::: {.column width="50%"}
+
+**JAX**:
+
+```python
+import jax.numpy as jnp
+import jax
+
+key = jax.random.key(0)
+x = jax.random.normal(key, (10, 5))
+w = jax.random.normal(key, (5, 3))
+
+def loss_fn(w, x):
+    return (x @ w).sum()
+
+grad_fn = jax.grad(loss_fn)
+grad = grad_fn(w, x)
+print(grad)
+```
+
+- Functional
+- Explicit transformations
+- Explicit random keys
+
+:::
+::::
+
+::: {.notes}
+PyTorch uses object-oriented programming with implicit state in tensors. Gradients are stored in .grad attributes and randomness comes from global state. JAX is purely functional: you transform functions explicitly with grad/jit/vmap. Randomness requires explicit PRNG keys that must be split for each operation. This functional approach enables powerful program transformations and better reproducibility.
+:::
+
+## JAX RNG Pattern {.smaller}
+
+:::: {.columns}
+::: {.column width="60%"}
+
+```python
+import jax.random as jr
+
+# Create root key
+key = jr.key(0)
+
+# Split for independent randomness
+key, subkey1 = jr.split(key)
+x = jr.normal(subkey1, (100,))
+
+key, subkey2 = jr.split(key)
+y = jr.uniform(subkey2, (100,))
+
+# In training loop
+for epoch in range(num_epochs):
+    key, step_key = jr.split(key)
+    # Use step_key for this iteration
+    params, state = train_step(params, state, batch, step_key)
+```
+
+:::
+
+::: {.column width="40%"}
+
+::: {.callout-warning}
+## Never Reuse Keys!
+
+Each random operation needs a fresh key from splitting.
+
+Reusing keys produces identical "random" numbers!
+:::
+
+**Key splitting diagram**:
+
+```
+key
+├─ key'   (continue)
+└─ subkey (use once)
+```
+
+:::
+::::
+
+::: {.notes}
+JAX uses explicit PRNG keys based on the Threefry counter-based RNG. You must split keys to get independent randomness - never reuse the same key twice or you'll get identical outputs. The pattern is: split to get a new key and a subkey, use the subkey for the operation, continue with the new key. This makes all randomness explicit and reproducible.
+:::
+
+## JAX Transforms {.smaller}
+
+:::: {.columns}
+::: {.column width="50%"}
+
+**Automatic Differentiation**:
+
+```python
+import jax
+
+def loss(w, x, y):
+    return ((x @ w - y)**2).sum()
+
+# Gradient w.r.t first argument
+grad_fn = jax.grad(loss)
+grads = grad_fn(w, x, y)
+```
+
+**JIT Compilation**:
+
+```python
+@jax.jit
+def fast_fn(x):
+    return jnp.sin(x**2) + jnp.cos(x)
+
+# Compiled once, runs fast
+y = fast_fn(x)
+```
+
+:::
+
+::: {.column width="50%"}
+
+**Vectorization**:
+
+```python
+# Per-example computation
+def compute(x, weight):
+    return x @ weight
+
+# Vectorize over batch
+batch_compute = jax.vmap(
+    compute,
+    in_axes=(0, None)  # batch x, shared weight
+)
+```
+
+**Parallelization**:
+
+```python
+# Across multiple devices
+@jax.pmap
+def parallel_fn(x):
+    return x @ w
+
+# Runs on all GPUs
+y = parallel_fn(x)
+```
+
+:::
+::::
+
+::: {.notes}
+JAX's transforms are the secret sauce. grad computes derivatives of any function. jit compiles to optimized XLA code with massive speedups. vmap automatically vectorizes functions over batch dimensions - you write single-example code, JAX batches it. pmap parallelizes across multiple devices. These transforms compose: you can vmap a jitted grad function!
+:::
+
+## Neural Networks in JAX (Flax) {.smaller}
+
+:::: {.columns}
+::: {.column width="50%"}
+
+**PyTorch**:
+
+```python
+import torch.nn as nn
+
+class CNN(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.conv1 = nn.Conv2d(3, 32, 3)
+        self.conv2 = nn.Conv2d(32, 64, 3)
+        self.fc = nn.Linear(64*6*6, 10)
+
+    def forward(self, x):
+        x = F.relu(self.conv1(x))
+        x = F.relu(self.conv2(x))
+        x = x.view(x.size(0), -1)
+        return self.fc(x)
+```
+
+:::
+
+::: {.column width="50%"}
+
+**Flax (Linen)**:
+
+```python
+import flax.linen as nn
+
+class CNN(nn.Module):
+    @nn.compact
+    def __call__(self, x):
+        x = nn.Conv(32, (3,3))(x)
+        x = nn.relu(x)
+        x = nn.Conv(64, (3,3))(x)
+        x = nn.relu(x)
+        x = x.reshape((x.shape[0], -1))
+        x = nn.Dense(10)(x)
+        return x
+
+# Init separate from apply
+params = model.init(key, x_dummy)
+y = model.apply(params, x)
+```
+
+:::
+::::
+
+![](../assets/flax_logo.png){width=10%}
+
+::: {.notes}
+Flax provides a Linen API for neural networks in JAX. Unlike PyTorch's stateful modules, Flax separates initialization and application. The @nn.compact decorator allows inline submodule creation. You initialize parameters with a dummy input and key, then apply them explicitly. This functional approach enables powerful program transformations and makes parallelization straightforward.
+:::
+
+## JAX Ecosystem {.smaller}
+
+:::: {.columns}
+::: {.column width="50%"}
+
+**Core ML Stack**:
+
+- **Flax**: Neural network library (Linen API)
+- **Optax**: Gradient-based optimization
+  - Adam, SGD, learning rate schedules
+  - Gradient clipping, weight decay
+- **Orbax**: Checkpointing utilities
+
+**Probabilistic Programming**:
+
+- **BlackJAX**: MCMC sampling (NUTS, HMC)
+- **NumPyro**: Probabilistic programming
+- **Distrax**: Probability distributions
+- **FlowJAX**: Normalizing flows
+
+:::
+
+::: {.column width="50%"}
+
+**Scientific Computing**:
+
+- **Diffrax**: Differential equation solvers
+  - ODEs, SDEs for diffusion models
+- **Equinox**: PyTorch-like API
+- **Lineax**: Linear solvers
+
+::: {.callout-tip}
+## Composability is Key
+
+All libraries work together seamlessly! Mix Flax models with BlackJAX sampling, use Distrax distributions in Flax, etc.
+:::
+
+:::
+::::
+
+::: {.notes}
+The JAX ecosystem offers specialized libraries that all compose beautifully. Flax and Optax handle deep learning. BlackJAX provides MCMC samplers like NUTS. Distrax offers probability distributions. FlowJAX implements normalizing flows. Diffrax solves differential equations for diffusion models. The key advantage is composability - you can mix and match these libraries freely since they all operate on standard JAX arrays and functions.
+:::
+
+# Hands-On: Cosmology Applications
+
+## GZ10 Dataset Card {.smaller}
+
+:::: {.columns}
+::: {.column width="60%"}
+
+**Galaxy Zoo 10** from MultimodalUniverse:
+
+```python
+from datasets import load_dataset
+ds = load_dataset("MultimodalUniverse/gz10")
+```
+
+**Dataset statistics**:
+
+- ~17,700 galaxy images
+- RGB images (256×256 pixels)
+- Fields: `gz10_label`, `redshift`, `object_id`
+- Cached locally (~2.4GB)
+
+**For this workshop**: Downsize to 32×32 or 64×64 for speed
+
+:::
+
+::: {.column width="40%"}
+
+![Example galaxies (5×5 mosaic)
+placeholder - generate from notebook](../assets/placeholder.png){width=100%}
+
+**Morphology labels** (`gz10_label`):
+
+- Different galaxy types
+- Spiral, elliptical, etc.
+
+**Redshift** available for regression tasks
+
+:::
+::::
+
+::: {.notes}
+The Galaxy Zoo 10 dataset contains ~17k galaxy images with morphology classifications and redshift measurements. We'll use this for two purposes: training a VAE to learn latent representations of galaxy morphology, and predicting redshift from the learned latent space. For workshop speed, we'll downsize images to 32×32 or 64×64 pixels.
+:::
+
+## Example A: VAE + Redshift {.smaller}
+
+:::: {.columns}
+::: {.column width="55%"}
+
+**Pipeline**:
+
+```
+Galaxy Image → Encoder → μ, log σ
+                ↓
+            Sample z ~ N(μ, σ²)
+                ↓
+           Decoder → Reconstruction
+```
+
+**Then**:
+
+```
+Latent μ → Linear Regressor → Redshift
+```
+
+**Goals**:
+
+1. Train VAE on galaxies
+2. Extract latent representations (μ)
+3. Predict redshift from μ
+4. Visualize reconstructions & latent space
+
+:::
+
+::: {.column width="45%"}
+
+::: {.callout-note}
+## Notebook A
+
+`Generative_AI_JAX_GZ10_VAE.ipynb`
+
+- Flax Encoder/Decoder
+- ELBO loss with β warm-up
+- KL annealing schedule
+- Scikit-learn redshift regressor
+- Save outputs to `assets/generated/`
+:::
+
+**Expect**: moderate R² for redshift (it's hard!)
+
+:::
+::::
+
+::: {.notes}
+In Notebook A, we train a VAE on GZ10 galaxies. The encoder produces mean and log-variance for each image, we sample a latent vector z, and the decoder reconstructs the image. After training, we extract the latent means μ and train a simple regressor to predict redshift. This tests whether the learned latent space captures physically meaningful information. We'll also visualize reconstructions and latent space structure.
+:::
+
+## Example A: Notebook Details
+
+**File**: `2025_10_AI/Generative_AI_JAX_GZ10_VAE.ipynb`
+
+**Hyperparameters**:
+
+- Image size: 32×32 or 64×64
+- Latent dimension: 16
+- Batch size: 128 (CPU) / 256 (GPU)
+- Learning rate: 1e-3 with warm-up
+- β schedule: 0 → 1 over first 10% of training
+- Epochs: 5-10 for demo
+
+**Architecture**: 3-layer conv encoder/decoder with skip connections
+
+**Outputs**: Reconstruction grids, latent scatter plots, redshift predictions
+
+## Flow Prior Upgrade (Optional) {.smaller}
+
+:::: {.columns}
+::: {.column width="55%"}
+
+**Standard VAE**: $p(z) = \mathcal{N}(0, I)$
+
+**Flow-augmented VAE**: $p(z) = f_*(\mathcal{N}(0,I))$
+
+```python
+import distrax as dx
+
+# Base distribution
+base = dx.Independent(
+    dx.Normal(jnp.zeros(latent_dim),
+              jnp.ones(latent_dim)),
+    1
+)
+
+# Flow transformation (RealNVP)
+flow = make_flow(latent_dim, num_layers=4)
+prior = dx.Transformed(base, flow)
+
+# Sample from flow prior
+z_sample = prior.sample(seed=key)
+log_prob = prior.log_prob(z_sample)
+```
+
+:::
+
+::: {.column width="45%"}
+
+::: {.callout-tip}
+## Notebook B
+
+`Generative_AI_JAX_GZ10_VAE_NF.ipynb`
+
+- Load VAE from Notebook A
+- Replace Gaussian prior with Flow
+- RealNVP or Neural Spline Flow
+- Compare sample quality
+- Visualize latent distributions
+:::
+
+**Why?** More flexible prior → better fit to data → improved generation
+
+:::
+::::
+
+::: {.notes}
+Notebook B extends the VAE by replacing the Gaussian prior with a normalizing flow. This allows the prior to match the true aggregate posterior distribution better. We can use RealNVP or Neural Spline Flows from Distrax or FlowJAX. This improves generation quality and reduces the gap between the prior and aggregate posterior, leading to better overall likelihood.
+:::
+
+## PSF Concept {.smaller}
+
+:::: {.columns}
+::: {.column width="50%"}
+
+**Point Spread Function (PSF)**:
+
+Describes how a point source is blurred by the telescope optics and atmosphere.
+
+$$\text{Observed} = \text{True Object} \otimes \text{PSF} + \text{Noise}$$
+
+**Common models**:
+
+- Gaussian: $\text{PSF}(r) \propto e^{-r^2/(2\sigma^2)}$
+- Moffat: $\text{PSF}(r) \propto (1 + (r/\alpha)^2)^{-\beta}$
+
+:::
+
+::: {.column width="50%"}
+
+![Sharp vs blurred galaxy
+(generate in notebook)](../assets/placeholder.png){width=90%}
+
+::: {.callout-warning}
+## Why It Matters
+
+PSF blurring affects:
+- Shape measurements
+- Weak lensing shear
+- Morphology classification
+
+Must characterize PSF accurately!
+:::
+
+:::
+::::
+
+::: {.notes}
+The Point Spread Function describes how telescope optics and atmospheric seeing blur astronomical images. Every observed image is a convolution of the true object with the PSF plus noise. PSF characterization is critical for weak lensing measurements since PSF anisotropy can mimic gravitational shear. We model PSFs parametrically (Gaussian, Moffat) and infer parameters from stars in the field.
+:::
+
+## Bayesian PSF Inference {.smaller}
+
+:::: {.columns}
+::: {.column width="55%"}
+
+**Forward model**:
+
+```python
+def forward_model(params, psf_width):
+    psf = gaussian_psf(kernel_size, psf_width)
+    observed = convolve(true_image, psf)
+    return observed
+```
+
+**Likelihood**:
+
+$$p(D | \sigma) = \mathcal{N}(D; \mu_\sigma, \Sigma_{\text{noise}})$$
+
+where $\mu_\sigma$ = convolved model
+
+**Prior**: $\log \sigma \sim \mathcal{N}(0, 1)$
+
+**Inference**: BlackJAX NUTS sampler
+
+:::
+
+::: {.column width="45%"}
+
+::: {.callout-note}
+## Notebook C
+
+`Generative_AI_JAX_PSF_Bayesian.ipynb`
+
+- Generate synthetic data
+- Define likelihood function
+- Set up NUTS sampler
+- Run MCMC chains
+- Posterior predictive checks
+- (Optional) Surrogate likelihood
+:::
+
+**Goal**: Infer PSF $\sigma$ from blurred observation
+
+:::
+::::
+
+::: {.notes}
+Notebook C demonstrates Bayesian inference for PSF parameters. We generate synthetic galaxy data, convolve with a PSF of known width, add noise, then try to recover the PSF width using MCMC. We define a likelihood function comparing observed and predicted images, set a prior on log-PSF width, and use BlackJAX's NUTS sampler. This shows how JAX's differentiability enables gradient-based MCMC for physics simulators.
+:::
+
+## Likelihood Function {.smaller}
+
+```python
+def gaussian_psf(size, sigma):
+    ax = jnp.arange(size) - (size-1)/2
+    xx, yy = jnp.meshgrid(ax, ax)
+    k = jnp.exp(-(xx**2 + yy**2)/(2*sigma**2))
+    return k / jnp.sum(k)
+
+def convolve_img(img, psf):
+    x = img[None, None, ...]  # NCHW format
+    k = psf[None, None, ...]
+    y = lax.conv_general_dilated(
+        x, k, (1,1), 'SAME',
+        dimension_numbers=('NCHW','OIHW','NCHW')
+    )
+    return y[0,0]
+
+def log_likelihood(log_sigma, img_true, img_obs, noise_std):
+    sigma = jnp.exp(log_sigma)
+    psf = gaussian_psf(15, sigma)
+    img_pred = convolve_img(img_true, psf)
+    return -0.5 * jnp.sum(((img_obs - img_pred)/noise_std)**2)
+
+def log_prior(log_sigma):
+    return -0.5 * log_sigma**2  # N(0,1) prior
+
+def log_prob(theta, img_true, img_obs, noise_std):
+    return log_likelihood(theta[0], img_true, img_obs, noise_std) + log_prior(theta[0])
+```
+
+::: {.notes}
+Here's the complete likelihood setup. The Gaussian PSF is normalized to sum to 1. We use JAX's conv_general_dilated for convolution in the proper format. The log-likelihood is a Gaussian comparing predicted and observed images. The log-prior is a standard normal on log-sigma. Combining these gives the log-posterior for MCMC sampling.
+:::
+
+## BlackJAX Sampling {.smaller}
+
+```python
+import blackjax
+
+# Define target log-probability
+def logprob_fn(theta):
+    return log_prob(theta, img_true, img_obs, noise_std)
+
+# Initialize NUTS sampler
+nuts = blackjax.nuts(logprob_fn, step_size=1e-3)
+
+# Initial state
+key = jax.random.key(42)
+initial_position = jnp.array([jnp.log(1.5)])  # initial guess
+initial_state = nuts.init(initial_position)
+
+# Sampling loop
+@jax.jit
+def one_step(state, key):
+    state, info = nuts.step(key, state)
+    return state, (state.position, info)
+
+keys = jax.random.split(key, 2000)
+final_state, (samples, infos) = jax.lax.scan(one_step, initial_state, keys)
+
+# Analyze posterior
+samples_array = jnp.array(samples)
+sigma_posterior = jnp.exp(samples_array[1000:, 0])  # burn-in 1000
+print(f"Posterior mean: {sigma_posterior.mean():.3f} ± {sigma_posterior.std():.3f}")
+```
+
+::: {.notes}
+BlackJAX makes HMC and NUTS sampling simple. We define the log-probability function, initialize the NUTS sampler with a step size, create an initial state, then use jax.lax.scan to run the sampling loop efficiently. After burn-in, we analyze the posterior distribution. The jitted one_step function makes sampling very fast, and JAX's automatic differentiation provides the gradients NUTS needs.
+:::
+
+## Surrogate Likelihood (Advanced) {.smaller}
+
+:::: {.columns}
+::: {.column width="50%"}
+
+**Problem**: Forward model is expensive (many convolutions during MCMC)
+
+**Solution**: Train a fast surrogate
+
+**Approaches**:
+
+1. **Conditional Flow**: $p(y|\\theta)$
+   - Train RealNVP/NSF on synthetic pairs
+   - Sample $y \sim p(y|\theta)$ quickly
+
+2. **Score-based**: Conditional denoiser
+   - Learn $\nabla_y \log p(y|\theta)$
+   - Use in Langevin dynamics
+
+:::
+
+::: {.column width="50%"}
+
+```python
+# Conditional flow training
+def train_surrogate(params_dataset,
+                    images_dataset):
+    flow = ConditionalFlow(...)
+
+    for theta, y in zip(params_dataset,
+                        images_dataset):
+        loss = -flow.log_prob(y,
+                              condition=theta)
+        # Optimize flow parameters
+
+    return flow
+
+# Use in inference
+def surrogate_loglik(theta):
+    y = observed_image
+    return flow.log_prob(y, condition=theta)
+```
+
+:::
+::::
+
+::: {.notes}
+For expensive forward models, we can train a surrogate likelihood using conditional flows or score models. Generate many synthetic parameter-image pairs, then train a conditional density model to approximate p(y|θ). This amortizes the cost: after training, likelihood evaluation is cheap. Use FlowJAX or Diffrax for the surrogate. This technique is essential for simulation-based inference in cosmology.
+:::
+
+# Best Practices
+
+## RNG & Reproducibility {.smaller}
+
+:::: {.columns}
+::: {.column width="50%"}
+
+::: {.callout-warning}
+## Golden Rule: Split Keys!
+
+```python
+# WRONG - reusing key
+key = jax.random.key(0)
+x = jax.random.normal(key, (10,))
+y = jax.random.normal(key, (10,))
+# x and y are identical!
+
+# CORRECT - split every time
+key = jax.random.key(0)
+key, k1 = jax.random.split(key)
+x = jax.random.normal(k1, (10,))
+key, k2 = jax.random.split(key)
+y = jax.random.normal(k2, (10,))
+# x and y are independent
+```
+:::
+
+:::
+
+::: {.column width="50%"}
+
+**Reproducibility checklist**:
+
+```python
+# Log random seed
+seed = 42
+key = jax.random.key(seed)
+print(f"Random seed: {seed}")
+
+# Log library versions
+import jax, flax, optax
+print(f"JAX: {jax.__version__}")
+print(f"Flax: {flax.__version__}")
+print(f"Optax: {optax.__version__}")
+
+# Save all hyperparameters
+config = {
+    'batch_size': 128,
+    'learning_rate': 1e-3,
+    'latent_dim': 16,
+    # ...
+}
+```
+
+:::
+::::
+
+::: {.notes}
+JAX's explicit randomness is a feature for reproducibility but requires discipline. Always split keys - never reuse the same key twice or you get identical "random" outputs. For reproducible research, log the random seed, all library versions, and hyperparameters. Use configuration files to track experimental settings. JAX's deterministic execution with the same key and version guarantees bit-identical results.
+:::
+
+## Performance Checklist {.smaller}
+
+:::: {.columns}
+::: {.column width="50%"}
+
+**Compilation**:
+
+```python
+# JIT the full training step
+@jax.jit
+def train_step(params, opt_state, batch, key):
+    loss, grads = jax.value_and_grad(loss_fn)(
+        params, batch, key
+    )
+    updates, opt_state = optimizer.update(
+        grads, opt_state
+    )
+    params = optax.apply_updates(params, updates)
+    return params, opt_state, loss
+
+# First call compiles (slow)
+# Subsequent calls are fast
+```
+
+**Vectorization**:
+
+```python
+# Vectorize over batch automatically
+batch_loss = jax.vmap(single_loss,
+                      in_axes=(None, 0))
+```
+
+:::
+
+::: {.column width="50%"}
+
+**Data pipeline**:
+
+- Prefetch batches asynchronously
+- Keep data on device when possible
+- Minimize host-device transfers
+
+```python
+# Good: keep arrays on device
+x = jnp.array(data)  # on device
+for step in range(1000):
+    x = update(x)  # stays on device
+result = x  # transfer once at end
+
+# Bad: frequent transfers
+for step in range(1000):
+    x = jnp.array(data[step])  # transfer
+    result = update(x)
+    result_cpu = np.array(result)  # transfer
+```
+
+**Avoid Python in hot loops**: Use `jax.lax.scan/fori_loop`
+
+:::
+::::
+
+::: {.notes}
+For maximum performance: JIT compile your training step - the first call compiles, subsequent calls are fast. Use vmap to vectorize over batches. Keep arrays on device between operations to avoid transfer overhead. Prefetch data asynchronously. Avoid Python loops in hot paths - use jax.lax.scan or fori_loop instead. Profile with JAX's built-in tools to find bottlenecks.
+:::
+
+# Summary
+
+## Key Takeaways {.smaller}
+
+:::: {.columns}
+::: {.column width="50%"}
+
+**Generative Models**:
+
+- VAEs: Fast, explicit likelihood, but blurry
+- GANs: Sharp images, but unstable training
+- Flows: Exact likelihood, flexible distributions
+- Diffusion: SOTA quality, excellent coverage
+
+**When to use what**:
+
+- Need likelihood? → VAE or Flow
+- Need speed? → VAE or GAN
+- Need quality? → Diffusion
+- Scientific tasks? → Combine with domain knowledge
+
+:::
+
+::: {.column width="50%"}
+
+**JAX Tools**:
+
+- Functional transformations: grad/jit/vmap/pmap
+- Flax for neural networks
+- Optax for optimization
+- BlackJAX for MCMC
+- Distrax/FlowJAX for distributions
+- Diffrax for ODEs/SDEs
+
+**Cosmology Demos**:
+
+- VAE for galaxy morphology
+- Flow priors for flexibility
+- Bayesian PSF inference with NUTS
+
+:::
+::::
+
+::: {.notes}
+We've covered four generative model families, each with distinct tradeoffs. VAEs are fast and provide likelihoods but produce blurry outputs. GANs generate sharp images but are unstable. Flows offer exact likelihoods with flexible distributions. Diffusion models achieve state-of-the-art quality. In JAX, we have a composable ecosystem: Flax for models, Optax for optimization, BlackJAX for Bayesian inference. The cosmology demos show how to apply these techniques to real scientific problems.
+:::
+
+# Backup Slides
+
+## GAN Optimal Discriminator
+
+For fixed $G$, the optimal discriminator is:
+
+$$D^*(x) = \frac{p_\text{data}(x)}{p_\text{data}(x) + p_g(x)}$$
+
+At equilibrium, $p_g = p_\text{data}$ and $D^* = 1/2$ everywhere.
+
+The minimax objective becomes:
+
+$$\min_G C(G) = \min_G \left[ -\log 4 + 2 \cdot \text{JSD}(p_\text{data}\| p_g) \right]$$
+
+where JSD is the Jensen-Shannon divergence.
+
+## FID Formula Details
+
+**Fréchet Inception Distance**:
+
+1. Pass real and generated images through Inception-v3
+2. Extract features from pool3 layer (2048-dim)
+3. Fit multivariate Gaussians: $\mathcal{N}(\mu_r, \Sigma_r)$ and $\mathcal{N}(\mu_g, \Sigma_g)$
+4. Compute Fréchet distance:
+
+$$\text{FID} = \|\mu_r - \mu_g\|_2^2 + \text{Tr}\left(\Sigma_r + \Sigma_g - 2(\Sigma_r \Sigma_g)^{1/2}\right)$$
+
+**Interpretation**: Lower FID = generated samples closer to real distribution in feature space
+
+**Note**: Requires sufficient samples (~10k) for stable statistics
+
+## ELBO Derivation
+
+Start with marginal likelihood:
+
+$$\log p_\theta(x) = \log \int p_\theta(x,z) dz$$
+
+Introduce variational posterior $q_\phi(z|x)$:
+
+$$= \log \mathbb{E}_{q_\phi(z|x)} \left[ \frac{p_\theta(x,z)}{q_\phi(z|x)} \right]$$
+
+Apply Jensen's inequality:
+
+$$\geq \mathbb{E}_{q_\phi(z|x)} \left[ \log \frac{p_\theta(x,z)}{q_\phi(z|x)} \right] = \mathcal{L}(\theta, \phi; x)$$
+
+Expand:
+
+$$\mathcal{L} = \mathbb{E}_{q_\phi(z|x)}[\log p_\theta(x|z)] - \text{KL}(q_\phi(z|x) \| p(z))$$
+
+This is the **Evidence Lower Bound (ELBO)**.
+
+## Troubleshooting Guide
+
+**VAE producing blurry images**:
+
+- Reduce β (less KL penalty)
+- Use perceptual loss (VGG features)
+- Increase model capacity
+- Try β-annealing schedule
+
+**GAN not converging**:
+
+- Use WGAN-GP instead of vanilla GAN
+- Adjust discriminator/generator learning rates
+- Increase discriminator updates per generator update
+- Check for mode collapse (visualize samples)
+
+**Flow training unstable**:
+
+- Reduce learning rate
+- Use gradient clipping
+- Check Jacobian numerical stability
+- Use more coupling layers
+
+**Diffusion sampling slow**:
+
+- Use DDIM instead of DDPM (fewer steps)
+- Distill into few-step model
+- Use latent diffusion (work in compressed space)
+
+---
+
+**Questions?**
+
+Notebooks: `2025_10_AI/Generative_AI_JAX_*.ipynb`
+
+Environment setup: `2025_10_AI/env_setup.md`
