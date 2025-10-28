@@ -91,6 +91,36 @@ figcaption {
   text-align: center;
 }
 
+/* Image-only border utilities (exclude figcaption) */
+/* Apply these classes to the IMG itself: e.g., ![](path){.img-border-2} */
+img.img-border,
+.quarto-figure img.img-border,
+figure img.img-border {
+  border: 2px solid #000;
+  box-sizing: border-box;
+}
+
+img.img-border-1,
+.quarto-figure img.img-border-1,
+figure img.img-border-1 {
+  border: 1px solid #000;
+  box-sizing: border-box;
+}
+
+img.img-border-2,
+.quarto-figure img.img-border-2,
+figure img.img-border-2 {
+  border: 2px solid #000;
+  box-sizing: border-box;
+}
+
+img.img-border-3,
+.quarto-figure img.img-border-3,
+figure img.img-border-3 {
+  border: 3px solid #000;
+  box-sizing: border-box;
+}
+
 // Listing title styling for website
 .listing-item .title a,
 .listing-item h3 a,
