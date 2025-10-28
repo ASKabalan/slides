@@ -1,0 +1,16 @@
+project:
+  type: website
+  output-dir: .
+  render:
+    - "*.qmd"
+    - "*.md"
+    - "!TASK/TASK.md"
+    - "!REPORT.md"
+
+website:
+  title: "Generative AI with JAX"
+  navbar:
+    left:
+      - href: index.qmd
+
+

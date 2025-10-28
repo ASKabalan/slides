@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300">
+  <style>
+    .box { fill: #ffffff; stroke: #1f2937; stroke-width: 2; rx: 10; ry: 10; }
+    .gray { fill: #e5e7eb; }
+    .teal { fill: #cfeee6; }
+    .purple { fill: #e9d8fd; }
+    .label { font-family: 'DejaVu Sans', Arial, sans-serif; font-size: 18px; fill: #111827; }
+  </style>
+  <rect width="1200" height="300" fill="#ffffff"/>
+
+  <!-- z0 -->
+  <rect class="box gray" x="60" y="90" width="220" height="60"/>
+  <text class="label" x="170" y="127" text-anchor="middle">z₀ ~ 𝒩(0, I)</text>
+
+  <!-- arrow z0 -> flow -->
+  <line x1="280" y1="120" x2="330" y2="120" stroke="#1f2937" stroke-width="2"/>
+  <polygon points="330,120 320,115 320,125" fill="#1f2937"/>
+
+  <!-- flow fψ -->
+  <rect class="box teal" x="330" y="90" width="180" height="60"/>
+  <text class="label" x="420" y="127" text-anchor="middle">Flow fψ</text>
+
+  <!-- arrow flow -> zK -->
+  <line x1="510" y1="120" x2="560" y2="120" stroke="#1f2937" stroke-width="2"/>
+  <polygon points="560,120 550,115 550,125" fill="#1f2937"/>
+
+  <!-- zK -->
+  <rect class="box gray" x="560" y="90" width="90" height="60"/>
+  <text class="label" x="605" y="127" text-anchor="middle">zₖ</text>
+
+  <!-- arrow zK -> decoder -->
+  <line x1="650" y1="120" x2="700" y2="120" stroke="#1f2937" stroke-width="2"/>
+  <polygon points="700,120 690,115 690,125" fill="#1f2937"/>
+
+  <!-- decoder -->
+  <rect class="box purple" x="700" y="90" width="250" height="60"/>
+  <text class="label" x="825" y="127" text-anchor="middle">Decoder pθ(x|z)</text>
+
+  <!-- arrow to xhat -->
+  <line x1="950" y1="120" x2="995" y2="120" stroke="#1f2937" stroke-width="2"/>
+  <polygon points="995,120 985,115 985,125" fill="#1f2937"/>
+  <text class="label" x="1010" y="127">x̂</text>
+
+  <!-- caption -->
+  <text class="label" x="600" y="200" text-anchor="middle" font-size="15" fill="#374151">
+    Prior flow (pψ(z)): z₀ ~ 𝒩(0, I) → fψ → zₖ → Decoder
+  </text>
+</svg>
+

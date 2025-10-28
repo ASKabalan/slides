@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300">
+  <style>
+    .box { fill: #ffffff; stroke: #1f2937; stroke-width: 2; rx: 10; ry: 10; }
+    .gray { fill: #e5e7eb; }
+    .teal { fill: #cfeee6; }
+    .purple { fill: #e9d8fd; }
+    .label { font-family: 'DejaVu Sans', Arial, sans-serif; font-size: 18px; fill: #111827; }
+  </style>
+  <rect width="1200" height="300" fill="#ffffff"/>
+
+  <!-- x -->
+  <text class="label" x="70" y="120">x</text>
+  <line x1="85" y1="115" x2="120" y2="115" stroke="#1f2937" stroke-width="2"/>
+  <polygon points="120,115 110,110 110,120" fill="#1f2937"/>
+
+  <!-- encoder -->
+  <rect class="box purple" x="120" y="85" width="260" height="60"/>
+  <text class="label" x="250" y="122" text-anchor="middle">Encoder qφ(μ, σ)</text>
+
+  <!-- arrow to z0 -->
+  <line x1="380" y1="115" x2="420" y2="115" stroke="#1f2937" stroke-width="2"/>
+  <polygon points="420,115 410,110 410,120" fill="#1f2937"/>
+
+  <!-- z0 -->
+  <rect class="box gray" x="420" y="85" width="80" height="60"/>
+  <text class="label" x="460" y="122" text-anchor="middle">z₀</text>
+
+  <!-- arrow to flow g -->
+  <line x1="500" y1="115" x2="540" y2="115" stroke="#1f2937" stroke-width="2"/>
+  <polygon points="540,115 530,110 530,120" fill="#1f2937"/>
+
+  <!-- flow gφ -->
+  <rect class="box teal" x="540" y="85" width="180" height="60"/>
+  <text class="label" x="630" y="122" text-anchor="middle">Flow gφ</text>
+
+  <!-- arrow to zK -->
+  <line x1="720" y1="115" x2="760" y2="115" stroke="#1f2937" stroke-width="2"/>
+  <polygon points="760,115 750,110 750,120" fill="#1f2937"/>
+
+  <!-- zK -->
+  <rect class="box gray" x="760" y="85" width="80" height="60"/>
+  <text class="label" x="800" y="122" text-anchor="middle">zₖ</text>
+
+  <!-- arrow to decoder -->
+  <line x1="840" y1="115" x2="885" y2="115" stroke="#1f2937" stroke-width="2"/>
+  <polygon points="885,115 875,110 875,120" fill="#1f2937"/>
+
+  <!-- decoder -->
+  <rect class="box purple" x="885" y="85" width="250" height="60"/>
+  <text class="label" x="1010" y="122" text-anchor="middle">Decoder pθ(x|z)</text>
+
+  <!-- arrow to xhat -->
+  <line x1="1135" y1="115" x2="1180" y2="115" stroke="#1f2937" stroke-width="2"/>
+  <polygon points="1180,115 1170,110 1170,120" fill="#1f2937"/>
+  <text class="label" x="1195" y="122">x̂</text>
+
+  <!-- caption -->
+  <text class="label" x="600" y="200" text-anchor="middle" font-size="15" fill="#374151">
+    Posterior flow (qφ(z|x)): x → Encoder → z₀ → gφ → zₖ → Decoder
+  </text>
+</svg>
+
