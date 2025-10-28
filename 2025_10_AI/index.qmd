@@ -225,11 +225,11 @@ Some possible solutions
 ::::: {.r-stack}
 
 :::::: {.fragment fragment-index=1 .fade-in-then-out}
-![Autoencoder architecture](../assets/vae/autoencoder-schema.png){width=65% .img-border-2}
+![Autoencoder architecture](assets/vae/autoencoder-schema.png){width=65% .img-border-2}
 ::::::
 
 :::::: {.fragment fragment-index=2 .fade-in}
-![VAE architecture](../assets/vae_arch.png){width=95% .img-border-2}
+![VAE architecture](assets/vae_arch.png){width=95% .img-border-2}
 ::::::
 
 :::::
@@ -258,7 +258,7 @@ VAE takeaways
 :::: {.column width="45%"}
 
 :::::: {.fragment fragment-index=1 .fade-in}
-![VAE paper title](../assets/vae_title.png){width=100%}
+![VAE paper title](assets/vae_title.png){width=100%}
 ::::::
 
 :::::: {.fragment fragment-index=2 .fade-in}
@@ -295,7 +295,7 @@ VAEs use an encoder-decoder architecture with a probabilistic latent space. The 
 :::: {.fragment fragment-index=1 .fade-in}
 **Without KL regularization**:
 
-![Unregularized](../assets/vae_no_kl.png){width=60% .img-border-2}
+![Unregularized](assets/vae_no_kl.png){width=60% .img-border-2}
 
 Latent space is unstructured
 ::::
@@ -307,7 +307,7 @@ Latent space is unstructured
 :::: {.fragment fragment-index=2 .fade-in}
 **With KL regularization**:
 
-![Regularized](../assets/vae_with_kl.png){width=60% .img-border-2}
+![Regularized](assets/vae_with_kl.png){width=60% .img-border-2}
 
 Organized, continuous latent space
 ::::
@@ -340,11 +340,11 @@ The KL term is crucial for organizing the latent space. Without it, the encoder 
 ::::: {.columns}
 :::::: {.column width="50%"}
 
-![Deblender architecture](TASK/images/deblender_diagram.png){width=85% .img-border-2}
+![Deblender architecture](assets/ai/deblender_diagram.png){width=85% .img-border-2}
 
 ::: {.fragment fragment-index=2 .fade-in}
 
-![Distribution e1/e2](TASK/images/distribution_e1_e2_recon_pred_no_filtered.png){width=95% .img-border-2}
+![Distribution e1/e2](assets/ai/distribution_e1_e2_recon_pred_no_filtered.png){width=95% .img-border-2}
 
 :::
 
@@ -354,7 +354,7 @@ The KL term is crucial for organizing the latent space. Without it, the encoder 
 
 ::: {.fragment fragment-index=1 .fade-in}
 
-![Reconstructions](TASK/images/recons_t2.png){width=95% .img-border-2}
+![Reconstructions](assets/ai/recons_t2.png){width=95% .img-border-2}
 
 :::
 
@@ -368,7 +368,7 @@ In cosmology, VAEs are used for galaxy deblending and morphology analysis. The l
 
 ## Normalizing Flows (Flow-based Generative Models)
 
-![Flow intuition (© Lilian Weng, Lil’Log)](../assets/flow_diagram.png){width=60% .img-border-2 fig-align="center"}
+![Flow intuition (© Lilian Weng, Lil’Log)](assets/flow_diagram.png){width=60% .img-border-2 fig-align="center"}
 
 ::: {.columns}
 ::: {.column width="60%"}
@@ -390,7 +390,7 @@ $$\log p_{\theta}(x) = \log p_Z\big(g_{\theta}(x)\big)
 
 ::: {.fragment .fade-in fragment-index=1}
 
-![](../assets/rezende_title.png){width=100% .img-border-2}
+![](assets/rezende_title.png){width=100% .img-border-2}
 <p style="text-align:center; font-size: 12px; margin-top: 2px;">Rezende & Mohamed (2015)</p>
 
 :::
@@ -423,7 +423,7 @@ Flows learn an invertible transform mapping a simple base $p_Z$ (e.g., $\mathcal
 ## Coupling Layers : Forward vs Inverse 
 
 
-![Coupling layer computation graph](../assets/coupling_flow.svg){width=60% .img-border-2 fig-align="center"}
+![Coupling layer computation graph](assets/coupling_flow.svg){width=60% .img-border-2 fig-align="center"}
 
 
 ::: {.columns}
@@ -502,13 +502,13 @@ $$
 
 :::: {.columns}
 ::: {.column width="55%"}
-![DDPM process](../assets/ddpm_box.png){width=100% .img-border-2}
+![DDPM process](assets/ddpm_box.png){width=100% .img-border-2}
 
-![Diffusion visualization](../assets/diffusion_spiral.png){width=80% .img-border-2}
+![Diffusion visualization](assets/diffusion_spiral.png){width=80% .img-border-2}
 :::
 
 ::: {.column width="45%"}
-![](../assets/ddpm_title.png){width=95% .img-border-2}
+![](assets/ddpm_title.png){width=95% .img-border-2}
 
 :::{.solutionbox}
 
@@ -544,7 +544,7 @@ Ultra-compact variant (if space is tight): Diffusion/flow-matching (DiT/RFT) lea
 
 ## Generative models overview
 
-![](../assets/generative-overview.png){width=75% .img-border-2 fig-align="center"}
+![](assets/generative-overview.png){width=75% .img-border-2 fig-align="center"}
 
 ---
 
@@ -565,7 +565,7 @@ Each generative model family has distinct tradeoffs. VAEs offer fast training an
 
 ## What is JAX? {.smaller}
 
-![](../assets/jax_openxla.png){width=100% .img-border-2}
+![](assets/jax_openxla.png){width=100% .img-border-2}
 
 <div style="display:flex;justify-content:center;align-items:center;height:100%;">
     <h2 style="margin:0;">JAX and OpenXLA</h2>
@@ -925,7 +925,7 @@ Differential equation solver library for JAX with ODE, SDE, DDE solvers.
 
 ::: {.column width="40%"}
 
-![](../assets/Logos/JaxLogo.png){width=55%}
+![](assets/Logos/JaxLogo.png){width=55%}
 
 :::
 :::
@@ -976,7 +976,7 @@ Notebook link : `Generative_AI_JAX_GZ10_VAE.ipynb`
 ## Example A: Variational Autoencoder for galaxies
 
 
-![Variational Autoencoder](TASK/images/autoencoder-architecture.png){width=70% .img-border-2 fig-align="center"}
+![Variational Autoencoder](assets/ai/autoencoder-architecture.png){width=70% .img-border-2 fig-align="center"}
 
 ::: {.solutionbox}
 
@@ -998,7 +998,7 @@ Notebook link : `Generative_AI_JAX_GZ10_VAE.ipynb`
 
 ### Example B : Using a classifier from the latent space
 
-![VAE latent space to redshift](TASK/images/deblender_diagram.png){width=70% .img-border-2 fig-align="center"}
+![VAE latent space to redshift](assets/ai/deblender_diagram.png){width=70% .img-border-2 fig-align="center"}
 
 ::: {.solutionbox}
 
@@ -1015,5 +1015,4 @@ Notebook link : `Generative_AI_JAX_GZ10_VAE_Classifier.ipynb`
 ::::
 
 :::
-
 
