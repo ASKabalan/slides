@@ -413,6 +413,83 @@
     "text": "Motivation: Cosmology in the Exascale Era \n\n\n\n\n\nUpcoming Surveys and Massive Data in Cosmology\n\n\n\nMassive Data Volume: LSST will generate 20 TB of raw data per night over 10 years, totaling 60 PB.\nCatalog Size: The processed LSST catalog database will reach 15 PB.\n\n\n\n\n\nCosmological Models and Pipelines\n\n\n\nCosmological simulations and forward modeling can easily reach multiple terabytes in size.\nWe need to scale up cosmological pipelines to handle these data volumes effectively.\n\n\n\n\n\nwill explain scaling in here"
   },
   {
+    "objectID": "2025_10_AI/REPORT.html",
+    "href": "2025_10_AI/REPORT.html",
+    "title": "Slides Status Report — 2025_10_AI",
+    "section": "",
+    "text": "Author: Wassim Kabalan Date: October 2025\n\n\n\nDeck is substantially complete and aligned with the brief. Approximately 47 slides detected (within 40±5 when considering backup slides), covering Generative Models, Evaluation, JAX ecosystem, and cosmology demos.\nTwo major deliverables are missing: the three runnable notebooks and env_setup.md.\nA couple of image references appear broken or non-existent; some build artifacts are checked in; and styling is duplicated locally instead of using shared styles.\n\n\n\n\n\nSlides: Present at 2025_10_AI/index.qmd (rendered index.html exists).\nNotebooks: Missing\n\n2025_10_AI/Generative_AI_JAX_GZ10_VAE.ipynb – not found\n2025_10_AI/Generative_AI_JAX_GZ10_VAE_NF.ipynb – not found\n2025_10_AI/Generative_AI_JAX_PSF_Bayesian.ipynb – not found\n\nEnvironment: Missing\n\n2025_10_AI/env_setup.md – not found\n\nAssets: Present under assets/ (both repo root assets/ and local 2025_10_AI/assets/ include required figures). Slide references resolve to repo‑root assets/ via ../assets/....\n\n\n\n\n\nTitle and Outline: Present and styled; background image and logos render variables defined.\nGenerative Models: GANs → WGAN; VAE and β‑VAE; Normalizing Flows; Diffusion/Score models; model comparison table; evaluation metrics (FID, Precision/Recall).\nJAX Ecosystem: What is JAX; JAX vs PyTorch; RNG pattern; Transforms (grad/jit/vmap/pmap); Flax example; ecosystem overview; performance/RNG best practices.\nCosmology Demos: GZ10 dataset overview; VAE + redshift example; Flow prior upgrade; PSF Bayesian inference with BlackJAX.\nBackup Slides: Mathematical derivations (GAN optimal D, FID, ELBO) and troubleshooting.\n\nObserved slide count (by ## headings): ~47 (includes backup and checklist slides).\n\n\n\n\nMost images referenced via ../assets/... exist in repo‑root assets/ (also duplicated under 2025_10_AI/assets/). Examples: gan_diagram.png, vae_arch.png, flow_diagram.png, ddpm_box.png, jax_openxla.png.\nBroken/missing references in slides:\n\n2025_10_AI/index.qmd: VAE in Cosmology slide points to:\n\nTASK/Final_Report_Binh_Nguyen/images/deblender_diagram.png — images/ directory does not exist.\nTASK/Final_Report_Binh_Nguyen/images/recons_t2.png — images/ directory does not exist.\n\nSuggestion: Extract figures from 2025_10_AI/TASK/Final_Report_Binh_Nguyen.pdf (or replace with locally available assets) and save under ../assets/ (or 2025_10_AI/assets/), then update paths in slides.\n\nPlaceholder note: PSF concept slide uses ../assets/placeholder.png which exists; consider replacing with notebook‑generated figure when Notebook C is ready.\n\n\n\n\n\nFront matter in 2025_10_AI/index.qmd uses format: revealjs with theme [default, css/custom.scss] and template-partials: [css/title-slide.html] — OK.\nTitle‑slide background image and logo1 variable are set and used by the custom title-slide.html template.\nLocal duplicated styles present under 2025_10_AI/css/:\n\n2025_10_AI/css/custom.scss\n2025_10_AI/css/title-slide.html\nRepo guideline prefers shared styling in repo‑root css/. If no deck‑specific overrides are required, reference ../../css/... or keep only minimal overrides locally.\n\nDeck _quarto.yml is set to a website project:\n\n2025_10_AI/_quarto.yml contains project: type: website and outputs into .. For a single reveal deck, this is optional; consider simplifying to deck‑local rendering without generating site scaffolding.\n\nMinor config nits to verify during render:\n\npdfSeparateFragments: true may need pdf-separate-fragments: true in Quarto’s revealjs options.\npresentation-size: max-scale is uncommon; Quarto typically supports width, height, margin, min-scale, max-scale. Confirm desired behavior.\n\n\n\n\n\n\nThe deck directory contains build output:\n\n2025_10_AI/index.html\n2025_10_AI/search.json\n2025_10_AI/site_libs/\n.quarto/ is ignored locally, but other artifacts are not. Repo guideline advises not to commit generated files. Consider adding to 2025_10_AI/.gitignore:\n\n/index.html\n/search.json\n/site_libs/\n\n\n\n\n\n\n\nEquations and code samples: Present and readable; math is set in LaTeX blocks; code matches JAX/Flax idioms and uses explicit PRNG keys.\nNotes vs on‑slide text: Slides stay concise; speaker notes include details — aligns with “minimal‑text, diagram‑first” guidance.\nSlide numbering enabled and transitions configured.\n\n\n\n\n\nMissing notebooks (A/B/C) per TASK:\n\nGenerative_AI_JAX_GZ10_VAE.ipynb\nGenerative_AI_JAX_GZ10_VAE_NF.ipynb\nGenerative_AI_JAX_PSF_Bayesian.ipynb\n\nMissing environment instructions:\n\n2025_10_AI/env_setup.md with CPU and CUDA install commands (provided in TASK).\n\nBroken images:\n\nExtract or replace the two TASK/Final_Report_Binh_Nguyen/images/*.png references.\n\nBuild artifacts tracked:\n\nClean and ignore index.html, search.json, site_libs/.\n\nStyling duplication:\n\nDecide between local overrides vs shared repo‑root css/ (recommended: reuse shared styles, keep only deck‑specific changes locally if needed).\n\n\n\n\n\n\nCreate env_setup.md and copy the install blocks from 2025_10_AI/TASK/TASK.md (CPU + CUDA), plus a troubleshooting section.\nImplement the three notebooks following the specs already summarized in 2025_10_AI/README.md and referenced in slides. Save diagnostics/plots to ../assets/generated/.\nFix slide image paths for the VAE cosmology slide by adding the figures to assets/ and updating index.qmd.\nNormalize styling: point index.qmd to repo‑root css/custom.scss and css/title-slide.html unless deck‑specific variants are required.\nUpdate .gitignore in 2025_10_AI/ to exclude build outputs; run quarto clean 2025_10_AI before committing.\nRun: quarto render 2025_10_AI and manually verify layout, link targets, speaker notes, and title‑slide background/logo rendering.\n\n\n\n\n\nenv_setup.md added and referenced\nA/B/C notebooks implemented and runnable (CPU+GPU)\nBroken image references replaced/fixed\nSlide asset paths verified\nStyling deduplicated or justified\nBuild artifacts cleaned and ignored\nFull deck renders without warnings"
+  },
+  {
+    "objectID": "2025_10_AI/REPORT.html#summary",
+    "href": "2025_10_AI/REPORT.html#summary",
+    "title": "Slides Status Report — 2025_10_AI",
+    "section": "",
+    "text": "Deck is substantially complete and aligned with the brief. Approximately 47 slides detected (within 40±5 when considering backup slides), covering Generative Models, Evaluation, JAX ecosystem, and cosmology demos.\nTwo major deliverables are missing: the three runnable notebooks and env_setup.md.\nA couple of image references appear broken or non-existent; some build artifacts are checked in; and styling is duplicated locally instead of using shared styles."
+  },
+  {
+    "objectID": "2025_10_AI/REPORT.html#deliverables-compliance",
+    "href": "2025_10_AI/REPORT.html#deliverables-compliance",
+    "title": "Slides Status Report — 2025_10_AI",
+    "section": "",
+    "text": "Slides: Present at 2025_10_AI/index.qmd (rendered index.html exists).\nNotebooks: Missing\n\n2025_10_AI/Generative_AI_JAX_GZ10_VAE.ipynb – not found\n2025_10_AI/Generative_AI_JAX_GZ10_VAE_NF.ipynb – not found\n2025_10_AI/Generative_AI_JAX_PSF_Bayesian.ipynb – not found\n\nEnvironment: Missing\n\n2025_10_AI/env_setup.md – not found\n\nAssets: Present under assets/ (both repo root assets/ and local 2025_10_AI/assets/ include required figures). Slide references resolve to repo‑root assets/ via ../assets/...."
+  },
+  {
+    "objectID": "2025_10_AI/REPORT.html#slide-coverage-vs-blueprint",
+    "href": "2025_10_AI/REPORT.html#slide-coverage-vs-blueprint",
+    "title": "Slides Status Report — 2025_10_AI",
+    "section": "",
+    "text": "Title and Outline: Present and styled; background image and logos render variables defined.\nGenerative Models: GANs → WGAN; VAE and β‑VAE; Normalizing Flows; Diffusion/Score models; model comparison table; evaluation metrics (FID, Precision/Recall).\nJAX Ecosystem: What is JAX; JAX vs PyTorch; RNG pattern; Transforms (grad/jit/vmap/pmap); Flax example; ecosystem overview; performance/RNG best practices.\nCosmology Demos: GZ10 dataset overview; VAE + redshift example; Flow prior upgrade; PSF Bayesian inference with BlackJAX.\nBackup Slides: Mathematical derivations (GAN optimal D, FID, ELBO) and troubleshooting.\n\nObserved slide count (by ## headings): ~47 (includes backup and checklist slides)."
+  },
+  {
+    "objectID": "2025_10_AI/REPORT.html#asset-and-link-status",
+    "href": "2025_10_AI/REPORT.html#asset-and-link-status",
+    "title": "Slides Status Report — 2025_10_AI",
+    "section": "",
+    "text": "Most images referenced via ../assets/... exist in repo‑root assets/ (also duplicated under 2025_10_AI/assets/). Examples: gan_diagram.png, vae_arch.png, flow_diagram.png, ddpm_box.png, jax_openxla.png.\nBroken/missing references in slides:\n\n2025_10_AI/index.qmd: VAE in Cosmology slide points to:\n\nTASK/Final_Report_Binh_Nguyen/images/deblender_diagram.png — images/ directory does not exist.\nTASK/Final_Report_Binh_Nguyen/images/recons_t2.png — images/ directory does not exist.\n\nSuggestion: Extract figures from 2025_10_AI/TASK/Final_Report_Binh_Nguyen.pdf (or replace with locally available assets) and save under ../assets/ (or 2025_10_AI/assets/), then update paths in slides.\n\nPlaceholder note: PSF concept slide uses ../assets/placeholder.png which exists; consider replacing with notebook‑generated figure when Notebook C is ready."
+  },
+  {
+    "objectID": "2025_10_AI/REPORT.html#quarto-config-styling",
+    "href": "2025_10_AI/REPORT.html#quarto-config-styling",
+    "title": "Slides Status Report — 2025_10_AI",
+    "section": "",
+    "text": "Front matter in 2025_10_AI/index.qmd uses format: revealjs with theme [default, css/custom.scss] and template-partials: [css/title-slide.html] — OK.\nTitle‑slide background image and logo1 variable are set and used by the custom title-slide.html template.\nLocal duplicated styles present under 2025_10_AI/css/:\n\n2025_10_AI/css/custom.scss\n2025_10_AI/css/title-slide.html\nRepo guideline prefers shared styling in repo‑root css/. If no deck‑specific overrides are required, reference ../../css/... or keep only minimal overrides locally.\n\nDeck _quarto.yml is set to a website project:\n\n2025_10_AI/_quarto.yml contains project: type: website and outputs into .. For a single reveal deck, this is optional; consider simplifying to deck‑local rendering without generating site scaffolding.\n\nMinor config nits to verify during render:\n\npdfSeparateFragments: true may need pdf-separate-fragments: true in Quarto’s revealjs options.\npresentation-size: max-scale is uncommon; Quarto typically supports width, height, margin, min-scale, max-scale. Confirm desired behavior."
+  },
+  {
+    "objectID": "2025_10_AI/REPORT.html#build-artifacts-in-repo",
+    "href": "2025_10_AI/REPORT.html#build-artifacts-in-repo",
+    "title": "Slides Status Report — 2025_10_AI",
+    "section": "",
+    "text": "The deck directory contains build output:\n\n2025_10_AI/index.html\n2025_10_AI/search.json\n2025_10_AI/site_libs/\n.quarto/ is ignored locally, but other artifacts are not. Repo guideline advises not to commit generated files. Consider adding to 2025_10_AI/.gitignore:\n\n/index.html\n/search.json\n/site_libs/"
+  },
+  {
+    "objectID": "2025_10_AI/REPORT.html#content-quality-checks",
+    "href": "2025_10_AI/REPORT.html#content-quality-checks",
+    "title": "Slides Status Report — 2025_10_AI",
+    "section": "",
+    "text": "Equations and code samples: Present and readable; math is set in LaTeX blocks; code matches JAX/Flax idioms and uses explicit PRNG keys.\nNotes vs on‑slide text: Slides stay concise; speaker notes include details — aligns with “minimal‑text, diagram‑first” guidance.\nSlide numbering enabled and transitions configured."
+  },
+  {
+    "objectID": "2025_10_AI/REPORT.html#blocking-gaps-to-ship",
+    "href": "2025_10_AI/REPORT.html#blocking-gaps-to-ship",
+    "title": "Slides Status Report — 2025_10_AI",
+    "section": "",
+    "text": "Missing notebooks (A/B/C) per TASK:\n\nGenerative_AI_JAX_GZ10_VAE.ipynb\nGenerative_AI_JAX_GZ10_VAE_NF.ipynb\nGenerative_AI_JAX_PSF_Bayesian.ipynb\n\nMissing environment instructions:\n\n2025_10_AI/env_setup.md with CPU and CUDA install commands (provided in TASK).\n\nBroken images:\n\nExtract or replace the two TASK/Final_Report_Binh_Nguyen/images/*.png references.\n\nBuild artifacts tracked:\n\nClean and ignore index.html, search.json, site_libs/.\n\nStyling duplication:\n\nDecide between local overrides vs shared repo‑root css/ (recommended: reuse shared styles, keep only deck‑specific changes locally if needed)."
+  },
+  {
+    "objectID": "2025_10_AI/REPORT.html#suggested-next-actions",
+    "href": "2025_10_AI/REPORT.html#suggested-next-actions",
+    "title": "Slides Status Report — 2025_10_AI",
+    "section": "",
+    "text": "Create env_setup.md and copy the install blocks from 2025_10_AI/TASK/TASK.md (CPU + CUDA), plus a troubleshooting section.\nImplement the three notebooks following the specs already summarized in 2025_10_AI/README.md and referenced in slides. Save diagnostics/plots to ../assets/generated/.\nFix slide image paths for the VAE cosmology slide by adding the figures to assets/ and updating index.qmd.\nNormalize styling: point index.qmd to repo‑root css/custom.scss and css/title-slide.html unless deck‑specific variants are required.\nUpdate .gitignore in 2025_10_AI/ to exclude build outputs; run quarto clean 2025_10_AI before committing.\nRun: quarto render 2025_10_AI and manually verify layout, link targets, speaker notes, and title‑slide background/logo rendering."
+  },
+  {
+    "objectID": "2025_10_AI/REPORT.html#quick-checklist",
+    "href": "2025_10_AI/REPORT.html#quick-checklist",
+    "title": "Slides Status Report — 2025_10_AI",
+    "section": "",
+    "text": "env_setup.md added and referenced\nA/B/C notebooks implemented and runnable (CPU+GPU)\nBroken image references replaced/fixed\nSlide asset paths verified\nStyling deduplicated or justified\nBuild artifacts cleaned and ignored\nFull deck renders without warnings"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Wassim’s Talks",
@@ -425,6 +502,160 @@
     "title": "Wassim’s Talks",
     "section": "Academic Presentations",
     "text": "Academic Presentations"
+  },
+  {
+    "objectID": "2025_10_AI/index.html#outline-for-this-presentation",
+    "href": "2025_10_AI/index.html#outline-for-this-presentation",
+    "title": "Generative AI with JAX",
+    "section": "Outline for This Presentation",
+    "text": "Outline for This Presentation\n  \n\n\n\nIntroduction to Generative AI  Understand the mathematical meaning of generating data  \nDeep dive into Generative Models  Explore the different framework and state of the art ways of generative AI  \nJAX eco system  Learn core JAX transforms (jit, vmap, pmap) and Flax tooling  \nHands on tutorial   Explore how generative AI can be used for cosmological inference\n\n\n\n\nThis workshop covers three main sections: first, we’ll explore different generative AI models and their mathematical properties. Then we’ll introduce JAX and its ecosystem for high-performance computing. Finally, we’ll apply these techniques to real cosmology problems with hands-on notebooks."
+  },
+  {
+    "objectID": "2025_10_AI/index.html#what-does-generate-mean",
+    "href": "2025_10_AI/index.html#what-does-generate-mean",
+    "title": "Generative AI with JAX",
+    "section": "What does “generate” mean?",
+    "text": "What does “generate” mean?\n\n\n\n\n\n\nGenerated faces example\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKey Idea: Generative AI\n\n\n\nGenerative AI is about learning the underlying distribution \\(p(\\text{data})\\) and sampling from it to generate images.\nThe output of a generative model is a new data point.\nGreen point marks a selected/generated draw.\nGenerative is intrinsically related to probability distributions.\n\n\n\n\nGenerative AI is about learning probability distributions over data. Unlike discrete lookup tables, generative models learn continuous distributions and can sample entirely new data points. The key is modeling \\(p(\\text{data})\\) accurately enough to generate realistic samples."
+  },
+  {
+    "objectID": "2025_10_AI/index.html#generative-adversarial-networks-gans",
+    "href": "2025_10_AI/index.html#generative-adversarial-networks-gans",
+    "title": "Generative AI with JAX",
+    "section": "Generative Adversarial Networks (GANs)",
+    "text": "Generative Adversarial Networks (GANs)\n\n\n\n \n\n\n\nGAN Architecture\n\n\n\n\n\n\n\n\n\\[\\min_G \\max_D \\mathbb{E}_{x\\sim p_\\text{data}}[\\log D(x)] + \\mathbb{E}_{z\\sim p(z)}[\\log(1 - D(G(z)))]\\]\n\nLoss function\n\nGenerator: produces samples G(z) to fool D\nDiscriminator: estimates real vs fake probability D(·)\n\n\n\n\n\n\n\n\nAdvantages and Limitations\n\n\n\nAdvantages: sharp samples; flexible implicit modeling; no explicit likelihood.\nLimitations: unstable training; mode collapse; sensitive to architecture and tricks."
+  },
+  {
+    "objectID": "2025_10_AI/index.html#limitations-with-gans",
+    "href": "2025_10_AI/index.html#limitations-with-gans",
+    "title": "Generative AI with JAX",
+    "section": "Limitations with GANs",
+    "text": "Limitations with GANs\n\n\n\nUnstable learning\n\n\n\nNash equilibrium illustration\n\n\n\n\nMode collapse\n\n\n\nMode collapse\n\n\n\n\n\nVanishing gradients\n\n\n\nVanishing gradients\n\n\n\n\n\n\nSome possible solutions\n\n\n\nUse WGAN for more stable training and stronger gradients.\nAdd gradient penalty (WGAN-GP) to keep the critic smooth."
+  },
+  {
+    "objectID": "2025_10_AI/index.html#variational-autoencoders-vaes",
+    "href": "2025_10_AI/index.html#variational-autoencoders-vaes",
+    "title": "Generative AI with JAX",
+    "section": "Variational Autoencoders (VAEs)",
+    "text": "Variational Autoencoders (VAEs)\n\n\n\n\n\n\n\nAutoencoder architecture\n\n\n\n\n\n\n\nVAE architecture\n\n\n\n\n\n\n\nVAE takeaways\n\n\n\nVAE learn optimal compression into the latent space\nRepresents a dataset by an easy to sample gaussian distribution\nCompared to GAN gives a better access to probability distribution\nProduces blurrier images than GANs\n\n\n\n\n\n\n\n\n\nVAE paper title\n\n\n\n\nEvidence Lower Bound (ELBO):\n\\[\\mathcal{L} = \\mathbb{E}_{q_\\phi(z|x)}[\\log p_\\theta(x|z)] - \\text{KL}(q_\\phi(z|x)\\|p(z))\\]\n\nReconstruction: decoder quality\nKL Divergence: latent regularization\n\nReparameterization trick: \\[z = \\mu + \\sigma \\odot \\epsilon, \\quad \\epsilon \\sim \\mathcal{N}(0,I)\\]\n\n\n\nVAEs use an encoder-decoder architecture with a probabilistic latent space. The encoder outputs mean and log-variance for a Gaussian posterior. The reparameterization trick allows backpropagation through the stochastic sampling. The ELBO balances reconstruction quality against matching a prior distribution, typically standard normal."
+  },
+  {
+    "objectID": "2025_10_AI/index.html#vae-why-kl-matters-β-vae",
+    "href": "2025_10_AI/index.html#vae-why-kl-matters-β-vae",
+    "title": "Generative AI with JAX",
+    "section": "VAE — Why KL matters (β-VAE)",
+    "text": "VAE — Why KL matters (β-VAE)\n\n\n\nWithout KL regularization:\n\n\n\nUnregularized\n\n\nLatent space is unstructured\n\n\n\nWith KL regularization:\n\n\n\nRegularized\n\n\nOrganized, continuous latent space\n\n\n\nβ-VAE objective:\n\\[\\mathcal{L}_\\beta = \\mathbb{E}[\\log p_\\theta(x|z)] - \\beta \\cdot \\text{KL}(q_\\phi(z|x)\\|p(z))\\]\n\n\\(\\beta &gt; 1\\): More disentanglement, less reconstruction\n\\(\\beta &lt; 1\\): Better reconstruction, less structure\nLimitation: Gaussian prior can bias toward simpler shapes\n\n\n\nThe KL term is crucial for organizing the latent space. Without it, the encoder can map inputs to arbitrary regions making interpolation meaningless. Beta-VAE introduces a hyperparameter β to control the tradeoff between reconstruction quality and latent space disentanglement. Higher β encourages more interpretable latent dimensions but may reduce reconstruction fidelity."
+  },
+  {
+    "objectID": "2025_10_AI/index.html#vae-in-cosmology-deblending",
+    "href": "2025_10_AI/index.html#vae-in-cosmology-deblending",
+    "title": "Generative AI with JAX",
+    "section": "VAE in Cosmology (Deblending)",
+    "text": "VAE in Cosmology (Deblending)\n\n\n\n\nBinh Nguyen\n\n\n\n\n\n\n\n\nDeblender architecture\n\n\n\n\n\n\nDistribution e1/e2\n\n\n\n\n\n\n\n\nReconstructions\n\n\n\n\n\nIn cosmology, VAEs are used for galaxy deblending and morphology analysis. The latent representation can compress galaxy images efficiently. However, the Gaussian prior assumption can bias reconstructions toward rounder shapes, which is problematic for weak lensing studies that need accurate ellipticity measurements. This motivates using more flexible priors like normalizing flows."
+  },
+  {
+    "objectID": "2025_10_AI/index.html#normalizing-flows-flow-based-generative-models",
+    "href": "2025_10_AI/index.html#normalizing-flows-flow-based-generative-models",
+    "title": "Generative AI with JAX",
+    "section": "Normalizing Flows (Flow-based Generative Models)",
+    "text": "Normalizing Flows (Flow-based Generative Models)\n\n\n\nFlow intuition (© Lilian Weng, Lil’Log)\n\n\n\n\n\nMappings: \\(f(x) \\to y\\), \\(g(y) = z\\); \\(z = g_{\\theta}(x) = g_K \\circ \\cdots \\circ g_1(x)\\)\nLog-likelihood\n\\[\\log p_{\\theta}(x) = \\log p_Z\\big(g_{\\theta}(x)\\big)\n  + \\sum_{k=1}^{K} \\log \\left|\\det J_{g_k}\\right|\\]\n\n\n\n\n\nRezende & Mohamed (2015)\n\n\n\n\n\n\nIn short\n\n\n\nGaussianize data: \\(z = g_{\\theta}(x) \\approx \\mathcal{N}(0, I)\\).\nExact likelihood: \\(\\log p_{\\theta}(x) = \\log p_Z(z) + \\sum_k \\log|\\det J_{g_k}|\\).\nGenerate via inverse: \\(x = f_{\\theta}(z)\\), \\(z \\sim p_Z\\).\n\n\n\n\n\nFlows learn an invertible transform mapping a simple base \\(p_Z\\) (e.g., \\(\\mathcal{N}(0,I)\\)) to the data distribution. Training maximizes the exact likelihood via the change-of-variables formula with tractable log-determinants."
+  },
+  {
+    "objectID": "2025_10_AI/index.html#coupling-layers-forward-vs-inverse",
+    "href": "2025_10_AI/index.html#coupling-layers-forward-vs-inverse",
+    "title": "Generative AI with JAX",
+    "section": "Coupling Layers : Forward vs Inverse",
+    "text": "Coupling Layers : Forward vs Inverse\n\nCoupling layer computation graph\n\nForward (x → y)\n\nSplit \\(x=(x_a, x_b)\\) by mask.\nConditioning network on kept half: \\((s, t) = \\text{NN}(x_a)\\).\nAffine update (element-wise):\n\n\\[\ny_a = x_a, \\qquad\ny_b = x_b \\odot e^{s(x_a)} + t(x_a).\n\\]\n\nInverse (y → x)\nGiven \\((y_a, y_b)\\):\n\nRecompute \\((s, t) = \\text{NN}(y_a)\\).\nInvert the affine on the transformed half:\n\n\\[\nx_a = y_a, \\qquad\nx_b = \\big(y_b - t(y_a)\\big) \\odot e^{-s(y_a)}.\n\\]"
+  },
+  {
+    "objectID": "2025_10_AI/index.html#masked-autoregressive-flow-maf-vs-inverse-autoregressive-flow-iaf",
+    "href": "2025_10_AI/index.html#masked-autoregressive-flow-maf-vs-inverse-autoregressive-flow-iaf",
+    "title": "Generative AI with JAX",
+    "section": "Masked Autoregressive Flow (MAF) vs Inverse Autoregressive Flow (IAF)",
+    "text": "Masked Autoregressive Flow (MAF) vs Inverse Autoregressive Flow (IAF)\n\nMAF vs IAF comparison\n\nMAF (Masked Autoregressive Flow)\nAutoregressive flow where density evaluation is parallel sampling is sequential.\n\\[\nz_i=\\frac{x_i-\\mu_i(x_{&lt;i})}{\\sigma_i(x_{&lt;i})}\n\\]\n\n\n\nIAF (Inverse Autoregressive Flow) — fast sampling\nSame masked structure but reversed so sampling is parallel (given \\(z\\)), density is sequential.\n\\[\nx_i=\\mu_i(z_{&lt;i})+\\sigma_i(z_{&lt;i})\\cdot z_i    \n\\]"
+  },
+  {
+    "objectID": "2025_10_AI/index.html#diffusion-models",
+    "href": "2025_10_AI/index.html#diffusion-models",
+    "title": "Generative AI with JAX",
+    "section": "Diffusion Models",
+    "text": "Diffusion Models\n\n\n\n\n\nDDPM process\n\n\n\n\n\nDiffusion visualization\n\n\n\n\n\n\nCharacteristics of Diffusion Models\n\n\nPros:\n\nBest quality & coverage: diffusion / flow-matching models (DiT / RFT) for images; rapidly improving for video.\nMain trade-off: sampling cost — increasingly mitigated by consistency models and fast-sampler distillation.\n\nCons:\n\nHigh computational cost for training and sampling.\n\n\n\n\n\nUltra-compact variant (if space is tight): Diffusion/flow-matching (DiT/RFT) lead in quality; video catching up. Cost = sampling, eased by consistency + distillation."
+  },
+  {
+    "objectID": "2025_10_AI/index.html#generative-models-overview",
+    "href": "2025_10_AI/index.html#generative-models-overview",
+    "title": "Generative AI with JAX",
+    "section": "Generative models overview",
+    "text": "Generative models overview"
+  },
+  {
+    "objectID": "2025_10_AI/index.html#generative-models-overview-1",
+    "href": "2025_10_AI/index.html#generative-models-overview-1",
+    "title": "Generative AI with JAX",
+    "section": "Generative models overview",
+    "text": "Generative models overview\n\n\n\n\n\n\n\n\nModel\nPros\nCons\n\n\n\n\nVAE\n- Explicit likelihood- Fast sampling- Good global structure\n- Blurry outputs- Prior bias (Gaussian)- Limited expressiveness\n\n\nGAN\n- Sharp, high-quality images- Fast sampling\n- Training instability- Mode collapse- No likelihood\n\n\nFlow\n- Exact likelihood- Invertible- Flexible distributions\n- Computationally expensive- Architecture constraints- Difficult to scale\n\n\nDiffusion\n- SOTA quality- Excellent mode coverage- Stable training\n- Slow sampling (many steps)- Computationally intensive- Careful tuning required\n\n\n\n\nEach generative model family has distinct tradeoffs. VAEs offer fast training and sampling but produce blurry outputs. GANs generate sharp images but are unstable to train. Flows provide exact likelihoods but are computationally expensive. Diffusion models achieve the best quality but require many sampling steps. Choose based on your application requirements."
+  },
+  {
+    "objectID": "2025_10_AI/index.html#what-is-jax",
+    "href": "2025_10_AI/index.html#what-is-jax",
+    "title": "Generative AI with JAX",
+    "section": "What is JAX?",
+    "text": "What is JAX?\n\n\n&lt;h2 style=\"margin:0;\"&gt;JAX and OpenXLA&lt;/h2&gt;\n\n\nJAX provides a NumPy-compatible API with powerful function transformations. grad computes derivatives, jit compiles to optimized XLA code, vmap vectorizes operations, and pmap parallelizes across devices. JAX enforces functional programming: functions must be pure without side effects. Randomness is explicit via PRNG key splitting. The same code runs efficiently on CPU, GPU, or TPU through XLA compilation."
+  },
+  {
+    "objectID": "2025_10_AI/index.html#why-jax-tiny-gradient-demo",
+    "href": "2025_10_AI/index.html#why-jax-tiny-gradient-demo",
+    "title": "Generative AI with JAX",
+    "section": "Why JAX? tiny gradient demo",
+    "text": "Why JAX? tiny gradient demo\n \nComputing gradients with PyTorch\nimport torch\nx = torch.randn(10, 5)\nw = torch.randn(5, 3, requires_grad=True)\n\ny = x @ w\nloss = y.sum()\nloss.backward()\nprint(w.grad)              # gradient lives on tensor state\n \nComputing gradients with JAX\nimport jax, jax.numpy as jnp\n\ndef loss(w, x):\n    return (x @ w).sum()\n\nx = jnp.ones((10, 5))\nw = jnp.ones((5, 3))\ngrad_w = jax.grad(loss)(w, x)\nprint(grad_w)              # returns new array; no hidden state"
+  },
+  {
+    "objectID": "2025_10_AI/index.html#implications-of-functional-programming",
+    "href": "2025_10_AI/index.html#implications-of-functional-programming",
+    "title": "Generative AI with JAX",
+    "section": "Implications of functional programming",
+    "text": "Implications of functional programming\n\n\nNo impure functions\nimport jax, jax.numpy as jnp\nstate = {\"counter\": 0}\n\n@jax.jit\ndef bad(x):\n    state[\"counter\"] += 1   # ❌ side-effect breaks JIT/purity\n    return x + 1\n\n@jax.jit\ndef good(x, state):\n    state = {\"counter\": state[\"counter\"] + 1}  # ✅ pure function\n    return x + 1, state\n\nExplicit PRNG keys\nNumpy RNG\nimport numpy as np\nnp.random.seed(0)\nx = np.random.normal(size=(100,))\ny = np.random.uniform(size=(100,))\n\nNo inplace mutations\nimport jax.numpy as jnp\nx = jnp.array([1, 2, 3])\n\n@jax.jit\ndef bad(x):\n    x[0] = 10               # ❌ JAX arrays are immutable\n    return x\n\n@jax.jit\ndef good(x):\n    x = x.at[0].set(10)     # ✅ returns new array\n    return x\n  \nJAX RNG\nimport jax.random as jr\nkey = jr.PRNGKey(0)\nk1 , k2 = jr.split(key)\nx = jr.normal(k1, shape=(100,))\ny = jr.uniform(k2, shape=(100,))\n\n\n\nIn general\n\n\n\nAll modified variables must be passed explicitly as function arguments and return values.\nAll arrays are immutable; use .at[].set() or similar to create modified copies."
+  },
+  {
+    "objectID": "2025_10_AI/index.html#jax-transforms",
+    "href": "2025_10_AI/index.html#jax-transforms",
+    "title": "Generative AI with JAX",
+    "section": "JAX transforms",
+    "text": "JAX transforms\n\n\nJIT (Just in time compilation)\nimport jax\nimport jax.numpy as jnp\n\n@jax.jit\ndef f(x): \n    return jnp.sin(x**2) + jnp.cos(x)\n\ny = f(jnp.linspace(0, 3, 1_000))    # compiled once, runs fast\n\ngrad (automatic differentiation)\nimport jax\nimport jax.numpy as jnp\n\ndef loss(w, x, y):\n     return ((x @ w - y)**2).mean()\n\ndl_dw = jax.grad(loss)(w, x, y)     # grad w.r.t. first arg\ndl_dl_dw = jax.grad(jax.grad(loss))(w, x, y)  # 2nd derivative\nhessian_dw = jax.hessian(loss)(w, x, y)  # Hessian matrix\n\nAuto-vectorization (vmap)\nimport jax\nimport jax.numpy as jnp\n\ndef score(x, w): \n    return x @ w        # single example\n\nbatched_score = jax.vmap(score, in_axes=(0, None))\ny = batched_score(X_batch, w)\nMulti-device parallelism (shard_map)\nimport numpy as np\nimport jax\nimport jax.numpy as jnp\n\nmesh = jax.sharding.Mesh(np.array(jax.devices()), ('data',))\n\ndef double(x):\n     return x * 2\n     \ndouble_sharded = jax.shard_map(double, mesh=mesh,\n        in_specs=jax.sharding.PartitionSpec('data', None),\n        out_specs=jax.sharding.PartitionSpec('data', None))\n\n# shard over axis 0\nx = jnp.arange(8).reshape(len(jax.devices()), -1) \ny = double_sharded(x)"
+  },
+  {
+    "objectID": "2025_10_AI/index.html#neural-nets-in-jax-flax",
+    "href": "2025_10_AI/index.html#neural-nets-in-jax-flax",
+    "title": "Generative AI with JAX",
+    "section": "Neural nets in JAX (Flax)",
+    "text": "Neural nets in JAX (Flax)\nDefining a CNN model\n\n\nimport torch.nn as nn\nimport torch.nn.functional as F\n\nclass CNN(nn.Module):\n    def __init__(self):\n        super().__init__()\n        self.c1 = nn.Conv2d(3, 32, 3); self.c2 = nn.Conv2d(32, 64, 3)\n        self.fc = nn.Linear(64*6*6, 10)\n    def forward(self, x):\n        x = F.relu(self.c1(x)); x = F.relu(self.c2(x))\n        x = x.view(x.size(0), -1); return self.fc(x)\n\nmodel = CNN()\n\nimport jax, jax.numpy as jnp\nimport flax.linen as nn\n\nclass CNN(nn.Module):\n    @nn.compact\n    def __call__(self, x):\n        x = nn.relu(nn.Conv(32, (3,3))(x))\n        x = nn.relu(nn.Conv(64, (3,3))(x))\n        x = x.reshape((x.shape[0], -1))\n        return nn.Dense(10)(x)\n\nmodel = CNN()\nparams = model.init(jax.random.PRNGKey(0), jnp.ones((1, 3, 8, 8)))\n\nTraining step example\n\n\nopt = torch.optim.Adam(model.parameters(), lr=1e-3)\n\ndef train_step(x, y):\n    opt.zero_grad()\n    logits = model(x)\n    loss = F.cross_entropy(logits, y)\n    loss.backward()\n    opt.step()\n    return loss.item()\n\nloss = train_step(x_batch, y_batch)\n\nimport jax, jax.numpy as jnp\nimport optax\nfrom flax.training import train_state\n\ndef loss_fn(params, batch):\n    logits = model.apply(params, batch[\"x\"])   # forward\n    return optax.softmax_cross_entropy_with_integer_labels(\n        logits, batch[\"y\"]\n    ).mean()\n\n@jax.jit\ndef train_step(state, batch):\n    grads = jax.grad(loss_fn)(state.params, batch)\n    return state.apply_gradients(grads=grads)\n\nstate = train_state.TrainState.create(\n    apply_fn=model.apply,\n    params=params,\n    tx=optax.adam(1e-3),\n)\nstate = train_step(state, batch)  # one update step"
+  },
+  {
+    "objectID": "2025_10_AI/index.html#jax-ecosystem-an-overview",
+    "href": "2025_10_AI/index.html#jax-ecosystem-an-overview",
+    "title": "Generative AI with JAX",
+    "section": "JAX Ecosystem: an overview",
+    "text": "JAX Ecosystem: an overview\nFLAX \nNeural network library for JAX with modules, layers, optimizers, training loops.\nOptax \nGradient processing and optimization library for JAX.\nBlackJAX \nMCMC sampling library for JAX with HMC, NUTS, SGLD algorithms.\nNumPyro \nProbabilistic programming library for JAX with Bayesian modeling and inference.\nDiffrax\nDifferential equation solver library for JAX with ODE, SDE, DDE solvers."
+  },
+  {
+    "objectID": "2025_10_AI/index.html#composability-trade-offs",
+    "href": "2025_10_AI/index.html#composability-trade-offs",
+    "title": "Generative AI with JAX",
+    "section": "Composability + Trade-offs",
+    "text": "Composability + Trade-offs\n\n\nStrengths\n\nNumPy-like API; clean function transforms\nFast & differentiable via XLA + jit\nPowerful composition: jit(vmap(grad(...))), shard_map for multi-device\nEcosystem: Flax, Optax, BlackJAX, Distrax, Diffrax\n\nWeaknesses\n\nSteep learning curve (purity, PRNG keys, transformations)\nFewer off-the-shelf models vs PyTorch\nSome APIs evolving (e.g., sharding tools) → more boilerplate at first"
+  },
+  {
+    "objectID": "2025_10_AI/index.html#gz10-dataset",
+    "href": "2025_10_AI/index.html#gz10-dataset",
+    "title": "Generative AI with JAX",
+    "section": "GZ10 Dataset",
+    "text": "GZ10 Dataset\n \nGalaxy Zoo 10 from MultimodalUniverse:\nfrom datasets import load_dataset\nds = load_dataset(\"MultimodalUniverse/gz10\")\n \nDataset statistics:\n\n~17,700 galaxy images\nRGB images (256×256 pixels)\nFields: gz10_label, redshift, object_id\n\nFor this workshop: Downsize to 32×32 or 64×64 for\n\n\nExplore the dataset\n\n\nNotebook link : Generative_AI_JAX_GZ10_VAE.ipynb"
+  },
+  {
+    "objectID": "2025_10_AI/index.html#example-a-variational-autoencoder-for-galaxies",
+    "href": "2025_10_AI/index.html#example-a-variational-autoencoder-for-galaxies",
+    "title": "Generative AI with JAX",
+    "section": "Example A: Variational Autoencoder for galaxies",
+    "text": "Example A: Variational Autoencoder for galaxies\n\nVariational Autoencoder\n\nTrain a VAE on GZ10 galaxies and analyze latent space\n\n\nNotebook link : Generative_AI_JAX_GZ10_VAE.ipynb"
   },
   {
     "objectID": "2025_05_BDL/index.html#outline-for-this-presentation",
