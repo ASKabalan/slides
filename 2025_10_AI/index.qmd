@@ -20,9 +20,9 @@ output: revealjs
 
 code-block-border-left: "#31BAE9"
 title-slide-attributes:
-  data-background-image: "assets/titles/bayes_title.png"
+  data-background-image: "assets/rubin.jpg"
   data-background-size: fill
-  data-background-opacity: "0.8"
+  data-background-opacity: "0.4"
 
 logo1 : '
 <div style="display: flex; justify-content: space-around; align-items: center; layout-valign="middle">
