@@ -1,6 +1,5 @@
 ---
 title: "Generative AI with JAX"
-subtitle: "after CNNs"
 author: "Wassim Kabalan"
 footer: "AISSAI School 2025"
 date: "October 2025"
@@ -58,7 +57,7 @@ logo1 : '
 <br/>
 - <span style="color:#1a237e; font-size: 26px;">**JAX eco system**</span>
 <br/>
-<span style="color:#1a237e;">Learn core JAX transforms (jit, vmap, pmap) and Flax tooling</span>
+<span style="color:#1a237e;">Learn core JAX transforms (jit, vmap, grad) and Flax tooling</span>
 <br/>
 <br/>
 - <span style="color:#1a237e; font-size: 26px;">**Hands on tutorial**</span>
@@ -109,7 +108,6 @@ Key Idea: Generative AI
 ::::{.solutionbox-body style="font-size: 18px;"}
 - Generative AI is about learning the underlying distribution $p(\text{data})$ and sampling from it to generate images.
 - The output of a generative model is a new data point.
-- Green point marks a selected/generated draw.
 - <span style="color:#1a237e;"><strong>Generative</strong></span> is intrinsically related to <span style="color:#1a237e;"><strong>probability distributions</strong></span>.
 ::::
 :::
@@ -504,11 +502,18 @@ $$
 ::: {.column width="55%"}
 ![DDPM process](assets/ddpm_box.png){width=100% .img-border-2}
 
+::: {.fragment .fade-in fragment-index=1}
+
 ![Diffusion visualization](assets/diffusion_spiral.png){width=80% .img-border-2}
+
+:::
+
 :::
 
 ::: {.column width="45%"}
 ![](assets/ddpm_title.png){width=95% .img-border-2}
+
+::: {.fragment .fade-in fragment-index=2}
 
 :::{.solutionbox}
 
@@ -522,16 +527,16 @@ Characteristics of Diffusion Models
 
 Pros:
 
-- **Best quality & coverage:** diffusion / flow-matching models (DiT / RFT) for images; rapidly improving for video.
-- **Main trade-off:** sampling cost — increasingly mitigated by **consistency models** and fast-sampler **distillation**.
+- **Best quality & coverage:** diffusion / flow-matching models for images; rapidly improving for video.
 
 Cons:
-
 
 - High computational cost for training and sampling.
 
 
 ::::
+:::
+
 :::
 
 
@@ -575,7 +580,110 @@ Each generative model family has distinct tradeoffs. VAEs offer fast training an
 JAX provides a NumPy-compatible API with powerful function transformations. grad computes derivatives, jit compiles to optimized XLA code, vmap vectorizes operations, and pmap parallelizes across devices. JAX enforces functional programming: functions must be pure without side effects. Randomness is explicit via PRNG key splitting. The same code runs efficiently on CPU, GPU, or TPU through XLA compilation.
 :::
 
-## Why JAX? tiny gradient demo
+## JAX transforms
+
+::: {.columns}
+::: {.column width="50%"}
+
+### JIT (Just in time compilation)
+
+```python
+import jax
+import jax.numpy as jnp
+
+@jax.jit
+def f(x): 
+    return jnp.sin(x**2) + jnp.cos(x)
+
+# compiled once, runs fast
+y = f(jnp.linspace(0, 3, 1_000))
+```
+
+:::
+
+::: {.column width="50%"}
+
+::: {.fragment .fade-in fragment-index=1}
+
+### Auto-vectorization (vmap)
+
+```python
+import jax
+import jax.numpy as jnp
+
+def score(x, w): 
+    return x @ w        # single example
+
+batched_score = jax.vmap(score, in_axes=(0, None))
+y = batched_score(X_batch, w)
+```
+
+:::
+
+:::
+
+:::
+
+<br/>
+<br/>
+
+::: {.columns}
+::: {.column width="50%"}
+
+
+### grad (automatic differentiation)
+
+```python
+import jax
+import jax.numpy as jnp
+
+def loss(w, x, y):
+     return ((x @ w - y)**2).mean()
+
+# grad w.r.t. first arg
+dl_dw = jax.grad(loss)(w, x, y)
+# 2nd derivative
+dl_dl_dw = jax.grad(jax.grad(loss))(w, x, y)
+# Hessian matrix
+hessian_dw = jax.hessian(loss)(w, x, y)
+```
+
+:::
+
+::: {.column width="50%"}
+
+::: {.fragment .fade-in fragment-index=2}
+
+
+### Multi-device parallelism (shard_map)
+
+```python
+import numpy as np
+import jax
+import jax.numpy as jnp
+
+mesh = jax.sharding.Mesh(np.array(jax.devices()), ('data',))
+
+def double(x):
+     return x * 2
+     
+double_sharded = jax.shard_map(double, mesh=mesh,
+        in_specs=jax.sharding.PartitionSpec('data', None),
+        out_specs=jax.sharding.PartitionSpec('data', None))
+
+# shard over axis 0
+x = jnp.arange(8).reshape(len(jax.devices()), -1) 
+y = double_sharded(x)
+```
+
+:::
+
+:::
+:::
+
+---
+
+## tiny gradient demo
 
 <br/>
 <br/>
@@ -626,16 +734,17 @@ state = {"counter": 0}
 
 @jax.jit
 def bad(x):
-    state["counter"] += 1   # ❌ side-effect breaks JIT/purity
+    # ❌ side-effect breaks JIT/purity
+    state["counter"] += 1
     return x + 1
 
 @jax.jit
 def good(x, state):
-    state = {"counter": state["counter"] + 1}  # ✅ pure function
+    # ✅ pure function
+    state = {"counter": state["counter"] + 1}  
     return x + 1, state
 ```
 
-<br/>
 
 ### Explicit PRNG keys
 
@@ -671,7 +780,6 @@ def good(x):
 
 <br/>
 <br/>
-<br/>
 
 
 #### JAX RNG
@@ -705,90 +813,13 @@ In general
 
 ::::
 
-## JAX transforms
-
-::: {.columns}
-::: {.column width="50%"}
-
-### JIT (Just in time compilation)
-
-```python
-import jax
-import jax.numpy as jnp
-
-@jax.jit
-def f(x): 
-    return jnp.sin(x**2) + jnp.cos(x)
-
-y = f(jnp.linspace(0, 3, 1_000))    # compiled once, runs fast
-```
-
-<br/>
-
-### grad (automatic differentiation)
-
-```python
-import jax
-import jax.numpy as jnp
-
-def loss(w, x, y):
-     return ((x @ w - y)**2).mean()
-
-dl_dw = jax.grad(loss)(w, x, y)     # grad w.r.t. first arg
-dl_dl_dw = jax.grad(jax.grad(loss))(w, x, y)  # 2nd derivative
-hessian_dw = jax.hessian(loss)(w, x, y)  # Hessian matrix
-```
-
-:::
-
-::: {.column width="50%"}
-
-
-### Auto-vectorization (vmap)
-
-```python
-import jax
-import jax.numpy as jnp
-
-def score(x, w): 
-    return x @ w        # single example
-
-batched_score = jax.vmap(score, in_axes=(0, None))
-y = batched_score(X_batch, w)
-```
-
-### Multi-device parallelism (shard_map)
-
-```python
-import numpy as np
-import jax
-import jax.numpy as jnp
-
-mesh = jax.sharding.Mesh(np.array(jax.devices()), ('data',))
-
-def double(x):
-     return x * 2
-     
-double_sharded = jax.shard_map(double, mesh=mesh,
-        in_specs=jax.sharding.PartitionSpec('data', None),
-        out_specs=jax.sharding.PartitionSpec('data', None))
-
-# shard over axis 0
-x = jnp.arange(8).reshape(len(jax.devices()), -1) 
-y = double_sharded(x)
-```
-
-:::
-:::
-
----
 
 ## Neural nets in JAX (Flax)
 
-### Defining a CNN model
+<br/>
 
-:::: {.columns}
-::: {.column width="50%"}
+### Defining a CNN model in PyTorch
+
 
 ```python
 import torch.nn as nn
@@ -805,10 +836,9 @@ class CNN(nn.Module):
 
 model = CNN()
 ```
+<br/>
 
-:::
-
-::: {.column width="50%"}
+### Defining a CNN model in Flax
 
 ```python
 import jax, jax.numpy as jnp
@@ -826,16 +856,15 @@ model = CNN()
 params = model.init(jax.random.PRNGKey(0), jnp.ones((1, 3, 8, 8)))
 ```
 
-:::
-::::
 
+## Training step example
 
-### Training step example
-
-:::: {.columns}
-::: {.column width="50%"}
+### One training step in PyTorch
 
 ```python
+import torch
+import torch.nn.functional as F
+
 opt = torch.optim.Adam(model.parameters(), lr=1e-3)
 
 def train_step(x, y):
@@ -849,9 +878,7 @@ def train_step(x, y):
 loss = train_step(x_batch, y_batch)
 ```
 
-:::
-
-::: {.column width="50%"}
+### One training step in JAX + Flax + Optax
 
 ```python
 import jax, jax.numpy as jnp
@@ -876,9 +903,6 @@ state = train_state.TrainState.create(
 )
 state = train_step(state, batch)  # one update step
 ```
-
-:::
-::::
 
 
 ## JAX Ecosystem: an overview
