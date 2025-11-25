@@ -571,37 +571,6 @@ W(r,r_s) = \frac{3}{2}\,\Omega_m \left(\frac{H_0}{c}\right)^2 \frac{r}{a(r)}\!\l
 <p>The choice of the lensing method can have an impact on the inferred cosmological parameters at LSST precision.</p>
 </div>
 </div>
-</section>
-<section id="flat-sky-patchwork-lsst-footprint" class="slide level2">
-<h2>Flat-Sky Patchwork (LSST Footprint)</h2>
-<div class="columns">
-<div class="column" style="width:55%;">
-<p><img data-src="assets/latest/lsst_patchwork.png" style="width:100.0%"></p>
-</div><div class="column" style="width:45%;">
-<div class="solutionbox">
-<div class="solutionbox-header" style="font-size: 20px;">
-<p>Flat-sky workflow</p>
-</div>
-<div class="solutionbox-body" style="font-size: 20px;">
-<ul>
-<li>Tile footprint with ≈10° tangent patches; apodize edges.</li>
-<li>Per patch: FFT / pseudo-<span class="math inline">\(C_\ell\)</span>; overlap to cut edge leakage.</li>
-</ul>
-</div>
-</div>
-</div></div>
-<div class="solutionbox">
-<div class="solutionbox-header" style="font-size: 20px;">
-<p>Why full-sphere anyway?</p>
-</div>
-<div class="solutionbox-body" style="font-size: 20px;">
-<ul>
-<li>More expensive (spherical transforms) but keeps the largest-scale modes intact.</li>
-<li>Avoids patch seams; cleaner E/B control at LSST precision.</li>
-<li>If you care about low-<span class="math inline">\(\ell\)</span> stability and uniform systematics, we have to go full sphere.</li>
-</ul>
-</div>
-</div>
 </section></section>
 <section>
 <section id="can-we-start-doing-inference" class="title-slide slide level1 center">
@@ -853,195 +822,6 @@ Modern high-end GPUs cap at <strong>~80 GB</strong>, so even a single box <stron
 </div>
 </div>
 </div>
-</section>
-<section id="distributed-particle-mesh-simulation-1" class="slide level2" style="font-size: 20px;">
-<h2>Distributed Particle Mesh Simulation</h2>
-<div class="r-stack">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/latest/pm_cic.svg" style="width:60.0%"></p>
-<figcaption>Particle Mesh Simulation</figcaption>
-</figure>
-</div>
-</div>
-</section>
-<section id="cloud-in-cell-cic-interpolation" class="slide level2" style="font-size: 19px;">
-<h2>Cloud In Cell (CIC) Interpolation</h2>
-<div class="quarto-layout-panel" data-layout-ncol="2">
-<div class="quarto-layout-row">
-<div class="r-stack quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="fragment fade-out" data-fragment-index="1">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/latest/particles_animation.gif" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
-</figure>
-</div>
-</div>
-<div class="fragment fade-in" data-fragment-index="1">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/latest/particles_last_frame.png" class="quarto-figure quarto-figure-center" style="width:55.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="r-stack quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="fragment fade-out" data-fragment-index="1">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/latest/field_animation.gif" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
-</figure>
-</div>
-</div>
-<div class="fragment fade-in" data-fragment-index="1">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/latest/field_last_frame.png" class="quarto-figure quarto-figure-center" style="width:55.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-<h3 style="font-size: 19px;" id="mass-assignment-and-readout">Mass Assignment and Readout</h3>
-<p>The Cloud-In-Cell (CIC) scheme spreads particle mass to nearby grid points using a linear kernel:</p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li><strong>Paint to Grid</strong> (mass deposition): <span class="math display">\[
-g(\mathbf{j}) = \sum_i m_i \prod_{d=1}^{D} \left(1 - \left|p_i^d - j_d\right|\right)
-\]</span></li>
-</ul>
-</div><div class="column" style="width:50%;">
-<ul>
-<li><strong>Read from Grid</strong> (force interpolation): <span class="math display">\[
-v_i = \sum_{\mathbf{j}} g(\mathbf{j}) \prod_{d=1}^{D} \left(1 - \left|p_i^d - j_d\right|\right)
-\]</span></li>
-</ul>
-</div></div>
-</section>
-<section id="why-halo-exchange-matters-in-distributed-simulations" class="slide level2" style="font-size: 20px;">
-<h2>Why Halo Exchange Matters in Distributed Simulations</h2>
-<div class="fragment fade-in-then-out" data-fragment-index="1">
-<p><img data-src="assets/HPC/depict_split.png" class="absolute" style="top: 30px; right: 20px; width: 20%; "></p>
-</div>
-<div class="fragment" data-fragment-index="2">
-<p><img data-src="assets/HPC/depict_gathered.png" class="absolute" style="top: 30px; right: 20px; width: 20%; "></p>
-</div>
-<p>Without halo exchange, subdomain boundaries introduce visible artifacts in the final field.<br>
-This breaks the smoothness of the result — <strong>even when each local computation is correct</strong>.</p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="r-stack">
-<div class="fragment fade-in-then-out" data-fragment-index="1">
-<div class="quarto-layout-panel" data-layout-align="center" data-layout="[[1] , [1] , [1] , [1]]">
-<div class="quarto-layout-row quarto-layout-valign-center">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Fields/LPT_density_field_z0_0_no_halo.png" class="nostretch" style="width:50.0%"></p>
-<figcaption>First slice</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-center">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Fields/LPT_density_field_z0_1_no_halo.png" class="nostretch" style="width:50.0%"></p>
-<figcaption>Second slice</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-center">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Fields/LPT_density_field_z0_2_no_halo.png" class="nostretch" style="width:50.0%"></p>
-<figcaption>Third slice</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-center">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Fields/LPT_density_field_z0_3_no_halo.png" class="nostretch" style="width:50.0%"></p>
-<figcaption>Fourth slice</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="fragment fade-in" data-fragment-index="2">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Fields/LPT_density_field_z0_1024_no_halo.png" class="nostretch" style="width:80.0%"></p>
-<figcaption>No Halo Artifacts</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="r-stack">
-<div class="fragment fade-in-then-out" data-fragment-index="2" style="visibility: hidden;">
-<div class="quarto-layout-panel" data-layout-align="center" data-layout="[[1] , [1] , [1] , [1]]">
-<div class="quarto-layout-row quarto-layout-valign-center">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Fields/LPT_density_field_z0_0_no_halo.png" class="nostretch" style="width:50.0%"></p>
-<figcaption>First slice</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-center">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Fields/LPT_density_field_z0_1_no_halo.png" class="nostretch" style="width:50.0%"></p>
-<figcaption>Second slice</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-center">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Fields/LPT_density_field_z0_2_no_halo.png" class="nostretch" style="width:50.0%"></p>
-<figcaption>Third slice</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-center">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Fields/LPT_density_field_z0_3_no_halo.png" class="nostretch" style="width:50.0%"></p>
-<figcaption>Fourth slice</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="fragment fade-in" data-fragment-index="3">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Fields/LPT_density_field_z0_1024.png" class="nostretch" style="width:80.0%"></p>
-<figcaption>With Halo no Artifacts</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div></div>
 </section></section>
 <section>
 <section id="distributed-inference" class="title-slide slide level1 center">
@@ -1339,8 +1119,214 @@ d_i &amp;= d_{i+1} - v_i \, \Delta t
 </div>
 </div>
 </section>
-<section class="slide level2">
-
+<section id="flat-sky-patchwork-lsst-footprint" class="slide level2">
+<h2>Flat-Sky Patchwork (LSST Footprint)</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<p><img data-src="assets/latest/lsst_patchwork.png" style="width:100.0%"></p>
+</div><div class="column" style="width:45%;">
+<div class="solutionbox">
+<div class="solutionbox-header" style="font-size: 20px;">
+<p>Flat-sky workflow</p>
+</div>
+<div class="solutionbox-body" style="font-size: 20px;">
+<ul>
+<li>Tile footprint with ≈10° tangent patches; apodize edges.</li>
+<li>Per patch: FFT / pseudo-<span class="math inline">\(C_\ell\)</span>; overlap to cut edge leakage.</li>
+</ul>
+</div>
+</div>
+</div></div>
+<div class="solutionbox">
+<div class="solutionbox-header" style="font-size: 20px;">
+<p>Why full-sphere anyway?</p>
+</div>
+<div class="solutionbox-body" style="font-size: 20px;">
+<ul>
+<li>More expensive (spherical transforms) but keeps the largest-scale modes intact.</li>
+<li>Avoids patch seams; cleaner E/B control at LSST precision.</li>
+<li>If you care about low-<span class="math inline">\(\ell\)</span> stability and uniform systematics, we have to go full sphere.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="cloud-in-cell-cic-interpolation" class="slide level2" style="font-size: 19px;">
+<h2>Cloud In Cell (CIC) Interpolation</h2>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="r-stack quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="fragment fade-out" data-fragment-index="1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/particles_animation.gif" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+<div class="fragment fade-in" data-fragment-index="1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/particles_last_frame.png" class="quarto-figure quarto-figure-center" style="width:55.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="r-stack quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="fragment fade-out" data-fragment-index="1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/field_animation.gif" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+<div class="fragment fade-in" data-fragment-index="1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/field_last_frame.png" class="quarto-figure quarto-figure-center" style="width:55.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h3 style="font-size: 19px;" id="mass-assignment-and-readout">Mass Assignment and Readout</h3>
+<p>The Cloud-In-Cell (CIC) scheme spreads particle mass to nearby grid points using a linear kernel:</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li><strong>Paint to Grid</strong> (mass deposition): <span class="math display">\[
+g(\mathbf{j}) = \sum_i m_i \prod_{d=1}^{D} \left(1 - \left|p_i^d - j_d\right|\right)
+\]</span></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li><strong>Read from Grid</strong> (force interpolation): <span class="math display">\[
+v_i = \sum_{\mathbf{j}} g(\mathbf{j}) \prod_{d=1}^{D} \left(1 - \left|p_i^d - j_d\right|\right)
+\]</span></li>
+</ul>
+</div></div>
+</section>
+<section id="why-halo-exchange-matters-in-distributed-simulations" class="slide level2" style="font-size: 20px;">
+<h2>Why Halo Exchange Matters in Distributed Simulations</h2>
+<div class="fragment fade-in-then-out" data-fragment-index="1">
+<p><img data-src="assets/HPC/depict_split.png" class="absolute" style="top: 30px; right: 20px; width: 20%; "></p>
+</div>
+<div class="fragment" data-fragment-index="2">
+<p><img data-src="assets/HPC/depict_gathered.png" class="absolute" style="top: 30px; right: 20px; width: 20%; "></p>
+</div>
+<p>Without halo exchange, subdomain boundaries introduce visible artifacts in the final field.<br>
+This breaks the smoothness of the result — <strong>even when each local computation is correct</strong>.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="r-stack">
+<div class="fragment fade-in-then-out" data-fragment-index="1">
+<div class="quarto-layout-panel" data-layout="[[1] , [1] , [1] , [1]]" data-layout-align="center">
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_0_no_halo.png" class="nostretch" style="width:50.0%"></p>
+<figcaption>First slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_1_no_halo.png" class="nostretch" style="width:50.0%"></p>
+<figcaption>Second slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_2_no_halo.png" class="nostretch" style="width:50.0%"></p>
+<figcaption>Third slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_3_no_halo.png" class="nostretch" style="width:50.0%"></p>
+<figcaption>Fourth slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in" data-fragment-index="2">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_1024_no_halo.png" class="nostretch" style="width:80.0%"></p>
+<figcaption>No Halo Artifacts</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="r-stack">
+<div class="fragment fade-in-then-out" data-fragment-index="2" style="visibility: hidden;">
+<div class="quarto-layout-panel" data-layout="[[1] , [1] , [1] , [1]]" data-layout-align="center">
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_0_no_halo.png" class="nostretch" style="width:50.0%"></p>
+<figcaption>First slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_1_no_halo.png" class="nostretch" style="width:50.0%"></p>
+<figcaption>Second slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_2_no_halo.png" class="nostretch" style="width:50.0%"></p>
+<figcaption>Third slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_3_no_halo.png" class="nostretch" style="width:50.0%"></p>
+<figcaption>Fourth slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in" data-fragment-index="3">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_1024.png" class="nostretch" style="width:80.0%"></p>
+<figcaption>With Halo no Artifacts</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
 
 
 </section></section>
