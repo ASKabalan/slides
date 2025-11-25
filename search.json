@@ -179,21 +179,21 @@
     "href": "2025_11_LSST/index.html#from-summary-statistics-to-likelihood-free-inference",
     "title": "Full-Field Weak Lensing Inference at LSST Scale with Differentiable, Distributed Simulations",
     "section": "From Summary Statistics to Likelihood Free Inference",
-    "text": "From Summary Statistics to Likelihood Free Inference\n\n\n\n\n\n\n\n\n\nBayes’ Theorem\n\\[\np(\\theta \\mid x_0) \\propto p(x_0 \\mid \\theta) \\cdot p(\\theta)\n\\]\n\nPrior: Encodes our assumptions about parameters \\(\\theta\\)\nLikelihood: How likely the data \\(x_0\\) is given \\(\\theta\\)\nPosterior: What we want to learn — how data updates our belief about \\(\\theta\\)\n\n\n\n\n\n\nSimulators become the bridge between cosmological parameters and observables.\nThey allow us to go beyond summary statistics"
+    "text": "From Summary Statistics to Likelihood Free Inference\n\n\n\n\n\n\n\n\n\nBayes’ Theorem\n\\[\np(\\theta \\mid x_0) \\propto p(x_0 \\mid \\theta) \\cdot p(\\theta)\n\\]\n\nPrior: Encodes our assumptions about parameters \\(\\theta\\)\nLikelihood: How likely the data \\(x_0\\) is given \\(\\theta\\)\nPosterior: What we want to learn — how data updates our belief about \\(\\theta\\)\n\n\n\n\n\n\nSimulators become the bridge between cosmological parameters and observables.\nThey allow us to go beyond simple summary statistics"
   },
   {
     "objectID": "2025_11_LSST/index.html#from-summary-statistics-to-likelihood-free-inference-1",
     "href": "2025_11_LSST/index.html#from-summary-statistics-to-likelihood-free-inference-1",
     "title": "Full-Field Weak Lensing Inference at LSST Scale with Differentiable, Distributed Simulations",
     "section": "From Summary Statistics to Likelihood Free Inference",
-    "text": "From Summary Statistics to Likelihood Free Inference\n\n\n\nImplicit Inference\n\nTreats the simulator as a black box — we only require the ability to simulate \\((\\theta, x)\\) pairs.\nNo need for an explicit likelihood — instead, use simulation-based inference (SBI) techniques\nOften relies on compression to summary statistics \\(t = f_\\phi(x)\\), then approximates \\(p(\\theta \\mid t)\\).\n\n\nExplicit Inference\n\nRequires a differentiable forward model or simulator.\nTreat the simulator as a probabilistic model and perform inference over the joint posterior \\(p(x \\mid \\theta, z)\\)\nComputationally demanding — but provides exact control over the statistical model.\n\n\n\n\n\n\n\nImplicit Inference\n\n\n\n\n\n\n\nExplicit Inference"
+    "text": "From Summary Statistics to Likelihood Free Inference\n\n\n\nImplicit Inference\n\nTreats the simulator as a black box — we only require the ability to simulate \\((\\theta, x)\\) pairs.\nNo need for an explicit likelihood — instead, use simulation-based inference (SBI) techniques\nOften relies on compression to summary statistics \\(t = f_\\phi(x)\\), then approximates \\(p(\\theta \\mid t)\\).\n\n\n\nExplicit Inference\n\nRequires a differentiable forward model or simulator.\nTreat the simulator as a probabilistic model and perform inference over the joint posterior \\(p(\\theta, z \\mid x)\\)\nComputationally demanding — but provides exact control over the statistical model.\n\n\n\n\n\n\n\n\nImplicit Inference\n\n\n\n\n\n\n\nExplicit Inference"
   },
   {
     "objectID": "2025_11_LSST/index.html#implicit-inference-1",
     "href": "2025_11_LSST/index.html#implicit-inference-1",
     "title": "Full-Field Weak Lensing Inference at LSST Scale with Differentiable, Distributed Simulations",
     "section": "Implicit inference",
-    "text": "Implicit inference\nSimulation-Based Inference Loop\n\nRun simulator \\(x_i = p(x \\vert \\theta_i)\\)\nCompress observables \\(t_i = f_\\phi(x_i)\\)\nTrain a density estimator \\(\\hat{p}_\\Phi(\\theta \\mid f_\\phi(x))\\)\nInfer parameters from observed data \\(t_0 = f_\\phi(x_0)\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNeural Summarisation (Zeghal & Lanzieri et al 2025).\nNormalizing Flows (Zeghal et al. 2022).\n✅ Works with non-differentiable or stochastic simulators\n❌ Requires an optimal compression function \\(f_\\phi\\)"
+    "text": "Implicit inference\nSimulation-Based Inference Loop\n\nRun simulator \\(x_i = p(x \\vert \\theta_i)\\)\nCompress observables \\(t_i = f_\\phi(x_i)\\)\nTrain a density estimator \\(\\hat{p}_\\Phi(\\theta \\mid f_\\phi(x))\\)\nInfer parameters from observed data \\(t_0 = f_\\phi(x_0)\\)\n\n\n\n\n\n\n\n\n\n\n\n\nNeural Summarisation (Zeghal & Lanzieri et al 2025).\nNormalizing Flows (Zeghal et al. 2022).\n✅ Works with non-differentiable or stochastic simulators\n❌ Requires an optimal compression function \\(f_\\phi\\)"
   },
   {
     "objectID": "2025_11_LSST/index.html#explicit-inference-1",
@@ -228,7 +228,7 @@
     "href": "2025_11_LSST/index.html#scaling-up-the-simulation-volume-the-lsst-challenge",
     "title": "Full-Field Weak Lensing Inference at LSST Scale with Differentiable, Distributed Simulations",
     "section": "Scaling Up the simulation volume: The LSST Challenge",
-    "text": "Scaling Up the simulation volume: The LSST Challenge\n\n\nLSST Scan Range\n\nCovers ~18,000 deg² (~44% of the sky)\nRedshift reach: up to z ≈ 3\nArcminute-scale resolution\nRequires simulations spanning thousands of Mpc in depth and width\n\n\n\n\n\nLSST Survey Footprint\n\n\n\n\nSimulating even a (1 Gpc/h)³ subvolume at 1024³ mesh resolution requires:\n\n~54 GB of memory for a simulation with a single snapshot\nGradient-based inference and multi-step evolution push that beyond 100–200 GB\n\n\n\n\n\n\nTakeaway\n\n\n\nLSST-scale cosmological inference demands multiple (Gpc/h)³ simulations at high resolution.\nModern high-end GPUs cap at ~80 GB, so even a single box requires multi-GPU distributed simulation — both for memory and compute scalability.\n\n\n\n\n\n\n\nJean Zay HPC - IDRIS"
+    "text": "Scaling Up the simulation volume: The LSST Challenge\n\n\nLSST Scan Range\n\nCovers ~18,000 deg² (~44% of the sky)\nRedshift reach: up to z ≈ 3\nsub arcsecond-scale resolution\nRequires simulations spanning thousands of Mpc in depth and width\n\n\n\n\n\nLSST Survey Footprint\n\n\n\n\nSimulating even a (1 Gpc/h)³ subvolume at 1024³ mesh resolution requires:\n\n~54 GB of memory for a simulation with a single snapshot\nGradient-based inference and multi-step evolution push that beyond 100–200 GB\n\n\n\n\n\n\nTakeaway\n\n\n\nLSST-scale cosmological inference demands multiple (Gpc/h)³ simulations at high resolution.\nModern high-end GPUs cap at ~80 GB, so even a single box requires multi-GPU distributed simulation — both for memory and compute scalability.\n\n\n\n\n\n\n\nJean Zay HPC - IDRIS"
   },
   {
     "objectID": "2025_11_LSST/index.html#distributed-particle-mesh-simulation",

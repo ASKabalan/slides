@@ -266,7 +266,7 @@ p(\theta \mid x_0) \propto p(x_0 \mid \theta) \cdot p(\theta)
 <div class="solutionbox-body" style="font-size: 24px;">
 <ul>
 <li><strong>Simulators become the bridge between cosmological parameters and observables.</strong></li>
-<li><strong>They allow us to go beyond summary statistics</strong></li>
+<li><strong>They allow us to go beyond simple summary statistics</strong></li>
 </ul>
 </div>
 </div>
@@ -284,12 +284,14 @@ p(\theta \mid x_0) \propto p(x_0 \mid \theta) \cdot p(\theta)
 <li><p>Often relies on <strong>compression</strong> to summary statistics <span class="math inline">\(t = f_\phi(x)\)</span>, then approximates <span class="math inline">\(p(\theta \mid t)\)</span>.</p></li>
 </ul>
 <p><br></p>
+<div class="fragment fade-in" data-fragment-index="1">
 <h4 id="explicit-inference"><strong>Explicit Inference</strong></h4>
 <ul>
 <li><p>Requires a <strong>differentiable forward model</strong> or simulator.</p></li>
-<li><p>Treat the simulator as a probabilistic model and perform inference over the joint posterior <span class="math inline">\(p(x \mid \theta, z)\)</span></p></li>
+<li><p>Treat the simulator as a probabilistic model and perform inference over the joint posterior <span class="math inline">\(p(\theta, z \mid x)\)</span></p></li>
 <li><p>Computationally demanding — but provides <strong>exact control over the statistical model</strong>.</p></li>
 </ul>
+</div>
 </div><div class="column" style="width:40%;">
 <div class="r-stack">
 <div class="fragment fade-out" data-fragment-index="1">
@@ -325,13 +327,6 @@ p(\theta \mid x_0) \propto p(x_0 \mid \theta) \cdot p(\theta)
 <figure>
 <p><img data-src="assets/latest/illu_compressor.svg" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
 </figure>
-</div>
-<div class="fragment fade-in-then-out" data-fragment-index="2">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/latest/neural_comp.png" class="quarto-figure quarto-figure-center" style="width:40.0%"></p>
-</figure>
-</div>
 </div>
 </div>
 <div class="fragment fade-in" data-fragment-index="1">
@@ -644,7 +639,7 @@ W(r, r_s) = \frac{3}{2} \, \Omega_m \, \left( \frac{H_0}{c} \right)^2 \, \frac{r
 <ul>
 <li>Covers ~<strong>18,000 deg²</strong> (~44% of the sky)</li>
 <li>Redshift reach: up to <strong>z ≈ 3</strong></li>
-<li>Arcminute-scale resolution</li>
+<li>sub arcsecond-scale resolution</li>
 <li>Requires simulations spanning thousands of Mpc in depth and width</li>
 </ul>
 </div><div class="column" style="width:50%;">
@@ -1046,7 +1041,7 @@ d_i &amp;= d_{i+1} - v_i \, \Delta t
 <div class="r-stack">
 <div class="fragment fade-in-then-out" data-fragment-index="1">
 <h3 id="without-halo-exchange-not-distributed">Without Halo Exchange (Not Distributed)</h3>
-<div class="quarto-layout-panel" data-layout-ncol="3" data-align="center">
+<div class="quarto-layout-panel" data-align="center" data-layout-ncol="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
@@ -1077,7 +1072,7 @@ d_i &amp;= d_{i+1} - v_i \, \Delta t
 </div>
 <div class="fragment fade-in" data-fragment-index="2">
 <h3 id="with-halo-exchange-distributed">With Halo Exchange (Distributed)</h3>
-<div class="quarto-layout-panel" data-layout-ncol="3" data-align="center">
+<div class="quarto-layout-panel" data-align="center" data-layout-ncol="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
