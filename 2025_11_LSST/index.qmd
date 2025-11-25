@@ -204,7 +204,7 @@ $$
 :::: {.solutionbox-body style="font-size: 24px;"}
 
 * **Simulators become the bridge between cosmological parameters and observables.**
-* **They allow us to go beyond summary statistics**
+* **They allow us to go beyond simple summary statistics**
 ::::
 
 :::
@@ -234,13 +234,17 @@ $$
 
 <br/>
 
+::: {.fragment fragment-index=1 .fade-in}
+
 #### **Explicit Inference**
 
 * Requires a **differentiable forward model** or simulator.
 
-* Treat the simulator as a probabilistic model and perform inference over the joint posterior $p(x \mid \theta, z)$
+* Treat the simulator as a probabilistic model and perform inference over the joint posterior $p(\theta, z \mid x)$
 
 * Computationally demanding — but provides **exact control over the statistical model**.
+
+:::
 
 ::::
 
@@ -284,10 +288,6 @@ $$
 
 ![](assets/latest/illu_compressor.svg){fig-align="center" width="70%"}
 
-:::::: {.fragment fragment-index=2 .fade-in-then-out}
-
-![](assets/latest/neural_comp.png){fig-align="center" width="40%"}
-::::::
 
 :::
 
@@ -629,7 +629,7 @@ What is the impact of insufficient resolution?
 
 -  Covers ~**18,000 deg²** (~44% of the sky)
 -  Redshift reach: up to **z ≈ 3**
--  Arcminute-scale resolution
+-  sub arcsecond-scale resolution
 -  Requires simulations spanning thousands of Mpc in depth and width
 
 ::::
