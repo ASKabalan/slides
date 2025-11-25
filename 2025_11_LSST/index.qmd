@@ -204,7 +204,7 @@ $$
 :::: {.solutionbox-body style="font-size: 24px;"}
 
 * **Simulators become the bridge between cosmological parameters and observables.**
-* **How to use simulators allow us to go beyond summary statistics?**
+* **They allow us to go beyond summary statistics**
 ::::
 
 :::
@@ -275,10 +275,10 @@ $$
 
 #### Simulation-Based Inference Loop 
 
- - Sample parameters $\theta_i \sim p(\theta)$
  - Run simulator $x_i = p(x \vert \theta_i)$
  - Compress observables $t_i = f_\phi(x_i)$
  - Train a **density estimator** $\hat{p}_\Phi(\theta \mid f_\phi(x))$
+ - Infer parameters from observed data $t_0 = f_\phi(x_0)$
 
 ::: {.r-stack}
 
@@ -535,78 +535,7 @@ $$
 :::
 
 
-## Born vs Raytrace (z = 0.8)
-
-:::: {.columns}
-
-::: {.column width="65%"}
-![](assets/latest/born_vs_raytrace_maxz.png){width=80%}
-:::
-
-::: {.column width="35%"}
-
-::: {.solutionbox}
-
-::: {.solutionbox-header style="font-size: 19px;"}
- **Born Approximation**
-:::
-
-:::: {.solutionbox-body style="font-size: 16px;"}
-
-$$
-\kappa(\boldsymbol\theta) = \int_0^{r_s} dr\; W(r,r_s)\,\delta(\boldsymbol\theta,r)
-$$
-with
-$$
-W(r,r_s) = \frac{3}{2}\,\Omega_m \left(\frac{H_0}{c}\right)^2 \frac{r}{a(r)}\!\left(1-\frac{r}{r_s}\right)
-$$
-
-::::
-:::
-
-::: {.solutionbox}
-
-::: {.solutionbox-header style="font-size: 19px;"}
- **Ray-Tracing**
-:::
-
-:::: {.solutionbox-body style="font-size: 16px;"}
-$$
-\mathbf{A} =
-\begin{pmatrix}
-1-\kappa-\gamma_1 & -\gamma_2 \\
--\gamma_2 & 1-\kappa+\gamma_1
-\end{pmatrix}
-$$
-Deflection angle (with multiple deflections):
-$$
-\boldsymbol{\alpha}(\boldsymbol{\theta}) = \nabla_\perp \psi(\boldsymbol{\theta}) = \frac{2}{c^2}\! \int_0^{r_s} dr\, \nabla_\perp \Phi(r,\boldsymbol{\theta})
-$$
-::::
-:::
-
-:::
-
-:::: 
-
-::: {.solutionbox}
-
-:::: {.solutionbox-body style="font-size: 16px;"}
-
-The choice of the lensing method can have an impact on the inferred cosmological parameters at LSST precision.
-
-::::
-
-:::
-
 # Can we start doing inference?
-
-:::{.notes}
-
-"So we’ve built a forward model — from cosmology to lensing maps.
-Now comes the big question: can we start doing inference?" (click)
-
-:::
 
 ---
 
@@ -648,33 +577,46 @@ Now comes the big question: can we start doing inference?" (click)
 :::
 
 
----
 
-## When the Simulator Fails, the Model Fails
-
-
-:::: {.columns}
-
-::: {.column width="50%"}
+## Accuracy of a lensing simulation
 
 <br/>
-<br/>
-<br/>
 
+::: {.columns}
 
-- Inference is only as strong as the simulator it rests on.
-- Fast is not enough — we need high resolution to capture small-scale physics.
-- Weak lensing demands ~1 cell / Mpc/h to keep shapes and power unbiased.
+:::: {.column width="50%"}
 
-:::
+![Convergence map at z=0.8](assets/latest/kappa_map.png){fig-align="center" width="100%"}
 
-::: {.column width="50%"}
-![](assets/latest/likelihood_free_ffi.svg){fig-align="center" width="90%"}
-:::
 
 ::::
 
+:::: {.column width="50%"}
 
+![Angular CL](assets/latest/power_spectrum_jaxpm_vs_theory.png){fig-align="center" width="100%"}
+
+::::
+
+:::
+
+
+:::{.solutionbox}
+
+:::: {.solutionbox-header style="font-size: 20px;"}
+
+What is the impact of insufficient resolution?
+
+::::
+
+:::: {.solutionbox-body style="font-size: 18px;"}
+
+- Low-resolution simulations **underestimate small-scale power** in convergence maps.
+- This translates to **biased cosmological inferences** if not properly accounted for.
+- Beyond 256³ resolution, we can no longer run a MCMC inference on a single GPU due to memory constraints.
+
+::::
+
+:::
 ---
 
 ## Scaling Up the simulation volume: The LSST Challenge {style="font-size: 20px;"}
@@ -829,58 +771,7 @@ Modern high-end GPUs cap at **~80 GB**, so even a single box **requires multi-GP
 
 :::
 
-
-# Distributed Inference
-
----
-
-## Distributed Sampling (WIP)
-
-:::: {.columns}
-
-::: {.column width="55%"}
-
-<br/>
-<br/>
-<br/>
-
-
-![](assets/FFI/FFI_distributed_sample.svg){fig-align="center" width="100%"}
-
-:::
-
-::: {.column width="45%"}
-
-::: {.solutionbox}
-:::: {.solutionbox-header style="font-size: 18px;"}
-Flow
-::::
-:::: {.solutionbox-body style="font-size: 16px;"}
-* Differentiable, distributed sim inside the MCMC loop.
-* Initial conditions sampled across devices; sim stays sharded through κ maps.
-* Target 1024³: ~1 GB per sample → save to disk to avoid memory blow-up.
-::::
-:::
-
-::: {.solutionbox}
-:::: {.solutionbox-header style="font-size: 18px;"}
-Status / next
-::::
-:::: {.solutionbox-body style="font-size: 16px;"}
-* Preliminary results at 256³ resolution.
-* MCMC on 8× A100 (Jean Zay): 500 samples in ~2 h.
-* Still need chain convergence + preconditioning.
-* Next: longer runs, diagnostics (ESS/R̂), add LSST noise.
-::::
-:::
-
-![Preliminary posterior](assets/latest/preliminary_post.png){fig-align="center" width="40%" opacity="0.25"}
-
-:::
-
-::::
-
-## <span style="color:black">JAXPM v0.1.6: Differentiable, Scalable Simulations </span> {background-image="assets/Fields/LPT_density_field_z0_2048.png" background-opacity="0.2" style="font-size: 20px;"}
+## JAXPM v0.1.6: Differentiable, Scalable Simulations 
 
 [![](https://img.shields.io/badge/GitHub-jaxpm-blue?logo=github)](https://github.com/DifferentiableUniverseInitiative/JaxPM)
 
@@ -907,12 +798,105 @@ What JAXPM v0.1.6 Supports
 
 * Built on top of `jaxdecomp` for distributed 3D FFT
 
-* In the near future we aim to apply this on **DES** data
+::::
+
+:::
+
+
+# Distributed Inference
+
+---
+
+## Distributed Sampling (WIP)
+
+:::: {.columns}
+
+::: {.column width="55%"}
+
+<br/>
+<br/>
+<br/>
+
+
+![](assets/FFI/FFI_distributed_sample.svg){fig-align="center" width="100%"}
+
+:::
+
+::: {.column width="45%"}
+
+::: {.solutionbox}
+:::: {.solutionbox-header style="font-size: 18px;"}
+Roadmap
+::::
+:::: {.solutionbox-body style="font-size: 16px;"}
+* Differentiable, distributed sim inside the MCMC loop.
+* Initial conditions sampled across devices; sim stays sharded through κ maps.
+* Target 1024³: ~1 GB per sample → save to disk to avoid memory blow-up.
+::::
+:::
+
+::: {.solutionbox}
+:::: {.solutionbox-header style="font-size: 18px;"}
+Status / next
+::::
+:::: {.solutionbox-body style="font-size: 16px;"}
+* Preliminary results at 256³ resolution.
+* MCMC on 8× A100 (Jean Zay): 500 samples in ~2 h.
+* Still need chain convergence + preconditioning.
+* Next: longer runs, diagnostics (ESS/R̂), add LSST noise.
+::::
+:::
+
+![Preliminary posterior](assets/latest/preliminary_post.png){fig-align="center" width="40%" opacity="0.25"}
+
+:::
+
+::::
+
+## <span style="color:black">Conclusion and future work</span> {background-image="assets/Fields/LPT_density_field_z0_2048.png" background-opacity="0.2" style="font-size: 20px;"}
+
+::: {.solutionbox}
+
+:::: {.solutionbox-header style="font-size: 20px;"}
+
+**What works so far?**
+
+::::
+
+:::: {.solutionbox-body style="font-size: 18px;"}
+
+
+- A differentiable, distributed Matter only simulation that can theoretically scale up to 2048³ on multiple HPC nodes
+- A differentiable spherical lensing pipeline that can generate full-sky convergence maps from distributed simulations
+- A distributed MCMC inference pipeline that can handle distributed simulations
 
 ::::
 
 :::
 
+<br/>
+<br/>
+<br/>
+
+
+::: {.solutionbox}
+
+:::: {.solutionbox-header style="font-size: 20px;"}
+
+**Future Work**
+
+::::
+
+:::: {.solutionbox-body style="font-size: 18px;"}
+
+- Validate against high-resolution N-body simulations
+- Implement a MCMC inference pipeline at 512³ resolution
+- run mutliple MCMC chains
+- Apply to DES Y3 data in preparation for LSST data next year
+
+::::
+
+:::
 
 # Extra slides
 
