@@ -599,45 +599,6 @@ The choice of the lensing method can have an impact on the inferred cosmological
 
 :::
 
-
----
-
-## Flat-Sky Patchwork (LSST Footprint)
-
-:::: {.columns}
-
-::: {.column width="55%"}
-![](assets/latest/lsst_patchwork.png){width=100%}
-:::
-
-::: {.column width="45%"}
-
-::: {.solutionbox}
-::: {.solutionbox-header style="font-size: 20px;"}
-Flat-sky workflow
-:::
-:::: {.solutionbox-body style="font-size: 20px;"}
-* Tile footprint with ≈10° tangent patches; apodize edges.
-* Per patch: FFT / pseudo-$C_\ell$; overlap to cut edge leakage.
-::::
-:::
-
-:::
-
-::::
-
-::: {.solutionbox}
-::: {.solutionbox-header style="font-size: 20px;"}
-Why full-sphere anyway?
-:::
-:::: {.solutionbox-body style="font-size: 20px;"}
-* More expensive (spherical transforms) but keeps the largest-scale modes intact.
-* Avoids patch seams; cleaner E/B control at LSST precision.
-* If you care about low-$\ell$ stability and uniform systematics, we have to go full sphere.
-::::
-:::
-
-
 # Can we start doing inference?
 
 :::{.notes}
@@ -868,174 +829,6 @@ Modern high-end GPUs cap at **~80 GB**, so even a single box **requires multi-GP
 
 :::
 
----
-
-
-## Distributed Particle Mesh Simulation {style="font-size: 20px;"}
-
-::: {.r-stack}
-
-![Particle Mesh Simulation](assets/latest/pm_cic.svg){fig-align="center" width="60%"}
-
-:::
-
----
-
-## Cloud In Cell (CIC) Interpolation {style="font-size: 19px;"}
-
-::: {layout-ncol=2}
-
-:::: {.r-stack}
-
-::::: {.fragment fragment-index=1 .fade-out}
-
-![](assets/latest/particles_animation.gif){fig-align="center" width="80%"}
-
-:::::
-
-::::: {.fragment fragment-index=1 .fade-in}
-
-![](assets/latest/particles_last_frame.png){fig-align="center" width="55%"}
-
-:::::
-
-::::
-
-:::: {.r-stack}
-
-::::: {.fragment fragment-index=1 .fade-out}
-
-![](assets/latest/field_animation.gif){fig-align="center" width="80%"}
-
-:::::
-
-::::: {.fragment fragment-index=1 .fade-in}
-
-![](assets/latest/field_last_frame.png){fig-align="center" width="55%"}
-
-:::::
-
-::::
-
-:::
-
-
-### Mass Assignment and Readout {style="font-size: 19px;"}
-
-The Cloud-In-Cell (CIC) scheme spreads particle mass to nearby grid points using a linear kernel:
-
-::: {.columns}
-
-:::: {.column width="50%"}
-
-- **Paint to Grid** (mass deposition):
-  $$
-  g(\mathbf{j}) = \sum_i m_i \prod_{d=1}^{D} \left(1 - \left|p_i^d - j_d\right|\right)
-  $$
-
-::::
-
-:::: {.column width="50%"}
-
-- **Read from Grid** (force interpolation):
-  $$
-  v_i = \sum_{\mathbf{j}} g(\mathbf{j}) \prod_{d=1}^{D} \left(1 - \left|p_i^d - j_d\right|\right)
-  $$
-
-::::
-
-:::
----
-
-
-## Why Halo Exchange Matters in Distributed Simulations {style="font-size: 20px;"}
-
-::: {.fragment fragment-index=1 .fade-in-then-out}
-
-![](assets/HPC/depict_split.png){.absolute top=30 right=20 width="20%"}
-
-::: 
-
-::: {.fragment fragment-index=2 }
-
-![](assets/HPC/depict_gathered.png){.absolute top=30 right=20 width="20%"}
-
-::: 
-
-
-
-Without halo exchange, subdomain boundaries introduce visible artifacts in the final field.  
-This breaks the smoothness of the result — **even when each local computation is correct**.
-
-
-::: {.columns}
-
-:::: {.column width="50%"}
-
-:::{.r-stack}
-
-
-:::{.fragment fragment-index=1 .fade-in-then-out}
-
-:::{layout="[[1] , [1] , [1] , [1]]" layout-valign="center" layout-align="center"}
-
-![First slice](assets/Fields/LPT_density_field_z0_0_no_halo.png){.nostretch fig-align="center" width="50%"}
-
-![Second slice](assets/Fields/LPT_density_field_z0_1_no_halo.png){.nostretch fig-align="center" width="50%"}
-
-![Third slice](assets/Fields/LPT_density_field_z0_2_no_halo.png){.nostretch fig-align="center" width="50%"}
-
-![Fourth slice](assets/Fields/LPT_density_field_z0_3_no_halo.png){.nostretch fig-align="center" width="50%"}
-
-:::
-
-:::
-
-:::{.fragment fragment-index=2 .fade-in}
-
-
-![No Halo Artifacts](assets/Fields/LPT_density_field_z0_1024_no_halo.png){.nostretch fig-align="center" width="80%"}
-
-:::
-
-::::
-
-
-:::
-
-
-:::: {.column width="50%"}
-
-
-:::{.r-stack}
-
-:::{.fragment fragment-index=2 .fade-in-then-out   style="visibility: hidden;"}
-
-:::{layout="[[1] , [1] , [1] , [1]]" layout-valign="center" layout-align="center"}
-
-![First slice](assets/Fields/LPT_density_field_z0_0_no_halo.png){.nostretch fig-align="center" width="50%"}
-
-![Second slice](assets/Fields/LPT_density_field_z0_1_no_halo.png){.nostretch fig-align="center" width="50%"}
-
-![Third slice](assets/Fields/LPT_density_field_z0_2_no_halo.png){.nostretch fig-align="center" width="50%"}
-
-![Fourth slice](assets/Fields/LPT_density_field_z0_3_no_halo.png){.nostretch fig-align="center" width="50%"}
-
-:::
-
-:::
-
-:::{.fragment fragment-index=3 .fade-in}
-
-![With Halo no Artifacts](assets/Fields/LPT_density_field_z0_1024.png){.nostretch fig-align="center" width="80%"}
-
-:::
-
-:::
-
-::::
-
-:::
 
 # Distributed Inference
 
@@ -1387,3 +1180,197 @@ Reverse Adjoint Method
 :::
 
 ---
+
+
+## Flat-Sky Patchwork (LSST Footprint)
+
+:::: {.columns}
+
+::: {.column width="55%"}
+![](assets/latest/lsst_patchwork.png){width=100%}
+:::
+
+::: {.column width="45%"}
+
+::: {.solutionbox}
+::: {.solutionbox-header style="font-size: 20px;"}
+Flat-sky workflow
+:::
+:::: {.solutionbox-body style="font-size: 20px;"}
+* Tile footprint with ≈10° tangent patches; apodize edges.
+* Per patch: FFT / pseudo-$C_\ell$; overlap to cut edge leakage.
+::::
+:::
+
+:::
+
+::::
+
+::: {.solutionbox}
+::: {.solutionbox-header style="font-size: 20px;"}
+Why full-sphere anyway?
+:::
+:::: {.solutionbox-body style="font-size: 20px;"}
+* More expensive (spherical transforms) but keeps the largest-scale modes intact.
+* Avoids patch seams; cleaner E/B control at LSST precision.
+* If you care about low-$\ell$ stability and uniform systematics, we have to go full sphere.
+::::
+:::
+
+
+
+## Cloud In Cell (CIC) Interpolation {style="font-size: 19px;"}
+
+::: {layout-ncol=2}
+
+:::: {.r-stack}
+
+::::: {.fragment fragment-index=1 .fade-out}
+
+![](assets/latest/particles_animation.gif){fig-align="center" width="80%"}
+
+:::::
+
+::::: {.fragment fragment-index=1 .fade-in}
+
+![](assets/latest/particles_last_frame.png){fig-align="center" width="55%"}
+
+:::::
+
+::::
+
+:::: {.r-stack}
+
+::::: {.fragment fragment-index=1 .fade-out}
+
+![](assets/latest/field_animation.gif){fig-align="center" width="80%"}
+
+:::::
+
+::::: {.fragment fragment-index=1 .fade-in}
+
+![](assets/latest/field_last_frame.png){fig-align="center" width="55%"}
+
+:::::
+
+::::
+
+:::
+
+
+### Mass Assignment and Readout {style="font-size: 19px;"}
+
+The Cloud-In-Cell (CIC) scheme spreads particle mass to nearby grid points using a linear kernel:
+
+::: {.columns}
+
+:::: {.column width="50%"}
+
+- **Paint to Grid** (mass deposition):
+  $$
+  g(\mathbf{j}) = \sum_i m_i \prod_{d=1}^{D} \left(1 - \left|p_i^d - j_d\right|\right)
+  $$
+
+::::
+
+:::: {.column width="50%"}
+
+- **Read from Grid** (force interpolation):
+  $$
+  v_i = \sum_{\mathbf{j}} g(\mathbf{j}) \prod_{d=1}^{D} \left(1 - \left|p_i^d - j_d\right|\right)
+  $$
+
+::::
+
+:::
+---
+
+
+## Why Halo Exchange Matters in Distributed Simulations {style="font-size: 20px;"}
+
+::: {.fragment fragment-index=1 .fade-in-then-out}
+
+![](assets/HPC/depict_split.png){.absolute top=30 right=20 width="20%"}
+
+::: 
+
+::: {.fragment fragment-index=2 }
+
+![](assets/HPC/depict_gathered.png){.absolute top=30 right=20 width="20%"}
+
+::: 
+
+
+
+Without halo exchange, subdomain boundaries introduce visible artifacts in the final field.  
+This breaks the smoothness of the result — **even when each local computation is correct**.
+
+
+::: {.columns}
+
+:::: {.column width="50%"}
+
+:::{.r-stack}
+
+
+:::{.fragment fragment-index=1 .fade-in-then-out}
+
+:::{layout="[[1] , [1] , [1] , [1]]" layout-valign="center" layout-align="center"}
+
+![First slice](assets/Fields/LPT_density_field_z0_0_no_halo.png){.nostretch fig-align="center" width="50%"}
+
+![Second slice](assets/Fields/LPT_density_field_z0_1_no_halo.png){.nostretch fig-align="center" width="50%"}
+
+![Third slice](assets/Fields/LPT_density_field_z0_2_no_halo.png){.nostretch fig-align="center" width="50%"}
+
+![Fourth slice](assets/Fields/LPT_density_field_z0_3_no_halo.png){.nostretch fig-align="center" width="50%"}
+
+:::
+
+:::
+
+:::{.fragment fragment-index=2 .fade-in}
+
+
+![No Halo Artifacts](assets/Fields/LPT_density_field_z0_1024_no_halo.png){.nostretch fig-align="center" width="80%"}
+
+:::
+
+::::
+
+
+:::
+
+
+:::: {.column width="50%"}
+
+
+:::{.r-stack}
+
+:::{.fragment fragment-index=2 .fade-in-then-out   style="visibility: hidden;"}
+
+:::{layout="[[1] , [1] , [1] , [1]]" layout-valign="center" layout-align="center"}
+
+![First slice](assets/Fields/LPT_density_field_z0_0_no_halo.png){.nostretch fig-align="center" width="50%"}
+
+![Second slice](assets/Fields/LPT_density_field_z0_1_no_halo.png){.nostretch fig-align="center" width="50%"}
+
+![Third slice](assets/Fields/LPT_density_field_z0_2_no_halo.png){.nostretch fig-align="center" width="50%"}
+
+![Fourth slice](assets/Fields/LPT_density_field_z0_3_no_halo.png){.nostretch fig-align="center" width="50%"}
+
+:::
+
+:::
+
+:::{.fragment fragment-index=3 .fade-in}
+
+![With Halo no Artifacts](assets/Fields/LPT_density_field_z0_1024.png){.nostretch fig-align="center" width="80%"}
+
+:::
+
+:::
+
+::::
+
+:::
