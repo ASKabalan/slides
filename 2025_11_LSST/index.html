@@ -266,7 +266,7 @@ p(\theta \mid x_0) \propto p(x_0 \mid \theta) \cdot p(\theta)
 <div class="solutionbox-body" style="font-size: 24px;">
 <ul>
 <li><strong>Simulators become the bridge between cosmological parameters and observables.</strong></li>
-<li><strong>How to use simulators allow us to go beyond summary statistics?</strong></li>
+<li><strong>They allow us to go beyond summary statistics</strong></li>
 </ul>
 </div>
 </div>
@@ -315,10 +315,10 @@ p(\theta \mid x_0) \propto p(x_0 \mid \theta) \cdot p(\theta)
 <h2>Implicit inference</h2>
 <h4 id="simulation-based-inference-loop">Simulation-Based Inference Loop</h4>
 <ul>
-<li>Sample parameters <span class="math inline">\(\theta_i \sim p(\theta)\)</span></li>
 <li>Run simulator <span class="math inline">\(x_i = p(x \vert \theta_i)\)</span></li>
 <li>Compress observables <span class="math inline">\(t_i = f_\phi(x_i)\)</span></li>
 <li>Train a <strong>density estimator</strong> <span class="math inline">\(\hat{p}_\Phi(\theta \mid f_\phi(x))\)</span></li>
+<li>Infer parameters from observed data <span class="math inline">\(t_0 = f_\phi(x_0)\)</span></li>
 </ul>
 <div class="r-stack">
 <div class="quarto-figure quarto-figure-center">
@@ -530,64 +530,11 @@ W(r, r_s) = \frac{3}{2} \, \Omega_m \, \left( \frac{H_0}{c} \right)^2 \, \frac{r
 </div>
 </div>
 </div></div>
-</section>
-<section id="born-vs-raytrace-z-0.8" class="slide level2">
-<h2>Born vs Raytrace (z = 0.8)</h2>
-<div class="columns">
-<div class="column" style="width:65%;">
-<p><img data-src="assets/latest/born_vs_raytrace_maxz.png" style="width:80.0%"></p>
-</div><div class="column" style="width:35%;">
-<div class="solutionbox">
-<div class="solutionbox-header" style="font-size: 19px;">
-<p><strong>Born Approximation</strong></p>
-</div>
-<div class="solutionbox-body" style="font-size: 16px;">
-<p><span class="math display">\[
-\kappa(\boldsymbol\theta) = \int_0^{r_s} dr\; W(r,r_s)\,\delta(\boldsymbol\theta,r)
-\]</span> with <span class="math display">\[
-W(r,r_s) = \frac{3}{2}\,\Omega_m \left(\frac{H_0}{c}\right)^2 \frac{r}{a(r)}\!\left(1-\frac{r}{r_s}\right)
-\]</span></p>
-</div>
-</div>
-<div class="solutionbox">
-<div class="solutionbox-header" style="font-size: 19px;">
-<p><strong>Ray-Tracing</strong></p>
-</div>
-<div class="solutionbox-body" style="font-size: 16px;">
-<p><span class="math display">\[
-\mathbf{A} =
-\begin{pmatrix}
-1-\kappa-\gamma_1 &amp; -\gamma_2 \\
--\gamma_2 &amp; 1-\kappa+\gamma_1
-\end{pmatrix}
-\]</span> Deflection angle (with multiple deflections): <span class="math display">\[
-\boldsymbol{\alpha}(\boldsymbol{\theta}) = \nabla_\perp \psi(\boldsymbol{\theta}) = \frac{2}{c^2}\! \int_0^{r_s} dr\, \nabla_\perp \Phi(r,\boldsymbol{\theta})
-\]</span></p>
-</div>
-</div>
-</div></div>
-<div class="solutionbox">
-<div class="solutionbox-body" style="font-size: 16px;">
-<p>The choice of the lensing method can have an impact on the inferred cosmological parameters at LSST precision.</p>
-</div>
-</div>
 </section></section>
 <section>
 <section id="can-we-start-doing-inference" class="title-slide slide level1 center">
 <h1>Can we start doing inference?</h1>
-<aside class="notes">
-<p>“So we’ve built a forward model — from cosmology to lensing maps. Now comes the big question: can we start doing inference?” (click)</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section class="slide level2">
 
@@ -657,23 +604,37 @@ W(r,r_s) = \frac{3}{2}\,\Omega_m \left(\frac{H_0}{c}\right)^2 \frac{r}{a(r)}\!\l
           display:block!important;
       }</style></aside>
 </section>
-<section id="when-the-simulator-fails-the-model-fails" class="slide level2">
-<h2>When the Simulator Fails, the Model Fails</h2>
+<section id="accuracy-of-a-lensing-simulation" class="slide level2">
+<h2>Accuracy of a lensing simulation</h2>
+<p><br></p>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><br> <br> <br></p>
-<ul>
-<li>Inference is only as strong as the simulator it rests on.</li>
-<li>Fast is not enough — we need high resolution to capture small-scale physics.</li>
-<li>Weak lensing demands ~1 cell / Mpc/h to keep shapes and power unbiased.</li>
-</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/latest/kappa_map.png" style="width:100.0%"></p>
+<figcaption>Convergence map at z=0.8</figcaption>
+</figure>
+</div>
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/latest/likelihood_free_ffi.svg" class="quarto-figure quarto-figure-center" style="width:90.0%"></p>
+<p><img data-src="assets/latest/power_spectrum_jaxpm_vs_theory.png" style="width:100.0%"></p>
+<figcaption>Angular CL</figcaption>
 </figure>
 </div>
 </div></div>
+<div class="solutionbox">
+<div class="solutionbox-header" style="font-size: 20px;">
+<p>What is the impact of insufficient resolution?</p>
+</div>
+<div class="solutionbox-body" style="font-size: 18px;">
+<ul>
+<li>Low-resolution simulations <strong>underestimate small-scale power</strong> in convergence maps.</li>
+<li>This translates to <strong>biased cosmological inferences</strong> if not properly accounted for.</li>
+<li>Beyond 256³ resolution, we can no longer run a MCMC inference on a single GPU due to memory constraints.</li>
+</ul>
+</div>
+</div>
 </section>
 <section id="scaling-up-the-simulation-volume-the-lsst-challenge" class="slide level2" style="font-size: 20px;">
 <h2>Scaling Up the simulation volume: The LSST Challenge</h2>
@@ -822,6 +783,25 @@ Modern high-end GPUs cap at <strong>~80 GB</strong>, so even a single box <stron
 </div>
 </div>
 </div>
+</section>
+<section id="jaxpm-v0.1.6-differentiable-scalable-simulations" class="slide level2">
+<h2>JAXPM v0.1.6: Differentiable, Scalable Simulations</h2>
+<p><a href="https://github.com/DifferentiableUniverseInitiative/JaxPM"><img data-src="https://img.shields.io/badge/GitHub-jaxpm-blue?logo=github.png"></a></p>
+<p><br> <br> <br></p>
+<div class="solutionbox">
+<div class="solutionbox-header">
+<p>What JAXPM v0.1.6 Supports</p>
+</div>
+<div class="solutionbox-body">
+<ul>
+<li><p><strong>Multi-GPU and Multi-Node</strong> simulation with distributed domain decomposition (Successfully ran 2048³ on 256 GPUs)</p></li>
+<li><p><strong>End-to-end differentiability</strong>, including force computation and interpolation</p></li>
+<li><p>Supports full <strong>PM Lightcone Weak Lensing</strong></p></li>
+<li><p>Available on <strong>PyPI</strong>: <code>pip install jaxpm</code></p></li>
+<li><p>Built on top of <code>jaxdecomp</code> for distributed 3D FFT</p></li>
+</ul>
+</div>
+</div>
 </section></section>
 <section>
 <section id="distributed-inference" class="title-slide slide level1 center">
@@ -841,7 +821,7 @@ Modern high-end GPUs cap at <strong>~80 GB</strong>, so even a single box <stron
 </div><div class="column" style="width:45%;">
 <div class="solutionbox">
 <div class="solutionbox-header" style="font-size: 18px;">
-<p>Flow</p>
+<p>Roadmap</p>
 </div>
 <div class="solutionbox-body" style="font-size: 16px;">
 <ul>
@@ -872,22 +852,31 @@ Modern high-end GPUs cap at <strong>~80 GB</strong>, so even a single box <stron
 </div>
 </div></div>
 </section>
-<section id="jaxpm-v0.1.6-differentiable-scalable-simulations" class="slide level2" data-background-image="assets/Fields/LPT_density_field_z0_2048.png" data-background-opacity="0.2" style="font-size: 20px;">
-<h2><span style="color:black">JAXPM v0.1.6: Differentiable, Scalable Simulations </span></h2>
-<p><a href="https://github.com/DifferentiableUniverseInitiative/JaxPM"><img data-src="https://img.shields.io/badge/GitHub-jaxpm-blue?logo=github.png"></a></p>
+<section id="conclusion-and-future-work" class="slide level2" data-background-image="assets/Fields/LPT_density_field_z0_2048.png" data-background-opacity="0.2" style="font-size: 20px;">
+<h2><span style="color:black">Conclusion and future work</span></h2>
+<div class="solutionbox">
+<div class="solutionbox-header" style="font-size: 20px;">
+<p><strong>What works so far?</strong></p>
+</div>
+<div class="solutionbox-body" style="font-size: 18px;">
+<ul>
+<li>A differentiable, distributed Matter only simulation that can theoretically scale up to 2048³ on multiple HPC nodes</li>
+<li>A differentiable spherical lensing pipeline that can generate full-sky convergence maps from distributed simulations</li>
+<li>A distributed MCMC inference pipeline that can handle distributed simulations</li>
+</ul>
+</div>
+</div>
 <p><br> <br> <br></p>
 <div class="solutionbox">
-<div class="solutionbox-header">
-<p>What JAXPM v0.1.6 Supports</p>
+<div class="solutionbox-header" style="font-size: 20px;">
+<p><strong>Future Work</strong></p>
 </div>
-<div class="solutionbox-body">
+<div class="solutionbox-body" style="font-size: 18px;">
 <ul>
-<li><p><strong>Multi-GPU and Multi-Node</strong> simulation with distributed domain decomposition (Successfully ran 2048³ on 256 GPUs)</p></li>
-<li><p><strong>End-to-end differentiability</strong>, including force computation and interpolation</p></li>
-<li><p>Supports full <strong>PM Lightcone Weak Lensing</strong></p></li>
-<li><p>Available on <strong>PyPI</strong>: <code>pip install jaxpm</code></p></li>
-<li><p>Built on top of <code>jaxdecomp</code> for distributed 3D FFT</p></li>
-<li><p>In the near future we aim to apply this on <strong>DES</strong> data</p></li>
+<li>Validate against high-resolution N-body simulations</li>
+<li>Implement a MCMC inference pipeline at 512³ resolution</li>
+<li>run mutliple MCMC chains</li>
+<li>Apply to DES Y3 data in preparation for LSST data next year</li>
 </ul>
 </div>
 </div>
@@ -1057,7 +1046,7 @@ d_i &amp;= d_{i+1} - v_i \, \Delta t
 <div class="r-stack">
 <div class="fragment fade-in-then-out" data-fragment-index="1">
 <h3 id="without-halo-exchange-not-distributed">Without Halo Exchange (Not Distributed)</h3>
-<div class="quarto-layout-panel" data-align="center" data-layout-ncol="3">
+<div class="quarto-layout-panel" data-layout-ncol="3" data-align="center">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
@@ -1088,7 +1077,7 @@ d_i &amp;= d_{i+1} - v_i \, \Delta t
 </div>
 <div class="fragment fade-in" data-fragment-index="2">
 <h3 id="with-halo-exchange-distributed">With Halo Exchange (Distributed)</h3>
-<div class="quarto-layout-panel" data-align="center" data-layout-ncol="3">
+<div class="quarto-layout-panel" data-layout-ncol="3" data-align="center">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">

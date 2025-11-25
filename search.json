@@ -179,7 +179,7 @@
     "href": "2025_11_LSST/index.html#from-summary-statistics-to-likelihood-free-inference",
     "title": "Full-Field Weak Lensing Inference at LSST Scale with Differentiable, Distributed Simulations",
     "section": "From Summary Statistics to Likelihood Free Inference",
-    "text": "From Summary Statistics to Likelihood Free Inference\n\n\n\n\n\n\n\n\n\nBayes’ Theorem\n\\[\np(\\theta \\mid x_0) \\propto p(x_0 \\mid \\theta) \\cdot p(\\theta)\n\\]\n\nPrior: Encodes our assumptions about parameters \\(\\theta\\)\nLikelihood: How likely the data \\(x_0\\) is given \\(\\theta\\)\nPosterior: What we want to learn — how data updates our belief about \\(\\theta\\)\n\n\n\n\n\n\nSimulators become the bridge between cosmological parameters and observables.\nHow to use simulators allow us to go beyond summary statistics?"
+    "text": "From Summary Statistics to Likelihood Free Inference\n\n\n\n\n\n\n\n\n\nBayes’ Theorem\n\\[\np(\\theta \\mid x_0) \\propto p(x_0 \\mid \\theta) \\cdot p(\\theta)\n\\]\n\nPrior: Encodes our assumptions about parameters \\(\\theta\\)\nLikelihood: How likely the data \\(x_0\\) is given \\(\\theta\\)\nPosterior: What we want to learn — how data updates our belief about \\(\\theta\\)\n\n\n\n\n\n\nSimulators become the bridge between cosmological parameters and observables.\nThey allow us to go beyond summary statistics"
   },
   {
     "objectID": "2025_11_LSST/index.html#from-summary-statistics-to-likelihood-free-inference-1",
@@ -193,7 +193,7 @@
     "href": "2025_11_LSST/index.html#implicit-inference-1",
     "title": "Full-Field Weak Lensing Inference at LSST Scale with Differentiable, Distributed Simulations",
     "section": "Implicit inference",
-    "text": "Implicit inference\nSimulation-Based Inference Loop\n\nSample parameters \\(\\theta_i \\sim p(\\theta)\\)\nRun simulator \\(x_i = p(x \\vert \\theta_i)\\)\nCompress observables \\(t_i = f_\\phi(x_i)\\)\nTrain a density estimator \\(\\hat{p}_\\Phi(\\theta \\mid f_\\phi(x))\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNeural Summarisation (Zeghal & Lanzieri et al 2025).\nNormalizing Flows (Zeghal et al. 2022).\n✅ Works with non-differentiable or stochastic simulators\n❌ Requires an optimal compression function \\(f_\\phi\\)"
+    "text": "Implicit inference\nSimulation-Based Inference Loop\n\nRun simulator \\(x_i = p(x \\vert \\theta_i)\\)\nCompress observables \\(t_i = f_\\phi(x_i)\\)\nTrain a density estimator \\(\\hat{p}_\\Phi(\\theta \\mid f_\\phi(x))\\)\nInfer parameters from observed data \\(t_0 = f_\\phi(x_0)\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNeural Summarisation (Zeghal & Lanzieri et al 2025).\nNormalizing Flows (Zeghal et al. 2022).\n✅ Works with non-differentiable or stochastic simulators\n❌ Requires an optimal compression function \\(f_\\phi\\)"
   },
   {
     "objectID": "2025_11_LSST/index.html#explicit-inference-1",
@@ -217,18 +217,11 @@
     "text": "From 3D Structure to Lensing Observables\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSimulate structure formation over time, taking snapshots at key redshifts\nStitch these snapshots into a lightcone, mimicking the observer’s view of the universe\nCombine contributions from all slabs to form convergence maps\nUse the Born approximation to simplify the lensing calculation\n\n\n\n\n\nBorn Approximation for Convergence\n\n\n\\[\n\\kappa(\\boldsymbol{\\theta}) = \\int_0^{r_s} dr \\, W(r, r_s) \\, \\delta(\\boldsymbol{\\theta}, r)\n\\]\nWhere the lensing weight is:\n\\[\nW(r, r_s) = \\frac{3}{2} \\, \\Omega_m \\, \\left( \\frac{H_0}{c} \\right)^2 \\, \\frac{r}{a(r)} \\left(1 - \\frac{r}{r_s} \\right)\n\\]"
   },
   {
-    "objectID": "2025_11_LSST/index.html#born-vs-raytrace-z-0.8",
-    "href": "2025_11_LSST/index.html#born-vs-raytrace-z-0.8",
+    "objectID": "2025_11_LSST/index.html#accuracy-of-a-lensing-simulation",
+    "href": "2025_11_LSST/index.html#accuracy-of-a-lensing-simulation",
     "title": "Full-Field Weak Lensing Inference at LSST Scale with Differentiable, Distributed Simulations",
-    "section": "Born vs Raytrace (z = 0.8)",
-    "text": "Born vs Raytrace (z = 0.8)\n\n\n\n\n\n\nBorn Approximation\n\n\n\\[\n\\kappa(\\boldsymbol\\theta) = \\int_0^{r_s} dr\\; W(r,r_s)\\,\\delta(\\boldsymbol\\theta,r)\n\\] with \\[\nW(r,r_s) = \\frac{3}{2}\\,\\Omega_m \\left(\\frac{H_0}{c}\\right)^2 \\frac{r}{a(r)}\\!\\left(1-\\frac{r}{r_s}\\right)\n\\]\n\n\n\n\nRay-Tracing\n\n\n\\[\n\\mathbf{A} =\n\\begin{pmatrix}\n1-\\kappa-\\gamma_1 & -\\gamma_2 \\\\\n-\\gamma_2 & 1-\\kappa+\\gamma_1\n\\end{pmatrix}\n\\] Deflection angle (with multiple deflections): \\[\n\\boldsymbol{\\alpha}(\\boldsymbol{\\theta}) = \\nabla_\\perp \\psi(\\boldsymbol{\\theta}) = \\frac{2}{c^2}\\! \\int_0^{r_s} dr\\, \\nabla_\\perp \\Phi(r,\\boldsymbol{\\theta})\n\\]\n\n\n\n\n\nThe choice of the lensing method can have an impact on the inferred cosmological parameters at LSST precision."
-  },
-  {
-    "objectID": "2025_11_LSST/index.html#when-the-simulator-fails-the-model-fails",
-    "href": "2025_11_LSST/index.html#when-the-simulator-fails-the-model-fails",
-    "title": "Full-Field Weak Lensing Inference at LSST Scale with Differentiable, Distributed Simulations",
-    "section": "When the Simulator Fails, the Model Fails",
-    "text": "When the Simulator Fails, the Model Fails\n\n\n  \n\nInference is only as strong as the simulator it rests on.\nFast is not enough — we need high resolution to capture small-scale physics.\nWeak lensing demands ~1 cell / Mpc/h to keep shapes and power unbiased."
+    "section": "Accuracy of a lensing simulation",
+    "text": "Accuracy of a lensing simulation\n\n\n\n\n\n\nConvergence map at z=0.8\n\n\n\n\n\n\nAngular CL\n\n\n\n\n\nWhat is the impact of insufficient resolution?\n\n\n\nLow-resolution simulations underestimate small-scale power in convergence maps.\nThis translates to biased cosmological inferences if not properly accounted for.\nBeyond 256³ resolution, we can no longer run a MCMC inference on a single GPU due to memory constraints."
   },
   {
     "objectID": "2025_11_LSST/index.html#scaling-up-the-simulation-volume-the-lsst-challenge",
@@ -252,18 +245,25 @@
     "text": "jaxDecomp: Distributed 3D FFT and Halo Exchange\n\n\nDistributed 3D FFT using domain decomposition\n\nFully differentiable, runs on multi-GPU and multi-node setups\n\nDesigned as a drop-in replacement for jax.numpy.fft.fftn\n\nOpen source and available on PyPI \\(\\Rightarrow\\) pip install jaxdecomp\nHalo exchange for mass conservation across subdomains\n\n\n\n\n\n\n\nFFT\n\n\n\n\n\n\n\nHalo Exchange"
   },
   {
+    "objectID": "2025_11_LSST/index.html#jaxpm-v0.1.6-differentiable-scalable-simulations",
+    "href": "2025_11_LSST/index.html#jaxpm-v0.1.6-differentiable-scalable-simulations",
+    "title": "Full-Field Weak Lensing Inference at LSST Scale with Differentiable, Distributed Simulations",
+    "section": "JAXPM v0.1.6: Differentiable, Scalable Simulations",
+    "text": "JAXPM v0.1.6: Differentiable, Scalable Simulations\n\n  \n\n\nWhat JAXPM v0.1.6 Supports\n\n\n\nMulti-GPU and Multi-Node simulation with distributed domain decomposition (Successfully ran 2048³ on 256 GPUs)\nEnd-to-end differentiability, including force computation and interpolation\nSupports full PM Lightcone Weak Lensing\nAvailable on PyPI: pip install jaxpm\nBuilt on top of jaxdecomp for distributed 3D FFT"
+  },
+  {
     "objectID": "2025_11_LSST/index.html#distributed-sampling-wip",
     "href": "2025_11_LSST/index.html#distributed-sampling-wip",
     "title": "Full-Field Weak Lensing Inference at LSST Scale with Differentiable, Distributed Simulations",
     "section": "Distributed Sampling (WIP)",
-    "text": "Distributed Sampling (WIP)\n\n\n  \n\n\n\n\n\n\n\n\nFlow\n\n\n\nDifferentiable, distributed sim inside the MCMC loop.\nInitial conditions sampled across devices; sim stays sharded through κ maps.\nTarget 1024³: ~1 GB per sample → save to disk to avoid memory blow-up.\n\n\n\n\n\nStatus / next\n\n\n\nPreliminary results at 256³ resolution.\nMCMC on 8× A100 (Jean Zay): 500 samples in ~2 h.\nStill need chain convergence + preconditioning.\nNext: longer runs, diagnostics (ESS/R̂), add LSST noise.\n\n\n\n\n\n\nPreliminary posterior"
+    "text": "Distributed Sampling (WIP)\n\n\n  \n\n\n\n\n\n\n\n\nRoadmap\n\n\n\nDifferentiable, distributed sim inside the MCMC loop.\nInitial conditions sampled across devices; sim stays sharded through κ maps.\nTarget 1024³: ~1 GB per sample → save to disk to avoid memory blow-up.\n\n\n\n\n\nStatus / next\n\n\n\nPreliminary results at 256³ resolution.\nMCMC on 8× A100 (Jean Zay): 500 samples in ~2 h.\nStill need chain convergence + preconditioning.\nNext: longer runs, diagnostics (ESS/R̂), add LSST noise.\n\n\n\n\n\n\nPreliminary posterior"
   },
   {
-    "objectID": "2025_11_LSST/index.html#jaxpm-v0.1.6-differentiable-scalable-simulations",
-    "href": "2025_11_LSST/index.html#jaxpm-v0.1.6-differentiable-scalable-simulations",
+    "objectID": "2025_11_LSST/index.html#conclusion-and-future-work",
+    "href": "2025_11_LSST/index.html#conclusion-and-future-work",
     "title": "Full-Field Weak Lensing Inference at LSST Scale with Differentiable, Distributed Simulations",
-    "section": "JAXPM v0.1.6: Differentiable, Scalable Simulations ",
-    "text": "JAXPM v0.1.6: Differentiable, Scalable Simulations \n\n  \n\n\nWhat JAXPM v0.1.6 Supports\n\n\n\nMulti-GPU and Multi-Node simulation with distributed domain decomposition (Successfully ran 2048³ on 256 GPUs)\nEnd-to-end differentiability, including force computation and interpolation\nSupports full PM Lightcone Weak Lensing\nAvailable on PyPI: pip install jaxpm\nBuilt on top of jaxdecomp for distributed 3D FFT\nIn the near future we aim to apply this on DES data"
+    "section": "Conclusion and future work",
+    "text": "Conclusion and future work\n\n\nWhat works so far?\n\n\n\nA differentiable, distributed Matter only simulation that can theoretically scale up to 2048³ on multiple HPC nodes\nA differentiable spherical lensing pipeline that can generate full-sky convergence maps from distributed simulations\nA distributed MCMC inference pipeline that can handle distributed simulations\n\n\n\n  \n\n\nFuture Work\n\n\n\nValidate against high-resolution N-body simulations\nImplement a MCMC inference pipeline at 512³ resolution\nrun mutliple MCMC chains\nApply to DES Y3 data in preparation for LSST data next year"
   },
   {
     "objectID": "2025_11_LSST/index.html#approximating-the-small-scales",
