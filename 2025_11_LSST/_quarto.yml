@@ -1,0 +1,13 @@
+project:
+  type: website
+  output-dir: .
+  render:
+    - index.qmd
+
+
+website:
+  title: "Full-Field Weak Lensing Inference at LSST Scale with Differentiable, Distributed Simulations"
+  navbar:
+    left:
+      - href: index.qmd
+

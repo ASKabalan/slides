@@ -1,0 +1,1389 @@
+---
+title: 'Full-Field Weak Lensing Inference at LSST Scale with Differentiable, Distributed Simulations'
+
+author: 
+  - name: "Wassim Kabalan"
+  - name : "Alexandre Boucaud, François Lanusse"
+footer: "LSST France, Grenoble"
+date: "November 2025"
+image: "../assets/placeholder.png"
+format:
+  revealjs:
+    theme: [default, css/custom.scss]
+    incremental: false   
+    transition: slide
+    background-transition: slide
+    presentation-size: max-scale
+    highlight-style: github
+    slide-number: true
+    pdfSeparateFragments: true
+    template-partials:
+      - css/title-slide.html
+output: revealjs
+
+title-slide-attributes:
+  data-background-image: "assets/lsst_bg.jpg"
+  data-background-size: fill
+  data-background-opacity: "0.2"
+
+
+logo1 : '
+<div style="display: flex; justify-content: space-around; align-items: center; layout-valign="middle">
+  <img src="assets/Logos/AstroDeep-2.png" style="width: 35%;"/>
+  <img src="assets/Logos/APC.png" style="width: 20%;"/>
+  <img src="assets/Logos/scipol.png" style="width: 35%;"/>
+</div>
+'
+---
+
+## Outline for This Presentation 
+
+<br/>
+<br/>
+<br/>
+
+
+
+:::{.solutionbox}
+
+::::{.solutionbox-body style="font-size: 22px; border-radius: 10px; border: 2px solid #3b0a68;"}
+
+
+- <span style="color:#1a237e; font-size: 26px;">**Beyond Summary Statistics Inference in Cosmology**</span>
+<br/>
+<br/>
+- <span style="color:#1a237e; font-size: 26px;">**Building N-body Simulators for Cosmological Inference**</span>
+<br/>
+<br/>
+- <span style="color:#1a237e; font-size: 26px;">**Modeling Observables: Weak Lensing & Lightcones**</span>
+<br/>
+<br/>
+- <span style="color:#1a237e; font-size: 26px;">**Scaling Up: Distributed, Differentiable Simulations**</span>
+
+
+::::
+
+:::
+
+---
+
+
+## The Traditional Approach to Cosmological Inference {style="font-size: 22px;"}
+
+
+:::{.columns}
+
+:::: {.column width="50%"}
+
+<br/>
+
+::::: {.r-stack}
+
+
+![](assets/latest/trad_cosmo.svg){fig-align="center" width="100%" style="border: 2px solid black; border-radius: 6px;"}
+
+:::::
+
+::::
+
+:::: {.column width="50%"}
+
+
+<br/>
+<br/>
+
+
+- **cosmological parameters** (Ω): matter density, dark energy, etc.
+- Predict observables: **CMB, galaxies, lensing**
+- Extract **summary statistics**: $P(k)$, $C_\ell$ , 2PCF
+- Compute **likelihood**: $L(\Omega \vert data)$
+- Estimate $\hat{\Omega}$ via **maximization** ($\chi^2$ fitting)
+
+
+::::
+
+:::
+
+:::::: {.fragment fragment-index=1 .fade-in}
+
+
+:::{.solutionbox}
+
+::: {.solutionbox-header style="font-size: 20px;"}
+
+**Summary Statistics Based Inference**
+
+:::
+
+::::{.solutionbox-body style="font-size: 18px;"}
+
+- Traditional inference uses **summary statistics** to compress data.
+- Power spectrum fitting: $P(k)$, $C_\ell$ 
+- It misses complex, non-linear structure in the data
+
+::::
+
+:::
+
+:::::: 
+
+
+::: {.notes}
+
+"Most of modern cosmological inference pipelines rely on summary statistics — things like the power spectrum P(k)P(k) or angular power spectrum CℓCℓ​."
+
+"These work well under the assumption that most of the information is encoded in second-order statistics — basically, the correlations between pairs of points."
+
+"But this approach ignores all the higher-order structure — the full non-linear complexity that emerges in the formation of cosmic structure."
+
+Even higher-order statistics (like bispectrum or 3-point correlations) still reduce the data, and fail to capture the entire structure or allow for fully Bayesian inference over the field.
+
+"And that’s the motivation for moving beyond summary statistics..."
+
+:::
+
+---
+
+## The Traditional Approach to Cosmological Inference {style="font-size: 22px;"}
+
+
+<br/>
+
+::: {.r-stack}
+
+:::::: {.fragment fragment-index=1 .fade-out}
+![](assets/latest/summ_stat.png){fig-align="center" width="80%" text-align="right" style="border: 2px solid black; border-radius: 6px;" fig-cap="" alt="Credit: Natalia Porqueres"}
+::::::
+:::::: {.fragment fragment-index=1 .fade-in}
+![](assets/latest/bad_posterior.png){fig-align="center" width="50%" style="border: 2px solid black; border-radius: 6px;" fig-cap="" alt="Jeffrey et al. (2024): bad posterior"}
+::::::
+:::
+
+:::{.solutionbox}
+
+:::: {.solutionbox-body style="font-size: 26px;"}
+ - **Summary statistics (e.g. P(k)) discard the non-Gaussian features.**
+ - **Gradient-based curve fitting does not recover the true posterior shape.**
+::::
+
+:::
+
+#  How to maximize the information gain? 
+
+---
+
+## From Summary Statistics to Likelihood Free Inference {style="font-size: 19px;"}
+
+<br/>
+
+::: {.r-stack}
+![](assets/latest/likelihood_free_cosmo.svg){fig-align="center" width="60%"}
+:::
+
+
+:::::: {.fragment fragment-index=1 .fade-in}
+
+### Bayes’ Theorem
+
+$$
+p(\theta \mid x_0) \propto p(x_0 \mid \theta) \cdot p(\theta)
+$$
+
+* **Prior**: Encodes our assumptions about parameters $\theta$
+* **Likelihood**: How likely the data $x_0$ is given $\theta$
+* **Posterior**: What we want to learn — how data updates our belief about $\theta$
+
+::::::
+
+:::::: {.fragment fragment-index=2 .fade-in}
+
+
+
+::: {.solutionbox}
+
+:::: {.solutionbox-body style="font-size: 24px;"}
+
+* **Simulators become the bridge between cosmological parameters and observables.**
+* **How to use simulators allow us to go beyond summary statistics?**
+::::
+
+:::
+
+::::::
+
+---
+
+## From Summary Statistics to Likelihood Free Inference {style="font-size: 19px;"}
+
+
+<br/>
+
+::: {.columns}
+
+
+:::: {.column width="60%"}
+
+#### **Implicit Inference**
+
+* Treats the simulator as a **black box** — we only require the ability to simulate $(\theta, x)$ pairs.
+
+* No need for an explicit likelihood — instead, use **simulation-based inference** (SBI) techniques
+
+* Often relies on **compression** to summary statistics $t = f_\phi(x)$, then approximates $p(\theta \mid t)$.
+
+
+<br/>
+
+#### **Explicit Inference**
+
+* Requires a **differentiable forward model** or simulator.
+
+* Treat the simulator as a probabilistic model and perform inference over the joint posterior $p(x \mid \theta, z)$
+
+* Computationally demanding — but provides **exact control over the statistical model**.
+
+::::
+
+:::: {.column width="40%"}
+
+
+
+::: {.r-stack}
+
+:::::: {.fragment fragment-index=1 .fade-out}
+![Implicit Inference](assets/latest/likelihood_free_SBI.svg){fig-align="center" width="80%"}
+::::::
+
+:::::: {.fragment fragment-index=1 .fade-in}
+
+![Explicit Inference](assets/latest/likelihood_free_ffi.svg){fig-align="center" width="90%"}
+
+::::
+
+
+:::
+
+::::
+
+:::
+
+---
+
+
+
+## Implicit inference {style="font-size: 20px;"}
+
+#### Simulation-Based Inference Loop 
+
+ - Sample parameters $\theta_i \sim p(\theta)$
+ - Run simulator $x_i = p(x \vert \theta_i)$
+ - Compress observables $t_i = f_\phi(x_i)$
+ - Train a **density estimator** $\hat{p}_\Phi(\theta \mid f_\phi(x))$
+
+::: {.r-stack}
+
+![](assets/latest/illu_compressor.svg){fig-align="center" width="70%"}
+
+:::::: {.fragment fragment-index=2 .fade-in-then-out}
+
+![](assets/latest/neural_comp.png){fig-align="center" width="40%"}
+::::::
+
+:::
+
+:::::: {.fragment fragment-index=1 .fade-in}
+
+::: {.solutionbox}
+
+:::: {.solutionbox-body style="font-size: 19px;"}
+
+* **Neural Summarisation (Zeghal & Lanzieri et al 2025).**
+* **Normalizing Flows (Zeghal et al. 2022).**
+* **✅ Works with non-differentiable or stochastic simulators**
+* **❌ Requires an optimal compression function $f_\phi$**
+::::
+
+:::
+
+::::::
+
+---
+
+## Explicit inference {style="font-size: 20px;"}
+
+::: {.columns}
+
+:::: {.column width="60%"}
+
+The goal is to reconstruct the **entire latent structure** of the Universe — not just compress it into summary statistics.
+To do this, we jointly infer:
+
+$$
+p(\theta, z \mid x) \propto p(x \mid \theta, z) \, p(z \mid \theta) \, p(\theta)
+$$
+
+**Where:**
+
+* $\theta$: cosmological parameters (e.g. matter density, dark energy, etc.)
+
+* $z$: latent fields (e.g. initial conditions of the density field)
+
+* $x$: observed data (e.g. convergence maps or galaxy fields)
+
+
+
+:::::: {.fragment fragment-index=1 .fade-in}
+
+::: {.solutionbox}
+
+::: {.solutionbox-header style="font-size: 19px;"}
+The challenge of explicit inference
+
+:::
+
+:::: {.solutionbox-body style="font-size: 16px;"}
+
+* The latent variables $z$ typically live in **very high-dimensional spaces** — with millions of degrees of freedom.
+
+* Sampling in this space is **intractable using traditional inference techniques**.
+
+::::
+
+:::
+
+::::::
+
+
+:::::: {.fragment fragment-index=1 .fade-in}
+
+::: {.solutionbox}
+
+:::: {.solutionbox-body style="font-size: 16px;"}
+
+* We need samplers that can scale efficiently to high-dimensional latent spaces and Exploit **gradients** from differentiable simulators
+* This makes **differentiable simulators** essential for modern cosmological inference.
+* **Particle Mesh (PM)** simulations offer a scalable and differentiable solution.
+::::
+
+:::
+
+::::::
+
+::::
+
+:::: {.column width="40%"}
+
+::: {.r-stack}
+![Explicit Inference](assets/latest/likelihood_free_ffi.svg){fig-align="center" width="90%"}
+:::
+
+::::
+
+:::
+
+
+---
+
+## Particle Mesh Simulations {style="font-size: 19px;"}
+
+::: {.columns}
+
+:::: {.column width="40%"}
+
+
+![](assets/latest/PM_forces.svg){fig-align="center" width="100%"}
+
+::::: {.fragment fragment-index=1.fade-in}
+![](assets/latest/PM_interpolate.svg){fig-align="center" width="100%"}
+:::::
+
+
+
+
+::::
+
+:::: {.column width="60%"}
+
+
+###  Compute Forces via PM method
+
+- **Start with particles** $\mathbf{x}_i, \mathbf{p}_i$  
+- Interpolate to mesh: $\rho(\mathbf{x})$  
+- Solve Poisson’s Equation:
+  $$
+  \nabla^2 \phi = -4\pi G \rho
+  $$
+- In Fourier space:
+  $$
+  \mathbf{f}(\mathbf{k}) = i\mathbf{k}k^{-2}\rho(\mathbf{k})
+  $$
+
+
+::::: {.fragment fragment-index=1 .fade-in}
+
+###  Time Evolution via ODE
+
+- PM uses **Kick-Drift-Kick** (symplectic) scheme:
+  - Drift: $\mathbf{x} \leftarrow \mathbf{x} + \Delta a \cdot \mathbf{v}$
+  - Kick:  $\mathbf{v} \leftarrow \mathbf{v} + \Delta a \cdot \nabla \phi$
+
+:::::
+::::
+
+:::
+
+::::: {.fragment fragment-index=2 .fade-in}
+
+:::{.solutionbox}
+
+:::: {.solutionbox-body style="font-size: 18px; border: 3px solid;"}
+ - Fast and scalable approximation to gravity.
+ - A cycle of FFTs and interpolations.
+ - Sacrifices small-scale accuracy for speed and differentiability.
+ - Current implementations **JAXPM v0.1**, **PMWD** and **BORG**.
+::::
+
+:::
+
+:::::
+
+
+# Using Full-Field Inference with Weak Lensing
+
+::: {.r-stack}
+
+:::::: {.fragment fragment-index=1 .fade-out}
+![](assets/bayes/FFI_full.svg){fig-align="center" width="100%"}
+::::::
+
+:::::: {.fragment fragment-index=1 .fade-in}
+
+![](assets/FFI/FFI_wl_focus.svg){fig-align="center" width="100%"}
+
+::::::
+
+:::
+
+---
+
+## From 3D Structure to Lensing Observables {visibility="uncounted" style="font-size: 19px;"}
+
+::: {.columns}
+:::: {.column width="60%"}
+
+::::: {.r-stack}
+
+:::::: {.fragment fragment-index=1 .fade-out}
+![](assets/latest/how_converge.svg){fig-align="center" width="80%"}
+::::::
+
+
+
+:::::: {.fragment fragment-index=1 .fade-in-then-out}
+![](assets/latest/lightcone_1.svg){fig-align="center" width="100%"}
+::::::
+
+:::::: {.fragment fragment-index=2 .fade-in-then-out}
+![](assets/latest/lightcone_2.svg){fig-align="center" width="100%"}
+::::::
+
+:::::: {.fragment fragment-index=3 .fade-in-then-out}
+![](assets/latest/lightcone_3.svg){fig-align="center" width="100%"}
+::::::
+
+:::::
+
+::::
+
+:::: {.column width="40%"}
+
+:::::: {.fragment fragment-index=1 .fade-in}
+- Simulate structure formation over time, taking snapshots at key redshifts
+- Stitch these snapshots into a **lightcone**, mimicking the observer’s view of the universe
+- Combine contributions from all slabs to form convergence maps
+- Use the Born approximation to simplify the lensing calculation
+::::::
+
+:::::: {.fragment fragment-index=3 .fade-in}
+
+:::{.solutionbox}
+
+::: {.solutionbox-header}
+Born Approximation for Convergence
+:::
+
+:::: {.solutionbox-body style="font-size: 18px;"}
+
+$$
+\kappa(\boldsymbol{\theta}) = \int_0^{r_s} dr \, W(r, r_s) \, \delta(\boldsymbol{\theta}, r)
+$$
+
+Where the lensing weight is:
+
+$$
+W(r, r_s) = \frac{3}{2} \, \Omega_m \, \left( \frac{H_0}{c} \right)^2 \, \frac{r}{a(r)} \left(1 - \frac{r}{r_s} \right)
+$$
+
+::::
+
+:::
+
+::::::
+
+::::
+
+:::
+
+
+## Born vs Raytrace (z = 0.8)
+
+:::: {.columns}
+
+::: {.column width="65%"}
+![](assets/latest/born_vs_raytrace_maxz.png){width=80%}
+:::
+
+::: {.column width="35%"}
+
+::: {.solutionbox}
+
+::: {.solutionbox-header style="font-size: 19px;"}
+ **Born Approximation**
+:::
+
+:::: {.solutionbox-body style="font-size: 16px;"}
+
+$$
+\kappa(\boldsymbol\theta) = \int_0^{r_s} dr\; W(r,r_s)\,\delta(\boldsymbol\theta,r)
+$$
+with
+$$
+W(r,r_s) = \frac{3}{2}\,\Omega_m \left(\frac{H_0}{c}\right)^2 \frac{r}{a(r)}\!\left(1-\frac{r}{r_s}\right)
+$$
+
+::::
+:::
+
+::: {.solutionbox}
+
+::: {.solutionbox-header style="font-size: 19px;"}
+ **Ray-Tracing**
+:::
+
+:::: {.solutionbox-body style="font-size: 16px;"}
+$$
+\mathbf{A} =
+\begin{pmatrix}
+1-\kappa-\gamma_1 & -\gamma_2 \\
+-\gamma_2 & 1-\kappa+\gamma_1
+\end{pmatrix}
+$$
+Deflection angle (with multiple deflections):
+$$
+\boldsymbol{\alpha}(\boldsymbol{\theta}) = \nabla_\perp \psi(\boldsymbol{\theta}) = \frac{2}{c^2}\! \int_0^{r_s} dr\, \nabla_\perp \Phi(r,\boldsymbol{\theta})
+$$
+::::
+:::
+
+:::
+
+:::: 
+
+::: {.solutionbox}
+
+:::: {.solutionbox-body style="font-size: 16px;"}
+
+The choice of the lensing method can have an impact on the inferred cosmological parameters at LSST precision.
+
+::::
+
+:::
+
+
+---
+
+## Flat-Sky Patchwork (LSST Footprint)
+
+:::: {.columns}
+
+::: {.column width="55%"}
+![](assets/latest/lsst_patchwork.png){width=100%}
+:::
+
+::: {.column width="45%"}
+
+::: {.solutionbox}
+::: {.solutionbox-header style="font-size: 20px;"}
+Flat-sky workflow
+:::
+:::: {.solutionbox-body style="font-size: 20px;"}
+* Tile footprint with ≈10° tangent patches; apodize edges.
+* Per patch: FFT / pseudo-$C_\ell$; overlap to cut edge leakage.
+::::
+:::
+
+:::
+
+::::
+
+::: {.solutionbox}
+::: {.solutionbox-header style="font-size: 20px;"}
+Why full-sphere anyway?
+:::
+:::: {.solutionbox-body style="font-size: 20px;"}
+* More expensive (spherical transforms, larger covariances) but keeps the largest-scale modes intact.
+* Avoids patch seams; cleaner E/B control at LSST precision.
+* If you care about low-$\ell$ stability and uniform systematics, full-sphere wins.
+::::
+:::
+
+
+# Can we start doing inference?
+
+:::{.notes}
+
+"So we’ve built a forward model — from cosmology to lensing maps.
+Now comes the big question: can we start doing inference?" (click)
+
+:::
+
+---
+
+
+
+#### The impact of resolution on simulation accuracy
+
+
+::: {layout-ncol=3}
+![$512^3$ Resolution mesh](assets/Fields/LPT_density_field_z0_512.png){fig-align="center" width="75%"}
+
+![$256^3$ Resolution mesh](assets/Fields/LPT_density_field_z0_256.png){fig-align="center" width="75%"}
+
+![$64^3$ Resolution mesh](assets/Fields/LPT_density_field_z0_64.png){fig-align="center" width="75%"}
+
+:::
+
+:::: {.fragment fragment-index=1 .fade-in}
+
+::: {layout-ncol=2}
+
+![-](assets/latest/power_spectrum_comparison.png){fig-align="center" width="80%"}
+
+![Biased Posterior](assets/latest/biased_posterior_plot.png){fig-align="center" width="50%"}
+
+:::
+
+::::
+
+<br/>
+
+::: {.notes}
+
+"Well… not yet. Not if we care about accuracy."
+"Here’s what happens as we vary the resolution of the simulation mesh. Visually, the structure starts to break down. But more importantly, we lose power on small scales — and that directly biases the inferred cosmological parameters."
+"So even if our inference machinery is technically running — the science is wrong."
+“Low-resolution simulations introduce a significant systematic bias in the inferred parameters — even if the rest of the pipeline is perfect.”
+
+:::
+
+
+---
+
+## When the Simulator Fails, the Model Fails
+
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+<br/>
+<br/>
+<br/>
+
+
+- Inference is only as strong as the simulator it rests on.
+- Fast is not enough — we need high resolution to capture small-scale physics.
+- Weak lensing demands ~1 cell / Mpc/h to keep shapes and power unbiased.
+
+:::
+
+::: {.column width="50%"}
+![](assets/latest/likelihood_free_ffi.svg){fig-align="center" width="90%"}
+:::
+
+::::
+
+
+---
+
+## Scaling Up the simulation volume: The LSST Challenge {style="font-size: 20px;"}
+
+::: {.columns}
+
+:::: {.column width="50%"}
+
+#### LSST Scan Range
+
+-  Covers ~**18,000 deg²** (~44% of the sky)
+-  Redshift reach: up to **z ≈ 3**
+-  Arcminute-scale resolution
+-  Requires simulations spanning thousands of Mpc in depth and width
+
+::::
+
+:::: {.column width="50%"}
+
+![LSST Survey Footprint](assets/latest/lsst_footprint.png){fig-align="center" width="70%"}
+
+::::
+
+:::
+
+- Simulating even a **(1 Gpc/h)³** subvolume at **1024³ mesh resolution** requires:
+  - ~**54 GB** of memory for a simulation with a single snapshot
+  - Gradient-based inference and multi-step evolution push that beyond **100–200 GB**
+
+
+::: {.columns}
+
+:::: {.column width="70%"}
+
+
+:::{.solutionbox}
+
+::: {.solutionbox-header style="font-size: 19px;"}
+ **Takeaway**  
+:::
+
+:::: {.solutionbox-body style="font-size: 18px;"}
+
+ - LSST-scale cosmological inference demands **multiple (Gpc/h)³ simulations** at high resolution.  
+Modern high-end GPUs cap at **~80 GB**, so even a single box **requires multi-GPU distributed simulation** — both for memory and compute scalability.
+
+::::
+
+:::
+
+::::
+
+:::: {.column width="30%"}
+
+![Jean Zay HPC - IDRIS](assets/HPC/jean_zay_photo.png){fig-align="center" width="90%"}
+
+::::
+
+:::
+
+
+
+# We Need Scalable Distributed Simulations
+
+---
+
+
+## Distributed Particle Mesh Simulation {style="font-size: 20px;"}
+
+
+::: {.columns}
+
+:::: {.column width="50%"}
+
+::::: {.r-stack}
+
+::::::: {.fragment fragment-index=1 .fade-out}
+![Particle Mesh Simulation](assets/latest/PM_pipeline.svg){fig-align="center" width="100%"}
+:::::::
+
+::::::: {.fragment fragment-index=1 .fade-in-then-out}
+![Particle Mesh Simulation](assets/latest/pm_laplace_kernel.svg){fig-align="center" width="100%"}
+:::::::
+
+::::::: {.fragment fragment-index=2 .fade-in}
+![Particle Mesh Simulation](assets/latest/pm_fft.svg){fig-align="center" width="100%"}
+:::::::
+
+:::::
+
+::::
+
+:::: {.column width="50%"}
+
+:::::: {.fragment fragment-index=1 .fade-in}
+
+#### Force Computation is Easy to Parallelize
+
+- Poisson’s equation in Fourier space:  
+  $$
+  \nabla^2 \phi = -4\pi G \rho
+  $$
+
+- Gravitational force in Fourier space:  
+  $$
+  \mathbf{f}(\mathbf{k}) = i\mathbf{k}k^{-2}\rho(\mathbf{k})
+  $$
+
+- Each Fourier mode $\mathbf{k}$ can be computed independently using JAX  
+- Perfect for large-scale, parallel GPU execution
+
+![](assets/Logos/JaxLogo.png){fig-align="center" width="20%"}
+
+::::::
+
+:::::: {.fragment fragment-index=3 .fade-in}
+
+:::{.solutionbox}
+
+:::: {.solutionbox-body style="font-size: 26px;"}
+**Fourier Transform requires global communication**
+::::
+
+:::
+
+
+::::::
+
+::::
+
+:::
+
+
+---
+
+## jaxDecomp: Distributed 3D FFT and Halo Exchange {style="font-size: 20px;"}
+
+[![](https://img.shields.io/badge/GitHub-jaxdecomp-blue?logo=github)](https://github.com/DifferentiableUniverseInitiative/jaxDecomp)
+
+- **Distributed 3D FFT** using **domain decomposition**  
+- **Fully differentiable**, runs on **multi-GPU and multi-node** setups  
+- Designed as a **drop-in replacement** for `jax.numpy.fft.fftn`  
+- Open source and available on **PyPI** $\Rightarrow$ `pip install jaxdecomp`
+- **Halo exchange** for mass conservation across subdomains
+
+:::{layout-ncol=2}
+
+![FFT](assets/jaxDecomp/fft.svg){fig-align="center" width="90%"}
+
+
+![Halo Exchange](assets/Fields/CIC/Halo_Exchange.svg){fig-align="center" width="75%"}
+
+:::
+
+---
+
+
+## Distributed Particle Mesh Simulation {style="font-size: 20px;"}
+
+::: {.r-stack}
+
+![Particle Mesh Simulation](assets/latest/pm_cic.svg){fig-align="center" width="60%"}
+
+:::
+
+---
+
+## Cloud In Cell (CIC) Interpolation {style="font-size: 19px;"}
+
+::: {layout-ncol=2}
+
+:::: {.r-stack}
+
+::::: {.fragment fragment-index=1 .fade-out}
+
+![](assets/latest/particles_animation.gif){fig-align="center" width="80%"}
+
+:::::
+
+::::: {.fragment fragment-index=1 .fade-in}
+
+![](assets/latest/particles_last_frame.png){fig-align="center" width="55%"}
+
+:::::
+
+::::
+
+:::: {.r-stack}
+
+::::: {.fragment fragment-index=1 .fade-out}
+
+![](assets/latest/field_animation.gif){fig-align="center" width="80%"}
+
+:::::
+
+::::: {.fragment fragment-index=1 .fade-in}
+
+![](assets/latest/field_last_frame.png){fig-align="center" width="55%"}
+
+:::::
+
+::::
+
+:::
+
+
+### Mass Assignment and Readout {style="font-size: 19px;"}
+
+The Cloud-In-Cell (CIC) scheme spreads particle mass to nearby grid points using a linear kernel:
+
+::: {.columns}
+
+:::: {.column width="50%"}
+
+- **Paint to Grid** (mass deposition):
+  $$
+  g(\mathbf{j}) = \sum_i m_i \prod_{d=1}^{D} \left(1 - \left|p_i^d - j_d\right|\right)
+  $$
+
+::::
+
+:::: {.column width="50%"}
+
+- **Read from Grid** (force interpolation):
+  $$
+  v_i = \sum_{\mathbf{j}} g(\mathbf{j}) \prod_{d=1}^{D} \left(1 - \left|p_i^d - j_d\right|\right)
+  $$
+
+::::
+
+:::
+---
+
+
+## Why Halo Exchange Matters in Distributed Simulations {style="font-size: 20px;"}
+
+::: {.fragment fragment-index=1 .fade-in-then-out}
+
+![](assets/HPC/depict_split.png){.absolute top=30 right=20 width="20%"}
+
+::: 
+
+::: {.fragment fragment-index=2 }
+
+![](assets/HPC/depict_gathered.png){.absolute top=30 right=20 width="20%"}
+
+::: 
+
+
+
+Without halo exchange, subdomain boundaries introduce visible artifacts in the final field.  
+This breaks the smoothness of the result — **even when each local computation is correct**.
+
+
+::: {.columns}
+
+:::: {.column width="50%"}
+
+:::{.r-stack}
+
+
+:::{.fragment fragment-index=1 .fade-in-then-out}
+
+:::{layout="[[1] , [1] , [1] , [1]]" layout-valign="center" layout-align="center"}
+
+![First slice](assets/Fields/LPT_density_field_z0_0_no_halo.png){.nostretch fig-align="center" width="50%"}
+
+![Second slice](assets/Fields/LPT_density_field_z0_1_no_halo.png){.nostretch fig-align="center" width="50%"}
+
+![Third slice](assets/Fields/LPT_density_field_z0_2_no_halo.png){.nostretch fig-align="center" width="50%"}
+
+![Fourth slice](assets/Fields/LPT_density_field_z0_3_no_halo.png){.nostretch fig-align="center" width="50%"}
+
+:::
+
+:::
+
+:::{.fragment fragment-index=2 .fade-in}
+
+
+![No Halo Artifacts](assets/Fields/LPT_density_field_z0_1024_no_halo.png){.nostretch fig-align="center" width="80%"}
+
+:::
+
+::::
+
+
+:::
+
+
+:::: {.column width="50%"}
+
+
+:::{.r-stack}
+
+:::{.fragment fragment-index=2 .fade-in-then-out   style="visibility: hidden;"}
+
+:::{layout="[[1] , [1] , [1] , [1]]" layout-valign="center" layout-align="center"}
+
+![First slice](assets/Fields/LPT_density_field_z0_0_no_halo.png){.nostretch fig-align="center" width="50%"}
+
+![Second slice](assets/Fields/LPT_density_field_z0_1_no_halo.png){.nostretch fig-align="center" width="50%"}
+
+![Third slice](assets/Fields/LPT_density_field_z0_2_no_halo.png){.nostretch fig-align="center" width="50%"}
+
+![Fourth slice](assets/Fields/LPT_density_field_z0_3_no_halo.png){.nostretch fig-align="center" width="50%"}
+
+:::
+
+:::
+
+:::{.fragment fragment-index=3 .fade-in}
+
+![With Halo no Artifacts](assets/Fields/LPT_density_field_z0_1024.png){.nostretch fig-align="center" width="80%"}
+
+:::
+
+:::
+
+::::
+
+:::
+
+# Distributed Inference
+
+---
+
+## Distributed Sampling (WIP)
+
+:::: {.columns}
+
+::: {.column width="55%"}
+
+<br/>
+<br/>
+<br/>
+
+
+![](assets/FFI/FFI_distributed_sample.svg){fig-align="center" width="100%"}
+
+:::
+
+::: {.column width="45%"}
+
+::: {.solutionbox}
+:::: {.solutionbox-header style="font-size: 18px;"}
+Flow
+::::
+:::: {.solutionbox-body style="font-size: 16px;"}
+* Differentiable, distributed sim inside the MCMC loop.
+* Initial conditions sampled across devices; sim stays sharded through κ maps.
+* Target 1024³: ~1 GB per sample → save to disk to avoid memory blow-up.
+::::
+:::
+
+::: {.solutionbox}
+:::: {.solutionbox-header style="font-size: 18px;"}
+Status / next
+::::
+:::: {.solutionbox-body style="font-size: 16px;"}
+* Preliminary results at 256³ resolution.
+* MCMC on 8× A100 (Jean Zay): 500 samples in ~2 h.
+* Still need chain convergence + preconditioning.
+* Next: longer runs, diagnostics (ESS/R̂), add LSST noise.
+::::
+:::
+
+![Preliminary posterior](assets/latest/preliminary_post.png){fig-align="center" width="40%" opacity="0.25"}
+
+:::
+
+::::
+
+## <span style="color:black">JAXPM v0.1.6: Differentiable, Scalable Simulations </span> {background-image="assets/Fields/LPT_density_field_z0_2048.png" background-opacity="0.2" style="font-size: 20px;"}
+
+[![](https://img.shields.io/badge/GitHub-jaxpm-blue?logo=github)](https://github.com/DifferentiableUniverseInitiative/JaxPM)
+
+
+<br/>
+<br/>
+<br/>
+
+::: {.solutionbox}
+
+:::: {.solutionbox-header}
+What JAXPM v0.1.6 Supports
+::::
+
+:::: {.solutionbox-body}
+
+* **Multi-GPU and Multi-Node** simulation with distributed domain decomposition (Successfully ran 2048³ on 256 GPUs)
+
+* **End-to-end differentiability**, including force computation and interpolation
+
+* Supports full **PM Lightcone Weak Lensing**
+
+* Available on **PyPI**: `pip install jaxpm`
+
+* Built on top of `jaxdecomp` for distributed 3D FFT
+
+* In the near future we aim to apply this on **DES** data
+
+::::
+
+:::
+
+
+# Extra slides
+
+## Approximating the Small Scales {style="font-size: 19px;"}
+
+::: {.columns}
+
+:::: {.column width="50%"}
+<br/>
+<br/>
+
+
+#### Dynamic resultion grid
+
+-  &emsp;We can use a dynamic resolution that automatically refines the grid to match the density regaions blabla
+-  &emsp; very difficult to differentialte and slow to compute
+
+::::
+
+
+:::: {.column width="50%"}
+
+![Dynamic Resolution Grid](assets/latest/dynamic_grid.svg){fig-align="center" width="50%"}
+
+
+::::
+
+:::
+
+::: {.columns}
+
+:::: {.column width="50%"}
+
+#### Multigrid Methods
+
+-  &emsp;Multigrid solves the Poisson equation efficiently by combining coarse and fine grids
+-  &emsp;It's still an approximation — it does **not match the accuracy** of solving on a uniformly fine grid
+-  &emsp;At high fidelity, fine-grid solvers outperform multigrid in recovering small-scale structure — critical for unbiased inference
+
+
+::::
+
+:::: {.column width="50%"}
+
+
+::::: {.r-stack}
+
+
+![Multigrid](assets/latest/multi_grid_1.svg){fig-align="center" width="70%"}
+
+:::::
+
+::::
+
+:::
+
+
+---
+
+## Backup: Gradient Memory
+
+## Backpropagating Through ODE Integration {style="font-size: 20px;"}
+
+
+<br/>
+<br/>
+
+::: {.columns}
+
+:::: {.column width="50%"}
+
+
+### Why Gradients Are Costly
+
+To compute gradients through a simulation, we need to track:
+
+- All intermediate positions: $d_i$
+- All velocities: $v_i$
+- And their tangent vectors for backpropagation
+
+Even though each update is simple, **autodiff requires storing the full history**.
+
+::::
+
+:::: {.column width="50%"}
+
+::::: {.fragment fragment-index=2 .fade-in}
+
+### Example: Kick-Drift Integration
+
+A typical update step looks like:
+
+$$
+\begin{aligned}
+d_{i+1} &= d_i + v_i \, \Delta t \\\\
+v_{i+1} &= v_i + F(d_{i+1}) \, \Delta t
+\end{aligned}
+$$
+
+Over many steps, the memory demand scales **linearly** — which becomes a bottleneck for large simulations.
+
+:::::
+
+
+::::
+
+:::
+
+::::: {.fragment fragment-index=3 .fade-in}
+
+
+::: {.solutionbox}
+::: {.solutionbox-header}
+Why This Is a Problem in Practice
+:::
+
+::: {.solutionbox-body}
+- Storing intermediate states for autodiff causes **memory to scale linearly** with the number of steps.
+  
+- Example costs at full resolution:
+  - **(1 Gpc/h)³**, 10 steps → ~**500 GB**
+  - **(2 Gpc/h)³**, 10 steps → ~**4.2 TB**
+
+- This severely limits how many time steps or how large a volume we can afford — even with many GPUs.
+:::
+:::
+
+
+:::::
+
+
+
+
+---
+
+
+## Reverse Adjoint: Gradient Propagation Without Trajectory Storage (**Preliminary**) {style="font-size: 19px;"} 
+
+![](assets/Logos/JaxLogo.png){.absolute top=30 right=10 width="5%"}
+
+::: {.columns}
+
+:::: {.column width="50%"}
+
+
+* Instead of storing the full trajectory...
+
+* We use the **reverse adjoint method**:
+
+  * Save only the **final state**
+  * **Re-integrate backward in time** to compute gradients
+
+::: {.mathbox}
+
+**Forward Pass (Kick-Drift)**
+
+$$
+\begin{aligned}
+d_{i+1} &= d_i + v_i \, \Delta t \\
+v_{i+1} &= v_i + F(d_{i+1}) \, \Delta t
+\end{aligned}
+$$
+
+**Reverse Pass (Adjoint Method)**
+
+$$
+\begin{aligned}
+v_i &= v_{i+1} - F(d_{i+1}) \, \Delta t \\
+d_i &= d_{i+1} - v_i \, \Delta t
+\end{aligned}
+$$
+
+:::
+
+::::
+
+:::: {.column width="50%"}
+
+::::: {.fragment fragment-index=1 .fade-in}
+
+![Memory vs. Checkpoints](assets/latest/memory_vs_checkpoints.png){fig-align="center" width="100%"}
+
+::: {.caption style="font-size: 14px; margin-top: 0.5rem;"}
+-  **Checkpointing** saves intermediate simulation states periodically to reduce memory — but still grows with the number of steps.
+-  **Reverse Adjoint** recomputes on demand, keeping memory constant.
+:::
+
+:::::
+
+::::
+
+:::
+
+
+::::: {.fragment fragment-index=2 .fade-in}
+
+::: {.solutionbox}
+
+:::: {.solutionbox-header style="font-size: 19px;"}
+Reverse Adjoint Method
+::::
+
+:::: {.solutionbox-body style="font-size: 18px;"}
+
+* **Constant memory** regardless of number of steps
+* **Requires a second simulation pass** for gradient computation
+* In a 10-step 1024³ Lightcone simulation, reverse adjoint uses **5× less memory** than checkpointing (∼100 GB vs ∼500 GB)
+
+::::
+
+
+:::
+
+::::
+
+## Distributed Cloud In Cell (CIC) Interpolation {style="font-size: 19px;"}
+
+
+* In distributed simulations, **each subdomain handles a portion of the global domain**
+* **Boundary conditions** are crucial to ensure physical continuity across subdomain edges
+* **CIC interpolation** assigns and reads mass from nearby grid cells — potentially crossing subdomain boundaries
+* To avoid discontinuities or mass loss, we apply **halo exchange**:
+
+  * Subdomains **share overlapping edge data** with neighbors
+  * Ensures **correct mass assignment and gradient flow** across boundaries
+
+
+::: {.r-stack}
+
+::::: {.fragment fragment-index=1 .fade-in-then-out}
+
+### Without Halo Exchange (Not Distributed)
+
+::: {layout-ncol=3 align="center"}
+
+
+![Sub Domain 1 (Particles)](assets/latest/D_CIC_Paint_0.svg){fig-align="center" width="65%"}
+
+![Sub Domain 1 (Grid)](assets/latest/D_CIC_Paint_1.svg){fig-align="center" width="65%"}
+
+![Sub Domain 1 (Read out)](assets/latest/D_CIC_Paint_2.svg){fig-align="center" width="65%"}
+
+
+:::
+
+:::::
+
+::::: {.fragment fragment-index=2 .fade-in}
+
+### With Halo Exchange (Distributed)
+
+
+::: {layout-ncol=3 align="center"}
+
+![Sub Domain 1 & Halo (Particles)](assets/latest/D_CIC_Paint_3.svg){fig-align="center" width="65%"}
+
+![Sub Domain 1 & Halo (Grid)](assets/latest/D_CIC_Paint_4.svg){fig-align="center" width="65%"}
+
+![Sub Domain 2 & Halo (Grid)](assets/latest/D_CIC_Paint_5.svg){fig-align="center" width="65%"}
+
+:::
+
+:::::
+
+:::
+
+---
