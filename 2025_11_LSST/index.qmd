@@ -631,9 +631,9 @@ Flat-sky workflow
 Why full-sphere anyway?
 :::
 :::: {.solutionbox-body style="font-size: 20px;"}
-* More expensive (spherical transforms, larger covariances) but keeps the largest-scale modes intact.
+* More expensive (spherical transforms) but keeps the largest-scale modes intact.
 * Avoids patch seams; cleaner E/B control at LSST precision.
-* If you care about low-$\ell$ stability and uniform systematics, full-sphere wins.
+* If you care about low-$\ell$ stability and uniform systematics, we have to go full sphere.
 ::::
 :::
 
