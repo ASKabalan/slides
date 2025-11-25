@@ -596,9 +596,9 @@ W(r,r_s) = \frac{3}{2}\,\Omega_m \left(\frac{H_0}{c}\right)^2 \frac{r}{a(r)}\!\l
 </div>
 <div class="solutionbox-body" style="font-size: 20px;">
 <ul>
-<li>More expensive (spherical transforms, larger covariances) but keeps the largest-scale modes intact.</li>
+<li>More expensive (spherical transforms) but keeps the largest-scale modes intact.</li>
 <li>Avoids patch seams; cleaner E/B control at LSST precision.</li>
-<li>If you care about low-<span class="math inline">\(\ell\)</span> stability and uniform systematics, full-sphere wins.</li>
+<li>If you care about low-<span class="math inline">\(\ell\)</span> stability and uniform systematics, we have to go full sphere.</li>
 </ul>
 </div>
 </div>
@@ -934,7 +934,7 @@ This breaks the smoothness of the result — <strong>even when each local comput
 <div class="column" style="width:50%;">
 <div class="r-stack">
 <div class="fragment fade-in-then-out" data-fragment-index="1">
-<div class="quarto-layout-panel" data-layout="[[1] , [1] , [1] , [1]]" data-layout-align="center">
+<div class="quarto-layout-panel" data-layout-align="center" data-layout="[[1] , [1] , [1] , [1]]">
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -989,7 +989,7 @@ This breaks the smoothness of the result — <strong>even when each local comput
 </div><div class="column" style="width:50%;">
 <div class="r-stack">
 <div class="fragment fade-in-then-out" data-fragment-index="2" style="visibility: hidden;">
-<div class="quarto-layout-panel" data-layout="[[1] , [1] , [1] , [1]]" data-layout-align="center">
+<div class="quarto-layout-panel" data-layout-align="center" data-layout="[[1] , [1] , [1] , [1]]">
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">

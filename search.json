@@ -228,7 +228,7 @@
     "href": "2025_11_LSST/index.html#flat-sky-patchwork-lsst-footprint",
     "title": "Full-Field Weak Lensing Inference at LSST Scale with Differentiable, Distributed Simulations",
     "section": "Flat-Sky Patchwork (LSST Footprint)",
-    "text": "Flat-Sky Patchwork (LSST Footprint)\n\n\n\n\n\n\nFlat-sky workflow\n\n\n\nTile footprint with ≈10° tangent patches; apodize edges.\nPer patch: FFT / pseudo-\\(C_\\ell\\); overlap to cut edge leakage.\n\n\n\n\n\n\nWhy full-sphere anyway?\n\n\n\nMore expensive (spherical transforms, larger covariances) but keeps the largest-scale modes intact.\nAvoids patch seams; cleaner E/B control at LSST precision.\nIf you care about low-\\(\\ell\\) stability and uniform systematics, full-sphere wins."
+    "text": "Flat-Sky Patchwork (LSST Footprint)\n\n\n\n\n\n\nFlat-sky workflow\n\n\n\nTile footprint with ≈10° tangent patches; apodize edges.\nPer patch: FFT / pseudo-\\(C_\\ell\\); overlap to cut edge leakage.\n\n\n\n\n\n\nWhy full-sphere anyway?\n\n\n\nMore expensive (spherical transforms) but keeps the largest-scale modes intact.\nAvoids patch seams; cleaner E/B control at LSST precision.\nIf you care about low-\\(\\ell\\) stability and uniform systematics, we have to go full sphere."
   },
   {
     "objectID": "2025_11_LSST/index.html#when-the-simulator-fails-the-model-fails",
