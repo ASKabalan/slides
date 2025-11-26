@@ -586,7 +586,7 @@ $$
 
 :::: {.column width="50%"}
 
-![Convergence map at z=0.8](assets/latest/kappa_map.png){fig-align="center" width="100%"}
+![Convergence map at z=0.5](assets/latest/kappa_map.png){fig-align="center" width="100%"}
 
 
 ::::
