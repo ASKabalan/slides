@@ -221,7 +221,7 @@
     "href": "2025_11_LSST/index.html#accuracy-of-a-lensing-simulation",
     "title": "Full-Field Weak Lensing Inference at LSST Scale with Differentiable, Distributed Simulations",
     "section": "Accuracy of a lensing simulation",
-    "text": "Accuracy of a lensing simulation\n\n\n\n\n\n\nConvergence map at z=0.8\n\n\n\n\n\n\nAngular CL\n\n\n\n\n\nWhat is the impact of insufficient resolution?\n\n\n\nLow-resolution simulations underestimate small-scale power in convergence maps.\nThis translates to biased cosmological inferences if not properly accounted for.\nBeyond 256³ resolution, we can no longer run a MCMC inference on a single GPU due to memory constraints."
+    "text": "Accuracy of a lensing simulation\n\n\n\n\n\n\nConvergence map at z=0.5\n\n\n\n\n\n\nAngular CL\n\n\n\n\n\nWhat is the impact of insufficient resolution?\n\n\n\nLow-resolution simulations underestimate small-scale power in convergence maps.\nThis translates to biased cosmological inferences if not properly accounted for.\nBeyond 256³ resolution, we can no longer run a MCMC inference on a single GPU due to memory constraints."
   },
   {
     "objectID": "2025_11_LSST/index.html#scaling-up-the-simulation-volume-the-lsst-challenge",
