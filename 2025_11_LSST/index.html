@@ -781,6 +781,129 @@ Modern high-end GPUs cap at <strong>~80 GB</strong>, so even a single box <stron
 </div>
 </div>
 </section>
+<section id="halo-exchange-in-distributed-simulations" class="slide level2" style="font-size: 20px;">
+<h2>Halo Exchange in Distributed Simulations</h2>
+<div class="fragment fade-in-then-out" data-fragment-index="1">
+<p><img data-src="assets/HPC/depict_split.png" class="absolute" style="top: 30px; right: 20px; width: 20%; "></p>
+</div>
+<div class="fragment" data-fragment-index="2">
+<p><img data-src="assets/HPC/depict_gathered.png" class="absolute" style="top: 30px; right: 20px; width: 20%; "></p>
+</div>
+<p>Without halo exchange, subdomain boundaries introduce visible artifacts in the final field.<br>
+This breaks the smoothness of the result — <strong>even when each local computation is correct</strong>.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="r-stack">
+<div class="fragment fade-in-then-out" data-fragment-index="1">
+<div class="quarto-layout-panel" data-layout-align="center" data-layout="[[1] , [1] , [1] , [1]]">
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_0_no_halo.png" class="nostretch" style="width:50.0%"></p>
+<figcaption>First slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_1_no_halo.png" class="nostretch" style="width:50.0%"></p>
+<figcaption>Second slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_2_no_halo.png" class="nostretch" style="width:50.0%"></p>
+<figcaption>Third slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_3_no_halo.png" class="nostretch" style="width:50.0%"></p>
+<figcaption>Fourth slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in" data-fragment-index="2">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_1024_no_halo.png" class="nostretch" style="width:80.0%"></p>
+<figcaption>No Halo Artifacts</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="r-stack">
+<div class="fragment fade-in-then-out" data-fragment-index="2" style="visibility: hidden;">
+<div class="quarto-layout-panel" data-layout-align="center" data-layout="[[1] , [1] , [1] , [1]]">
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_0_no_halo.png" class="nostretch" style="width:50.0%"></p>
+<figcaption>First slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_1_no_halo.png" class="nostretch" style="width:50.0%"></p>
+<figcaption>Second slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_2_no_halo.png" class="nostretch" style="width:50.0%"></p>
+<figcaption>Third slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_3_no_halo.png" class="nostretch" style="width:50.0%"></p>
+<figcaption>Fourth slice</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in" data-fragment-index="3">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/Fields/LPT_density_field_z0_1024.png" class="nostretch" style="width:80.0%"></p>
+<figcaption>With Halo no Artifacts</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
 <section id="jaxpm-v0.1.6-differentiable-scalable-simulations" class="slide level2">
 <h2>JAXPM v0.1.6: Differentiable, Scalable Simulations</h2>
 <p><a href="https://github.com/DifferentiableUniverseInitiative/JaxPM"><img data-src="https://img.shields.io/badge/GitHub-jaxpm-blue?logo=github.png"></a></p>
@@ -1191,128 +1314,8 @@ v_i = \sum_{\mathbf{j}} g(\mathbf{j}) \prod_{d=1}^{D} \left(1 - \left|p_i^d - j_
 </ul>
 </div></div>
 </section>
-<section id="why-halo-exchange-matters-in-distributed-simulations" class="slide level2" style="font-size: 20px;">
-<h2>Why Halo Exchange Matters in Distributed Simulations</h2>
-<div class="fragment fade-in-then-out" data-fragment-index="1">
-<p><img data-src="assets/HPC/depict_split.png" class="absolute" style="top: 30px; right: 20px; width: 20%; "></p>
-</div>
-<div class="fragment" data-fragment-index="2">
-<p><img data-src="assets/HPC/depict_gathered.png" class="absolute" style="top: 30px; right: 20px; width: 20%; "></p>
-</div>
-<p>Without halo exchange, subdomain boundaries introduce visible artifacts in the final field.<br>
-This breaks the smoothness of the result — <strong>even when each local computation is correct</strong>.</p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="r-stack">
-<div class="fragment fade-in-then-out" data-fragment-index="1">
-<div class="quarto-layout-panel" data-layout-align="center" data-layout="[[1] , [1] , [1] , [1]]">
-<div class="quarto-layout-row quarto-layout-valign-center">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Fields/LPT_density_field_z0_0_no_halo.png" class="nostretch" style="width:50.0%"></p>
-<figcaption>First slice</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-center">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Fields/LPT_density_field_z0_1_no_halo.png" class="nostretch" style="width:50.0%"></p>
-<figcaption>Second slice</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-center">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Fields/LPT_density_field_z0_2_no_halo.png" class="nostretch" style="width:50.0%"></p>
-<figcaption>Third slice</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-center">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Fields/LPT_density_field_z0_3_no_halo.png" class="nostretch" style="width:50.0%"></p>
-<figcaption>Fourth slice</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="fragment fade-in" data-fragment-index="2">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Fields/LPT_density_field_z0_1024_no_halo.png" class="nostretch" style="width:80.0%"></p>
-<figcaption>No Halo Artifacts</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="r-stack">
-<div class="fragment fade-in-then-out" data-fragment-index="2" style="visibility: hidden;">
-<div class="quarto-layout-panel" data-layout-align="center" data-layout="[[1] , [1] , [1] , [1]]">
-<div class="quarto-layout-row quarto-layout-valign-center">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Fields/LPT_density_field_z0_0_no_halo.png" class="nostretch" style="width:50.0%"></p>
-<figcaption>First slice</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-center">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Fields/LPT_density_field_z0_1_no_halo.png" class="nostretch" style="width:50.0%"></p>
-<figcaption>Second slice</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-center">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Fields/LPT_density_field_z0_2_no_halo.png" class="nostretch" style="width:50.0%"></p>
-<figcaption>Third slice</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-center">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Fields/LPT_density_field_z0_3_no_halo.png" class="nostretch" style="width:50.0%"></p>
-<figcaption>Fourth slice</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="fragment fade-in" data-fragment-index="3">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/Fields/LPT_density_field_z0_1024.png" class="nostretch" style="width:80.0%"></p>
-<figcaption>With Halo no Artifacts</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div></div>
+<section class="slide level2">
+
 
 
 </section></section>

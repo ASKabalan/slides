@@ -245,6 +245,13 @@
     "text": "jaxDecomp: Distributed 3D FFT and Halo Exchange\n\n\nDistributed 3D FFT using domain decomposition\n\nFully differentiable, runs on multi-GPU and multi-node setups\n\nDesigned as a drop-in replacement for jax.numpy.fft.fftn\n\nOpen source and available on PyPI \\(\\Rightarrow\\) pip install jaxdecomp\nHalo exchange for mass conservation across subdomains\n\n\n\n\n\n\n\nFFT\n\n\n\n\n\n\n\nHalo Exchange"
   },
   {
+    "objectID": "2025_11_LSST/index.html#halo-exchange-in-distributed-simulations",
+    "href": "2025_11_LSST/index.html#halo-exchange-in-distributed-simulations",
+    "title": "Full-Field Weak Lensing Inference at LSST Scale with Differentiable, Distributed Simulations",
+    "section": "Halo Exchange in Distributed Simulations",
+    "text": "Halo Exchange in Distributed Simulations\n\n\n\n\n\n\nWithout halo exchange, subdomain boundaries introduce visible artifacts in the final field.\nThis breaks the smoothness of the result — even when each local computation is correct.\n\n\n\n\n\n\n\n\n\n\nFirst slice\n\n\n\n\n\n\n\n\n\nSecond slice\n\n\n\n\n\n\n\n\n\nThird slice\n\n\n\n\n\n\n\n\n\nFourth slice\n\n\n\n\n\n\n\n\n\n\nNo Halo Artifacts\n\n\n\n\n\n\n\n\n\n\n\n\n\nFirst slice\n\n\n\n\n\n\n\n\n\nSecond slice\n\n\n\n\n\n\n\n\n\nThird slice\n\n\n\n\n\n\n\n\n\nFourth slice\n\n\n\n\n\n\n\n\n\n\nWith Halo no Artifacts"
+  },
+  {
     "objectID": "2025_11_LSST/index.html#jaxpm-v0.1.6-differentiable-scalable-simulations",
     "href": "2025_11_LSST/index.html#jaxpm-v0.1.6-differentiable-scalable-simulations",
     "title": "Full-Field Weak Lensing Inference at LSST Scale with Differentiable, Distributed Simulations",
@@ -313,13 +320,6 @@
     "title": "Full-Field Weak Lensing Inference at LSST Scale with Differentiable, Distributed Simulations",
     "section": "Cloud In Cell (CIC) Interpolation",
     "text": "Cloud In Cell (CIC) Interpolation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMass Assignment and Readout\nThe Cloud-In-Cell (CIC) scheme spreads particle mass to nearby grid points using a linear kernel:\n\n\n\nPaint to Grid (mass deposition): \\[\ng(\\mathbf{j}) = \\sum_i m_i \\prod_{d=1}^{D} \\left(1 - \\left|p_i^d - j_d\\right|\\right)\n\\]\n\n\n\nRead from Grid (force interpolation): \\[\nv_i = \\sum_{\\mathbf{j}} g(\\mathbf{j}) \\prod_{d=1}^{D} \\left(1 - \\left|p_i^d - j_d\\right|\\right)\n\\]"
-  },
-  {
-    "objectID": "2025_11_LSST/index.html#why-halo-exchange-matters-in-distributed-simulations",
-    "href": "2025_11_LSST/index.html#why-halo-exchange-matters-in-distributed-simulations",
-    "title": "Full-Field Weak Lensing Inference at LSST Scale with Differentiable, Distributed Simulations",
-    "section": "Why Halo Exchange Matters in Distributed Simulations",
-    "text": "Why Halo Exchange Matters in Distributed Simulations\n\n\n\n\n\n\nWithout halo exchange, subdomain boundaries introduce visible artifacts in the final field.\nThis breaks the smoothness of the result — even when each local computation is correct.\n\n\n\n\n\n\n\n\n\n\nFirst slice\n\n\n\n\n\n\n\n\n\nSecond slice\n\n\n\n\n\n\n\n\n\nThird slice\n\n\n\n\n\n\n\n\n\nFourth slice\n\n\n\n\n\n\n\n\n\n\nNo Halo Artifacts\n\n\n\n\n\n\n\n\n\n\n\n\n\nFirst slice\n\n\n\n\n\n\n\n\n\nSecond slice\n\n\n\n\n\n\n\n\n\nThird slice\n\n\n\n\n\n\n\n\n\nFourth slice\n\n\n\n\n\n\n\n\n\n\nWith Halo no Artifacts"
   },
   {
     "objectID": "2025_07_CSI/index.html#summary-of-projects",
