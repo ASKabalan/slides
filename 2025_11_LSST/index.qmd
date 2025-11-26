@@ -1365,3 +1365,7 @@ The Cloud-In-Cell (CIC) scheme spreads particle mass to nearby grid points using
 :::
 ---
 
+## Impact of lensing method on power spectrum {style="font-size: 19px;"}
+
+
+![](assets/latest/born_vs_raytrace_maxz.png){fig-align="center" width="60%"}
