@@ -172,7 +172,7 @@
     "href": "2025_11_LSST/index.html#the-traditional-approach-to-cosmological-inference-1",
     "title": "Full-Field Weak Lensing Inference at LSST Scale with Differentiable, Distributed Simulations",
     "section": "The Traditional Approach to Cosmological Inference",
-    "text": "The Traditional Approach to Cosmological Inference\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSummary statistics (e.g. P(k)) discard the non-Gaussian features.\nGradient-based curve fitting does not recover the true posterior shape."
+    "text": "The Traditional Approach to Cosmological Inference\n\n\n\n\n\n\n\n\nCredit: Natalia Porqueres\n\n\n\n\n\n\n\nCredit: Jeffrey et al. (2024)\n\n\n\n\n\nSummary statistics (e.g. P(k)) discard the non-Gaussian features.\nGradient-based curve fitting does not recover the true posterior shape."
   },
   {
     "objectID": "2025_11_LSST/index.html#from-summary-statistics-to-likelihood-free-inference",
