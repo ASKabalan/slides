@@ -777,6 +777,96 @@ Modern high-end GPUs cap at **~80 GB**, so even a single box **requires multi-GP
 
 :::
 
+
+## Halo Exchange in Distributed Simulations {style="font-size: 20px;"}
+
+::: {.fragment fragment-index=1 .fade-in-then-out}
+
+![](assets/HPC/depict_split.png){.absolute top=30 right=20 width="20%"}
+
+::: 
+
+::: {.fragment fragment-index=2 }
+
+![](assets/HPC/depict_gathered.png){.absolute top=30 right=20 width="20%"}
+
+::: 
+
+
+
+Without halo exchange, subdomain boundaries introduce visible artifacts in the final field.  
+This breaks the smoothness of the result — **even when each local computation is correct**.
+
+
+::: {.columns}
+
+:::: {.column width="50%"}
+
+:::{.r-stack}
+
+
+:::{.fragment fragment-index=1 .fade-in-then-out}
+
+:::{layout="[[1] , [1] , [1] , [1]]" layout-valign="center" layout-align="center"}
+
+![First slice](assets/Fields/LPT_density_field_z0_0_no_halo.png){.nostretch fig-align="center" width="50%"}
+
+![Second slice](assets/Fields/LPT_density_field_z0_1_no_halo.png){.nostretch fig-align="center" width="50%"}
+
+![Third slice](assets/Fields/LPT_density_field_z0_2_no_halo.png){.nostretch fig-align="center" width="50%"}
+
+![Fourth slice](assets/Fields/LPT_density_field_z0_3_no_halo.png){.nostretch fig-align="center" width="50%"}
+
+:::
+
+:::
+
+:::{.fragment fragment-index=2 .fade-in}
+
+
+![No Halo Artifacts](assets/Fields/LPT_density_field_z0_1024_no_halo.png){.nostretch fig-align="center" width="80%"}
+
+:::
+
+::::
+
+
+:::
+
+
+:::: {.column width="50%"}
+
+
+:::{.r-stack}
+
+:::{.fragment fragment-index=2 .fade-in-then-out   style="visibility: hidden;"}
+
+:::{layout="[[1] , [1] , [1] , [1]]" layout-valign="center" layout-align="center"}
+
+![First slice](assets/Fields/LPT_density_field_z0_0_no_halo.png){.nostretch fig-align="center" width="50%"}
+
+![Second slice](assets/Fields/LPT_density_field_z0_1_no_halo.png){.nostretch fig-align="center" width="50%"}
+
+![Third slice](assets/Fields/LPT_density_field_z0_2_no_halo.png){.nostretch fig-align="center" width="50%"}
+
+![Fourth slice](assets/Fields/LPT_density_field_z0_3_no_halo.png){.nostretch fig-align="center" width="50%"}
+
+:::
+
+:::
+
+:::{.fragment fragment-index=3 .fade-in}
+
+![With Halo no Artifacts](assets/Fields/LPT_density_field_z0_1024.png){.nostretch fig-align="center" width="80%"}
+
+:::
+
+:::
+
+::::
+
+:::
+
 ## JAXPM v0.1.6: Differentiable, Scalable Simulations 
 
 [![](https://img.shields.io/badge/GitHub-jaxpm-blue?logo=github)](https://github.com/DifferentiableUniverseInitiative/JaxPM)
@@ -1275,92 +1365,3 @@ The Cloud-In-Cell (CIC) scheme spreads particle mass to nearby grid points using
 :::
 ---
 
-
-## Why Halo Exchange Matters in Distributed Simulations {style="font-size: 20px;"}
-
-::: {.fragment fragment-index=1 .fade-in-then-out}
-
-![](assets/HPC/depict_split.png){.absolute top=30 right=20 width="20%"}
-
-::: 
-
-::: {.fragment fragment-index=2 }
-
-![](assets/HPC/depict_gathered.png){.absolute top=30 right=20 width="20%"}
-
-::: 
-
-
-
-Without halo exchange, subdomain boundaries introduce visible artifacts in the final field.  
-This breaks the smoothness of the result — **even when each local computation is correct**.
-
-
-::: {.columns}
-
-:::: {.column width="50%"}
-
-:::{.r-stack}
-
-
-:::{.fragment fragment-index=1 .fade-in-then-out}
-
-:::{layout="[[1] , [1] , [1] , [1]]" layout-valign="center" layout-align="center"}
-
-![First slice](assets/Fields/LPT_density_field_z0_0_no_halo.png){.nostretch fig-align="center" width="50%"}
-
-![Second slice](assets/Fields/LPT_density_field_z0_1_no_halo.png){.nostretch fig-align="center" width="50%"}
-
-![Third slice](assets/Fields/LPT_density_field_z0_2_no_halo.png){.nostretch fig-align="center" width="50%"}
-
-![Fourth slice](assets/Fields/LPT_density_field_z0_3_no_halo.png){.nostretch fig-align="center" width="50%"}
-
-:::
-
-:::
-
-:::{.fragment fragment-index=2 .fade-in}
-
-
-![No Halo Artifacts](assets/Fields/LPT_density_field_z0_1024_no_halo.png){.nostretch fig-align="center" width="80%"}
-
-:::
-
-::::
-
-
-:::
-
-
-:::: {.column width="50%"}
-
-
-:::{.r-stack}
-
-:::{.fragment fragment-index=2 .fade-in-then-out   style="visibility: hidden;"}
-
-:::{layout="[[1] , [1] , [1] , [1]]" layout-valign="center" layout-align="center"}
-
-![First slice](assets/Fields/LPT_density_field_z0_0_no_halo.png){.nostretch fig-align="center" width="50%"}
-
-![Second slice](assets/Fields/LPT_density_field_z0_1_no_halo.png){.nostretch fig-align="center" width="50%"}
-
-![Third slice](assets/Fields/LPT_density_field_z0_2_no_halo.png){.nostretch fig-align="center" width="50%"}
-
-![Fourth slice](assets/Fields/LPT_density_field_z0_3_no_halo.png){.nostretch fig-align="center" width="50%"}
-
-:::
-
-:::
-
-:::{.fragment fragment-index=3 .fade-in}
-
-![With Halo no Artifacts](assets/Fields/LPT_density_field_z0_1024.png){.nostretch fig-align="center" width="80%"}
-
-:::
-
-:::
-
-::::
-
-:::
