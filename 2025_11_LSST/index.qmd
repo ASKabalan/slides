@@ -152,10 +152,16 @@ Even higher-order statistics (like bispectrum or 3-point correlations) still red
 ::: {.r-stack}
 
 :::::: {.fragment fragment-index=1 .fade-out}
-![](assets/latest/summ_stat.png){fig-align="center" width="80%" text-align="right" style="border: 2px solid black; border-radius: 6px;" fig-cap="" alt="Credit: Natalia Porqueres"}
+![](assets/latest/summ_stat.png){fig-align="center" width="70%" text-align="right" style="border: 2px solid black; border-radius: 6px;" fig-cap="" alt="Credit: Natalia Porqueres"}
+
+<span style="font-size: 10px;">Credit: Natalia Porqueres</span>
+
 ::::::
 :::::: {.fragment fragment-index=1 .fade-in}
-![](assets/latest/bad_posterior.png){fig-align="center" width="50%" style="border: 2px solid black; border-radius: 6px;" fig-cap="" alt="Jeffrey et al. (2024): bad posterior"}
+![](assets/latest/bad_posterior.png){fig-align="center" width="40%" style="border: 2px solid black; border-radius: 6px;" fig-cap="" alt="Jeffrey et al. (2024): bad posterior"}
+
+<span style="font-size: 10px;">Credit: Jeffrey et al. (2024)</span>
+
 ::::::
 :::
 
