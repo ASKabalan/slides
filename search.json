@@ -322,6 +322,13 @@
     "text": "Cloud In Cell (CIC) Interpolation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMass Assignment and Readout\nThe Cloud-In-Cell (CIC) scheme spreads particle mass to nearby grid points using a linear kernel:\n\n\n\nPaint to Grid (mass deposition): \\[\ng(\\mathbf{j}) = \\sum_i m_i \\prod_{d=1}^{D} \\left(1 - \\left|p_i^d - j_d\\right|\\right)\n\\]\n\n\n\nRead from Grid (force interpolation): \\[\nv_i = \\sum_{\\mathbf{j}} g(\\mathbf{j}) \\prod_{d=1}^{D} \\left(1 - \\left|p_i^d - j_d\\right|\\right)\n\\]"
   },
   {
+    "objectID": "2025_11_LSST/index.html#impact-of-lensing-method-on-power-spectrum",
+    "href": "2025_11_LSST/index.html#impact-of-lensing-method-on-power-spectrum",
+    "title": "Full-Field Weak Lensing Inference at LSST Scale with Differentiable, Distributed Simulations",
+    "section": "Impact of lensing method on power spectrum",
+    "text": "Impact of lensing method on power spectrum"
+  },
+  {
     "objectID": "2025_07_CSI/index.html#summary-of-projects",
     "href": "2025_07_CSI/index.html#summary-of-projects",
     "title": "CSI Presentation 2025",
@@ -735,6 +742,13 @@
     "text": "Approximating the Small Scales\n\n\n \nDynamic resultion grid\n\n We can use a dynamic resolution that automatically refines the grid to match the density regaions blabla\n  very difficult to differentialte and slow to compute\n\n\n\n\n\nDynamic Resolution Grid\n\n\n\n\n\nMultigrid Methods\n\n Multigrid solves the Poisson equation efficiently by combining coarse and fine grids\n It’s still an approximation — it does not match the accuracy of solving on a uniformly fine grid\n At high fidelity, fine-grid solvers outperform multigrid in recovering small-scale structure — critical for unbiased inference\n\n\n\n\n\n\nMultigrid"
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Wassim’s Academic Presentations & Tutorials",
+    "section": "",
+    "text": "&lt; Back to Main Website"
+  },
+  {
     "objectID": "2025_10_AI/index.html#outline-for-this-presentation",
     "href": "2025_10_AI/index.html#outline-for-this-presentation",
     "title": "Generative AI with JAX",
@@ -894,97 +908,6 @@
     "title": "Generative AI with JAX",
     "section": "Example A: Variational Autoencoder for galaxies",
     "text": "Example A: Variational Autoencoder for galaxies\n\nVariational Autoencoder\n\nTrain a VAE on GZ10 galaxies and analyze latent space\n\n\nNotebook link : Generative_AI_JAX_GZ10_VAE.ipynb"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Wassim’s Talks",
-    "section": "",
-    "text": "Visit my website: https://askabalan.github.io"
-  },
-  {
-    "objectID": "index.html#academic-presentations",
-    "href": "index.html#academic-presentations",
-    "title": "Wassim’s Talks",
-    "section": "Academic Presentations",
-    "text": "Academic Presentations"
-  },
-  {
-    "objectID": "2025_10_AI/REPORT.html",
-    "href": "2025_10_AI/REPORT.html",
-    "title": "Slides Status Report — 2025_10_AI",
-    "section": "",
-    "text": "Author: Wassim Kabalan Date: October 2025\n\n\n\nDeck is substantially complete and aligned with the brief. Approximately 47 slides detected (within 40±5 when considering backup slides), covering Generative Models, Evaluation, JAX ecosystem, and cosmology demos.\nTwo major deliverables are missing: the three runnable notebooks and env_setup.md.\nA couple of image references appear broken or non-existent; some build artifacts are checked in; and styling is duplicated locally instead of using shared styles.\n\n\n\n\n\nSlides: Present at 2025_10_AI/index.qmd (rendered index.html exists).\nNotebooks: Missing\n\n2025_10_AI/Generative_AI_JAX_GZ10_VAE.ipynb – not found\n2025_10_AI/Generative_AI_JAX_GZ10_VAE_NF.ipynb – not found\n2025_10_AI/Generative_AI_JAX_PSF_Bayesian.ipynb – not found\n\nEnvironment: Missing\n\n2025_10_AI/env_setup.md – not found\n\nAssets: Present under assets/ (both repo root assets/ and local 2025_10_AI/assets/ include required figures). Slide references resolve to repo‑root assets/ via ../assets/....\n\n\n\n\n\nTitle and Outline: Present and styled; background image and logos render variables defined.\nGenerative Models: GANs → WGAN; VAE and β‑VAE; Normalizing Flows; Diffusion/Score models; model comparison table; evaluation metrics (FID, Precision/Recall).\nJAX Ecosystem: What is JAX; JAX vs PyTorch; RNG pattern; Transforms (grad/jit/vmap/pmap); Flax example; ecosystem overview; performance/RNG best practices.\nCosmology Demos: GZ10 dataset overview; VAE + redshift example; Flow prior upgrade; PSF Bayesian inference with BlackJAX.\nBackup Slides: Mathematical derivations (GAN optimal D, FID, ELBO) and troubleshooting.\n\nObserved slide count (by ## headings): ~47 (includes backup and checklist slides).\n\n\n\n\nMost images referenced via ../assets/... exist in repo‑root assets/ (also duplicated under 2025_10_AI/assets/). Examples: gan_diagram.png, vae_arch.png, flow_diagram.png, ddpm_box.png, jax_openxla.png.\nBroken/missing references in slides:\n\n2025_10_AI/index.qmd: VAE in Cosmology slide points to:\n\nTASK/Final_Report_Binh_Nguyen/images/deblender_diagram.png — images/ directory does not exist.\nTASK/Final_Report_Binh_Nguyen/images/recons_t2.png — images/ directory does not exist.\n\nSuggestion: Extract figures from 2025_10_AI/TASK/Final_Report_Binh_Nguyen.pdf (or replace with locally available assets) and save under ../assets/ (or 2025_10_AI/assets/), then update paths in slides.\n\nPlaceholder note: PSF concept slide uses ../assets/placeholder.png which exists; consider replacing with notebook‑generated figure when Notebook C is ready.\n\n\n\n\n\nFront matter in 2025_10_AI/index.qmd uses format: revealjs with theme [default, css/custom.scss] and template-partials: [css/title-slide.html] — OK.\nTitle‑slide background image and logo1 variable are set and used by the custom title-slide.html template.\nLocal duplicated styles present under 2025_10_AI/css/:\n\n2025_10_AI/css/custom.scss\n2025_10_AI/css/title-slide.html\nRepo guideline prefers shared styling in repo‑root css/. If no deck‑specific overrides are required, reference ../../css/... or keep only minimal overrides locally.\n\nDeck _quarto.yml is set to a website project:\n\n2025_10_AI/_quarto.yml contains project: type: website and outputs into .. For a single reveal deck, this is optional; consider simplifying to deck‑local rendering without generating site scaffolding.\n\nMinor config nits to verify during render:\n\npdfSeparateFragments: true may need pdf-separate-fragments: true in Quarto’s revealjs options.\npresentation-size: max-scale is uncommon; Quarto typically supports width, height, margin, min-scale, max-scale. Confirm desired behavior.\n\n\n\n\n\n\nThe deck directory contains build output:\n\n2025_10_AI/index.html\n2025_10_AI/search.json\n2025_10_AI/site_libs/\n.quarto/ is ignored locally, but other artifacts are not. Repo guideline advises not to commit generated files. Consider adding to 2025_10_AI/.gitignore:\n\n/index.html\n/search.json\n/site_libs/\n\n\n\n\n\n\n\nEquations and code samples: Present and readable; math is set in LaTeX blocks; code matches JAX/Flax idioms and uses explicit PRNG keys.\nNotes vs on‑slide text: Slides stay concise; speaker notes include details — aligns with “minimal‑text, diagram‑first” guidance.\nSlide numbering enabled and transitions configured.\n\n\n\n\n\nMissing notebooks (A/B/C) per TASK:\n\nGenerative_AI_JAX_GZ10_VAE.ipynb\nGenerative_AI_JAX_GZ10_VAE_NF.ipynb\nGenerative_AI_JAX_PSF_Bayesian.ipynb\n\nMissing environment instructions:\n\n2025_10_AI/env_setup.md with CPU and CUDA install commands (provided in TASK).\n\nBroken images:\n\nExtract or replace the two TASK/Final_Report_Binh_Nguyen/images/*.png references.\n\nBuild artifacts tracked:\n\nClean and ignore index.html, search.json, site_libs/.\n\nStyling duplication:\n\nDecide between local overrides vs shared repo‑root css/ (recommended: reuse shared styles, keep only deck‑specific changes locally if needed).\n\n\n\n\n\n\nCreate env_setup.md and copy the install blocks from 2025_10_AI/TASK/TASK.md (CPU + CUDA), plus a troubleshooting section.\nImplement the three notebooks following the specs already summarized in 2025_10_AI/README.md and referenced in slides. Save diagnostics/plots to ../assets/generated/.\nFix slide image paths for the VAE cosmology slide by adding the figures to assets/ and updating index.qmd.\nNormalize styling: point index.qmd to repo‑root css/custom.scss and css/title-slide.html unless deck‑specific variants are required.\nUpdate .gitignore in 2025_10_AI/ to exclude build outputs; run quarto clean 2025_10_AI before committing.\nRun: quarto render 2025_10_AI and manually verify layout, link targets, speaker notes, and title‑slide background/logo rendering.\n\n\n\n\n\nenv_setup.md added and referenced\nA/B/C notebooks implemented and runnable (CPU+GPU)\nBroken image references replaced/fixed\nSlide asset paths verified\nStyling deduplicated or justified\nBuild artifacts cleaned and ignored\nFull deck renders without warnings"
-  },
-  {
-    "objectID": "2025_10_AI/REPORT.html#summary",
-    "href": "2025_10_AI/REPORT.html#summary",
-    "title": "Slides Status Report — 2025_10_AI",
-    "section": "",
-    "text": "Deck is substantially complete and aligned with the brief. Approximately 47 slides detected (within 40±5 when considering backup slides), covering Generative Models, Evaluation, JAX ecosystem, and cosmology demos.\nTwo major deliverables are missing: the three runnable notebooks and env_setup.md.\nA couple of image references appear broken or non-existent; some build artifacts are checked in; and styling is duplicated locally instead of using shared styles."
-  },
-  {
-    "objectID": "2025_10_AI/REPORT.html#deliverables-compliance",
-    "href": "2025_10_AI/REPORT.html#deliverables-compliance",
-    "title": "Slides Status Report — 2025_10_AI",
-    "section": "",
-    "text": "Slides: Present at 2025_10_AI/index.qmd (rendered index.html exists).\nNotebooks: Missing\n\n2025_10_AI/Generative_AI_JAX_GZ10_VAE.ipynb – not found\n2025_10_AI/Generative_AI_JAX_GZ10_VAE_NF.ipynb – not found\n2025_10_AI/Generative_AI_JAX_PSF_Bayesian.ipynb – not found\n\nEnvironment: Missing\n\n2025_10_AI/env_setup.md – not found\n\nAssets: Present under assets/ (both repo root assets/ and local 2025_10_AI/assets/ include required figures). Slide references resolve to repo‑root assets/ via ../assets/...."
-  },
-  {
-    "objectID": "2025_10_AI/REPORT.html#slide-coverage-vs-blueprint",
-    "href": "2025_10_AI/REPORT.html#slide-coverage-vs-blueprint",
-    "title": "Slides Status Report — 2025_10_AI",
-    "section": "",
-    "text": "Title and Outline: Present and styled; background image and logos render variables defined.\nGenerative Models: GANs → WGAN; VAE and β‑VAE; Normalizing Flows; Diffusion/Score models; model comparison table; evaluation metrics (FID, Precision/Recall).\nJAX Ecosystem: What is JAX; JAX vs PyTorch; RNG pattern; Transforms (grad/jit/vmap/pmap); Flax example; ecosystem overview; performance/RNG best practices.\nCosmology Demos: GZ10 dataset overview; VAE + redshift example; Flow prior upgrade; PSF Bayesian inference with BlackJAX.\nBackup Slides: Mathematical derivations (GAN optimal D, FID, ELBO) and troubleshooting.\n\nObserved slide count (by ## headings): ~47 (includes backup and checklist slides)."
-  },
-  {
-    "objectID": "2025_10_AI/REPORT.html#asset-and-link-status",
-    "href": "2025_10_AI/REPORT.html#asset-and-link-status",
-    "title": "Slides Status Report — 2025_10_AI",
-    "section": "",
-    "text": "Most images referenced via ../assets/... exist in repo‑root assets/ (also duplicated under 2025_10_AI/assets/). Examples: gan_diagram.png, vae_arch.png, flow_diagram.png, ddpm_box.png, jax_openxla.png.\nBroken/missing references in slides:\n\n2025_10_AI/index.qmd: VAE in Cosmology slide points to:\n\nTASK/Final_Report_Binh_Nguyen/images/deblender_diagram.png — images/ directory does not exist.\nTASK/Final_Report_Binh_Nguyen/images/recons_t2.png — images/ directory does not exist.\n\nSuggestion: Extract figures from 2025_10_AI/TASK/Final_Report_Binh_Nguyen.pdf (or replace with locally available assets) and save under ../assets/ (or 2025_10_AI/assets/), then update paths in slides.\n\nPlaceholder note: PSF concept slide uses ../assets/placeholder.png which exists; consider replacing with notebook‑generated figure when Notebook C is ready."
-  },
-  {
-    "objectID": "2025_10_AI/REPORT.html#quarto-config-styling",
-    "href": "2025_10_AI/REPORT.html#quarto-config-styling",
-    "title": "Slides Status Report — 2025_10_AI",
-    "section": "",
-    "text": "Front matter in 2025_10_AI/index.qmd uses format: revealjs with theme [default, css/custom.scss] and template-partials: [css/title-slide.html] — OK.\nTitle‑slide background image and logo1 variable are set and used by the custom title-slide.html template.\nLocal duplicated styles present under 2025_10_AI/css/:\n\n2025_10_AI/css/custom.scss\n2025_10_AI/css/title-slide.html\nRepo guideline prefers shared styling in repo‑root css/. If no deck‑specific overrides are required, reference ../../css/... or keep only minimal overrides locally.\n\nDeck _quarto.yml is set to a website project:\n\n2025_10_AI/_quarto.yml contains project: type: website and outputs into .. For a single reveal deck, this is optional; consider simplifying to deck‑local rendering without generating site scaffolding.\n\nMinor config nits to verify during render:\n\npdfSeparateFragments: true may need pdf-separate-fragments: true in Quarto’s revealjs options.\npresentation-size: max-scale is uncommon; Quarto typically supports width, height, margin, min-scale, max-scale. Confirm desired behavior."
-  },
-  {
-    "objectID": "2025_10_AI/REPORT.html#build-artifacts-in-repo",
-    "href": "2025_10_AI/REPORT.html#build-artifacts-in-repo",
-    "title": "Slides Status Report — 2025_10_AI",
-    "section": "",
-    "text": "The deck directory contains build output:\n\n2025_10_AI/index.html\n2025_10_AI/search.json\n2025_10_AI/site_libs/\n.quarto/ is ignored locally, but other artifacts are not. Repo guideline advises not to commit generated files. Consider adding to 2025_10_AI/.gitignore:\n\n/index.html\n/search.json\n/site_libs/"
-  },
-  {
-    "objectID": "2025_10_AI/REPORT.html#content-quality-checks",
-    "href": "2025_10_AI/REPORT.html#content-quality-checks",
-    "title": "Slides Status Report — 2025_10_AI",
-    "section": "",
-    "text": "Equations and code samples: Present and readable; math is set in LaTeX blocks; code matches JAX/Flax idioms and uses explicit PRNG keys.\nNotes vs on‑slide text: Slides stay concise; speaker notes include details — aligns with “minimal‑text, diagram‑first” guidance.\nSlide numbering enabled and transitions configured."
-  },
-  {
-    "objectID": "2025_10_AI/REPORT.html#blocking-gaps-to-ship",
-    "href": "2025_10_AI/REPORT.html#blocking-gaps-to-ship",
-    "title": "Slides Status Report — 2025_10_AI",
-    "section": "",
-    "text": "Missing notebooks (A/B/C) per TASK:\n\nGenerative_AI_JAX_GZ10_VAE.ipynb\nGenerative_AI_JAX_GZ10_VAE_NF.ipynb\nGenerative_AI_JAX_PSF_Bayesian.ipynb\n\nMissing environment instructions:\n\n2025_10_AI/env_setup.md with CPU and CUDA install commands (provided in TASK).\n\nBroken images:\n\nExtract or replace the two TASK/Final_Report_Binh_Nguyen/images/*.png references.\n\nBuild artifacts tracked:\n\nClean and ignore index.html, search.json, site_libs/.\n\nStyling duplication:\n\nDecide between local overrides vs shared repo‑root css/ (recommended: reuse shared styles, keep only deck‑specific changes locally if needed)."
-  },
-  {
-    "objectID": "2025_10_AI/REPORT.html#suggested-next-actions",
-    "href": "2025_10_AI/REPORT.html#suggested-next-actions",
-    "title": "Slides Status Report — 2025_10_AI",
-    "section": "",
-    "text": "Create env_setup.md and copy the install blocks from 2025_10_AI/TASK/TASK.md (CPU + CUDA), plus a troubleshooting section.\nImplement the three notebooks following the specs already summarized in 2025_10_AI/README.md and referenced in slides. Save diagnostics/plots to ../assets/generated/.\nFix slide image paths for the VAE cosmology slide by adding the figures to assets/ and updating index.qmd.\nNormalize styling: point index.qmd to repo‑root css/custom.scss and css/title-slide.html unless deck‑specific variants are required.\nUpdate .gitignore in 2025_10_AI/ to exclude build outputs; run quarto clean 2025_10_AI before committing.\nRun: quarto render 2025_10_AI and manually verify layout, link targets, speaker notes, and title‑slide background/logo rendering."
-  },
-  {
-    "objectID": "2025_10_AI/REPORT.html#quick-checklist",
-    "href": "2025_10_AI/REPORT.html#quick-checklist",
-    "title": "Slides Status Report — 2025_10_AI",
-    "section": "",
-    "text": "env_setup.md added and referenced\nA/B/C notebooks implemented and runnable (CPU+GPU)\nBroken image references replaced/fixed\nSlide asset paths verified\nStyling deduplicated or justified\nBuild artifacts cleaned and ignored\nFull deck renders without warnings"
   },
   {
     "objectID": "2024_11_CoPhy/index.html#goals-for-this-presentation",
