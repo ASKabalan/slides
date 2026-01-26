@@ -197,3 +197,18 @@ figure img.img-border-3 {
 body.home-double {
   font-size: 200%;
 }
+
+/* Override the background specifically for the Talks page */
+body.talks-page::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    
+    /* Your specific image path */
+    background: url("css/BACKGROUND.png") center/cover no-repeat fixed;
+    
+    /* MATCHING THE PERFECT LOOK */
+    opacity: 0.09;            
+    z-index: -1;
+    pointer-events: none;
+}

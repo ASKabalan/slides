@@ -3,6 +3,7 @@ title: "Generative AI with JAX"
 author: "Wassim Kabalan"
 footer: "AISSAI School 2025"
 date: "October 2025"
+image: "assets/vae_arch.png"
 format:
   revealjs:
     theme: [default, css/custom.scss]

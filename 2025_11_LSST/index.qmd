@@ -4,9 +4,9 @@ title: 'Full-Field Weak Lensing Inference at LSST Scale with Differentiable, Dis
 author: 
   - name: "Wassim Kabalan"
   - name : "Alexandre Boucaud, François Lanusse"
+image : "assets/latest/kappa_map.png"
 footer: "LSST France, Grenoble"
 date: "November 2025"
-image: "../assets/placeholder.png"
 format:
   revealjs:
     theme: [default, css/custom.scss]

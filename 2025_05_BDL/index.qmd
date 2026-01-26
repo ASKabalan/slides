@@ -7,7 +7,7 @@ author:
 
 footer: "Bayesian Deep Learning Workshop , 2025"
 date: "May 2025"
-image: "../assets/placeholder.png"
+image: "assets/jaxDecomp/fft.svg"
 format:
   revealjs:
     theme: [default, css/custom.scss]
@@ -23,7 +23,7 @@ format:
 output: revealjs
 
 title-slide-attributes:
-  data-background-image: "assets/titles/bayes_title_1.png"
+  data-background-image: "assets/titles/bayes_title.png"
   data-background-size: fill
   data-background-opacity: "0.8"
 

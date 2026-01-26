@@ -1,29 +1,31 @@
 ---
-title: "Wassim's Talks"
+title: "Wassim's Academic Presentations & Tutorials"
 format:
   html:
     theme: [cosmo, css/custom.scss]
     toc: false
-    body-classes: home-double
+    page-layout: full
+    body-classes: talks-page 
 listing:
-    type: table
+    type: grid
     sort: "date desc"
-    fields: [date, title, image]
+    grid-columns: 3
+    image-height: "200px"
+    fields: [image, date, title, subtitle]
     contents:
-        - "2024_06_LSST_FR"
+        - "2025_11_LSST"
+        - "2025_10_AI"
         - "2024_11_CoPhy"
+        - "2024_06_LSST_FR"
         - "2025_05_BDL"
         - "2025_05_BDL_School"
-    table-striped: false
-    table-hover: false
-    field-display-names:
-        date: "Year"
-        title: "Title"
-        image: "Preview"
+    date-format: "MMM YYYY"
+    grid-item-border: true
+    grid-item-align: left
 ---
 
-:::{.callout-note appearance="simple"}
-Visit my website: <https://askabalan.github.io>
+:::{.callout-note appearance="simple" icon=false}
+[< Back to Main Website](https://askabalan.github.io)
 :::
 
-## Academic Presentations
+##

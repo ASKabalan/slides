@@ -6,7 +6,7 @@ author:
   - name : "<span style='font-size: Smaller;'>François Lanusse, Alexandre Boucaud, Josquin Errard</span>"
 footer: "GDR CoPhy,IAP , 2024"
 date: "Nov 2024"
-image: "../assets/placeholder.png"
+image: "assets/Fields/PM_1024.gif"
 format:
   revealjs:
     theme: [default, css/custom.scss]

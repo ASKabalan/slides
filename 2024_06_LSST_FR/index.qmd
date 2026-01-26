@@ -3,7 +3,7 @@ title: "Differentiable and distributed Particle-Mesh n-body simulations"
 author: "Wassim Kabalan, François Lanusse, Alexandre Boucaud"
 footer: "LSST France, 2024"
 date: "Jun 2024"
-image: "../assets/placeholder.png"
+image: "assets/FastPM_ODE3D.gif"
 format:
   revealjs:
     theme: [default, css/custom.scss]
