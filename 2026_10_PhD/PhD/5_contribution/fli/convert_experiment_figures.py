@@ -11,7 +11,10 @@ without a GPU, for example
     JAX_PLATFORMS=cpu uv run --no-sync python build.py
 
 This script only copies or converts the results, so the experiment stays the
-single source of truth for every number shown. The forward-model diagram comes
+single source of truth for every number shown. The field-level sampling backups
+come from the payload of jax-fli docs/3-sampling-and-inference (notebooks 16 and
+17), rendered there by fieldlevel_data.py, kappa_anim.py, starlet_anim.py and
+posterior.py (JAX_PLATFORMS=cpu uv run --no-sync python <script> in that folder). The forward-model diagram comes
 from jax-fli too (assets/PIPELINE.svg, built from assets/pipeline/pipeline.tex).
 
 Outputs (this directory, or the subfolder named in the key): one file per entry
@@ -29,6 +32,7 @@ from _common import force_regen
 EXP = Path("/home/wassim/Projects/NBody/jax-fli/docs/5-experiments")
 MASK = EXP / "08-masked-shear/assets"
 MAP = EXP / "13-map-lpt2-mass-mapping/assets"
+PAYLOAD = Path("/home/wassim/Projects/NBody/jax-fli/docs/3-sampling-and-inference/payload")
 
 FIGURES = {
     # the forward model end to end (jax-fli README diagram)
@@ -43,6 +47,13 @@ FIGURES = {
     "backup/map_des_euclid_coherence.svg": MAP / "fig13-des-vs-euclid-coherence.svg",
     "backup/map_des_euclid_starlet.svg": MAP / "fig14-des-vs-euclid-starlet.svg",
 }
+# the field-level sampling backups: posterior kappa and its starlet l1 norm (notebook 16), and the
+# cosmology at fixed initial conditions (notebook 17)
+SAMPLING = [f"kappa_{q}_bin{b}.png" for q in ("truth", "std") for b in (2, 3)]
+SAMPLING += [f"{v}_bin{b}{ext}" for v in ("kappa_samples", "kappa_diff", "starlet_l1", "starlet_resid")
+             for b in (2, 3) for ext in (".mp4", "_last.png")]
+SAMPLING += [f"cbar_{q}.svg" for q in ("kappa", "std", "diff")] + ["posterior_nb17.svg"]
+FIGURES.update({f"backup_sampling/{name}": PAYLOAD / name for name in SAMPLING})
 made, missing = 0, []
 for out, src in FIGURES.items():
     if (HERE / out).exists() and not force_regen():

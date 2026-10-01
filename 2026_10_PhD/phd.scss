@@ -390,6 +390,35 @@ html.print-pdf .reveal .slides > .corner-fixed { display: none; }
 // .table-full: a markdown (pipe) table inside spans the full width of its box.
 .reveal .table-full table { width: 100%; }
 
+// .nice-table: a markdown (pipe) table as a readable card: white, rounded, purple header over an
+// orange rule, light row stripes. --table-size (0.62em), --table-width (auto). Bold a total row with **…**.
+.reveal .nice-table table {
+  width: var(--table-width, auto);
+  margin: 0 auto;
+  font-size: var(--table-size, 0.62em);
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #ffffff;
+  border: 1px solid $card-border;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.reveal .nice-table th {
+  color: $kw2-color;
+  font-weight: 700;
+  border-bottom: 2px solid $kw-color;
+  padding: 0.35em 0.9em;
+}
+
+.reveal .nice-table td {
+  border-bottom: 1px solid #ece6db;
+  padding: 0.3em 0.9em;
+}
+
+.reveal .nice-table tbody tr:nth-child(even) td { background: #faf7f0; }
+.reveal .nice-table tbody tr:last-child td { border-bottom: none; }
+
 // .row: flex row.  --gap (1em), --align (center), --justify (flex-start)
 .reveal .row {
   display: flex;

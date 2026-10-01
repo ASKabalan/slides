@@ -3047,6 +3047,126 @@ $$x = \frac{\ell - (\ell_\mathrm{cut} - \ell_\mathrm{width})}{\ell_\mathrm{width
 
 ![](PhD/5_contribution/fli/backup/map_des_euclid_starlet.svg){fig-align="center" width="1000px"}
 
+## Field-level posterior: convergence {visibility="uncounted"}
+
+::: {.grid .flat .bare style="--cols: 60px repeat(4, 1fr); --gap: 8px; --row-gap: 10px; --align: center; margin-top: 0.6em; text-align: center;"}
+[]{}
+
+[truth]{.kw style="font-size: 0.6em;"}
+
+[posterior draws]{.kw style="font-size: 0.6em;"}
+
+[standard deviation]{.kw style="font-size: 0.6em;"}
+
+[truth − draw]{.kw style="font-size: 0.6em;"}
+
+[bin 2]{.kw style="font-size: 0.6em; color: #C2560A; text-align: right;"}
+
+![](PhD/5_contribution/fli/backup_sampling/kappa_truth_bin2.png){style="width: 100%; margin: 0;"}
+
+::: {}
+<video src="PhD/5_contribution/fli/backup_sampling/kappa_samples_bin2.mp4" class="screen-only" data-autoplay loop muted playsinline preload="auto" style="display: block; width: 100%; margin: 0;"></video>
+
+![](PhD/5_contribution/fli/backup_sampling/kappa_samples_bin2_last.png){.print-only style="width: 100%; margin: 0;"}
+:::
+
+![](PhD/5_contribution/fli/backup_sampling/kappa_std_bin2.png){style="width: 100%; margin: 0;"}
+
+::: {}
+<video src="PhD/5_contribution/fli/backup_sampling/kappa_diff_bin2.mp4" class="screen-only" data-autoplay loop muted playsinline preload="auto" style="display: block; width: 100%; margin: 0;"></video>
+
+![](PhD/5_contribution/fli/backup_sampling/kappa_diff_bin2_last.png){.print-only style="width: 100%; margin: 0;"}
+:::
+
+[bin 3]{.kw style="font-size: 0.6em; color: #3B6FB6; text-align: right;"}
+
+![](PhD/5_contribution/fli/backup_sampling/kappa_truth_bin3.png){style="width: 100%; margin: 0;"}
+
+::: {}
+<video src="PhD/5_contribution/fli/backup_sampling/kappa_samples_bin3.mp4" class="screen-only" data-autoplay loop muted playsinline preload="auto" style="display: block; width: 100%; margin: 0;"></video>
+
+![](PhD/5_contribution/fli/backup_sampling/kappa_samples_bin3_last.png){.print-only style="width: 100%; margin: 0;"}
+:::
+
+![](PhD/5_contribution/fli/backup_sampling/kappa_std_bin3.png){style="width: 100%; margin: 0;"}
+
+::: {}
+<video src="PhD/5_contribution/fli/backup_sampling/kappa_diff_bin3.mp4" class="screen-only" data-autoplay loop muted playsinline preload="auto" style="display: block; width: 100%; margin: 0;"></video>
+
+![](PhD/5_contribution/fli/backup_sampling/kappa_diff_bin3_last.png){.print-only style="width: 100%; margin: 0;"}
+:::
+
+[]{}
+
+![](PhD/5_contribution/fli/backup_sampling/cbar_kappa.svg){style="grid-column: span 2; width: 230px; margin: 0 auto;"}
+
+![](PhD/5_contribution/fli/backup_sampling/cbar_std.svg){style="width: 200px; margin: 0 auto;"}
+
+![](PhD/5_contribution/fli/backup_sampling/cbar_diff.svg){style="width: 200px; margin: 0 auto;"}
+:::
+
+::: {.nice-table style="--table-size: 0.72em; margin-top: 0.7em;"}
+| MCLMC on one A100: $128^3$ initial conditions and $(\Omega_c, \sigma_8)$ | Wall time |
+|:--|--:|
+| Compiling the tuning step | 12 min |
+| Tuning the step size and momentum decoherence: 300 steps | 1 h 32 min |
+| Compiling the sampler | 1.5 min |
+| Sampling: 10 batches of 10 draws, one draw every 5 steps | 15.5 min per batch |
+| **Total** | **≈ 4 h 20 min** |
+:::
+
+## Field-level posterior: starlet $\ell_1$ norm {visibility="uncounted"}
+
+::: {.grid .bare style="--cols: 110px 600px; --gap: 10px; --row-gap: 2px; --align: center; justify-content: center; margin-top: 0.2em;"}
+[bin 2<br/>ℓ₁ norm]{.kw style="font-size: 0.6em; color: #C2560A; text-align: right;"}
+
+::: {}
+<video src="PhD/5_contribution/fli/backup_sampling/starlet_l1_bin2.mp4" class="screen-only" data-autoplay loop muted playsinline preload="auto" style="display: block; width: 600px; margin: 0;"></video>
+
+![](PhD/5_contribution/fli/backup_sampling/starlet_l1_bin2_last.png){.print-only style="width: 600px; margin: 0;"}
+:::
+
+[bin 2<br/>draw − truth]{.kw style="font-size: 0.6em; color: #C2560A; text-align: right;"}
+
+::: {}
+<video src="PhD/5_contribution/fli/backup_sampling/starlet_resid_bin2.mp4" class="screen-only" data-autoplay loop muted playsinline preload="auto" style="display: block; width: 600px; margin: 0;"></video>
+
+![](PhD/5_contribution/fli/backup_sampling/starlet_resid_bin2_last.png){.print-only style="width: 600px; margin: 0;"}
+:::
+
+[bin 3<br/>ℓ₁ norm]{.kw style="font-size: 0.6em; color: #3B6FB6; text-align: right;"}
+
+::: {}
+<video src="PhD/5_contribution/fli/backup_sampling/starlet_l1_bin3.mp4" class="screen-only" data-autoplay loop muted playsinline preload="auto" style="display: block; width: 600px; margin: 0;"></video>
+
+![](PhD/5_contribution/fli/backup_sampling/starlet_l1_bin3_last.png){.print-only style="width: 600px; margin: 0;"}
+:::
+
+[bin 3<br/>draw − truth]{.kw style="font-size: 0.6em; color: #3B6FB6; text-align: right;"}
+
+::: {}
+<video src="PhD/5_contribution/fli/backup_sampling/starlet_resid_bin3.mp4" class="screen-only" data-autoplay loop muted playsinline preload="auto" style="display: block; width: 600px; margin: 0;"></video>
+
+![](PhD/5_contribution/fli/backup_sampling/starlet_resid_bin3_last.png){.print-only style="width: 600px; margin: 0;"}
+:::
+:::
+
+## Cosmology-only inference {visibility="uncounted"}
+
+:::: {.row .flat .bare style="--gap: 40px; --justify: center; margin-top: 0.3em;"}
+![](PhD/5_contribution/fli/backup_sampling/posterior_nb17.svg){style="height: 480px; flex: none; margin: 0;"}
+
+::: {.nice-table style="--table-size: 0.8em; flex: none;"}
+| NUTS, initial conditions at the truth | |
+|:--|--:|
+| Warmup | 100 iterations |
+| Sampling | 10 batches of 10 draws |
+| $\Omega_c$ | $0.2603 \pm 0.0013$ (truth 0.2607) |
+| $\sigma_8$ | $0.8102 \pm 0.0025$ (truth 0.8102) |
+| **Wall time** | **4 h 56 min** |
+:::
+::::
+
 ## A survey mask leaks {visibility="uncounted"}
 
 ![](PhD/5_contribution/fli/backup/masked_shear_masks.svg){fig-align="center" width="900px"}
