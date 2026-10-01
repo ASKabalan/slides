@@ -6,8 +6,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.27">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
 
   <meta name="author" content="Wassim Kabalan, François Lanusse, Alexandre Boucaud">
   <meta name="dcterms.date" content="2024-06-01">
@@ -18,10 +18,16 @@
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
   <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -96,7 +102,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-bdd8822eb09683a2a5f45d1ca3c35063.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-b22eb116de6ecf99c15d4002e849ff00.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -194,14 +200,15 @@
     <div class="slides">
 
 <section id="title-slide" data-background-image="assets/lsst_bg.jpg" data-background-opacity="0.5" data-background-size="fill" class="center">
+<div style="background: rgba(250, 247, 240, 0.86); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); border-radius: 22px; padding: 28px 36px 30px; margin: 0 auto; width: 900px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);">
   <h1 class="title">Differentiable and distributed Particle-Mesh n-body simulations</h1>
-  <p class="author">Wassim Kabalan, François Lanusse, Alexandre Boucaud</p>
   <p class="date">2024-06-01</p>
   <div style=""></div>
 <div style="margin-top: 20px; text-align: center;align-items: bottom;">
   <img data-src="assets/AIM.png" class="quarto-figure quarto-figure-center" style="width:10.0%"> <img data-src="assets/APC.png" class="quarto-figure quarto-figure-center" style="width:10.0%">
 </div>
 
+</div>
 </section>
 <section id="traditional-cosmological-inference" class="slide level2">
 <h2>Traditional cosmological inference</h2>
@@ -323,65 +330,65 @@
 <h2 data-id="quarto-animate-title">JAX : Automatic differentiation and Hardware acceleration</h2>
 <p><img data-src="assets/Logos/JaxLogo.png" class="absolute" style="top: 60px; right: 25px; width: 200px; "></p>
 <p><br> <br> <br> <br> <br> <br></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a></a></span>
-<span id="cb1-3"><a></a></span>
-<span id="cb1-4"><a></a><span class="kw">def</span> multiply_and_add(a, b, c):</span>
-<span id="cb1-5"><a></a>    <span class="cf">return</span> np.dot(a, b) <span class="op">+</span> c</span>
-<span id="cb1-6"><a></a></span>
-<span id="cb1-7"><a></a></span>
-<span id="cb1-8"><a></a>a, b, c <span class="op">=</span> np.random.normal(size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">32</span>, <span class="dv">32</span>))</span>
-<span id="cb1-9"><a></a>result <span class="op">=</span> multiply_and_add(a, b, c)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a aria-label="1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a aria-label="2"></a></span>
+<span id="cb1-3"><a aria-label="3"></a></span>
+<span id="cb1-4"><a aria-label="4"></a><span class="kw">def</span> multiply_and_add(a, b, c):</span>
+<span id="cb1-5"><a aria-label="5"></a>    <span class="cf">return</span> np.dot(a, b) <span class="op">+</span> c</span>
+<span id="cb1-6"><a aria-label="6"></a></span>
+<span id="cb1-7"><a aria-label="7"></a></span>
+<span id="cb1-8"><a aria-label="8"></a>a, b, c <span class="op">=</span> np.random.normal(size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">32</span>, <span class="dv">32</span>))</span>
+<span id="cb1-9"><a aria-label="9"></a>result <span class="op">=</span> multiply_and_add(a, b, c)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><br></p>
 <div class="fragment fade-in-then-out" data-fragment-index="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="im">import</span> jax</span>
-<span id="cb2-2"><a></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
-<span id="cb2-3"><a></a></span>
-<span id="cb2-4"><a></a></span>
-<span id="cb2-5"><a></a><span class="kw">def</span> multiply_and_add(a, b, c):</span>
-<span id="cb2-6"><a></a>    <span class="cf">return</span> jnp.dot(a, b) <span class="op">+</span> c</span>
-<span id="cb2-7"><a></a></span>
-<span id="cb2-8"><a></a></span>
-<span id="cb2-9"><a></a>key <span class="op">=</span> jax.random.PRNGKey(<span class="dv">0</span>)</span>
-<span id="cb2-10"><a></a>a, b, c <span class="op">=</span> jax.random.normal(key, (<span class="dv">3</span>, <span class="dv">32</span>, <span class="dv">32</span>))</span>
-<span id="cb2-11"><a></a></span>
-<span id="cb2-12"><a></a>result <span class="op">=</span> multiply_and_add(a, b, c) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a aria-label="1"></a><span class="im">import</span> jax</span>
+<span id="cb2-2"><a aria-label="2"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
+<span id="cb2-3"><a aria-label="3"></a></span>
+<span id="cb2-4"><a aria-label="4"></a></span>
+<span id="cb2-5"><a aria-label="5"></a><span class="kw">def</span> multiply_and_add(a, b, c):</span>
+<span id="cb2-6"><a aria-label="6"></a>    <span class="cf">return</span> jnp.dot(a, b) <span class="op">+</span> c</span>
+<span id="cb2-7"><a aria-label="7"></a></span>
+<span id="cb2-8"><a aria-label="8"></a></span>
+<span id="cb2-9"><a aria-label="9"></a>key <span class="op">=</span> jax.random.PRNGKey(<span class="dv">0</span>)</span>
+<span id="cb2-10"><a aria-label="10"></a>a, b, c <span class="op">=</span> jax.random.normal(key, (<span class="dv">3</span>, <span class="dv">32</span>, <span class="dv">32</span>))</span>
+<span id="cb2-11"><a aria-label="11"></a></span>
+<span id="cb2-12"><a aria-label="12"></a>result <span class="op">=</span> multiply_and_add(a, b, c) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="jax-automatic-differentiation-and-hardware-acceleration-1" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">JAX : Automatic differentiation and Hardware acceleration</h2>
 <p><img data-src="assets/Logos/JaxLogo.png" class="absolute" style="top: 60px; right: 25px; width: 200px; "></p>
 <p><br> <br> <br> <br> <br> <br></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb3-1" class="hljs-ln-code"><a></a><span class="im">import</span> jax</span>
-<span id="cb3-2" class="hljs-ln-code"><a></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
-<span id="cb3-3" class="hljs-ln-code"><a></a></span>
-<span id="cb3-4" class="hljs-ln-code"><a></a></span>
-<span id="cb3-5" class="hljs-ln-code"><a></a><span class="kw">def</span> multiply_and_add(a, b, c):</span>
-<span id="cb3-6" class="hljs-ln-code"><a></a>    <span class="cf">return</span> jnp.dot(a, b) <span class="op">+</span> c</span>
-<span id="cb3-7" class="hljs-ln-code"><a></a></span>
-<span id="cb3-8" class="hljs-ln-code"><a></a></span>
-<span id="cb3-9" class="hljs-ln-code"><a></a>key <span class="op">=</span> jax.random.PRNGKey(<span class="dv">0</span>)</span>
-<span id="cb3-10" class="hljs-ln-code"><a></a>a, b, c <span class="op">=</span> jax.random.normal(key, (<span class="dv">3</span>, <span class="dv">32</span>, <span class="dv">32</span>))</span>
-<span id="cb3-11" class="hljs-ln-code"><a></a></span>
-<span id="cb3-12" class="hljs-ln-code"><a></a>result <span class="op">=</span> multiply_and_add(a, b, c) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb3-1" class="hljs-ln-code"><a aria-label="1"></a><span class="im">import</span> jax</span>
+<span id="cb3-2" class="hljs-ln-code"><a aria-label="2"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
+<span id="cb3-3" class="hljs-ln-code"><a aria-label="3"></a></span>
+<span id="cb3-4" class="hljs-ln-code"><a aria-label="4"></a></span>
+<span id="cb3-5" class="hljs-ln-code"><a aria-label="5"></a><span class="kw">def</span> multiply_and_add(a, b, c):</span>
+<span id="cb3-6" class="hljs-ln-code"><a aria-label="6"></a>    <span class="cf">return</span> jnp.dot(a, b) <span class="op">+</span> c</span>
+<span id="cb3-7" class="hljs-ln-code"><a aria-label="7"></a></span>
+<span id="cb3-8" class="hljs-ln-code"><a aria-label="8"></a></span>
+<span id="cb3-9" class="hljs-ln-code"><a aria-label="9"></a>key <span class="op">=</span> jax.random.PRNGKey(<span class="dv">0</span>)</span>
+<span id="cb3-10" class="hljs-ln-code"><a aria-label="10"></a>a, b, c <span class="op">=</span> jax.random.normal(key, (<span class="dv">3</span>, <span class="dv">32</span>, <span class="dv">32</span>))</span>
+<span id="cb3-11" class="hljs-ln-code"><a aria-label="11"></a></span>
+<span id="cb3-12" class="hljs-ln-code"><a aria-label="12"></a>result <span class="op">=</span> multiply_and_add(a, b, c) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="jax-automatic-differentiation-and-hardware-acceleration-2" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">JAX : Automatic differentiation and Hardware acceleration</h2>
 <p><img data-src="assets/Logos/JaxLogo.png" class="absolute" style="top: 60px; right: 25px; width: 200px; "></p>
 <p><br> <br> <br> <br> <br> <br></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb4-1" class="hljs-ln-code"><a></a><span class="im">import</span> jax</span>
-<span id="cb4-2" class="hljs-ln-code"><a></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
-<span id="cb4-3" class="hljs-ln-code"><a></a></span>
-<span id="cb4-4" class="hljs-ln-code"><a></a><span class="at">@jax.jit</span></span>
-<span id="cb4-5" class="hljs-ln-code"><a></a><span class="kw">def</span> multiply_and_add(a, b, c):</span>
-<span id="cb4-6" class="hljs-ln-code"><a></a>    <span class="cf">return</span> jnp.dot(a, b) <span class="op">+</span> c</span>
-<span id="cb4-7" class="hljs-ln-code"><a></a></span>
-<span id="cb4-8" class="hljs-ln-code"><a></a></span>
-<span id="cb4-9" class="hljs-ln-code"><a></a>key <span class="op">=</span> jax.random.PRNGKey(<span class="dv">0</span>)</span>
-<span id="cb4-10" class="hljs-ln-code"><a></a>a, b, c <span class="op">=</span> jax.random.normal(key, (<span class="dv">3</span>, <span class="dv">32</span>, <span class="dv">32</span>))</span>
-<span id="cb4-11" class="hljs-ln-code"><a></a></span>
-<span id="cb4-12" class="hljs-ln-code"><a></a>result <span class="op">=</span> multiply_and_add(a, b, c) </span>
-<span id="cb4-13" class="hljs-ln-code"><a></a>gradient <span class="op">=</span> jax.grad(multiply_and_add)(a, b, c)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb4-1" class="hljs-ln-code"><a aria-label="1"></a><span class="im">import</span> jax</span>
+<span id="cb4-2" class="hljs-ln-code"><a aria-label="2"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
+<span id="cb4-3" class="hljs-ln-code"><a aria-label="3"></a></span>
+<span id="cb4-4" class="hljs-ln-code"><a aria-label="4"></a><span class="at">@jax.jit</span></span>
+<span id="cb4-5" class="hljs-ln-code"><a aria-label="5"></a><span class="kw">def</span> multiply_and_add(a, b, c):</span>
+<span id="cb4-6" class="hljs-ln-code"><a aria-label="6"></a>    <span class="cf">return</span> jnp.dot(a, b) <span class="op">+</span> c</span>
+<span id="cb4-7" class="hljs-ln-code"><a aria-label="7"></a></span>
+<span id="cb4-8" class="hljs-ln-code"><a aria-label="8"></a></span>
+<span id="cb4-9" class="hljs-ln-code"><a aria-label="9"></a>key <span class="op">=</span> jax.random.PRNGKey(<span class="dv">0</span>)</span>
+<span id="cb4-10" class="hljs-ln-code"><a aria-label="10"></a>a, b, c <span class="op">=</span> jax.random.normal(key, (<span class="dv">3</span>, <span class="dv">32</span>, <span class="dv">32</span>))</span>
+<span id="cb4-11" class="hljs-ln-code"><a aria-label="11"></a></span>
+<span id="cb4-12" class="hljs-ln-code"><a aria-label="12"></a>result <span class="op">=</span> multiply_and_add(a, b, c) </span>
+<span id="cb4-13" class="hljs-ln-code"><a aria-label="13"></a>gradient <span class="op">=</span> jax.grad(multiply_and_add)(a, b, c)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><br> <br></p>
 <div class="solutionbox">
 <div class="solutionbox-header">
@@ -406,51 +413,51 @@
 <div class="column" style="width:50%;">
 <div style="font-size: 83%">
 <div style="position: absolute; top: 75px; left: 0px;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a>mesh_shape <span class="op">=</span> [<span class="dv">64</span>, <span class="dv">64</span>, <span class="dv">64</span>]</span>
-<span id="cb5-2"><a></a>box_size <span class="op">=</span> [<span class="fl">64.</span>, <span class="fl">64.</span>, <span class="fl">64.</span>]</span>
-<span id="cb5-3"><a></a>snapshots <span class="op">=</span> jnp.linspace(<span class="fl">0.1</span>, <span class="fl">1.</span>, <span class="dv">2</span>)</span>
-<span id="cb5-4"><a></a></span>
-<span id="cb5-5"><a></a><span class="at">@jax.jit</span></span>
-<span id="cb5-6"><a></a><span class="kw">def</span> run_simulation(omega_c, sigma8):</span>
-<span id="cb5-7"><a></a>    <span class="co"># Create a small function to generate the matter power spectrum</span></span>
-<span id="cb5-8"><a></a>    k <span class="op">=</span> jnp.logspace(<span class="op">-</span><span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">128</span>)</span>
-<span id="cb5-9"><a></a>    pk <span class="op">=</span> jc.power.linear_matter_power(</span>
-<span id="cb5-10"><a></a>        jc.Planck15(Omega_c<span class="op">=</span>omega_c, sigma8<span class="op">=</span>sigma8), k)</span>
-<span id="cb5-11"><a></a>    pk_fn <span class="op">=</span> <span class="kw">lambda</span> x: jc.scipy.interpolate.interp(x.reshape([<span class="op">-</span><span class="dv">1</span>]), k, pk</span>
-<span id="cb5-12"><a></a>                                                  ).reshape(x.shape)</span>
-<span id="cb5-13"><a></a></span>
-<span id="cb5-14"><a></a>    <span class="co"># Create initial conditions</span></span>
-<span id="cb5-15"><a></a>    initial_conditions <span class="op">=</span> linear_field(mesh_shape,</span>
-<span id="cb5-16"><a></a>                                      box_size,</span>
-<span id="cb5-17"><a></a>                                      pk_fn,</span>
-<span id="cb5-18"><a></a>                                      seed<span class="op">=</span>jax.random.PRNGKey(<span class="dv">0</span>))</span>
-<span id="cb5-19"><a></a></span>
-<span id="cb5-20"><a></a>    <span class="co"># Create particles</span></span>
-<span id="cb5-21"><a></a>    particles <span class="op">=</span> jnp.stack(jnp.meshgrid(<span class="op">*</span>[jnp.arange(s) <span class="cf">for</span> s <span class="kw">in</span> mesh_shape]),</span>
-<span id="cb5-22"><a></a>                          axis<span class="op">=-</span><span class="dv">1</span>).reshape([<span class="op">-</span><span class="dv">1</span>, <span class="dv">3</span>])</span>
-<span id="cb5-23"><a></a></span>
-<span id="cb5-24"><a></a>    cosmo <span class="op">=</span> jc.Planck15(Omega_c<span class="op">=</span>omega_c, sigma8<span class="op">=</span>sigma8)</span>
-<span id="cb5-25"><a></a></span>
-<span id="cb5-26"><a></a>    <span class="co"># Initial displacement</span></span>
-<span id="cb5-27"><a></a>    dx, p, f <span class="op">=</span> lpt(cosmo, initial_conditions, particles, <span class="fl">0.1</span>)</span>
-<span id="cb5-28"><a></a>    field <span class="op">=</span> dx <span class="op">+</span> particles</span>
-<span id="cb5-29"><a></a></span>
-<span id="cb5-30"><a></a>    <span class="co"># Evolve the simulation forward</span></span>
-<span id="cb5-31"><a></a>    ode_fn <span class="op">=</span> make_ode_fn(mesh_shape)</span>
-<span id="cb5-32"><a></a>    term <span class="op">=</span> ODETerm(<span class="kw">lambda</span> t, state, args: jnp.stack(ode_fn(state, t, args), axis<span class="op">=</span><span class="dv">0</span>))</span>
-<span id="cb5-33"><a></a>    solver <span class="op">=</span> Dopri5()</span>
-<span id="cb5-34"><a></a></span>
-<span id="cb5-35"><a></a>    stepsize_controller <span class="op">=</span> PIDController(rtol<span class="op">=</span><span class="fl">1e-7</span>, atol<span class="op">=</span><span class="fl">1e-7</span>)</span>
-<span id="cb5-36"><a></a>    res <span class="op">=</span> diffeqsolve(term, solver, t0<span class="op">=</span><span class="fl">0.1</span>, t1<span class="op">=</span><span class="fl">1.</span>, dt0<span class="op">=</span><span class="fl">0.01</span>, y0<span class="op">=</span>jnp.stack([dx, p],axis<span class="op">=</span><span class="dv">0</span>), </span>
-<span id="cb5-37"><a></a>                       args<span class="op">=</span>(cosmo , kvec),</span>
-<span id="cb5-38"><a></a>                       stepsize_controller<span class="op">=</span>stepsize_controller,</span>
-<span id="cb5-39"><a></a>                       saveat<span class="op">=</span>SaveAt(ts<span class="op">=</span>snapshots))</span>
-<span id="cb5-40"><a></a></span>
-<span id="cb5-41"><a></a>    <span class="co"># Return the simulation volume at requested</span></span>
-<span id="cb5-42"><a></a>    <span class="cf">return</span> field, res, initial_conditions</span>
-<span id="cb5-43"><a></a></span>
-<span id="cb5-44"><a></a>field, res, initial_conditions <span class="op">=</span> run_simulation(<span class="fl">0.25</span>, <span class="fl">0.8</span>)</span>
-<span id="cb5-45"><a></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a aria-label="1"></a>mesh_shape <span class="op">=</span> [<span class="dv">64</span>, <span class="dv">64</span>, <span class="dv">64</span>]</span>
+<span id="cb5-2"><a aria-label="2"></a>box_size <span class="op">=</span> [<span class="fl">64.</span>, <span class="fl">64.</span>, <span class="fl">64.</span>]</span>
+<span id="cb5-3"><a aria-label="3"></a>snapshots <span class="op">=</span> jnp.linspace(<span class="fl">0.1</span>, <span class="fl">1.</span>, <span class="dv">2</span>)</span>
+<span id="cb5-4"><a aria-label="4"></a></span>
+<span id="cb5-5"><a aria-label="5"></a><span class="at">@jax.jit</span></span>
+<span id="cb5-6"><a aria-label="6"></a><span class="kw">def</span> run_simulation(omega_c, sigma8):</span>
+<span id="cb5-7"><a aria-label="7"></a>    <span class="co"># Create a small function to generate the matter power spectrum</span></span>
+<span id="cb5-8"><a aria-label="8"></a>    k <span class="op">=</span> jnp.logspace(<span class="op">-</span><span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">128</span>)</span>
+<span id="cb5-9"><a aria-label="9"></a>    pk <span class="op">=</span> jc.power.linear_matter_power(</span>
+<span id="cb5-10"><a aria-label="10"></a>        jc.Planck15(Omega_c<span class="op">=</span>omega_c, sigma8<span class="op">=</span>sigma8), k)</span>
+<span id="cb5-11"><a aria-label="11"></a>    pk_fn <span class="op">=</span> <span class="kw">lambda</span> x: jc.scipy.interpolate.interp(x.reshape([<span class="op">-</span><span class="dv">1</span>]), k, pk</span>
+<span id="cb5-12"><a aria-label="12"></a>                                                  ).reshape(x.shape)</span>
+<span id="cb5-13"><a aria-label="13"></a></span>
+<span id="cb5-14"><a aria-label="14"></a>    <span class="co"># Create initial conditions</span></span>
+<span id="cb5-15"><a aria-label="15"></a>    initial_conditions <span class="op">=</span> linear_field(mesh_shape,</span>
+<span id="cb5-16"><a aria-label="16"></a>                                      box_size,</span>
+<span id="cb5-17"><a aria-label="17"></a>                                      pk_fn,</span>
+<span id="cb5-18"><a aria-label="18"></a>                                      seed<span class="op">=</span>jax.random.PRNGKey(<span class="dv">0</span>))</span>
+<span id="cb5-19"><a aria-label="19"></a></span>
+<span id="cb5-20"><a aria-label="20"></a>    <span class="co"># Create particles</span></span>
+<span id="cb5-21"><a aria-label="21"></a>    particles <span class="op">=</span> jnp.stack(jnp.meshgrid(<span class="op">*</span>[jnp.arange(s) <span class="cf">for</span> s <span class="kw">in</span> mesh_shape]),</span>
+<span id="cb5-22"><a aria-label="22"></a>                          axis<span class="op">=-</span><span class="dv">1</span>).reshape([<span class="op">-</span><span class="dv">1</span>, <span class="dv">3</span>])</span>
+<span id="cb5-23"><a aria-label="23"></a></span>
+<span id="cb5-24"><a aria-label="24"></a>    cosmo <span class="op">=</span> jc.Planck15(Omega_c<span class="op">=</span>omega_c, sigma8<span class="op">=</span>sigma8)</span>
+<span id="cb5-25"><a aria-label="25"></a></span>
+<span id="cb5-26"><a aria-label="26"></a>    <span class="co"># Initial displacement</span></span>
+<span id="cb5-27"><a aria-label="27"></a>    dx, p, f <span class="op">=</span> lpt(cosmo, initial_conditions, particles, <span class="fl">0.1</span>)</span>
+<span id="cb5-28"><a aria-label="28"></a>    field <span class="op">=</span> dx <span class="op">+</span> particles</span>
+<span id="cb5-29"><a aria-label="29"></a></span>
+<span id="cb5-30"><a aria-label="30"></a>    <span class="co"># Evolve the simulation forward</span></span>
+<span id="cb5-31"><a aria-label="31"></a>    ode_fn <span class="op">=</span> make_ode_fn(mesh_shape)</span>
+<span id="cb5-32"><a aria-label="32"></a>    term <span class="op">=</span> ODETerm(<span class="kw">lambda</span> t, state, args: jnp.stack(ode_fn(state, t, args), axis<span class="op">=</span><span class="dv">0</span>))</span>
+<span id="cb5-33"><a aria-label="33"></a>    solver <span class="op">=</span> Dopri5()</span>
+<span id="cb5-34"><a aria-label="34"></a></span>
+<span id="cb5-35"><a aria-label="35"></a>    stepsize_controller <span class="op">=</span> PIDController(rtol<span class="op">=</span><span class="fl">1e-7</span>, atol<span class="op">=</span><span class="fl">1e-7</span>)</span>
+<span id="cb5-36"><a aria-label="36"></a>    res <span class="op">=</span> diffeqsolve(term, solver, t0<span class="op">=</span><span class="fl">0.1</span>, t1<span class="op">=</span><span class="fl">1.</span>, dt0<span class="op">=</span><span class="fl">0.01</span>, y0<span class="op">=</span>jnp.stack([dx, p],axis<span class="op">=</span><span class="dv">0</span>), </span>
+<span id="cb5-37"><a aria-label="37"></a>                       args<span class="op">=</span>(cosmo , kvec),</span>
+<span id="cb5-38"><a aria-label="38"></a>                       stepsize_controller<span class="op">=</span>stepsize_controller,</span>
+<span id="cb5-39"><a aria-label="39"></a>                       saveat<span class="op">=</span>SaveAt(ts<span class="op">=</span>snapshots))</span>
+<span id="cb5-40"><a aria-label="40"></a></span>
+<span id="cb5-41"><a aria-label="41"></a>    <span class="co"># Return the simulation volume at requested</span></span>
+<span id="cb5-42"><a aria-label="42"></a>    <span class="cf">return</span> field, res, initial_conditions</span>
+<span id="cb5-43"><a aria-label="43"></a></span>
+<span id="cb5-44"><a aria-label="44"></a>field, res, initial_conditions <span class="op">=</span> run_simulation(<span class="fl">0.25</span>, <span class="fl">0.8</span>)</span>
+<span id="cb5-45"><a aria-label="45"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
@@ -638,11 +645,11 @@
 <h4 id="jaxdecomp">Jaxdecomp</h4>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb6-1" class="hljs-ln-code"><a></a><span class="im">import</span> jax</span>
-<span id="cb6-2" class="hljs-ln-code"><a></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
-<span id="cb6-3" class="hljs-ln-code"><a></a></span>
-<span id="cb6-4" class="hljs-ln-code"><a></a>field <span class="op">=</span> jax.random.normal(jax.random.PRNGKey(<span class="dv">0</span>), (<span class="dv">1024</span>, <span class="dv">1024</span>, <span class="dv">1024</span>))</span>
-<span id="cb6-5" class="hljs-ln-code"><a></a>k_field <span class="op">=</span> jnp.fft.fftn(field)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb6-1" class="hljs-ln-code"><a aria-label="1"></a><span class="im">import</span> jax</span>
+<span id="cb6-2" class="hljs-ln-code"><a aria-label="2"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
+<span id="cb6-3" class="hljs-ln-code"><a aria-label="3"></a></span>
+<span id="cb6-4" class="hljs-ln-code"><a aria-label="4"></a>field <span class="op">=</span> jax.random.normal(jax.random.PRNGKey(<span class="dv">0</span>), (<span class="dv">1024</span>, <span class="dv">1024</span>, <span class="dv">1024</span>))</span>
+<span id="cb6-5" class="hljs-ln-code"><a aria-label="5"></a>k_field <span class="op">=</span> jnp.fft.fftn(field)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column" style="width:50%;">
 
 </div></div>
@@ -657,22 +664,22 @@
 </p>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb7-1" class="hljs-ln-code"><a></a><span class="im">import</span> jax</span>
-<span id="cb7-2" class="hljs-ln-code"><a></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
-<span id="cb7-3" class="hljs-ln-code"><a></a><span class="im">import</span> jaxdecomp</span>
-<span id="cb7-4" class="hljs-ln-code"><a></a></span>
-<span id="cb7-5" class="hljs-ln-code"><a></a>devices <span class="op">=</span> mesh_utils.create_device_mesh((<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb7-6" class="hljs-ln-code"><a></a>mesh <span class="op">=</span> jax.sharding.Mesh(devices, axis_names<span class="op">=</span>(<span class="st">'x'</span>, <span class="st">'y'</span>))</span>
-<span id="cb7-7" class="hljs-ln-code"><a></a>sharding <span class="op">=</span> jax.sharding.NamedSharding(mesh, P(<span class="st">'x'</span>, <span class="st">'y'</span>))</span>
-<span id="cb7-8" class="hljs-ln-code"><a></a></span>
-<span id="cb7-9" class="hljs-ln-code"><a></a><span class="co"># Create gaussian field distributed across the mesh</span></span>
-<span id="cb7-10" class="hljs-ln-code"><a></a>field <span class="op">=</span> jax.make_array_from_single_device_arrays(</span>
-<span id="cb7-11" class="hljs-ln-code"><a></a>    shape<span class="op">=</span>mesh_shape,</span>
-<span id="cb7-12" class="hljs-ln-code"><a></a>    sharding<span class="op">=</span>sharding,</span>
-<span id="cb7-13" class="hljs-ln-code"><a></a>    arrays<span class="op">=</span>[jax.random.normal(jax.random.PRNGKey(rank), (<span class="dv">512</span>, <span class="dv">512</span>, <span class="dv">1024</span>))])</span>
-<span id="cb7-14" class="hljs-ln-code"><a></a></span>
-<span id="cb7-15" class="hljs-ln-code"><a></a>k_field <span class="op">=</span> jaxdecomp.fft.pfft3d(field)</span>
-<span id="cb7-16" class="hljs-ln-code"><a></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb7-1" class="hljs-ln-code"><a aria-label="1"></a><span class="im">import</span> jax</span>
+<span id="cb7-2" class="hljs-ln-code"><a aria-label="2"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
+<span id="cb7-3" class="hljs-ln-code"><a aria-label="3"></a><span class="im">import</span> jaxdecomp</span>
+<span id="cb7-4" class="hljs-ln-code"><a aria-label="4"></a></span>
+<span id="cb7-5" class="hljs-ln-code"><a aria-label="5"></a>devices <span class="op">=</span> mesh_utils.create_device_mesh((<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb7-6" class="hljs-ln-code"><a aria-label="6"></a>mesh <span class="op">=</span> jax.sharding.Mesh(devices, axis_names<span class="op">=</span>(<span class="st">'x'</span>, <span class="st">'y'</span>))</span>
+<span id="cb7-7" class="hljs-ln-code"><a aria-label="7"></a>sharding <span class="op">=</span> jax.sharding.NamedSharding(mesh, P(<span class="st">'x'</span>, <span class="st">'y'</span>))</span>
+<span id="cb7-8" class="hljs-ln-code"><a aria-label="8"></a></span>
+<span id="cb7-9" class="hljs-ln-code"><a aria-label="9"></a><span class="co"># Create gaussian field distributed across the mesh</span></span>
+<span id="cb7-10" class="hljs-ln-code"><a aria-label="10"></a>field <span class="op">=</span> jax.make_array_from_single_device_arrays(</span>
+<span id="cb7-11" class="hljs-ln-code"><a aria-label="11"></a>    shape<span class="op">=</span>mesh_shape,</span>
+<span id="cb7-12" class="hljs-ln-code"><a aria-label="12"></a>    sharding<span class="op">=</span>sharding,</span>
+<span id="cb7-13" class="hljs-ln-code"><a aria-label="13"></a>    arrays<span class="op">=</span>[jax.random.normal(jax.random.PRNGKey(rank), (<span class="dv">512</span>, <span class="dv">512</span>, <span class="dv">1024</span>))])</span>
+<span id="cb7-14" class="hljs-ln-code"><a aria-label="14"></a></span>
+<span id="cb7-15" class="hljs-ln-code"><a aria-label="15"></a>k_field <span class="op">=</span> jaxdecomp.fft.pfft3d(field)</span>
+<span id="cb7-16" class="hljs-ln-code"><a aria-label="16"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment" data-fragment-index="3">
 <div class="solutionbox">
 <div class="solutionbox-header">
@@ -821,10 +828,10 @@
 </div>
 <div class="fragment" data-fragment-index="5">
 <div style="position: absolute; top: 75px; left: 0px; width: 500px; font-size: 100%">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="im">from</span> jaxdecomp <span class="im">import</span> halo_exchange</span>
-<span id="cb8-2"><a></a></span>
-<span id="cb8-3"><a></a>halo_size <span class="op">=</span> <span class="dv">128</span></span>
-<span id="cb8-4"><a></a>field <span class="op">=</span> halo_exchange(field, halo_extent<span class="op">=</span>halo_size)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a aria-label="1"></a><span class="im">from</span> jaxdecomp <span class="im">import</span> halo_exchange</span>
+<span id="cb8-2"><a aria-label="2"></a></span>
+<span id="cb8-3"><a aria-label="3"></a>halo_size <span class="op">=</span> <span class="dv">128</span></span>
+<span id="cb8-4"><a aria-label="4"></a>field <span class="op">=</span> halo_exchange(field, halo_extent<span class="op">=</span>halo_size)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
