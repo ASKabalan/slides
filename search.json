@@ -1082,7 +1082,7 @@
     "href": "2026_10_PhD/index.html#healpix",
     "title": "Differentiable Field-Level Cosmology",
     "section": "How do we represent sky data numerically?",
-    "text": "How do we represent sky data numerically?\n \n\nHierarchical Equal Area iso-latitude Pixellation (of the sphere)\n\n\n\nHEALPix\n\n\n\n\n\n\\(N_\\mathrm{side}\\) \\(= 4\\)\n\n\n\n\\(N_\\mathrm{side}\\) \\(= 16\\)\n\n\n\n\\(N_\\mathrm{side}\\) \\(= 32\\)\n\n\n\n\\(N_\\mathrm{side}\\) \\(= 64\\)\n\n\n\n\n\nPixels on the sky, like pixels on a detector\n\n\n\n\n\n\nEqual area: every pixel weighs the same in a \\(C_\\ell\\)\nHierarchical, \\(N_\\mathrm{side} = 2^k\\): 12 pixels to billions; the standard of Planck, SO, LiteBIRD, and in JAX with jax-healpy"
+    "text": "How do we represent sky data numerically?\n\n\nHierarchical Equal Area iso-latitude Pixellation (of the sphere)\n\n\n\nHEALPix\n\n\n\n\n\n\\(N_\\mathrm{side}\\) \\(= 4\\)\n\n\n\n\\(N_\\mathrm{side}\\) \\(= 16\\)\n\n\n\n\\(N_\\mathrm{side}\\) \\(= 32\\)\n\n\n\n\\(N_\\mathrm{side}\\) \\(= 64\\)\n\n\n\n\n\nPixels on the sky, like pixels on a detector\n\n\n\n\n\n\nEqual area: every pixel weighs the same in a \\(C_\\ell\\)\nHierarchical, \\(N_\\mathrm{side} = 2^k\\): 12 pixels to billions; the standard of Planck, SO, LiteBIRD, and in JAX with jax-healpy"
   },
   {
     "objectID": "2026_10_PhD/index.html#sht",
@@ -1152,7 +1152,7 @@
     "href": "2026_10_PhD/index.html#tomographic-reconstruction",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Tomographic reconstruction",
-    "text": "Tomographic reconstruction\n\n\nmatter density field\nbin 4\nbin 3\nbin 2\nbin 1\nκ bin 1\nκ bin 2\nκ bin 3\nκ bin 4\nobserver\n\n\n\n\n\nEach source bin sees the integral of all the matter in front of it: \\(\\kappa_i(\\hat n) = \\int_0^{\\chi_i} q_i(\\chi)\\,\\delta(\\chi\\hat n,\\chi)\\,\\mathrm{d}\\chi\\)\nFarther bins cross more matter and see a stronger \\(\\kappa\\); comparing bins follows the growth of structure along the line of sight"
+    "text": "Tomographic reconstruction\n\n\n\nmatter density field\nbin 4\nbin 3\nbin 2\nbin 1\nκ bin 1\nκ bin 2\nκ bin 3\nκ bin 4\nobserver\n\n\n\n\n\n\nEach source bin sees the integral of all the matter in front of it: \\(\\kappa_i(\\hat n) = \\int_0^{\\chi_i} q_i(\\chi)\\,\\delta(\\chi\\hat n,\\chi)\\,\\mathrm{d}\\chi\\)\nFarther bins cross more matter and see a stronger \\(\\kappa\\); comparing bins follows the growth of structure along the line of sight"
   },
   {
     "objectID": "2026_10_PhD/index.html#tomographic-bins",
@@ -1166,7 +1166,7 @@
     "href": "2026_10_PhD/index.html#from-shear-to-cosmology",
     "title": "Differentiable Field-Level Cosmology",
     "section": "From shear to cosmology",
-    "text": "From shear to cosmology\n\n\n\nDATA\n\n\n\ngalaxy\nshapes\n\n\n\n\n\n\nshear \\(\\gamma_1, \\gamma_2\\)\n\n\nInverse Kaiser–Squires\n\n\n\n\nconvergence \\(\\kappa\\) per bin\n\n\n\n\n\nmeasured\n\\(\\hat C_\\ell^{\\,ij}\\)\n\n\n\n\n\nTHEORY\n\n\n\\(\\Omega_\\mathrm{m},\\)\n\\(\\sigma_8, \\dots\\)\n\n\n\n\n\n\nmatter spectrum \\(P(k, z)\\)\n\n\nLimber, with the lensing kernels \\(q_i(\\chi)\\)\n\n\n\npredicted\n\\(C_\\ell^{\\,ij}(\\Omega_\\mathrm{m}, \\sigma_8)\\)\n\n\n\n\ncompare\n↓\n\\(\\Omega_\\mathrm{m},\\ \\sigma_8\\)\n\n\n\n\n\n\n\nSame recipe as the CMB: compress the maps into angular power spectra \\(C_\\ell\\) and compare them with the prediction\nThis is called a two-point correlation analysis (2PCF)"
+    "text": "From shear to cosmology\n\n\n\nDATA\n\n\n\ngalaxy\nshapes\n\n\n\n\n\n \nshear \\(\\gamma_1, \\gamma_2\\)\n\n\nInverse Kaiser–Squires\n\n\n\n \nconvergence \\(\\kappa\\) per bin\n\n\n\n\n\nmeasured\n\\(\\hat C_\\ell^{\\,ij}\\)\n\n\n\n\n\nTHEORY\n\n\n\\(\\Omega_\\mathrm{m},\\)\n\\(\\sigma_8, \\dots\\)\n\n\n\n\n\n\nmatter spectrum \\(P(k, z)\\)\n\n\nLimber, with the lensing kernels \\(q_i(\\chi)\\)\n\n\n\npredicted\n\\(C_\\ell^{\\,ij}(\\Omega_\\mathrm{m}, \\sigma_8)\\)\n\n\n\n\ncompare\n↓\n\\(\\Omega_\\mathrm{m},\\ \\sigma_8\\)\n\n\n\n\n\n\n\nSame recipe as the CMB: compress the maps into angular power spectra \\(C_\\ell\\) and compare them with the prediction\nThis is called a two-point correlation analysis (2PCF)"
   },
   {
     "objectID": "2026_10_PhD/index.html#the-two-point-analysis",
@@ -1292,7 +1292,7 @@
     "href": "2026_10_PhD/index.html#adaptive-moment-based-methods",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Adaptive moment-based methods",
-    "text": "Adaptive moment-based methods\n\n\n \n\n\n\n\n\n\n \n\n\n\n\nAdam is the standard optimiser of machine learning, built for very many parameters and very noisy gradients\n\n\\[\\boldsymbol\\beta_{t+1} = \\boldsymbol\\beta_t - \\eta\\,\\frac{\\hat m_t}{\\sqrt{\\hat v_t}+\\epsilon}\\]\n\n\\(m_t\\), \\(v_t\\): running means of \\(\\mathbf{g}\\) and \\(\\mathbf{g}^2\\)\n\nAdaBelief scales the step by the spread of the gradient instead\n\n\\[v_t \\;\\longrightarrow\\; s_t:\\ \\text{running mean of }(\\mathbf{g} - m_t)^2\\]\n\nA noisy direction gets a smaller step\n\n\n\n\n\nAdaTopK builds on AdaBelief for physical parameters, with a robust handling of parameter bounds"
+    "text": "Adaptive moment-based methods\n\n \n\n\n\n\n\n \n\n\n\n\nAdam is the standard optimiser of machine learning, built for very many parameters and very noisy gradients\n\n\\[\\boldsymbol\\beta_{t+1} = \\boldsymbol\\beta_t - \\eta\\,\\frac{\\hat m_t}{\\sqrt{\\hat v_t}+\\epsilon}\\]\n\n\\(m_t\\), \\(v_t\\): running means of \\(\\mathbf{g}\\) and \\(\\mathbf{g}^2\\)\n\nAdaBelief scales the step by the spread of the gradient instead\n\n\\[v_t \\;\\longrightarrow\\; s_t:\\ \\text{running mean of }(\\mathbf{g} - m_t)^2\\]\n\nA noisy direction gets a smaller step\n\n\n\n\n\nAdaTopK builds on AdaBelief for physical parameters, with a robust handling of parameter bounds"
   },
   {
     "objectID": "2026_10_PhD/index.html#scaling-of-adatopk",
@@ -1313,7 +1313,7 @@
     "href": "2026_10_PhD/index.html#selection-criteria-for-optimal-patches-1",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Selection criteria for optimal patches",
-    "text": "Selection criteria for optimal patches\nWe do this for each region\n\n\n\n\\(\\beta_d\\) patches\n\n\n\n\n\n\n\\(T_d\\) patches\n\n\n\n\n\n\n\\(\\beta_s\\) patches"
+    "text": "Selection criteria for optimal patches\n\n\nJean Zay, IDRISNVIDIA H100 GPUs\n\nWe do this for each region\n\n\n\n\\(\\beta_d\\) patches\n\n\n\n\n\n\n\\(T_d\\) patches\n\n\n\n\n\n\n\\(\\beta_s\\) patches\n\n\n\n\n\n\n\n\n\n\n\nRun details\n\n\nOver 10 000 component separation runs on H100 GPUs\nFinishing in 4 hours"
   },
   {
     "objectID": "2026_10_PhD/index.html#results-comparison-with-multi-resolution",
@@ -1376,7 +1376,7 @@
     "href": "2026_10_PhD/index.html#distributing-the-simulation",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Distributing the simulation",
-    "text": "Distributing the simulation\n\n \n\n\nDistributed components for particle-mesh simulation\n\n\n\nDistributed fast Fourier transforms\n\n\n\nDistributed transpositions\n\n\n\nDistributed halo exchange\n\n\n\n\n\nThe FFT and the halo exchange are the two operations that require communication between devices. Both are differentiable, distributed and written in JAX"
+    "text": "Distributing the simulation\n\n \n\nDistributed components for particle-mesh simulation\n\n\nDistributed fast Fourier transforms\n\n\n\nDistributed transpositions\n\n\n\nDistributed halo exchange\n\n\n\n\n\nThe FFT and the halo exchange are the two operations that require communication between devices. Both are differentiable, distributed and written in JAX"
   },
   {
     "objectID": "2026_10_PhD/index.html#building-the-observable",
@@ -1397,70 +1397,70 @@
     "href": "2026_10_PhD/index.html#painting-on-spherical-shells",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Painting on spherical shells",
-    "text": "Painting on spherical shells\n\n\nbin 4\nbin 3\nbin 2\nbin 1\nκ bin 1\nκ bin 2\nκ bin 3\nκ bin 4\nobserver\n\n\n\n\n\n\n\nevolved particles\n\n⟶\n\n\none HEALPix shell\n\n\n\n\n\\[r = \\lVert \\mathbf{x} - \\mathbf{x}_o \\rVert, \\qquad \\theta = \\arccos\\frac{z - z_o}{r}\\] \\[\\varphi = \\operatorname{atan2}(y - y_o,\\, x - x_o)\\] \\[p = \\texttt{ang2pix}(N_\\mathrm{side}, \\theta, \\varphi)\\]\n\n\n\n\nang2pix: jax-healpy\n\n\nImplemented in jax-healpy by Pierre Chanial. Works by binning each particle into one pixel but it is not differentiable because the pixel index is piecewise constant in the particle position, so its gradient is zero"
+    "text": "Painting on spherical shells\n\n\n\nbin 4\nbin 3\nbin 2\nbin 1\nκ bin 1\nκ bin 2\nκ bin 3\nκ bin 4\nobserver\n\n\n\n\n\n\n\n\nevolved particles\n\n⟶\n\n\none HEALPix shell\n\n\n\n\n\\[r = \\lVert \\mathbf{x} - \\mathbf{x}_o \\rVert, \\qquad \\theta = \\arccos\\frac{z - z_o}{r}\\] \\[\\varphi = \\operatorname{atan2}(y - y_o,\\, x - x_o)\\] \\[p = \\texttt{ang2pix}(N_\\mathrm{side}, \\theta, \\varphi)\\]\n\n\n\n\nang2pix: jax-healpy\n\n\nImplemented in jax-healpy by Pierre Chanial. Works by binning each particle into one pixel but it is not differentiable because the pixel index is piecewise constant in the particle position, so its gradient is zero"
   },
   {
     "objectID": "2026_10_PhD/index.html#painting-on-spherical-shells-1",
     "href": "2026_10_PhD/index.html#painting-on-spherical-shells-1",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Painting on spherical shells",
-    "text": "Painting on spherical shells\n\n\nbin 4\nbin 3\nbin 2\nbin 1\nκ bin 1\nκ bin 2\nκ bin 3\nκ bin 4\nobserver\n\n\n\n\n\nBilinear interpolation\n\n\n\n\n\nFour pixels, weighted by the position between their centres: get_interp_weights, implemented in jax-healpy\n\n\n\nRadial basis function interpolation\n\n\n\n\n\n\n\n\n\nThe pixel and its eight neighbours (get_all_neighbours, implemented in jax-healpy), weighted by a Gaussian kernel of adjustable width\n\n\n\n\n\n\n\n\n\n\n\nThe RBF scheme keeps the gradient and gives control over the smoothing: at 0.8 pixel FWHM it tracks nearest-grid-point painting to a few per cent out to \\(\\ell \\approx 1500\\)\n\n\n\n\n\n\n\nBoth methods are implemented in jax-healpy and are differentiable"
+    "text": "Painting on spherical shells\n\n\n\nbin 4\nbin 3\nbin 2\nbin 1\nκ bin 1\nκ bin 2\nκ bin 3\nκ bin 4\nobserver\n\n\n\n\n\n\nBilinear interpolation\n\n\n\n\n\nFour pixels, weighted by the position between their centres: get_interp_weights, implemented in jax-healpy\n\n\n\nRadial basis function interpolation\n\n\n\n\n\n\n\n\n\nThe pixel and its eight neighbours (get_all_neighbours, implemented in jax-healpy), weighted by a Gaussian kernel of adjustable width\n\n\n\n\n\n\n\n\n\n\n\nThe RBF scheme keeps the gradient and gives control over the smoothing: at 0.8 pixel FWHM it tracks nearest-grid-point painting to a few per cent out to \\(\\ell \\approx 1500\\)\n\n\n\n\n\n\n\nBoth methods are implemented in jax-healpy and are differentiable"
   },
   {
     "objectID": "2026_10_PhD/index.html#creating-the-lightcone",
     "href": "2026_10_PhD/index.html#creating-the-lightcone",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Creating the lightcone",
-    "text": "Creating the lightcone\n\n\n\nbin 4\nbin 3\nbin 2\nbin 1\n\nκ bin 1\nκ bin 2\nκ bin 3\nκ bin 4\nobserver\n\n\n\n\n\n\n\n\n\n\n\nThe 3D density field is projected onto concentric spherical shells around the observer, each at its own redshift. How should these redshifts be chosen?"
+    "text": "Creating the lightcone\n\n\n\n\nbin 4\nbin 3\nbin 2\nbin 1\n\nκ bin 1\nκ bin 2\nκ bin 3\nκ bin 4\nobserver\n\n\n\n\n\n\n\n\n\n\n\n\nThe 3D density field is projected onto concentric spherical shells around the observer, each at its own redshift. How should these redshifts be chosen?"
   },
   {
     "objectID": "2026_10_PhD/index.html#choosing-an-optimal-shell-spacing",
     "href": "2026_10_PhD/index.html#choosing-an-optimal-shell-spacing",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Choosing an optimal shell spacing",
-    "text": "Choosing an optimal shell spacing\n\n\nUniform in scale factor\n\n\\[a_i = a_{\\min} + \\tfrac{i}{n}\\,(1 - a_{\\min})\\]\n\n\n\n\n\n\nEqual volume\n\n\\[r_i^3 = r_{\\min}^3 + \\tfrac{i}{n}\\,(r_{\\max}^3 - r_{\\min}^3)\\]\n\nouter shells floored at 50 Mpc/\\(h\\)\n\n\n\n\n\n\nEqual volume spacing vs linear in scale factor spacing\n\n\nUniform steps in \\(a\\) give the innermost shell \\(1.5\\times10^{5}\\) particles for \\(5\\times10^{7}\\) pixels, and shot noise dominates its spectrum at small scales. Equal-volume shells each receive about \\(2\\times10^{8}\\) particles, and we adopt this spacing."
+    "text": "Choosing an optimal shell spacing\n\n\nUniform in scale factor\n\n\\[a_i = a_{\\min} + \\tfrac{i}{n}\\,(1 - a_{\\min})\\]\n\n\n\n\n\n\nEqual volume\n\n\\[r_i^3 = r_{\\min}^3 + \\tfrac{i}{n}\\,(r_{\\max}^3 - r_{\\min}^3)\\]\n\nouter shells floored at 50 Mpc/\\(h\\)\n\n\n\n\n\n\nEqual volume spacing vs linear in scale factor spacing\n\n\nUniform steps in \\(a\\): the innermost shell holds three orders of magnitude fewer particles than with equal volume, so it is shot noise dominated\nThe downside of equal volume: fewer shells cover the lensing kernel of the first redshift bin\nBin 1 is therefore not used for inference"
   },
   {
-    "objectID": "2026_10_PhD/index.html#choosing-the-number-of-shells",
-    "href": "2026_10_PhD/index.html#choosing-the-number-of-shells",
+    "objectID": "2026_10_PhD/index.html#impact-of-the-number-of-shells-on-the-accuracy",
+    "href": "2026_10_PhD/index.html#impact-of-the-number-of-shells-on-the-accuracy",
     "title": "Differentiable Field-Level Cosmology",
-    "section": "Choosing the number of shells",
-    "text": "Choosing the number of shells\n\n\n\n\n\n\n\n\nMore shells make the near shells thinner. At 30 shells the first holds \\(8.6\\times10^{4}\\) particles, and shot noise lifts its spectrum to 7.7 times the Limber prediction at \\(\\ell = 1000\\). Fewer shells make each one span a larger comoving distance at a single redshift, which biases its density."
+    "section": "Impact of the number of shells on the accuracy",
+    "text": "Impact of the number of shells on the accuracy\n\nuniform in \\(a\\)innermost shell\n\n\n\nequal volume, driftedconvergence vs Limber\n\n\n\n\n\nA few shells → bias\nA large number of shells → shot noise"
   },
   {
     "objectID": "2026_10_PhD/index.html#drift-on-the-lightcone",
     "href": "2026_10_PhD/index.html#drift-on-the-lightcone",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Drift on the lightcone",
-    "text": "Drift on the lightcone\n\n\n\n10 shells, one redshift per shell\n10 shells, drifted on the lightcone\n10 equal-volume shells, one redshift per shell\n10 equal-volume shells, drifted\n\n\n\n\n\n\n\n\n\n\n\n40 shells, one redshift per shell\n\n\n\n\n\n\\[a_{\\mathrm{c}} = a\\big(\\chi = \\lVert \\mathbf{x} - \\mathbf{x}_{\\mathrm{obs}} \\rVert\\big)\\]\n\\[\\mathbf{x}(a_{\\mathrm{c}}) = \\mathbf{x}(a_i) + \\boldsymbol{\\pi}\\,\\big[D(a_{\\mathrm{c}}) - D(a_i)\\big]\\]\n\n\\(a_i\\): scale factor of the shell, \\(a_{\\mathrm{c}}\\): scale factor at which the particle crosses the lightcone, \\(\\boldsymbol{\\pi} = \\mathrm{d}\\mathbf{x}/\\mathrm{d}D\\): BullFrog momentum\n\n\n\n\n\nThe drift moves each particle to the scale factor at which it crosses the lightcone, with the solver’s own drift operator. On the first shell of a 10-shell equal-volume lightcone, it lowers the power by about 16 % and brings the large scales onto the Limber prediction. The forward model uses 20 equal-volume shells drifted on the lightcone."
+    "text": "Drift on the lightcone\n\n10 shells vs 40 shells, uniform in \\(a\\)\n10 shells with drift\n10 equal-volume shells\n10 equal-volume shells with drift\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\[a_{\\mathrm{c}} = a\\big(\\chi = \\lVert \\mathbf{x} - \\mathbf{x}_{\\mathrm{obs}} \\rVert\\big)\\]\n\\[\\mathbf{x}(a_{\\mathrm{c}}) = \\mathbf{x}(a_i) + \\boldsymbol{\\pi}\\,\\big[D(a_{\\mathrm{c}}) - D(a_i)\\big]\\]\n\n\\(a_i\\): scale factor of the shell, \\(a_{\\mathrm{c}}\\): scale factor at which the particle crosses the lightcone, \\(\\boldsymbol{\\pi} = \\mathrm{d}\\mathbf{x}/\\mathrm{d}D\\): BullFrog momentum\n\n\n\n\n\nEach particle is moved to the scale factor at which it crosses the lightcone\nRemoves the single-redshift bias of wide shells: 16 % on the first equal-volume shell\nAdopted: 20 equal-volume shells with drift"
   },
   {
     "objectID": "2026_10_PhD/index.html#from-shells-to-convergence-the-born-approximation",
     "href": "2026_10_PhD/index.html#from-shells-to-convergence-the-born-approximation",
     "title": "Differentiable Field-Level Cosmology",
     "section": "From shells to convergence: the Born approximation",
-    "text": "From shells to convergence: the Born approximation\n\n\n\n\nbin 4\nbin 3\nbin 2\nbin 1\n\nκ bin 1\nκ bin 2\nκ bin 3\nκ bin 4\nobserver\n\n\n\n\n\n\n\nBorn approximation: straight lines of sight\n\n\\[\\kappa(\\hat{\\mathbf n};\\chi_s) = \\frac{3}{2}\\,\\Omega_m\\Big(\\frac{H_0}{c}\\Big)^2 \\sum_j W_j(\\chi_s)\\,\\delta_j(\\hat{\\mathbf n})\\]\n\\[W_j(\\chi_s) = \\int_{\\mathrm{shell}\\ j} \\mathrm{d}\\chi\\;\\chi\\,(1+z)\\Big(1-\\frac{\\chi}{\\chi_s}\\Big)\\]\n\n\n\n\n\n\n\n\n\\[\\kappa_i(\\hat{\\mathbf n}) = \\int \\mathrm{d}z\\; n_i(z)\\,\\kappa\\big(\\hat{\\mathbf n};\\chi_s(z)\\big)\\]\n\n\n\n\n\n\n\nEach painted shell is weighted by the lensing kernel integrated across its width, and each tomographic bin averages the result over its source redshifts. The Born approximation integrates along unperturbed lines of sight, which is accurate for the convergence power spectrum."
+    "text": "From shells to convergence: the Born approximation\n\n\n\n\nbin 4\nbin 3\nbin 2\nbin 1\n\nκ bin 1\nκ bin 2\nκ bin 3\nκ bin 4\nobserver\n\n\n\n\n\n\n\nBorn approximation: straight lines of sight\n\n\\[\\kappa(\\hat{\\mathbf n};\\chi_s) = \\frac{3}{2}\\,\\Omega_m\\Big(\\frac{H_0}{c}\\Big)^2 \\sum_j W_j(\\chi_s)\\,\\delta_j(\\hat{\\mathbf n})\\]\n\\[W_j(\\chi_s) = \\int_{\\mathrm{shell}\\ j} \\mathrm{d}\\chi\\;\\chi\\,(1+z)\\Big(1-\\frac{\\chi}{\\chi_s}\\Big)\\]\n\n\n\n\n\n\n\n\n\\[\\kappa_i(\\hat{\\mathbf n}) = \\int \\mathrm{d}z\\; n_i(z)\\,\\kappa\\big(\\hat{\\mathbf n};\\chi_s(z)\\big)\\]\n\n\n\n\n\n\n\nThe Born approximation computes the convergence along undeflected light rays\nPost-Born ray tracing deflects them by under 1 arcmin, below the accuracy of our gravity solver"
   },
   {
     "objectID": "2026_10_PhD/index.html#comparing-against-cosmogrid",
     "href": "2026_10_PhD/index.html#comparing-against-cosmogrid",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Comparing against CosmoGrid",
-    "text": "Comparing against CosmoGrid\n\n\n\n\n\n\n\n\n\n\n\nCosmoGrid runs the pkdgrav3 \\(N\\)-body code from independent initial conditions, and the ratio converges as the mesh grows. At \\(2560^3\\), the mesh of the thesis runs, bin 3 stays within 9 % of CosmoGrid up to \\(\\ell = 250\\) and bin 2 within 11 % up to \\(\\ell = 200\\)."
+    "text": "Comparing against CosmoGrid\n\n\n\n\n\n\n\n\n\n\n\nValidation against an independent \\(N\\)-body code\n\n\nCosmoGrid: pkdgrav3, independent initial conditions\nConverges with the mesh. At \\(2560^3\\): within 9 % to \\(\\ell =\\) 250 (bin 3), 11 % to \\(\\ell =\\) 200 (bin 2)"
   },
   {
     "objectID": "2026_10_PhD/index.html#higher-order-statistics-the-starlet-ell_1-norm",
     "href": "2026_10_PhD/index.html#higher-order-statistics-the-starlet-ell_1-norm",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Higher-order statistics: the starlet \\(\\ell_1\\) norm",
-    "text": "Higher-order statistics: the starlet \\(\\ell_1\\) norm\n\n\n\n\nA starlet transform splits the convergence map into five angular scales, each twice the last. At each scale the coefficients are put in signal to noise, \\(\\nu = w_j / \\sigma_j\\), and the \\(\\ell_1\\) norm sums \\(|\\nu|\\) over the pixels of each bin in \\(\\nu\\):\n\n\\[\\ell_1^{\\,j}(\\nu_k) = \\sum_{p\\,:\\;\\nu_{j,p}\\,\\in\\,\\mathrm{bin}\\;k} |\\nu_{j,p}|\\]\n\nThe joint \\(\\ell_1\\) norm of the tomographic bins reaches the figure of merit of a convolutional neural network, 3371 against 3326.\n\n\n\nCredit: A. Tersenov (andreastersenov.github.io)\n\n\n\n\nTomographic bin 3, this work against CosmoGrid\n\n\n\n\n\n\nAt the finest scale, \\(\\ell \\gtrsim 700\\), the model’s distribution is a quarter narrower than CosmoGrid’s, where the power spectra already fall away. At the four coarser scales the \\(\\ell_1\\) norm stays within 7 % of the reference."
+    "text": "Higher-order statistics: the starlet \\(\\ell_1\\) norm\n\n\nA starlet transform splits the convergence map into angular scales\n\n\n\nFor convergence maps, the starlet \\(\\ell_1\\) norm is a sufficient statistic\n\nTersenov et al. (in prep.)\n\n\nTomographic bin 3, this work against CosmoGrid\n\n\n\n\n\n\nFinest scale (\\(\\ell \\gtrsim\\) 700): 25 % narrower than CosmoGrid\nCoarser scales: within 7 %"
   },
   {
     "objectID": "2026_10_PhD/index.html#scaling-on-supercomputers",
     "href": "2026_10_PhD/index.html#scaling-on-supercomputers",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Scaling on supercomputers",
-    "text": "Scaling on supercomputers\n\n\nJean Zay, IDRISNVIDIA H100 GPUs\n\n\nPerformance of the forward model\n\n\n\nPerformance of the gradient\n\n\n\n\n\nMemory per GPU falls by close to half at each doubling of the GPU count and stays flat under weak scaling, for the model and for its gradient. The reverse adjoint rebuilds each state by inverting the step that produced it, so its memory does not grow with the number of steps. On 256 GPUs it needs 5.1 GiB per GPU against 9.4 GiB checkpointed, for 6 times the wall-clock time."
+    "text": "Scaling on supercomputers\n\n\nJean Zay, IDRISNVIDIA H100 GPUs\n\n\nPerformance of the forward model\n\n\n\nPerformance of the gradient\n\n\n\n\n\nJean Zay, up to 256 H100 GPUs\n\n\nMemory per GPU halves at each doubling, and stays flat under weak scaling\nReverse adjoint: 5.1 GiB against 9.4 GiB checkpointed, at 6× the time"
   },
   {
     "objectID": "2026_10_PhD/index.html#recovering-the-maximum-a-posteriori",
@@ -1474,7 +1474,7 @@
     "href": "2026_10_PhD/index.html#contribution-2-conclusion-and-perspectives",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Contribution 2: conclusion and perspectives",
-    "text": "Contribution 2: conclusion and perspectives\n\n\n\nThe first differentiable weak-lensing forward model covering a full survey footprint on the curved sky\nDistributed over hundreds of GPUs, with a gradient end to end\nValidated against an independent \\(N\\)-body code: about 10 % to \\(\\ell \\approx 250\\)\nA first maximum a posteriori of the initial field from DES Y3-like maps, at the coherence of the Wiener filter (preliminary)\n\n\n\n\nNext\n\na better gravity solver: a learned force correction or a differentiable moving mesh\nintrinsic alignments and photometric-redshift errors as latent variables\nbaryonification inside the model"
+    "text": "Contribution 2: conclusion and perspectives\n\n\n\nThe first differentiable weak-lensing forward model covering a full survey footprint on the curved sky\nDistributed over hundreds of GPUs, with a gradient end to end\nValidated against an independent \\(N\\)-body code: about 10 % to \\(\\ell \\approx 250\\)\nA first maximum a posteriori of the initial field from DES Y3-like maps, at the coherence of the Wiener filter (preliminary)\n\n\n\n\n\n\nNext\n\na better gravity solver: a learned force correction or a differentiable moving mesh\nintrinsic alignments and photometric-redshift errors as latent variables\nbaryonification inside the model\n\n\n\n\nMoving-mesh particle mesh"
   },
   {
     "objectID": "2026_10_PhD/index.html#the-software-behind-this-thesis",
@@ -1516,91 +1516,63 @@
     "href": "2026_10_PhD/index.html#why-not-simply-the-maximum-a-posteriori",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Why not simply the maximum a posteriori?",
-    "text": "Why not simply the maximum a posteriori?\n\n\n\n\n\n\n\n\n\nIn \\(\\sim 10^{10}\\) dimensions the probability mass lies in the typical set, far from the mode\nThe MAP pulls unconstrained small scales to the prior mean, like a Wiener filter\nMarginalising the field by optimisation biases the cosmological parameters (Millea & Seljak 2022)"
-  },
-  {
-    "objectID": "2026_10_PhD/index.html#frequentist-or-bayesian",
-    "href": "2026_10_PhD/index.html#frequentist-or-bayesian",
-    "title": "Differentiable Field-Level Cosmology",
-    "section": "Frequentist or Bayesian?",
-    "text": "Frequentist or Bayesian?\n\n\n\n\n\n\n\n\n\nMaximum likelihood: a unimodal, well-curved posterior, when speed matters (component separation)\nSampling: non-trivial geometry, multimodality, nuisance parameters to integrate over (the field level)\nA Gaussian interval misreports a non-Gaussian posterior"
+    "text": "Why not simply the maximum a posteriori?"
   },
   {
     "objectID": "2026_10_PhD/index.html#adatopk-handling-parameter-bounds",
     "href": "2026_10_PhD/index.html#adatopk-handling-parameter-bounds",
     "title": "Differentiable Field-Level Cosmology",
     "section": "AdaTopK: handling parameter bounds",
-    "text": "AdaTopK: handling parameter bounds\n\n\n\n\n\n\n\nParameters that reach a bound are frozen; at each step the one the gradient pushes back inside the most is released (\\(k = 1\\), as in TNC)"
+    "text": "AdaTopK: handling parameter bounds"
   },
   {
-    "objectID": "2026_10_PhD/index.html#why-did-quasi-newton-methods-fail-at-low-signal-to-noise",
-    "href": "2026_10_PhD/index.html#why-did-quasi-newton-methods-fail-at-low-signal-to-noise",
+    "objectID": "2026_10_PhD/index.html#patch-selection-on-skies-with-r-neq-0",
+    "href": "2026_10_PhD/index.html#patch-selection-on-skies-with-r-neq-0",
     "title": "Differentiable Field-Level Cosmology",
-    "section": "Why did quasi-Newton methods fail at low signal-to-noise?",
-    "text": "Why did quasi-Newton methods fail at low signal-to-noise?\n\n\n\n\n\n\n\n\n\nNoise in the gradient corrupts the curvature estimate built from gradient differences\nTNC detects bad steps and resets its history: stable, but slow\nAdaTopK tracks the gradient’s spread (AdaBelief), rescales the objective, and keeps a line search"
-  },
-  {
-    "objectID": "2026_10_PhD/index.html#does-selecting-on-hat-r-sigmar-suppress-a-true-r",
-    "href": "2026_10_PhD/index.html#does-selecting-on-hat-r-sigmar-suppress-a-true-r",
-    "title": "Differentiable Field-Level Cosmology",
-    "section": "Does selecting on \\(\\hat r + \\sigma(r)\\) suppress a true \\(r\\)?",
-    "text": "Does selecting on \\(\\hat r + \\sigma(r)\\) suppress a true \\(r\\)?\n\n\n\n\n\n\n\n\n\nNo: the solution has unit response to the CMB by construction, \\([\\mathbf{W}\\mathbf{A}]_{\\mathrm{cmb}} = 1\\)\nForeground residuals and noise add power; minimising \\(\\hat r + \\sigma(r)\\) minimises contamination, not \\(r_\\mathrm{true}\\)\nChecked on skies with \\(r \\neq 0\\)"
-  },
-  {
-    "objectID": "2026_10_PhD/index.html#grid-search-over-patch-counts",
-    "href": "2026_10_PhD/index.html#grid-search-over-patch-counts",
-    "title": "Differentiable Field-Level Cosmology",
-    "section": "Grid search over patch counts",
-    "text": "Grid search over patch counts\n\n\n\n\n\n\\(\\hat r + \\sigma(r)\\) against the number of dust-index patches, the other two parameters fixed"
+    "section": "Patch selection on skies with \\(r \\neq 0\\)",
+    "text": "Patch selection on skies with \\(r \\neq 0\\)"
   },
   {
     "objectID": "2026_10_PhD/index.html#integrators-and-time-steps",
     "href": "2026_10_PhD/index.html#integrators-and-time-steps",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Integrators and time steps",
-    "text": "Integrators and time steps\n\n\n\n\n\n\n\n\n\nBullFrog steps uniformly in the growth factor \\(D_1\\), not in \\(a\\)\nIt removes the error on linear growth, and matches the spectra with far fewer steps than kick–drift–kick"
+    "text": "Integrators and time steps"
   },
   {
     "objectID": "2026_10_PhD/index.html#shell-spacing-and-the-lightcone",
     "href": "2026_10_PhD/index.html#shell-spacing-and-the-lightcone",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Shell spacing and the lightcone",
-    "text": "Shell spacing and the lightcone\n\n\n\n\n\n\n\n\n\nEqual-volume shells keep the particle count per shell flat\nParticles are drifted to their exact crossing time before painting\nBorn integration: deflections are arcminutes, and Born agrees with ray tracing to about 1 % below \\(\\ell \\sim 2000\\)"
+    "text": "Shell spacing and the lightcone"
   },
   {
     "objectID": "2026_10_PhD/index.html#scale-cuts-and-baryons",
     "href": "2026_10_PhD/index.html#scale-cuts-and-baryons",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Scale cuts and baryons",
-    "text": "Scale cuts and baryons\n\n\n\n\n\n\n\n\n\nThe particle mesh under-resolves the smallest scales, and baryons move matter there\nA harmonic taper removes them before inference\nNext: a differentiable baryonification inside the model"
+    "text": "Scale cuts and baryons\n\n\n\nmap2alm\n\n\n\n\n× \\(T_\\ell\\)\n\n\n\n\nalm2map\n\n\n\n\n\n\n\\[T_\\ell = \\begin{cases} 1, & \\ell \\le \\ell_\\mathrm{cut} - \\ell_\\mathrm{width} \\\\ \\tfrac12\\left(1 + \\cos \\pi x\\right), & \\ell_\\mathrm{cut} - \\ell_\\mathrm{width} &lt; \\ell &lt; \\ell_\\mathrm{cut} \\\\ 0, & \\ell \\ge \\ell_\\mathrm{cut} \\end{cases}\\]\n\\[x = \\frac{\\ell - (\\ell_\\mathrm{cut} - \\ell_\\mathrm{width})}{\\ell_\\mathrm{width}}\\]"
   },
   {
     "objectID": "2026_10_PhD/index.html#the-ghost-zone",
     "href": "2026_10_PhD/index.html#the-ghost-zone",
     "title": "Differentiable Field-Level Cosmology",
     "section": "The ghost zone",
-    "text": "The ghost zone\n\n\n\n\n\n\n\n\n\nParticles near a device boundary paint into the neighbour’s cells\nA halo zone is exchanged at every step, forward and backward\nLinear theory gives insight into how wide it has to be; the runs set it"
+    "text": "The ghost zone"
   },
   {
     "objectID": "2026_10_PhD/index.html#the-two-adjoints",
     "href": "2026_10_PhD/index.html#the-two-adjoints",
     "title": "Differentiable Field-Level Cosmology",
     "section": "The two adjoints",
-    "text": "The two adjoints\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReversible: constant memory, the solver run backwards\nCheckpointed: faster, memory grows with the checkpoints\nBoth agree with finite differences to \\(10^{-8}\\)–\\(10^{-6}\\)"
+    "text": "The two adjoints"
   },
   {
     "objectID": "2026_10_PhD/index.html#a-survey-mask-leaks",
     "href": "2026_10_PhD/index.html#a-survey-mask-leaks",
     "title": "Differentiable Field-Level Cosmology",
     "section": "A survey mask leaks",
-    "text": "A survey mask leaks\n\n\n\n\n\n\n\n\n\n\n\nShear residual inside DES: 41 % → 4 %, once the observer’s visible sky contains the survey"
-  },
-  {
-    "objectID": "2026_10_PhD/index.html#is-the-gradient-right",
-    "href": "2026_10_PhD/index.html#is-the-gradient-right",
-    "title": "Differentiable Field-Level Cosmology",
-    "section": "Is the gradient right?",
-    "text": "Is the gradient right?\n\n\n\n\n\n\n\n\n\nChecked against per-voxel finite differences and the transpose identity between the two AD modes\nSame accuracy for any number of checkpoints; only memory and time change\nDouble precision throughout the gradient runs"
+    "text": "A survey mask leaks"
   },
   {
     "objectID": "index.html",
