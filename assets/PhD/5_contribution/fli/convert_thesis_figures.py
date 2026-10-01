@@ -1,0 +1,94 @@
+#!/usr/bin/env python3
+# ENV: shared
+"""
+Figures from Chapter 6 of the thesis, converted for the slides.
+
+Each of these is produced by a script that lives beside it in
+These_wassim/figures/chap6/, several of which need a GPU, the Jean Zay run
+outputs, or the HuggingFace experiment archive. The thesis script stays the
+single source of truth: regenerate a figure there with
+
+    FORCE_REGEN=1 uv run --group chap6 python figures/chap6/<name>.py
+
+and rerun this script to bring the new version across. Nothing is recomputed
+here, only converted, so a number can never drift between the thesis and the
+talk.
+
+Outputs (this directory, or the slide subfolder named in the key): one SVG per entry in
+FIGURES below.
+"""
+
+import shutil
+import subprocess
+import sys
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parents[1]))
+from _common import force_regen
+
+CHAP6 = Path("/home/wassim/Projects/Perso/These_wassim/figures/chap6")
+CHAP3 = Path("/home/wassim/Projects/Perso/These_wassim/figures/chap3")
+
+# output name -> source PDF
+FIGURES = {
+    "cic.svg": CHAP6 / "cic.pdf",
+    "09_observable/geometry.svg": CHAP6 / "geometry.pdf",
+    "observer_wireframe.svg": CHAP6 / "observer_wireframe.pdf",
+    "observer_masks.svg": CHAP6 / "observer_masks.pdf",
+    "observer_shear_cases.svg": CHAP6 / "observer_shear_cases.pdf",
+    "shell_spacing.svg": CHAP6 / "shell_spacing.pdf",
+    "redshift_assignment.svg": CHAP6 / "redshift_assignment.pdf",
+    "lensing_spacing.svg": CHAP6 / "lensing_spacing.pdf",
+    "step_convergence.svg": CHAP6 / "step_convergence.pdf",
+    "ghost_zone.svg": CHAP6 / "ghost_zone.pdf",
+    "halo_deficit.svg": CHAP6 / "halo_deficit.pdf",
+    "density_census.svg": CHAP6 / "density_census.pdf",
+    "cosmogrid_shells.svg": CHAP6 / "cosmogrid_shells.pdf",
+    "cosmogrid_map.svg": CHAP6 / "cosmogrid_map.pdf",
+    "cosmogrid_kappa_theory.svg": CHAP6 / "cosmogrid_kappa_theory.pdf",
+    "lensing_vs_cosmogrid.svg": CHAP6 / "lensing_vs_cosmogrid.pdf",
+    "gamma1_residual_maps.svg": CHAP6 / "gamma1_residual_maps.pdf",
+    "scalecut_spectra.svg": CHAP6 / "scalecut_spectra.pdf",
+    "starlet_l1.svg": CHAP6 / "starlet_l1.pdf",
+    "starlet_response.svg": CHAP6 / "starlet_response.pdf",
+    "gradient_validation.svg": CHAP6 / "gradient_validation.pdf",
+    "adjoint_memory.svg": CHAP6 / "adjoint_memory.pdf",
+    "pm3d_accuracy.svg": CHAP6 / "pm3d_accuracy.pdf",
+    "doux_statistics.svg": CHAP3 / "fig_doux_statistics.pdf",
+}
+
+if shutil.which("pdftocairo") is None:
+    sys.exit("pdftocairo not found")
+
+made, missing = 0, []
+for out, src in FIGURES.items():
+    if (HERE / out).exists() and not force_regen():
+        continue
+    if not src.exists():
+        missing.append(f"{out}  <-  {src}")
+        continue
+    (HERE / out).parent.mkdir(exist_ok=True)
+    subprocess.run(["pdftocairo", "-svg", str(src), str(HERE / out)], check=True)
+    made += 1
+    print(f"wrote {out}")
+
+# Already SVG in the thesis: copied as is.
+for out, src in (("07_distributed/jaxdecomp_fft.svg", CHAP6 / "jaxdecomp_fft.svg"),):
+    if src.exists() and (force_regen() or not (HERE / out).exists()):
+        shutil.copy(src, HERE / out)
+        print(f"copied {out}")
+
+# Two raster assets that have no vector original.
+for out, src in (("lpt_density_1024.png", CHAP6 / "assets" / "LPT_density_field_z0_1024.png"),):
+    if src.exists() and (force_regen() or not (HERE / out).exists()):
+        shutil.copy(src, HERE / out)
+        print(f"copied {out}")
+    elif not src.exists():
+        missing.append(f"{out}  <-  {src}")
+
+print(f"\n{made} figures converted")
+if missing:
+    print("MISSING:")
+    for m in missing:
+        print("   ", m)

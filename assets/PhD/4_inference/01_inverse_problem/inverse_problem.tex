@@ -1,0 +1,59 @@
+% The one equation both contributions solve, and the two data sets behind it.
+% Compile: pdflatex inverse_problem.tex && pdftocairo -svg inverse_problem.pdf inverse_problem.svg
+\documentclass[tikz,border=5pt]{standalone}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\usetikzlibrary{arrows.meta,positioning,calc,shapes.geometric}
+
+\definecolor{ink}{HTML}{2E2E2E}
+\definecolor{greytx}{HTML}{7A7A7A}
+\definecolor{kw}{HTML}{C2560A}
+\definecolor{kwtwo}{HTML}{521463}
+\definecolor{cmbc}{HTML}{25406B}
+\definecolor{lssc}{HTML}{2AA198}
+
+\begin{document}
+\begin{tikzpicture}[font=\sffamily]
+  \useasboundingbox (-6.6,-4.3) rectangle (6.6,5.6);
+
+  % The equation, with each symbol named underneath.
+  \node[ink,font=\sffamily\Large] (eq) at (0,0)
+       {$\mathbf{d} \;=\; \mathcal{A}(\mathbf{s},\boldsymbol\theta) \;+\; \mathbf{n}$};
+
+  \node[draw=kw,line width=1.1pt,rounded corners=4pt,inner sep=2.2pt,
+        minimum width=1.05cm,minimum height=0.85cm] (dbox) at (-1.97,0.03) {};
+
+  \node[greytx,font=\sffamily\scriptsize,align=center] at (-1.97,-1.05)
+       {what we\\measure};
+  \node[greytx,font=\sffamily\scriptsize,align=center] at (0.05,-1.05)
+       {the model};
+  \node[greytx,font=\sffamily\scriptsize,align=center] at (2.35,-1.05)
+       {noise};
+
+  % Two instances of the same measurement.
+  \node[anchor=south,inner sep=0] (cmb) at (-3.5,2.35)
+       {\includegraphics[height=2.5cm]{.cache/sky_freq_thumb.png}};
+  \node[cmbc,font=\sffamily\small,anchor=south] at (-3.5,4.95)
+       {the sky at several frequencies};
+  \node[lssc,font=\sffamily\small,anchor=south] at (3.5,4.95)
+       {the shear field};
+  \node[anchor=south,inner sep=0] (lss) at (3.5,2.35)
+       {\includegraphics[height=2.25cm]{.cache/shear_thumb.png}};
+
+  % Two arcs of the same shape, leaving the top corners of the d box and
+  % landing centred under each image.
+  \draw[-{Stealth[length=3.2mm,width=2.6mm]},cmbc,line width=1.4pt,line cap=round]
+        ($(dbox.north west)+(0.1,0.08)$) to[out=100,in=-75] ($(cmb.south)+(0,-0.15)$);
+  \draw[-{Stealth[length=3.2mm,width=2.6mm]},lssc,line width=1.4pt,line cap=round]
+        ($(dbox.north east)+(-0.1,0.08)$) to[out=60,in=-105] ($(lss.south)+(0,-0.15)$);
+
+  % What is unknown in each case.
+  \node[kwtwo,font=\sffamily\small,align=center,anchor=north] at (0,-2.65)
+       {$\mathbf{s}$: the sky signal or the initial density field \quad
+        $\boldsymbol\theta$: the cosmology};
+  \node[kw,font=\sffamily\small\bfseries,anchor=north] at (0,-3.6)
+       {both unknown, and only $\mathbf{d}$ is observed};
+\end{tikzpicture}
+\end{document}

@@ -1,14 +1,15 @@
 <section id="$idprefix$title-slide"$for(title-slide-attributes/pairs)$ $it.key$="$it.value$"$endfor$>
+<div style="background: rgba(250, 247, 240, 0.86); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); border-radius: 22px; padding: 28px 36px 30px; margin: 0 auto; width: 900px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);">
   <h1 class="title">$title$</h1>
 $if(subtitle)$
   <p class="subtitle">$subtitle$</p>
 $endif$
-$for(author)$
-  <p class="author">$author$</p>
-$endfor$
 $for(institute)$
   <p class="institute">$institute$</p>
 $endfor$
+$if(supervisors)$
+  <p class="supervisors" style="font-size: 0.75em;">$supervisors$$if(defense-date)$ — $defense-date$</p>$endif$
+$endif$
 $if(date)$
   <p class="date">$date$</p>
 $endif$
@@ -17,4 +18,8 @@ $if(logo1)$  <div style=""></div>
   $logo1$
 </div>
 $endif$
+$if(title-footer)$
+<div class="title-footer">$title-footer$</div>
+$endif$
+</div>
 </section>

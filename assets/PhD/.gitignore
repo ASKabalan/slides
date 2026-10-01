@@ -1,0 +1,12 @@
+# Download and compute caches: rebuilt by the generators on demand.
+*/.cache/
+.venv/
+
+# TeX by-products of the tikz figures (the .svg is the committed artefact).
+*/*.aux
+*/*.log
+*/*.out
+*/*.pdf
+
+# Source material handed over by others, too large to track.
+FOR_USAGE/

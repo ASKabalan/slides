@@ -1,0 +1,578 @@
+/*-- scss:defaults --*/
+
+// Parameters for this deck. css/custom.scss assigns $body-bg without !default,
+// so it always wins; the defense palette therefore uses its own names and the
+// rules below override custom.scss by cascade order.
+$slide-bg: #faf7f0; // the defense deck runs on a slightly creamy white
+$kw-color: #C2560A; // dark orange - important words
+$kw2-color: #521463; // deck purple - secondary accent
+$credit-color: #767676;
+$card-border: #d9d4c9; // warm grey hairline for the card objects
+
+/*-- scss:rules --*/
+
+html,
+body {
+  background-color: $slide-bg;
+}
+
+.reveal-viewport {
+  background-color: $slide-bg;
+}
+
+.reveal {
+  background-color: $slide-bg;
+}
+
+.reveal .slides section {
+  color: #333;
+}
+
+// Keyword spans: [dark energy]{.kw}
+.kw {
+  color: $kw-color;
+  font-weight: 700;
+}
+
+.kw2 {
+  color: $kw2-color;
+  font-weight: 700;
+}
+
+// Credit line under an image: [Credit: ...]{.credit}
+.credit {
+  display: block;
+  text-align: center;
+  font-size: 0.5em;
+  color: $credit-color;
+  margin-top: 0.15em;
+  line-height: 1.2;
+}
+
+// ---------------------------------------------------------------- cards
+// Shared card look: white body on the creamy slide, thin warm-grey border,
+// rounded corners. Each card draws its own purple strip with a ::before, so
+// the strip is there with or without a header block.
+
+// Solution box: strip on the left, optional left-aligned header.
+.solutionbox {
+  position: relative;
+  border-radius: 8px;
+  border: 1px solid $card-border;
+  background-color: #ffffff;
+}
+
+.solutionbox::before {
+  content: "";
+  position: absolute;
+  left: 0.35em;
+  top: 0.4em;
+  bottom: 0.4em;
+  width: 0.09em;
+  border-radius: 1em;
+  background-color: $kw2-color;
+}
+
+.solutionbox-header {
+  display: block; // override custom.scss's flex + justify-content:center
+  justify-content: initial;
+  align-items: initial;
+  padding: 0.4em 0.6em 0 1.1em;
+  text-align: left;
+  height: auto;
+  background-color: transparent;
+  font-weight: 700;
+  color: $kw2-color;
+  font-size: $solution-header-font-size;
+}
+
+.solutionbox-header p {
+  margin: 0;
+  padding-top: 0;
+}
+
+.solutionbox-body {
+  background-color: #ffffff;
+  border-radius: inherit; // square corners would poke past the rounded border
+  text-align: left; // an enclosing r-stack centres its children
+  padding-left: 1.1em;
+  padding-right: 0.65em;
+}
+
+// Figcadre: figure card, strip on top, optional centred header.
+.figcadre {
+  position: relative;
+  border-radius: 8px;
+  border: 1px solid $card-border;
+  background-color: #ffffff;
+}
+
+.figcadre::before {
+  content: "";
+  position: absolute;
+  top: 0.3em;
+  left: 0.6em;
+  right: 0.6em;
+  height: 0.18em;
+  border-radius: 0.09em;
+  background-color: $kw2-color;
+}
+
+.figcadre-header {
+  padding: 0.45em 0.8em 0 0.8em;
+  text-align: center;
+  font-weight: 700;
+  color: $kw2-color;
+  font-size: $solution-header-font-size;
+}
+
+.figcadre-header p {
+  margin: 0;
+  padding-top: 0.2em;
+}
+
+.figcadre-body {
+  background-color: #ffffff;
+  font-size: $solution-body-font-size;
+  padding: 0.25em 0.9em 0.35em 0.9em;
+}
+
+.figcadre-body> :last-child {
+  margin-bottom: 0;
+}
+
+// Title slide: a single line under the logo block.
+.reveal .title-footer {
+  margin-top: 1.4em;
+  text-align: center;
+  font-size: 0.55em;
+  color: #6f6459;
+}
+
+// r-stack children span the full slide width, so percentage and pixel widths
+// resolve deterministically across overlaid fragments (from JAXHACK/rstack.scss).
+.reveal .r-stack>* {
+  width: 100%;
+  text-align: center;
+}
+
+.reveal .r-stack img,
+.reveal .r-stack video {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// ---------------------------------------------------------------- outline rail
+// Section slides stack the full rail and the focused rail; the focused one
+// fades in by itself once the slide is on screen, so no click is spent on it.
+// --rail-delay (1.2s) before the fade, --rail-fade (0.5s) for the fade itself.
+.reveal .rail-stack {
+  position: relative;
+  width: 80%; // the outline map is 1.9:1; this keeps it under the section title
+  margin: 0.4em auto 0;
+}
+
+.reveal .rail-stack img {
+  display: block;
+  width: 100%;
+  margin: 0;
+}
+
+.reveal .rail-stack .rail-focus {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.reveal section.present .rail-stack .rail-focus {
+  animation: rail-in var(--rail-fade, 0.5s) ease var(--rail-delay, 1.2s) forwards;
+}
+
+.reveal section.present .rail-stack .rail-full {
+  animation: rail-out var(--rail-fade, 0.5s) ease var(--rail-delay, 1.2s) forwards;
+}
+
+@keyframes rail-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes rail-out {
+  to {
+    opacity: 0;
+  }
+}
+
+// ---------------------------------------------------------------- media
+// Videos play when their fragment appears (see phd.html). In the PDF export a
+// video cannot play, so its last frame is shown in its place.
+.reveal video {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+// !important: layout helpers (e.g. .cell img) must never show a print-only copy
+.reveal .print-only {
+  display: none !important;
+}
+
+html.print-pdf .reveal .print-only {
+  display: block !important;
+}
+
+html.print-pdf .reveal video {
+  display: none;
+}
+
+// A GIF shows on screen; its .print-only sibling (the last frame) replaces it
+// in the PDF.
+html.print-pdf .reveal .screen-only {
+  display: none;
+}
+
+// ---------------------------------------------------------------- corner badge
+// A small figure parked in the top-right corner. On screen, phd.html keeps one
+// fixed copy outside the slides for every slide with a `corner="path"` attribute,
+// so it stays put across a section; slides also carry a .corner.print-only copy
+// for the PDF.
+.reveal .corner,
+.reveal .slides > .corner-fixed {
+  position: absolute;
+  top: -8px;
+  right: -6px;
+  width: var(--corner-w, 190px);
+  margin: 0;
+  max-width: none;
+  max-height: none;
+  border-radius: 6px;
+}
+
+.reveal .slides > .corner-fixed {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+.reveal .slides > .corner-fixed.shown { opacity: 1; }
+html.print-pdf .reveal .slides > .corner-fixed { display: none; }
+
+// ---------------------------------------------------------------- full-bleed slide
+// Full-bleed image slide: the background carries the figure; phd.html moves
+// the corner tags (telescope + headerless solutionbox) and the credit into the
+// background layer, so sizes and offsets are in viewport units.
+.reveal .bleed-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  font-family: "Source Sans Pro", "Source Sans 3", Helvetica, sans-serif;
+}
+
+.reveal .bleed-tag {
+  position: absolute;
+  bottom: 3.5vh;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.8vw;
+  font-size: 2.1vh;
+  line-height: 1.3;
+  color: #222;
+}
+
+.reveal .bleed-left {
+  left: 1.2vw;
+}
+
+.reveal .bleed-right {
+  right: 1.2vw;
+}
+
+.reveal .bleed-tag p {
+  margin: 0;
+}
+
+.reveal .bleed-tag .solutionbox {
+  margin-bottom: 0.4vh;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
+}
+
+.reveal .bleed-tag .solutionbox-body {
+  font-size: 1em;
+  padding-top: 0.3em;
+  padding-bottom: 0.3em;
+}
+
+.reveal .bleed-tag .solutionbox-body > :last-child {
+  padding-bottom: 0;
+}
+
+.reveal .bleed-scope {
+  height: 11vh;
+  margin: 0;
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.6));
+}
+
+.reveal .bleed-credit {
+  position: absolute;
+  bottom: 0.8vh;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 1.35vh;
+  color: #e8e4dc;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+// The deck footer is unreadable on the dark image: hide it on bleed slides.
+.reveal:has(section.bleed-slide.present) .footer {
+  display: none !important;
+}
+
+// Any slide with a data-hide-chrome attribute (a full background image or video, e.g. the
+// title slide through title-slide-attributes) shows no footer, slide number or menu button.
+.reveal:has(section[data-hide-chrome].present) .footer,
+.reveal:has(section[data-hide-chrome].present) .slide-number,
+.reveal:has(section[data-hide-chrome].present) .slide-menu-button {
+  display: none !important;
+}
+
+// ---------------------------------------------------------------- utilities
+// Generic building blocks. Slide-specific sizes and positions are written inline
+// in index.qmd (style="…"), or through the custom properties listed here.
+
+.reveal .center-text { text-align: center; }
+
+// A slide title 1.5x the default heading size: ## Outline {.big-title}
+.reveal section.big-title h2 { font-size: calc(1.5 * var(--r-heading2-size)); }
+
+// Top of a vertical stack without an empty section slide: write the first slide of the group
+// as a level-1 heading, `# Title {.stack-top}`, and the ## slides after it stack under it in the
+// overview (Esc). It looks exactly like an ordinary ## slide: h2-sized heading, not centred.
+.reveal .slides section.stack-top { top: 0 !important; }
+.reveal .slides section.stack-top > h1 { font-size: var(--r-heading2-size); }
+.reveal .slides section.big-title.stack-top > h1 { font-size: calc(1.5 * var(--r-heading2-size)); }
+
+// .bare: children lose reveal's paragraph margins and image size caps, so the
+// inline sizes of a hand-made layout are exact.
+.reveal .bare p { margin: 0; }
+.reveal .bare img { margin: 0; max-width: none; max-height: none; }
+
+// .flat: the paragraphs Pandoc wraps around markdown images and spans are transparent to
+// layout, so ![](fig){style="max-width: 50%"} inside a .row or .grid is itself the flex or grid
+// item and its percentages resolve against the row.
+.reveal .flat > p { display: contents; }
+
+// .table-full: a markdown (pipe) table inside spans the full width of its box.
+.reveal .table-full table { width: 100%; }
+
+// .row: flex row.  --gap (1em), --align (center), --justify (flex-start)
+.reveal .row {
+  display: flex;
+  gap: var(--gap, 1em);
+  align-items: var(--align, center);
+  justify-content: var(--justify, flex-start);
+}
+
+// .grid: CSS grid.  --cols (1fr 1fr), --gap (1em), --row-gap (0.3em), --align (center)
+.reveal .grid {
+  display: grid;
+  grid-template-columns: var(--cols, 1fr 1fr);
+  column-gap: var(--gap, 1em);
+  row-gap: var(--row-gap, 0.3em);
+  align-items: var(--align, center);
+}
+
+// .cell: a figure with its label, centred. The image size comes from
+// --img-w (100%) / --img-h (auto), capped by --img-max-w / --img-max-h (none),
+// --img-margin (0 auto), --img-radius (0), and
+// the paragraph margin from --cell-margin (0.1em 0). The variables inherit, so
+// set them once on the enclosing row or grid.
+.reveal .cell {
+  min-width: 0;
+  text-align: center;
+}
+
+.reveal .cell p { margin: var(--cell-margin, 0.1em 0); }
+
+.reveal .cell img {
+  display: block;
+  width: var(--img-w, 100%);
+  height: var(--img-h, auto);
+  max-width: var(--img-max-w, none);
+  max-height: var(--img-max-h, none);
+  margin: var(--img-margin, 0 auto);
+  border-radius: var(--img-radius, 0);
+}
+
+// .caption: small dark label under a figure.  --cap-size (0.7em), --cap-lh (1.15)
+.reveal .caption {
+  display: block;
+  font-size: var(--cap-size, 0.7em);
+  line-height: var(--cap-lh, 1.15);
+  color: #2E2E2E;
+}
+
+// .tag: a symbol or a word in a small card.  --tag-bg, --tag-border, --tag-pad
+.reveal .tag {
+  display: inline-block;
+  padding: var(--tag-pad, 0.25em 0.8em);
+  border: 1.5px solid var(--tag-border, #{$card-border});
+  border-radius: 8px;
+  background: var(--tag-bg, #ffffff);
+}
+
+// .vlabel: text reading bottom to top (a row label)
+.reveal .vlabel {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+// .photo: a photograph lifted off the slide
+.reveal .photo {
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+// ---------------------------------------------------------------- equation box
+// ::: {.eqbox style="--eq-bg:#e8f0fa"}  $$ … $$  :::
+// --eq-bg, --eq-border, --eq-border-w, --eq-radius, --eq-pad, --eq-size,
+// --eq-math-margin (space around the display maths, 1em 0)
+.reveal .eqbox {
+  justify-self: center;
+  white-space: nowrap;
+  font-size: var(--eq-size, 0.72em);
+  padding: var(--eq-pad, 0.05em 0.9em);
+  border-radius: var(--eq-radius, 12px);
+  background: var(--eq-bg, #ffffff);
+  border: var(--eq-border-w, 2px) solid var(--eq-border, #c2560a);
+}
+
+.reveal .eqbox p { margin: 0; }
+.reveal .eqbox .MathJax_Display { margin: var(--eq-math-margin, 1em 0) !important; }
+
+// ---------------------------------------------------------------- move fragment
+// A fragment that fades in while moving: class="fragment move"
+// style="--move: translateX(560px) rotate(45deg)". Children marked .counter take
+// --counter (e.g. rotate(-45deg)) to stay upright.
+.reveal .slides section .fragment.move {
+  transition: transform 1.1s ease, opacity 0.4s ease;
+}
+
+.reveal .slides section .fragment.move.visible { transform: var(--move, none); }
+.reveal .slides section .fragment.move .counter { transition: transform 1.1s ease; }
+.reveal .slides section .fragment.move.visible .counter { transform: var(--counter, none); }
+
+// ---------------------------------------------------------------- transform fragment
+// Something already on screen that moves or shrinks on its click, and stays shown:
+// class="fragment custom transform" style="--to: translate(620px, -30px) scale(0.3);
+// --origin: top left". A custom fragment is never hidden; it only gains .visible.
+// --from (none) is the transform before the click, so the reverse move (a corner copy growing
+// back) is --from: translate(…) scale(…); --to: none.
+.reveal .slides section .fragment.custom.transform {
+  transition: transform 1.1s ease;
+  transform-origin: var(--origin, center);
+  transform: var(--from, none);
+}
+
+.reveal .slides section .fragment.custom.transform.visible { transform: var(--to, none); }
+
+// ---------------------------------------------------------------- arrow
+// A straight grey arrow drawn in CSS: []{.arrow style="--len: 60px"} points right,
+// []{.arrow .down style="--len: 34px"} points down. --len (60px, shaft + head),
+// --w (5px, shaft), --head (18px), --color (#6E6E6E).
+.reveal .arrow {
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  width: var(--len, 60px);
+  height: var(--head, 18px);
+}
+
+.reveal .arrow::before,
+.reveal .arrow::after {
+  content: "";
+  position: absolute;
+}
+
+.reveal .arrow::before {
+  left: 0;
+  top: 50%;
+  width: calc(100% - 0.8 * var(--head, 18px));
+  height: var(--w, 5px);
+  transform: translateY(-50%);
+  border-radius: var(--w, 5px);
+  background: var(--color, #6E6E6E);
+}
+
+.reveal .arrow::after {
+  right: 0;
+  top: 0;
+  border-left: var(--head, 18px) solid var(--color, #6E6E6E);
+  border-top: calc(var(--head, 18px) / 2) solid transparent;
+  border-bottom: calc(var(--head, 18px) / 2) solid transparent;
+}
+
+.reveal .arrow.down {
+  width: var(--head, 18px);
+  height: var(--len, 34px);
+}
+
+.reveal .arrow.down::before {
+  left: 50%;
+  top: 0;
+  width: var(--w, 5px);
+  height: calc(100% - 0.8 * var(--head, 18px));
+  transform: translateX(-50%);
+}
+
+.reveal .arrow.down::after {
+  right: auto;
+  top: auto;
+  left: 0;
+  bottom: 0;
+  border-top: var(--head, 18px) solid var(--color, #6E6E6E);
+  border-left: calc(var(--head, 18px) / 2) solid transparent;
+  border-right: calc(var(--head, 18px) / 2) solid transparent;
+  border-bottom: 0;
+}
+
+// ---------------------------------------------------------------- highlight box
+// A rounded box drawn over a figure, placed in percent of the figure:
+//   <div class="hl-host"> <img …> <div class="hlbox" style="--x:6%; --y:5%; --w:27%; --h:32%"></div> </div>
+// Wrap it in fragments to show and hide it. To slide it somewhere else on a later
+// click, give it `fragment custom hlbox-move` and the target --x2/--y2/--w2/--h2:
+// a custom fragment is never hidden, it only gains .visible when its click comes.
+// --hl-color (#c2560a), --hl-w (4px), --hl-radius (14px).
+.reveal .hl-host {
+  position: relative;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.reveal .hl-host > img { display: block; margin: 0; }
+
+.reveal .hlbox {
+  position: absolute;
+  box-sizing: border-box;
+  pointer-events: none;
+  left: var(--x);
+  top: var(--y);
+  width: var(--w);
+  height: var(--h);
+  border: var(--hl-w, 4px) solid var(--hl-color, #c2560a);
+  border-radius: var(--hl-radius, 14px);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.6);
+}
+
+.reveal .slides section .fragment.custom.hlbox-move {
+  transition: left 0.9s ease, top 0.9s ease, width 0.9s ease, height 0.9s ease;
+}
+
+.reveal .slides section .fragment.custom.hlbox-move.visible {
+  left: var(--x2);
+  top: var(--y2);
+  width: var(--w2);
+  height: var(--h2);
+}

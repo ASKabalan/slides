@@ -1,0 +1,8 @@
+project:
+  type: website
+  output-dir: .
+  render:
+    - index.qmd
+
+website:
+  title: "PhD defense — Wassim Kabalan"

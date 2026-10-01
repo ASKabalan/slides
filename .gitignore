@@ -3,3 +3,6 @@
 site_libs
 search.json
 index.html
+.cache
+*pyc
+AGENTS.md

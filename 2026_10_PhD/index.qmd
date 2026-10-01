@@ -1,0 +1,3039 @@
+---
+title: "Differentiable Field-Level Cosmology"
+subtitle: "Cosmic Microwave Background, Weak Lensing, and GPU-Accelerated Inference"
+
+author:
+  - name: "Wassim Kabalan"
+
+title-footer: "Wassim Kabalan — PhD defense — Université Paris Cité / APC"
+
+supervisors: "Supervised by Eric Aubourg · Co-supervised by Josquin Errard · Co-advised by François Lanusse & Alexandre Boucaud"
+
+image: "PhD/1_intro/lcdm/lcdm_model.svg"
+date: "2026-10-12"
+date-format: "D MMMM YYYY"
+footer: "PhD defense — Université Paris Cité / APC"
+
+format:
+  revealjs:
+    theme: [default, css/custom.scss, phd.scss]
+    incremental: false
+    transition: slide
+    background-transition: slide
+    presentation-size: max-scale
+    highlight-style: github
+    slide-number: true
+    fragment-in-url: true
+    pdfSeparateFragments: true
+    template-partials:
+      - css/title-slide.html
+    include-after-body: phd.html
+    auto-stretch: false
+output: revealjs
+
+title-slide-attributes:
+  data-visibility: "uncounted"
+  data-hide-chrome: "true"
+  data-background-video: "assets/PhD/0_cover/cmb_to_cosmicweb.mp4"
+  data-background-video-loop: "true"
+  data-background-video-muted: "true"
+  data-background-size: cover
+
+logo1: '
+<div style="display: flex; justify-content: center; align-items: center; gap: 80px; margin-top: 40px;">
+  <img src="assets/Logos/APC.png" style="height: 100px; border-radius: 6px;"/>
+  <img src="assets/Logos/scipol.png" style="height: 105px;"/>
+  <img src="assets/Logos/AstroDeep-2.png" style="height: 88px;"/>
+  <img src="assets/Logos/cosmostat.png" style="height: 62px;"/>
+</div>
+'
+---
+
+## {#survey-generations .bleed-slide background-image="PhD/1_intro/surveys/stage2_4_abell2390_bg.jpg" background-size="cover" background-color="#08080a"}
+
+::: {.bleed-tag .bleed-left}
+![](PhD/1_intro/telescopes/telescope_sdss.svg){.bleed-scope}
+
+:::: {.solutionbox}
+::: {.solutionbox-body}
+[Stage 2]{.kw2} · SDSS, 2.5 m ground, 1.4″ seeing
+:::
+::::
+:::
+
+::: {.bleed-tag .bleed-right}
+:::: {.solutionbox}
+::: {.solutionbox-body}
+[Stage 4]{.kw2} · Euclid, 1.2 m space, 0.18″
+:::
+::::
+
+![](PhD/1_intro/telescopes/telescope_euclid.svg){.bleed-scope}
+:::
+
+[Abell 2390 · Credit: SDSS DR18 (left); ESA / Euclid / Euclid Consortium / NASA, J.-C. Cuillandre & G. Anselmi (right)]{.bleed-credit}
+
+# Modern observational cosmology {#telescopes .stack-top visibility="uncounted" transition="slide-in none-out"}
+
+::::: {.bare style="position: relative; display: grid; grid-template-columns: 2.2em 1fr 1fr; grid-template-rows: auto 1fr 1fr; column-gap: 2.2em; row-gap: 1.6em; width: 74%; height: 560px; margin: 0 0 0 1em;"}
+::: {style="grid-column: 2; grid-row: 1; text-align: center; font-size: 0.9em;"}
+[Early Universe]{.kw}
+:::
+
+::: {style="grid-column: 3; grid-row: 1; text-align: center; font-size: 0.9em;"}
+[Late Universe]{.kw}
+:::
+
+::: {.vlabel style="grid-column: 1; grid-row: 2; align-self: center; justify-self: center; font-size: 0.85em; color: #2E2E2E;"}
+Space based
+:::
+
+::: {.vlabel style="grid-column: 1; grid-row: 3; align-self: center; justify-self: center; font-size: 0.85em; color: #2E2E2E;"}
+Ground based
+:::
+
+::: {style="position: absolute; left: calc(2.2em + 1.1em + (100% - 2.2em - 4.4em) / 2 + 1.1em); top: 1.8em; bottom: 0; width: 5px; background: #d9d4c9; border-radius: 3px;"}
+:::
+
+::: {style="position: absolute; left: 2.6em; right: 0; top: calc(1.8em + (100% - 1.8em) / 2 - 2px); height: 5px; background: #d9d4c9; border-radius: 3px;"}
+:::
+
+:::: {.figcadre .fragment fragment-index=1 style="display: flex; flex-direction: column; min-height: 0; font-size: 0.8em; grid-column: 2; grid-row: 2;"}
+::: {.figcadre-header}
+LiteBIRD
+:::
+
+::: {.figcadre-body style="flex: 1 1 auto; min-height: 0; display: flex; align-items: center; justify-content: center; gap: 0; border-radius: 0 0 8px 8px;"}
+:::: {.row .flat .bare style="--gap: 0.9em; --justify: center;"}
+![](PhD/1_intro/telescopes/telescope_litebird.svg){style="max-height: 150px; max-width: 50%; margin: 0;"}
+
+::: {style="font-size: 0.82em; line-height: 1.45; white-space: nowrap; text-align: left; color: #2E2E2E;"}
+full sky, from L2\
+15 bands, 34–448 GHz\
+σ(*r*) < 0.001
+:::
+::::
+:::
+::::
+
+:::: {.figcadre .fragment fragment-index=1 style="display: flex; flex-direction: column; min-height: 0; font-size: 0.8em; grid-column: 3; grid-row: 2;"}
+::: {.figcadre-header}
+Euclid
+:::
+
+::: {.figcadre-body style="flex: 1 1 auto; min-height: 0; display: flex; align-items: center; justify-content: center; gap: 0; border-radius: 0 0 8px 8px;"}
+:::: {.row .flat .bare style="--gap: 0.9em; --justify: center;"}
+![](PhD/1_intro/telescopes/telescope_euclid.svg){style="max-height: 150px; max-width: 50%; margin: 0;"}
+
+::: {style="font-size: 0.82em; line-height: 1.45; white-space: nowrap; text-align: left; color: #2E2E2E;"}
+14 000 deg²\
+*z* ~ 0.2–2\
+30 gal arcmin⁻²\
+~1.5 billion galaxies
+:::
+::::
+:::
+::::
+
+:::: {.figcadre .fragment fragment-index=2 style="display: flex; flex-direction: column; min-height: 0; font-size: 0.8em; grid-column: 2; grid-row: 3;"}
+::: {.figcadre-header}
+Simons Observatory
+:::
+
+::: {.figcadre-body style="flex: 1 1 auto; min-height: 0; display: flex; align-items: center; justify-content: center; gap: 0; border-radius: 0 0 8px 8px;"}
+:::: {.row .flat .bare style="--gap: 0.9em; --justify: center;"}
+![](PhD/1_intro/telescopes/telescope_simons_observatory.svg){style="max-height: 150px; max-width: 50%; margin: 0;"}
+
+::: {style="font-size: 0.82em; line-height: 1.45; white-space: nowrap; text-align: left; color: #2E2E2E;"}
+Atacama, Chile\
+6 bands, 27–280 GHz\
+σ(*r*) ≈ 0.003
+:::
+::::
+:::
+::::
+
+:::: {.figcadre .fragment fragment-index=2 style="display: flex; flex-direction: column; min-height: 0; font-size: 0.8em; grid-column: 3; grid-row: 3;"}
+::: {.figcadre-header}
+Vera C. Rubin Observatory (LSST)
+:::
+
+::: {.figcadre-body style="flex: 1 1 auto; min-height: 0; display: flex; align-items: center; justify-content: center; gap: 0; border-radius: 0 0 8px 8px;"}
+:::: {.row .flat .bare style="--gap: 0.9em; --justify: center;"}
+![](PhD/1_intro/telescopes/telescope_lsst_rubin.svg){style="max-height: 150px; max-width: 50%; margin: 0;"}
+
+::: {style="font-size: 0.82em; line-height: 1.45; white-space: nowrap; text-align: left; color: #2E2E2E;"}
+18 000 deg²\
+*z* ~ 0.2–2.5\
+30 gal arcmin⁻²\
+~2 billion galaxies
+:::
+::::
+:::
+::::
+
+::: {.fragment fragment-index=3 style="position: absolute; left: calc(100% + 1.4em); bottom: -20px; width: 230px;"}
+![](PhD/1_intro/telescopes/arrow_to_photo.svg){.bare style="position: absolute; left: -95px; bottom: 120px; width: 110px; margin: 0;"}
+
+![](PhD/1_intro/telescopes/me_at_lsst_slide.jpg){.photo style="width: 230px;"}
+:::
+:::::
+
+## Modern observational cosmology {#modern_cosmo visibility="uncounted" transition="none-in slide-out"}
+
+![](PhD/1_intro/surveys/cosmology_timeline.svg){fig-align="center" width="62%"}
+
+::: {.r-stack}
+::: {.fragment .fade-in-then-out fragment-index=1}
+:::: {.columns}
+::: {.column width="38%"}
+![](PhD/1_intro/scientists/hubble_portrait.jpg){fig-align="center" height="340px" style="border-radius: 6px;"}
+:::
+
+::: {.column width="62%"}
+![](PhD/1_intro/scientists/hubble_diagram.svg){fig-align="center" height="340px"}
+:::
+::::
+
+[Credit: NASA (photograph); Hubble (1929), PNAS 15, 168, Fig. 1, redrawn]{.credit}
+:::
+
+::: {.fragment .fade-in fragment-index=2}
+:::: {.columns}
+::: {.column width="42%"}
+![](PhD/1_intro/scientists/hubble_expansion.gif){.screen-only fig-align="center" height="350px"}
+
+![](PhD/1_intro/scientists/hubble_expansion_last.svg){.print-only fig-align="center" height="350px"}
+:::
+
+::: {.column width="58%" .fragment fragment-index=3}
+### The Friedmann–Lemaître–Robertson–Walker metric {style="font-size: 0.85em; margin-bottom: 0;"}
+
+![](PhD/1_intro/scientists/flrw_curv.svg){fig-align="center" width="82%" style="margin: 0;"}
+
+::: {.r-stack}
+::: {.fragment fragment-index=4}
+:::: {.solutionbox}
+::: {.solutionbox-header style="font-size: 17px;"}
+The Expanding Universe
+:::
+
+::: {.solutionbox-body style="font-size: 16px;"}
+[Georges Lemaître]{.kw}: predicted the [primeval atom]{.kw} as the origin of the Universe
+:::
+::::
+:::
+:::
+:::
+::::
+:::
+:::
+
+## The Cosmic Microwave Background
+
+<br/>
+<br/>
+
+:::: {.columns}
+::: {.column width="51%"}
+![](PhD/1_intro/CMB/horn_antenna.jpg){fig-align="center" width="100%" style="margin: 0;"}
+
+[1965, Holmdel: Penzias & Wilson find a 3 K signal from every direction · Credit: NASA (antenna); ESA / Planck Collaboration (map)]{.credit}
+:::
+
+::: {.column width="47%"}
+:::: {style="font-size: 0.75em;"}
+- The [relic light of the hot Big Bang]{.kw}, released 380 000 years after it
+
+::: {.fragment}
+- At Princeton, [Dicke, Peebles, Roll & Wilkinson]{.kw} had predicted this relic radiation and were building a radiometer to find it
+- The two groups published side by side in 1965: [Penzias & Wilson]{.kw} the measurement, Princeton the interpretation
+:::
+
+::: {.fragment}
+![](PhD/1_intro/CMB/cmb_map_transparent.png){fig-align="center" width="92%"}
+:::
+::::
+:::
+::::
+
+::: {.fragment}
+:::: {.solutionbox}
+::: {.solutionbox-body}
+The discovery of the [CMB]{.kw} confirmed the expanding universe
+:::
+::::
+:::
+
+## Lambda Cold Dark Matter ($\Lambda$CDM)
+
+
+<br/>
+<br/>
+
+:::: {.columns}
+::: {.column width="60%"}
+<br/>
+
+![](PhD/1_intro/lcdm/lcdm_model_arrow.svg){fig-align="center" width="100%"}
+
+:::
+
+::: {.column width="40%" .fragment}
+<br/><br/>
+
+![](PhD/1_intro/lcdm/content_pie_fill.gif){.screen-only fig-align="center" width="100%"}
+
+![](PhD/1_intro/lcdm/content_pie.svg){.print-only fig-align="center" width="100%"}
+:::
+::::
+
+## The limits of $\Lambda$CDM
+
+::: {.r-stack style="width: 46%; margin: -1.8em auto -0.9em;"}
+![](PhD/1_intro/lcdm/lcdm_model.svg){style="width: 100%; margin: 0;"}
+
+![](PhD/1_intro/lcdm/lcdm_model_cmb.svg){.fragment .fade-in-then-out fragment-index=1 style="width: 100%; margin: 0;"}
+
+![](PhD/1_intro/lcdm/lcdm_model_lss.svg){.fragment fragment-index=2 style="width: 100%; margin: 0;"}
+:::
+
+<br/>
+<br/>
+
+:::: {.columns style="font-size: 0.8em;"}
+::: {.column width="49%"}
+[The early Universe]{.kw}
+
+::: {.fragment .grid fragment-index=1 style="--cols: 1.34fr 1.97fr; --gap: 0.8em; --align: start; --cell-margin: 0.1em 0; --img-margin: 0.2em 0 0;"}
+:::: {.cell}
+horizon
+
+![](PhD/1_intro/lcdm/cmb_horizon_transparent.png)
+
+[Credit: NASA / WMAP Science Team]{.credit}
+::::
+
+:::: {.cell}
+flatness
+
+![](PhD/1_intro/lcdm/flrw_flat.svg)
+
+\+ monopole dilution
+::::
+:::
+:::
+
+::: {.column style="width: 49%; box-sizing: border-box; border-left: 2px solid #d9d4c9; padding-left: 1.2em; margin-top: -0.5em; padding-top: 0.5em;"}
+[The late Universe]{.kw}
+
+:::: {.cell .fragment fragment-index=2 style="--gap: 0.8em; --align: start; --cell-margin: 0.1em 0; --img-margin: 0.2em 0 0;"}
+::: {.grid style="--cols: 1.73fr 1.33fr; --gap: 0.8em; --align: start; --cell-margin: 0.1em 0; --img-margin: 0.2em 0 0;"}
+:::: {.cell}
+components
+
+![](PhD/1_intro/lcdm/content_pie.svg)
+::::
+
+:::: {.cell}
+History of the expanding Universe
+
+![](PhD/1_intro/lcdm/rho_vs_a.svg)
+::::
+:::
+::::
+:::
+::::
+
+# Outline {.big-title .stack-top style="text-align: center;"}
+
+![](PhD/2_outline/rail_full.svg){fig-align="center" width="86%"}
+
+# From model to observation: the CMB
+
+::: {.rail-stack}
+![](PhD/2_outline/rail_full.svg){.rail-full}
+
+![](PhD/2_outline/rail_focus_cmb.svg){.rail-focus}
+:::
+
+## Inflation {corner="PhD/1_intro/lcdm/lcdm_model_cmb.svg"}
+
+![](PhD/1_intro/lcdm/lcdm_model_cmb.svg){.corner .print-only}
+
+::: {.r-stack}
+::: {.fragment .fade-out fragment-index=1 style="width: 70%;"}
+[The early Universe]{.kw}
+
+::: {.grid style="--cols: 1.34fr 1.97fr; --gap: 0.8em; --align: start; --cell-margin: 0.1em 0; --img-margin: 0.2em 0 0;"}
+:::: {.cell}
+horizon
+
+![](PhD/1_intro/lcdm/cmb_horizon_transparent.png)
+
+::::
+
+:::: {.cell}
+flatness
+
+![](PhD/1_intro/lcdm/flrw_flat.svg)
+
+\+ monopole dilution
+::::
+:::
+:::
+
+::: {.fragment .fade-in fragment-index=1}
+![](PhD/3_observation/cmb/01_inflation/inflation_potential.svg){fig-align="center" width="78%"}
+:::
+:::
+
+::: {.fragment fragment-index=2}
+- A brief [accelerated expansion]{.kw} solves the horizon and flatness problems
+- Its [quantum fluctuations]{.kw} $\delta\phi$ seed every structure we see today
+:::
+
+## Primordial gravitational waves {corner="PhD/1_intro/lcdm/lcdm_model_cmb.svg"}
+
+![](PhD/1_intro/lcdm/lcdm_model_cmb.svg){.corner .print-only}
+
+:::: {.columns style="display: flex; align-items: center; min-height: 540px;"}
+::: {.column width="44%"}
+- Quantum fluctuations perturb the [metric]{.kw} of space-time
+- [Scalar]{.kw}: $\Delta_s^2(k) = A_s\,(k/k_*)^{n_s-1}$
+- [Tensor]{.kw}: $\Delta_t^2(k) = A_t\,(k/k_*)^{n_t}$, the [gravitational waves]{.kw}
+
+:::: {.fragment}
+::: {.eqbox style="--eq-border: #25406b; --eq-size: 1em; --eq-math-margin: 0.3em 0; width: fit-content; margin: 0.4em auto;"}
+$$
+r \equiv \frac{A_t}{A_s} \;\propto\; E_\mathrm{inf}^4
+$$
+:::
+
+The tensor-to-scalar ratio fixes the [energy scale of inflation]{.kw}
+::::
+
+::: {.fragment}
+Primordial GWs leave a unique imprint in the CMB [polarisation]{.kw2}
+:::
+:::
+
+::: {.column width="54%"}
+![](PhD/3_observation/cmb/02_primordial_gw/scalar_tensor.gif){.screen-only fig-align="center" width="100%"}
+
+![](PhD/3_observation/cmb/02_primordial_gw/scalar_tensor_last.svg){.print-only fig-align="center" width="100%"}
+:::
+::::
+
+## Polarisation of the CMB {corner="PhD/1_intro/lcdm/lcdm_model_cmb.svg"}
+
+![](PhD/1_intro/lcdm/lcdm_model_cmb.svg){.corner .print-only}
+
+:::: {.row .bare style="--gap: 0.6em; margin-top: 0.4em;"}
+::: {style="display: flex; flex-direction: column; gap: 0.5em; flex: 0 0 auto;"}
+[$A_s$]{.tag}
+
+[$A_t$]{.tag}
+:::
+
+::: {style="position: relative; flex: 1 1 auto;"}
+![](PhD/3_observation/cmb/03_polarisation/polarised_photon.gif){.screen-only style="display: block; width: 100%;"}
+
+![](PhD/1_intro/CMB/cmb_map_transparent.png){.screen-only style="position: absolute; left: 66.25%; top: 17.5%; width: 32.5%; height: 65%;"}
+
+![](PhD/3_observation/cmb/03_polarisation/polarised_photon_last.svg){.print-only}
+:::
+::::
+
+::: {.fragment}
+:::: {style="font-size: 0.85em;"}
+- A quadrupole at last scattering + Thomson scattering, $\propto |\hat{\epsilon}\cdot\hat{\epsilon}'|^2$ → [linear polarisation]{.kw}
+- 3 [Stokes parameters]{.kw} describe linearly polarised light
+::::
+
+![](PhD/3_observation/cmb/03_polarisation/stokes_iqu.svg){fig-align="center" width="100%"}
+
+[Adapted from: Emma Alexander, Wikimedia Commons ([Stokes params](https://commons.wikimedia.org/wiki/File:Emmaalexander_Stokes_params.png))]{.credit}
+:::
+
+## Q and U Stokes parameters {#q-and-u-stokes-parameters corner="PhD/1_intro/lcdm/lcdm_model_cmb.svg"}
+
+![](PhD/1_intro/lcdm/lcdm_model_cmb.svg){.corner .print-only}
+
+```{=html}
+<div class="bare" style="position: relative; height: 540px; font-size: 1.25em; --tag-bg: rgba(255, 255, 255, 0.88); --tag-border: transparent; --tag-pad: 0.05em 0.45em;">
+<svg class="fragment" data-fragment-index="1" style="position: absolute; left: 380px; top: -25px; width: 330px;" viewBox="0 0 300 120"><path d="M20 110 C 30 10, 250 -10, 262 92" fill="none" stroke="#6E6E6E" stroke-width="5"/><path d="M246 84 L263 112 L278 82 Z" fill="#6E6E6E"/></svg>
+<div style="position: absolute; left: 150px; width: 195px; height: 195px; display: flex; align-items: center; justify-content: center; top: 20px;">
+  <img src="PhD/3_observation/cmb/04_q_and_u/qu_Q.png" style="position: absolute; inset: 0; width: 100%; height: 100%; border: 2px solid #2E2E2E;"><span class="tag" style="position: relative;">\(Q\)</span>
+</div>
+<div style="position: absolute; left: 150px; width: 195px; height: 195px; display: flex; align-items: center; justify-content: center; top: 305px;">
+  <img src="PhD/3_observation/cmb/04_q_and_u/qu_U.png" style="position: absolute; inset: 0; width: 100%; height: 100%; border: 2px solid #2E2E2E;"><span class="tag" style="position: relative;">\(U\)</span>
+</div>
+<div class="fragment move" data-fragment-index="1" style="position: absolute; left: 150px; width: 195px; height: 195px; display: flex; align-items: center; justify-content: center; top: 20px; --move: translateX(560px) rotate(45deg); --counter: rotate(-45deg);">
+  <img src="PhD/3_observation/cmb/04_q_and_u/qu_Q.png" class="fragment fade-out" data-fragment-index="2" style="position: absolute; inset: 0; width: 100%; height: 100%; border: 2px solid #2E2E2E;"><img src="PhD/3_observation/cmb/04_q_and_u/qu_Qp.png" class="fragment" data-fragment-index="2" style="position: absolute; inset: 0; width: 100%; height: 100%; border: 2px solid #2E2E2E;">
+  <span class="tag counter" style="position: relative;"><span class="fragment fade-out" data-fragment-index="2">\(Q\)</span><span class="fragment" data-fragment-index="2" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); white-space: nowrap;">\(U\)</span></span>
+</div>
+<div class="fragment move" data-fragment-index="1" style="position: absolute; left: 150px; width: 195px; height: 195px; display: flex; align-items: center; justify-content: center; top: 305px; --move: translateX(560px) rotate(45deg); --counter: rotate(-45deg);">
+  <img src="PhD/3_observation/cmb/04_q_and_u/qu_U.png" class="fragment fade-out" data-fragment-index="2" style="position: absolute; inset: 0; width: 100%; height: 100%; border: 2px solid #2E2E2E;"><img src="PhD/3_observation/cmb/04_q_and_u/qu_Up.png" class="fragment" data-fragment-index="2" style="position: absolute; inset: 0; width: 100%; height: 100%; border: 2px solid #2E2E2E;">
+  <span class="tag counter" style="position: relative;"><span class="fragment fade-out" data-fragment-index="2">\(U\)</span><span class="fragment" data-fragment-index="2" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); white-space: nowrap;">\(-Q\)</span></span>
+</div>
+</div>
+```
+
+::: {.fragment fragment-index=3}
+:::: {.solutionbox}
+::: {.solutionbox-body}
+$Q$ and $U$ depend on the [reference frame]{.kw}: turning it by $\psi$ mixes them, $\;Q' = Q\cos 2\psi + U\sin 2\psi$
+:::
+::::
+:::
+
+## $E$ and $B$ modes {corner="PhD/1_intro/lcdm/lcdm_model_cmb.svg"}
+
+![](PhD/1_intro/lcdm/lcdm_model_cmb.svg){.corner .print-only}
+
+
+<br/>
+<br/>
+
+:::: {.columns style="display: flex; align-items: center;"}
+::: {.column width="50%"}
+
+![](PhD/3_observation/cmb/05_e_and_b/pol_map.png){fig-align="center" width="100%"}
+
+:::
+
+::: {.column width="48%"}
+
+:::: {.row .fragment fragment-index=1 style="--justify: space-around; --cell-margin: 0; --img-w: auto; --img-h: 130px; --img-radius: 8px;"}
+::: {.cell}
+![](PhD/3_observation/cmb/05_e_and_b/eb_drop.gif){.screen-only}
+
+![](PhD/3_observation/cmb/05_e_and_b/eb_drop_first.png){.print-only}
+:::
+
+::: {.cell}
+![](PhD/3_observation/cmb/05_e_and_b/eb_vortex.gif){.screen-only}
+
+![](PhD/3_observation/cmb/05_e_and_b/eb_vortex_first.png){.print-only}
+:::
+::::
+
+::: {.fragment fragment-index=2}
+![](PhD/3_observation/cmb/05_e_and_b/eb_patterns.svg){fig-align="center" width="88%" style="margin: 0.3em auto 0;"}
+:::
+
+:::
+::::
+
+::: {.fragment fragment-index=3}
+:::: {.solutionbox}
+::: {.solutionbox-body}
+- Density (scalar) perturbations make only [$E$ modes]{.kw}
+- [$B$ modes]{.kw} are sourced by [tensor perturbations]{.kw}: a direct window onto inflation
+:::
+::::
+:::
+
+## Two-point statistics {corner="PhD/1_intro/lcdm/lcdm_model_cmb.svg"}
+
+![](PhD/1_intro/lcdm/lcdm_model_cmb.svg){.corner .print-only}
+
+::: {.bare style="position: relative; width: 100%; aspect-ratio: 16 / 9; max-height: 560px; margin: 0 auto;"}
+![](PhD/3_observation/cmb/06_two_point/two_point_sky.png){style="position: absolute; left: 3.24%; top: 27.5%; width: 45%; height: 40%;"}
+
+![](PhD/3_observation/cmb/06_two_point/two_point.gif){.screen-only style="position: absolute; inset: 0; width: 100%; height: 100%;"}
+
+![](PhD/3_observation/cmb/06_two_point/two_point_last.svg){.print-only style="position: absolute; inset: 0; width: 100%; height: 100%;"}
+:::
+
+$C(\theta) = \langle \Delta T(\hat n_1)\,\Delta T(\hat n_2)\rangle$ over all pairs at separation $\theta$: its expansion in Legendre polynomials gives the [$C_\ell$]{.kw}
+
+## How do we represent sky data numerically? {#healpix corner="PhD/1_intro/lcdm/lcdm_model_cmb.svg"}
+
+<br/>
+<br/>
+
+![](PhD/1_intro/lcdm/lcdm_model_cmb.svg){.corner .print-only}
+
+#### [Hierarchical Equal Area iso-latitude Pixellation]{.kw} (of the sphere)
+
+:::: {.row style="margin-top: -0.3em;"}
+::: {.cell style="flex: 0 0 17%; --cell-margin: 0.15em 0; --img-w: 90%;"}
+![](PhD/3_observation/cmb/07_healpix/healpix_logo.svg)
+
+
+[HEALPix]{style="display: block; font-weight: 700; font-size: 1.05em; color: #2E2E2E;"}
+
+![](PhD/3_observation/cmb/07_healpix/nasa_logo.svg){style="width: 48%;"}
+:::
+
+::: {.r-stack .bare style="flex: 1 1 auto;"}
+:::: {.fragment .fade-out fragment-index=1}
+![](PhD/3_observation/cmb/07_healpix/healpix_nside4.png){style="width: 100%;"}
+
+[$N_\mathrm{side}$]{.kw} $= 4$
+::::
+
+:::: {.fragment .fade-in-then-out fragment-index=1}
+![](PhD/3_observation/cmb/07_healpix/healpix_nside16.png){style="width: 100%;"}
+
+[$N_\mathrm{side}$]{.kw} $= 16$
+::::
+
+:::: {.fragment .fade-in-then-out fragment-index=2}
+![](PhD/3_observation/cmb/07_healpix/healpix_nside32.png){style="width: 100%;"}
+
+[$N_\mathrm{side}$]{.kw} $= 32$
+::::
+
+:::: {.fragment fragment-index=3}
+![](PhD/3_observation/cmb/07_healpix/healpix_nside64.png){style="width: 100%;"}
+
+[$N_\mathrm{side}$]{.kw} $= 64$
+::::
+
+:::
+
+::: {.cell .fragment fragment-index=4 style="flex: 0 0 20%; margin-top: 70px; --cell-margin: 0 0 0.35em; --img-margin: 0; --img-radius: 8px; --img-max-w: 95%;"}
+![](PhD/3_observation/cmb/07_healpix/detector_bolometer.jpg)
+
+![](PhD/3_observation/cmb/07_healpix/detector_ccd.jpg)
+
+[Pixels on the sky, like pixels on a detector]{.caption style="--cap-size: 0.62em;"}
+:::
+::::
+
+::: {.fragment fragment-index=5}
+:::: {.solutionbox}
+::: {.solutionbox-body}
+- [Equal area]{.kw}: every pixel weighs the same in a $C_\ell$
+- [Hierarchical]{.kw}, $N_\mathrm{side} = 2^k$: 12 pixels to billions; the standard of Planck, SO, LiteBIRD, and in JAX with jax-healpy
+:::
+::::
+:::
+
+## Spherical Harmonic Transforms {#sht corner="PhD/1_intro/lcdm/lcdm_model_cmb.svg"}
+
+![](PhD/1_intro/lcdm/lcdm_model_cmb.svg){.corner .print-only}
+
+<br/><br/>
+
+:::: {.grid style="--cols: 1fr 190px 1fr 190px 1fr; --gap: 0; width: 96%; margin: 0 auto; --align: stretch; margin-bottom: 0.2em;"}
+::: {.eqbox style="--eq-border: #25406b; --eq-math-margin: 0.35em 0; grid-column: 2;"}
+$$
+f(\theta,\varphi) = \sum_{\ell=0}^{\infty} \sum_{m=-\ell}^{\ell} a_{\ell m}\, Y_\ell^m(\theta,\varphi)
+$$
+:::
+
+::: {.eqbox .fragment fragment-index=2 style="--eq-border: #25406b; --eq-math-margin: 0.35em 0; grid-column: 4;"}
+$$
+C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
+$$
+:::
+::::
+
+:::: {.grid style="--cols: 1fr 190px 1fr 190px 1fr; --gap: 0; width: 96%; margin: 0 auto; --row-gap: 0.2em; --img-w: auto; --img-h: 118px; --img-max-w: 100%; --img-max-h: 95%; --cap-size: 0.75em; --cap-lh: 1.1;"}
+::: {.cell}
+![](PhD/3_observation/cmb/08_sht/sht_map_I.svg)
+[*I*]{.caption}
+
+:::
+
+::: {.bare .fragment fragment-index=1}
+![](PhD/3_observation/cmb/08_sht/sht_arrow.svg){width="110px" style="display: block; margin: 0 auto;"}
+:::
+
+::: {.cell .fragment fragment-index=1}
+![](PhD/3_observation/cmb/08_sht/sht_alm_T.svg)
+[*a*~ℓm~^T^]{.caption}
+
+:::
+
+::: {.bare .fragment fragment-index=2}
+![](PhD/3_observation/cmb/08_sht/sht_arrow.svg){width="110px" style="display: block; margin: 0 auto;"}
+:::
+
+::: {.cell .fragment fragment-index=2}
+![](PhD/3_observation/cmb/08_sht/sht_cl_TT.svg)
+:::
+
+::: {.cell}
+![](PhD/3_observation/cmb/08_sht/sht_map_Q.svg)
+[*Q*]{.caption}
+
+:::
+
+::: {.bare .fragment fragment-index=1}
+![](PhD/3_observation/cmb/08_sht/sht_arrow.svg){width="110px" style="display: block; margin: 0 auto;"}
+:::
+
+::: {.cell .fragment fragment-index=1}
+![](PhD/3_observation/cmb/08_sht/sht_alm_E.svg)
+[*a*~ℓm~^E^]{.caption}
+
+:::
+
+::: {.bare .fragment fragment-index=2}
+![](PhD/3_observation/cmb/08_sht/sht_arrow.svg){width="110px" style="display: block; margin: 0 auto;"}
+:::
+
+::: {.cell .fragment fragment-index=2}
+![](PhD/3_observation/cmb/08_sht/sht_cl_EE.svg)
+:::
+
+::: {.cell}
+![](PhD/3_observation/cmb/08_sht/sht_map_U.svg)
+[*U*]{.caption}
+
+:::
+
+::: {.bare .fragment fragment-index=1}
+![](PhD/3_observation/cmb/08_sht/sht_arrow.svg){width="110px" style="display: block; margin: 0 auto;"}
+:::
+
+::: {.cell .fragment fragment-index=1}
+![](PhD/3_observation/cmb/08_sht/sht_alm_B.svg)
+[*a*~ℓm~^B^]{.caption}
+
+:::
+
+::: {.bare .fragment fragment-index=2}
+![](PhD/3_observation/cmb/08_sht/sht_arrow.svg){width="110px" style="display: block; margin: 0 auto;"}
+:::
+
+::: {.cell .fragment fragment-index=2}
+![](PhD/3_observation/cmb/08_sht/sht_cl_BB.svg)
+:::
+::::
+
+
+## Predicted CMB power spectra {corner="PhD/1_intro/lcdm/lcdm_model_cmb.svg"}
+
+![](PhD/1_intro/lcdm/lcdm_model_cmb.svg){.corner .print-only}
+
+::: {.r-stack}
+![](PhD/3_observation/cmb/09_power_spectrum/cl_step1.svg){.fragment .fade-out fragment-index=1 width="92%"}
+
+![](PhD/3_observation/cmb/09_power_spectrum/cl_step2.svg){.fragment .fade-in-then-out fragment-index=1 width="92%"}
+
+![](PhD/3_observation/cmb/09_power_spectrum/cl_step3.svg){.fragment fragment-index=2 width="92%"}
+:::
+
+::: {.fragment fragment-index=3}
+:::: {.solutionbox}
+::: {.solutionbox-body}
+- [The primordial tensor perturbations]{.kw} are a clear probe of [$r$]{.kw} and of the inflation period
+- They are measurable through [$C_\ell^{BB}$]{.kw2} of the [CMB]{.kw}
+- Current surveys forecast an upper bound of [$r \approx 0.003$]{.kw}
+:::
+::::
+:::
+
+## Current constraints on $r$ {corner="PhD/1_intro/lcdm/lcdm_model_cmb.svg"}
+
+![](PhD/1_intro/lcdm/lcdm_model_cmb.svg){.corner .print-only}
+
+![](PhD/3_observation/cmb/10_r_constraints/r_constraints.svg){fig-align="center" width="74%"}
+
+::: {.fragment}
+:::: {.solutionbox}
+::: {.solutionbox-body}
+- Best limit: [$r < 0.032$]{.kw} (95 %, Planck PR4 + BICEP/Keck 2018)
+- The main obstacle is the [Galactic foregrounds]{.kw} that obscure the [CMB]{.kw}: [Contribution 1] {.kw2}
+:::
+::::
+:::
+
+[Tristram et al. (2022); Simons Observatory (Ade et al. 2019); LiteBIRD Collaboration (2023)]{.credit}
+
+## The CMB data-analysis pipeline
+
+::::: {.hl-host .bare style="margin-top: 0.2em;"}
+![](PhD/3_observation/cmb/11_pipeline/scipol_pipeline.png){style="display: block; width: 990px;"}
+
+:::: {.fragment fragment-index=1}
+::: {.fragment .fade-out fragment-index=3}
+::: {.hlbox .fragment .custom .hlbox-move fragment-index=2 style="--x: 6%; --y: 4.5%; --w: 27.5%; --h: 32.5%; --x2: 9.5%; --y2: 43%; --w2: 23.5%; --h2: 13.5%;"}
+:::
+:::
+::::
+
+::: {.hlbox .fragment fragment-index=3 style="--x: 61.8%; --y: 30.2%; --w: 8.2%; --h: 33%;"}
+:::
+:::::
+
+# From model to observation: weak gravitational lensing
+
+::: {.rail-stack}
+![](PhD/2_outline/rail_full.svg){.rail-full}
+
+![](PhD/2_outline/rail_focus_lensing.svg){.rail-focus}
+:::
+
+## {#lss-opener auto-animate="true" visibility="uncounted"}
+
+<br/>
+
+::: {.r-stack}
+![](PhD/1_intro/lcdm/lcdm_model_cmb.svg){.fragment .fade-out fragment-index=1 width="82%"}
+
+![](PhD/1_intro/lcdm/lcdm_model.svg){.fragment .fade-in-then-out fragment-index=1 width="82%"}
+
+![](PhD/3_observation/weaklensing/00_opener/seed_arrows.svg){.fragment .fade-in-then-out fragment-index=1 width="82%"}
+
+![](PhD/1_intro/lcdm/lcdm_model_lss.svg){.fragment fragment-index=2 width="82%" data-id="lcdm"}
+:::
+
+## The Large-Scale Structure of the Universe {auto-animate="true"}
+
+![](PhD/1_intro/lcdm/lcdm_model_lss.svg){.corner data-id="lcdm"}
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+::: {style="width: 80%; margin: 0 auto;"}
+[The late Universe]{.kw}
+
+::: {.grid style="--cols: 1.73fr 1.33fr; --gap: 0.8em; --align: start; --cell-margin: 0.1em 0; --img-margin: 0.2em 0 0;"}
+:::: {.cell}
+components
+
+![](PhD/1_intro/lcdm/content_pie.svg)
+::::
+
+:::: {.cell}
+History of the expanding Universe
+
+![](PhD/1_intro/lcdm/rho_vs_a.svg)
+::::
+:::
+:::
+
+## The expanding Universe and dark energy {corner="PhD/1_intro/lcdm/lcdm_model_lss.svg"}
+
+![](PhD/1_intro/lcdm/lcdm_model_lss.svg){.corner .print-only}
+
+<br/>
+<br/>
+
+:::: {.columns style="display: flex; align-items: center; min-height: 500px;"}
+::: {.column width="52%"}
+![](PhD/3_observation/weaklensing/01_expansion/redshift_light.gif){.screen-only .fragment fragment-index=1 width="100%"}
+
+![](PhD/3_observation/weaklensing/01_expansion/redshift_light_last.svg){.print-only width="100%"}
+:::
+
+::: {.column width="46%"}
+::: {.grid style="--cols: 1fr; --row-gap: 1.1em;"}
+
+::: {.eqbox .fragment fragment-index=1 style="--eq-border: #2aa198; --eq-size: 0.8em; --eq-math-margin: 0.2em 0; --eq-pad: 0.2em 1.2em; text-align: center;"}
+[redshift]{.kw style="display: block;"} $1 + z = \dfrac{\lambda_\mathrm{obs}}{\lambda_\mathrm{emit}} = \dfrac{1}{a}$
+:::
+
+::: {.eqbox .fragment fragment-index=2 style="--eq-border: #2aa198; --eq-size: 0.8em; --eq-math-margin: 0.2em 0; --eq-pad: 0.2em 1.2em; text-align: center;"}
+[scale factor]{.kw style="display: block;"} $a(t),\qquad a_0 = 1,\qquad H = \dot a / a$
+:::
+
+
+::: {.eqbox .fragment fragment-index=3 style="--eq-border: #2aa198; --eq-size: 0.8em; --eq-math-margin: 0.2em 0; --eq-pad: 0.2em 1.2em; text-align: center;"}
+[comoving distance]{.kw style="display: block;"} $\chi(z) = \displaystyle\int_0^z \frac{c\,dz'}{H(z')}$
+:::
+
+::: {.eqbox .fragment fragment-index=4 style="--eq-border: #2aa198; --eq-size: 0.8em; --eq-math-margin: 0.2em 0; --eq-pad: 0.2em 1.2em; text-align: center;"}
+[expansion rate]{.kw style="display: block;"} $H(z) = H_0\sqrt{\Omega_m(1+z)^3 + \Omega_\Lambda}$
+:::
+:::
+:::
+::::
+
+::: {.fragment fragment-index=5}
+Dark energy accelerates the expansion today: it sets [$H(z)$]{.kw}, hence distances and the growth of structure
+:::
+
+## Mapping dark matter through weak gravitational lensing {#weak-gravitational-lensing corner="PhD/1_intro/lcdm/lcdm_model_lss.svg"}
+
+![](PhD/1_intro/lcdm/lcdm_model_lss.svg){.corner .print-only}
+
+<br/>
+
+![](PhD/3_observation/weaklensing/02_lensing/weak_lensing_illustration.png){fig-align="center" width="86%"}
+
+Matter along the line of sight bends light: [every background galaxy is slightly distorted]{.kw}
+
+## Convergence and shear {corner="PhD/1_intro/lcdm/lcdm_model_lss.svg"}
+
+![](PhD/1_intro/lcdm/lcdm_model_lss.svg){.corner .print-only}
+
+![](PhD/3_observation/weaklensing/03_convergence_shear/galaxy_distortion.gif){.screen-only fig-align="center" width="70%" style="margin: 1.2em auto -0.9em;"}
+
+![](PhD/3_observation/weaklensing/03_convergence_shear/galaxy_distortion_last.png){.print-only fig-align="center" width="70%" style="margin: 1.2em auto -0.9em;"}
+
+::: {.grid style="--cols: 1fr 1fr 1fr; width: 70%; margin: 0 auto; text-align: center; font-size: 0.8em;"}
+[galaxy]{}
+
+[convergence [$\kappa$]{.kw} (spin 0)]{}
+
+[shear [$\gamma_1, \gamma_2$]{.kw} (spin 2)]{}
+:::
+
+::: {.fragment}
+::: {.eqbox style="--eq-border: #2aa198; width: fit-content; margin: 0.3em auto 0; --eq-size: 1em; --eq-math-margin: 0.3em 0;"}
+$$
+\mathbf{A} = \begin{pmatrix} 1-\kappa-\gamma_1 & -\gamma_2 \\ -\gamma_2 & 1-\kappa+\gamma_1 \end{pmatrix}
+$$
+:::
+:::
+
+::: {.fragment}
+:::: {.solutionbox}
+::: {.solutionbox-body style="font-size: 0.95em;"}
+Matter deforms galaxies through [weak lensing]{.kw}, by a [spin-0]{.kw2} field, the [convergence $\kappa$]{.kw}, and a [spin-2]{.kw2} field, the two components of the [shear $\gamma$]{.kw}
+
+::: {.fragment}
+[Fun fact]{.kw2}: [$\kappa$, $\gamma$]{.kw2} relate like [$Q$, $U$]{.kw2}: $\gamma_1 + i\gamma_2$ is the same mathematical object as $Q + iU$, and splits into [$E$ and $B$]{.kw2} modes in the same way
+:::
+:::
+::::
+:::
+
+## Kaiser–Squires on the sphere {corner="PhD/1_intro/lcdm/lcdm_model_lss.svg"}
+
+![](PhD/1_intro/lcdm/lcdm_model_lss.svg){.corner .print-only}
+
+:::: {.columns}
+::: {.column style="width: 45%; padding-top: 1em;"}
+[From $\kappa$ to $\gamma$]{.kw}
+
+::: {.eqbox style="--eq-border: #2aa198; --eq-size: 0.8em; --eq-math-margin: 0.3em 0;"}
+$$
+\gamma^E_{\ell m} = -\sqrt{\frac{(\ell+2)(\ell-1)}{\ell(\ell+1)}}\;\kappa_{\ell m}, \qquad \gamma^B_{\ell m} = 0
+$$
+$$
+\gamma_1 + i\gamma_2 = \sum_{\ell m} \gamma^E_{\ell m}\;{}_2Y_{\ell m}
+$$
+:::
+
+::: {.fragment fragment-index=1}
+[From $\gamma$ back to $\kappa$]{.kw}
+
+::: {.eqbox style="--eq-border: #2aa198; --eq-size: 0.8em; --eq-math-margin: 0.3em 0;"}
+$$
+\kappa_{\ell m} = -\sqrt{\frac{\ell(\ell+1)}{(\ell+2)(\ell-1)}}\;\gamma^E_{\ell m}
+$$
+:::
+:::
+:::
+
+::: {.column width="55%"}
+:::: {.cell .bare style="--img-w: 200px; --cap-size: 0.6em; --cell-margin: 0.1em 0 0;"}
+![](PhD/3_observation/weaklensing/04_kaiser_squires/kappa.gif){.screen-only}
+![](PhD/3_observation/weaklensing/04_kaiser_squires/kappa.png){.print-only}
+
+[convergence κ]{.caption}
+::::
+
+::: {style="text-align: center; margin: 0.1em 0; line-height: 0;"}
+[]{.arrow .down style="--len: 34px; --head: 20px;"}
+:::
+
+:::: {.row .bare style="--gap: 24px; --justify: center; --img-w: 175px; --cap-size: 0.6em; --cell-margin: 0.1em 0 0;"}
+::: {.cell}
+![](PhD/3_observation/weaklensing/04_kaiser_squires/gamma1.gif){.screen-only}
+![](PhD/3_observation/weaklensing/04_kaiser_squires/gamma1.png){.print-only}
+
+[shear γ~1~]{.caption}
+:::
+
+::: {.cell}
+![](PhD/3_observation/weaklensing/04_kaiser_squires/gamma2.gif){.screen-only}
+![](PhD/3_observation/weaklensing/04_kaiser_squires/gamma2.png){.print-only}
+
+[shear γ~2~]{.caption}
+:::
+::::
+:::
+::::
+
+::: {.fragment fragment-index=2}
+:::: {.solutionbox}
+::: {.solutionbox-body style="font-size: 0.75em;"}
+- Kaiser–Squires is a [simple per-$\ell$ rescaling]{.kw} between $\kappa$ and the $E$-mode of the shear: one field, two views
+
+:::
+::::
+:::
+
+## Tomographic reconstruction {corner="PhD/1_intro/lcdm/lcdm_model_lss.svg"}
+
+![](PhD/1_intro/lcdm/lcdm_model_lss.svg){.corner .print-only}
+
+```{=html}
+<div style="position: relative; height: 550px; margin-top: 0.1em;">
+<div class="fragment fade-out" data-fragment-index="1"><img src="PhD/3_observation/weaklensing/05_tomography/slab.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 20px; top: 0px; width: 600px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 20px; width: 600px; top: 222px;">matter density field</span></div>
+<div class="fragment" data-fragment-index="1"><img src="PhD/3_observation/weaklensing/05_tomography/box_0.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 20px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 20px; width: 135px; top: 163px;">bin 4</span></div>
+<div class="fragment" data-fragment-index="1"><img src="PhD/3_observation/weaklensing/05_tomography/box_1.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 175px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 175px; width: 135px; top: 163px;">bin 3</span></div>
+<div class="fragment" data-fragment-index="1"><img src="PhD/3_observation/weaklensing/05_tomography/box_2.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 330px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 330px; width: 135px; top: 163px;">bin 2</span></div>
+<div class="fragment" data-fragment-index="1"><img src="PhD/3_observation/weaklensing/05_tomography/box_3.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 485px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 485px; width: 135px; top: 163px;">bin 1</span></div>
+<div class="fragment" data-fragment-index="2"><svg style="position: absolute; left: 552px; top: 203px; width: 78px; height: 24px;" viewBox="0 0 78 24"><line x1="0" y1="12" x2="60" y2="12" stroke="#6E6E6E" stroke-width="5" stroke-linecap="round"/><polygon points="58,2 78,12 58,22" fill="#6E6E6E"/></svg><img src="PhD/3_observation/weaklensing/05_tomography/kappa_3.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 643px; top: 171px; width: 88px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 739px; top: 204px; text-align: left;">κ bin 1</span></div>
+<div class="fragment" data-fragment-index="3"><svg style="position: absolute; left: 397px; top: 299px; width: 233px; height: 24px;" viewBox="0 0 233 24"><line x1="0" y1="12" x2="215" y2="12" stroke="#6E6E6E" stroke-width="5" stroke-linecap="round"/><polygon points="213,2 233,12 213,22" fill="#6E6E6E"/></svg><img src="PhD/3_observation/weaklensing/05_tomography/kappa_2.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 643px; top: 267px; width: 88px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 739px; top: 300px; text-align: left;">κ bin 2</span></div>
+<div class="fragment" data-fragment-index="4"><svg style="position: absolute; left: 242px; top: 395px; width: 388px; height: 24px;" viewBox="0 0 388 24"><line x1="0" y1="12" x2="370" y2="12" stroke="#6E6E6E" stroke-width="5" stroke-linecap="round"/><polygon points="368,2 388,12 368,22" fill="#6E6E6E"/></svg><img src="PhD/3_observation/weaklensing/05_tomography/kappa_1.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 643px; top: 363px; width: 88px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 739px; top: 396px; text-align: left;">κ bin 3</span></div>
+<div class="fragment" data-fragment-index="5"><svg style="position: absolute; left: 87px; top: 491px; width: 543px; height: 24px;" viewBox="0 0 543 24"><line x1="0" y1="12" x2="525" y2="12" stroke="#6E6E6E" stroke-width="5" stroke-linecap="round"/><polygon points="523,2 543,12 523,22" fill="#6E6E6E"/></svg><img src="PhD/3_observation/weaklensing/05_tomography/kappa_0.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 643px; top: 459px; width: 88px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 739px; top: 492px; text-align: left;">κ bin 4</span></div>
+<div class="fragment" data-fragment-index="2"><svg style="position: absolute; left: 845px; top: 335px; width: 100px;" viewBox="0 0 110 60"><path d="M5 30 Q55 -12 105 30 Q55 72 5 30 Z" fill="none" stroke="#3B6FB6" stroke-width="4"/><circle cx="55" cy="30" r="15" fill="none" stroke="#3B6FB6" stroke-width="4"/><circle cx="55" cy="30" r="7" fill="#3B6FB6"/></svg><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 845px; width: 100px; top: 395px;">observer</span></div>
+</div>
+```
+
+::: {.fragment fragment-index=6}
+:::: {.solutionbox}
+::: {.solutionbox-body style="font-size: 0.75em;"}
+- Each source bin sees the [integral of all the matter]{.kw} in front of it: $\kappa_i(\hat n) = \int_0^{\chi_i} q_i(\chi)\,\delta(\chi\hat n,\chi)\,\mathrm{d}\chi$
+- Farther bins cross more matter and see a stronger $\kappa$; comparing bins follows the [growth of structure]{.kw2} along the line of sight
+:::
+::::
+:::
+
+## Tomographic bins {corner="PhD/1_intro/lcdm/lcdm_model_lss.svg"}
+
+![](PhD/1_intro/lcdm/lcdm_model_lss.svg){.corner .print-only}
+
+![](PhD/3_observation/weaklensing/06_tomographic_bins/nz_tomography.svg){fig-align="center" width="62%"}
+
+Each bin is sensitive to matter [about half-way to its galaxies]{.kw}
+
+[DES Y3 source redshift distributions]{.credit}
+
+## From shear to cosmology {corner="PhD/1_intro/lcdm/lcdm_model_lss.svg"}
+
+![](PhD/1_intro/lcdm/lcdm_model_lss.svg){.corner .print-only}
+
+:::::: {.grid .bare style="--cols: 62px 96px 50px 205px 70px 150px 50px 140px 150px; grid-template-rows: 300px 50px 190px; justify-content: start; --gap: 2px; --row-gap: 0; margin-top: 0.2em;"}
+::: {style="font-size: 0.6em; font-weight: 700; letter-spacing: 0.05em; color: #C2560A;"}
+DATA
+:::
+
+::: {.cell}
+![](PhD/3_observation/weaklensing/03_convergence_shear/galaxy_shapes_vertical.png){style="width: 82px;"}
+
+[galaxy\
+shapes]{.caption style="--cap-size: 0.62em; --cap-lh: 1.2; margin-top: 0.15em;"}
+:::
+
+::: {style="text-align: center; line-height: 0;"}
+[]{.arrow style="--len: 50px; --w: 4px; --head: 18px;"}
+:::
+
+::: {.cell}
+![](PhD/3_observation/weaklensing/04_kaiser_squires/gamma1.png){style="width: 150px;"}
+
+[shear $\gamma_1, \gamma_2$]{.caption style="--cap-size: 0.62em; --cap-lh: 1.2; margin-top: 0.15em;"}
+:::
+
+::: {style="text-align: center;"}
+[Inverse Kaiser–Squires]{style="display: block; font-size: 0.55em; color: #6E6E6E; line-height: 1.15; margin-bottom: 3px;"}
+
+[]{.arrow style="--len: 64px; --w: 4px; --head: 18px;"}
+:::
+
+::: {.cell}
+![](PhD/3_observation/weaklensing/04_kaiser_squires/kappa.png){style="width: 140px;"}
+
+[convergence $\kappa$ per bin]{.caption style="--cap-size: 0.62em; --cap-lh: 1.2; margin-top: 0.15em;"}
+:::
+
+::: {style="text-align: center; line-height: 0;"}
+[]{.arrow style="--len: 50px; --w: 4px; --head: 18px;"}
+:::
+
+::: {style="border: 2px solid #C2560A; border-radius: 10px; padding: 0.4em 0.45em; font-size: 0.72em; line-height: 1.35; background: #FFFFFF; text-align: center;"}
+measured\
+$\hat C_\ell^{\,ij}$
+:::
+
+::: {style="grid-column: 1 / 9; height: 1px;"}
+:::
+
+::: {.fragment fragment-index=1 style="font-size: 0.6em; font-weight: 700; letter-spacing: 0.05em; color: #521463; text-align: center;"}
+THEORY
+:::
+
+::: {.fragment fragment-index=1 style="border: 2px solid #521463; border-radius: 10px; padding: 0.4em 0.45em; font-size: 0.72em; line-height: 1.35; background: #FFFFFF; text-align: center;"}
+$\Omega_\mathrm{m},$\
+$\sigma_8, \dots$
+:::
+
+::: {.fragment fragment-index=1 style="text-align: center; line-height: 0;"}
+[]{.arrow style="--len: 50px; --w: 4px; --head: 18px;"}
+:::
+
+::: {.cell .fragment fragment-index=1}
+![](PhD/3_observation/weaklensing/07_matter_spectrum/pk_lin_nl.svg){style="width: 200px;"}
+
+[matter spectrum $P(k, z)$]{.caption style="--cap-size: 0.62em; --cap-lh: 1.2; margin-top: 0.15em;"}
+:::
+
+::: {.fragment fragment-index=1 style="text-align: center; grid-column: span 3;"}
+[Limber, with the lensing kernels $q_i(\chi)$]{style="display: block; font-size: 0.55em; color: #6E6E6E; line-height: 1.15; margin-bottom: 3px;"}
+
+[]{.arrow style="--len: 250px; --w: 4px; --head: 18px;"}
+:::
+
+::: {.fragment fragment-index=1 style="border: 2px solid #521463; border-radius: 10px; padding: 0.4em 0.45em; font-size: 0.72em; line-height: 1.35; background: #FFFFFF; text-align: center;"}
+predicted\
+$C_\ell^{\,ij}(\Omega_\mathrm{m}, \sigma_8)$
+:::
+
+:::: {.row .flat .fragment fragment-index=2 style="grid-column: 9; grid-row: 1 / 4; align-self: start; margin-top: 150px; height: 295px; --gap: 0;"}
+![](PhD/3_observation/weaklensing/07_matter_spectrum/compare_bracket.svg){style="width: 30px; height: 295px; flex: none;"}
+
+::: {style="border: 2px solid #2E2E2E; border-radius: 10px; padding: 0.5em 0.6em; font-size: 0.75em; line-height: 1.35; background: #FFFFFF; text-align: center; margin-left: 6px;"}
+compare\
+↓\
+[$\Omega_\mathrm{m},\ \sigma_8$]{style="color: #C2560A; font-weight: 700;"}
+:::
+::::
+::::::
+
+::: {.fragment fragment-index=3}
+:::: {.solutionbox}
+::: {.solutionbox-body style="font-size: 0.8em;"}
+- Same recipe as the CMB: compress the maps into [angular power spectra $C_\ell$]{.kw} and compare them with the prediction
+- This is called a [two-point correlation analysis (2PCF)]{.kw}
+:::
+::::
+:::
+
+## The two-point analysis {corner="PhD/1_intro/lcdm/lcdm_model_lss.svg"}
+
+<br/>
+<br/>
+
+![](PhD/1_intro/lcdm/lcdm_model_lss.svg){.corner .print-only}
+
+:::: {.columns}
+::: {.column width="50%"}
+![](PhD/3_observation/weaklensing/07_matter_spectrum/pk_lin_nl.svg){fig-align="center" width="100%"}
+:::
+
+::: {.column width="50%"}
+::: {.eqbox style="--eq-border: #2aa198; --eq-size: 0.8em; --eq-math-margin: 0.2em 0; margin-top: 1.6em;"}
+$$
+C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\left(k=\tfrac{\ell+1/2}{\chi}, z\right)
+$$
+:::
+
+[Each multipole $\ell$ reads the [matter spectrum]{.kw} at $k = \ell/\chi$, weighted by the [lensing kernels $q_i$]{.kw2} of the tomographic bins]{style="font-size: 0.8em;"}
+
+::: {.fragment fragment-index=1}
+![](PhD/3_observation/weaklensing/07_matter_spectrum/cl_kappa.svg){fig-align="center" width="100%" style="margin: 0.2em 0 0;"}
+:::
+:::
+::::
+
+::: {.fragment fragment-index=2}
+:::: {.solutionbox}
+::: {.solutionbox-body style="font-size: 0.85em;"}
+- [$\Omega_\mathrm{m}$]{.kw}: how much matter · [$\sigma_8$]{.kw}: how clumpy it is on $8\,h^{-1}\mathrm{Mpc}$ scales
+- Weak lensing probes both parameters, and best the combination [$S_8 = \sigma_8\sqrt{\Omega_\mathrm{m}/0.3}$]{.kw2}
+:::
+::::
+:::
+
+## Current constraints on $S_8$ {corner="PhD/1_intro/lcdm/lcdm_model_lss.svg"}
+
+![](PhD/1_intro/lcdm/lcdm_model_lss.svg){.corner .print-only}
+
+![](PhD/3_observation/weaklensing/07_matter_spectrum/s8_constraints.svg){fig-align="center" width="90%"}
+
+::: {.fragment}
+:::: {.solutionbox}
+::: {.solutionbox-body}
+- Lensing has sat below the [CMB]{.kw}: the [$S_8$ tension]{.kw}, now shrinking with better data
+:::
+::::
+:::
+
+## Limitation of the two-point analysis {corner="PhD/1_intro/lcdm/lcdm_model_lss.svg"}
+
+![](PhD/1_intro/lcdm/lcdm_model_lss.svg){.corner .print-only}
+
+::: {.r-stack}
+:::: {.columns style="width: 100%;"}
+::: {.column style="width: 50%; text-align: center;"}
+![](PhD/3_observation/weaklensing/09_two_point_limits/cosmic_web.gif){.screen-only width="300px" style="margin: 0.4em 0 0;"}
+![](PhD/3_observation/weaklensing/09_two_point_limits/cosmic_web.png){.print-only width="300px" style="margin: 0.4em 0 0;"}
+
+[the cosmic web]{style="font-size: 0.75em;"}
+:::
+
+::: {.column style="width: 50%; text-align: center;"}
+![](PhD/3_observation/weaklensing/09_two_point_limits/gaussian.gif){.screen-only width="300px" style="margin: 0.4em 0 0;"}
+![](PhD/3_observation/weaklensing/09_two_point_limits/gaussian.png){.print-only width="300px" style="margin: 0.4em 0 0;"}
+
+[a Gaussian field with the [same $C_\ell$]{.kw}]{style="font-size: 0.75em;"}
+:::
+::::
+
+:::: {.figcadre .fragment fragment-index=1 style="width: 42%; margin-top: 13em;"}
+::: {.figcadre-body}
+![](PhD/3_observation/weaklensing/09_two_point_limits/cl_overlay.svg){width="100%" style="margin: 0.4em 0 0;"}
+:::
+::::
+:::
+
+::: {.fragment fragment-index=2}
+:::: {.solutionbox}
+::: {.solutionbox-body style="font-size: 0.85em;"}
+- The 2PCF captures only the [Gaussian features]{.kw} of a field
+- We need to go beyond the 2PCF to extract more physical information: [Contribution 2]{.kw2}
+:::
+::::
+:::
+
+## The $\Omega_\mathrm{m}$–$\sigma_8$ degeneracy {corner="PhD/1_intro/lcdm/lcdm_model_lss.svg"}
+
+![](PhD/1_intro/lcdm/lcdm_model_lss.svg){.corner .print-only}
+
+![](PhD/3_observation/weaklensing/08_banana/doux_banana.svg){fig-align="center" height="480px" style="margin-top: 0.1em;"}
+
+[DES Y3 cosmic shear $C_\ell$, Doux et al. (2022)]{style="display: block; text-align: center; font-size: 0.55em; color: #6E6E6E; margin-top: -0.4em;"}
+
+::: {.fragment}
+:::: {.solutionbox}
+::: {.solutionbox-body style="font-size: 0.85em;"}
+- The two-point posterior is [degenerate]{.kw}: lensing pins down [$S_8$]{.kw2}, not $\Omega_\mathrm{m}$ and $\sigma_8$ separately
+:::
+::::
+:::
+
+## From model to observation
+
+![](PhD/1_intro/lcdm/lcdm_model_both.svg){fig-align="center" width="42%" style="margin: -0.8em auto -0.6em; position: relative; left: -7%;"}
+
+:::: {.columns style="font-size: 0.8em;"}
+::: {.column width="50%"}
+[Target]{.kw}: the tensor-to-scalar ratio $r$<br/>[the energy scale of inflation]{style="font-size: 0.8em; color: #6E6E6E;"}
+
+::: {.fragment fragment-index=1}
+[Obstacle]{.kw}: Galactic foregrounds hide the primordial $B$-modes
+:::
+
+::: {.fragment fragment-index=2}
+:::: {.solutionbox}
+::: {.solutionbox-body style="text-align: center;"}
+[Contribution 1]{.kw2}<br/>Spatially varying component separation for space-based telescopes
+:::
+::::
+:::
+:::
+
+::: {.column width="50%"}
+[Target]{.kw}: $\Omega_\mathrm{m}$ and $\sigma_8$<br/>[dark matter and the late-time expansion]{style="font-size: 0.8em; color: #6E6E6E;"}
+
+::: {.fragment fragment-index=1}
+[Obstacle]{.kw}: the two-point analysis misses the non-Gaussian information
+:::
+
+::: {.fragment fragment-index=2}
+:::: {.solutionbox}
+::: {.solutionbox-body style="text-align: center;"}
+[Contribution 2]{.kw2}<br/>Field-level inference for Stage IV weak lensing surveys<br/>using differentiable forward models
+:::
+::::
+:::
+:::
+::::
+
+::: {.fragment fragment-index=3}
+:::: {.solutionbox}
+::: {.solutionbox-body style="text-align: center;"}
+How do we [infer the cosmological parameters]{.kw} from these two probes?
+:::
+::::
+:::
+
+# Statistical inference for cosmology
+
+::: {.rail-stack}
+![](PhD/2_outline/rail_full.svg){.rail-full}
+
+![](PhD/2_outline/rail_focus_stats.svg){.rail-focus}
+:::
+
+## Inverse problems in cosmology
+
+![](PhD/4_inference/01_inverse_problem/inverse_problem.svg){fig-align="center" width="80%"}
+
+
+## Solving Inverse Problems : Analytical likelihood
+
+<br/>
+
+[Analytical inversion]{.kw} [(Stompor et al. 2009)]{style="font-size: 0.7em; color: #6E6E6E;"}
+
+::: {.grid style="--cols: auto 1fr; --gap: 1.2em; --row-gap: 1.05em; --align: center; margin-top: 0.8em; font-size: 0.9em;"}
+::: {.eqbox style="--eq-size: 1.3em; --eq-math-margin: 0.3em 0; --eq-pad: 0.15em 1em; justify-self: stretch; text-align: center;"}
+$$\mathbf{d} = \mathbf{A}(\boldsymbol\theta)\,\mathbf{s} + \mathbf{n}$$
+:::
+
+the data are linear in the signal $\mathbf{s}$, and the mixing $\mathbf{A}$ depends on a few parameters $\boldsymbol\theta$
+
+::: {.eqbox .fragment fragment-index=1 style="--eq-size: 1.3em; --eq-math-margin: 0.3em 0; --eq-pad: 0.15em 1em; justify-self: stretch; text-align: center;"}
+$$-2\ln\mathcal{L}(\boldsymbol\theta,\mathbf{s}) = \big(\mathbf{d}-\mathbf{A}\mathbf{s}\big)^{\top}\mathbf{N}^{-1}\big(\mathbf{d}-\mathbf{A}\mathbf{s}\big)$$
+:::
+
+[for Gaussian noise of covariance $\mathbf{N}$]{.fragment fragment-index=1}
+
+::: {.eqbox .fragment fragment-index=2 style="--eq-size: 1.3em; --eq-math-margin: 0.3em 0; --eq-pad: 0.15em 1em; justify-self: stretch; text-align: center;"}
+$$\hat{\mathbf{s}}(\boldsymbol\theta) = \left(\mathbf{A}^{\top}\mathbf{N}^{-1}\mathbf{A}\right)^{-1}\mathbf{A}^{\top}\mathbf{N}^{-1}\mathbf{d}$$
+:::
+
+[setting the derivative with respect to $\mathbf{s}$ to zero]{.fragment fragment-index=2}
+
+::: {.eqbox .fragment fragment-index=3 style="--eq-size: 1.3em; --eq-math-margin: 0.3em 0; --eq-pad: 0.15em 1em; justify-self: stretch; text-align: center;"}
+$$-2\ln\mathcal{L}(\boldsymbol\theta) = -\left(\mathbf{A}^{\top}\mathbf{N}^{-1}\mathbf{d}\right)^{\top}\left(\mathbf{A}^{\top}\mathbf{N}^{-1}\mathbf{A}\right)^{-1}\left(\mathbf{A}^{\top}\mathbf{N}^{-1}\mathbf{d}\right)$$
+:::
+
+[substituting $\hat{\mathbf{s}}$ back, up to a constant, leaves a likelihood of $\boldsymbol\theta$ alone]{.fragment fragment-index=3}
+:::
+
+::: {.fragment fragment-index=4}
+:::: {.solutionbox style="margin-top: 1.2em;"}
+::: {.solutionbox-body style="font-size: 0.85em;"}
+- The signal $\mathbf{s}$ is removed analytically, so only the few parameters $\boldsymbol\theta$ are searched
+- This requires a model [linear in $\mathbf{s}$]{.kw} with Gaussian noise
+:::
+::::
+:::
+
+## Solving Inverse Problems : Forward Modelling {visibility="uncounted"}
+
+<br/>
+
+[Forward modelling]{.kw}
+
+
+::: {.grid style="--cols: 1fr 1fr 1.15fr; --gap: 1em; --align: start;"}
+::: {.fragment fragment-index=1 style="text-align: center;"}
+[Implicit inference]{.kw2}
+
+![](PhD/4_inference/02_forward_modelling/implicit.svg){height="500px" style="margin: 0.2em auto 0;"}
+:::
+
+::: {.fragment fragment-index=2 style="text-align: center;"}
+[Explicit inference]{.kw}
+
+![](PhD/4_inference/02_forward_modelling/explicit.svg){height="500px" style="margin: 0.2em auto 0;"}
+:::
+
+::: {style="padding-top: 1.6em;"}
+::: {.eqbox style="--eq-size: 0.95em; --eq-math-margin: 0.15em 0; --eq-pad: 0.3em 0.8em; margin: 0 0 0.6em; text-align: center;"}
+$$\hat{\mathbf{d}} = \mathcal{A}(\mathbf{s},\boldsymbol\theta)$$
+:::
+
+::: {.eqbox style="--eq-size: 0.95em; --eq-math-margin: 0.15em 0; --eq-pad: 0.3em 0.8em; margin: 0 0 1em; text-align: center;"}
+$$-\ln\mathcal{L}(\boldsymbol\theta,\mathbf{s}) \;\propto\; \frac{\lVert \hat{\mathbf{d}} - \mathbf{d} \rVert_2^2}{\sigma^2}$$
+:::
+
+::: {.fragment fragment-index=3}
+:::: {.solutionbox}
+::: {.solutionbox-body style="font-size: 0.85em;"}
+- Explicit inference is more [interpretable]{.kw} than its implicit counterpart
+- It fits the latent field [$\mathbf{s}$]{.kw} together with $\boldsymbol\theta$, instead of marginalising over it
+:::
+::::
+:::
+
+::: {.fragment fragment-index=4}
+:::: {.solutionbox style="margin-top: 1em;"}
+::: {.solutionbox-body style="font-size: 0.85em;"}
+This thesis uses explicit inference for both the [analytical model]{.kw2} and the [forward model]{.kw2}
+:::
+::::
+:::
+:::
+:::
+
+## Bayesian inference in cosmology
+
+:::: {.columns}
+::: {.column style="width: 60%;"}
+[Bayes' theorem]{.kw}
+
+::: {.eqbox style="--eq-math-margin: 0.25em 0; --eq-pad: 0.15em 1.1em; width: fit-content; margin: 0; --eq-size: 1.4em; margin-top: 0.3em;"}
+$$\underbrace{p(\boldsymbol\theta\mid\mathbf{d})}_{\text{posterior}} \;=\; \frac{\overbrace{p(\mathbf{d}\mid\boldsymbol\theta)}^{\text{likelihood}}\;\overbrace{p(\boldsymbol\theta)}^{\text{prior}}}{\underbrace{p(\mathbf{d})}_{\text{evidence}}}$$
+:::
+
+::: {.eqbox .fragment fragment-index=1 style="--eq-math-margin: 0.25em 0; --eq-pad: 0.15em 1.1em; width: fit-content; margin: 0; --eq-size: 1.35em; margin-top: 0.8em;"}
+$$p(\boldsymbol\theta\mid\mathbf{d}) \;\propto\; p(\mathbf{d}\mid\boldsymbol\theta)\;p(\boldsymbol\theta)$$
+:::
+
+::: {.fragment fragment-index=2 style="margin-top: 1.4em;"}
+[Joint probabilistic modelling]{.kw2}
+
+::: {.eqbox style="--eq-math-margin: 0.25em 0; --eq-pad: 0.15em 1.1em; width: fit-content; margin: 0; --eq-size: 1.3em; --eq-border: #521463; margin-top: 0.3em;"}
+$$p(\boldsymbol\theta,\mathbf{s}\mid\mathbf{d}) \;\propto\; \underbrace{p(\mathbf{d}\mid\mathbf{s},\boldsymbol\theta)}_{\text{likelihood}}\;\underbrace{p(\mathbf{s}\mid\boldsymbol\theta)}_{\text{latent prior}}\;\underbrace{p(\boldsymbol\theta)}_{\text{prior}}$$
+:::
+:::
+:::
+
+::: {.column style="width: 40%;"}
+![](PhD/4_inference/03_bayesian_inference/bayes_posterior.svg){width="100%" style="margin: 0;"}
+
+::: {.fragment fragment-index=2}
+![](PhD/4_inference/03_bayesian_inference/hierarchical_model.svg){height="115px" style="display: block; margin: 3.2em auto 0;"}
+:::
+:::
+::::
+
+## Optimising the posterior
+
+:::: {.columns}
+::: {.column style="width: 50%; text-align: center;"}
+[Minimising the negative log-likelihood]{.kw}
+
+::: {.r-stack}
+::: {.fragment .fade-out fragment-index=3}
+![](PhD/4_inference/04_optimising_posterior/minimise.gif){.screen-only height="360px" style="margin: 0.2em 0 0;"}
+![](PhD/4_inference/04_optimising_posterior/minimise.png){.print-only height="360px" style="margin: 0.2em 0 0;"}
+:::
+
+![](PhD/4_inference/04_optimising_posterior/laplace.svg){.fragment fragment-index=3 height="360px" style="margin: 0.2em 0 0;"}
+:::
+:::
+
+::: {.column .fragment fragment-index=1 style="width: 50%; text-align: center;"}
+[Sampling the full posterior]{.kw}
+
+::: {.r-stack}
+::: {.fragment .fade-out fragment-index=3}
+![](PhD/4_inference/04_optimising_posterior/sample.gif){.screen-only height="360px" style="margin: 0.2em 0 0;"}
+![](PhD/4_inference/04_optimising_posterior/sample.png){.print-only height="360px" style="margin: 0.2em 0 0;"}
+:::
+
+![](PhD/4_inference/04_optimising_posterior/hpd.svg){.fragment fragment-index=4 height="360px" style="margin: 0.2em 0 0;"}
+:::
+:::
+::::
+
+::: {.r-stack}
+::: {.fragment .fade-in-then-out fragment-index=2 style="width: 100%;"}
+:::: {.solutionbox}
+::: {.solutionbox-body style="text-align: center; font-size: 1.05em;"}
+How do we measure how much we [trust the result]{.kw}?
+:::
+::::
+:::
+
+::: {.grid style="--cols: 1fr 1fr; --gap: 1.2em; --align: stretch; width: 100%;"}
+::: {.fragment fragment-index=3}
+:::: {.solutionbox style="height: 100%;"}
+::: {.solutionbox-body style="font-size: 0.9em;"}
+The inverse Hessian of $-\ln\mathcal{L}$ at the minimum gives the covariance, $\mathbf{C} = \mathbf{H}^{-1}$, and with it the [confidence intervals]{.kw}, assuming the posterior is Gaussian
+:::
+::::
+:::
+
+::: {.fragment fragment-index=4}
+:::: {.solutionbox style="height: 100%;"}
+::: {.solutionbox-body style="font-size: 0.9em;"}
+The samples give the [credible regions]{.kw} directly: the smallest regions holding 68, 95 and 99.7 % of them
+:::
+::::
+:::
+:::
+:::
+
+::: {.fragment fragment-index=5 style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; min-height: 700px; z-index: 20; background: rgba(250, 247, 240, 0.86); display: flex; align-items: center; justify-content: center;"}
+:::: {.solutionbox style="width: 88%;"}
+::: {.solutionbox-body style="text-align: center; font-size: 1.15em;"}
+Both methods become more efficient with a [differentiable likelihoods]{.kw}
+:::
+::::
+:::
+
+## Differentiable programming
+
+<br/>
+<br/>
+
+:::: {.columns}
+::: {.column style="width: 38%; text-align: center;"}
+![](assets/Logos/JaxLogo.png){style="display: block; height: 95px; margin: 0 auto 22px;"}
+![](assets/optax_logo.svg){style="display: block; height: 95px; margin: 0 auto 22px;"}
+![](assets/Logos/blackjax_icon.png){style="display: block; height: 95px; margin: 0 auto 22px;"}
+![](assets/Logos/numpyro_transparent.png){style="display: block; height: 95px; margin: 0 auto;"}
+:::
+
+::: {.column width="62%"}
+:::: {.solutionbox style="margin-top: 0.6em;"}
+::: {.solutionbox-body style="font-size: 1.2em;"}
+- [JAX]{.kw} computes exact gradients of numerical code by automatic differentiation
+- Custom gradients replace the automatic ones where memory or speed requires it
+- The same code runs on CPUs, GPUs and multi-GPU clusters
+- I used [Optax]{.kw2} for optimisation
+- [BlackJAX]{.kw2} and [NumPyro]{.kw2} for sampling
+:::
+::::
+:::
+::::
+
+::: {.fragment}
+:::: {.solutionbox}
+::: {.solutionbox-body style="text-align: center;"}
+Can better numerical methods extract [more cosmology]{.kw} from the same data?
+:::
+::::
+:::
+
+# Contribution 1: spatially varying CMB component separation
+
+::: {.rail-stack}
+![](PhD/2_outline/rail_full.svg){.rail-full}
+
+![](PhD/2_outline/rail_focus_c1.svg){.rail-focus}
+:::
+
+::: {style="display: flex; justify-content: center; align-items: center; gap: 36px; margin-top: 1.2em;"}
+![](assets/Logos/JaxLogo.png){style="height: 70px;"}
+[![](https://img.shields.io/badge/GitHub-furax--cs-blue?logo=github)](https://github.com/CMBSciPol/furax-cs)
+[![](https://img.shields.io/badge/GitHub-furax-blue?logo=github)](https://github.com/CMBSciPol/furax)
+:::
+
+## From sky data to clean CMB maps
+
+:::: {.row .flat .bare style="--align: flex-start; --gap: 0; height: 405px; margin-top: 0.2em;"}
+::: {.r-stack style="width: 520px; height: 405px; flex: none;"}
+![](PhD/5_contribution/compsep/01_sky_to_maps/sky_stack_cmb.png){.fragment .fade-out fragment-index=1 style="height: 405px;"}
+
+![](PhD/5_contribution/compsep/01_sky_to_maps/sky_stack_full.png){.fragment fragment-index=1 style="height: 405px;"}
+:::
+
+![](PhD/5_contribution/compsep/01_sky_to_maps/sky_bracket.svg){.fragment fragment-index=3 style="width: 90px; height: 405px; flex: none; margin-left: -15px;"}
+
+![](PhD/5_contribution/compsep/01_sky_to_maps/freq_cards.png){.fragment fragment-index=2 style="width: 440px; flex: none; margin: 75px 0 0 -5px;"}
+::::
+
+::::: {.fragment fragment-index=4 style="margin-top: 38px;"}
+:::: {.solutionbox}
+::: {.solutionbox-header}
+CMB component separation
+:::
+
+::: {.solutionbox-body .row .flat style="font-size: 0.9em; --gap: 24px;"}
+::: {style="flex: 1;"}
+- LiteBIRD observes the sky in [15 frequency bands]{.kw}, from 40 to 402 GHz
+- The CMB must be separated from the [foregrounds]{.kw} that contaminate it
+- Only then can [$r$]{.kw} be estimated without bias
+:::
+
+![](PhD/6_ending/software/logo_litebird.png){style="height: 80px; margin: 0;"}
+:::
+::::
+:::::
+
+## Parametric component separation: the spectral model
+
+<br/>
+<br/>
+
+### [Synchrotron and dust (Galactic foregrounds)]{.kw}
+
+:::: {.columns style="text-align: center;"}
+::: {.column width="50%"}
+::: {.eqbox style="--eq-border: #3b6fb6; --eq-size: 1.05em; --eq-math-margin: 0.1em 0 0.2em; --eq-pad: 0.25em 0.9em 0.05em; width: fit-content; margin: 0.2em auto 0.3em;"}
+[[Synchrotron]{style="color: #3b6fb6; font-weight: 700;"}: power law]{style="font-size: 0.75em;"}
+
+$$A^{\mathrm{sync}}_\nu({\color{#3b6fb6}\beta_s}) \;\propto\; \left(\frac{\nu}{\nu_0}\right)^{\color{#3b6fb6}\beta_s}$$
+:::
+
+![](PhD/5_contribution/compsep/02_spectral_model/planck_sync.png){height="165px" style="margin: 0;"}
+
+[Planck: synchrotron]{style="font-size: 0.6em; color: #6E6E6E; display: block; margin-top: -0.9em;"}
+:::
+
+::: {.column width="50%"}
+::: {.eqbox style="--eq-border: #d68910; --eq-size: 1.05em; --eq-math-margin: 0.1em 0 0.2em; --eq-pad: 0.25em 0.9em 0.05em; width: fit-content; margin: 0.2em auto 0.3em;"}
+[[Dust]{style="color: #d68910; font-weight: 700;"}: modified black body]{style="font-size: 0.75em;"}
+
+$$A^{\mathrm{dust}}_\nu({\color{#d68910}\beta_d}, {\color{#d68910}T_d}) \;\propto\; \left(\frac{\nu}{\nu_0}\right)^{{\color{#d68910}\beta_d}+1}\frac{e^{h\nu_0/k{\color{#d68910}T_d}}-1}{e^{h\nu/k{\color{#d68910}T_d}}-1}$$
+:::
+
+![](PhD/5_contribution/compsep/02_spectral_model/planck_dust.png){height="165px" style="margin: 0;"}
+
+[Planck: thermal dust]{style="font-size: 0.6em; color: #6E6E6E; display: block; margin-top: -0.9em;"}
+:::
+::::
+
+<br/>
+
+::: {.fragment}
+### [The spectral likelihood]{.kw}
+
+::: {.eqbox style="--eq-border: #521463; --eq-size: 1.1em; --eq-math-margin: 0.2em 0; width: fit-content; margin: 0.3em auto 0; text-align: center;"}
+$$\mathbf{d}_\nu = A^{\mathrm{cmb}}_\nu\,\mathbf{s}_{\mathrm{cmb}} + A^{\mathrm{dust}}_\nu({\color{#d68910}\beta_d},{\color{#d68910}T_d})\,\mathbf{s}_{\mathrm{dust}} + A^{\mathrm{sync}}_\nu({\color{#3b6fb6}\beta_s})\,\mathbf{s}_{\mathrm{sync}} + \mathbf{n}_\nu$$
+:::
+:::
+
+<br/>
+
+::: {.fragment}
+::: {.eqbox style="--eq-border: #521463; --eq-size: 1.1em; --eq-math-margin: 0.2em 0; width: fit-content; margin: 0.45em auto 0; text-align: center;"}
+$$-2\ln\mathcal{L}(\boldsymbol\beta) = -\left(\mathbf{A}^{\top}\mathbf{N}^{-1}\mathbf{d}\right)^{\top}\left(\mathbf{A}^{\top}\mathbf{N}^{-1}\mathbf{A}\right)^{-1}\left(\mathbf{A}^{\top}\mathbf{N}^{-1}\mathbf{d}\right), \qquad \boldsymbol\beta = ({\color{#d68910}\beta_d}, {\color{#d68910}T_d}, {\color{#3b6fb6}\beta_s})$$
+:::
+:::
+
+## Spatially varying foregrounds
+
+<br/>
+
+::: {}
+### [c1d0s0]{.kw} [one spectrum for the whole sky]{style="font-size: 0.6em; font-weight: 400; color: #6E6E6E;"} {style="margin: 0 0 0.1em;"}
+
+::: {.grid .bare style="--cols: 1fr 1fr 1fr 1.3fr; --gap: 0.6em; --row-gap: 0.2em; --align: center; text-align: center;"}
+[synchrotron index $\beta_s$]{style="font-size: 0.6em;"}
+
+[dust index $\beta_d$]{style="font-size: 0.6em;"}
+
+[dust temperature $T_d$]{style="font-size: 0.6em;"}
+
+[SEDs of 300 pixels]{style="font-size: 0.6em;"}
+
+![](PhD/5_contribution/compsep/03_pysm_models/c1d0s0_beta_pl.png){height="128px" style="margin: 0;"}
+
+![](PhD/5_contribution/compsep/03_pysm_models/c1d0s0_beta_dust.png){height="128px" style="margin: 0;"}
+
+![](PhD/5_contribution/compsep/03_pysm_models/c1d0s0_temp_dust.png){height="128px" style="margin: 0;"}
+
+![](PhD/5_contribution/compsep/03_pysm_models/c1d0s0_sed.svg){height="145px" style="margin: 0;"}
+:::
+:::
+
+<br/>
+
+::: {.fragment fragment-index=1}
+### [c1d1s1]{.kw} [one spectrum per pixel]{style="font-size: 0.6em; font-weight: 400; color: #6E6E6E;"} {style="margin: 0.3em 0 0.1em;"}
+
+::: {.grid .bare style="--cols: 1fr 1fr 1fr 1.3fr; --gap: 0.6em; --align: center; text-align: center;"}
+![](PhD/5_contribution/compsep/03_pysm_models/c1d1s1_beta_pl.png){height="128px" style="margin: 0;"}
+
+![](PhD/5_contribution/compsep/03_pysm_models/c1d1s1_beta_dust.png){height="128px" style="margin: 0;"}
+
+![](PhD/5_contribution/compsep/03_pysm_models/c1d1s1_temp_dust.png){height="128px" style="margin: 0;"}
+
+![](PhD/5_contribution/compsep/03_pysm_models/c1d1s1_sed.svg){height="145px" style="margin: 0;"}
+:::
+:::
+
+<br/>
+
+::: {.fragment fragment-index=2}
+:::: {.solutionbox style="margin-top: 0.4em;"}
+::: {.solutionbox-body style="font-size: 0.85em;"}
+- In c1d1s1 each pixel has its own spectrum. The likelihood must model this [spatial variability]{.kw}
+- Both skies have $r = 0$ and serve for validation
+:::
+::::
+:::
+
+## Defining parameter patches on the sphere
+
+### [Multi-resolution (HEALPix)]{.kw} [LiteBIRD Collaboration (2023)]{style="font-size: 0.55em; font-weight: 400; color: #6E6E6E;"}
+
+:::::: {.grid .bare style="--cols: 470px 470px; --gap: 60px; --row-gap: 18px; --align: start; --img-w: 450px; --cap-size: 0.72em; --cell-margin: 0.3em 0 0; margin-top: 0.2em;"}
+::::: {.r-stack}
+::: {.cell .fragment .fade-out fragment-index=1}
+![](PhD/5_contribution/compsep/04_multires/nside_4.png)
+
+[$N_{\rm side} = 4$ · 192 patches]{.caption}
+:::
+
+::: {.cell .fragment .fade-in-then-out fragment-index=1}
+![](PhD/5_contribution/compsep/04_multires/nside_16.png)
+
+[$N_{\rm side} = 16$ · 3072 patches]{.caption}
+:::
+
+::: {.cell .fragment fragment-index=2}
+![](PhD/5_contribution/compsep/04_multires/nside_32.png)
+
+[$N_{\rm side} = 32$ · 12288 patches]{.caption}
+:::
+:::::
+
+::: {.cell .fragment fragment-index=3}
+![](PhD/5_contribution/compsep/04_multires/regions.png)
+
+[[low]{.kw} · [mid]{.kw2} · [high]{style="color: #3B6FB6; font-weight: 700;"} Galactic latitude, 20 % of the sky each]{.caption}
+:::
+
+::: {.fragment .table-full fragment-index=4 style="padding: 0 20px 0 30px; font-size: 0.95em;"}
+[$N_{\rm side}$ per parameter in the LiteBIRD analysis]{.kw style="display: block; font-size: 0.85em; margin-bottom: 0.3em; text-align: center;"}
+
+|           | low      | mid      | high     |
+|:----------|:--------:|:--------:|:--------:|
+| $\beta_d$ | 64       | 64       | 64       |
+| $T_d$     | [8]{.kw} | [4]{.kw} | [0]{.kw} |
+| $\beta_s$ | 4        | 2        | 2        |
+
+[per Galactic region (0: one patch)]{style="display: block; font-size: 0.8em; color: #6E6E6E; margin-top: 0.4em; text-align: center;"}
+:::
+
+::: {.cell .fragment fragment-index=5 style="--img-w: 420px;"}
+[Example: the $T_d$ partition]{.kw style="display: block; font-size: 0.85em; margin-bottom: 0.3em;"}
+
+![](PhD/5_contribution/compsep/04_multires/multires_td.png)
+
+[$T_d$ at $N_{\rm side}$ 8 / 4 / 0 · 344 patches]{.caption}
+:::
+::::::
+
+## Defining parameter patches on the sphere {visibility="uncounted"}
+
+### [Equal-area patches on the sphere]{.kw} {style="margin-bottom: 0.1em;"}
+
+:::: {.columns}
+::: {.column style="width: 50%; text-align: center;"}
+#### [Spherical $K$-means]{.kw} {style="margin: 0 0 0.2em;"}
+
+::: {style="display: flex; justify-content: center; align-items: center; gap: 14px; margin-bottom: 0.2em;"}
+[![](https://img.shields.io/badge/GitHub-jax--healpy-blue?logo=github)](https://github.com/CMBSciPol/jax-healpy)
+![](PhD/6_ending/software/logo_scipol.png){style="height: 34px; margin: 0;"}
+:::
+
+![](PhD/5_contribution/compsep/05_kmeans/kmeans_fill.gif){.screen-only width="380px" style="margin: 0;"}
+![](PhD/5_contribution/compsep/05_kmeans/kmeans_fill.png){.print-only width="380px" style="margin: 0;"}
+:::
+
+::: {.column .fragment fragment-index=1 style="width: 50%; text-align: center;"}
+#### [The bias–variance trade-off]{.kw} {style="margin: 0 0 0.3em;"}
+
+![](PhD/5_contribution/compsep/05_kmeans/r_likelihood_high_low.svg){width="84%" style="margin: 0;"}
+:::
+::::
+
+::: {.fragment fragment-index=2}
+:::: {.solutionbox}
+::: {.solutionbox-header}
+Obstacle for full-sky CMB surveys: LiteBIRD
+:::
+
+::: {.solutionbox-body style="font-size: 0.76em;"}
+- The number of patches must be tuned to meet the requirements of future surveys
+- We want to test many configurations and keep the best one
+- This needs a [fast]{.kw} optimisation method and a [selection criterion]{.kw} for patch configurations
+:::
+::::
+:::
+
+## Fast and robust minimisation
+
+::::::: {.columns style="display: flex; gap: 12px; margin-top: 0.1em;"}
+:::::: {.column style="width: 480px;"}
+::::: {.r-stack .bare}
+:::: {.fragment .fade-out fragment-index=2 style="margin: 40px 0 0 20px; align-self: start; justify-self: start;"}
+![](PhD/5_contribution/compsep/06_newton/newton_bowl.gif){.screen-only style="width: 450px;"}
+![](PhD/5_contribution/compsep/06_newton/newton_bowl.png){.print-only style="width: 450px;"}
+::::
+
+:::: {.fragment fragment-index=2 style="margin: 0 0 0 40px; align-self: start; justify-self: start;"}
+![](PhD/5_contribution/compsep/06_newton/noise_left.gif){.screen-only style="width: 430px;"}
+![](PhD/5_contribution/compsep/06_newton/noise_left.png){.print-only style="width: 430px;"}
+::::
+:::::
+::::::
+
+:::::: {.column style="width: 500px;"}
+### How do we minimise? {style="margin: 0 0 0.3em;"}
+
+::::: {.r-stack .bare style="height: 300px;"}
+:::: {.fragment .fade-out fragment-index=1 style="width: 100%;"}
+::: {.eqbox style="--eq-size: 1.25em; --eq-math-margin: 0.25em 0; --eq-pad: 0.3em 0.9em; width: fit-content; margin: 0.4em auto 0; text-align: center;"}
+[The Newton method]{style="display: block; margin: 0.1em 0 0; font-size: 0.8em; font-weight: 700; color: #C2560A;"}
+
+$$\boldsymbol\beta_{k+1} = \boldsymbol\beta_k - \mathbf{H}_k^{-1}\,\mathbf{g}_k$$
+$$\mathbf{g} = \nabla_{\boldsymbol\beta}\left(-\ln\mathcal{L}\right), \qquad \mathbf{H} = \nabla^2_{\boldsymbol\beta}\left(-\ln\mathcal{L}\right)$$
+:::
+::::
+
+:::: {.fragment fragment-index=1 style="width: 100%; text-align: center;"}
+![](PhD/5_contribution/compsep/06_newton/snr_map.png){style="width: 440px; margin: 0.2em 0 0;"}
+
+[140 GHz, LiteBIRD depth]{style="display: block; font-size: 0.6em; color: #6E6E6E; margin: 0.1em 0 0;"}
+::::
+:::::
+
+::::: {.fragment fragment-index=3 style="margin-top: 0.7em;"}
+:::: {.solutionbox}
+::: {.solutionbox-body style="font-size: 0.85em;"}
+- Noisy sky data make the Hessian [poorly conditioned]{.kw} and hard to invert
+- [Quasi-Newton]{.kw} methods suffer most. They approximate the inverse Hessian as if the likelihood were a clean quadratic bowl
+:::
+::::
+:::::
+::::::
+:::::::
+
+## Adaptive moment-based methods
+
+<br/>
+
+::: {style="display: flex; align-items: center; gap: 18px; margin-top: -0.2em;"}
+![](assets/Logos/JaxLogo.png){style="height: 40px; margin: 0;"}
+[![](https://img.shields.io/badge/GitHub-cadre-blue?logo=github)](https://github.com/CMBSciPol/CADRE)
+:::
+
+<br/>
+
+:::: {.columns style="display: flex; align-items: center;"}
+::: {.column style="width: 54%;"}
+::: {.r-stack}
+::: {.fragment .fade-out fragment-index=1}
+![](PhD/5_contribution/compsep/07_adam/adam_path.gif){.screen-only width="80%" style="margin: 0 auto; display: block;"}
+![](PhD/5_contribution/compsep/07_adam/adam_path.png){.print-only width="80%" style="margin: 0 auto; display: block;"}
+:::
+
+![](PhD/5_contribution/compsep/07_adam/adabelief.svg){.fragment fragment-index=1 width="80%" style="margin: 0 auto; display: block;"}
+:::
+:::
+
+::: {.column style="width: 46%; font-size: 1em;"}
+[Adam]{.kw2} is the standard optimiser of machine learning, built for very many parameters and very noisy gradients
+
+::: {.eqbox style="--eq-size: 0.95em; --eq-math-margin: 0.2em 0; --eq-pad: 0.15em 0.8em; width: fit-content; margin: 0.4em auto;"}
+$$\boldsymbol\beta_{t+1} = \boldsymbol\beta_t - \eta\,\frac{\hat m_t}{\sqrt{\hat v_t}+\epsilon}$$
+:::
+
+[$m_t$, $v_t$: running means of $\mathbf{g}$ and $\mathbf{g}^2$]{style="font-size: 0.85em; color: #6E6E6E;"}
+
+::: {.fragment fragment-index=1}
+[AdaBelief]{.kw2} scales the step by the spread of the gradient instead
+
+::: {.eqbox style="--eq-size: 0.95em; --eq-math-margin: 0.2em 0; --eq-pad: 0.15em 0.8em; width: fit-content; margin: 0.4em auto;"}
+$$v_t \;\longrightarrow\; s_t:\ \text{running mean of }(\mathbf{g} - m_t)^2$$
+:::
+
+A noisy direction gets a [smaller step]{.kw}
+:::
+:::
+::::
+
+::: {.fragment fragment-index=2}
+:::: {.solutionbox}
+::: {.solutionbox-body style="font-size: 0.9em;"}
+[AdaTopK]{.kw} builds on AdaBelief for physical parameters, with a robust handling of parameter bounds
+:::
+::::
+:::
+
+## Scaling of AdaTopK
+
+![](PhD/5_contribution/compsep/08_scaling/runtime_scaling.svg){fig-align="center" width="62%" style="margin-bottom: 0.2em;"}
+
+::: {.fragment}
+:::: {.solutionbox}
+::: {.solutionbox-header}
+Scaling
+:::
+
+::: {.solutionbox-body style="font-size: 0.85em;"}
+- AdaTopK runs on GPUs with first-order gradients only: its cost stays flat as the number of patches grows, [about 60 times faster]{.kw} than the reference solver at 10 000 patches
+- Next: [scan many patch configurations]{.kw2} and select the best
+:::
+::::
+:::
+
+## Selection criteria for optimal patches
+
+![](PhD/6_ending/software/logo_furax.png){style="position: absolute; top: -12px; right: 0; height: 78px; margin: 0; border-radius: 10px;"}
+
+::: {style="display: flex; align-items: center; gap: 18px; margin-top: -0.2em;"}
+![](assets/Logos/JaxLogo.png){style="height: 40px; margin: 0;"}
+[![](https://img.shields.io/badge/GitHub-furax-blue?logo=github)](https://github.com/CMBSciPol/furax)
+[![](https://img.shields.io/badge/GitHub-furax--cs-blue?logo=github)](https://github.com/CMBSciPol/furax-cs)
+:::
+
+<video src="PhD/5_contribution/compsep/09_selection/selection.mp4" data-autoplay muted playsinline preload="auto" style="display: block; width: 80%; margin: 0.2em auto 0;"></video>
+
+![](PhD/5_contribution/compsep/09_selection/selection_last.png){.print-only fig-align="center" width="80%"}
+
+::: {.fragment}
+:::: {.solutionbox style="margin-top: 0.3em;"}
+::: {.solutionbox-body style="font-size: 0.8em;"}
+- Minimising $\hat r + \sigma(r)$ cannot remove a primordial $r$. The mixing matrix $\mathbf{A}$ contains the CMB with its known spectrum, so the recovered CMB keeps [unit response]{.kw} for every partition
+- The guarantee is specific to map-based parametric separation. A forward model or a non-map-based method loses it
+:::
+::::
+:::
+
+## Selection criteria for optimal patches {visibility="uncounted"}
+
+[We do this for each region]{.kw}
+
+:::: {.grid .bare style="--cols: 300px 295px 1fr; grid-template-rows: repeat(3, 172px); --gap: 12px; --row-gap: 2px; --img-w: 290px; --cap-size: 0.55em; --cell-margin: 0; margin-top: 0.2em;"}
+::: {.cell .fragment fragment-index=1}
+![](PhD/5_contribution/compsep/09_selection/best_patches_beta_dust.png)
+
+[$\beta_d$ patches]{.caption}
+:::
+
+::: {.fragment fragment-index=1}
+![](PhD/5_contribution/compsep/09_selection/gridding_beta_dust.svg){width="285px"}
+:::
+
+::: {.cell .fragment fragment-index=2}
+![](PhD/5_contribution/compsep/09_selection/best_patches_temp_dust.png)
+
+[$T_d$ patches]{.caption}
+:::
+
+::: {.fragment fragment-index=2}
+![](PhD/5_contribution/compsep/09_selection/gridding_temp_dust.svg){width="285px"}
+:::
+
+::: {.cell .fragment fragment-index=3}
+![](PhD/5_contribution/compsep/09_selection/best_patches_beta_pl.png)
+
+[$\beta_s$ patches]{.caption}
+:::
+
+::: {.fragment fragment-index=3}
+![](PhD/5_contribution/compsep/09_selection/gridding_beta_pl.svg){width="285px"}
+:::
+
+::: {.r-stack style="grid-column: 3; grid-row: 1 / 4;"}
+![](PhD/5_contribution/compsep/09_selection/r_likelihood_regions.svg){.fragment .fade-in-then-out fragment-index=4 width="380px"}
+
+![](PhD/5_contribution/compsep/09_selection/r_likelihood_combined.svg){.fragment fragment-index=5 width="380px"}
+:::
+::::
+
+## Results: comparison with multi-resolution
+
+:::: {.columns style="display: flex; align-items: center;"}
+::: {.column style="width: 46%;"}
+![](PhD/5_contribution/compsep/10_results/r_likelihood.svg){width="100%" style="margin: 0;"}
+:::
+
+::: {.column style="width: 54%;"}
+::: {.bare style="margin: 0.5em 0 0.2em; font-size: 0.9em;"}
+[multi-resolution]{.kw2} (LiteBIRD PTEP)
+:::
+
+:::: {.grid .bare style="--cols: 1fr 1fr 1fr; --gap: 8px; --row-gap: 8px; --cap-size: 0.62em; --cell-margin: 0;"}
+::: {.cell}
+![](PhD/5_contribution/compsep/10_results/patches_multires_beta_dust.png)
+
+[$\beta_d$]{.caption}
+:::
+
+::: {.cell}
+![](PhD/5_contribution/compsep/10_results/patches_multires_temp_dust.png)
+
+[$T_d$]{.caption}
+:::
+
+::: {.cell}
+![](PhD/5_contribution/compsep/10_results/patches_multires_beta_pl.png)
+
+[$\beta_s$]{.caption}
+:::
+::::
+
+::: {.bare style="margin: 0.5em 0 0.2em; font-size: 0.9em;"}
+[spherical $K$-means]{.kw} (this work)
+:::
+
+:::: {.grid .bare style="--cols: 1fr 1fr 1fr; --gap: 8px; --row-gap: 8px; --cap-size: 0.62em; --cell-margin: 0;"}
+::: {.cell}
+![](PhD/5_contribution/compsep/10_results/patches_kmeans_beta_dust.png)
+
+[$\beta_d$]{.caption}
+:::
+
+::: {.cell}
+![](PhD/5_contribution/compsep/10_results/patches_kmeans_temp_dust.png)
+
+[$T_d$]{.caption}
+:::
+
+::: {.cell}
+![](PhD/5_contribution/compsep/10_results/patches_kmeans_beta_pl.png)
+
+[$\beta_s$]{.caption}
+:::
+::::
+:::
+::::
+
+::: {.fragment fragment-index=1}
+:::: {.solutionbox}
+::: {.solutionbox-body}
+[30 % lower 68 % upper limit on $r$]{.kw}, with the same instrument, sky and noise: only the partition changes
+:::
+::::
+:::
+
+::: {.fragment fragment-index=2 style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; min-height: 700px; z-index: 20; background: rgba(250, 247, 240, 0.88); display: flex; align-items: center; justify-content: center;"}
+![](PhD/5_contribution/compsep/10_results/paper_crop.png){style="width: 860px; max-width: none; margin: 0; border: 1px solid #ccc; border-radius: 6px; box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);"}
+:::
+
+## Contribution 1: conclusion
+
+<br/>
+<br/>
+<br/>
+
+:::: {.solutionbox}
+::: {.solutionbox-body}
+- Parametric component separation in JAX, [almost two orders of magnitude faster]{.kw}, over thousands of sky partitions
+- AdaTopK: a bounded optimiser built for [noisy physical likelihoods]{.kw}
+- Choosing the partition by the upper limit on $r$: [30 % lower]{.kw} than the hand-tuned configuration
+:::
+::::
+
+<br/>
+
+::: {.fragment}
+Now part of the [Megatop]{.kw2} pipeline for the Simons Observatory, and of the parametric component separation for LiteBIRD
+
+::: {style="display: flex; justify-content: center; align-items: center; gap: 48px; margin-top: 0.6em;"}
+![](PhD/6_ending/software/logo_megatop.png){style="height: 70px;"}
+![](PhD/6_ending/software/logo_so.png){style="height: 90px;"}
+![](PhD/6_ending/software/logo_litebird.png){style="height: 80px;"}
+:::
+:::
+
+[Kabalan et al. (2026), RASTI]{.credit}
+
+# Contribution 2: field-level inference for weak lensing surveys
+
+::: {.rail-stack}
+![](PhD/2_outline/rail_full.svg){.rail-full}
+
+![](PhD/2_outline/rail_focus_c2.svg){.rail-focus}
+:::
+
+::: {style="display: flex; justify-content: center; align-items: center; gap: 36px; margin-top: 1.2em;"}
+![](assets/Logos/JaxLogo.png){style="height: 70px;"}
+[![](https://img.shields.io/badge/GitHub-jax--fli-blue?logo=github)](https://github.com/ASKabalan/jax-fli)
+:::
+
+## A weak-lensing forward model, end to end
+
+![](PhD/5_contribution/fli/01_pipeline/pipeline.svg){fig-align="center" width="74%"}
+
+From a cosmology and an initial density field to [convergence and shear on the curved sky]{.kw}
+
+## Reminder: forward modelling for weak lensing
+
+::: {.r-stack .bare style="width: 960px; margin-left: 30px;"}
+![](PhD/5_contribution/fli/02_forward_model/fm_forward.svg){width="960px"}
+
+![](PhD/5_contribution/fli/02_forward_model/fm_implicit.svg){.fragment .semi-fade-out fragment-index=2 width="960px"}
+
+![](PhD/5_contribution/fli/02_forward_model/fm_explicit.svg){.fragment fragment-index=1 width="960px"}
+:::
+
+## Building a survey-level differentiable forward model
+
+:::: {.hl-host .bare style="margin-top: 0.1em;"}
+![](PhD/5_contribution/fli/01_pipeline/pipeline.svg){width="800px" style="display: block;"}
+
+::: {.hlbox style="--x: 22%; --y: 5%; --w: 42%; --h: 42%;"}
+:::
+::::
+
+::: {.fragment}
+:::: {.solutionbox}
+::: {.solutionbox-body}
+A [fast]{.kw} and [differentiable]{.kw} gravity solver that can simulate [Stage IV survey volumes]{.kw}
+:::
+::::
+:::
+
+## The gravity solver: Lagrangian perturbation theory
+
+<br/>
+<br/>
+
+:::: {.columns style="display: flex; align-items: center;"}
+::: {.column style="width: 46%;"}
+Each particle moves from its initial grid position $\mathbf{q}$
+
+::: {.eqbox style="--eq-size: 0.82em; --eq-math-margin: 0.3em 0; --eq-pad: 0.2em 0.7em; width: fit-content; margin: 0.4em auto;"}
+$$\mathbf{x}(\mathbf{q}, a) = \mathbf{q} + D_1(a)\,\mathbf{\Psi}^{(1)}(\mathbf{q}) + D_2(a)\,\mathbf{\Psi}^{(2)}(\mathbf{q}) + \dots$$
+$$\nabla \cdot \mathbf{\Psi}^{(1)} = -\delta_\mathrm{ini}$$
+:::
+
+[First order: the Zel'dovich approximation. Second order (2LPT) adds the tidal field.]{style="font-size: 0.8em; color: #6E6E6E;"}
+:::
+
+::: {.column .fragment fragment-index=1 style="width: 54%;"}
+![](PhD/5_contribution/fli/04_lpt/limber_lin_vs_halofit.svg){width="100%" style="margin: 0;"}
+
+[Lensing $C_\ell$ of the four DES Y3 bins, linear theory against halofit]{style="font-size: 0.6em; color: #6E6E6E;"}
+:::
+::::
+
+::: {.fragment fragment-index=2}
+:::: {.solutionbox}
+::: {.solutionbox-body style="font-size: 0.85em;"}
+- Perturbation theory does not capture the [non-linear]{.kw} growth of structure
+- We need a [fast]{.kw} and [differentiable]{.kw} gravity solver that can model the [non-linear]{.kw} signal
+:::
+::::
+:::
+
+## The gravity solver: particle mesh
+
+::: {style="display: flex; align-items: center; gap: 18px; margin-top: -0.2em;"}
+![](assets/Logos/JaxLogo.png){style="height: 40px; margin: 0;"}
+[![](https://img.shields.io/badge/GitHub-JaxPM-blue?logo=github)](https://github.com/DifferentiableUniverseInitiative/JaxPM)
+:::
+
+::: {.r-stack .bare style="margin-top: 0.3em;"}
+![](PhD/5_contribution/fli/05_pm/pm_0.png){.fragment .fade-out fragment-index=1 style="width: 1000px;"}
+
+![](PhD/5_contribution/fli/05_pm/pm_1.png){.fragment .fade-in-then-out fragment-index=1 style="width: 1000px;"}
+
+![](PhD/5_contribution/fli/05_pm/pm_2.png){.fragment .fade-in-then-out fragment-index=2 style="width: 1000px;"}
+
+![](PhD/5_contribution/fli/05_pm/pm_3.png){.fragment .fade-in-then-out fragment-index=3 style="width: 1000px;"}
+
+![](PhD/5_contribution/fli/05_pm/pm_4.png){.fragment .fade-in-then-out fragment-index=4 style="width: 1000px;"}
+
+![](PhD/5_contribution/fli/05_pm/pm_5.png){.fragment fragment-index=5 style="width: 1000px;"}
+
+![](PhD/5_contribution/fli/05_pm/pm_run.gif){.fragment .screen-only fragment-index=6 style="width: 1000px;"}
+
+![](PhD/5_contribution/fli/05_pm/pm_run_last.png){.print-only style="width: 1000px;"}
+:::
+
+Gravity through FFTs on a mesh: cheap, differentiable, and [limited by the mesh resolution]{.kw}
+
+## Accuracy of the particle mesh
+
+::: {.r-stack}
+![](PhD/5_contribution/fli/pm3d_frag_1.png){.fragment .fade-out fragment-index=1 width="1000px"}
+
+![](PhD/5_contribution/fli/pm3d_frag_2.png){.fragment .fade-in-then-out fragment-index=1 width="1000px"}
+
+![](PhD/5_contribution/fli/pm3d_frag_3.png){.fragment .fade-in-then-out fragment-index=2 width="1000px"}
+
+![](PhD/5_contribution/fli/pm3d_frag_4.png){.fragment .fade-in-then-out fragment-index=3 width="1000px"}
+
+![](PhD/5_contribution/fli/pm3d_frag_5.png){.fragment .fade-in fragment-index=4 width="1000px"}
+:::
+
+::: {.fragment}
+:::: {.solutionbox}
+::: {.solutionbox-body style="font-size: 0.85em;"}
+- The accuracy of a particle-mesh simulation is limited by the [resolution of its mesh]{.kw}
+- At survey volume, a mesh with that resolution [does not fit on one GPU]{.kw}
+- We need a [scalable]{.kw} gravity solver
+:::
+::::
+:::
+
+## Distributing the simulation
+
+::: {style="display: flex; align-items: center; gap: 18px; margin-top: -0.2em;"}
+![](assets/Logos/JaxLogo.png){style="height: 40px; margin: 0;"}
+[![](https://img.shields.io/badge/GitHub-jaxDecomp-blue?logo=github)](https://github.com/DifferentiableUniverseInitiative/jaxDecomp)
+:::
+
+<br/>
+
+### [Distributed components for particle-mesh simulation]{.kw} {style="margin: 0.2em 0 0.1em;"}
+
+
+<br/>
+
+::: {.r-stack}
+::: {.fragment .fade-out .bare fragment-index=1 style="text-align: center;"}
+[Distributed fast Fourier transforms]{.kw2}
+
+![](PhD/5_contribution/fli/07_distributed/jaxdecomp_fft.svg){height="285px" style="margin: 0.2em 0 0;"}
+:::
+
+::: {.fragment .fade-in-then-out .bare fragment-index=1 style="text-align: center;"}
+[Distributed transpositions]{.kw2}
+
+![](PhD/5_contribution/fli/07_distributed/decomp2d.gif){height="285px" style="margin: 0.2em 0 0;"}
+:::
+
+::: {.fragment .bare fragment-index=2 style="text-align: center;"}
+[Distributed halo exchange]{.kw2}
+
+<video src="PhD/5_contribution/fli/07_distributed/halo_exchange.mp4" class="screen-only" muted playsinline preload="auto" style="width: 680px; margin-top: 0.2em;"></video>
+
+![](PhD/5_contribution/fli/07_distributed/halo_exchange_last.png){.print-only width="680px"}
+:::
+:::
+
+The FFT and the halo exchange are the two operations that require communication between devices. Both are [differentiable]{.kw}, [distributed]{.kw} and written in [JAX]{.kw}
+
+::: {.fragment fragment-index=3 style="position: absolute; top: 0; left: 0; width: 1050px; height: 700px; z-index: 20; background: rgba(250, 247, 240, 0.9); display: flex; align-items: center; justify-content: center;"}
+![](PhD/5_contribution/fli/07_distributed/joss_header.png){style="width: 860px; max-width: none; margin: 0; border: 1px solid #ccc; border-radius: 6px; box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25); background: #ffffff;"}
+:::
+
+## Building the observable
+
+:::: {.hl-host .bare style="margin-top: 0.1em;"}
+![](PhD/5_contribution/fli/01_pipeline/pipeline.svg){width="800px" style="display: block;"}
+
+::: {.hlbox .fragment .custom .hlbox-move fragment-index=1 style="--x: 22%; --y: 5%; --w: 42%; --h: 42%; --x2: 47%; --y2: 5%; --w2: 47%; --h2: 42%;"}
+:::
+::::
+
+## Building the observable: requirements
+
+::::: {.columns style="display: flex; align-items: flex-start;"}
+:::: {.column style="width: 55%;"}
+::: {.figcadre style="padding: 0.9em 0.4em 0.3em;"}
+![](PhD/5_contribution/fli/09_observable/geometry.svg){width="540px" style="display: block; margin: 0 auto;"}
+:::
+::::
+
+:::: {.column style="width: 45%; padding-left: 0.6em;"}
+[What volume does such an analysis need?]{.kw .fragment fragment-index=2 style="font-size: 0.85em;"}
+
+::: {.grid .bare .fragment fragment-index=3 style="--cols: 1fr 1fr; --gap: 10px; --row-gap: 0;"}
+::: {.cell}
+![](PhD/5_contribution/fli/09_observable/wire_centre.svg)
+
+[observer at the centre]{.caption style="--cap-size: 0.55em;"}
+:::
+
+::: {.cell}
+![](PhD/5_contribution/fli/09_observable/wire_shifted.svg)
+
+[shifted-quadrant observer (0.1, 0.5, 0.9)]{.caption style="--cap-size: 0.55em;"}
+:::
+:::
+
+::: {.grid .bare .fragment fragment-index=4 style="--cols: 1fr 1fr; --gap: 10px; --row-gap: 0; margin-top: 0.6em;"}
+::: {.cell}
+::: {.r-stack}
+![](PhD/5_contribution/fli/09_observable/sky_centre.png){.fragment .fade-out fragment-index=5}
+
+![](PhD/5_contribution/fli/09_observable/sky_centre_des.png){.fragment fragment-index=5}
+:::
+
+[full sky, $f_\mathrm{sky} = 1$]{.caption style="--cap-size: 0.55em;"}
+:::
+
+::: {.cell}
+::: {.r-stack}
+![](PhD/5_contribution/fli/09_observable/sky_shifted.png){.fragment .fade-out fragment-index=5}
+
+![](PhD/5_contribution/fli/09_observable/sky_shifted_des.png){.fragment fragment-index=5}
+:::
+
+[$f_\mathrm{sky} = 0.35$[, contains [DES Y3]{.kw}]{.fragment fragment-index=5}]{.caption style="--cap-size: 0.55em;"}
+:::
+:::
+::::
+:::::
+
+::::: {.fragment fragment-index=1}
+:::: {.solutionbox style="margin-top: 0.3em;"}
+::: {.solutionbox-header style="font-size: 0.8em;"}
+Simulation-based inference on real survey data
+:::
+
+::: {.solutionbox-body style="font-size: 0.72em;"}
+The DES Y3 simulation-based analysis of Jeffrey et al. (2024, arXiv:2403.02314) used [CosmoGridV1]{.kw} as its validation suite. The forward model must simulate the same volume.
+:::
+::::
+:::::
+
+## Painting on spherical shells {transition="slide-in none-out"}
+
+```{=html}
+<div style="position: relative; height: 0; margin-top: 0.1em;">
+<div class="fragment custom transform" data-fragment-index="1" style="position: absolute; left: 0; top: 0; width: 960px; height: 560px; --to: translate(800px, -80px) scale(0.16); --origin: top left;">
+<img src="PhD/3_observation/weaklensing/05_tomography/box_0.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 20px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 20px; width: 135px; top: 163px;">bin 4</span>
+<img src="PhD/3_observation/weaklensing/05_tomography/box_1.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 175px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 175px; width: 135px; top: 163px;">bin 3</span>
+<img src="PhD/3_observation/weaklensing/05_tomography/box_2.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 330px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 330px; width: 135px; top: 163px;">bin 2</span>
+<img src="PhD/3_observation/weaklensing/05_tomography/box_3.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 485px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 485px; width: 135px; top: 163px;">bin 1</span>
+<svg style="position: absolute; left: 552px; top: 203px; width: 78px; height: 24px;" viewBox="0 0 78 24"><line x1="0" y1="12" x2="60" y2="12" stroke="#6E6E6E" stroke-width="5" stroke-linecap="round"/><polygon points="58,2 78,12 58,22" fill="#6E6E6E"/></svg><img src="PhD/3_observation/weaklensing/05_tomography/kappa_3.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 643px; top: 171px; width: 88px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; left: 739px; top: 204px;">κ bin 1</span>
+<svg style="position: absolute; left: 397px; top: 299px; width: 233px; height: 24px;" viewBox="0 0 233 24"><line x1="0" y1="12" x2="215" y2="12" stroke="#6E6E6E" stroke-width="5" stroke-linecap="round"/><polygon points="213,2 233,12 213,22" fill="#6E6E6E"/></svg><img src="PhD/3_observation/weaklensing/05_tomography/kappa_2.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 643px; top: 267px; width: 88px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; left: 739px; top: 300px;">κ bin 2</span>
+<svg style="position: absolute; left: 242px; top: 395px; width: 388px; height: 24px;" viewBox="0 0 388 24"><line x1="0" y1="12" x2="370" y2="12" stroke="#6E6E6E" stroke-width="5" stroke-linecap="round"/><polygon points="368,2 388,12 368,22" fill="#6E6E6E"/></svg><img src="PhD/3_observation/weaklensing/05_tomography/kappa_1.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 643px; top: 363px; width: 88px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; left: 739px; top: 396px;">κ bin 3</span>
+<svg style="position: absolute; left: 87px; top: 491px; width: 543px; height: 24px;" viewBox="0 0 543 24"><line x1="0" y1="12" x2="525" y2="12" stroke="#6E6E6E" stroke-width="5" stroke-linecap="round"/><polygon points="523,2 543,12 523,22" fill="#6E6E6E"/></svg><img src="PhD/3_observation/weaklensing/05_tomography/kappa_0.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 643px; top: 459px; width: 88px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; left: 739px; top: 492px;">κ bin 4</span>
+<svg style="position: absolute; left: 845px; top: 335px; width: 100px;" viewBox="0 0 110 60"><path d="M5 30 Q55 -12 105 30 Q55 72 5 30 Z" fill="none" stroke="#3B6FB6" stroke-width="4"/><circle cx="55" cy="30" r="15" fill="none" stroke="#3B6FB6" stroke-width="4"/><circle cx="55" cy="30" r="7" fill="#3B6FB6"/></svg><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 845px; width: 100px; top: 395px;">observer</span>
+</div>
+</div>
+```
+
+:::::: {.columns style="display: flex; align-items: center; margin-top: 100px;"}
+::::: {.column .fragment fragment-index=2 style="width: 50%;"}
+:::: {.row .bare style="--gap: 0.5em; --justify: center;"}
+::: {.cell style="width: 170px;"}
+![](PhD/5_contribution/fli/10_painting/density_box.png)
+
+[evolved particles]{.caption style="--cap-size: 0.55em;"}
+:::
+
+[⟶]{style="font-size: 2.4em; color: #6E6E6E;"}
+
+::: {.cell style="width: 250px;"}
+![](PhD/5_contribution/fli/10_painting/density_shell.png)
+
+[one HEALPix shell]{.caption style="--cap-size: 0.55em;"}
+:::
+::::
+:::::
+
+::::: {.column style="width: 50%;"}
+:::: {.eqbox .fragment fragment-index=2 style="--eq-size: 0.95em; --eq-math-margin: 0.2em 0; --eq-pad: 0.2em 0.9em; width: fit-content; margin: 0 auto; text-align: center;"}
+$$r = \lVert \mathbf{x} - \mathbf{x}_o \rVert, \qquad \theta = \arccos\frac{z - z_o}{r}$$
+$$\varphi = \operatorname{atan2}(y - y_o,\, x - x_o)$$
+$$p = \texttt{ang2pix}(N_\mathrm{side}, \theta, \varphi)$$
+::::
+
+:::: {.fragment fragment-index=3 style="margin-top: 1.4em;"}
+::: {.solutionbox}
+::: {.solutionbox-header}
+[ang2pix]{style="font-family: monospace;"}: jax-healpy
+:::
+
+::: {.solutionbox-body style="font-size: 0.8em;"}
+Implemented in jax-healpy by Pierre Chanial. 
+Works by binning each particle into one pixel but it is [not differentiable]{.kw} because the pixel index is piecewise constant in the particle position, so its gradient is zero
+:::
+:::
+::::
+:::::
+::::::
+
+## Painting on spherical shells {visibility="uncounted" transition="none-in none-out"}
+
+```{=html}
+<div style="position: relative; height: 0;">
+<div style="position: absolute; left: 0; top: 0; width: 960px; height: 560px; transform: translate(800px, -80px) scale(0.16); transform-origin: top left;">
+<img src="PhD/3_observation/weaklensing/05_tomography/box_0.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 20px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 20px; width: 135px; top: 163px;">bin 4</span>
+<img src="PhD/3_observation/weaklensing/05_tomography/box_1.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 175px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 175px; width: 135px; top: 163px;">bin 3</span>
+<img src="PhD/3_observation/weaklensing/05_tomography/box_2.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 330px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 330px; width: 135px; top: 163px;">bin 2</span>
+<img src="PhD/3_observation/weaklensing/05_tomography/box_3.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 485px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 485px; width: 135px; top: 163px;">bin 1</span>
+<svg style="position: absolute; left: 552px; top: 203px; width: 78px; height: 24px;" viewBox="0 0 78 24"><line x1="0" y1="12" x2="60" y2="12" stroke="#6E6E6E" stroke-width="5" stroke-linecap="round"/><polygon points="58,2 78,12 58,22" fill="#6E6E6E"/></svg><img src="PhD/3_observation/weaklensing/05_tomography/kappa_3.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 643px; top: 171px; width: 88px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; left: 739px; top: 204px;">κ bin 1</span>
+<svg style="position: absolute; left: 397px; top: 299px; width: 233px; height: 24px;" viewBox="0 0 233 24"><line x1="0" y1="12" x2="215" y2="12" stroke="#6E6E6E" stroke-width="5" stroke-linecap="round"/><polygon points="213,2 233,12 213,22" fill="#6E6E6E"/></svg><img src="PhD/3_observation/weaklensing/05_tomography/kappa_2.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 643px; top: 267px; width: 88px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; left: 739px; top: 300px;">κ bin 2</span>
+<svg style="position: absolute; left: 242px; top: 395px; width: 388px; height: 24px;" viewBox="0 0 388 24"><line x1="0" y1="12" x2="370" y2="12" stroke="#6E6E6E" stroke-width="5" stroke-linecap="round"/><polygon points="368,2 388,12 368,22" fill="#6E6E6E"/></svg><img src="PhD/3_observation/weaklensing/05_tomography/kappa_1.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 643px; top: 363px; width: 88px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; left: 739px; top: 396px;">κ bin 3</span>
+<svg style="position: absolute; left: 87px; top: 491px; width: 543px; height: 24px;" viewBox="0 0 543 24"><line x1="0" y1="12" x2="525" y2="12" stroke="#6E6E6E" stroke-width="5" stroke-linecap="round"/><polygon points="523,2 543,12 523,22" fill="#6E6E6E"/></svg><img src="PhD/3_observation/weaklensing/05_tomography/kappa_0.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 643px; top: 459px; width: 88px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; left: 739px; top: 492px;">κ bin 4</span>
+<svg style="position: absolute; left: 845px; top: 335px; width: 100px;" viewBox="0 0 110 60"><path d="M5 30 Q55 -12 105 30 Q55 72 5 30 Z" fill="none" stroke="#3B6FB6" stroke-width="4"/><circle cx="55" cy="30" r="15" fill="none" stroke="#3B6FB6" stroke-width="4"/><circle cx="55" cy="30" r="7" fill="#3B6FB6"/></svg><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 845px; width: 100px; top: 395px;">observer</span>
+</div>
+</div>
+```
+
+[![](https://img.shields.io/badge/GitHub-jax--healpy-blue?logo=github)](https://github.com/CMBSciPol/jax-healpy)
+
+:::: {.columns}
+::: {.column style="width: 50%; text-align: center;"}
+#### [Bilinear interpolation]{.kw2} {style="margin: 0.2em 0;"}
+
+<video src="PhD/5_contribution/fli/10_painting/bilinear.mp4" class="screen-only" data-autoplay muted playsinline preload="auto" style="width: 82%;"></video>
+
+![](PhD/5_contribution/fli/10_painting/bilinear_last.png){.print-only width="82%"}
+
+:::: {.solutionbox style="text-align: left;"}
+::: {.solutionbox-body style="font-size: 0.72em;"}
+Four pixels, weighted by the position between their centres: `get_interp_weights`, implemented in jax-healpy
+:::
+::::
+:::
+
+::: {.column .fragment fragment-index=1 style="width: 50%; text-align: center;"}
+#### [Radial basis function interpolation]{.kw} {style="margin: 0.2em 0;"}
+
+::: {.r-stack}
+<video src="PhD/5_contribution/fli/10_painting/rbf.mp4" class="fragment fade-out screen-only" data-fragment-index="2" muted playsinline preload="auto" style="width: 82%;"></video>
+
+<video src="PhD/5_contribution/fli/10_painting/rbf_kernel.mp4" class="fragment screen-only" data-fragment-index="2" muted playsinline preload="auto" style="width: 82%;"></video>
+
+![](PhD/5_contribution/fli/10_painting/rbf_kernel_last.png){.print-only width="82%"}
+:::
+
+:::: {.solutionbox style="text-align: left;"}
+::: {.solutionbox-body style="font-size: 0.72em;"}
+The pixel and its eight neighbours (`get_all_neighbours`, implemented in jax-healpy), weighted by a Gaussian kernel of adjustable width
+:::
+::::
+:::
+::::
+
+:::::: {.fragment .fade-out fragment-index=5}
+::::: {.fragment .bare fragment-index=3 style="position: absolute; top: -100px; left: 0; width: 1050px; height: 700px; padding-top: 100px; z-index: 20; background: rgba(250, 247, 240, 0.93); display: flex; flex-direction: column; align-items: center; justify-content: center;"}
+:::: {.r-stack style="width: 640px;"}
+![](PhD/5_contribution/fli/10_painting/painting_cl.svg){.fragment .fade-out fragment-index=4 width="640px"}
+
+![](PhD/5_contribution/fli/10_painting/painting_cl_zoom.svg){.fragment fragment-index=4 width="640px"}
+::::
+
+:::: {.solutionbox style="width: 900px; margin-top: 0.3em;"}
+::: {.solutionbox-body style="font-size: 0.85em;"}
+The RBF scheme keeps the gradient and gives [control over the smoothing]{.kw}: at 0.8 pixel FWHM it tracks nearest-grid-point painting to a few per cent out to $\ell \approx 1500$
+:::
+::::
+:::::
+::::::
+
+::: {.fragment fragment-index=5}
+:::: {.solutionbox style="margin-top: 0.4em;"}
+::: {.solutionbox-body style="font-size: 0.85em;"}
+Both methods are implemented in [jax-healpy]{.kw} and are [differentiable]{.kw}
+:::
+::::
+:::
+
+## Creating the lightcone {transition="none-in slide-out"}
+
+```{=html}
+<div style="position: relative; height: 0;">
+<div class="fragment fade-out" data-fragment-index="3">
+<div class="fragment custom transform" data-fragment-index="1" style="position: absolute; left: 0; top: 0; width: 960px; height: 560px; --from: translate(800px, -80px) scale(0.16); --to: none; --origin: top left;">
+<img src="PhD/3_observation/weaklensing/05_tomography/box_0.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 20px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 20px; width: 135px; top: 163px;">bin 4</span>
+<img src="PhD/3_observation/weaklensing/05_tomography/box_1.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 175px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 175px; width: 135px; top: 163px;">bin 3</span>
+<img src="PhD/3_observation/weaklensing/05_tomography/box_2.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 330px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 330px; width: 135px; top: 163px;">bin 2</span>
+<img src="PhD/3_observation/weaklensing/05_tomography/box_3.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 485px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 485px; width: 135px; top: 163px;">bin 1</span>
+<div class="fragment semi-fade-out" data-fragment-index="2">
+<svg style="position: absolute; left: 552px; top: 203px; width: 78px; height: 24px;" viewBox="0 0 78 24"><line x1="0" y1="12" x2="60" y2="12" stroke="#6E6E6E" stroke-width="5" stroke-linecap="round"/><polygon points="58,2 78,12 58,22" fill="#6E6E6E"/></svg><img src="PhD/3_observation/weaklensing/05_tomography/kappa_3.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 643px; top: 171px; width: 88px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; left: 739px; top: 204px;">κ bin 1</span>
+<svg style="position: absolute; left: 397px; top: 299px; width: 233px; height: 24px;" viewBox="0 0 233 24"><line x1="0" y1="12" x2="215" y2="12" stroke="#6E6E6E" stroke-width="5" stroke-linecap="round"/><polygon points="213,2 233,12 213,22" fill="#6E6E6E"/></svg><img src="PhD/3_observation/weaklensing/05_tomography/kappa_2.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 643px; top: 267px; width: 88px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; left: 739px; top: 300px;">κ bin 2</span>
+<svg style="position: absolute; left: 242px; top: 395px; width: 388px; height: 24px;" viewBox="0 0 388 24"><line x1="0" y1="12" x2="370" y2="12" stroke="#6E6E6E" stroke-width="5" stroke-linecap="round"/><polygon points="368,2 388,12 368,22" fill="#6E6E6E"/></svg><img src="PhD/3_observation/weaklensing/05_tomography/kappa_1.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 643px; top: 363px; width: 88px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; left: 739px; top: 396px;">κ bin 3</span>
+<svg style="position: absolute; left: 87px; top: 491px; width: 543px; height: 24px;" viewBox="0 0 543 24"><line x1="0" y1="12" x2="525" y2="12" stroke="#6E6E6E" stroke-width="5" stroke-linecap="round"/><polygon points="523,2 543,12 523,22" fill="#6E6E6E"/></svg><img src="PhD/3_observation/weaklensing/05_tomography/kappa_0.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 643px; top: 459px; width: 88px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; left: 739px; top: 492px;">κ bin 4</span>
+<svg style="position: absolute; left: 845px; top: 335px; width: 100px;" viewBox="0 0 110 60"><path d="M5 30 Q55 -12 105 30 Q55 72 5 30 Z" fill="none" stroke="#3B6FB6" stroke-width="4"/><circle cx="55" cy="30" r="15" fill="none" stroke="#3B6FB6" stroke-width="4"/><circle cx="55" cy="30" r="7" fill="#3B6FB6"/></svg><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 845px; width: 100px; top: 395px;">observer</span>
+</div>
+<div class="hlbox fragment" data-fragment-index="2" style="--x: 1%; --y: 0%; --w: 65.5%; --h: 32.5%;"></div>
+</div>
+</div>
+</div>
+```
+
+::: {.fragment fragment-index=3 style="text-align: center; margin-top: -0.4em;"}
+![](PhD/5_contribution/fli/11_lightcone/lightcone_shells.png){style="height: 440px;"}
+:::
+
+::: {.fragment fragment-index=4}
+:::: {.solutionbox style="margin-top: -0.2em;"}
+::: {.solutionbox-body style="font-size: 0.85em;"}
+The 3D density field is projected onto concentric spherical shells around the observer, each at its own redshift. How should these redshifts be chosen?
+:::
+::::
+:::
+
+## Choosing an optimal shell spacing
+
+:::: {.grid .bare style="--cols: 225px 1fr; --gap: 10px; margin-top: 0.3em;"}
+::: {style="text-align: center;"}
+[Uniform in scale factor]{.kw style="font-size: 0.75em;"}
+
+::: {.eqbox style="--eq-border: #25406b; --eq-size: 0.72em; --eq-math-margin: 0.25em 0; --eq-pad: 0.05em 0.5em; margin-top: 0.3em;"}
+$$a_i = a_{\min} + \tfrac{i}{n}\,(1 - a_{\min})$$
+:::
+:::
+
+![](PhD/5_contribution/fli/12_spacing/spacing_a.svg){width="800px"}
+::::
+
+:::: {.grid .bare .fragment fragment-index=1 style="--cols: 225px 1fr; --gap: 10px; margin-top: 0.2em;"}
+::: {style="text-align: center;"}
+[Equal volume]{.kw style="font-size: 0.75em;"}
+
+::: {.eqbox style="--eq-border: #25406b; --eq-size: 0.72em; --eq-math-margin: 0.25em 0; --eq-pad: 0.05em 0.5em; margin-top: 0.3em;"}
+$$r_i^3 = r_{\min}^3 + \tfrac{i}{n}\,(r_{\max}^3 - r_{\min}^3)$$
+:::
+
+[outer shells floored at 50 Mpc/$h$]{.caption style="--cap-size: 0.55em; margin-top: 0.3em;"}
+:::
+
+![](PhD/5_contribution/fli/12_spacing/spacing_equal_vol.svg){width="800px"}
+::::
+
+::::: {.fragment fragment-index=2}
+:::: {.solutionbox style="margin-top: 0.2em;"}
+::: {.solutionbox-header style="font-size: 0.75em;"}
+Equal volume spacing vs linear in scale factor spacing
+:::
+
+::: {.solutionbox-body style="font-size: 0.7em;"}
+Uniform steps in $a$ give the innermost shell $1.5\times10^{5}$ particles for $5\times10^{7}$ pixels, and shot noise dominates its spectrum at small scales. Equal-volume shells each receive about $2\times10^{8}$ particles, and we adopt this spacing.
+:::
+::::
+:::::
+
+## Choosing the number of shells {visibility="uncounted"}
+
+::: {.grid .bare style="--cols: 1fr 1fr 1fr; --gap: 8px; margin-top: 0.3em;"}
+![](PhD/5_contribution/fli/13_nshells/nshells_10.svg){width="345px"}
+
+![](PhD/5_contribution/fli/13_nshells/nshells_20.svg){.fragment fragment-index=1 width="345px"}
+
+![](PhD/5_contribution/fli/13_nshells/nshells_30.svg){.fragment fragment-index=2 width="345px"}
+:::
+
+::: {.fragment fragment-index=3}
+:::: {.solutionbox style="margin-top: 0.3em;"}
+::: {.solutionbox-body style="font-size: 0.78em;"}
+More shells make the near shells thinner. At 30 shells the first holds $8.6\times10^{4}$ particles, and shot noise lifts its spectrum to 7.7 times the Limber prediction at $\ell = 1000$. Fewer shells make each one span a larger comoving distance at a single redshift, which biases its density.
+:::
+::::
+:::
+
+## Drift on the lightcone
+
+::::: {.bare style="position: relative; height: 426px; margin-top: 0.2em;"}
+:::: {.fragment .custom .transform fragment-index=2 style="position: absolute; left: 30px; top: 0; width: 400px; --to: translateX(420px);"}
+::: {.r-stack style="font-size: 0.85em; height: 36px; color: #2E2E2E;"}
+[10 shells, one redshift per shell]{.fragment .fade-out fragment-index=1}
+
+[[10 shells, drifted on the lightcone]{.fragment .fade-out fragment-index=3}]{.fragment fragment-index=1}
+
+[[10 equal-volume shells, one redshift per shell]{.fragment .fade-out fragment-index=4}]{.fragment fragment-index=3}
+
+[10 equal-volume shells, drifted]{.fragment fragment-index=4}
+:::
+
+::: {.r-stack}
+![](PhD/5_contribution/fli/14_drift/drift_a10.png){width="400px"}
+
+![](PhD/5_contribution/fli/14_drift/drift_a10.gif){.fragment .screen-only fragment-index=1 width="400px"}
+
+![](PhD/5_contribution/fli/14_drift/drift_smooth.png){.fragment .print-only fragment-index=1 width="400px"}
+
+![](PhD/5_contribution/fli/14_drift/drift_ev10.png){.fragment fragment-index=3 width="400px"}
+
+![](PhD/5_contribution/fli/14_drift/drift_ev10.gif){.fragment .screen-only fragment-index=4 width="400px"}
+
+![](PhD/5_contribution/fli/14_drift/drift_smooth.png){.fragment .print-only fragment-index=4 width="400px"}
+:::
+::::
+
+:::: {.fragment .fade-out fragment-index=2 style="position: absolute; left: 450px; top: 0; width: 400px;"}
+[40 shells, one redshift per shell]{style="display: block; font-size: 0.85em; height: 36px; color: #2E2E2E;"}
+
+![](PhD/5_contribution/fli/14_drift/drift_a40.png){width="400px"}
+::::
+
+![](PhD/5_contribution/fli/14_drift/drift_cbar.svg){style="position: absolute; left: 862px; top: 36px; margin: 0; height: 390px;"}
+
+:::: {.fragment fragment-index=2 style="position: absolute; left: 0; top: 110px; width: 440px; text-align: center;"}
+::: {.eqbox style="--eq-border: #25406b; --eq-size: 0.95em; --eq-math-margin: 0.35em 0; margin: 0 auto; width: fit-content;"}
+$$a_{\mathrm{c}} = a\big(\chi = \lVert \mathbf{x} - \mathbf{x}_{\mathrm{obs}} \rVert\big)$$
+
+$$\mathbf{x}(a_{\mathrm{c}}) = \mathbf{x}(a_i) + \boldsymbol{\pi}\,\big[D(a_{\mathrm{c}}) - D(a_i)\big]$$
+:::
+
+[$a_i$: scale factor of the shell, $a_{\mathrm{c}}$: scale factor at which the particle crosses the lightcone, $\boldsymbol{\pi} = \mathrm{d}\mathbf{x}/\mathrm{d}D$: BullFrog momentum]{.caption style="--cap-size: 0.7em; margin-top: 0.7em;"}
+::::
+:::::
+
+::: {.fragment fragment-index=5}
+:::: {.solutionbox style="margin-top: 0.2em;"}
+::: {.solutionbox-body style="font-size: 0.72em;"}
+The drift moves each particle to the scale factor at which it crosses the lightcone, with the solver's own drift operator. On the first shell of a 10-shell equal-volume lightcone, it lowers the power by about 16 % and brings the large scales onto the Limber prediction. The forward model uses 20 equal-volume shells drifted on the lightcone.
+:::
+::::
+:::
+
+## From shells to convergence: the Born approximation
+
+```{=html}
+<div style="position: relative; height: 0;">
+<div class="fragment fade-out" data-fragment-index="1">
+<div style="position: absolute; left: 0; top: 0; width: 960px; height: 560px;">
+<div style="opacity: 0.45;">
+<img src="PhD/3_observation/weaklensing/05_tomography/box_0.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 20px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 20px; width: 135px; top: 163px;">bin 4</span>
+<img src="PhD/3_observation/weaklensing/05_tomography/box_1.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 175px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 175px; width: 135px; top: 163px;">bin 3</span>
+<img src="PhD/3_observation/weaklensing/05_tomography/box_2.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 330px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 330px; width: 135px; top: 163px;">bin 2</span>
+<img src="PhD/3_observation/weaklensing/05_tomography/box_3.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 485px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 485px; width: 135px; top: 163px;">bin 1</span>
+</div>
+<svg style="position: absolute; left: 552px; top: 203px; width: 78px; height: 24px;" viewBox="0 0 78 24"><line x1="0" y1="12" x2="60" y2="12" stroke="#6E6E6E" stroke-width="5" stroke-linecap="round"/><polygon points="58,2 78,12 58,22" fill="#6E6E6E"/></svg><img src="PhD/3_observation/weaklensing/05_tomography/kappa_3.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 643px; top: 171px; width: 88px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; left: 739px; top: 204px;">κ bin 1</span>
+<svg style="position: absolute; left: 397px; top: 299px; width: 233px; height: 24px;" viewBox="0 0 233 24"><line x1="0" y1="12" x2="215" y2="12" stroke="#6E6E6E" stroke-width="5" stroke-linecap="round"/><polygon points="213,2 233,12 213,22" fill="#6E6E6E"/></svg><img src="PhD/3_observation/weaklensing/05_tomography/kappa_2.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 643px; top: 267px; width: 88px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; left: 739px; top: 300px;">κ bin 2</span>
+<svg style="position: absolute; left: 242px; top: 395px; width: 388px; height: 24px;" viewBox="0 0 388 24"><line x1="0" y1="12" x2="370" y2="12" stroke="#6E6E6E" stroke-width="5" stroke-linecap="round"/><polygon points="368,2 388,12 368,22" fill="#6E6E6E"/></svg><img src="PhD/3_observation/weaklensing/05_tomography/kappa_1.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 643px; top: 363px; width: 88px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; left: 739px; top: 396px;">κ bin 3</span>
+<svg style="position: absolute; left: 87px; top: 491px; width: 543px; height: 24px;" viewBox="0 0 543 24"><line x1="0" y1="12" x2="525" y2="12" stroke="#6E6E6E" stroke-width="5" stroke-linecap="round"/><polygon points="523,2 543,12 523,22" fill="#6E6E6E"/></svg><img src="PhD/3_observation/weaklensing/05_tomography/kappa_0.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 643px; top: 459px; width: 88px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; left: 739px; top: 492px;">κ bin 4</span>
+<svg style="position: absolute; left: 845px; top: 335px; width: 100px;" viewBox="0 0 110 60"><path d="M5 30 Q55 -12 105 30 Q55 72 5 30 Z" fill="none" stroke="#3B6FB6" stroke-width="4"/><circle cx="55" cy="30" r="15" fill="none" stroke="#3B6FB6" stroke-width="4"/><circle cx="55" cy="30" r="7" fill="#3B6FB6"/></svg><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 845px; width: 100px; top: 395px;">observer</span>
+<div class="hlbox" style="--x: 65%; --y: 29%; --w: 20%; --h: 70%;"></div>
+</div>
+</div>
+</div>
+```
+
+:::: {.fragment fragment-index=1}
+::: {.grid .bare style="--cols: 400px 1fr; --gap: 16px; margin-top: 0.3em;"}
+::: {style="text-align: center;"}
+[Born approximation: straight lines of sight]{.kw style="display: block; font-size: 0.72em; margin-bottom: 0.4em;"}
+
+::: {.eqbox style="--eq-border: #25406b; --eq-size: 0.72em; --eq-math-margin: 0.3em 0; margin: 0 auto; width: fit-content;"}
+$$\kappa(\hat{\mathbf n};\chi_s) = \frac{3}{2}\,\Omega_m\Big(\frac{H_0}{c}\Big)^2 \sum_j W_j(\chi_s)\,\delta_j(\hat{\mathbf n})$$
+
+$$W_j(\chi_s) = \int_{\mathrm{shell}\ j} \mathrm{d}\chi\;\chi\,(1+z)\Big(1-\frac{\chi}{\chi_s}\Big)$$
+:::
+:::
+
+![](PhD/5_contribution/fli/19_born/born_weights.svg){width="560px"}
+:::
+::::
+
+:::: {.fragment fragment-index=2}
+::: {.grid .bare style="--cols: 300px 1fr; --gap: 16px; margin-top: 0.4em;"}
+::: {.eqbox style="--eq-border: #25406b; --eq-size: 0.72em; --eq-math-margin: 0.3em 0; margin: 0 auto; width: fit-content;"}
+$$\kappa_i(\hat{\mathbf n}) = \int \mathrm{d}z\; n_i(z)\,\kappa\big(\hat{\mathbf n};\chi_s(z)\big)$$
+:::
+
+![](PhD/5_contribution/fli/19_born/born_kappa.png){width="700px"}
+:::
+::::
+
+::: {.fragment fragment-index=3}
+:::: {.solutionbox style="margin-top: 0.3em;"}
+::: {.solutionbox-body style="font-size: 0.72em;"}
+Each painted shell is weighted by the lensing kernel integrated across its width, and each tomographic bin averages the result over its source redshifts. The Born approximation integrates along unperturbed lines of sight, which is accurate for the convergence power spectrum.
+:::
+::::
+:::
+
+## Comparing against CosmoGrid
+
+::: {.r-stack .bare style="margin-top: 0.4em;"}
+![](PhD/5_contribution/fli/16_cosmogrid/ladder_512.svg){.fragment .fade-out fragment-index=1 width="1000px"}
+
+![](PhD/5_contribution/fli/16_cosmogrid/ladder_1024.svg){.fragment .fade-in-then-out fragment-index=1 width="1000px"}
+
+![](PhD/5_contribution/fli/16_cosmogrid/ladder_2048.svg){.fragment .fade-in-then-out fragment-index=2 width="1000px"}
+
+![](PhD/5_contribution/fli/16_cosmogrid/ladder_2560.svg){.fragment .fade-in-then-out fragment-index=3 width="1000px"}
+
+![](PhD/5_contribution/fli/16_cosmogrid/ladder_3072.svg){.fragment .fade-in-then-out fragment-index=4 width="1000px"}
+
+![](PhD/5_contribution/fli/16_cosmogrid/ladder_4096.svg){.fragment fragment-index=5 width="1000px"}
+:::
+
+::: {.fragment fragment-index=6}
+:::: {.solutionbox style="margin-top: 0.4em;"}
+::: {.solutionbox-body style="font-size: 0.75em;"}
+CosmoGrid runs the pkdgrav3 $N$-body code from independent initial conditions, and the ratio converges as the mesh grows. At $2560^3$, the mesh of the thesis runs, bin 3 stays within 9 % of CosmoGrid up to $\ell = 250$ and bin 2 within 11 % up to $\ell = 200$.
+:::
+::::
+:::
+
+## Higher-order statistics: the starlet $\ell_1$ norm
+
+::::: {.r-stack .bare style="margin-top: 0.3em;"}
+:::: {.fragment .fade-out fragment-index=1 style="width: 100%;"}
+::: {.grid style="--cols: 1fr 440px; --gap: 24px; --align: center;"}
+::: {style="font-size: 0.78em; text-align: left;"}
+A starlet transform splits the convergence map into five angular scales, each twice the last. At each scale the coefficients are put in signal to noise, $\nu = w_j / \sigma_j$, and the [$\ell_1$ norm]{.kw} sums $|\nu|$ over the pixels of each bin in $\nu$:
+
+::: {.eqbox style="--eq-border: #25406b; --eq-size: 0.95em; --eq-math-margin: 0.35em 0; margin: 0.6em auto; width: fit-content;"}
+$$\ell_1^{\,j}(\nu_k) = \sum_{p\,:\;\nu_{j,p}\,\in\,\mathrm{bin}\;k} |\nu_{j,p}|$$
+:::
+
+The joint $\ell_1$ norm of the tomographic bins reaches the figure of merit of a convolutional neural network, [3371 against 3326]{.kw}.
+:::
+
+::: {style="text-align: center;"}
+![](PhD/5_contribution/fli/17_starlet/tersenov_l1_cnn.png){width="430px"}
+
+[Credit: A. Tersenov (andreastersenov.github.io)]{.credit}
+:::
+:::
+::::
+
+:::: {.fragment fragment-index=1 style="width: 100%; text-align: center;"}
+[Tomographic bin 3, this work against CosmoGrid]{.kw style="display: block; font-size: 0.75em; text-align: left;"}
+
+![](PhD/5_contribution/fli/17_starlet/starlet_l1.svg){width="1000px"}
+::::
+:::::
+
+::: {.fragment fragment-index=2}
+:::: {.solutionbox style="margin-top: 0.3em;"}
+::: {.solutionbox-body style="font-size: 0.75em;"}
+At the finest scale, $\ell \gtrsim 700$, the model's distribution is a quarter narrower than CosmoGrid's, where the power spectra already fall away. At the four coarser scales the $\ell_1$ norm stays within 7 % of the reference.
+:::
+::::
+:::
+
+## Scaling on supercomputers
+
+::: {.absolute .bare top=-12 right=0 style="display: flex; align-items: center; gap: 10px;"}
+![](PhD/5_contribution/fli/15_scaling/jean_zay_logo.png){height="58px"}
+
+[Jean Zay, IDRIS<br/>NVIDIA H100 GPUs]{style="font-size: 0.55em; line-height: 1.25; color: #2E2E2E;"}
+:::
+
+::: {.bare style="text-align: center; margin-top: 0.3em;"}
+[Performance of the forward model]{.kw style="display: block; font-size: 0.75em; text-align: left;"}
+
+![](PhD/5_contribution/fli/15_scaling/scaling_forward.svg){width="960px"}
+:::
+
+::: {.bare .fragment fragment-index=1 style="text-align: center; margin-top: 0.3em;"}
+[Performance of the gradient]{.kw style="display: block; font-size: 0.75em; text-align: left;"}
+
+![](PhD/5_contribution/fli/15_scaling/scaling_gradient.svg){width="960px"}
+:::
+
+::: {.fragment fragment-index=2}
+:::: {.solutionbox style="margin-top: 0.3em;"}
+::: {.solutionbox-body style="font-size: 0.7em;"}
+Memory per GPU falls by close to half at each doubling of the GPU count and stays flat under weak scaling, for the model and for its gradient. The reverse adjoint rebuilds each state by inverting the step that produced it, so its memory does not grow with the number of steps. On 256 GPUs it needs 5.1 GiB per GPU against 9.4 GiB checkpointed, for 6 times the wall-clock time.
+:::
+::::
+:::
+
+# Using the forward model for field-level inference {.stack-top}
+
+::: {.r-stack .bare style="width: 960px; margin-left: 30px; margin-top: -170px;"}
+![](PhD/5_contribution/fli/02_forward_model/fm_forward.svg){width="960px"}
+
+![](PhD/5_contribution/fli/02_forward_model/fm_explicit.svg){width="960px"}
+:::
+
+[A first step before sampling: the initial field that [maximises the posterior]{.kw}, at fixed cosmology.]{style="display: block; margin-top: 0.8em;"}
+
+## Recovering the maximum a posteriori
+
+::: {.absolute top=6 right=0 style="font-size: 0.6em; text-align: right; line-height: 1.3;"}
+[Preliminary]{.kw}<br/>DES Y3 noise, $416^3$ mesh, 2LPT
+:::
+
+::::: {.r-stack .bare style="margin-top: 0.1em;"}
+:::: {.fragment .fade-out fragment-index=2 style="width: 100%; text-align: center;"}
+::: {.r-stack}
+![](PhD/5_contribution/fli/18_map/map_first.png){width="1000px"}
+
+::: {.fragment fragment-index=1}
+<video src="PhD/5_contribution/fli/18_map/map_run.mp4" class="screen-only" muted playsinline preload="auto" style="width: 1000px;"></video>
+
+![](PhD/5_contribution/fli/18_map/map_last.png){.print-only width="1000px"}
+:::
+:::
+::::
+
+:::: {.fragment fragment-index=2 style="width: 100%; text-align: center;"}
+<video src="PhD/5_contribution/fli/18_map/compare_run.mp4" class="screen-only" muted playsinline preload="auto" style="width: 1000px;"></video>
+
+![](PhD/5_contribution/fli/18_map/compare_last.png){.print-only width="1000px"}
+::::
+:::::
+
+::: {.fragment fragment-index=3}
+:::: {.solutionbox style="margin-top: 0.2em;"}
+::: {.solutionbox-body style="font-size: 0.72em;"}
+The reconstruction reaches the coherence of the joint Wiener filter, the best linear reconstruction from the same maps, in both bins (0.71 and 0.73 up to $\ell = 164$). Its starlet $\ell_1$ norm recovers 86 to 95 % of the truth's at scales 2 to 5, and 73 % at the finest.
+:::
+::::
+:::
+
+## Contribution 2: conclusion and perspectives
+
+:::: {.solutionbox}
+::: {.solutionbox-body}
+- The first differentiable weak-lensing forward model covering [a full survey footprint on the curved sky]{.kw}
+- Distributed over hundreds of GPUs, with a gradient end to end
+- Validated against an independent $N$-body code: about 10 % to $\ell \approx 250$
+- A first maximum a posteriori of the initial field from DES Y3-like maps, at the coherence of the Wiener filter ([preliminary]{.kw})
+:::
+::::
+
+::: {.fragment}
+Next
+
+- a better gravity solver: a [learned force correction]{.kw} or a differentiable [moving mesh]{.kw}
+- [intrinsic alignments]{.kw} and photometric-redshift errors as latent variables
+- [baryonification]{.kw} inside the model
+:::
+
+# Reproducible research through software
+
+::: {.rail-stack}
+![](PhD/2_outline/rail_full.svg){.rail-full}
+
+![](PhD/2_outline/rail_full.svg){.rail-focus}
+:::
+
+## The software behind this thesis
+
+![](PhD/6_ending/software/ecosystem.svg){fig-align="center" width="80%"}
+
+::: {style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 0.3em;"}
+[![](https://img.shields.io/badge/GitHub-furax--cs-blue?logo=github)](https://github.com/CMBSciPol/furax-cs)
+[![](https://img.shields.io/badge/GitHub-furax-blue?logo=github)](https://github.com/CMBSciPol/furax)
+[![](https://img.shields.io/badge/GitHub-cadre-blue?logo=github)](https://github.com/CMBSciPol/CADRE)
+[![](https://img.shields.io/badge/GitHub-jax--healpy-blue?logo=github)](https://github.com/CMBSciPol/jax-healpy)
+[![](https://img.shields.io/badge/GitHub-jax--fli-blue?logo=github)](https://github.com/ASKabalan/jax-fli)
+[![](https://img.shields.io/badge/GitHub-jaxDecomp-blue?logo=github)](https://github.com/DifferentiableUniverseInitiative/jaxDecomp)
+[![](https://img.shields.io/badge/GitHub-JaxPM-blue?logo=github)](https://github.com/DifferentiableUniverseInitiative/JaxPM)
+:::
+
+## Where it is used
+
+:::: {.columns}
+::: {.column width="44%"}
+<br/>
+
+![](PhD/6_ending/software/ecosystem_keep.svg){fig-align="center" width="100%"}
+:::
+
+::: {.column width="56%"}
+::: {.fragment}
+[furax-cs]{.kw} → the [Megatop]{.kw2} pipeline: Simons Observatory, LiteBIRD
+
+::: {style="display: flex; align-items: center; gap: 26px; margin: 0.2em 0 0.6em 1em;"}
+![](PhD/6_ending/software/logo_megatop.png){style="height: 42px;"}
+![](PhD/6_ending/software/logo_so.png){style="height: 52px;"}
+![](PhD/6_ending/software/logo_litebird.png){style="height: 46px;"}
+:::
+:::
+
+::: {.fragment}
+[jax-healpy, jax-fli]{.kw} → field-level CMB lensing with DESI
+:::
+
+::: {.fragment}
+[jaxDecomp]{.kw} → beyond cosmology
+
+- Jaxion: fuzzy dark matter simulations
+- jax-power and RomanPower: DESI and Roman power spectra
+- DiffHydro and a Navier–Stokes turbulence solver: fluid dynamics
+- fridom (ocean models), SCICO (imaging)
+
+::: {style="display: flex; align-items: center; gap: 26px; margin: 0.2em 0 0 1em;"}
+![](PhD/6_ending/software/logo_jaxion.png){style="height: 48px;"}
+![](PhD/6_ending/software/logo_roman.png){style="height: 52px;"}
+![](PhD/6_ending/software/logo_scico.png){style="height: 38px;"}
+:::
+:::
+:::
+::::
+
+::: {.fragment}
+[Close to 80 000 downloads]{.kw2}
+:::
+
+# Conclusion and perspectives
+
+::: {.rail-stack}
+![](PhD/2_outline/rail_full.svg){.rail-full}
+
+![](PhD/2_outline/rail_focus_conclusion.svg){.rail-focus}
+:::
+
+## Two frontiers, one method
+
+![](PhD/6_ending/conclusion/two_frontiers.svg){fig-align="center" width="88%"}
+
+::: {.fragment}
+:::: {.solutionbox}
+::: {.solutionbox-body}
+- CMB: component separation in JAX, a bounded optimiser for noisy likelihoods, and a [30 % lower upper limit on $r$]{.kw}
+- Weak lensing: the first differentiable forward model to cover [a whole survey on the curved sky]{.kw}
+- Both [open]{.kw}, documented, and already used by others
+:::
+::::
+:::
+
+## Perspectives
+
+:::: {.columns}
+::: {.column width="50%"}
+[The CMB]{.kw2}
+
+- real data: the Simons Observatory, through Megatop
+- instrument systematics as linear operators in FURAX
+- more flexible spatial partitions of the foreground parameters
+:::
+
+::: {.column width="50%"}
+[Weak lensing]{.kw2}
+
+- the first survey-scale posterior, with coverage tests
+- a better gravity solver
+- baryons and intrinsic alignments inside the model
+:::
+::::
+
+## Thank you {.center style="text-align: center;"}
+
+::: {style="display: flex; justify-content: center; align-items: center; gap: 60px; margin-top: 1.4em;"}
+![](assets/Logos/APC.png){style="height: 110px;"}
+![](assets/Logos/scipol.png){style="height: 90px;"}
+![](assets/Logos/AstroDeep-2.png){style="height: 76px;"}
+![](assets/Logos/cosmostat.png){style="height: 54px;"}
+:::
+
+# Backup {visibility="uncounted"}
+
+## Why not simply the maximum a posteriori? {visibility="uncounted"}
+
+:::: {.columns}
+::: {.column width="52%"}
+![](PhD/6_ending/backup/typical_set.svg){fig-align="center" width="100%"}
+:::
+
+::: {.column width="48%"}
+- In $\sim 10^{10}$ dimensions the probability mass lies in the [typical set]{.kw}, far from the mode
+- The MAP pulls unconstrained small scales to the prior mean, like a Wiener filter
+- Marginalising the field by optimisation biases the cosmological parameters (Millea & Seljak 2022)
+:::
+::::
+
+## Frequentist or Bayesian? {visibility="uncounted"}
+
+:::: {.columns}
+::: {.column width="52%"}
+![](PhD/6_ending/backup/confidence_bias.svg){fig-align="center" width="100%"}
+:::
+
+::: {.column width="48%"}
+- [Maximum likelihood]{.kw}: a unimodal, well-curved posterior, when speed matters (component separation)
+- [Sampling]{.kw}: non-trivial geometry, multimodality, nuisance parameters to integrate over (the field level)
+- A Gaussian interval misreports a non-Gaussian posterior
+:::
+::::
+
+## AdaTopK: handling parameter bounds {visibility="uncounted"}
+
+<video src="PhD/5_contribution/compsep/backup_adatopk/adatopk.mp4" muted playsinline preload="auto" style="width: 100%;"></video>
+
+![](PhD/5_contribution/compsep/backup_adatopk/adatopk_last.png){.print-only fig-align="center" width="100%"}
+
+Parameters that reach a bound are [frozen]{.kw}; at each step the one the gradient pushes back inside the most is released ($k = 1$, as in TNC)
+
+## Why did quasi-Newton methods fail at low signal-to-noise? {visibility="uncounted"}
+
+:::: {.columns}
+::: {.column width="52%"}
+![](PhD/6_ending/backup/noisy_likelihood.svg){fig-align="center" width="100%"}
+:::
+
+::: {.column width="48%"}
+- Noise in the gradient corrupts the curvature estimate built from gradient differences
+- TNC detects bad steps and resets its history: stable, but slow
+- AdaTopK tracks the gradient's spread (AdaBelief), rescales the objective, and keeps a line search
+:::
+::::
+
+## Does selecting on $\hat r + \sigma(r)$ suppress a true $r$? {visibility="uncounted"}
+
+:::: {.columns}
+::: {.column width="50%"}
+![](PhD/5_contribution/compsep/backup_r_nonzero/r_likelihood_r_nonzero.svg){fig-align="center" width="100%"}
+:::
+
+::: {.column width="50%"}
+- No: the solution has [unit response to the CMB]{.kw} by construction, $[\mathbf{W}\mathbf{A}]_{\mathrm{cmb}} = 1$
+- Foreground residuals and noise add power; minimising $\hat r + \sigma(r)$ minimises contamination, not $r_\mathrm{true}$
+- Checked on skies with $r \neq 0$
+:::
+::::
+
+## Grid search over patch counts {visibility="uncounted"}
+
+![](PhD/5_contribution/compsep/09_selection/gridding_beta_dust.svg){fig-align="center" width="70%"}
+
+$\hat r + \sigma(r)$ against the number of dust-index patches, the other two parameters fixed
+
+## Integrators and time steps {visibility="uncounted"}
+
+:::: {.columns}
+::: {.column width="56%"}
+![](PhD/5_contribution/fli/step_convergence.svg){fig-align="center" width="100%"}
+:::
+
+::: {.column width="44%"}
+- [BullFrog]{.kw} steps uniformly in the growth factor $D_1$, not in $a$
+- It removes the error on linear growth, and matches the spectra with far fewer steps than kick–drift–kick
+:::
+::::
+
+## Shell spacing and the lightcone {visibility="uncounted"}
+
+:::: {.columns}
+::: {.column width="50%"}
+![](PhD/5_contribution/fli/shell_spacing.svg){fig-align="center" height="440px"}
+:::
+
+::: {.column width="50%"}
+- [Equal-volume]{.kw} shells keep the particle count per shell flat
+- Particles are drifted to their exact crossing time before painting
+- Born integration: deflections are arcminutes, and Born agrees with ray tracing to about 1 % below $\ell \sim 2000$
+:::
+::::
+
+## Scale cuts and baryons {visibility="uncounted"}
+
+:::: {.columns}
+::: {.column width="55%"}
+![](PhD/5_contribution/fli/scalecut_spectra.svg){fig-align="center" width="100%"}
+:::
+
+::: {.column width="45%"}
+- The particle mesh under-resolves the smallest scales, and baryons move matter there
+- A harmonic taper removes them before inference
+- Next: a differentiable baryonification inside the model
+:::
+::::
+
+## The ghost zone {visibility="uncounted"}
+
+:::: {.columns}
+::: {.column width="55%"}
+![](PhD/5_contribution/fli/ghost_zone.svg){fig-align="center" width="100%"}
+:::
+
+::: {.column width="45%"}
+- Particles near a device boundary paint into the neighbour's cells
+- A halo zone is exchanged at every step, forward and backward
+- Linear theory gives insight into how wide it has to be; the runs set it
+:::
+::::
+
+## The two adjoints {visibility="uncounted"}
+
+![](PhD/5_contribution/fli/adjoints.svg){fig-align="center" width="74%"}
+
+::: {.fragment}
+:::: {.columns}
+::: {.column width="46%"}
+![](PhD/5_contribution/fli/gradient_validation.svg){fig-align="center" height="250px"}
+:::
+
+::: {.column width="54%"}
+<br/>
+
+[Reversible]{.kw}: constant memory, the solver run backwards
+
+[Checkpointed]{.kw}: faster, memory grows with the checkpoints
+
+Both agree with finite differences to $10^{-8}$–$10^{-6}$
+:::
+::::
+:::
+
+## A survey mask leaks {visibility="uncounted"}
+
+![](PhD/5_contribution/fli/masked_shear_masks.svg){fig-align="center" width="80%"}
+
+::: {.fragment}
+![](PhD/5_contribution/fli/masked_shear_residual_maps.svg){fig-align="center" width="66%"}
+
+Shear residual inside DES: [41 % → 4 %]{.kw}, once the observer's visible sky contains the survey
+:::
+
+## Is the gradient right? {visibility="uncounted"}
+
+:::: {.columns}
+::: {.column width="55%"}
+![](PhD/5_contribution/fli/adjoint_memory.svg){fig-align="center" width="100%"}
+:::
+
+::: {.column width="45%"}
+- Checked against per-voxel finite differences and the transpose identity between the two AD modes
+- Same accuracy for any number of checkpoints; only memory and time change
+- Double precision throughout the gradient runs
+:::
+::::

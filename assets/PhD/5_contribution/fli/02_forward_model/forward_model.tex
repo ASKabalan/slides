@@ -1,0 +1,92 @@
+% Forward modelling for weak lensing: implicit and explicit inference as two rows around one shared
+% Forward arrow between them, from the cosmology to the observed convergence field, with the direction of each
+% inference on the outer side of its row. Three renders on one bounding box, stacked on the slide:
+%   \stage=0 fm_forward.svg (the shared arrow), 1 fm_implicit.svg, 2 fm_explicit.svg.
+% Compile: see ../build.sh.
+\documentclass[tikz,border=4pt]{standalone}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\usetikzlibrary{arrows.meta,positioning,calc}
+
+\providecommand{\stage}{0}
+\def\img{/home/wassim/Projects/NBody/jax-fli/assets/pipeline/pipeline_images}
+
+\definecolor{ink}{HTML}{2E2E2E}
+\definecolor{flow}{HTML}{3B6FB6}
+\definecolor{kw}{HTML}{C2560A}
+\definecolor{kwtwo}{HTML}{521463}
+\definecolor{priortop}{HTML}{D8EDD2}
+\definecolor{priorbot}{HTML}{8FCB7E}
+\definecolor{priorrim}{HTML}{6DAF5C}
+\definecolor{side}{HTML}{E4E4E4}
+
+\tikzset{
+  prior/.style={circle,minimum size=2.3cm,draw=priorrim,line width=0.8pt,align=center,
+                top color=priortop,bottom color=priorbot,text=ink,font=\Large},
+  flowarr/.style={-{Stealth[length=3.4mm,width=2.8mm]},line width=1.5pt,draw=flow},
+  longarr/.style={-{Stealth[length=5mm,width=4.4mm]},line width=3.2pt},
+  card/.style={draw=ink,line width=0.9pt,rounded corners=7pt,fill=white,align=center,
+               text=ink,font=\sffamily\large},
+  lab/.style={font=\sffamily\large,text=ink,align=center},
+  rowlab/.style={font=\sffamily\Large\bfseries,anchor=west},
+}
+
+% A white 3D box: front face as a node, with a bevelled top and left side behind it.
+\newcommand{\simbox}[5]{%
+  \node[draw=ink,line width=0.9pt,fill=white,minimum width=#3,minimum height=#4,
+        align=center,text=ink,font=\sffamily\large] (#1) at #2 {#5};
+  \fill[side,draw=ink,line width=0.9pt]
+    (#1.north west) -- ++(-0.35,0.35) -- ($(#1.north east)+(-0.35,0.35)$) -- (#1.north east) -- cycle;
+  \fill[side!70!black!40,draw=ink,line width=0.9pt]
+    (#1.north west) -- ++(-0.35,0.35) -- ($(#1.south west)+(-0.35,0.35)$) -- (#1.south west) -- cycle;
+}
+% A long labelled arrow, the line split around its label: #1 colour, #2 y, #3 from x, #4 to x, #5 label
+\newcommand{\longarrow}[5]{%
+  \node[lab,text=#1,inner sep=6pt] (la) at ({(#3+#4)/2},#2) {\bfseries #5};
+  \ifdim #3pt<#4pt
+    \draw[line width=3.2pt,#1] (#3,#2) -- (la.west); \draw[longarr,#1] (la.east) -- (#4,#2);
+  \else
+    \draw[line width=3.2pt,#1] (#3,#2) -- (la.east); \draw[longarr,#1] (la.west) -- (#4,#2);
+  \fi
+}
+
+\begin{document}
+\begin{tikzpicture}
+  \useasboundingbox (-1.9,-10.0) rectangle (21.2,3.3);
+
+  \ifcase\stage
+  % ---------------------------------------------------------------- 0: the shared forward direction
+  \longarrow{flow}{-2.45}{-1.2}{20.6}{Forward}
+
+  \or
+  % ---------------------------------------------------------------- 1: implicit inference
+  \node[rowlab,text=kwtwo] at (-1.2,1.55) {Implicit inference \mdseries(simulation-based inference)};
+  \node[prior] (p) at (0,0) {$\Omega_\mathrm{m}$\\[2pt]$\sigma_8$};
+  \simbox{sim}{(5.0,0)}{3.3cm}{1.5cm}{Implicit\\simulator}
+  \node[inner sep=0pt] (map) at (10.6,0) {\includegraphics[height=2.3cm]{\img/04_lensing_map.png}};
+  \node[lab,anchor=north] at ($(map.south)+(0,-0.08)$) {observed field $\kappa$};
+  \node[card,minimum width=4.9cm,minimum height=1.9cm] (sum) at (17.4,0)
+       {Compression\\[5pt]\textcolor{kw}{\bfseries $C_\ell$, \ higher-order statistics}};
+  \draw[flowarr] (p) -- ($(sim.west)+(-0.45,0)$);
+  \draw[flowarr] (sim) -- (map.west);
+  \draw[flowarr] (map.east) -- (sum.west);
+  \longarrow{kw}{2.7}{20.6}{-1.2}{Marginalise and infer cosmology}
+
+  \or
+  % ---------------------------------------------------------------- 2: explicit inference
+  \node[rowlab,text=kw] at (-1.2,-3.45) {Explicit inference};
+  \node[prior] (p) at (0,-5.2) {$\Omega_\mathrm{m}$\\[2pt]$\sigma_8$};
+  \simbox{sim}{(10.6,-5.2)}{3.3cm}{1.5cm}{Explicit\\simulator};
+  \node[inner sep=0pt] (map) at (17.4,-5.2) {\includegraphics[height=2.3cm]{\img/04_lensing_map.png}};
+  \node[lab,anchor=north] at ($(map.south)+(0,-0.08)$) {observed field $\kappa$};
+  \node[inner sep=0pt] (ic) at (6.3,-7.0) {\includegraphics[height=2.6cm]{\img/01_initial_conditions.png}};
+  \node[lab,anchor=east] at ($(ic.west)+(-0.1,0)$) {initial field};
+  \draw[flowarr] (p) -- ($(sim.west)+(-0.45,0)$);
+  \draw[flowarr] (ic.east) to[out=0,in=-90] ($(sim.south)+(-0.4,0)$);
+  \draw[flowarr] (sim) -- (map.west);
+  \longarrow{kw}{-9.3}{20.6}{-1.2}{Sample both the initial field and cosmology}
+  \fi
+\end{tikzpicture}
+\end{document}
