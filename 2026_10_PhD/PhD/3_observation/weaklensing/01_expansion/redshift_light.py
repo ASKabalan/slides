@@ -131,8 +131,10 @@ def play_once(src: Path, dst: Path) -> None:
         f0.putdata([tidx if v in green else v for v in f0.getdata()])
     for f in frames:
         f.info.pop("loop", None)       # Pillow would copy the loop extension back
+    # each frame keeps its own duration: im.info holds only the last frame's (the final hold), and
+    # passing that one value to every frame slows the whole GIF to the hold
     frames[0].save(dst, save_all=True, append_images=frames[1:],
-                   duration=im.info.get("duration", 33), disposal=2,
+                   duration=[f.info.get("duration", 33) for f in frames], disposal=2,
                    transparency=im.info.get("transparency", 0), optimize=False)
 
 

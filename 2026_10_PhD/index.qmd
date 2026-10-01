@@ -479,7 +479,7 @@ Primordial GWs leave a unique imprint in the CMB [polarisation]{.kw2}
 </div>
 ```
 
-::: {.fragment fragment-index=3}
+::: {.fragment fragment-index=2}
 :::: {.solutionbox}
 ::: {.solutionbox-body}
 $Q$ and $U$ depend on the [reference frame]{.kw}: turning it by $\psi$ mixes them, $\;Q' = Q\cos 2\psi + U\sin 2\psi$
@@ -525,7 +525,7 @@ $Q$ and $U$ depend on the [reference frame]{.kw}: turning it by $\psi$ mixes the
 :::
 ::::
 
-::: {.fragment fragment-index=3}
+::: {.fragment fragment-index=2}
 :::: {.solutionbox}
 ::: {.solutionbox-body}
 - Density (scalar) perturbations make only [$E$ modes]{.kw}
@@ -602,7 +602,7 @@ $C(\theta) = \langle \Delta T(\hat n_1)\,\Delta T(\hat n_2)\rangle$ over all pai
 :::
 ::::
 
-::: {.fragment fragment-index=5}
+::: {.fragment fragment-index=4}
 :::: {.solutionbox style="margin-top: 0.2em;"}
 ::: {.solutionbox-body style="font-size: 0.85em;"}
 - [Equal area]{.kw}: every pixel weighs the same in a $C_\ell$

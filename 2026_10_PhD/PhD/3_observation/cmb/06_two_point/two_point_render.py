@@ -20,7 +20,8 @@ same-sign minus opposite-sign pairs in its 3-degree bin (orange adds one, blue
 removes one; each drawn line also brings ~15 undrawn pairs of the same sky, so
 the bars settle), so it grows from zero, high where the sky is correlated (small
 theta) and near zero where it is not. This sky's C(theta), scaled to the bars
-by one amplitude, is then drawn over them, and the bars fade. Plays once.
+by one amplitude, is then drawn over them, and the bars fade. Plays once, retimed to
+PLAY_S seconds on the slide.
 """
 
 import subprocess
@@ -33,6 +34,7 @@ from manim import (Dot, Line, Polygon, Rectangle, Scene, Text, ValueTracker, VGr
 
 config.background_opacity = 0.0
 HERE = Path(__file__).resolve().parent
+PLAY_S = 7.0          # the GIF's length on the slide: the 10.5 s scene is resampled to it at 30 fps
 D = dict(np.load(HERE / ".cache" / "two_point.npz"))
 
 # ------------------------------------------------------------------ layout
@@ -199,8 +201,8 @@ def write_last_svg(path: Path) -> None:
     path.write_text("\n".join(parts))
 
 
-def play_once(src: Path, dst: Path) -> None:
-    """Re-save the GIF without the looping extension: it plays once."""
+def play_once(src: Path, dst: Path, play_s: float = PLAY_S) -> None:
+    """Re-save the GIF without the looping extension (it plays once), resampled to play_s seconds."""
     from PIL import Image, ImageSequence
 
     im = Image.open(src)
@@ -216,8 +218,17 @@ def play_once(src: Path, dst: Path) -> None:
         f0.putdata([tidx if v in green else v for v in f0.getdata()])
     for f in frames:
         f.info.pop("loop", None)       # Pillow would copy the loop extension back
+    # each frame keeps its own duration: im.info holds only the last frame's (the final hold), and
+    # passing that one value to every frame slows the whole GIF to the hold
+    durations = [f.info.get("duration", 33) for f in frames]
+    # retime: sample the scene at 30 fps over play_s seconds, frame k showing the source frame on
+    # screen at k / n of the scene; durations land on the GIF's 10 ms grid and add up to play_s
+    start = np.cumsum([0] + durations[:-1])
+    n = int(round(30 * play_s))
+    frames = [frames[int(np.searchsorted(start, k * sum(durations) / n, side="right")) - 1] for k in range(n)]
+    durations = np.diff(np.round(np.arange(n + 1) * play_s * 100 / n) * 10).astype(int).tolist()
     frames[0].save(dst, save_all=True, append_images=frames[1:],
-                   duration=im.info.get("duration", 33), disposal=2,
+                   duration=durations, disposal=2,
                    transparency=im.info.get("transparency", 0), optimize=False)
 
 
