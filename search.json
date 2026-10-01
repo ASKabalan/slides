@@ -1236,7 +1236,7 @@
     "href": "2026_10_PhD/index.html#optimising-the-posterior",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Optimising the posterior",
-    "text": "Optimising the posterior\n\n\nMinimising the negative log-likelihood\n\n\n \n\n\n\n\nSampling the full posterior\n\n\n \n\n\n\n\n\n\n\n\nHow do we measure how much we trust the result?\n\n\n\n\n\n\n\nThe inverse Hessian of \\(-\\ln\\mathcal{L}\\) at the minimum gives the covariance, \\(\\mathbf{C} = \\mathbf{H}^{-1}\\), and with it the confidence intervals, assuming the posterior is Gaussian\n\n\n\n\n\n\nThe samples give the credible regions directly: the smallest regions holding 68, 95 and 99.7 % of them\n\n\n\n\n\n\n\n\nBoth methods become more efficient with a differentiable likelihoods"
+    "text": "Optimising the posterior\n\n\nMinimising the negative log-likelihood\n\n\n \n\n\n\n\nSampling the full posterior\n\n\n \n\n\n\n\n\n\n\n\nHow do we measure how much we trust the result?\n\n\n\n\n\n\n\nThe inverse Hessian of \\(-\\ln\\mathcal{L}\\) at the minimum gives the covariance, \\(\\mathbf{C} = \\mathbf{H}^{-1}\\), and with it the confidence intervals, assuming the posterior is Gaussian\n\n\n\n\n\n\nThe samples give the credible regions directly: the smallest regions holding 68, 95 and 99.7 % of them\n\n\n\n\n\n\n\n\nBoth methods become more efficient with a differentiable likelihood"
   },
   {
     "objectID": "2026_10_PhD/index.html#differentiable-programming",
