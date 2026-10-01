@@ -2,7 +2,7 @@
 # ENV: jax-fli
 """
 The redshift a lightcone assigns to each particle, with and without the drift on the lightcone, for
-the drift slide. After jax-fli docs/2-advanced-usage/07-Drift-on-Lightcone.ipynb and the thesis
+the drift backup slide (static: three panels side by side). After jax-fli docs/2-advanced-usage/07-Drift-on-Lightcone.ipynb and the thesis
 figure chap6/redshift_assignment.pdf.
 
 A small simulation on CPU: 256^3 particles in a 2000 Mpc/h box, observer at the centre, Planck18,
@@ -11,22 +11,17 @@ first-order LPT to a = 0.1, then BullFrog in 10 steps, the particles of one thic
 0.1 < phi < 1.3 rad of it (40 000 particles) are drawn in the plane, coloured by the redshift each
 one is assigned:
   one redshift per shell  the redshift of the centre of the shell the particle falls in, for 10 or 40
-                          shells uniform in the scale factor over [0, 950] Mpc/h, or 10 equal-volume
-                          shells, r_i = 950 (i/10)^(1/3) Mpc/h;
+                          shells uniform in the scale factor over [0, 950] Mpc/h;
   drifted                 the redshift of the particle's own comoving distance, z(|x|), the epoch at
                           which it crosses the lightcone. The drift moves particles by a few Mpc/h
                           at most, below what the panel resolves, so the positions are the same in
                           every panel and only the colour changes.
-The GIFs morph one redshift per shell into the drifted assignment, z = (1 - s) z_shell + s z(r).
-Their first frame is the static PNG of the same name, pixel for pixel, so the slide can swap one for
-the other.
 
 Outputs (this directory):
-  drift_a10.png, drift_a10.gif   10 shells uniform in a, then the morph
-  drift_a40.png                  40 shells uniform in a
-  drift_ev10.png, drift_ev10.gif 10 equal-volume shells, then the morph
-  drift_smooth.png               the drifted assignment (the last frame of both GIFs, for print)
-  drift_cbar.svg                 the redshift colour bar
+  drift_a10.png       10 shells uniform in a, one redshift per shell
+  drift_smooth.png    the drifted assignment
+  drift_a40.png       40 shells uniform in a, one redshift per shell
+  drift_cbar.svg      the redshift colour bar
 """
 
 import sys
@@ -36,10 +31,9 @@ import numpy as np
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parents[2]))
-from _common import INK, skip_if_built, slide_style
+from _common import skip_if_built, slide_style
 
-OUTS = ["drift_a10.png", "drift_a10.gif", "drift_a40.png", "drift_ev10.png", "drift_ev10.gif",
-        "drift_smooth.png", "drift_cbar.svg"]
+OUTS = ["drift_a10.png", "drift_smooth.png", "drift_a40.png", "drift_cbar.svg"]
 skip_if_built(HERE, *OUTS)
 
 CACHE = HERE.parent / ".cache"
@@ -103,10 +97,6 @@ def uniform_a_edges(n):
     return np.sort(chi_of(1 / a - 1))
 
 
-def equal_vol_edges(n):
-    return R1 * (np.arange(n + 1) / n) ** (1 / 3)
-
-
 def banded(edges):
     b = np.clip(np.digitize(R, edges) - 1, 0, len(edges) - 2)
     return z_of(0.5 * (edges[:-1] + edges[1:]))[b]
@@ -139,51 +129,11 @@ def render(z):
     return im
 
 
-def morph(z0, n=24):
-    s = 0.5 - 0.5 * np.cos(np.linspace(0, np.pi, n))            # ease in and out
-    return [render((1 - si) * z0 + si * Z_R) for si in s]
-
-
 plt.rcParams["figure.dpi"] = DPI
-seq_a = morph(banded(uniform_a_edges(10)))
-seq_ev = morph(banded(equal_vol_edges(10)))
-render(banded(uniform_a_edges(40))).save(HERE / "drift_a40.png")
-
-# one palette for both GIFs: the slide colours pinned, the rest from the frames themselves
-EXACT = [BG, tuple(int(INK[i:i + 2], 16) for i in (1, 3, 5)), (255, 255, 255), (0, 0, 0)]
-mosaic = Image.new("RGB", (seq_a[0].width * 4, seq_a[0].height))
-for k, im in enumerate([seq_a[0], seq_a[-1], seq_ev[0], seq_a[12]]):
-    mosaic.paste(im, (k * im.width, 0))
-base = mosaic.quantize(colors=256 - len(EXACT), method=Image.Quantize.MEDIANCUT).getpalette()
-PAL = np.array(base[:3 * (256 - len(EXACT))] + [c for rgb in EXACT for c in rgb]).reshape(-1, 3)
-
-
-def to_palette(im):
-    """Exact nearest-colour mapping onto PAL (PIL's own mapping goes through a coarse cache)."""
-    a = np.asarray(im, dtype=np.int32)
-    code = (a[..., 0] << 16) | (a[..., 1] << 8) | a[..., 2]
-    uniq, inv = np.unique(code.ravel(), return_inverse=True)
-    rgb = np.stack([uniq >> 16, (uniq >> 8) & 255, uniq & 255], axis=1)
-    idx = np.empty(len(rgb), dtype=np.uint8)
-    for k in range(0, len(rgb), 20000):
-        idx[k:k + 20000] = np.argmin(((rgb[k:k + 20000, None, :] - PAL[None]) ** 2).sum(-1), axis=1)
-    out = Image.fromarray(idx[inv].reshape(code.shape), mode="P")
-    out.putpalette(PAL.ravel().tolist())
-    return out
-
-
-for tag, seq in (("a10", seq_a), ("ev10", seq_ev)):
-    gif = [to_palette(im) for im in seq]
-    dur = [150] + [50] * (len(gif) - 2) + [1000]
-    gif[0].save(HERE / f"drift_{tag}.gif", save_all=True, append_images=gif[1:], duration=dur,
-                optimize=True)                               # no loop entry: the GIF plays once
-    with Image.open(HERE / f"drift_{tag}.gif") as g:
-        g.seek(0)
-        g.convert("RGB").save(HERE / f"drift_{tag}.png")      # the GIF's first frame, pixel for pixel
-        g.seek(g.n_frames - 1)
-        g.convert("RGB").save(HERE / "drift_smooth.png")
-    print(f"wrote drift_{tag}.png/.gif ({len(gif)} frames, {sum(dur) / 1000:.2f} s, "
-          f"{(HERE / f'drift_{tag}.gif').stat().st_size / 1e6:.1f} MB)")
+for out, z in (("drift_a10.png", banded(uniform_a_edges(10))), ("drift_smooth.png", Z_R),
+               ("drift_a40.png", banded(uniform_a_edges(40)))):
+    render(z).save(HERE / out)
+    print(f"wrote {out}")
 
 # the colour bar, on the same canvas height and axes span as the panels
 fig = plt.figure(figsize=(0.95, FIGSIZE[1]))
@@ -192,5 +142,4 @@ cb = fig.colorbar(plt.cm.ScalarMappable(norm=plt.Normalize(VMIN, VMAX), cmap="tu
 cb.set_label("assigned redshift $z$", labelpad=4)
 cb.outline.set_linewidth(0.8)
 fig.savefig(HERE / "drift_cbar.svg")
-print("wrote drift_cbar.svg; edges uniform a (10):", uniform_a_edges(10).round(0),
-      "equal volume (10):", equal_vol_edges(10).round(0))
+print("wrote drift_cbar.svg; edges uniform a (10):", uniform_a_edges(10).round(0))

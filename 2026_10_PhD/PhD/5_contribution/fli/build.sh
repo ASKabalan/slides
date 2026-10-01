@@ -79,5 +79,6 @@ run backup shell_spacing.py
 run backup scalecut.py
 run backup ghost_zone.py
 run backup adjoint_memory.py
+run backup mesh_plateau.py           # experiment 05f, from HF jax-fli-experiments, into ../.cache
 run 06_accuracy pm3d_fragments.py
 rm -f ./*.aux ./*.log

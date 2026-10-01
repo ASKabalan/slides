@@ -2985,6 +2985,14 @@ Removes the [single-redshift bias]{.kw} of wide shells: [16 %]{.kw2} on the firs
 :::
 ::::
 
+## Mesh plateau: density shells {visibility="uncounted"}
+
+![](PhD/5_contribution/fli/backup/mesh_plateau_density.svg){fig-align="center" width="1000px" style="margin-top: 0.6em;"}
+
+## Mesh plateau: convergence {visibility="uncounted"}
+
+![](PhD/5_contribution/fli/backup/mesh_plateau_kappa.svg){fig-align="center" width="1000px" style="margin-top: 0.6em;"}
+
 ## Scale cuts and baryons {visibility="uncounted"}
 
 ::: {.grid .bare style="--cols: 230px 62px 180px 62px 180px 62px 230px; --gap: 0; --align: center; margin-top: 0.3em;"}
