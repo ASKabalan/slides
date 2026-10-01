@@ -1,20 +1,19 @@
 #!/usr/bin/env python3
 # ENV: shared
 """
-The second shear component over the DES Y3 footprint, from my own forward model.
+The shear thumbnail the inverse-problem diagram embeds: the second shear component over the DES Y3
+footprint, from my own forward model.
 
-This is figure 11 of the masked-shear experiment in jax-fli. The experiment is
-the generator; regenerate the PDF with
+The map is figure 11 of the masked-shear experiment in jax-fli. The experiment is the generator;
+regenerate its PDF with
 
     cd /home/wassim/Projects/NBody/jax-fli/docs/5-experiments/08-masked-shear
     JAX_PLATFORMS=cpu uv run --no-sync python build.py
 
-and this script converts it for the slide and cuts the thumbnail the
-inverse-problem diagram embeds.
+and this script cuts a tight crop of the footprint from it. (It also used to convert the full map to
+gamma2_des.svg, which no slide shows; that output was dropped on 2026-10-01.)
 
-Outputs (this directory):
-  gamma2_des.svg          the full-sky map with the footprint
-  .cache/shear_thumb.png  a crop of the footprint, for inverse_problem.tex
+Output: .cache/shear_thumb.png, read by inverse_problem.tex
 """
 
 import shutil
@@ -28,17 +27,13 @@ from _common import skip_if_built
 
 SRC = Path("/home/wassim/Projects/NBody/jax-fli/docs/5-experiments/"
            "08-masked-shear/assets/fig11-gamma2-des.pdf")
-OUT = "gamma2_des.svg"
 THUMB = HERE / ".cache" / "shear_thumb.png"
 
-skip_if_built(HERE, OUT)
+skip_if_built(HERE, ".cache/shear_thumb.png")
 if not SRC.exists():
     sys.exit(f"missing {SRC}; run the masked-shear experiment first")
 if shutil.which("pdftocairo") is None:
     sys.exit("pdftocairo not found")
-
-subprocess.run(["pdftocairo", "-svg", str(SRC), str(HERE / OUT)], check=True)
-print(f"wrote {OUT}")
 
 # A tight crop of the footprint for the inverse-problem diagram.
 THUMB.parent.mkdir(parents=True, exist_ok=True)

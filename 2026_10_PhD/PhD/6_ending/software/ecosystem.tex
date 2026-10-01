@@ -1,13 +1,11 @@
 % The software this thesis built on and built, coloured by my role in each, with
-% an arrow for every "depends on". \keep=1 fades everything but the four
-% packages the uptake slide follows, so the two renders overlay 1:1.
+% an arrow for every "depends on". The middle column holds what the CMB and the
+% large-scale-structure sides share.
 % Compile: see build.sh in this directory.
 \documentclass[tikz,border=6pt]{standalone}
 \usepackage{tikz}
 \usepackage[T1]{fontenc}
 \usetikzlibrary{arrows.meta,positioning,calc,backgrounds,fit}
-
-\providecommand{\keep}{0}
 
 \definecolor{ink}{HTML}{2E2E2E}
 \definecolor{greytx}{HTML}{8A8A8A}
@@ -17,12 +15,11 @@
 \definecolor{cmbzone}{HTML}{FBF3EC}
 \definecolor{lsszone}{HTML}{EEF3FA}
 
-% #1 name  #2 position  #3 role colour  #4 label  #5 kept on the uptake render
-\newcommand{\pkg}[5]{%
-  \pgfmathsetmacro{\op}{\ifnum\keep=0 1\else\ifnum#5=1 1\else0.22\fi\fi}
+% #1 name  #2 position  #3 role colour  #4 label
+\newcommand{\pkg}[4]{%
   \node[draw=#3,line width=1.3pt,fill=white,rounded corners=6pt,
         minimum width=2.75cm,minimum height=0.95cm,text=ink,
-        font=\sffamily\small\bfseries,opacity=\op,text opacity=\op]
+        font=\sffamily\small\bfseries]
        (#1) at #2 {#4};}
 
 \begin{document}
@@ -38,36 +35,32 @@
   \node[font=\sffamily\small,text=contrib] at (4.7,4.0) {large scale structure};
 
   % CMB side
-  \pkg{furaxcs}{(-4.7,2.75)}{lead}{furax-cs}{1}
-  \pkg{furax}{(-6.35,0.95)}{coauth}{FURAX}{0}
-  \pkg{gridsearch}{(-3.05,0.95)}{lead}{jax-grid-search}{0}
+  \pkg{furaxcs}{(-4.7,2.75)}{lead}{furax-cs}
+  \pkg{furax}{(-6.35,0.95)}{coauth}{FURAX}
+  \pkg{gridsearch}{(-3.05,0.95)}{lead}{jax-grid-search}
   % LSS side
-  \pkg{jaxfli}{(4.7,2.75)}{lead}{jax-fli}{1}
-  \pkg{jaxpm}{(6.35,0.95)}{coauth}{JaxPM}{0}
-  \pkg{dorian}{(3.05,0.95)}{coauth}{dorian-mpi}{0}
-  \pkg{jaxdecomp}{(6.35,-1.35)}{lead}{jaxDecomp}{1}
-  \pkg{jaxcosmo}{(3.05,-1.35)}{contrib}{jax-cosmo}{0}
+  \pkg{jaxfli}{(4.7,2.75)}{lead}{jax-fli}
+  \pkg{jaxpm}{(6.35,0.95)}{coauth}{JaxPM}
+  \pkg{dorian}{(3.05,0.95)}{coauth}{dorian-mpi}
+  \pkg{jaxdecomp}{(6.35,-1.35)}{lead}{jaxDecomp}
+  \pkg{jaxcosmo}{(3.05,-1.35)}{contrib}{jax-cosmo}
   % Shared
-  \pkg{cadre}{(0,2.75)}{lead}{cadre}{0}
-  \pkg{profiler}{(0,0.95)}{lead}{jax-hpc-profiler}{0}
-  \pkg{healpy}{(-3.05,-1.35)}{coauth}{jax-healpy}{1}
-  \pkg{s2fft}{(0,-2.55)}{contrib}{S2FFT}{0}
+  \pkg{cadre}{(0,2.75)}{lead}{cadre}
+  \pkg{healpy}{(0,0.95)}{coauth}{jax-healpy}
+  \pkg{s2fft}{(0,-2.55)}{contrib}{S2FFT}
 
-  \pgfmathsetmacro{\eop}{\ifnum\keep=0 0.75\else0.18\fi}
-  \begin{scope}[-{Stealth[length=2.6mm]},greytx,line width=0.9pt,opacity=\eop]
+  \begin{scope}[-{Stealth[length=2.6mm]},greytx,line width=0.9pt,opacity=0.75]
     \draw (furaxcs) -- (furax);
     \draw (furaxcs) -- (gridsearch);
     \draw (furaxcs) -- (cadre);
-    \draw (furaxcs.south east) to[out=-40,in=150] (profiler.west);
-    \draw (furax) -- (healpy);
+    \draw (furax.south) to[out=-35,in=-145] (healpy.south west);
     \draw (gridsearch) -- (healpy);
     \draw (jaxfli) -- (jaxpm);
     \draw (jaxfli) -- (dorian);
     \draw (jaxfli) -- (cadre);
-    \draw (jaxfli.south west) to[out=-140,in=30] (profiler.east);
     \draw (jaxpm) -- (jaxdecomp);
     \draw (jaxpm) -- (jaxcosmo);
-    \draw (jaxfli.south west) to[out=-120,in=20] (healpy.east);
+    \draw (jaxfli.south west) -- (healpy.east);
     \draw (healpy) -- (s2fft);
     \draw (jaxfli.south) to[out=-95,in=30] (s2fft.east);
   \end{scope}

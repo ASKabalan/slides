@@ -9,14 +9,15 @@ with the lensing efficiency (drawn on the faces of the box, the observer at its 
 convergence of source bins 2 and 3 (Mollweide). The reconstruction moves through the eleven saved
 Adam steps (0 to 300), cross-faded from one to the next for display; the step counter and the
 correlation with the truth are those of the saved step. While it runs, the box is drawn as the four
-slabs of a slab decomposition along x, one per GPU, which join again at the end.
+pencils of a 2 x 2 pencil decomposition (split in x and y, full height in z), one per GPU, which join
+again at the end.
 
 compare_run.mp4 (6 s): over the same saved steps, the coherence r(l) and the transfer
 T(l) = sqrt(C_l^MAP / C_l^truth) of kappa for both bins, against the coherence of the joint Wiener
 filter (dotted), and the starlet l1 norm of kappa in bin 3 at the five scales against the truth.
 
-Outputs (this directory): map_run.mp4, map_first.png, map_last.png, compare_run.mp4,
-compare_first.png, compare_last.png. Each PNG is a frame of its video, drawn by the same code.
+Outputs (this directory): map_run.mp4, map_first.png (the slide's entry state), map_last.png,
+compare_run.mp4, compare_last.png. Each PNG is a frame of its video, drawn by the same code.
 """
 
 import shutil
@@ -31,8 +32,7 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parents[2]))
 from _common import BLUE, GREY, INK, KW, skip_if_built, slide_style
 
-OUTS = ["map_run.mp4", "map_first.png", "map_last.png", "compare_run.mp4", "compare_first.png",
-        "compare_last.png"]
+OUTS = ["map_run.mp4", "map_first.png", "map_last.png", "compare_run.mp4", "compare_last.png"]
 skip_if_built(HERE, *OUTS)
 
 D = np.load(HERE.parent / ".cache" / "map_des.npz")
@@ -88,18 +88,17 @@ def encode(frames_dir, out):
 NSIDE = hp.npix2nside(D["proj_truth"].size)
 N = 128
 G = (np.arange(N) + 0.5) / N - 0.5
-SLAB_X = [-0.5 + 0.25 * (k + 1) for k in range(4)]     # right face of each slab
+# the 2 x 2 pencils as (i, j) = (x half, y half), in painter's order: the back row (y > 0) first
+PENCILS = [(0, 1), (1, 1), (0, 0), (1, 0)]
+HALF_N = [slice(0, N // 2), slice(N // 2, N)]
 
 
 def faces(sky):
-    """Sky map -> values on the top face, the front face and the right face of each slab."""
+    """Sky map -> values on the outer faces of the box: top (z = 0.5), front (y = -0.5), right (x = 0.5)."""
     u, v = np.meshgrid(G, G)                             # u along columns, v along rows
     look = lambda x, y, z: sky[hp.vec2pix(NSIDE, x.ravel(), y.ravel(), z.ravel())].reshape(N, N)
     half = np.full_like(u, 0.5)
-    out = {"top": look(u, v, half), "front": look(u, -half, v)}
-    for k, xk in enumerate(SLAB_X):
-        out[f"right{k}"] = look(np.full_like(u, xk), u, v)
-    return out
+    return {"top": look(u, v, half), "front": look(u, -half, v), "right": look(half, u, v)}
 
 
 F_TRUTH = faces(D["proj_truth"])
@@ -130,20 +129,28 @@ def draw_face(ax, img, o, e1, e2, z, edge=1.0):
 
 
 def draw_box(ax, fc, gap, label_alpha):
-    """The box as four slabs along x, each shifted by gap * 0.2 * (k - 1.5). A cut face inside the
-    box is drawn flat: the ray-traced projection has no meaning on a plane through the observer."""
-    for k in range(4):
-        x0, x1 = -0.5 + 0.25 * k, -0.5 + 0.25 * (k + 1)
-        s = gap * 0.2 * (k - 1.5)
-        cols = slice(k * N // 4, (k + 1) * N // 4)
-        draw_face(ax, fc["front"][:, cols], (x0 + s, -0.5, -0.5), (0.25, 0, 0), (0, 0, 1), 3 * k + 1, gap)
-        draw_face(ax, fc["top"][:, cols], (x0 + s, -0.5, 0.5), (0.25, 0, 0), (0, 1, 0), 3 * k + 2, gap)
-        draw_face(ax, fc["right3"] if k == 3 else None, (x1 + s, -0.5, -0.5), (0, 1, 0), (0, 0, 1),
-                  3 * k + 3, gap)
-        if label_alpha > 0:
-            c = P(0.5 * (x0 + x1) + s, 0.5, 0.5)
-            ax.text(c[0], c[1] + 0.05, f"GPU {k + 1}", ha="center", va="bottom", fontsize=10,
-                    color=INK, alpha=label_alpha, zorder=20)
+    """The box as 2 x 2 pencils: pencil (i, j) moves by gap * 0.25 (i - 0.5) in x and the back row by
+    gap * 0.4 in y, so the front row stays in place. Assembled (gap = 0) the faces are drawn whole, so
+    no seam shows where the pieces meet. A cut face inside the box is drawn flat: the ray-traced
+    projection has no meaning on a plane through the observer."""
+    if gap == 0:
+        draw_face(ax, fc["front"], (-0.5, -0.5, -0.5), (1, 0, 0), (0, 0, 1), 1, 0)
+        draw_face(ax, fc["top"], (-0.5, -0.5, 0.5), (1, 0, 0), (0, 1, 0), 2, 0)
+        draw_face(ax, fc["right"], (0.5, -0.5, -0.5), (0, 1, 0), (0, 0, 1), 3, 0)
+    for n, (i, j) in enumerate(PENCILS if gap > 0 else []):
+        x0, x1, y0 = -0.5 + 0.5 * i, 0.5 * i, -0.5 + 0.5 * j
+        sx, sy = gap * 0.25 * (i - 0.5), gap * 0.4 * j
+        cols, rows = HALF_N[i], HALF_N[j]
+        draw_face(ax, fc["front"][:, cols] if j == 0 else None, (x0 + sx, y0 + sy, -0.5), (0.5, 0, 0),
+                  (0, 0, 1), 3 * n + 1, gap)
+        draw_face(ax, fc["top"][rows, cols], (x0 + sx, y0 + sy, 0.5), (0.5, 0, 0), (0, 0.5, 0), 3 * n + 2, gap)
+        draw_face(ax, fc["right"][:, rows] if i == 1 else None, (x1 + sx, y0 + sy, -0.5), (0, 0.5, 0),
+                  (0, 0, 1), 3 * n + 3, gap)
+        if label_alpha > 0:                              # on the pencil's own top face
+            c = P(0.5 * (x0 + x1) + sx, y0 + 0.25 + sy, 0.5)
+            ax.text(c[0], c[1], f"GPU {i + 1 + 2 * j}", ha="center", va="center", fontsize=9.5, color=INK,
+                    alpha=label_alpha, zorder=3 * n + 2.8,
+                    bbox=dict(boxstyle="round,pad=0.15", fc="white", ec="none", alpha=0.85 * label_alpha))
     if gap < 1:                                          # the outline of the whole box
         for o, e1, e2 in (((-0.5, -0.5, -0.5), (1, 0, 0), (0, 0, 1)), ((-0.5, -0.5, 0.5), (1, 0, 0), (0, 1, 0)),
                           ((0.5, -0.5, -0.5), (0, 1, 0), (0, 0, 1))):
@@ -260,12 +267,13 @@ def render(make, schedule, stem):
             fig = make(*args)
             fig.savefig(tmp / f"f_{i:04d}.png", facecolor=BG)
             plt.close(fig)
-        shutil.copy(tmp / "f_0000.png", HERE / f"{stem}_first.png")
+        if stem == "map":                      # the comparison video needs no still entry state
+            shutil.copy(tmp / "f_0000.png", HERE / f"{stem}_first.png")
         shutil.copy(tmp / f"f_{len(schedule) - 1:04d}.png", HERE / f"{stem}_last.png")
         encode(tmp, f"{stem}_run.mp4")
     finally:
         shutil.rmtree(tmp)
-    print(f"wrote {stem}_run.mp4 ({len(schedule)} frames, {len(schedule) / FPS:.1f} s), {stem}_first/last.png")
+    print(f"wrote {stem}_run.mp4 ({len(schedule)} frames, {len(schedule) / FPS:.1f} s) and its still frames")
 
 
 LABEL = lambda gap: gap

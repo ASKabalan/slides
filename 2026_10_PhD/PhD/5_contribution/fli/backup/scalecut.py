@@ -10,10 +10,12 @@ kappa_born_s3), each bin brought to nside 512. The cut transforms a map to spher
 multiplies a_lm by the cosine taper T_l (1 up to l_cut - l_width, 0 from l_cut, l_width = 50) and
 transforms back: bin 2 is cut at l_cut = 200, bin 3 at 250, as in the thesis.
 
-  scalecut_map.png       bin 3 before the cut, a 15 degree gnomonic cut-out (magma)
+  scalecut_map.png       bin 3 before the cut, full sky in Mollweide (magma)
   scalecut_alm.png       its |a_lm| in the s2fft layout (rows l, columns m), l < 400, log scale
   scalecut_alm_cut.png   the same after the taper; the removed multipoles are greyed
-  scalecut_map_cut.png   the band-limited map, same cut-out and colour scale as the first
+  scalecut_map_cut.png   the band-limited map, same projection and colour scale as the first. The
+                         projection samples one HEALPix pixel per image pixel, so the power the cut
+                         removes shows as grain on the first map
   scalecut_spectra.svg   bins 2 and 3 after the cut: band powers of this work (solid) and CosmoGrid
                          (dashed), bands of 10 multipoles from l = 20, and their ratio minus one
                          over a +-10 % band; the grey band is each bin's roll-off
@@ -39,7 +41,7 @@ MAPS = {"this work": EXP / ("05-spacing-n-stepping/05c-equal-volume/kappa_gauss_
         "CosmoGrid": EXP / "00-cosmogrid/cosmo_172798/kappa/kappa_born_s3.parquet"}
 NSIDE, LMAX, L_WIDTH = 512, 3 * 512 - 1, 50
 L_CUT = {1: 200, 2: 250}                      # bin index -> l_cut (bins 2 and 3)
-L_SHOW, CUT_PIX, CUT_RESO = 400, 300, 3.0     # a_lm rows shown; a 15 degree cut-out
+L_SHOW, MOLL_PIX = 400, 600                  # a_lm rows shown; Mollweide width in pixels
 
 
 def taper(lmax, l_cut, l_width=L_WIDTH):
@@ -52,12 +54,13 @@ def load():
     npz = CACHE / "scalecut_05c.npz"
     if npz.exists():
         d = np.load(npz)
-        return {k: d[k] for k in d.files}
+        if "moll" in d.files:                 # an older cache held gnomonic cut-outs: recompute
+            return {k: d[k] for k in d.files}
     import healpy as hp
     from jax_fli.io import Catalog
 
     out = {}
-    proj = hp.projector.GnomonicProj(rot=(0.0, 0.0), xsize=CUT_PIX, reso=CUT_RESO)
+    proj = hp.projector.MollweideProj(xsize=MOLL_PIX)
     for name, path in MAPS.items():
         field = Catalog.from_parquet(str(path)).field[0]
         for b, l_cut in L_CUT.items():
@@ -68,7 +71,8 @@ def load():
             out[f"cl_{name}_{b}"] = hp.alm2cl(alm_cut)
             if name == "this work" and b == 2:
                 look = lambda mm: proj.projmap(mm, lambda x, y, z: hp.vec2pix(NSIDE, x, y, z))
-                out["map"], out["map_cut"] = look(m), look(m_cut)
+                out["moll"], out["moll_cut"] = look(m), look(m_cut)
+                out["rms"], out["rms_cut"] = m.std(), m_cut.std()
                 L = L_SHOW
                 el, em = hp.Alm.getlm(LMAX)
                 keep = el < L
@@ -91,12 +95,21 @@ from matplotlib.ticker import FixedLocator, LogLocator, NullFormatter, ScalarFor
 
 plt.rcParams["savefig.bbox"] = None
 
-# --- the two cut-outs, one colour scale
-lo, hi = np.nanpercentile(D["map"], [1, 99.5])
-for key, out in (("map", OUTS[0]), ("map_cut", OUTS[3])):
-    fig = plt.figure(figsize=(3, 3), dpi=150)
-    ax = fig.add_axes([0, 0, 1, 1])
-    ax.imshow(D[key], cmap="magma", origin="lower", vmin=lo, vmax=hi, interpolation="bilinear")
+# --- the two full-sky maps, one colour scale
+print(f"bin 3 rms: {float(D['rms']):.3e} before the cut, {float(D['rms_cut']):.3e} after "
+      f"({float(D['rms_cut'] / D['rms']):.2f})")
+valid = lambda a: np.ma.masked_invalid(np.where(np.isfinite(a), a, np.nan))
+lo, hi = np.nanpercentile(valid(D["moll"]).compressed(), [1, 99.5])
+cmap = plt.get_cmap("magma").copy()
+cmap.set_bad(alpha=0)
+for key, out in (("moll", OUTS[0]), ("moll_cut", OUTS[3])):
+    img = valid(D[key])
+    fig = plt.figure(figsize=(4, 2), dpi=150)
+    ax = fig.add_axes([0.005, 0.01, 0.99, 0.98])
+    ax.imshow(img, cmap=cmap, origin="lower", vmin=lo, vmax=hi, interpolation="nearest")
+    h, w = img.shape
+    t = np.linspace(0, 2 * np.pi, 400)
+    ax.plot(w / 2 + (w / 2 - 1) * np.cos(t), h / 2 + (h / 2 - 1) * np.sin(t), color="#3b3b3b", lw=0.8)
     ax.axis("off")
     fig.savefig(HERE / out, transparent=True)
     plt.close(fig)

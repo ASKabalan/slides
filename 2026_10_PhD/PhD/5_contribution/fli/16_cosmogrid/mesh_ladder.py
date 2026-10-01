@@ -82,10 +82,12 @@ from matplotlib.ticker import FixedFormatter, FixedLocator, NullFormatter
 plt.rcParams["savefig.bbox"] = None
 PAST = "#b9bfca"
 
+# the two bins share the y axis, so only the left panel carries tick labels, and the gap between
+# the panels holds the mesh label at the end of the left curve
 for k, (mesh, out) in enumerate(zip(MESHES, OUTS)):
     fig = plt.figure(figsize=(10.4, 4.85))
     for j, b in enumerate(BINS):
-        ax = fig.add_axes([0.1 + 0.485 * j, 0.11, 0.34, 0.81])
+        ax = fig.add_axes([0.095 + 0.455 * j, 0.11, 0.385, 0.81])
         ax.fill_between(ELL[KEEP], -D["cv"][b][KEEP], D["cv"][b][KEEP], color="#d8dde6", lw=0, zorder=0)
         for y in (-0.1, 0.1):
             ax.axhline(y, color=GREY, ls=":", lw=1.2, zorder=1)
@@ -103,11 +105,11 @@ for k, (mesh, out) in enumerate(zip(MESHES, OUTS)):
         ax.xaxis.set_major_formatter(FixedFormatter(["30", "100", "300", "1000"]))
         ax.xaxis.set_minor_formatter(NullFormatter())
         ax.set_yticks([-0.6, -0.4, -0.2, -0.1, 0, 0.1])
-        ax.set_yticklabels(["−60 %", "−40 %", "−20 %", "−10 %", "0", "+10 %"])
+        ax.set_yticklabels(["−60 %", "−40 %", "−20 %", "−10 %", "0", "+10 %"] if j == 0 else [])
         ax.set_xlabel(r"$\ell$", labelpad=0)
         ax.set_title(f"tomographic bin {b + 1}", fontsize=14, color=INK, pad=6)
         if j == 0:
-            ax.set_ylabel(r"$C_\ell^{\kappa} / C_\ell^{\kappa,\,\mathrm{CosmoGrid}} - 1$", fontsize=13)
+            ax.set_ylabel(r"$C_\ell^{\kappa} / C_\ell^{\kappa,\,\mathrm{CosmoGrid}} - 1$", fontsize=13, labelpad=2)
             ax.text(22, 0.13, "grey: CosmoGrid cosmic variance", fontsize=10.5, color=GREY,
                     va="bottom")
     fig.savefig(HERE / out)

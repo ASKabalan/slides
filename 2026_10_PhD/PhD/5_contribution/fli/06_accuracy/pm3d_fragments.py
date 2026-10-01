@@ -14,7 +14,7 @@ steps in D, CIC without deconvolution, five realisations per mesh, the ladder
 JAXHACK talk used fewer seeds on the fine meshes, which let sample variance
 put 64^3 closest to zero at large scales; five everywhere removes that.
 
-Simulations are cached per mesh in .cache/, so re-rendering after a layout
+Simulations are cached per mesh in ../.cache/ (the shared fli cache), so re-rendering after a layout
 change never reruns the solver. The whole ladder takes of order half an hour
 on CPU.
 
@@ -27,12 +27,12 @@ import time
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-sys.path.insert(0, str(HERE.parents[1]))
+sys.path.insert(0, str(HERE.parents[2]))
 from _common import GREY, INK, KW, skip_if_built
 
 RESOLUTIONS = (64, 96, 128, 192, 256)
 OUTS = [f"pm3d_frag_{i}.png" for i in range(1, len(RESOLUTIONS) + 1)]
-CACHE = HERE / ".cache"
+CACHE = HERE.parent / ".cache"          # the shared fli/.cache
 skip_if_built(HERE, *OUTS)
 CACHE.mkdir(exist_ok=True)
 

@@ -32,22 +32,7 @@ CHAP3 = Path("/home/wassim/Projects/Perso/These_wassim/figures/chap3")
 
 # output name -> source PDF
 FIGURES = {
-    "cic.svg": CHAP6 / "cic.pdf",
     "09_observable/geometry.svg": CHAP6 / "geometry.pdf",
-    "observer_wireframe.svg": CHAP6 / "observer_wireframe.pdf",
-    "observer_masks.svg": CHAP6 / "observer_masks.pdf",
-    "observer_shear_cases.svg": CHAP6 / "observer_shear_cases.pdf",
-    "redshift_assignment.svg": CHAP6 / "redshift_assignment.pdf",
-    "lensing_spacing.svg": CHAP6 / "lensing_spacing.pdf",
-    "halo_deficit.svg": CHAP6 / "halo_deficit.pdf",
-    "density_census.svg": CHAP6 / "density_census.pdf",
-    "cosmogrid_shells.svg": CHAP6 / "cosmogrid_shells.pdf",
-    "cosmogrid_map.svg": CHAP6 / "cosmogrid_map.pdf",
-    "cosmogrid_kappa_theory.svg": CHAP6 / "cosmogrid_kappa_theory.pdf",
-    "lensing_vs_cosmogrid.svg": CHAP6 / "lensing_vs_cosmogrid.pdf",
-    "gamma1_residual_maps.svg": CHAP6 / "gamma1_residual_maps.pdf",
-    "pm3d_accuracy.svg": CHAP6 / "pm3d_accuracy.pdf",
-    "doux_statistics.svg": CHAP3 / "fig_doux_statistics.pdf",
 }
 
 if shutil.which("pdftocairo") is None:
@@ -70,14 +55,6 @@ for out, src in (("07_distributed/jaxdecomp_fft.svg", CHAP6 / "jaxdecomp_fft.svg
     if src.exists() and (force_regen() or not (HERE / out).exists()):
         shutil.copy(src, HERE / out)
         print(f"copied {out}")
-
-# Two raster assets that have no vector original.
-for out, src in (("lpt_density_1024.png", CHAP6 / "assets" / "LPT_density_field_z0_1024.png"),):
-    if src.exists() and (force_regen() or not (HERE / out).exists()):
-        shutil.copy(src, HERE / out)
-        print(f"copied {out}")
-    elif not src.exists():
-        missing.append(f"{out}  <-  {src}")
 
 print(f"\n{made} figures converted")
 if missing:

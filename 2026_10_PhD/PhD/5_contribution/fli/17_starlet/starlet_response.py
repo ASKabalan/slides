@@ -72,9 +72,9 @@ import matplotlib.pyplot as plt
 plt.rcParams["savefig.bbox"] = None
 COLOURS = (BLUE, KW, TEAL, RED, KW2)          # scales 0 (finest) .. 4 (coarsest)
 
-fig = plt.figure(figsize=(10.4, 4.7))
+fig = plt.figure(figsize=(10.4, 5.6))
 for col, j in enumerate(range(NSCALES - 1, -1, -1)):     # coarse to fine, left to right
-    ax = fig.add_axes([0.07 + col * 0.183, 0.6, 0.165, 0.33])
+    ax = fig.add_axes([0.07 + col * 0.183, 0.655, 0.165, 0.277])
     span = float(np.percentile(np.abs(CUT[j]), 99))
     ax.imshow(CUT[j], cmap="RdBu_r", origin="lower", vmin=-span, vmax=span)
     ax.set_xticks([])
@@ -84,7 +84,7 @@ for col, j in enumerate(range(NSCALES - 1, -1, -1)):     # coarse to fine, left 
         sp.set_linewidth(2.4)
     ax.set_title(f"scale {j}", color=COLOURS[j], fontsize=14, pad=4)
 
-ax = fig.add_axes([0.07, 0.11, 0.9, 0.38])
+ax = fig.add_axes([0.07, 0.09, 0.9, 0.48])
 for j in range(NSCALES):
     sq = RESP[j][2:] ** 2
     sq = sq / sq.max()

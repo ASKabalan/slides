@@ -79,7 +79,5 @@ run backup shell_spacing.py
 run backup scalecut.py
 run backup ghost_zone.py
 run backup adjoint_memory.py
-for p in pm3d_fragments.py; do
-    [ -f "$p" ] && run . "$p"
-done
+run 06_accuracy pm3d_fragments.py
 rm -f ./*.aux ./*.log

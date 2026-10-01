@@ -7,8 +7,7 @@ FOR_USAGE/ (10-50 MB each) to a size a slide needs.
 Illustrations designed and drawn by Eve Barlier; SciPol is an ERC project held
 by Josquin Errard, grant No. 101044073. Both are credited on the slides.
 
-Outputs (this directory): scipol_polarisation.png, scipol_emodes.png,
-scipol_bmodes.png, scipol_cmb_layers.png
+Output (this directory): scipol_cmb_layers.png (read by 2_outline/rail.tex)
 """
 
 import sys
@@ -23,9 +22,6 @@ from PIL import Image
 Image.MAX_IMAGE_PIXELS = None
 SRC = HERE.parents[2] / "FOR_USAGE"
 ASSETS = {
-    "scipol_polarisation.png": SRC / "Individual Assets/PNG/PNG/Polarisation_Transparent_v1.png",
-    "scipol_emodes.png": SRC / "Individual assets/PNG/Poster_EModes_Scipol_v4.png",
-    "scipol_bmodes.png": SRC / "Individual assets/PNG/Poster_BModes_Scipol_v4.png",
     "scipol_cmb_layers.png": SRC / "Individual assets/PNG/Poster_CMBLayers_Scipol_v4.png",
 }
 skip_if_built(HERE, *ASSETS)

@@ -8,6 +8,7 @@ Nothing in the deck points at a figure that cannot be rebuilt from this director
 2026_10_PhD/PhD/   (moved here from assets/PhD; the shared slides assets stay in ../assets, reached through the deck's assets link)
 ├── pyproject.toml, uv.lock   shared light environment (matplotlib, healpy, camb, …)
 ├── bake.sh                   rebuild everything, or one section
+├── 0_cover/                 the cover video, its two end stills in source/, backgrounds.py (conclusion backgrounds)
 ├── 1_intro/  2_outline/  4_inference/
 ├── 3_observation/            the two observables
 │   ├── cmb/                  one subfolder per slide, in deck order:
@@ -17,7 +18,7 @@ Nothing in the deck points at a figure that cannot be rebuilt from this director
 │   ├── compsep/
 │   └── fli/
 ├── 6_ending/                 closing sections
-│   └── software/ conclusion/ backup/
+│   └── software/ backup/
 └── FOR_USAGE/                source material handed over, not generated here
 ```
 

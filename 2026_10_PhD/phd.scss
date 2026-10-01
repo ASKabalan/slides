@@ -43,7 +43,8 @@ body {
 .credit {
   display: block;
   text-align: center;
-  font-size: 0.5em;
+  font-size: 0.75em;
+  font-weight: 700;
   color: $credit-color;
   margin-top: 0.15em;
   line-height: 1.2;
@@ -139,14 +140,6 @@ body {
 
 .figcadre-body> :last-child {
   margin-bottom: 0;
-}
-
-// Title slide: a single line under the logo block.
-.reveal .title-footer {
-  margin-top: 1.4em;
-  text-align: center;
-  font-size: 0.55em;
-  color: #6f6459;
 }
 
 // r-stack children span the full slide width, so percentage and pixel widths
@@ -344,6 +337,28 @@ html.print-pdf .reveal .slides > .corner-fixed { display: none; }
 .reveal:has(section[data-hide-chrome].present) .slide-number,
 .reveal:has(section[data-hide-chrome].present) .slide-menu-button {
   display: none !important;
+}
+
+// Slides over a full background image (the conclusions): `## Title {.frosted background-image=...}`
+// puts the title on a frosted cream pill, and `.frosted-panel` is the same frosted card for content,
+// as on the cover. --panel-pad (18px 28px), --panel-radius (18px), --panel-alpha (0.88).
+.reveal .slides section.frosted > h2 {
+  display: inline-block;
+  padding: 0.12em 0.6em;
+  border-radius: 14px;
+  background: rgba(250, 247, 240, 0.88);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
+}
+
+.reveal .frosted-panel {
+  background: rgba(250, 247, 240, var(--panel-alpha, 0.88));
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: var(--panel-radius, 18px);
+  padding: var(--panel-pad, 18px 28px);
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.3);
 }
 
 // ---------------------------------------------------------------- utilities

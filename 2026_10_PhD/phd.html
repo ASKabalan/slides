@@ -7,7 +7,8 @@
 //    the animation starts from the beginning.
 // 2. GIFs (played once, no loop) restart whenever they come on screen: when
 //    their fragment is shown, and when their slide is entered by any route
-//    (forward, back, jump), so the animation never shows up frozen.
+//    (forward, back, jump), so the animation never shows up frozen. A GIF is hidden
+//    while its fresh copy loads, so its old last frame never flashes before frame 0.
 // 3. Corner badge: a slide with a `corner="path/to/figure.svg"` attribute
 //    (data-corner in the HTML) shows that figure in the top-right corner. It is
 //    drawn once, outside the slides, so it stays put while the slides of a
@@ -109,6 +110,12 @@
         // a fresh URL forces the browser to decode the GIF again from frame 0;
         // re-setting the same src is ignored by Chrome's image cache
         const base = img.getAttribute("src").split("?")[0];
+        // until the fresh copy has loaded the browser keeps painting the old one, stopped on
+        // its last frame, so the GIF stays hidden (layout kept) and whatever lies under it shows
+        const show = function () { img.style.visibility = ""; };
+        img.style.visibility = "hidden";
+        img.addEventListener("load", show, { once: true });
+        img.addEventListener("error", show, { once: true });
         img.setAttribute("src", base + "?t=" + Date.now());
       });
     }

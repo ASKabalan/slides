@@ -98,8 +98,8 @@ plt.rcParams["savefig.bbox"] = None
 BINS = ["#f2b58a", "#d9772e", "#8a3510"]     # bins 1-3, light to dark (the spacing slide's palette)
 
 # --- the weights
-fig = plt.figure(figsize=(6.0, 2.9))
-ax = fig.add_axes([0.04, 0.2, 0.93, 0.72])
+fig = plt.figure(figsize=(6.0, 3.6))
+ax = fig.add_axes([0.04, 0.16, 0.93, 0.78])
 top = 1.42 * D["kern"].max()                  # headroom for the legend above the curves
 for j in range(len(D["edges"]) - 1):
     ax.axvspan(D["edges"][j], D["edges"][j + 1], color="#d8dde6" if j % 2 else "#eef1f5", lw=0, zorder=0)

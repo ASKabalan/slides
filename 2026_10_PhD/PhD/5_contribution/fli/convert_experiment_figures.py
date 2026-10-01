@@ -19,7 +19,6 @@ in FIGURES below.
 """
 
 import shutil
-import subprocess
 import sys
 from pathlib import Path
 
@@ -29,6 +28,7 @@ from _common import force_regen
 
 EXP = Path("/home/wassim/Projects/NBody/jax-fli/docs/5-experiments")
 MASK = EXP / "08-masked-shear/assets"
+MAP = EXP / "13-map-lpt2-mass-mapping/assets"
 
 FIGURES = {
     # the forward model end to end (jax-fli README diagram)
@@ -37,22 +37,12 @@ FIGURES = {
     "10_painting/density_box.png": Path("/home/wassim/Projects/NBody/jax-fli/assets/pipeline/pipeline_images/02_final_density.png"),
     "10_painting/density_shell.png": Path("/home/wassim/Projects/NBody/jax-fli/assets/pipeline/pipeline_images/03_spherical_projection.png"),
     # the survey mask and what it costs
-    "masked_shear_masks.svg": MASK / "fig01-masks.svg",
-    "masked_shear_observer_quad.svg": MASK / "fig02-observer-quad.svg",
-    "masked_shear_observer_large.svg": MASK / "fig03-observer-large.svg",
-    "masked_shear_residual_pdf.svg": MASK / "fig07-gamma1-residual-pdf.svg",
-    "masked_shear_residual_maps.svg": MASK / "fig08-gamma1-residual-maps.svg",
-    "masked_shear_ee.svg": MASK / "fig09-ee-spectra.svg",
+    "backup/masked_shear_masks.svg": MASK / "fig01-masks.svg",
+    "backup/masked_shear_residual_maps.svg": MASK / "fig08-gamma1-residual-maps.svg",
+    # the MAP reconstruction under DES Y3 and Euclid noise (experiment 13)
+    "backup/map_des_euclid_coherence.svg": MAP / "fig13-des-vs-euclid-coherence.svg",
+    "backup/map_des_euclid_starlet.svg": MAP / "fig14-des-vs-euclid-starlet.svg",
 }
-# These are PDFs and need converting rather than copying.
-CONVERT = {
-    "shear_gamma1_des.svg": MASK / "fig10-gamma1-des.pdf",
-    "shear_gamma2_des.svg": MASK / "fig11-gamma2-des.pdf",
-}
-
-if shutil.which("pdftocairo") is None:
-    sys.exit("pdftocairo not found")
-
 made, missing = 0, []
 for out, src in FIGURES.items():
     if (HERE / out).exists() and not force_regen():
@@ -64,16 +54,6 @@ for out, src in FIGURES.items():
     shutil.copy(src, HERE / out)
     made += 1
     print(f"copied {out}")
-
-for out, src in CONVERT.items():
-    if (HERE / out).exists() and not force_regen():
-        continue
-    if not src.exists():
-        missing.append(f"{out}  <-  {src}")
-        continue
-    subprocess.run(["pdftocairo", "-svg", str(src), str(HERE / out)], check=True)
-    made += 1
-    print(f"wrote {out}")
 
 print(f"\n{made} experiment figures brought across")
 if missing:

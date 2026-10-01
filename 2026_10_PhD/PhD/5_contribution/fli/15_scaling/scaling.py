@@ -10,7 +10,8 @@ in the 5000 Mpc/h box under a slab decomposition. Strong scaling holds a 1024^3 
 GPUs; weak scaling keeps 256^3 cells per GPU. Time is the minimum over repeats, memory the peak
 per-device temporary memory.
 
-One row of four panels per figure, [strong time | strong memory | weak time | weak memory]:
+One row of four panels per figure, [strong time | strong memory | weak time | weak memory], the
+two figures stacked on the slide with the strong / weak header on the forward one only:
   scaling_forward.svg    float32 against float64
   scaling_gradient.svg   float64, the reverse adjoint against the checkpointed adjoint with 30
                          checkpoints (at least one per shell of the twenty-shell lightcone, the
@@ -61,20 +62,26 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import FixedLocator, LogLocator, NullFormatter, NullLocator, ScalarFormatter
 
 plt.rcParams["savefig.bbox"] = None
-BOXES = [(0.07, 0.22, 0.175, 0.58), (0.325, 0.22, 0.175, 0.58),
-         (0.58, 0.22, 0.175, 0.58), (0.835, 0.22, 0.155, 0.58)]
+plt.rcParams.update({"xtick.labelsize": 13, "ytick.labelsize": 13})
+# shown at 1000 px wide on the slide. The forward figure carries the strong / weak header above its
+# panels; the gradient figure sits under it with the same columns, so it drops the header and gives
+# that height to its panels.
+WIDTH = 10.4
+LAYOUT = {"forward": (2.45, 0.22, 0.585), "gradient": (2.15, 0.25, 0.715)}   # height, bottom, panel height
+LEFTS, PANEL_W = (0.062, 0.31, 0.558, 0.806), 0.172
 
 for which, out in zip(("forward", "gradient"), OUTS):
     strong, weak = load(which)
-    fig = plt.figure(figsize=(8.8, 2.35))
-    axes = [fig.add_axes(b) for b in BOXES]
+    height, bottom, ph = LAYOUT[which]
+    fig = plt.figure(figsize=(WIDTH, height))
+    axes = [fig.add_axes((x, bottom, PANEL_W, ph)) for x in LEFTS]
     for ax, sub, col, ylabel in zip(axes, (strong, strong, weak, weak),
                                     ("time", "memory", "time", "memory"),
                                     ("time  [s]", "GiB per GPU") * 2):
         gpus = sorted(sub["px"].unique())
         for key, label, c, ls, m in SERIES[which]:
             d = sub[sub.series == key].sort_values("px")
-            ax.plot(d["px"], d[col], color=c, ls=ls, marker=m, ms=5, lw=2.0, label=label)
+            ax.plot(d["px"], d[col], color=c, ls=ls, marker=m, ms=7, lw=2.6, label=label)
             print(f"{which:8s} {sub.kind.iloc[0]:6s} {label:18s} {col:6s}",
                   dict(zip(d["px"], d[col].round(2))))
         ax.set_xscale("log", base=2)
@@ -89,14 +96,17 @@ for which, out in zip(("forward", "gradient"), OUTS):
             ax.yaxis.set_minor_formatter(NullFormatter())
             ax.margins(y=0.15)
         else:
-            ax.set_ylim(0, 1.22 * sub[col].max())
-        ax.set_xlabel("GPUs", labelpad=1)
-        ax.set_ylabel(ylabel, fontsize=12, labelpad=2)
+            # the weak-scaling memory panel keeps headroom above its flat curves for the legend
+            ax.set_ylim(0, (1.9 if sub is weak else 1.25) * sub[col].max())
+        ax.set_xlabel("GPUs", fontsize=14, labelpad=1)
+        ax.set_ylabel(ylabel, fontsize=14, labelpad=3)
         ax.grid(True, axis="y", which="both", ls=":", alpha=0.4)
-    # the weak-scaling memory curves are flat, and the band between them holds the legend
-    axes[3].legend(loc="center", fontsize=10, handlelength=1.6, borderaxespad=0.2, labelspacing=0.2)
-    fig.text(0.28, 0.93, r"strong scaling, $1024^3$ mesh", ha="center", fontsize=13, color=INK)
-    fig.text(0.78, 0.93, r"weak scaling, $256^3$ cells per GPU", ha="center", fontsize=13, color=INK)
+    # the weak-scaling memory curves are flat, so the legend goes in the headroom above them
+    axes[3].legend(loc="upper center", fontsize=12, handlelength=1.8, borderaxespad=0.15,
+                   labelspacing=0.2, frameon=False)
+    if which == "forward":
+        fig.text(0.28, 0.9, r"strong scaling, $1024^3$ mesh", ha="center", fontsize=15, color=INK)
+        fig.text(0.78, 0.9, r"weak scaling, $256^3$ cells per GPU", ha="center", fontsize=15, color=INK)
     fig.savefig(HERE / out)
     plt.close(fig)
     print(f"wrote {out}")

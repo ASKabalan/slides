@@ -10,11 +10,7 @@ NOTE: the HSC PDR3 stage-3 leg is not possible on Abell 2390 — Dec +17.7
 lies outside the HSC public footprint (the 0h Wide band stops at Dec +10).
 
 Output (2026_10_PhD/PhD/<section>/ convention):
-  - stage2_4_abell2390_comparison.svg  matched-FOV pair with vector text
-                                       titles, transparent background (no
-                                       <rect>, the slide shows through the
-                                       title band and the panel gap).
-  - stage2_4_abell2390_bg.jpg          the same matched pair, no titles, a
+  - stage2_4_abell2390_bg.jpg          the matched-FOV pair, no titles, a
                                        thin dark divider: full-bleed slide
                                        background (data-background-size: cover).
   - abell2390_stage2_sdss.png / abell2390_stage4_euclid.png  native frames
@@ -25,8 +21,6 @@ Composites are SVG: cutouts embedded as JPEG data URIs at native resolution
 embedded survey pixels).
 """
 
-import base64
-import html
 import io
 from pathlib import Path
 
@@ -139,47 +133,6 @@ def fetch_euclid_ero() -> Image.Image:
 # Transparent SVG composition
 # ---------------------------------------------------------------------------
 
-def compose_svg(panels: list, out_path: Path, size: int = 1024, gap: int = 8) -> Path:
-    """Side-by-side cutouts with vector titles, transparent background.
-
-    panels: list of (PIL.Image, [title line 1, subtitle line 2]).
-    Text is dark to sit on the deck's light slide background.
-    """
-    title_band = 110
-    width = len(panels) * size + (len(panels) - 1) * gap
-    height = size + title_band
-    parts = [
-        f'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" '
-        f'width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
-    ]
-    for i, (img, lines) in enumerate(panels):
-        buf = io.BytesIO()
-        img.save(buf, format="JPEG", quality=92)
-        b64 = base64.b64encode(buf.getvalue()).decode()
-        x = i * (size + gap)
-        parts.append(
-            f'<image x="{x}" y="{title_band}" width="{size}" height="{size}" '
-            f'preserveAspectRatio="none" xlink:href="data:image/jpeg;base64,{b64}"/>'
-        )
-        cx = x + size / 2
-        l1, l2 = html.escape(lines[0]), html.escape(lines[1])
-        parts.append(
-            f'<text x="{cx}" y="46" text-anchor="middle" fill="#1a1a1a" '
-            f'font-family="Carlito, Calibri, Helvetica, Arial, sans-serif" '
-            f'font-size="34" font-weight="bold">{l1}</text>'
-        )
-        parts.append(
-            f'<text x="{cx}" y="88" text-anchor="middle" fill="#767676" '
-            f'font-family="Carlito, Calibri, Helvetica, Arial, sans-serif" '
-            f'font-size="26">{l2}</text>'
-        )
-    parts.append("</svg>")
-
-    out_path.write_text("\n".join(parts))
-    print(f"[+] Saved {out_path.name} ({out_path.stat().st_size / 1e6:.1f} MB)")
-    return out_path
-
-
 def compose_background(images: list, out_path: Path, gap: int = 6) -> Path:
     """Matched cutouts side by side, no titles, for a full-bleed background."""
     size = images[0].size[0]
@@ -210,13 +163,6 @@ def main():
     left = crop_to_fov(sdss_2390, SDSS_PIX, matched_fov)
     right = crop_to_fov(euclid_2390, EU_PIX, matched_fov)
 
-    compose_svg(
-        [
-            (left, ["Stage 2 — SDSS DR18", "Abell 2390 | 2.5m Apache Point | ~1.4'' seeing"]),
-            (right, ["Stage 4 — Euclid VIS/NISP", "Abell 2390 | 1.2m Space L2 | <0.18'' diffraction"]),
-        ],
-        OUT_DIR / "stage2_4_abell2390_comparison.svg",
-    )
     compose_background([left, right], OUT_DIR / "stage2_4_abell2390_bg.jpg")
 
 
