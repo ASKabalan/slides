@@ -21,7 +21,7 @@ sys.path.insert(0, str(HERE.parents[1]))
 from _common import cached_fetch, commons_url, force_regen
 
 CACHE = HERE / ".cache"
-POOL = HERE.parents[2] / "Logos"
+POOL = HERE.parents[2] / "assets" / "Logos"   # the shared slides assets, through the deck's assets link
 RAW = "https://raw.githubusercontent.com/"
 
 REMOTE = {  # name -> (url or commons title, kind)

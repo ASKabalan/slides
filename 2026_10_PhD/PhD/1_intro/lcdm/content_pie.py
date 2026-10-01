@@ -37,7 +37,7 @@ plt.rcParams["svg.fonttype"] = "path"
 HERE = Path(__file__).resolve().parent
 OUT = HERE / "content_pie.svg"
 GIF = HERE / "content_pie_fill.gif"
-FIELD = HERE.parents[2] / "Fields" / "LPT_density_field_z0_1024.png"
+FIELD = HERE.parents[2] / "assets" / "Fields" / "LPT_density_field_z0_1024.png"   # the shared slides assets, through the deck's assets link
 FORCE_REGEN = os.getenv("FORCE_REGEN", "0").lower() in ("1", "true", "t")
 
 if OUT.exists() and GIF.exists() and not FORCE_REGEN:

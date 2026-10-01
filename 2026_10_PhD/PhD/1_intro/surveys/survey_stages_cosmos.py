@@ -14,7 +14,7 @@ so the cutout is built locally: fetch the Norder-11 tiles overlapping the
 target window, map tile pixels to the sky through cdshealpix fractional
 (dx, dy) coordinates and resample onto a TAN grid.
 
-Output (assets/PhD/<section>/ convention), vector titles on transparent
+Output (2026_10_PhD/PhD/<section>/ convention), vector titles on transparent
 background (no <rect>, the slide shows through the title band and gaps):
   - stage2_3_4_cosmos_comparison.svg  matched-FOV triplet with titles
   - cosmos_stage2_sdss.png / cosmos_stage3_hsc.png / cosmos_stage4_rubin.png

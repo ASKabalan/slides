@@ -9,7 +9,7 @@ Stage 4: ESA Euclid ERO (1.2m space, <0.18" diffraction, 0.101"/px)
 NOTE: the HSC PDR3 stage-3 leg is not possible on Abell 2390 — Dec +17.7
 lies outside the HSC public footprint (the 0h Wide band stops at Dec +10).
 
-Output (assets/PhD/<section>/ convention):
+Output (2026_10_PhD/PhD/<section>/ convention):
   - stage2_4_abell2390_comparison.svg  matched-FOV pair with vector text
                                        titles, transparent background (no
                                        <rect>, the slide shows through the

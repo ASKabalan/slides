@@ -23,7 +23,7 @@ from _common import cached_fetch, force_regen
 CACHE = HERE.parent / ".cache"
 JOSS = "https://joss.theoj.org/papers/10.21105/joss.08852.pdf"
 GIF = "https://jaxdecomp.readthedocs.io/en/latest/_images/decomp2d.gif"
-LOCAL_GIF = HERE.parents[3] / "HPC" / "decomp2d.gif"
+LOCAL_GIF = HERE.parents[3] / "assets" / "HPC" / "decomp2d.gif"   # the shared slides assets
 
 # --- JOSS title block ---------------------------------------------------------
 header = HERE / "joss_header.png"

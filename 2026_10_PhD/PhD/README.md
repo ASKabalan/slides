@@ -5,7 +5,7 @@ beside it, the way `figures/chapN/fig_x.py` sits beside `fig_x.pdf` in the thesi
 Nothing in the deck points at a figure that cannot be rebuilt from this directory.
 
 ```
-assets/PhD/
+2026_10_PhD/PhD/   (moved here from assets/PhD; the shared slides assets stay in ../assets, reached through the deck's assets link)
 ├── pyproject.toml, uv.lock   shared light environment (matplotlib, healpy, camb, …)
 ├── bake.sh                   rebuild everything, or one section
 ├── 1_intro/  2_outline/  4_inference/

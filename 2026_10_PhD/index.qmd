@@ -39,7 +39,7 @@ resources:
 title-slide-attributes:
   data-visibility: "uncounted"
   data-hide-chrome: "true"
-  data-background-video: "assets/PhD/0_cover/cmb_to_cosmicweb.mp4"
+  data-background-video: "PhD/0_cover/cmb_to_cosmicweb.mp4"
   data-background-video-loop: "true"
   data-background-video-muted: "true"
   data-background-size: cover

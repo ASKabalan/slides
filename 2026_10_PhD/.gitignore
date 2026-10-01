@@ -4,3 +4,6 @@
 /search.json
 /phd_defense.pdf
 .cache
+# working files of the Claude sessions (handoff notes, screenshot scripts, prompts)
+/CLAUDE/
+/.shot_index.html
