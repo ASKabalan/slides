@@ -1582,6 +1582,27 @@
     "text": "MAP: DES Y3 against Euclid, starlet \\(\\ell_1\\) norm"
   },
   {
+    "objectID": "2026_10_PhD/index.html#field-level-posterior-convergence",
+    "href": "2026_10_PhD/index.html#field-level-posterior-convergence",
+    "title": "Differentiable Field-Level Cosmology",
+    "section": "Field-level posterior: convergence",
+    "text": "Field-level posterior: convergence\n\n\ntruth\nposterior draws\nstandard deviation\ntruth − draw\nbin 2\n\n\n\n\n\n\n\n\n\n\n\n\nbin 3\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMCLMC on one A100: \\(128^3\\) initial conditions and \\((\\Omega_c, \\sigma_8)\\)\nWall time\n\n\n\n\nCompiling the tuning step\n12 min\n\n\nTuning the step size and momentum decoherence: 300 steps\n1 h 32 min\n\n\nCompiling the sampler\n1.5 min\n\n\nSampling: 10 batches of 10 draws, one draw every 5 steps\n15.5 min per batch\n\n\nTotal\n≈ 4 h 20 min"
+  },
+  {
+    "objectID": "2026_10_PhD/index.html#field-level-posterior-starlet-ell_1-norm",
+    "href": "2026_10_PhD/index.html#field-level-posterior-starlet-ell_1-norm",
+    "title": "Differentiable Field-Level Cosmology",
+    "section": "Field-level posterior: starlet \\(\\ell_1\\) norm",
+    "text": "Field-level posterior: starlet \\(\\ell_1\\) norm\n\nbin 2ℓ₁ norm\n\n\n\n\n\nbin 2draw − truth\n\n\n\n\n\nbin 3ℓ₁ norm\n\n\n\n\n\nbin 3draw − truth"
+  },
+  {
+    "objectID": "2026_10_PhD/index.html#cosmology-only-inference",
+    "href": "2026_10_PhD/index.html#cosmology-only-inference",
+    "title": "Differentiable Field-Level Cosmology",
+    "section": "Cosmology-only inference",
+    "text": "Cosmology-only inference\n\n\n\n\n\n\nNUTS, initial conditions at the truth\n\n\n\n\n\nWarmup\n100 iterations\n\n\nSampling\n10 batches of 10 draws\n\n\n\\(\\Omega_c\\)\n\\(0.2603 \\pm 0.0013\\) (truth 0.2607)\n\n\n\\(\\sigma_8\\)\n\\(0.8102 \\pm 0.0025\\) (truth 0.8102)\n\n\nWall time\n4 h 56 min"
+  },
+  {
     "objectID": "2026_10_PhD/index.html#a-survey-mask-leaks",
     "href": "2026_10_PhD/index.html#a-survey-mask-leaks",
     "title": "Differentiable Field-Level Cosmology",

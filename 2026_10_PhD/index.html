@@ -36,7 +36,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-97fa2dfcee0c0b1f5ac5cca820ab290f.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-04886c4882783cafe64d1f47c0f718f6.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -2722,6 +2722,149 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <figure>
 <p><img data-src="PhD/5_contribution/fli/backup/map_des_euclid_starlet.svg" class="quarto-figure quarto-figure-center" width="1000"></p>
 </figure>
+</div>
+</section>
+<section id="field-level-posterior-convergence" class="slide level2" data-visibility="uncounted">
+<h2>Field-level posterior: convergence</h2>
+<div class="grid flat bare" style="--cols: 60px repeat(4, 1fr); --gap: 8px; --row-gap: 10px; --align: center; margin-top: 0.6em; text-align: center;">
+<p><span></span></p>
+<p><span class="kw" style="font-size: 0.6em;">truth</span></p>
+<p><span class="kw" style="font-size: 0.6em;">posterior draws</span></p>
+<p><span class="kw" style="font-size: 0.6em;">standard deviation</span></p>
+<p><span class="kw" style="font-size: 0.6em;">truth − draw</span></p>
+<p><span class="kw" style="font-size: 0.6em; color: #C2560A; text-align: right;">bin 2</span></p>
+<p><img data-src="PhD/5_contribution/fli/backup_sampling/kappa_truth_bin2.png" style="width: 100%; margin: 0;"></p>
+<div>
+<video src="PhD/5_contribution/fli/backup_sampling/kappa_samples_bin2.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 100%; margin: 0;">
+</video>
+<p><img data-src="PhD/5_contribution/fli/backup_sampling/kappa_samples_bin2_last.png" class="print-only" style="width: 100%; margin: 0;"></p>
+</div>
+<p><img data-src="PhD/5_contribution/fli/backup_sampling/kappa_std_bin2.png" style="width: 100%; margin: 0;"></p>
+<div>
+<video src="PhD/5_contribution/fli/backup_sampling/kappa_diff_bin2.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 100%; margin: 0;">
+</video>
+<p><img data-src="PhD/5_contribution/fli/backup_sampling/kappa_diff_bin2_last.png" class="print-only" style="width: 100%; margin: 0;"></p>
+</div>
+<p><span class="kw" style="font-size: 0.6em; color: #3B6FB6; text-align: right;">bin 3</span></p>
+<p><img data-src="PhD/5_contribution/fli/backup_sampling/kappa_truth_bin3.png" style="width: 100%; margin: 0;"></p>
+<div>
+<video src="PhD/5_contribution/fli/backup_sampling/kappa_samples_bin3.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 100%; margin: 0;">
+</video>
+<p><img data-src="PhD/5_contribution/fli/backup_sampling/kappa_samples_bin3_last.png" class="print-only" style="width: 100%; margin: 0;"></p>
+</div>
+<p><img data-src="PhD/5_contribution/fli/backup_sampling/kappa_std_bin3.png" style="width: 100%; margin: 0;"></p>
+<div>
+<video src="PhD/5_contribution/fli/backup_sampling/kappa_diff_bin3.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 100%; margin: 0;">
+</video>
+<p><img data-src="PhD/5_contribution/fli/backup_sampling/kappa_diff_bin3_last.png" class="print-only" style="width: 100%; margin: 0;"></p>
+</div>
+<p><span></span></p>
+<p><img data-src="PhD/5_contribution/fli/backup_sampling/cbar_kappa.svg" style="grid-column: span 2; width: 230px; margin: 0 auto;"></p>
+<p><img data-src="PhD/5_contribution/fli/backup_sampling/cbar_std.svg" style="width: 200px; margin: 0 auto;"></p>
+<p><img data-src="PhD/5_contribution/fli/backup_sampling/cbar_diff.svg" style="width: 200px; margin: 0 auto;"></p>
+</div>
+<div class="nice-table" style="--table-size: 0.72em; margin-top: 0.7em;">
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">MCLMC on one A100: <span class="math inline">\(128^3\)</span> initial conditions and <span class="math inline">\((\Omega_c, \sigma_8)\)</span></th>
+<th style="text-align: right;">Wall time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Compiling the tuning step</td>
+<td style="text-align: right;">12 min</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tuning the step size and momentum decoherence: 300 steps</td>
+<td style="text-align: right;">1 h 32 min</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Compiling the sampler</td>
+<td style="text-align: right;">1.5 min</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sampling: 10 batches of 10 draws, one draw every 5 steps</td>
+<td style="text-align: right;">15.5 min per batch</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Total</strong></td>
+<td style="text-align: right;"><strong>≈ 4 h 20 min</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="field-level-posterior-starlet-ell_1-norm" class="slide level2" data-visibility="uncounted">
+<h2>Field-level posterior: starlet <span class="math inline">\(\ell_1\)</span> norm</h2>
+<div class="grid bare" style="--cols: 110px 600px; --gap: 10px; --row-gap: 2px; --align: center; justify-content: center; margin-top: 0.2em;">
+<p><span class="kw" style="font-size: 0.6em; color: #C2560A; text-align: right;">bin 2<br>ℓ₁ norm</span></p>
+<div>
+<video src="PhD/5_contribution/fli/backup_sampling/starlet_l1_bin2.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 600px; margin: 0;">
+</video>
+<p><img data-src="PhD/5_contribution/fli/backup_sampling/starlet_l1_bin2_last.png" class="print-only" style="width: 600px; margin: 0;"></p>
+</div>
+<p><span class="kw" style="font-size: 0.6em; color: #C2560A; text-align: right;">bin 2<br>draw − truth</span></p>
+<div>
+<video src="PhD/5_contribution/fli/backup_sampling/starlet_resid_bin2.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 600px; margin: 0;">
+</video>
+<p><img data-src="PhD/5_contribution/fli/backup_sampling/starlet_resid_bin2_last.png" class="print-only" style="width: 600px; margin: 0;"></p>
+</div>
+<p><span class="kw" style="font-size: 0.6em; color: #3B6FB6; text-align: right;">bin 3<br>ℓ₁ norm</span></p>
+<div>
+<video src="PhD/5_contribution/fli/backup_sampling/starlet_l1_bin3.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 600px; margin: 0;">
+</video>
+<p><img data-src="PhD/5_contribution/fli/backup_sampling/starlet_l1_bin3_last.png" class="print-only" style="width: 600px; margin: 0;"></p>
+</div>
+<p><span class="kw" style="font-size: 0.6em; color: #3B6FB6; text-align: right;">bin 3<br>draw − truth</span></p>
+<div>
+<video src="PhD/5_contribution/fli/backup_sampling/starlet_resid_bin3.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 600px; margin: 0;">
+</video>
+<p><img data-src="PhD/5_contribution/fli/backup_sampling/starlet_resid_bin3_last.png" class="print-only" style="width: 600px; margin: 0;"></p>
+</div>
+</div>
+</section>
+<section id="cosmology-only-inference" class="slide level2" data-visibility="uncounted">
+<h2>Cosmology-only inference</h2>
+<div class="row flat bare" style="--gap: 40px; --justify: center; margin-top: 0.3em;">
+<p><img data-src="PhD/5_contribution/fli/backup_sampling/posterior_nb17.svg" style="height: 480px; flex: none; margin: 0;"></p>
+<div class="nice-table" style="--table-size: 0.8em; flex: none;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">NUTS, initial conditions at the truth</th>
+<th style="text-align: right;"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Warmup</td>
+<td style="text-align: right;">100 iterations</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sampling</td>
+<td style="text-align: right;">10 batches of 10 draws</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\Omega_c\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(0.2603 \pm 0.0013\)</span> (truth 0.2607)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\sigma_8\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(0.8102 \pm 0.0025\)</span> (truth 0.8102)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Wall time</strong></td>
+<td style="text-align: right;"><strong>4 h 56 min</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </section>
 <section id="a-survey-mask-leaks" class="slide level2" data-visibility="uncounted">
