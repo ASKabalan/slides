@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# Build the field-level section. The slides rewritten on 2026-09-30 have one folder each
-# (01_pipeline ... 19_born; numbered in the order they were made, not the slide order); the backup slides still use the flat files of this directory.
+# Build the field-level section. Each slide has one folder (01_pipeline ... 21_drift_census, numbered in
+# the order they were made, not the slide order); the backup figures sit in backup/, and the sampling
+# backups in backup_sampling/ are copied from jax-fli by convert_experiment_figures.py.
 # Staged TikZ figures have several renders from one source.
 set -euo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")"
@@ -64,6 +65,7 @@ run 11_lightcone lightcone_shells.py
 run 12_spacing shell_spacing.py
 run 13_nshells nshells.py
 run 14_drift drift.py
+run 21_drift_census drift_census.py
 run 15_scaling fetch_logo.py
 run 15_scaling scaling.py
 run 16_cosmogrid mesh_ladder.py
