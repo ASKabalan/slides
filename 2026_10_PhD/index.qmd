@@ -31,6 +31,11 @@ format:
     auto-stretch: false
 output: revealjs
 
+# Quarto copies the files that markdown images and the YAML point to, but not the src of a raw
+# <video>: list the slide videos here or the published site has none of them.
+resources:
+  - "PhD/**/*.mp4"
+
 title-slide-attributes:
   data-visibility: "uncounted"
   data-hide-chrome: "true"
