@@ -1103,7 +1103,7 @@
     "href": "2026_10_PhD/index.html#current-constraints-on-r",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Current constraints on \\(r\\)",
-    "text": "Current constraints on \\(r\\)\n\n\n\n\n\n\n\n\n\n\nBest limit: \\(r &lt; 0.032\\) (95 %, Planck PR4 + BICEP/Keck 2018)\nThe main obstacle is the Galactic foregrounds that obscure the CMB: [Contribution 1] {.kw2}\n\n\n\n\nTristram et al. (2022); Simons Observatory (Ade et al. 2019); LiteBIRD Collaboration (2023)"
+    "text": "Current constraints on \\(r\\)\n\n\n\n\n\n\n\n\n\n\nBest limit: \\(r &lt; 0.032\\) (95 %, Planck PR4 + BICEP/Keck 2018)\nThe main obstacle is the Galactic foregrounds that obscure the CMB: Contribution 1\n\n\n\n\nTristram et al. (2022); Simons Observatory (Ade et al. 2019); LiteBIRD Collaboration (2023)"
   },
   {
     "objectID": "2026_10_PhD/index.html#the-cmb-data-analysis-pipeline",
@@ -1257,14 +1257,14 @@
     "href": "2026_10_PhD/index.html#parametric-component-separation-the-spectral-model",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Parametric component separation: the spectral model",
-    "text": "Parametric component separation: the spectral model\n \nSynchrotron and dust (Galactic foregrounds)\n\n\n\nSynchrotron: power law\n\\[A^{\\mathrm{sync}}_\\nu({\\color{#3b6fb6}\\beta_s}) \\;\\propto\\; \\left(\\frac{\\nu}{\\nu_0}\\right)^{\\color{#3b6fb6}\\beta_s}\\]\n\n\nPlanck: synchrotron\n\n\nDust: modified black body\n\\[A^{\\mathrm{dust}}_\\nu({\\color{#d68910}\\beta_d}, {\\color{#d68910}T_d}) \\;\\propto\\; \\left(\\frac{\\nu}{\\nu_0}\\right)^{{\\color{#d68910}\\beta_d}+1}\\frac{e^{h\\nu_0/k{\\color{#d68910}T_d}}-1}{e^{h\\nu/k{\\color{#d68910}T_d}}-1}\\]\n\n\nPlanck: thermal dust\n\n\n\nThe spectral likelihood\n\n\\[\\mathbf{d}_\\nu = A^{\\mathrm{cmb}}_\\nu\\,\\mathbf{s}_{\\mathrm{cmb}} + A^{\\mathrm{dust}}_\\nu({\\color{#d68910}\\beta_d},{\\color{#d68910}T_d})\\,\\mathbf{s}_{\\mathrm{dust}} + A^{\\mathrm{sync}}_\\nu({\\color{#3b6fb6}\\beta_s})\\,\\mathbf{s}_{\\mathrm{sync}} + \\mathbf{n}_\\nu\\]\n\n\n\n\n\n\\[-2\\ln\\mathcal{L}(\\boldsymbol\\beta) = -\\left(\\mathbf{A}^{\\top}\\mathbf{N}^{-1}\\mathbf{d}\\right)^{\\top}\\left(\\mathbf{A}^{\\top}\\mathbf{N}^{-1}\\mathbf{A}\\right)^{-1}\\left(\\mathbf{A}^{\\top}\\mathbf{N}^{-1}\\mathbf{d}\\right), \\qquad \\boldsymbol\\beta = ({\\color{#d68910}\\beta_d}, {\\color{#d68910}T_d}, {\\color{#3b6fb6}\\beta_s})\\]"
+    "text": "Parametric component separation: the spectral model\n\nSynchrotron and dust (Galactic foregrounds)\n\n\n\nSynchrotron: power law\n\\[A^{\\mathrm{sync}}_\\nu({\\color{#3b6fb6}\\beta_s}) \\;\\propto\\; \\left(\\frac{\\nu}{\\nu_0}\\right)^{\\color{#3b6fb6}\\beta_s}\\]\n\n\nPlanck: synchrotron\n\n\nDust: modified black body\n\\[A^{\\mathrm{dust}}_\\nu({\\color{#d68910}\\beta_d}, {\\color{#d68910}T_d}) \\;\\propto\\; \\left(\\frac{\\nu}{\\nu_0}\\right)^{{\\color{#d68910}\\beta_d}+1}\\frac{e^{h\\nu_0/k{\\color{#d68910}T_d}}-1}{e^{h\\nu/k{\\color{#d68910}T_d}}-1}\\]\n\n\nPlanck: thermal dust\n\n\nThe spectral likelihood\n\n\\[\\mathbf{d}_\\nu = A^{\\mathrm{cmb}}_\\nu\\,\\mathbf{s}_{\\mathrm{cmb}} + A^{\\mathrm{dust}}_\\nu({\\color{#d68910}\\beta_d},{\\color{#d68910}T_d})\\,\\mathbf{s}_{\\mathrm{dust}} + A^{\\mathrm{sync}}_\\nu({\\color{#3b6fb6}\\beta_s})\\,\\mathbf{s}_{\\mathrm{sync}} + \\mathbf{n}_\\nu\\]\n\n\n\n\n\n\\[-2\\ln\\mathcal{L}(\\boldsymbol\\beta) = -\\left(\\mathbf{A}^{\\top}\\mathbf{N}^{-1}\\mathbf{d}\\right)^{\\top}\\left(\\mathbf{A}^{\\top}\\mathbf{N}^{-1}\\mathbf{A}\\right)^{-1}\\left(\\mathbf{A}^{\\top}\\mathbf{N}^{-1}\\mathbf{d}\\right), \\qquad \\boldsymbol\\beta = ({\\color{#d68910}\\beta_d}, {\\color{#d68910}T_d}, {\\color{#3b6fb6}\\beta_s})\\]"
   },
   {
     "objectID": "2026_10_PhD/index.html#spatially-varying-foregrounds",
     "href": "2026_10_PhD/index.html#spatially-varying-foregrounds",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Spatially varying foregrounds",
-    "text": "Spatially varying foregrounds\n\nc1d0s0 one spectrum for the whole sky\n\nsynchrotron index \\(\\beta_s\\)\ndust index \\(\\beta_d\\)\ndust temperature \\(T_d\\)\nSEDs of 300 pixels\n\n\n\n\n\n\n\nc1d1s1 one spectrum per pixel\n\n\n\n\n\n\n\n\n\n\n\n\nIn c1d1s1 each pixel has its own spectrum. The likelihood must model this spatial variability\nBoth skies have \\(r = 0\\) and serve for validation"
+    "text": "Spatially varying foregrounds\n\nc1d0s0 one spectrum for the whole sky\n\nsynchrotron index \\(\\beta_s\\)\ndust index \\(\\beta_d\\)\ndust temperature \\(T_d\\)\nSEDs of 300 pixels\n\n\n\n\n\n\nc1d1s1 one spectrum per pixel\n\n\n\n\n\n\n\n\n\n\n\n\nIn c1d1s1 each pixel has its own spectrum. The likelihood must model this spatial variability\nBoth skies have \\(r = 0\\) and serve for validation"
   },
   {
     "objectID": "2026_10_PhD/index.html#defining-parameter-patches-on-the-sphere",
@@ -1327,7 +1327,7 @@
     "href": "2026_10_PhD/index.html#contribution-1-conclusion",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Contribution 1: conclusion",
-    "text": "Contribution 1: conclusion\n  \n\n\n\nParametric component separation in JAX, almost two orders of magnitude faster, over thousands of sky partitions\nAdaTopK: a bounded optimiser built for noisy physical likelihoods\nChoosing the partition by the upper limit on \\(r\\): 30 % lower than the hand-tuned configuration\n\n\n\n\n\nNow part of the Megatop pipeline for the Simons Observatory, and of the parametric component separation for LiteBIRD\n\n  \n\n\nKabalan et al. (2026), RASTI"
+    "text": "Contribution 1: conclusion\n\n\n\nParametric component separation in JAX, almost two orders of magnitude faster, over thousands of sky partitions\nAdaTopK: a bounded optimiser built for noisy physical likelihoods\nChoosing the partition by the upper limit on \\(r\\): 30 % lower than the hand-tuned configuration\n\nKabalan et al. (2026), RASTI\n\n\n\n\n\nNow part of the Megatop pipeline for the Simons Observatory\nNext\n\npreparing its integration into the LiteBIRD component-separation pipeline\nreal data from the Simons Observatory, through Megatop\ninstrument systematics as linear operators in FURAX\nmore flexible spatial partitions of the foreground parameters"
   },
   {
     "objectID": "2026_10_PhD/index.html#a-weak-lensing-forward-model-end-to-end",
@@ -1355,7 +1355,7 @@
     "href": "2026_10_PhD/index.html#the-gravity-solver-lagrangian-perturbation-theory",
     "title": "Differentiable Field-Level Cosmology",
     "section": "The gravity solver: Lagrangian perturbation theory",
-    "text": "The gravity solver: Lagrangian perturbation theory\n \n\n\nEach particle moves from its initial grid position \\(\\mathbf{q}\\)\n\n\\[\\mathbf{x}(\\mathbf{q}, a) = \\mathbf{q} + D_1(a)\\,\\mathbf{\\Psi}^{(1)}(\\mathbf{q}) + D_2(a)\\,\\mathbf{\\Psi}^{(2)}(\\mathbf{q}) + \\dots\\] \\[\\nabla \\cdot \\mathbf{\\Psi}^{(1)} = -\\delta_\\mathrm{ini}\\]\n\nFirst order: the Zel’dovich approximation. Second order (2LPT) adds the tidal field.\n\n\nLensing \\(C_\\ell\\) of the four DES Y3 bins, linear theory against halofit\n\n\n\n\n\nPerturbation theory does not capture the non-linear growth of structure\nWe need a fast and differentiable gravity solver that can model the non-linear signal"
+    "text": "The gravity solver: Lagrangian perturbation theory\n \n\n\nEach particle moves from its initial grid position \\(\\mathbf{q}\\)\n\n\\[\\mathbf{x}(\\mathbf{q}, a) = \\mathbf{q} + D_1(a)\\,\\mathbf{\\Psi}^{(1)}(\\mathbf{q}) + D_2(a)\\,\\mathbf{\\Psi}^{(2)}(\\mathbf{q}) + \\dots\\] \\[\\nabla \\cdot \\mathbf{\\Psi}^{(1)} = -\\delta_\\mathrm{ini}\\]\n\nFirst order: the Zel’dovich approximation. Second order (2LPT) adds the tidal field.\n\n\n\n\nPerturbation theory does not capture the non-linear growth of structure\nWe need a fast and differentiable gravity solver that can model the non-linear signal\n\n\n\n\n\n\nLensing \\(C_\\ell\\) of the four DES Y3 bins, linear theory against halofit"
   },
   {
     "objectID": "2026_10_PhD/index.html#the-gravity-solver-particle-mesh",
@@ -1404,7 +1404,7 @@
     "href": "2026_10_PhD/index.html#painting-on-spherical-shells-1",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Painting on spherical shells",
-    "text": "Painting on spherical shells\n\n\n\nbin 4\nbin 3\nbin 2\nbin 1\nκ bin 1\nκ bin 2\nκ bin 3\nκ bin 4\nobserver\n\n\n\n\n\n\nBilinear interpolation\n\n\n\n\n\nFour pixels, weighted by the position between their centres: get_interp_weights, implemented in jax-healpy\n\n\n\nRadial basis function interpolation\n\n\n\n\n\n\n\n\n\nThe pixel and its eight neighbours (get_all_neighbours, implemented in jax-healpy), weighted by a Gaussian kernel of adjustable width\n\n\n\n\n\n\n\n\n\n\n\nThe RBF scheme keeps the gradient and gives control over the smoothing: at 0.8 pixel FWHM it tracks nearest-grid-point painting to a few per cent out to \\(\\ell \\approx 1500\\)\n\n\n\n\n\n\n\nBoth methods are implemented in jax-healpy and are differentiable"
+    "text": "Painting on spherical shells\n\n\n\nbin 4\nbin 3\nbin 2\nbin 1\nκ bin 1\nκ bin 2\nκ bin 3\nκ bin 4\nobserver\n\n\n\n\n\n\nBilinear interpolation\n\n\n\n\n\nFour pixels, weighted by the position between their centres: get_interp_weights, implemented in jax-healpy\n\n\n\nRadial basis function interpolation\n\n\n\n\n\n\n\n\n\nThe pixel and its eight neighbours (get_all_neighbours, implemented in jax-healpy), weighted by a Gaussian kernel of adjustable width\n\n\n\n\n\n\n\n\n\n\nThe RBF scheme keeps the gradient and gives control over the smoothing\nBoth methods are implemented in jax-healpy and are differentiable"
   },
   {
     "objectID": "2026_10_PhD/index.html#creating-the-lightcone",
@@ -1425,14 +1425,7 @@
     "href": "2026_10_PhD/index.html#impact-of-the-number-of-shells-on-the-accuracy",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Impact of the number of shells on the accuracy",
-    "text": "Impact of the number of shells on the accuracy\n\nuniform in \\(a\\)innermost shell\n\n\n\nequal volume, driftedconvergence vs Limber\n\n\n\n\n\nA few shells → bias\nA large number of shells → shot noise"
-  },
-  {
-    "objectID": "2026_10_PhD/index.html#drift-on-the-lightcone",
-    "href": "2026_10_PhD/index.html#drift-on-the-lightcone",
-    "title": "Differentiable Field-Level Cosmology",
-    "section": "Drift on the lightcone",
-    "text": "Drift on the lightcone\n\n10 shells vs 40 shells, uniform in \\(a\\)\n10 shells with drift\n10 equal-volume shells\n10 equal-volume shells with drift\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\[a_{\\mathrm{c}} = a\\big(\\chi = \\lVert \\mathbf{x} - \\mathbf{x}_{\\mathrm{obs}} \\rVert\\big)\\]\n\\[\\mathbf{x}(a_{\\mathrm{c}}) = \\mathbf{x}(a_i) + \\boldsymbol{\\pi}\\,\\big[D(a_{\\mathrm{c}}) - D(a_i)\\big]\\]\n\n\\(a_i\\): scale factor of the shell, \\(a_{\\mathrm{c}}\\): scale factor at which the particle crosses the lightcone, \\(\\boldsymbol{\\pi} = \\mathrm{d}\\mathbf{x}/\\mathrm{d}D\\): BullFrog momentum\n\n\n\n\n\nEach particle is moved to the scale factor at which it crosses the lightcone\nRemoves the single-redshift bias of wide shells: 16 % on the first equal-volume shell\nAdopted: 20 equal-volume shells with drift"
+    "text": "Impact of the number of shells on the accuracy\n\nuniform in \\(a\\)innermost shell\n\n\n\nequal volume, driftedconvergence vs Limber\n\n\n\n\n\nHow many shells?\n\n\nMore shells: each shell is thinner, so the innermost one holds fewer particles and is shot-noise dominated\nFewer shells: a few wide shells sample the lensing kernel of the first bin, so its convergence is biased low below \\(\\ell =\\) 100\nFor this work we adopt 20 shells"
   },
   {
     "objectID": "2026_10_PhD/index.html#from-shells-to-convergence-the-born-approximation",
@@ -1453,14 +1446,21 @@
     "href": "2026_10_PhD/index.html#higher-order-statistics-the-starlet-ell_1-norm",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Higher-order statistics: the starlet \\(\\ell_1\\) norm",
-    "text": "Higher-order statistics: the starlet \\(\\ell_1\\) norm\n\n\nA starlet transform splits the convergence map into angular scales\n\n\n\nFor convergence maps, the starlet \\(\\ell_1\\) norm is a sufficient statistic\n\nTersenov et al. (in prep.)\n\n\nTomographic bin 3, this work against CosmoGrid\n\n\n\n\n\n\nFinest scale (\\(\\ell \\gtrsim\\) 700): 25 % narrower than CosmoGrid\nCoarser scales: within 7 %"
+    "text": "Higher-order statistics: the starlet \\(\\ell_1\\) norm\n\n\nA starlet transform splits the convergence map into angular scales\n\n\n\nFor convergence maps, the starlet \\(\\ell_1\\) norm is a sufficient statistic\n\n\n\n\nStarlet \\(\\ell_1\\) norm\n\n\nIntroduced for weak lensing by Ajani et al. (2021), arXiv:2101.01542\nAs constraining as a CNN: Tersenov et al. (2026), in prep.\n\n\n\n\n\nTomographic bin 3, this work against CosmoGrid\n\n\n\n\nFinest scale (\\(\\ell \\gtrsim\\) 700): 25 % narrower than CosmoGrid\nCoarser scales: within 7 %"
   },
   {
     "objectID": "2026_10_PhD/index.html#scaling-on-supercomputers",
     "href": "2026_10_PhD/index.html#scaling-on-supercomputers",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Scaling on supercomputers",
-    "text": "Scaling on supercomputers\n\n\nJean Zay, IDRISNVIDIA H100 GPUs\n\n\nPerformance of the forward model\n\n\n\nPerformance of the gradient\n\n\n\n\n\nJean Zay, up to 256 H100 GPUs\n\n\nMemory per GPU halves at each doubling, and stays flat under weak scaling\nReverse adjoint: 5.1 GiB against 9.4 GiB checkpointed, at 6× the time"
+    "text": "Scaling on supercomputers\n\n\nJean Zay, IDRISNVIDIA H100 GPUs\n\n\nPerformance of the forward model\n\n\n\nPerformance of the gradient\n\n\n\n\n\nJean Zay, up to 256 H100 GPUs\n\n\nBoth the forward model and its gradient scale to hundreds of GPUs\nThe simulation is distributed end to end, so the memory per GPU stays flat under weak scaling"
+  },
+  {
+    "objectID": "2026_10_PhD/index.html#field-level-likelihood-and-scale-cut",
+    "href": "2026_10_PhD/index.html#field-level-likelihood-and-scale-cut",
+    "title": "Differentiable Field-Level Cosmology",
+    "section": "Field-level likelihood and scale cut",
+    "text": "Field-level likelihood and scale cut\n\n\nGaussian likelihood on the convergence pixels\n\n\\[-\\ln\\mathcal{L}(\\boldsymbol\\theta,\\mathbf{s}) = \\sum_i \\frac{\\lVert \\color{#c2560a}{\\hat{\\mathbf{d}}_i} - \\mathbf{d}_i \\rVert_2^2}{2\\,\\color{#3b6fb6}{\\sigma_i^2}}\\]\n\n\n\nNoise per pixel\n\n\\[\\color{#3b6fb6}{\\sigma_i} = \\frac{\\sigma_e}{\\sqrt{n_{\\mathrm{gal},i}\\;\\Omega_\\mathrm{pix}}}\\]\n\n\\(\\sigma_e\\) shape noise per component, \\(n_{\\mathrm{gal},i}\\) galaxies per arcmin² in bin \\(i\\), \\(\\Omega_\\mathrm{pix}\\) pixel area in arcmin² at \\(N_\\mathrm{side} = 256\\)\n\n\n\n\nDES Y3\nbin 1\nbin 2\nbin 3\nbin 4\n\n\n\n\n\\(n_\\mathrm{gal}\\) [arcmin\\(^{-2}\\)]\n1.476\n1.479\n1.484\n1.461\n\n\n\\(\\sigma_e\\)\n0.26\n0.26\n0.26\n0.26\n\n\n\n\n\n\n\n\nA map-level scale cut on the prediction\n\n\\[\\color{#c2560a}{\\hat{\\mathbf{d}}_i} = T_\\ell\\big[\\kappa_i(\\mathbf{s},\\boldsymbol\\theta)\\big]\\]\n\n\n\n\n\nmap2alm\n\n\n\n\n× \\(T_\\ell\\)\n\n\n\n\nalm2map"
   },
   {
     "objectID": "2026_10_PhD/index.html#recovering-the-maximum-a-posteriori",
@@ -1474,41 +1474,27 @@
     "href": "2026_10_PhD/index.html#contribution-2-conclusion-and-perspectives",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Contribution 2: conclusion and perspectives",
-    "text": "Contribution 2: conclusion and perspectives\n\n\n\nThe first differentiable weak-lensing forward model covering a full survey footprint on the curved sky\nDistributed over hundreds of GPUs, with a gradient end to end\nValidated against an independent \\(N\\)-body code: about 10 % to \\(\\ell \\approx 250\\)\nA first maximum a posteriori of the initial field from DES Y3-like maps, at the coherence of the Wiener filter (preliminary)\n\n\n\n\n\n\nNext\n\na better gravity solver: a learned force correction or a differentiable moving mesh\nintrinsic alignments and photometric-redshift errors as latent variables\nbaryonification inside the model\n\n\n\n\nMoving-mesh particle mesh"
+    "text": "Contribution 2: conclusion and perspectives\n\n\n\nThe first differentiable weak-lensing forward model covering a full survey footprint on the curved sky\nDistributed over hundreds of GPUs, with a gradient end to end\nValidated against an independent \\(N\\)-body code: about 10 % to \\(\\ell \\approx 250\\)\nA first maximum a posteriori of the initial field from DES Y3-like maps, at the coherence of the Wiener filter (preliminary)\n\nThis work is part of a paper in preparation, to be submitted to JCAP\n\n\n\n\n\nNext\n\nthe first survey-scale posterior, with coverage tests\na better gravity solver: a learned force correction or a differentiable moving mesh\nintrinsic alignments and photometric-redshift errors as latent variables\nbaryonification inside the model\n\n\n\n\nMoving-mesh particle mesh\n\n\n\n\n\nMoving mesh: B. Horowitz (2026), arXiv:2607.10983"
   },
   {
     "objectID": "2026_10_PhD/index.html#the-software-behind-this-thesis",
     "href": "2026_10_PhD/index.html#the-software-behind-this-thesis",
     "title": "Differentiable Field-Level Cosmology",
     "section": "The software behind this thesis",
-    "text": "The software behind this thesis"
+    "text": "The software behind this thesis\n\n\n\n\n\n\n      \n\n\n\n\nWhere it is used\n\n\n\nfurax-cs → the Megatop pipeline for the Simons Observatory; LiteBIRD component separation next\njax-healpy, jax-fli → field-level CMB lensing with DESI\njaxDecomp → beyond cosmology: fuzzy dark matter, power spectra, fluid dynamics, ocean models, imaging"
   },
   {
-    "objectID": "2026_10_PhD/index.html#where-it-is-used",
-    "href": "2026_10_PhD/index.html#where-it-is-used",
+    "objectID": "2026_10_PhD/index.html#conclusion",
+    "href": "2026_10_PhD/index.html#conclusion",
     "title": "Differentiable Field-Level Cosmology",
-    "section": "Where it is used",
-    "text": "Where it is used\n\n\n\n\n\n\n\n\n\n\nfurax-cs → the Megatop pipeline: Simons Observatory, LiteBIRD\n\n  \n\n\n\njax-healpy, jax-fli → field-level CMB lensing with DESI\n\n\njaxDecomp → beyond cosmology\n\nJaxion: fuzzy dark matter simulations\njax-power and RomanPower: DESI and Roman power spectra\nDiffHydro and a Navier–Stokes turbulence solver: fluid dynamics\nfridom (ocean models), SCICO (imaging)\n\n\n  \n\n\n\n\nClose to 80 000 downloads"
-  },
-  {
-    "objectID": "2026_10_PhD/index.html#two-frontiers-one-method",
-    "href": "2026_10_PhD/index.html#two-frontiers-one-method",
-    "title": "Differentiable Field-Level Cosmology",
-    "section": "Two frontiers, one method",
-    "text": "Two frontiers, one method\n\n\n\n\n\n\n\n\n\nCMB: component separation in JAX, a bounded optimiser for noisy likelihoods, and a 30 % lower upper limit on \\(r\\)\nWeak lensing: the first differentiable forward model to cover a whole survey on the curved sky\nBoth open, documented, and already used by others"
-  },
-  {
-    "objectID": "2026_10_PhD/index.html#perspectives",
-    "href": "2026_10_PhD/index.html#perspectives",
-    "title": "Differentiable Field-Level Cosmology",
-    "section": "Perspectives",
-    "text": "Perspectives\n\n\nThe CMB\n\nreal data: the Simons Observatory, through Megatop\ninstrument systematics as linear operators in FURAX\nmore flexible spatial partitions of the foreground parameters\n\n\nWeak lensing\n\nthe first survey-scale posterior, with coverage tests\na better gravity solver\nbaryons and intrinsic alignments inside the model"
+    "section": "Conclusion",
+    "text": "Conclusion\n\n\nApplying modern numerical methods and high-performance computing to bottlenecks at both ends of the Universe\n\n\n\nSpatially varying component separation on the spherical sky\nA distributed particle-mesh solver\nA first end-to-end differentiable lensing code on the sphere\nOpen-source software already in use: Megatop for the Simons Observatory, field-level CMB lensing with DESI, jaxDecomp beyond cosmology"
   },
   {
     "objectID": "2026_10_PhD/index.html#thank-you",
     "href": "2026_10_PhD/index.html#thank-you",
     "title": "Differentiable Field-Level Cosmology",
-    "section": "Thank you",
+    "section": "",
     "text": "Thank you"
   },
   {
@@ -1547,11 +1533,25 @@
     "text": "Shell spacing and the lightcone"
   },
   {
+    "objectID": "2026_10_PhD/index.html#drift-on-the-lightcone",
+    "href": "2026_10_PhD/index.html#drift-on-the-lightcone",
+    "title": "Differentiable Field-Level Cosmology",
+    "section": "Drift on the lightcone",
+    "text": "Drift on the lightcone\n\n\n10 shells, one redshift per shell\n\n\n\n10 shells, drifted\n\n\n\n40 shells, one redshift per shell\n\n\n\n\n\n\n\\[a_{\\mathrm{c}} = a\\big(\\chi = \\lVert \\mathbf{x} - \\mathbf{x}_{\\mathrm{obs}} \\rVert\\big), \\qquad \\mathbf{x}(a_{\\mathrm{c}}) = \\mathbf{x}(a_i) + \\boldsymbol{\\pi}\\,\\big[D(a_{\\mathrm{c}}) - D(a_i)\\big]\\]\n\n\\(a_i\\): scale factor of the shell, \\(a_{\\mathrm{c}}\\): scale factor at which the particle crosses the lightcone, \\(\\boldsymbol{\\pi} = \\mathrm{d}\\mathbf{x}/\\mathrm{d}D\\): BullFrog momentum\n\n\n\nInterpolating the particles onto the observer’s lightcone\n\n\nEach particle is drifted to the scale factor at which it crosses the lightcone"
+  },
+  {
+    "objectID": "2026_10_PhD/index.html#impact-of-the-drift-on-the-first-shell",
+    "href": "2026_10_PhD/index.html#impact-of-the-drift-on-the-first-shell",
+    "title": "Differentiable Field-Level Cosmology",
+    "section": "Impact of the drift on the first shell",
+    "text": "Impact of the drift on the first shell\n\n\n\n\n\n\n\nRemoves the single-redshift bias of wide shells: 16 % on the first equal-volume shell"
+  },
+  {
     "objectID": "2026_10_PhD/index.html#scale-cuts-and-baryons",
     "href": "2026_10_PhD/index.html#scale-cuts-and-baryons",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Scale cuts and baryons",
-    "text": "Scale cuts and baryons\n\n\n\nmap2alm\n\n\n\n\n× \\(T_\\ell\\)\n\n\n\n\nalm2map\n\n\n\n\n\n\n\\[T_\\ell = \\begin{cases} 1, & \\ell \\le \\ell_\\mathrm{cut} - \\ell_\\mathrm{width} \\\\ \\tfrac12\\left(1 + \\cos \\pi x\\right), & \\ell_\\mathrm{cut} - \\ell_\\mathrm{width} &lt; \\ell &lt; \\ell_\\mathrm{cut} \\\\ 0, & \\ell \\ge \\ell_\\mathrm{cut} \\end{cases}\\]\n\\[x = \\frac{\\ell - (\\ell_\\mathrm{cut} - \\ell_\\mathrm{width})}{\\ell_\\mathrm{width}}\\]"
+    "text": "Scale cuts and baryons\n\n\n\nmap2alm\n\n\n\n\n× \\(T_\\ell\\)\n\n\n\n\nalm2map\n\n\n\n\n\n\n\\[T_\\ell = \\begin{cases} 1, & \\ell \\le \\ell_\\mathrm{cut} - \\ell_\\mathrm{width} \\\\ \\tfrac12\\left(1 + \\cos \\pi x\\right), & \\ell_\\mathrm{cut} - \\ell_\\mathrm{width} &lt; \\ell &lt; \\ell_\\mathrm{cut} \\\\ 0, & \\ell \\ge \\ell_\\mathrm{cut} \\end{cases}\\]\n\\[x = \\frac{\\ell - (\\ell_\\mathrm{cut} - \\ell_\\mathrm{width})}{\\ell_\\mathrm{width}}\\]\n\n\n\nTersenov, Guerrini, Starck & Kilbinger (2026), arXiv:2609.09131"
   },
   {
     "objectID": "2026_10_PhD/index.html#the-ghost-zone",
@@ -1566,6 +1566,20 @@
     "title": "Differentiable Field-Level Cosmology",
     "section": "The two adjoints",
     "text": "The two adjoints"
+  },
+  {
+    "objectID": "2026_10_PhD/index.html#map-des-y3-against-euclid-coherence",
+    "href": "2026_10_PhD/index.html#map-des-y3-against-euclid-coherence",
+    "title": "Differentiable Field-Level Cosmology",
+    "section": "MAP: DES Y3 against Euclid, coherence",
+    "text": "MAP: DES Y3 against Euclid, coherence"
+  },
+  {
+    "objectID": "2026_10_PhD/index.html#map-des-y3-against-euclid-starlet-ell_1-norm",
+    "href": "2026_10_PhD/index.html#map-des-y3-against-euclid-starlet-ell_1-norm",
+    "title": "Differentiable Field-Level Cosmology",
+    "section": "MAP: DES Y3 against Euclid, starlet \\(\\ell_1\\) norm",
+    "text": "MAP: DES Y3 against Euclid, starlet \\(\\ell_1\\) norm"
   },
   {
     "objectID": "2026_10_PhD/index.html#a-survey-mask-leaks",
