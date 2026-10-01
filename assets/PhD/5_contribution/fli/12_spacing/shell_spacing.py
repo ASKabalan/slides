@@ -10,9 +10,9 @@ spacing, three panels:
   1. the four DES Y3 lensing kernels q(chi) over the 20 shells, drawn as alternating top-hat bands;
   2. the particles each shell receives, nbar * 4/3 pi (r_far^3 - r_near^3), nbar = 2048^3 / 5000^3,
      against one particle per HEALPix pixel at nside 2048;
-  3. the angular power spectrum of a near, a middle and a far shell (the first, the one closest
-     to chi = 1300 Mpc/h, the last), binned in bands of 32 multipoles, against the Limber
-     prediction for the shell's number counts times the squared pixel window.
+  3. the angular power spectrum of the innermost shell, binned in bands of 32 multipoles, against
+     the Limber prediction for its number counts times the squared pixel window (dashed) and its
+     shot-noise level 4 pi / N_particles (dotted).
 Shell geometry and spectra are read from the local copy of ASKabalan/jax-fli-experiments.
 
 Outputs (this directory), same size and axes boxes so the slide stacks them:
@@ -27,7 +27,7 @@ import numpy as np
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parents[2]))
-from _common import BLUE, GREY, INK, KW, KW2, skip_if_built, slide_style
+from _common import GREY, INK, KW, skip_if_built, slide_style
 
 OUTS = ["spacing_a.svg", "spacing_equal_vol.svg"]
 skip_if_built(HERE, *OUTS)
@@ -36,7 +36,6 @@ CACHE = HERE.parent / ".cache"
 EXP = Path("/home/wassim/Projects/NBody/jax-fli-experiments/05-spacing-n-stepping/05f-mesh")
 RUNS = {"a": "exp5f_m2048_bf_a", "equal_vol": "exp5f_m2048_bf_equal_vol"}
 BOX, MESH, NSIDE, LMAX, NLB = 5000.0, 2048, 2048, 1500, 32
-CHI_MID = 1300.0
 
 
 def load():
@@ -89,16 +88,17 @@ plt.rcParams["savefig.bbox"] = None          # fixed canvas: the two rows line u
 NBAR = MESH**3 / BOX**3
 NPIX = 12 * NSIDE**2
 BINS = ["#f2b58a", "#d9772e", "#a3450f", "#5c1f04"]   # DES Y3 bins 1-4, light to dark
-SHOWN = [("near", KW), ("middle", KW2), ("far", BLUE)]
 ELL = D["ell"]
 DL = ELL * (ELL + 1) / (2 * np.pi)
 
-# the spectra panel shares one vertical range across both rows
+# the spectra panel shares one vertical range across both rows: the innermost shell of each,
+# its Limber prediction and its shot-noise level 4 pi / N_particles
 lims = []
 for tag in RUNS:
-    chi = D[f"{tag}_chi"]
-    for i in (0, int(np.argmin(abs(chi - CHI_MID))), len(chi) - 1):
-        lims += [DL * D[f"{tag}_cl"][i], DL * D[f"{tag}_th"][i]]
+    o = np.argsort(D[f"{tag}_chi"])
+    c0, w0 = D[f"{tag}_chi"][o][0], D[f"{tag}_w"][o][0]
+    n0 = NBAR * 4 / 3 * np.pi * ((c0 + w0 / 2) ** 3 - max(c0 - w0 / 2, 0.0) ** 3)
+    lims += [DL * D[f"{tag}_cl"][o][0], DL * D[f"{tag}_th"][o][0], DL * 4 * np.pi / n0]
 lims = np.concatenate(lims)
 lims = lims[np.isfinite(lims) & (lims > 0)]
 DL_LIM = (lims.min() / 1.6, lims.max() * 1.6)
@@ -145,20 +145,20 @@ for tag, out in zip(RUNS, OUTS):
     ax_n.yaxis.set_major_locator(LogLocator(numticks=10))
     ax_n.yaxis.set_minor_formatter(NullFormatter())
 
-    # 3. near, middle and far shells against Limber
-    shown = (0, int(np.argmin(abs(chi - CHI_MID))), len(chi) - 1)
-    for i, (name, c) in zip(shown, SHOWN):
-        ax_c.loglog(ELL, DL * th[i], color=c, ls="--", lw=1.5, alpha=0.9)
-        ax_c.loglog(ELL, DL * cl[i], color=c, lw=2.2, label=rf"$\chi = {chi[i]:.0f}$")
+    # 3. the innermost shell against Limber and its shot-noise level
+    sn = 4 * np.pi / count[0]
+    ax_c.loglog(ELL, DL * th[0], color=INK, ls="--", lw=1.6, label="Limber")
+    ax_c.loglog(ELL, DL * sn, color=GREY, ls=":", lw=2.0, label="shot noise")
+    ax_c.loglog(ELL, DL * cl[0], color=KW, lw=2.4, label="measured")
     ax_c.set_xlim(ELL[0], LMAX)
     ax_c.set_ylim(*DL_LIM)
     ax_c.set_xlabel(r"$\ell$", labelpad=0)
-    ax_c.set_title("shell spectra, Limber dashed", fontsize=13, color=INK, pad=6)
+    ax_c.set_title(rf"innermost shell, $\chi < {far[0]:.0f}$ Mpc/$h$", fontsize=13, color=INK, pad=6)
     ax_c.xaxis.set_major_locator(FixedLocator([10, 100, 1000]))
     ax_c.yaxis.set_major_locator(LogLocator(numticks=10))
     ax_c.yaxis.set_minor_formatter(NullFormatter())
-    ax_c.legend(loc="lower right", fontsize=10.5, handlelength=1.2, borderaxespad=0.2,
-                labelspacing=0.2)
+    ax_c.legend(loc="lower right" if tag == "a" else "upper left", fontsize=10.5, handlelength=1.6,
+                borderaxespad=0.2, labelspacing=0.2)
 
     # the arrows from one panel to the next
     for xa in (0.315, 0.662):

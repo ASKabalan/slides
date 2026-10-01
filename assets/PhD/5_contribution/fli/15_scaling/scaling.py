@@ -52,8 +52,8 @@ def load(which):
 
 SERIES = {
     "forward": [("f32", "float32", BLUE, "-", "o"), ("f64", "float64", KW, "--", "s")],
-    "gradient": [("rev", "reverse adjoint", TEAL, "-", "o"),
-                 ("ckpt30", "checkpointed, 30", KW2, "--", "s")],
+    "gradient": [("rev", "reverse", TEAL, "-", "o"),
+                 ("ckpt30", "checkpointed", KW2, "--", "s")],
 }
 
 slide_style()
@@ -61,16 +61,16 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import FixedLocator, LogLocator, NullFormatter, NullLocator, ScalarFormatter
 
 plt.rcParams["savefig.bbox"] = None
-BOXES = [(0.055, 0.2, 0.19, 0.6), (0.31, 0.2, 0.19, 0.6),
-         (0.555, 0.2, 0.19, 0.6), (0.805, 0.2, 0.19, 0.6)]
+BOXES = [(0.07, 0.22, 0.175, 0.58), (0.325, 0.22, 0.175, 0.58),
+         (0.58, 0.22, 0.175, 0.58), (0.835, 0.22, 0.155, 0.58)]
 
 for which, out in zip(("forward", "gradient"), OUTS):
     strong, weak = load(which)
-    fig = plt.figure(figsize=(10.4, 2.35))
+    fig = plt.figure(figsize=(8.8, 2.35))
     axes = [fig.add_axes(b) for b in BOXES]
     for ax, sub, col, ylabel in zip(axes, (strong, strong, weak, weak),
                                     ("time", "memory", "time", "memory"),
-                                    ("time  [s]", "memory / GPU  [GiB]") * 2):
+                                    ("time  [s]", "GiB per GPU") * 2):
         gpus = sorted(sub["px"].unique())
         for key, label, c, ls, m in SERIES[which]:
             d = sub[sub.series == key].sort_values("px")
@@ -79,7 +79,8 @@ for which, out in zip(("forward", "gradient"), OUTS):
                   dict(zip(d["px"], d[col].round(2))))
         ax.set_xscale("log", base=2)
         ax.xaxis.set_major_locator(FixedLocator(gpus))
-        ax.set_xticklabels([str(g) for g in gpus], fontsize=10.5 if len(gpus) > 4 else 12)
+        # seven weak-scaling counts do not fit at this size: every other one is labelled
+        ax.set_xticklabels([str(g) if (len(gpus) <= 4 or k % 2 == 0) else "" for k, g in enumerate(gpus)])
         ax.xaxis.set_minor_locator(NullLocator())
         if col == "time":
             ax.set_yscale("log")
@@ -92,8 +93,8 @@ for which, out in zip(("forward", "gradient"), OUTS):
         ax.set_xlabel("GPUs", labelpad=1)
         ax.set_ylabel(ylabel, fontsize=12, labelpad=2)
         ax.grid(True, axis="y", which="both", ls=":", alpha=0.4)
-    axes[0].legend(loc="lower left" if which == "forward" else "center right", fontsize=10.5,
-                   handlelength=1.8, borderaxespad=0.2, labelspacing=0.2)
+    # the weak-scaling memory curves are flat, and the band between them holds the legend
+    axes[3].legend(loc="center", fontsize=10, handlelength=1.6, borderaxespad=0.2, labelspacing=0.2)
     fig.text(0.28, 0.93, r"strong scaling, $1024^3$ mesh", ha="center", fontsize=13, color=INK)
     fig.text(0.78, 0.93, r"weak scaling, $256^3$ cells per GPU", ha="center", fontsize=13, color=INK)
     fig.savefig(HERE / out)

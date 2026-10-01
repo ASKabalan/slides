@@ -31,11 +31,14 @@ JAXFLI=/home/wassim/Projects/NBody/jax-fli
   done
   rm -f cyc_tmp.* )
 
-if [ ! -f adjoints.svg ] || [ "$FORCE_REGEN" = "1" ]; then
-    echo "  building adjoints.svg"
-    pdflatex -interaction=nonstopmode -halt-on-error adjoints.tex >/dev/null
-    pdftocairo -svg adjoints.pdf adjoints.svg
-fi
+# backup: the two adjoints, drawn as two vertical chains of states
+( cd backup
+  if [ ! -f adjoints.svg ] || [ "$FORCE_REGEN" = "1" ]; then
+      echo "  building backup/adjoints.svg"
+      pdflatex -interaction=nonstopmode -halt-on-error adjoints.tex >/dev/null
+      pdftocairo -svg adjoints.pdf adjoints.svg
+  fi
+  rm -f adjoints.aux adjoints.log )
 
 # every generator, in its own folder, in the environment its `# ENV:` header names
 run() {   # run <dir> <script>
@@ -60,9 +63,7 @@ run 10_painting painting_cl.py
 run 11_lightcone lightcone_shells.py
 run 12_spacing shell_spacing.py
 run 13_nshells nshells.py
-run 13_nshells nshells_kappa.py
 run 14_drift drift.py
-run 19_born born.py
 run 15_scaling fetch_logo.py
 run 15_scaling scaling.py
 run 16_cosmogrid mesh_ladder.py
@@ -70,6 +71,14 @@ run 17_starlet fetch_tersenov.py
 run 17_starlet starlet_l1.py
 run 18_map map_data.py        # the MAP run, from HF jax-fli-sampling, into ../.cache
 run 18_map map_anim.py
+run 19_born born.py
+run 20_conclusion moving_mesh.py
+run 17_starlet starlet_response.py
+run backup step_convergence.py
+run backup shell_spacing.py
+run backup scalecut.py
+run backup ghost_zone.py
+run backup adjoint_memory.py
 for p in pm3d_fragments.py; do
     [ -f "$p" ] && run . "$p"
 done

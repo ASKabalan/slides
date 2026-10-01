@@ -83,9 +83,9 @@ plt.rcParams["savefig.bbox"] = None
 PAST = "#b9bfca"
 
 for k, (mesh, out) in enumerate(zip(MESHES, OUTS)):
-    fig = plt.figure(figsize=(10.4, 4.4))
+    fig = plt.figure(figsize=(10.4, 4.85))
     for j, b in enumerate(BINS):
-        ax = fig.add_axes([0.1 + 0.485 * j, 0.12, 0.34, 0.79])
+        ax = fig.add_axes([0.1 + 0.485 * j, 0.11, 0.34, 0.81])
         ax.fill_between(ELL[KEEP], -D["cv"][b][KEEP], D["cv"][b][KEEP], color="#d8dde6", lw=0, zorder=0)
         for y in (-0.1, 0.1):
             ax.axhline(y, color=GREY, ls=":", lw=1.2, zorder=1)

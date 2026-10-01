@@ -205,6 +205,15 @@ def play_once(src: Path, dst: Path) -> None:
 
     im = Image.open(src)
     frames = [f.copy() for f in ImageSequence.Iterator(im)]
+    # The renderer leaves the chroma-key green of the first frame in a palette slot of its own, which
+    # the browser draws opaque: move those pixels to the transparent slot, or the GIF flashes green
+    # each time it restarts.
+    f0 = frames[0]
+    rgb = f0.getpalette()[:768]
+    green = [k for k in range(len(rgb) // 3) if rgb[3 * k:3 * k + 3] == [0, 255, 0]]
+    if green and f0.mode == "P":
+        tidx = im.info.get("transparency", 0)
+        f0.putdata([tidx if v in green else v for v in f0.getdata()])
     for f in frames:
         f.info.pop("loop", None)       # Pillow would copy the loop extension back
     frames[0].save(dst, save_all=True, append_images=frames[1:],

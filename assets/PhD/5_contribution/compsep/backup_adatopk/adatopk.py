@@ -35,7 +35,7 @@ from manim import (DOWN, LEFT, ORIGIN, RIGHT, UP, Arrow, Circumscribe, Create,
                    Dot, FadeIn, FadeOut, Line, MathTex, Scene, VGroup, config,
                    smooth)
 
-config.background_color = "#FFFFFF"
+config.background_color = "#FAF7F0"     # the slide background
 
 INK = "#2E2E2E"
 GREY = "#A0A0A0"

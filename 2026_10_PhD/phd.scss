@@ -325,6 +325,14 @@ html.print-pdf .reveal .slides > .corner-fixed { display: none; }
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
 }
 
+// The deck footer sits at the bottom left, clear of the menu button (8-43 px from the left edge).
+.reveal .footer.footer-default {
+  text-align: left;
+  left: 56px;
+  right: auto;
+  width: auto;
+}
+
 // The deck footer is unreadable on the dark image: hide it on bleed slides.
 .reveal:has(section.bleed-slide.present) .footer {
   display: none !important;
@@ -451,6 +459,21 @@ html.print-pdf .reveal .slides > .corner-fixed { display: none; }
 
 .reveal .eqbox p { margin: 0; }
 .reveal .eqbox .MathJax_Display { margin: var(--eq-math-margin, 1em 0) !important; }
+
+// ---------------------------------------------------------------- tomography diagram
+// The cubes -> kappa discs -> observer diagram, drawn on a 960x560 canvas of absolutely
+// positioned children. Every slide that shows it wraps the canvas in
+// <div class="tomo-diagram">, so it has one size throughout (Tomographic reconstruction,
+// the painting corner, Creating the lightcone, Born). --tomo-scale (0.88).
+.reveal .tomo-diagram {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 960px;
+  height: 560px;
+  transform: scale(var(--tomo-scale, 0.88));
+  transform-origin: 0 0;
+}
 
 // ---------------------------------------------------------------- move fragment
 // A fragment that fades in while moving: class="fragment move"
