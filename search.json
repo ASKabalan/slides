@@ -1019,11 +1019,18 @@
     "href": "2026_10_PhD/index.html#the-cosmic-microwave-background",
     "title": "Differentiable Field-Level Cosmology",
     "section": "The Cosmic Microwave Background",
-    "text": "The Cosmic Microwave Background\n \n\n\n\n\n\n\n\n1965, Holmdel: Penzias & Wilson find a 3 K signal from every direction · Credit: NASA (antenna); ESA / Planck Collaboration (map)\n\n\n\nA hot, dense beginning should leave relic radiation: predicted by Gamow, Alpher & Herman in 1948, at a few kelvin\n\n\n\nFound by accident in 1965 by Penzias & Wilson: a 3 K signal from every direction, interpreted by Dicke & Peebles at Princeton\n\n\n\n\n\n\n\n\n\nThe oldest light we can observe, released when the Universe became transparent, 380 000 years after the Big Bang\n\n\n\n\n\n\n\nThe discovery of the CMB confirmed the hot Big Bang"
+    "text": "The Cosmic Microwave Background\n \n\n\n\n\n\n\n\n1965, Holmdel: Penzias & Wilson find a 3 K signal from every direction · Credit: NASA (antenna); ESA / Planck Collaboration (map)\n\n\n\nA hot, dense beginning should leave relic radiation: predicted by Gamow, Alpher & Herman in 1948, at a few kelvin\n\n\n\nFound by accident in 1965 by Penzias & Wilson: a 3 K signal from every direction, interpreted by Dicke & Peebles at Princeton\n\n\n\n\n\n\n\n\n\n\nThe CMB is the oldest light we can observe\n\n\n\n\n\n\n\nThe discovery of the CMB confirmed the hot Big Bang"
   },
   {
     "objectID": "2026_10_PhD/index.html#lambda-cold-dark-matter-lambdacdm",
     "href": "2026_10_PhD/index.html#lambda-cold-dark-matter-lambdacdm",
+    "title": "Differentiable Field-Level Cosmology",
+    "section": "Lambda Cold Dark Matter (\\(\\Lambda\\)CDM)",
+    "text": "Lambda Cold Dark Matter (\\(\\Lambda\\)CDM)"
+  },
+  {
+    "objectID": "2026_10_PhD/index.html#lambda-cold-dark-matter-pie",
+    "href": "2026_10_PhD/index.html#lambda-cold-dark-matter-pie",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Lambda Cold Dark Matter (\\(\\Lambda\\)CDM)",
     "text": "Lambda Cold Dark Matter (\\(\\Lambda\\)CDM)"
@@ -1054,7 +1061,7 @@
     "href": "2026_10_PhD/index.html#polarisation-of-the-cmb",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Polarisation of the CMB",
-    "text": "Polarisation of the CMB\n\n\n\nA quadrupole at last scattering + Thomson scattering, \\(\\propto |\\hat{\\epsilon}\\cdot\\hat{\\epsilon}'|^2\\) → linear polarisation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3 Stokes parameters describe linearly polarised light\n\n\n\n\n\n\n\nAdapted from: Emma Alexander, Wikimedia Commons (Stokes params)"
+    "text": "Polarisation of the CMB\n\nThe last scattering surface\n\n\n\n\n\nAdapted from: Yacine Ali-Haïmoud (NYU, 2019)\n\n\nA quadrupole at last scattering + Thomson scattering, \\(\\propto |\\hat{\\epsilon}\\cdot\\hat{\\epsilon}'|^2\\) → linear polarisation\n\n\n\nThe Stokes parameters\n\n\n\n\n\nAdapted from: Emma Alexander, Wikimedia Commons (Stokes params)"
   },
   {
     "objectID": "2026_10_PhD/index.html#q-and-u-stokes-parameters",
@@ -1096,7 +1103,7 @@
     "href": "2026_10_PhD/index.html#current-constraints-on-r",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Current constraints on \\(r\\)",
-    "text": "Current constraints on \\(r\\)\n\n\n\n\n\n\n\n\n\n\nBest limit: \\(r &lt; 0.032\\) (95 %, Planck PR4 + BICEP/Keck 2018)\nSimons Observatory forecasts a sensitivity of \\(r \\approx 0.003\\)\n\n\n\n\nTristram et al. (2022); Simons Observatory (Ade et al. 2019); LiteBIRD Collaboration (2023)"
+    "text": "Current constraints on \\(r\\)\n\n\n\n\n\n\nTristram et al. (2022); Simons Observatory (Ade et al. 2019); LiteBIRD Collaboration (2023)"
   },
   {
     "objectID": "2026_10_PhD/index.html#the-cmb-data-analysis-pipeline",
