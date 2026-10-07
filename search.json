@@ -1047,63 +1047,63 @@
     "href": "2026_10_PhD/index.html#inflation",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Inflation",
-    "text": "Inflation\n\n\n\nThe early Universe\n\n\nhorizon\n\n\n\nflatness\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA brief accelerated expansion solves the horizon and flatness problems\nIts quantum fluctuations \\(\\delta\\phi\\) seed the large scale structure we see today"
+    "text": "Inflation\n\n\nThe early Universe\n\n\nhorizon\n\n\n\nflatness\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA brief accelerated expansion solves the horizon and flatness problems\nIts quantum fluctuations \\(\\delta\\phi\\) seed the large scale structure we see today"
   },
   {
     "objectID": "2026_10_PhD/index.html#primordial-gravitational-waves",
     "href": "2026_10_PhD/index.html#primordial-gravitational-waves",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Primordial gravitational waves",
-    "text": "Primordial gravitational waves\n\n\n\n\nQuantum fluctuations perturb the metric of space-time\nScalar: \\(\\Delta_s^2(k) = A_s\\,(k/k_*)^{n_s-1}\\)\nTensor: \\(\\Delta_t^2(k) = A_t\\,(k/k_*)^{n_t}\\), the gravitational waves\n\n\n\n\\[\nr \\equiv \\frac{A_t}{A_s} \\;\\propto\\; E_\\mathrm{inf}^4\n\\]\n\nThe tensor-to-scalar ratio determines the energy scale of inflation\nPrimordial Gravitational Waves leave a unique imprint in the CMB polarisation"
+    "text": "Primordial gravitational waves\n\n\n\nQuantum fluctuations perturb the metric of space-time\nScalar: \\(\\Delta_s^2(k) = A_s\\,(k/k_*)^{n_s-1}\\)\nTensor: \\(\\Delta_t^2(k) = A_t\\,(k/k_*)^{n_t}\\), the gravitational waves\n\n\n\n\\[\nr \\equiv \\frac{A_t}{A_s} \\;\\propto\\; E_\\mathrm{inf}^4\n\\]\n\nThe tensor-to-scalar ratio determines the energy scale of inflation\nPrimordial Gravitational Waves leave a unique imprint in the CMB polarisation"
   },
   {
     "objectID": "2026_10_PhD/index.html#polarisation-of-the-cmb",
     "href": "2026_10_PhD/index.html#polarisation-of-the-cmb",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Polarisation of the CMB",
-    "text": "Polarisation of the CMB\n\nThe last scattering surface\n\n\n\n\n\n\n\nAdapted from: Yacine Ali-Haïmoud (NYU, 2019)\n\n\n\n\n\n\nAdapted from: Hu & White (1997)\n\n\n\n\nA quadrupole at last scattering + Thomson scattering, \\(\\propto |\\hat{\\epsilon}\\cdot\\hat{\\epsilon}'|^2\\) → linear polarisation\n\n\n\n\nThe Stokes parameters\n\n\n\n\n\nAdapted from: Emma Alexander, Wikimedia Commons (Stokes params)"
+    "text": "Polarisation of the CMB\nThe last scattering surface\n\n\n\n\n\n\n\nAdapted from: Yacine Ali-Haïmoud (NYU, 2019)\n\n\n\n\n\n\nAdapted from: Hu & White (1997)\n\n\n\n\nA quadrupole at last scattering + Thomson scattering, \\(\\propto |\\hat{\\epsilon}\\cdot\\hat{\\epsilon}'|^2\\) → linear polarisation\n\n\n\n\nThe Stokes parameters\n\n\n\n\n\nAdapted from: Emma Alexander, Wikimedia Commons (Stokes params)"
   },
   {
     "objectID": "2026_10_PhD/index.html#q-and-u-stokes-parameters",
     "href": "2026_10_PhD/index.html#q-and-u-stokes-parameters",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Q and U Stokes parameters",
-    "text": "Q and U Stokes parameters\n\n\n\n\n  \\(Q\\)\n\n\n  \\(U\\)\n\n\n  \n  \\(Q\\)\\(U\\)\n\n\n  \n  \\(U\\)\\(-Q\\)\n\n\n\n\n\n\\(Q\\) and \\(U\\) depend on the reference frame: turning it by \\(45^\\circ\\) swaps them, \\(Q'\\) \\(=\\) \\(U\\) and \\(U'\\) \\(= -\\)\\(Q\\)"
+    "text": "Q and U Stokes parameters\n\n\n\n  \\(Q\\)\n\n\n  \\(U\\)\n\n\n  \n  \\(Q\\)\\(U\\)\n\n\n  \n  \\(U\\)\\(-Q\\)\n\n\n\n\n\n\\(Q\\) and \\(U\\) depend on the reference frame: turning it by \\(45^\\circ\\) swaps them, \\(Q'\\) \\(=\\) \\(U\\) and \\(U'\\) \\(= -\\)\\(Q\\)"
   },
   {
     "objectID": "2026_10_PhD/index.html#e-and-b-modes",
     "href": "2026_10_PhD/index.html#e-and-b-modes",
     "title": "Differentiable Field-Level Cosmology",
     "section": "\\(E\\) and \\(B\\) modes",
-    "text": "\\(E\\) and \\(B\\) modes\n\n \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDensity (scalar) perturbations make only \\(E\\) modes\nAt linear order, \\(B\\) modes are only produced by tensor perturbations"
+    "text": "\\(E\\) and \\(B\\) modes\n \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDensity (scalar) perturbations make only \\(E\\) modes\nAt linear order, \\(B\\) modes are only produced by tensor perturbations"
   },
   {
     "objectID": "2026_10_PhD/index.html#two-point-statistics",
     "href": "2026_10_PhD/index.html#two-point-statistics",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Two-point statistics",
-    "text": "Two-point statistics\n\n\n\n\n\n\n\\(C(\\theta) = \\langle \\Delta T(\\hat n_1)\\,\\Delta T(\\hat n_2)\\rangle\\) over all pairs at separation \\(\\theta\\): its expansion in Legendre polynomials gives the \\(C_\\ell\\)\nPlanck 2018, SMICA · smoothed to 1° FWHM"
+    "text": "Two-point statistics\n\n\n\n\n\n\\(C(\\theta) = \\langle \\Delta T(\\hat n_1)\\,\\Delta T(\\hat n_2)\\rangle\\) over all pairs at separation \\(\\theta\\): its expansion in Legendre polynomials gives the \\(C_\\ell\\)\nPlanck 2018, SMICA · smoothed to 1° FWHM"
   },
   {
     "objectID": "2026_10_PhD/index.html#sht",
     "href": "2026_10_PhD/index.html#sht",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Spherical Harmonic Transforms",
-    "text": "Spherical Harmonic Transforms\n\n\n\n\n\\[\nf(\\theta,\\varphi) = \\sum_{\\ell=0}^{\\infty} \\sum_{m=-\\ell}^{\\ell} a_{\\ell m}\\, Y_\\ell^m(\\theta,\\varphi)\n\\]\n\n\n\\[\nC_\\ell = \\frac{1}{2\\ell+1} \\sum_{m=-\\ell}^{\\ell} |a_{\\ell m}|^2\n\\]\n\n\n\n\n I\n\n\n\nspin-0\n\n\n \\(|a^T_{\\ell m}|^2\\)\n\n\n\n\n\n\n\n\n Q\n\n\n\nspin-2\n\n\n \\(|a^E_{\\ell m}|^2\\)\n\n\n\n\n\n\n\n\n U\n\n\n \\(|a^B_{\\ell m}|^2\\)"
+    "text": "Spherical Harmonic Transforms\n\n\n\n\\[\nf(\\theta,\\varphi) = \\sum_{\\ell=0}^{\\infty} \\sum_{m=-\\ell}^{\\ell} a_{\\ell m}\\, Y_\\ell^m(\\theta,\\varphi)\n\\]\n\n\n\\[\nC_\\ell = \\frac{1}{2\\ell+1} \\sum_{m=-\\ell}^{\\ell} |a_{\\ell m}|^2\n\\]\n\n\n\n\n I\n\n\n\nspin-0\n\n\n \\(|a^T_{\\ell m}|^2\\)\n\n\n\n\n\n\n\n\n Q\n\n\n\nspin-2\n\n\n \\(|a^E_{\\ell m}|^2\\)\n\n\n\n\n\n\n\n\n U\n\n\n \\(|a^B_{\\ell m}|^2\\)"
   },
   {
     "objectID": "2026_10_PhD/index.html#predicted-cmb-power-spectra",
     "href": "2026_10_PhD/index.html#predicted-cmb-power-spectra",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Predicted CMB power spectra",
-    "text": "Predicted CMB power spectra\n\n\n\n\n\n\n\n\n\n\nThe primordial tensor perturbations are very faint (below than lensing B modes)\nMeasurement of \\(r\\) requires isolating the primordial B modes from all other contaminants."
+    "text": "Predicted CMB power spectra\n\n\n\n\n\n\n\n\n\nThe primordial tensor perturbations are very faint (below than lensing B modes)\nMeasurement of \\(r\\) requires isolating the primordial B modes from all other contaminants."
   },
   {
     "objectID": "2026_10_PhD/index.html#current-constraints-on-r",
     "href": "2026_10_PhD/index.html#current-constraints-on-r",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Current constraints on \\(r\\)",
-    "text": "Current constraints on \\(r\\)\n\n\n\n\n\n\nTristram et al. (2022); Simons Observatory (Ade et al. 2019); LiteBIRD Collaboration (2023)"
+    "text": "Current constraints on \\(r\\)\n\n\n\n\n\nTristram et al. (2022); Simons Observatory (Ade et al. 2019); LiteBIRD Collaboration (2023)"
   },
   {
     "objectID": "2026_10_PhD/index.html#the-cmb-data-analysis-pipeline",
@@ -1117,77 +1117,84 @@
     "href": "2026_10_PhD/index.html#the-history-of-the-expanding-universe",
     "title": "Differentiable Field-Level Cosmology",
     "section": "The history of the expanding Universe",
-    "text": "The history of the expanding Universe\n\n \n\nThe history of the expansion"
+    "text": "The history of the expanding Universe\n \n\nThe history of the expansion"
   },
   {
     "objectID": "2026_10_PhD/index.html#the-expanding-universe-and-dark-energy",
     "href": "2026_10_PhD/index.html#the-expanding-universe-and-dark-energy",
     "title": "Differentiable Field-Level Cosmology",
     "section": "The expanding Universe and dark energy",
-    "text": "The expanding Universe and dark energy\n\n \n\n\n\n\n\n\n\nredshift \\(1 + z = \\dfrac{\\lambda_\\mathrm{obs}}{\\lambda_\\mathrm{emit}} = \\dfrac{1}{a}\\)\n\n\nscale factor \\(a(t),\\qquad a_0 = 1,\\qquad H = \\dot a / a\\)\n\n\ncomoving distance \\(\\chi(z) = \\displaystyle\\int_0^z \\frac{c\\,dz'}{H(z')}\\)\n\n\nexpansion rate \\(H(z) = H_0\\sqrt{\\Omega_r(1+z)^4 + \\Omega_m(1+z)^3 + \\Omega_\\Lambda}\\)"
+    "text": "The expanding Universe and dark energy\n \n\n\n\n\n\n\n\nredshift \\(1 + z = \\dfrac{\\lambda_\\mathrm{obs}}{\\lambda_\\mathrm{emit}} = \\dfrac{1}{a}\\)\n\n\nscale factor \\(a(t),\\qquad a_0 = 1,\\qquad H = \\dot a / a\\)\n\n\ncomoving distance \\(\\chi(z) = \\displaystyle\\int_0^z \\frac{c\\,dz'}{H(z')}\\)\n\n\nexpansion rate \\(H(z) = H_0\\sqrt{\\Omega_r(1+z)^4 + \\Omega_m(1+z)^3 + \\Omega_\\Lambda}\\)"
   },
   {
     "objectID": "2026_10_PhD/index.html#weak-gravitational-lensing",
     "href": "2026_10_PhD/index.html#weak-gravitational-lensing",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Mapping dark matter through weak gravitational lensing",
-    "text": "Mapping dark matter through weak gravitational lensing\n\n\n\n\n\n\n\nMatter along the line of sight bends light: every background galaxy is slightly distorted"
+    "text": "Mapping dark matter through weak gravitational lensing\n\n\n\n\n\n\nMatter along the line of sight bends light: every background galaxy is slightly distorted"
   },
   {
     "objectID": "2026_10_PhD/index.html#convergence-and-shear",
     "href": "2026_10_PhD/index.html#convergence-and-shear",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Convergence and shear",
-    "text": "Convergence and shear\n\n\n\n\n\n\n\n\n\n\n\n\ngalaxy\nconvergence \\(\\kappa\\) (spin 0)\nshear \\(\\gamma_1, \\gamma_2\\) (spin 2)\n\n\n\\[\n\\mathbf{A} = \\begin{pmatrix} 1-\\kappa-\\gamma_1 & -\\gamma_2 \\\\ -\\gamma_2 & 1-\\kappa+\\gamma_1 \\end{pmatrix}\n\\]\n\n\n\nMatter deforms galaxies through weak lensing, by a spin-0 field, the convergence \\(\\kappa\\), and a spin-2 field, the two components of the shear \\(\\gamma\\)\n\nFun fact: \\(\\gamma\\) relates to \\(Q\\), \\(U\\): \\(\\gamma_1 + i\\gamma_2\\) is the same mathematical object as \\(Q + iU\\), and splits into \\(E\\) and \\(B\\) modes in the same way"
+    "text": "Convergence and shear\n\n\n\n\n\n\n\n\n\n\n\ngalaxy\nconvergence \\(\\kappa\\) (spin 0)\nshear \\(\\gamma_1, \\gamma_2\\) (spin 2)\n\n\n\\[\n\\mathbf{A} = \\begin{pmatrix} 1-\\kappa-\\gamma_1 & -\\gamma_2 \\\\ -\\gamma_2 & 1-\\kappa+\\gamma_1 \\end{pmatrix}\n\\]\n\n\n\nMatter deforms galaxies through weak lensing, by a spin-0 field, the convergence \\(\\kappa\\), and a spin-2 field, the two components of the shear \\(\\gamma\\)"
   },
   {
     "objectID": "2026_10_PhD/index.html#from-galaxy-shapes-to-shear",
     "href": "2026_10_PhD/index.html#from-galaxy-shapes-to-shear",
     "title": "Differentiable Field-Level Cosmology",
     "section": "From galaxy shapes to shear",
-    "text": "From galaxy shapes to shear\n\n\n\n\n\n\n\n\n\n\nellipticity \\[e = e_1 + i\\,e_2 = \\frac{a-b}{a+b}\\,e^{2i\\varphi}\\]\n\n\nshear in a pixel \\[\\hat\\gamma_1 = \\frac{\\sum_k w_k\\,e_{1,k}}{\\sum_k w_k}, \\qquad \\hat\\gamma_2 = \\frac{\\sum_k w_k\\,e_{2,k}}{\\sum_k w_k}\\]\n\n\n\nDark Energy Survey Y3 redshift distribution"
+    "text": "From galaxy shapes to shear\n\n\n\n\n\n\n\n\n\nellipticity \\[e = e_1 + i\\,e_2 = \\frac{a-b}{a+b}\\,e^{2i\\varphi}\\]\n\n\nshear in a pixel \\[\\hat\\gamma_1 = \\frac{\\sum_k w_k\\,e_{1,k}}{\\sum_k w_k}, \\qquad \\hat\\gamma_2 = \\frac{\\sum_k w_k\\,e_{2,k}}{\\sum_k w_k}\\]\n\n\n\n\n\nGalaxies are grouped by redshift into tomographic bins\nAveraging their shapes per pixel and per bin gives one shear map per bin"
+  },
+  {
+    "objectID": "2026_10_PhD/index.html#dark-energy-survey-y3-redshift-distribution",
+    "href": "2026_10_PhD/index.html#dark-energy-survey-y3-redshift-distribution",
+    "title": "Differentiable Field-Level Cosmology",
+    "section": "Dark Energy Survey Y3 redshift distribution",
+    "text": "Dark Energy Survey Y3 redshift distribution"
   },
   {
     "objectID": "2026_10_PhD/index.html#tomographic-projection-to-convergence-maps",
     "href": "2026_10_PhD/index.html#tomographic-projection-to-convergence-maps",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Tomographic projection to convergence maps",
-    "text": "Tomographic projection to convergence maps\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\[\\kappa_i(\\hat{\\mathbf n}) = \\int_0^{\\chi_H} q_i(\\chi)\\,\\delta(\\chi\\hat{\\mathbf n},\\chi)\\,\\mathrm{d}\\chi\\]\n\nShell rendering inspired by GLASS (Tessore et al. 2023)"
+    "text": "Tomographic projection to convergence maps\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\[\\kappa_i(\\hat{\\mathbf n}) = \\int_0^{\\chi_H} q_i(\\chi)\\,\\delta(\\chi\\hat{\\mathbf n},\\chi)\\,\\mathrm{d}\\chi\\]\n\nShell rendering inspired by GLASS (Tessore et al. 2023)"
   },
   {
     "objectID": "2026_10_PhD/index.html#from-shear-to-cosmology",
     "href": "2026_10_PhD/index.html#from-shear-to-cosmology",
     "title": "Differentiable Field-Level Cosmology",
     "section": "From shear to cosmology",
-    "text": "From shear to cosmology\n\n\n\nDATA\n\n\n\ngalaxy\nshapes\n\n\n\n\n\n \nshear \\(\\gamma_1, \\gamma_2\\)\n\n\nInverse Kaiser–Squires\n\n\n\n \nconvergence \\(\\kappa\\) per bin\n\n\n\n\n\nmeasured\n\\(\\hat C_\\ell^{\\,ij}\\)\n\n\n\n\n\nTHEORY\n\n\n\\(\\theta = (\\Omega_\\mathrm{m}, \\dots)\\)\n\n\n\n\n\n\nmatter spectrum \\(P(k, z)\\)\n\n\nLimber, with the lensing kernels \\(q_i(\\chi)\\)\n\n\n\npredicted\n\\(C_\\ell^{\\,ij}(\\theta)\\)\n\n\n\n\ncompare\n↓\ninfer \\(\\theta\\)\n\n\n\n\n\n\n\nIn traditional anaysis we compress the maps into angular power spectra \\(C_\\ell\\) and compare them with the prediction\nThis is called a two-point correlation function (2PCF)"
+    "text": "From shear to cosmology\n\n\nDATA\n\n\n\ngalaxy\nshapes\n\n\n\n\n\n \nshear \\(\\gamma_1, \\gamma_2\\)\n\n\nInverse Kaiser–Squires\n\n\n\n \nconvergence \\(\\kappa\\) per bin\n\n\n\n\n\nmeasured\n\\(\\hat C_\\ell^{\\,ij}\\)\n\n\n\n\n\nTHEORY\n\n\n\\(\\theta = (\\Omega_\\mathrm{m}, \\dots)\\)\n\n\n\n\n\n\nmatter spectrum \\(P(k, z)\\)\n\n\nLimber, with the lensing kernels \\(q_i(\\chi)\\)\n\n\n\npredicted\n\\(C_\\ell^{\\,ij}(\\theta)\\)\n\n\n\n\ncompare\n↓\ninfer \\(\\theta\\)\n\n\n\n\n\n\n\nIn traditional anaysis we compress the maps into angular power spectra \\(C_\\ell\\) and compare them with the prediction\nThis is called a two-point correlation function (2PCF)"
   },
   {
     "objectID": "2026_10_PhD/index.html#the-target-of-2pcf-analysis",
     "href": "2026_10_PhD/index.html#the-target-of-2pcf-analysis",
     "title": "Differentiable Field-Level Cosmology",
     "section": "The target of 2PCF analysis",
-    "text": "The target of 2PCF analysis\n\n  \n\n\n\n\n\n\n\n\n \n\n\n\n\\(\\Omega_\\mathrm{m}\\): how much matter\n\\(\\sigma_8\\): how clumpy it is on \\(8\\,h^{-1}\\mathrm{Mpc}\\) scales\nWeak lensing analysis targets the combination \\(S_8 = \\sigma_8\\sqrt{\\Omega_\\mathrm{m}/0.3}\\)"
+    "text": "The target of 2PCF analysis\n  \n\n\n\n\n\n\n\n\n \n\n\n\n\\(\\Omega_\\mathrm{m}\\): how much matter\n\\(\\sigma_8\\): how clumpy it is on \\(8\\,h^{-1}\\mathrm{Mpc}\\) scales\nWeak lensing analysis targets the combination \\(S_8 = \\sigma_8\\sqrt{\\Omega_\\mathrm{m}/0.3}\\)"
   },
   {
     "objectID": "2026_10_PhD/index.html#current-constraints-on-s_8",
     "href": "2026_10_PhD/index.html#current-constraints-on-s_8",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Current constraints on \\(S_8\\)",
-    "text": "Current constraints on \\(S_8\\)\n\n\n\n\n\n\nAsgari+21, Secco/Amon+22, Dalal+23, DES & KiDS 2023, Wright+25, DES Y6 2026, Planck 2018 VI"
+    "text": "Current constraints on \\(S_8\\)\n\n\n\n\n\nAsgari+21, Secco/Amon+22, Dalal+23, DES & KiDS 2023, Wright+25, DES Y6 2026, Planck 2018 VI"
   },
   {
     "objectID": "2026_10_PhD/index.html#limitation-of-the-two-point-analysis",
     "href": "2026_10_PhD/index.html#limitation-of-the-two-point-analysis",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Limitation of the two-point analysis",
-    "text": "Limitation of the two-point analysis\n\n\n\n\n \nthe cosmic web, non-Gaussian\n\n \na Gaussian field\n\n\n\n\n\n\n\n\n\n\n\nThe 2PCF captures only the Gaussian features of a field"
+    "text": "Limitation of the two-point analysis\n\n\n\n \nthe cosmic web, non-Gaussian\n\n \na Gaussian field\n\n\n\n\n\n\n\n\n\n\n\nThe 2PCF captures only the Gaussian features of a field"
   },
   {
     "objectID": "2026_10_PhD/index.html#two-point-degeneracy",
     "href": "2026_10_PhD/index.html#two-point-degeneracy",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Limitation of the two-point analysis",
-    "text": "Limitation of the two-point analysis\n\n\n\nDES Y6 cosmic shear (2026)\n\n\n\n\n\nDES Y6 cosmic shear, DES Collaboration (2026), arXiv:2602.10065, Fig. 3 · CMB: Planck 2018, ACT DR6 and SPT-3G, TT+TE+EE+lowE, no lensing\n\n\n\n\nWe need to go beyond the 2PCF to extract more physical information: Contribution 2"
+    "text": "Limitation of the two-point analysis\n\n\nDES Y6 cosmic shear (2026)\n\n\n\n\n\nDES Y6 cosmic shear, DES Collaboration (2026), arXiv:2602.10065, Fig. 3 · CMB: Planck 2018, ACT DR6 and SPT-3G, TT+TE+EE+lowE, no lensing\n\n\n\n\nWe need to go beyond the 2PCF to extract more physical information: Contribution 2"
   },
   {
     "objectID": "2026_10_PhD/index.html#from-model-to-observation",
@@ -1236,7 +1243,7 @@
     "href": "2026_10_PhD/index.html#differentiable-methods-for-high-dimensional-inference",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Differentiable methods for high-dimensional inference",
-    "text": "Differentiable methods for high-dimensional inference\nBoth methods become more efficient with a differentiable likelihood\n\n\n\n \n\nOptimisation: the gradient points to the MAP\n\n\\[\\boldsymbol\\theta_{k+1} = \\boldsymbol\\theta_k + \\eta\\,\\nabla_{\\boldsymbol\\theta}\\ln p(\\boldsymbol\\theta\\mid\\mathbf{d})\\]\n\n\n\n\n\n\n \n\nSampling: Hamiltonian Monte Carlo\n\n\\[\\dot{\\boldsymbol\\theta} = \\mathbf{p}, \\qquad \\dot{\\mathbf{p}} = \\nabla_{\\boldsymbol\\theta}\\ln p(\\boldsymbol\\theta\\mid\\mathbf{d})\\]\n\n\n\n\n\n\n\n\nFor high-dimensional problems, differentiable likelihoods are required\nLikelihood evaluation per independent sample: random walk \\(\\sim\\) \\(d\\), HMC \\(\\sim\\) \\(d^{1/4}\\)\nNeal (2011); Beskos et al. (2013)"
+    "text": "Differentiable methods for high-dimensional inference\nBoth methods become more efficient with a differentiable likelihood\n\n\n\n\n\nOptimisation: the gradient points to the MAP\n\n\\[\\boldsymbol\\theta_{k+1} = \\boldsymbol\\theta_k + \\eta\\,\\nabla_{\\boldsymbol\\theta}\\ln p(\\boldsymbol\\theta\\mid\\mathbf{d})\\]\n\n\n\n\n\n\n\n\nSampling: Hamiltonian Monte Carlo\n\n\\[\\dot{\\boldsymbol\\theta} = \\mathbf{p}, \\qquad \\dot{\\mathbf{p}} = \\nabla_{\\boldsymbol\\theta}\\ln p(\\boldsymbol\\theta\\mid\\mathbf{d})\\]\n\nAdapted from Betancourt (2017), arXiv:1701.02434\n\n\n\n\n\n\n\nFor high-dimensional problems, differentiable likelihoods are required\nLikelihood evaluation per independent sample: random walk \\(\\sim\\) \\(d\\), HMC \\(\\sim\\) \\(d^{1/4}\\)\nNeal (2011); Beskos et al. (2013)"
   },
   {
     "objectID": "2026_10_PhD/index.html#differentiable-programming",
@@ -1418,14 +1425,14 @@
     "href": "2026_10_PhD/index.html#painting-on-spherical-shells",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Painting on spherical shells",
-    "text": "Painting on spherical shells\n\n\n\n\n\n\n\n\nevolved particles\n\n⟶\n\n\none HEALPix shell\n\n\n\n\n\\[r = \\lVert \\mathbf{x} - \\mathbf{x}_o \\rVert, \\qquad \\theta = \\arccos\\frac{z - z_o}{r}\\] \\[\\varphi = \\operatorname{atan2}(y - y_o,\\, x - x_o)\\] \\[p = \\texttt{ang2pix}(N_\\mathrm{side}, \\theta, \\varphi)\\]\n\n\n\n\nang2pix: jax-healpy\n\n\nImplemented in jax-healpy Works by binning each particle into the pixel that contains. It is not differentiable."
+    "text": "Painting on spherical shells\n\n\n\n\n\nevolved particles\n\n⟶\n\n\none HEALPix shell\n\n\n\n\n\\[r = \\lVert \\mathbf{x} - \\mathbf{x}_o \\rVert, \\qquad \\theta = \\arccos\\frac{z - z_o}{r}\\] \\[\\varphi = \\operatorname{atan2}(y - y_o,\\, x - x_o)\\] \\[p = \\texttt{ang2pix}(N_\\mathrm{side}, \\theta, \\varphi)\\]\n\n\n\n\nang2pix: jax-healpy\n\n\nImplemented in jax-healpy Works by binning each particle into the pixel that contains. It is not differentiable."
   },
   {
     "objectID": "2026_10_PhD/index.html#painting-on-spherical-shells-1",
     "href": "2026_10_PhD/index.html#painting-on-spherical-shells-1",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Painting on spherical shells",
-    "text": "Painting on spherical shells\n\n\n\n\n\n\nBilinear interpolation\n\n\n\n\n\nFour pixels, weighted by the position between their centres: get_interp_weights, implemented in jax-healpy\n\n\n\nRadial basis function interpolation\n\n\n\n\n\n\n\n\n\nThe pixel and its eight neighbours (get_all_neighbours, implemented in jax-healpy), weighted by a Gaussian kernel of adjustable width\n\n\n\n\n\n\n\n\n\n\nThe RBF gives control over the smoothing\nBoth methods are differentiable"
+    "text": "Painting on spherical shells\n\n\n\nBilinear interpolation\n\n\n\n\n\nFour pixels, weighted by the position between their centres: get_interp_weights, implemented in jax-healpy\n\n\n\nRadial basis function interpolation\n\n\n\n\n\n\n\n\n\nThe pixel and its eight neighbours (get_all_neighbours, implemented in jax-healpy), weighted by a Gaussian kernel of adjustable width\n\n\n\n\n\n\n\n\n\n\nThe RBF gives control over the smoothing\nBoth methods are differentiable"
   },
   {
     "objectID": "2026_10_PhD/index.html#creating-the-lightcone",
@@ -1649,7 +1656,7 @@
     "href": "2026_10_PhD/index.html#kaisersquires-on-the-sphere",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Kaiser–Squires on the sphere",
-    "text": "Kaiser–Squires on the sphere\n\n\n\nFrom \\(\\kappa\\) to \\(\\gamma\\)\n\n\\[\n\\gamma^E_{\\ell m} = -\\sqrt{\\frac{(\\ell+2)(\\ell-1)}{\\ell(\\ell+1)}}\\;\\kappa_{\\ell m}, \\qquad \\gamma^B_{\\ell m} = 0\n\\] \\[\n\\gamma_1 + i\\gamma_2 = \\sum_{\\ell m} \\gamma^E_{\\ell m}\\;{}_2Y_{\\ell m}\n\\]\n\n\nFrom \\(\\gamma\\) back to \\(\\kappa\\)\n\n\\[\n\\kappa_{\\ell m} = -\\sqrt{\\frac{\\ell(\\ell+1)}{(\\ell+2)(\\ell-1)}}\\;\\gamma^E_{\\ell m}\n\\]\n\n\n\n\n \nconvergence κ\n\n\n\n\n\n\n \nshear γ1\n\n\n \nshear γ2\n\n\n\n\n\n\nKaiser–Squires is a simple per-\\(\\ell\\) rescaling between \\(\\kappa\\) and the \\(E\\)-mode of the shear"
+    "text": "Kaiser–Squires on the sphere\n\n\nFrom \\(\\kappa\\) to \\(\\gamma\\)\n\n\\[\n\\gamma^E_{\\ell m} = -\\sqrt{\\frac{(\\ell+2)(\\ell-1)}{\\ell(\\ell+1)}}\\;\\kappa_{\\ell m}, \\qquad \\gamma^B_{\\ell m} = 0\n\\] \\[\n\\gamma_1 + i\\gamma_2 = \\sum_{\\ell m} \\gamma^E_{\\ell m}\\;{}_2Y_{\\ell m}\n\\]\n\n\nFrom \\(\\gamma\\) back to \\(\\kappa\\)\n\n\\[\n\\kappa_{\\ell m} = -\\sqrt{\\frac{\\ell(\\ell+1)}{(\\ell+2)(\\ell-1)}}\\;\\gamma^E_{\\ell m}\n\\]\n\n\n\n\n \nconvergence κ\n\n\n\n\n\n\n \nshear γ1\n\n\n \nshear γ2\n\n\n\n\n\n\nKaiser–Squires is a simple per-\\(\\ell\\) rescaling between \\(\\kappa\\) and the \\(E\\)-mode of the shear"
   },
   {
     "objectID": "index.html",
