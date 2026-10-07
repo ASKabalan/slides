@@ -1012,14 +1012,14 @@
     "href": "2026_10_PhD/index.html#modern_cosmo",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Modern observational cosmology",
-    "text": "Modern observational cosmology\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCredit: NASA (photograph); Hubble (1929), PNAS 15, 168, Fig. 1, redrawn\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe Friedmann–Lemaître–Robertson–Walker metric\n\n\n\n\n\n\n\n\n\nThe Expanding Universe\n\n\nGeorges Lemaître: predicted the primeval atom as the origin of the Universe"
+    "text": "Modern observational cosmology\n\n\n\n\n\n\n\nThe Friedmann–Lemaître–Robertson–Walker metric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCredit: NASA (photograph); Hubble (1929), PNAS 15, 168, Fig. 1, redrawn\n\n\n\n\nThe Expanding Universe\n\n\nGeorges Lemaître: the Universe had a beginning\nIt expanded from an extremely dense early state"
   },
   {
     "objectID": "2026_10_PhD/index.html#the-cosmic-microwave-background",
     "href": "2026_10_PhD/index.html#the-cosmic-microwave-background",
     "title": "Differentiable Field-Level Cosmology",
     "section": "The Cosmic Microwave Background",
-    "text": "The Cosmic Microwave Background\n \n\n\n\n\n\n\n\n1965, Holmdel: Penzias & Wilson find a 3 K signal from every direction · Credit: NASA (antenna); ESA / Planck Collaboration (map)\n\n\n\nThe relic light of the hot Big Bang, released 380 000 years after it\n\n\n\nAt Princeton, Dicke, Peebles, Roll & Wilkinson had predicted this relic radiation and were building a radiometer to find it\nThe two groups published side by side in 1965: Penzias & Wilson the measurement, Princeton the interpretation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe discovery of the CMB confirmed the expanding universe"
+    "text": "The Cosmic Microwave Background\n \n\n\n\n\n\n\n\n1965, Holmdel: Penzias & Wilson find a 3 K signal from every direction · Credit: NASA (antenna); ESA / Planck Collaboration (map)\n\n\n\nA hot, dense beginning should leave relic radiation: predicted by Gamow, Alpher & Herman in 1948, at a few kelvin\n\n\n\nFound by accident in 1965 by Penzias & Wilson: a 3 K signal from every direction, interpreted by Dicke & Peebles at Princeton\n\n\n\n\n\n\n\n\n\nThe oldest light we can observe, released when the Universe became transparent, 380 000 years after the Big Bang\n\n\n\n\n\n\n\nThe discovery of the CMB confirmed the hot Big Bang"
   },
   {
     "objectID": "2026_10_PhD/index.html#lambda-cold-dark-matter-lambdacdm",
@@ -1033,77 +1033,70 @@
     "href": "2026_10_PhD/index.html#the-limits-of-lambdacdm",
     "title": "Differentiable Field-Level Cosmology",
     "section": "The limits of \\(\\Lambda\\)CDM",
-    "text": "The limits of \\(\\Lambda\\)CDM\n\n\n\n\n\n \n\n\nThe early Universe\n\n\nhorizon\n\nCredit: NASA / WMAP Science Team\n\n\nflatness\n\n+ monopole dilution\n\n\n\nThe late Universe\n\n\n\ncomponents\n\n\n\nHistory of the expanding Universe"
+    "text": "The limits of \\(\\Lambda\\)CDM\n\n\n\n\n\n\n\n \n\n\nThe early Universe\n\n\nhorizon\n\nCredit: NASA / WMAP Science Team\n\n\nflatness\n\n+ magnetic monopole problem\n\n\n\n95% of the Universe is dark\n\n\ndark energy\n\nData: DES-SN5YR (DES Collaboration)\n\n\ndark matter\n\nData: NGC 3198, SPARC (Lelli et al. 2016)"
   },
   {
     "objectID": "2026_10_PhD/index.html#inflation",
     "href": "2026_10_PhD/index.html#inflation",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Inflation",
-    "text": "Inflation\n\n\n\nThe early Universe\n\n\nhorizon\n\n\n\nflatness\n\n+ monopole dilution\n\n\n\n\n\n\n\n\n\n\n\n\n\nA brief accelerated expansion solves the horizon and flatness problems\nIts quantum fluctuations \\(\\delta\\phi\\) seed every structure we see today"
+    "text": "Inflation\n\n\n\nThe early Universe\n\n\nhorizon\n\n\n\nflatness\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA brief accelerated expansion solves the horizon and flatness problems\nIts quantum fluctuations \\(\\delta\\phi\\) seed the large scale structure we see today"
   },
   {
     "objectID": "2026_10_PhD/index.html#primordial-gravitational-waves",
     "href": "2026_10_PhD/index.html#primordial-gravitational-waves",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Primordial gravitational waves",
-    "text": "Primordial gravitational waves\n\n\n\n\nQuantum fluctuations perturb the metric of space-time\nScalar: \\(\\Delta_s^2(k) = A_s\\,(k/k_*)^{n_s-1}\\)\nTensor: \\(\\Delta_t^2(k) = A_t\\,(k/k_*)^{n_t}\\), the gravitational waves\n\n\n\n\\[\nr \\equiv \\frac{A_t}{A_s} \\;\\propto\\; E_\\mathrm{inf}^4\n\\]\n\nThe tensor-to-scalar ratio fixes the energy scale of inflation\n\n\nPrimordial GWs leave a unique imprint in the CMB polarisation"
+    "text": "Primordial gravitational waves\n\n\n\n\nQuantum fluctuations perturb the metric of space-time\nScalar: \\(\\Delta_s^2(k) = A_s\\,(k/k_*)^{n_s-1}\\)\nTensor: \\(\\Delta_t^2(k) = A_t\\,(k/k_*)^{n_t}\\), the gravitational waves\n\n\n\n\\[\nr \\equiv \\frac{A_t}{A_s} \\;\\propto\\; E_\\mathrm{inf}^4\n\\]\n\nThe tensor-to-scalar ratio determines the energy scale of inflation\nPrimordial Gravitational Waves leave a unique imprint in the CMB polarisation"
   },
   {
     "objectID": "2026_10_PhD/index.html#polarisation-of-the-cmb",
     "href": "2026_10_PhD/index.html#polarisation-of-the-cmb",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Polarisation of the CMB",
-    "text": "Polarisation of the CMB\n\n\n\n\\(A_s\\)\n\\(A_t\\)\n\n\n\n\n\n\n\n\n\n\nA quadrupole at last scattering + Thomson scattering, \\(\\propto |\\hat{\\epsilon}\\cdot\\hat{\\epsilon}'|^2\\) → linear polarisation\n3 Stokes parameters describe linearly polarised light\n\n\n\n\n\n\n\nAdapted from: Emma Alexander, Wikimedia Commons (Stokes params)"
+    "text": "Polarisation of the CMB\n\n\n\nA quadrupole at last scattering + Thomson scattering, \\(\\propto |\\hat{\\epsilon}\\cdot\\hat{\\epsilon}'|^2\\) → linear polarisation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3 Stokes parameters describe linearly polarised light\n\n\n\n\n\n\n\nAdapted from: Emma Alexander, Wikimedia Commons (Stokes params)"
   },
   {
     "objectID": "2026_10_PhD/index.html#q-and-u-stokes-parameters",
     "href": "2026_10_PhD/index.html#q-and-u-stokes-parameters",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Q and U Stokes parameters",
-    "text": "Q and U Stokes parameters\n\n\n\n\n  \\(Q\\)\n\n\n  \\(U\\)\n\n\n  \n  \\(Q\\)\\(U\\)\n\n\n  \n  \\(U\\)\\(-Q\\)\n\n\n\n\n\n\\(Q\\) and \\(U\\) depend on the reference frame: turning it by \\(\\psi\\) mixes them, \\(\\;Q' = Q\\cos 2\\psi + U\\sin 2\\psi\\)"
+    "text": "Q and U Stokes parameters\n\n\n\n\n  \\(Q\\)\n\n\n  \\(U\\)\n\n\n  \n  \\(Q\\)\\(U\\)\n\n\n  \n  \\(U\\)\\(-Q\\)\n\n\n\n\n\n\\(Q\\) and \\(U\\) depend on the reference frame: turning it by \\(45^\\circ\\) swaps them, \\(Q'\\) \\(=\\) \\(U\\) and \\(U'\\) \\(= -\\)\\(Q\\)"
   },
   {
     "objectID": "2026_10_PhD/index.html#e-and-b-modes",
     "href": "2026_10_PhD/index.html#e-and-b-modes",
     "title": "Differentiable Field-Level Cosmology",
     "section": "\\(E\\) and \\(B\\) modes",
-    "text": "\\(E\\) and \\(B\\) modes\n\n \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDensity (scalar) perturbations make only \\(E\\) modes\n\\(B\\) modes are sourced by tensor perturbations: a direct window onto inflation"
+    "text": "\\(E\\) and \\(B\\) modes\n\n \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDensity (scalar) perturbations make only \\(E\\) modes\nAt linear order, \\(B\\) modes are only produced by tensor perturbations"
   },
   {
     "objectID": "2026_10_PhD/index.html#two-point-statistics",
     "href": "2026_10_PhD/index.html#two-point-statistics",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Two-point statistics",
-    "text": "Two-point statistics\n\n\n\n\n\n\n\\(C(\\theta) = \\langle \\Delta T(\\hat n_1)\\,\\Delta T(\\hat n_2)\\rangle\\) over all pairs at separation \\(\\theta\\): its expansion in Legendre polynomials gives the \\(C_\\ell\\)"
-  },
-  {
-    "objectID": "2026_10_PhD/index.html#healpix",
-    "href": "2026_10_PhD/index.html#healpix",
-    "title": "Differentiable Field-Level Cosmology",
-    "section": "How do we represent sky data numerically?",
-    "text": "How do we represent sky data numerically?\n\n\nHierarchical Equal Area iso-latitude Pixellation (of the sphere)\n\n\n\nHEALPix\n\n\n\n\n\n\\(N_\\mathrm{side}\\) \\(= 4\\)\n\n\n\n\\(N_\\mathrm{side}\\) \\(= 16\\)\n\n\n\n\\(N_\\mathrm{side}\\) \\(= 32\\)\n\n\n\n\\(N_\\mathrm{side}\\) \\(= 64\\)\n\n\n\n\n\nPixels on the sky, like pixels on a detector\n\n\n\n\n\n\nEqual area: every pixel weighs the same in a \\(C_\\ell\\)\nHierarchical, \\(N_\\mathrm{side} = 2^k\\): 12 pixels to billions; the standard of Planck, SO, LiteBIRD, and in JAX with jax-healpy"
+    "text": "Two-point statistics\n\n\n\n\n\n\n\\(C(\\theta) = \\langle \\Delta T(\\hat n_1)\\,\\Delta T(\\hat n_2)\\rangle\\) over all pairs at separation \\(\\theta\\): its expansion in Legendre polynomials gives the \\(C_\\ell\\)\nPlanck 2018, SMICA · smoothed to 1° FWHM"
   },
   {
     "objectID": "2026_10_PhD/index.html#sht",
     "href": "2026_10_PhD/index.html#sht",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Spherical Harmonic Transforms",
-    "text": "Spherical Harmonic Transforms\n\n\n\n\n\\[\nf(\\theta,\\varphi) = \\sum_{\\ell=0}^{\\infty} \\sum_{m=-\\ell}^{\\ell} a_{\\ell m}\\, Y_\\ell^m(\\theta,\\varphi)\n\\]\n\n\n\\[\nC_\\ell = \\frac{1}{2\\ell+1} \\sum_{m=-\\ell}^{\\ell} |a_{\\ell m}|^2\n\\]\n\n\n\n\n I\n\n\n\n\n\n aℓmT\n\n\n\n\n\n\n\n\n Q\n\n\n\n\n\n aℓmE\n\n\n\n\n\n\n\n\n U\n\n\n\n\n\n aℓmB"
+    "text": "Spherical Harmonic Transforms\n\n\n\n\n\\[\nf(\\theta,\\varphi) = \\sum_{\\ell=0}^{\\infty} \\sum_{m=-\\ell}^{\\ell} a_{\\ell m}\\, Y_\\ell^m(\\theta,\\varphi)\n\\]\n\n\n\\[\nC_\\ell = \\frac{1}{2\\ell+1} \\sum_{m=-\\ell}^{\\ell} |a_{\\ell m}|^2\n\\]\n\n\n\n\n I\n\n\n\nspin-0\n\n\n \\(|a^T_{\\ell m}|^2\\)\n\n\n\n\n\n\n\n\n Q\n\n\n\nspin-2\n\n\n \\(|a^E_{\\ell m}|^2\\)\n\n\n\n\n\n\n\n\n U\n\n\n \\(|a^B_{\\ell m}|^2\\)"
   },
   {
     "objectID": "2026_10_PhD/index.html#predicted-cmb-power-spectra",
     "href": "2026_10_PhD/index.html#predicted-cmb-power-spectra",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Predicted CMB power spectra",
-    "text": "Predicted CMB power spectra\n\n\n\n\n\n\n\n\n\n\nThe primordial tensor perturbations are a clear probe of \\(r\\) and of the inflation period\nThey are measurable through \\(C_\\ell^{BB}\\) of the CMB\nCurrent surveys forecast an upper bound of \\(r \\approx 0.003\\)"
+    "text": "Predicted CMB power spectra\n\n\n\n\n\n\n\n\n\n\nThe primordial tensor perturbations are very faint (below than lensing B modes)\nMeasurement of \\(r\\) requires isolating the primordial B modes from all other contaminants."
   },
   {
     "objectID": "2026_10_PhD/index.html#current-constraints-on-r",
     "href": "2026_10_PhD/index.html#current-constraints-on-r",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Current constraints on \\(r\\)",
-    "text": "Current constraints on \\(r\\)\n\n\n\n\n\n\n\n\n\n\nBest limit: \\(r &lt; 0.032\\) (95 %, Planck PR4 + BICEP/Keck 2018)\nThe main obstacle is the Galactic foregrounds that obscure the CMB: Contribution 1\n\n\n\n\nTristram et al. (2022); Simons Observatory (Ade et al. 2019); LiteBIRD Collaboration (2023)"
+    "text": "Current constraints on \\(r\\)\n\n\n\n\n\n\n\n\n\n\nBest limit: \\(r &lt; 0.032\\) (95 %, Planck PR4 + BICEP/Keck 2018)\nSimons Observatory forecasts a sensitivity of \\(r \\approx 0.003\\)\n\n\n\n\nTristram et al. (2022); Simons Observatory (Ade et al. 2019); LiteBIRD Collaboration (2023)"
   },
   {
     "objectID": "2026_10_PhD/index.html#the-cmb-data-analysis-pipeline",
@@ -1113,18 +1106,18 @@
     "text": "The CMB data-analysis pipeline"
   },
   {
-    "objectID": "2026_10_PhD/index.html#the-large-scale-structure-of-the-universe",
-    "href": "2026_10_PhD/index.html#the-large-scale-structure-of-the-universe",
+    "objectID": "2026_10_PhD/index.html#what-dominates-the-late-universe",
+    "href": "2026_10_PhD/index.html#what-dominates-the-late-universe",
     "title": "Differentiable Field-Level Cosmology",
-    "section": "The Large-Scale Structure of the Universe",
-    "text": "The Large-Scale Structure of the Universe\n\n    \n\nThe late Universe\n\n\ncomponents\n\n\n\nHistory of the expanding Universe"
+    "section": "What dominates the late Universe?",
+    "text": "What dominates the late Universe?\n\n \n\nThe history of the expansion"
   },
   {
     "objectID": "2026_10_PhD/index.html#the-expanding-universe-and-dark-energy",
     "href": "2026_10_PhD/index.html#the-expanding-universe-and-dark-energy",
     "title": "Differentiable Field-Level Cosmology",
     "section": "The expanding Universe and dark energy",
-    "text": "The expanding Universe and dark energy\n\n \n\n\n\n\n\n\n\nredshift \\(1 + z = \\dfrac{\\lambda_\\mathrm{obs}}{\\lambda_\\mathrm{emit}} = \\dfrac{1}{a}\\)\n\n\nscale factor \\(a(t),\\qquad a_0 = 1,\\qquad H = \\dot a / a\\)\n\n\ncomoving distance \\(\\chi(z) = \\displaystyle\\int_0^z \\frac{c\\,dz'}{H(z')}\\)\n\n\nexpansion rate \\(H(z) = H_0\\sqrt{\\Omega_m(1+z)^3 + \\Omega_\\Lambda}\\)\n\n\n\n\nDark energy accelerates the expansion today: it sets \\(H(z)\\), hence distances and the growth of structure"
+    "text": "The expanding Universe and dark energy\n\n \n\n\n\n\n\n\n\nredshift \\(1 + z = \\dfrac{\\lambda_\\mathrm{obs}}{\\lambda_\\mathrm{emit}} = \\dfrac{1}{a}\\)\n\n\nscale factor \\(a(t),\\qquad a_0 = 1,\\qquad H = \\dot a / a\\)\n\n\ncomoving distance \\(\\chi(z) = \\displaystyle\\int_0^z \\frac{c\\,dz'}{H(z')}\\)\n\n\nexpansion rate \\(H(z) = H_0\\sqrt{\\Omega_r(1+z)^4 + \\Omega_m(1+z)^3 + \\Omega_\\Lambda}\\)"
   },
   {
     "objectID": "2026_10_PhD/index.html#weak-gravitational-lensing",
@@ -1138,70 +1131,56 @@
     "href": "2026_10_PhD/index.html#convergence-and-shear",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Convergence and shear",
-    "text": "Convergence and shear\n\n\n\n\n\n\n\n\n\n\n\n\ngalaxy\nconvergence \\(\\kappa\\) (spin 0)\nshear \\(\\gamma_1, \\gamma_2\\) (spin 2)\n\n\n\n\\[\n\\mathbf{A} = \\begin{pmatrix} 1-\\kappa-\\gamma_1 & -\\gamma_2 \\\\ -\\gamma_2 & 1-\\kappa+\\gamma_1 \\end{pmatrix}\n\\]\n\n\n\n\n\nMatter deforms galaxies through weak lensing, by a spin-0 field, the convergence \\(\\kappa\\), and a spin-2 field, the two components of the shear \\(\\gamma\\)\n\nFun fact: \\(\\kappa\\), \\(\\gamma\\) relate like \\(Q\\), \\(U\\): \\(\\gamma_1 + i\\gamma_2\\) is the same mathematical object as \\(Q + iU\\), and splits into \\(E\\) and \\(B\\) modes in the same way"
+    "text": "Convergence and shear\n\n\n\n\n\n\n\n\n\n\n\n\ngalaxy\nconvergence \\(\\kappa\\) (spin 0)\nshear \\(\\gamma_1, \\gamma_2\\) (spin 2)\n\n\n\\[\n\\mathbf{A} = \\begin{pmatrix} 1-\\kappa-\\gamma_1 & -\\gamma_2 \\\\ -\\gamma_2 & 1-\\kappa+\\gamma_1 \\end{pmatrix}\n\\]\n\n\n\nMatter deforms galaxies through weak lensing, by a spin-0 field, the convergence \\(\\kappa\\), and a spin-2 field, the two components of the shear \\(\\gamma\\)\n\nFun fact: \\(\\gamma\\) relates to \\(Q\\), \\(U\\): \\(\\gamma_1 + i\\gamma_2\\) is the same mathematical object as \\(Q + iU\\), and splits into \\(E\\) and \\(B\\) modes in the same way"
   },
   {
-    "objectID": "2026_10_PhD/index.html#kaisersquires-on-the-sphere",
-    "href": "2026_10_PhD/index.html#kaisersquires-on-the-sphere",
+    "objectID": "2026_10_PhD/index.html#tomographic-projection-of-overdensity",
+    "href": "2026_10_PhD/index.html#tomographic-projection-of-overdensity",
     "title": "Differentiable Field-Level Cosmology",
-    "section": "Kaiser–Squires on the sphere",
-    "text": "Kaiser–Squires on the sphere\n\n\n\nFrom \\(\\kappa\\) to \\(\\gamma\\)\n\n\\[\n\\gamma^E_{\\ell m} = -\\sqrt{\\frac{(\\ell+2)(\\ell-1)}{\\ell(\\ell+1)}}\\;\\kappa_{\\ell m}, \\qquad \\gamma^B_{\\ell m} = 0\n\\] \\[\n\\gamma_1 + i\\gamma_2 = \\sum_{\\ell m} \\gamma^E_{\\ell m}\\;{}_2Y_{\\ell m}\n\\]\n\n\nFrom \\(\\gamma\\) back to \\(\\kappa\\)\n\n\\[\n\\kappa_{\\ell m} = -\\sqrt{\\frac{\\ell(\\ell+1)}{(\\ell+2)(\\ell-1)}}\\;\\gamma^E_{\\ell m}\n\\]\n\n\n\n\n \nconvergence κ\n\n\n\n\n\n\n \nshear γ1\n\n\n \nshear γ2\n\n\n\n\n\n\n\nKaiser–Squires is a simple per-\\(\\ell\\) rescaling between \\(\\kappa\\) and the \\(E\\)-mode of the shear: one field, two views"
-  },
-  {
-    "objectID": "2026_10_PhD/index.html#tomographic-reconstruction",
-    "href": "2026_10_PhD/index.html#tomographic-reconstruction",
-    "title": "Differentiable Field-Level Cosmology",
-    "section": "Tomographic reconstruction",
-    "text": "Tomographic reconstruction\n\n\n\nmatter density field\nbin 4\nbin 3\nbin 2\nbin 1\nκ bin 1\nκ bin 2\nκ bin 3\nκ bin 4\nobserver\n\n\n\n\n\n\nEach source bin sees the integral of all the matter in front of it: \\(\\kappa_i(\\hat n) = \\int_0^{\\chi_i} q_i(\\chi)\\,\\delta(\\chi\\hat n,\\chi)\\,\\mathrm{d}\\chi\\)\nFarther bins cross more matter and see a stronger \\(\\kappa\\); comparing bins follows the growth of structure along the line of sight"
-  },
-  {
-    "objectID": "2026_10_PhD/index.html#tomographic-bins",
-    "href": "2026_10_PhD/index.html#tomographic-bins",
-    "title": "Differentiable Field-Level Cosmology",
-    "section": "Tomographic bins",
-    "text": "Tomographic bins\n\n\n\n\n\n\nEach bin is sensitive to matter about half-way to its galaxies\nDES Y3 source redshift distributions"
+    "section": "Tomographic projection of overdensity",
+    "text": "Tomographic projection of overdensity\n\n\n\n\\[\\delta = \\frac{\\rho - \\bar{\\rho}}{\\bar{\\rho}}\\]\nmatter density field\n\\(\\delta_4\\)\n\\(\\delta_3\\)\n\\(\\delta_2\\)\n\\(\\delta_1\\)\nκ bin 1\nκ bin 2\nκ bin 3\nκ bin 4\nobserver\n\n\n\n\n\n\nEach source bin is lensed by the all the matter in front of it: \\(\\kappa_i(\\hat n) = \\int_0^{\\chi_i} q_i(\\chi)\\,\\delta(\\chi\\hat n,\\chi)\\,\\mathrm{d}\\chi\\)\ncomparing bins, probes the growth of structure along the line of sight"
   },
   {
     "objectID": "2026_10_PhD/index.html#from-shear-to-cosmology",
     "href": "2026_10_PhD/index.html#from-shear-to-cosmology",
     "title": "Differentiable Field-Level Cosmology",
     "section": "From shear to cosmology",
-    "text": "From shear to cosmology\n\n\n\nDATA\n\n\n\ngalaxy\nshapes\n\n\n\n\n\n \nshear \\(\\gamma_1, \\gamma_2\\)\n\n\nInverse Kaiser–Squires\n\n\n\n \nconvergence \\(\\kappa\\) per bin\n\n\n\n\n\nmeasured\n\\(\\hat C_\\ell^{\\,ij}\\)\n\n\n\n\n\nTHEORY\n\n\n\\(\\Omega_\\mathrm{m},\\)\n\\(\\sigma_8, \\dots\\)\n\n\n\n\n\n\nmatter spectrum \\(P(k, z)\\)\n\n\nLimber, with the lensing kernels \\(q_i(\\chi)\\)\n\n\n\npredicted\n\\(C_\\ell^{\\,ij}(\\Omega_\\mathrm{m}, \\sigma_8)\\)\n\n\n\n\ncompare\n↓\n\\(\\Omega_\\mathrm{m},\\ \\sigma_8\\)\n\n\n\n\n\n\n\nSame recipe as the CMB: compress the maps into angular power spectra \\(C_\\ell\\) and compare them with the prediction\nThis is called a two-point correlation analysis (2PCF)"
+    "text": "From shear to cosmology\n\n\n\nDATA\n\n\n\ngalaxy\nshapes\n\n\n\n\n\n \nshear \\(\\gamma_1, \\gamma_2\\)\n\n\nInverse Kaiser–Squires\n\n\n\n \nconvergence \\(\\kappa\\) per bin\n\n\n\n\n\nmeasured\n\\(\\hat C_\\ell^{\\,ij}\\)\n\n\n\n\n\nTHEORY\n\n\n\\(\\theta = (\\Omega_\\mathrm{m}, \\dots)\\)\n\n\n\n\n\n\nmatter spectrum \\(P(k, z)\\)\n\n\nLimber, with the lensing kernels \\(q_i(\\chi)\\)\n\n\n\npredicted\n\\(C_\\ell^{\\,ij}(\\theta)\\)\n\n\n\n\ncompare\n↓\ninfer \\(\\theta\\)\n\n\n\n\n\n\n\nIn traditional anaysis we compress the maps into angular power spectra \\(C_\\ell\\) and compare them with the prediction\nThis is called a two-point correlation function (2PCF)"
   },
   {
-    "objectID": "2026_10_PhD/index.html#the-two-point-analysis",
-    "href": "2026_10_PhD/index.html#the-two-point-analysis",
+    "objectID": "2026_10_PhD/index.html#the-target-of-2pcf-analysis",
+    "href": "2026_10_PhD/index.html#the-target-of-2pcf-analysis",
     "title": "Differentiable Field-Level Cosmology",
-    "section": "The two-point analysis",
-    "text": "The two-point analysis\n \n\n\n\n\n\n\n\n\n\n\n\\[\nC_\\ell^{ij} = \\int \\mathrm{d}\\chi\\, \\frac{q_i(\\chi)\\,q_j(\\chi)}{\\chi^2}\\; P\\!\\left(k=\\tfrac{\\ell+1/2}{\\chi}, z\\right)\n\\]\n\nEach multipole \\(\\ell\\) reads the matter spectrum at \\(k = \\ell/\\chi\\), weighted by the lensing kernels \\(q_i\\) of the tomographic bins\n\n\n\n\n\n\n\n\n\n\n\n\n\\(\\Omega_\\mathrm{m}\\): how much matter · \\(\\sigma_8\\): how clumpy it is on \\(8\\,h^{-1}\\mathrm{Mpc}\\) scales\nWeak lensing probes both parameters, and best the combination \\(S_8 = \\sigma_8\\sqrt{\\Omega_\\mathrm{m}/0.3}\\)"
+    "section": "The target of 2PCF analysis",
+    "text": "The target of 2PCF analysis\n\n  \n\n\n\n\n\n\n\n\n \n\n\n\n\\(\\Omega_\\mathrm{m}\\): how much matter\n\\(\\sigma_8\\): how clumpy it is on \\(8\\,h^{-1}\\mathrm{Mpc}\\) scales\nWeak lensing analysis targets the combination \\(S_8 = \\sigma_8\\sqrt{\\Omega_\\mathrm{m}/0.3}\\)"
   },
   {
     "objectID": "2026_10_PhD/index.html#current-constraints-on-s_8",
     "href": "2026_10_PhD/index.html#current-constraints-on-s_8",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Current constraints on \\(S_8\\)",
-    "text": "Current constraints on \\(S_8\\)\n\n\n\n\n\n\n\n\n\n\nLensing has sat below the CMB: the \\(S_8\\) tension, now shrinking with better data"
+    "text": "Current constraints on \\(S_8\\)\n\n\n\n\n\n\nAsgari+21, Secco/Amon+22, Dalal+23, DES & KiDS 2023, Wright+25, DES Y6 2026, Planck 2018 VI"
   },
   {
     "objectID": "2026_10_PhD/index.html#limitation-of-the-two-point-analysis",
     "href": "2026_10_PhD/index.html#limitation-of-the-two-point-analysis",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Limitation of the two-point analysis",
-    "text": "Limitation of the two-point analysis\n\n\n\n\n \nthe cosmic web\n\n \na Gaussian field with the same \\(C_\\ell\\)\n\n\n\n\n\n\n\n\n\n\n\nThe 2PCF captures only the Gaussian features of a field\nWe need to go beyond the 2PCF to extract more physical information: Contribution 2"
+    "text": "Limitation of the two-point analysis\n\n\n\n\n \nthe cosmic web, non-Gaussian\n\n \na Gaussian field\n\n\n\n\n\n\n\n\n\n\n\nThe 2PCF captures only the Gaussian features of a field"
   },
   {
-    "objectID": "2026_10_PhD/index.html#the-omega_mathrmmsigma_8-degeneracy",
-    "href": "2026_10_PhD/index.html#the-omega_mathrmmsigma_8-degeneracy",
+    "objectID": "2026_10_PhD/index.html#two-point-degeneracy",
+    "href": "2026_10_PhD/index.html#two-point-degeneracy",
     "title": "Differentiable Field-Level Cosmology",
-    "section": "The \\(\\Omega_\\mathrm{m}\\)–\\(\\sigma_8\\) degeneracy",
-    "text": "The \\(\\Omega_\\mathrm{m}\\)–\\(\\sigma_8\\) degeneracy\n\n\n\n\n\n\nDES Y3 cosmic shear \\(C_\\ell\\), Doux et al. (2022)\n\n\n\n\nThe two-point posterior is degenerate: lensing pins down \\(S_8\\), not \\(\\Omega_\\mathrm{m}\\) and \\(\\sigma_8\\) separately"
+    "section": "Limitation of the two-point analysis",
+    "text": "Limitation of the two-point analysis\n\n\n\nDES Y6 cosmic shear (2026)\n\n\n\n\n\nDES Y6 cosmic shear, DES Collaboration (2026), arXiv:2602.10065, Fig. 3 · CMB: Planck 2018, ACT DR6 and SPT-3G, TT+TE+EE+lowE, no lensing\n\n\n\n\nWe need to go beyond the 2PCF to extract more physical information: Contribution 2"
   },
   {
     "objectID": "2026_10_PhD/index.html#from-model-to-observation",
     "href": "2026_10_PhD/index.html#from-model-to-observation",
     "title": "Differentiable Field-Level Cosmology",
     "section": "From model to observation",
-    "text": "From model to observation\n\n\n\n\n\n\n\nTarget: the tensor-to-scalar ratio \\(r\\)the energy scale of inflation\n\nObstacle: Galactic foregrounds hide the primordial \\(B\\)-modes\n\n\n\n\nContribution 1Spatially varying component separation for space-based telescopes\n\n\n\n\nTarget: \\(\\Omega_\\mathrm{m}\\) and \\(\\sigma_8\\)dark matter and the late-time expansion\n\nObstacle: the two-point analysis misses the non-Gaussian information\n\n\n\n\nContribution 2Field-level inference for Stage IV weak lensing surveysusing differentiable forward models\n\n\n\n\n\n\n\nHow do we infer the cosmological parameters from these two probes?"
+    "text": "From model to observation\n\n\n\n\n\n\n\n\nTarget: the tensor-to-scalar ratio \\(r\\)the energy scale of inflation\n\n\nTarget: \\(\\Omega_\\mathrm{m}\\) and \\(\\sigma_8\\)Dark matter distribution and growth of structure\n\n\nObstacle: Galactic foregrounds hide the primordial \\(B\\)-modes\n\n\nObstacle: Traditional analysis does not capture non-Gaussianities of the cosmic shear.\n\n\n\nContribution 1Spatially varying component separation for space-based telescopes\n\n\n\n\nContribution 2Field-level inference for Stage IV weak lensing surveysusing differentiable forward models\n\n\n\n\n\n\nHow do we infer physical parameters from these cosmological probes?"
   },
   {
     "objectID": "2026_10_PhD/index.html#inverse-problems-in-cosmology",
@@ -1215,14 +1194,14 @@
     "href": "2026_10_PhD/index.html#solving-inverse-problems-analytical-likelihood",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Solving Inverse Problems : Analytical likelihood",
-    "text": "Solving Inverse Problems : Analytical likelihood\n\nAnalytical inversion (Stompor et al. 2009)\n\n\n\\[\\mathbf{d} = \\mathbf{A}(\\boldsymbol\\theta)\\,\\mathbf{s} + \\mathbf{n}\\]\n\nthe data are linear in the signal \\(\\mathbf{s}\\), and the mixing \\(\\mathbf{A}\\) depends on a few parameters \\(\\boldsymbol\\theta\\)\n\n\\[-2\\ln\\mathcal{L}(\\boldsymbol\\theta,\\mathbf{s}) = \\big(\\mathbf{d}-\\mathbf{A}\\mathbf{s}\\big)^{\\top}\\mathbf{N}^{-1}\\big(\\mathbf{d}-\\mathbf{A}\\mathbf{s}\\big)\\]\n\nfor Gaussian noise of covariance \\(\\mathbf{N}\\)\n\n\\[\\hat{\\mathbf{s}}(\\boldsymbol\\theta) = \\left(\\mathbf{A}^{\\top}\\mathbf{N}^{-1}\\mathbf{A}\\right)^{-1}\\mathbf{A}^{\\top}\\mathbf{N}^{-1}\\mathbf{d}\\]\n\nsetting the derivative with respect to \\(\\mathbf{s}\\) to zero\n\n\\[-2\\ln\\mathcal{L}(\\boldsymbol\\theta) = -\\left(\\mathbf{A}^{\\top}\\mathbf{N}^{-1}\\mathbf{d}\\right)^{\\top}\\left(\\mathbf{A}^{\\top}\\mathbf{N}^{-1}\\mathbf{A}\\right)^{-1}\\left(\\mathbf{A}^{\\top}\\mathbf{N}^{-1}\\mathbf{d}\\right)\\]\n\nsubstituting \\(\\hat{\\mathbf{s}}\\) back, up to a constant, leaves a likelihood of \\(\\boldsymbol\\theta\\) alone\n\n\n\n\n\nThe signal \\(\\mathbf{s}\\) is removed analytically, so only the few parameters \\(\\boldsymbol\\theta\\) are searched\nThis requires a model linear in \\(\\mathbf{s}\\) with Gaussian noise"
+    "text": "Solving Inverse Problems : Analytical likelihood\n\nAnalytical inversion (Stompor et al. 2009)\n\n\n\\[\\mathbf{d} = \\mathbf{A}(\\boldsymbol\\theta)\\,\\mathbf{s} + \\mathbf{n}\\]\n\nthe data are linear in the signal \\(\\mathbf{s}\\), and the mixing \\(\\mathbf{A}\\) depends on a few parameters \\(\\boldsymbol\\theta\\)\n\n\\[-2\\ln\\mathcal{L}(\\boldsymbol\\theta,\\mathbf{s}) = \\big(\\mathbf{d}-\\mathbf{A}\\mathbf{s}\\big)^{\\top}\\mathbf{N}^{-1}\\big(\\mathbf{d}-\\mathbf{A}\\mathbf{s}\\big)\\]\n\nfor Gaussian noise of covariance \\(\\mathbf{N}\\)\n\n\\[\\hat{\\mathbf{s}}(\\boldsymbol\\theta) = \\left(\\mathbf{A}^{\\top}\\mathbf{N}^{-1}\\mathbf{A}\\right)^{-1}\\mathbf{A}^{\\top}\\mathbf{N}^{-1}\\mathbf{d}\\]\n\nsetting the derivative with respect to \\(\\mathbf{s}\\) to zero\n\n\\[-2\\ln\\mathcal{L}(\\boldsymbol\\theta) = -\\left(\\mathbf{A}^{\\top}\\mathbf{N}^{-1}\\mathbf{d}\\right)^{\\top}\\left(\\mathbf{A}^{\\top}\\mathbf{N}^{-1}\\mathbf{A}\\right)^{-1}\\left(\\mathbf{A}^{\\top}\\mathbf{N}^{-1}\\mathbf{d}\\right)\\]\n\nsubstituting \\(\\hat{\\mathbf{s}}\\) back, up to a constant, leaves a likelihood of \\(\\boldsymbol\\theta\\) alone\n\n\n\n\nAnalytical inversion requires a model linear in \\(\\mathbf{s}\\) with Gaussian noise"
   },
   {
     "objectID": "2026_10_PhD/index.html#solving-inverse-problems-forward-modelling",
     "href": "2026_10_PhD/index.html#solving-inverse-problems-forward-modelling",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Solving Inverse Problems : Forward Modelling",
-    "text": "Solving Inverse Problems : Forward Modelling\n\nForward modelling\n\n\nImplicit inference\n\n\n\nExplicit inference\n\n\n\n\n\\[\\hat{\\mathbf{d}} = \\mathcal{A}(\\mathbf{s},\\boldsymbol\\theta)\\]\n\n\n\\[-\\ln\\mathcal{L}(\\boldsymbol\\theta,\\mathbf{s}) \\;\\propto\\; \\frac{\\lVert \\hat{\\mathbf{d}} - \\mathbf{d} \\rVert_2^2}{\\sigma^2}\\]\n\n\n\n\n\nExplicit inference is more interpretable than its implicit counterpart\nIt fits the latent field \\(\\mathbf{s}\\) together with \\(\\boldsymbol\\theta\\), instead of marginalising over it\n\n\n\n\n\n\n\nThis thesis uses explicit inference for both the analytical model and the forward model"
+    "text": "Solving Inverse Problems : Forward Modelling\nForward modelling\n\n\n\\[\\hat{\\mathbf{d}} = \\mathcal{A}(\\mathbf{s},\\boldsymbol\\theta)\\]\n\n\n\\[-\\ln\\mathcal{L}(\\boldsymbol\\theta,\\mathbf{s}) \\;\\propto\\; \\frac{\\lVert \\hat{\\mathbf{d}} - \\mathbf{d} \\rVert_2^2}{\\sigma^2}\\]\n\n\n\n\nImplicit inference\n\n\n\nExplicit inference\n\n\n\n\n\n\n\nExplicit inference is more interpretable than its implicit counterpart\nIt fits the latent field \\(\\mathbf{s}\\) together with \\(\\boldsymbol\\theta\\), instead of marginalising over it\n\n\n\n\n\n\n\nThis thesis uses explicit inference for both the analytical model and the forward model"
   },
   {
     "objectID": "2026_10_PhD/index.html#bayesian-inference-in-cosmology",
@@ -1232,46 +1211,67 @@
     "text": "Bayesian inference in cosmology\n\n\nBayes’ theorem\n\n\\[\\underbrace{p(\\boldsymbol\\theta\\mid\\mathbf{d})}_{\\text{posterior}} \\;=\\; \\frac{\\overbrace{p(\\mathbf{d}\\mid\\boldsymbol\\theta)}^{\\text{likelihood}}\\;\\overbrace{p(\\boldsymbol\\theta)}^{\\text{prior}}}{\\underbrace{p(\\mathbf{d})}_{\\text{evidence}}}\\]\n\n\n\\[p(\\boldsymbol\\theta\\mid\\mathbf{d}) \\;\\propto\\; p(\\mathbf{d}\\mid\\boldsymbol\\theta)\\;p(\\boldsymbol\\theta)\\]\n\n\nJoint probabilistic modelling\n\n\\[p(\\boldsymbol\\theta,\\mathbf{s}\\mid\\mathbf{d}) \\;\\propto\\; \\underbrace{p(\\mathbf{d}\\mid\\mathbf{s},\\boldsymbol\\theta)}_{\\text{likelihood}}\\;\\underbrace{p(\\mathbf{s}\\mid\\boldsymbol\\theta)}_{\\text{latent prior}}\\;\\underbrace{p(\\boldsymbol\\theta)}_{\\text{prior}}\\]"
   },
   {
-    "objectID": "2026_10_PhD/index.html#optimising-the-posterior",
-    "href": "2026_10_PhD/index.html#optimising-the-posterior",
+    "objectID": "2026_10_PhD/index.html#exploring-the-posterior",
+    "href": "2026_10_PhD/index.html#exploring-the-posterior",
     "title": "Differentiable Field-Level Cosmology",
-    "section": "Optimising the posterior",
-    "text": "Optimising the posterior\n\n\nMinimising the negative log-likelihood\n\n\n \n\n\n\n\nSampling the full posterior\n\n\n \n\n\n\n\n\n\n\n\nHow do we measure how much we trust the result?\n\n\n\n\n\n\n\nThe inverse Hessian of \\(-\\ln\\mathcal{L}\\) at the minimum gives the covariance, \\(\\mathbf{C} = \\mathbf{H}^{-1}\\), and with it the confidence intervals, assuming the posterior is Gaussian\n\n\n\n\n\n\nThe samples give the credible regions directly: the smallest regions holding 68, 95 and 99.7 % of them\n\n\n\n\n\n\n\n\nBoth methods become more efficient with a differentiable likelihood"
+    "section": "Exploring the posterior",
+    "text": "Exploring the posterior\n\n\n\n\nFinding the maximum a posteriori (MAP)\n \n\nSampling the full posterior\n \n\n\n\n\n\n\n\n\n\nHow do we measure how much we trust the result?\n\n\n\n\n\n\nBoth methods become more efficient with a differentiable likelihood"
   },
   {
     "objectID": "2026_10_PhD/index.html#differentiable-programming",
     "href": "2026_10_PhD/index.html#differentiable-programming",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Differentiable programming",
-    "text": "Differentiable programming\n \n\n\n   \n\n\n\n\nJAX computes exact gradients of numerical code by automatic differentiation\nCustom gradients replace the automatic ones where memory or speed requires it\nThe same code runs on CPUs, GPUs and multi-GPU clusters\nI used Optax for optimisation\nBlackJAX and NumPyro for sampling\n\n\n\n\n\n\n\nCan better numerical methods extract more cosmology from the same data?"
+    "text": "Differentiable programming\n \n\n\n   \n\n\n\n\nJAX computes exact gradients of numerical code by automatic differentiation\nThe same code runs on CPUs, GPUs and multi-GPU clusters\nI used Optax for optimisation\nBlackJAX and NumPyro for sampling\n\n\n\n\n\n\n\nCan better numerical methods improve cosmological pipelines?"
   },
   {
     "objectID": "2026_10_PhD/index.html#from-sky-data-to-clean-cmb-maps",
     "href": "2026_10_PhD/index.html#from-sky-data-to-clean-cmb-maps",
     "title": "Differentiable Field-Level Cosmology",
     "section": "From sky data to clean CMB maps",
-    "text": "From sky data to clean CMB maps\n\n\n\n\n\n\n\n\n\n\n\nCMB component separation\n\n\n\n\nLiteBIRD observes the sky in 15 frequency bands, from 40 to 402 GHz\nThe CMB must be separated from the foregrounds that contaminate it\nOnly then can \\(r\\) be estimated without bias"
+    "text": "From sky data to clean CMB maps\n\n\n\n\n\n\n\n\n\n\n\nCMB component separation\n\n\n\n\nLiteBIRD observes the sky in 12 frequency bands, from 40 to 402 GHz\nTo estimate \\(r\\), the CMB must be separated from the foregrounds that contaminate it"
+  },
+  {
+    "objectID": "2026_10_PhD/index.html#foreground-spectral-energy-distributions",
+    "href": "2026_10_PhD/index.html#foreground-spectral-energy-distributions",
+    "title": "Differentiable Field-Level Cosmology",
+    "section": "Foreground spectral energy distributions",
+    "text": "Foreground spectral energy distributions\n\n\n\n\n\n\n\n\nEach component has its own SED: synchrotron dominates at low frequencies, dust at high frequencies\nThe primordial \\(B\\) modes are best seen near the foreground minimum, around 80 GHz"
   },
   {
     "objectID": "2026_10_PhD/index.html#parametric-component-separation-the-spectral-model",
     "href": "2026_10_PhD/index.html#parametric-component-separation-the-spectral-model",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Parametric component separation: the spectral model",
-    "text": "Parametric component separation: the spectral model\n\nSynchrotron and dust (Galactic foregrounds)\n\n\n\nSynchrotron: power law\n\\[A^{\\mathrm{sync}}_\\nu({\\color{#3b6fb6}\\beta_s}) \\;\\propto\\; \\left(\\frac{\\nu}{\\nu_0}\\right)^{\\color{#3b6fb6}\\beta_s}\\]\n\n\nPlanck: synchrotron\n\n\nDust: modified black body\n\\[A^{\\mathrm{dust}}_\\nu({\\color{#d68910}\\beta_d}, {\\color{#d68910}T_d}) \\;\\propto\\; \\left(\\frac{\\nu}{\\nu_0}\\right)^{{\\color{#d68910}\\beta_d}+1}\\frac{e^{h\\nu_0/k{\\color{#d68910}T_d}}-1}{e^{h\\nu/k{\\color{#d68910}T_d}}-1}\\]\n\n\nPlanck: thermal dust\n\n\nThe spectral likelihood\n\n\\[\\mathbf{d}_\\nu = A^{\\mathrm{cmb}}_\\nu\\,\\mathbf{s}_{\\mathrm{cmb}} + A^{\\mathrm{dust}}_\\nu({\\color{#d68910}\\beta_d},{\\color{#d68910}T_d})\\,\\mathbf{s}_{\\mathrm{dust}} + A^{\\mathrm{sync}}_\\nu({\\color{#3b6fb6}\\beta_s})\\,\\mathbf{s}_{\\mathrm{sync}} + \\mathbf{n}_\\nu\\]\n\n\n\n\n\n\\[-2\\ln\\mathcal{L}(\\boldsymbol\\beta) = -\\left(\\mathbf{A}^{\\top}\\mathbf{N}^{-1}\\mathbf{d}\\right)^{\\top}\\left(\\mathbf{A}^{\\top}\\mathbf{N}^{-1}\\mathbf{A}\\right)^{-1}\\left(\\mathbf{A}^{\\top}\\mathbf{N}^{-1}\\mathbf{d}\\right), \\qquad \\boldsymbol\\beta = ({\\color{#d68910}\\beta_d}, {\\color{#d68910}T_d}, {\\color{#3b6fb6}\\beta_s})\\]"
+    "text": "Parametric component separation: the spectral model\nSynchrotron and dust (Galactic foregrounds)\n\n\n\nSynchrotron: power law\n\\[A^{\\mathrm{sync}}_\\nu({\\color{#3b6fb6}\\beta_s}) \\;\\propto\\; \\left(\\frac{\\nu}{\\nu_0}\\right)^{\\color{#3b6fb6}\\beta_s}\\]\n\n\nPlanck: synchrotron\n\n\nDust: modified black body\n\\[A^{\\mathrm{dust}}_\\nu({\\color{#d68910}\\beta_d}, {\\color{#d68910}T_d}) \\;\\propto\\; \\left(\\frac{\\nu}{\\nu_0}\\right)^{{\\color{#d68910}\\beta_d}+1}\\frac{e^{h\\nu_0/k{\\color{#d68910}T_d}}-1}{e^{h\\nu/k{\\color{#d68910}T_d}}-1}\\]\n\n\nPlanck: thermal dust\n\n\n\\[\\mathbf{d}_\\nu = A^{\\mathrm{cmb}}_\\nu\\,\\mathbf{s}_{\\mathrm{cmb}} + A^{\\mathrm{dust}}_\\nu({\\color{#d68910}\\beta_d},{\\color{#d68910}T_d})\\,\\mathbf{s}_{\\mathrm{dust}} + A^{\\mathrm{sync}}_\\nu({\\color{#3b6fb6}\\beta_s})\\,\\mathbf{s}_{\\mathrm{sync}} + \\mathbf{n}_\\nu\\]\n\n\n\nThe spectral likelihood\n\n\\[-2\\ln\\mathcal{L}(\\boldsymbol\\beta) = -\\left(\\mathbf{A}^{\\top}\\mathbf{N}^{-1}\\mathbf{d}\\right)^{\\top}\\left(\\mathbf{A}^{\\top}\\mathbf{N}^{-1}\\mathbf{A}\\right)^{-1}\\left(\\mathbf{A}^{\\top}\\mathbf{N}^{-1}\\mathbf{d}\\right), \\qquad \\boldsymbol\\beta = ({\\color{#d68910}\\beta_d}, {\\color{#d68910}T_d}, {\\color{#3b6fb6}\\beta_s})\\]"
+  },
+  {
+    "objectID": "2026_10_PhD/index.html#estimating-r-from-a-clean-cmb-map",
+    "href": "2026_10_PhD/index.html#estimating-r-from-a-clean-cmb-map",
+    "title": "Differentiable Field-Level Cosmology",
+    "section": "Estimating \\(r\\) from a clean CMB map",
+    "text": "Estimating \\(r\\) from a clean CMB map\n\n\n\n\n\n\\[C_\\ell^{BB,\\mathrm{model}}(r) = {\\color{#C2560A} r}\\,C_\\ell^{\\mathrm{tensor}} + C_\\ell^{\\mathrm{lens}} + C_\\ell^{\\mathrm{stat}}\\]\n\n\n\\[\\text{with}\\quad C_\\ell^{\\mathrm{stat}} = \\big\\langle C_\\ell^{BB,\\mathrm{noise}} \\big\\rangle_n\\]\n\n\n\\[C_\\ell^{BB,\\mathrm{obs}} = C_\\ell^{BB,\\mathrm{CMB}} + C_\\ell^{\\mathrm{lens}} + C_\\ell^{\\mathrm{stat}}\\]\n\n\n\n\\[-2\\ln\\mathcal{L}_\\mathrm{cosmo}(r) = f_\\mathrm{sky}\\sum_{\\ell}(2\\ell+1)\\left[\\frac{C_\\ell^{BB,\\mathrm{obs}}}{C_\\ell^{BB,\\mathrm{model}}(r)} + \\ln C_\\ell^{BB,\\mathrm{model}}(r)\\right]\\]"
   },
   {
     "objectID": "2026_10_PhD/index.html#spatially-varying-foregrounds",
     "href": "2026_10_PhD/index.html#spatially-varying-foregrounds",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Spatially varying foregrounds",
-    "text": "Spatially varying foregrounds\n\nc1d0s0 one spectrum for the whole sky\n\nsynchrotron index \\(\\beta_s\\)\ndust index \\(\\beta_d\\)\ndust temperature \\(T_d\\)\nSEDs of 300 pixels\n\n\n\n\n\n\nc1d1s1 one spectrum per pixel\n\n\n\n\n\n\n\n\n\n\n\n\nIn c1d1s1 each pixel has its own spectrum. The likelihood must model this spatial variability\nBoth skies have \\(r = 0\\) and serve for validation"
+    "text": "Spatially varying foregrounds\n\nc1d0s0 one spectrum for the whole sky\n\nsynchrotron index \\(\\beta_s\\)\ndust index \\(\\beta_d\\)\ndust temperature \\(T_d\\)\nSEDs of 300 pixels\n\n\n\n\n\n\nc1d1s1 one spectrum per pixel\n\n\n\n\n\n\n\nSky models: PySM (Thorne et al. 2017; Zonca et al. 2021; Pan-Experiment Galactic Science Group 2025)\n\n\n\n\nIn c1d1s1 each pixel has its own spectrum. The likelihood must model this spatial variability\nBoth skies have \\(r = 0\\) and serve for validation"
+  },
+  {
+    "objectID": "2026_10_PhD/index.html#healpix",
+    "href": "2026_10_PhD/index.html#healpix",
+    "title": "Differentiable Field-Level Cosmology",
+    "section": "How do we represent sky data numerically?",
+    "text": "How do we represent sky data numerically?\n\nHierarchical Equal Area iso-latitude Pixellation (of the sphere)\n\n\n\nHEALPix\n\n\n\n\n\\(N_\\mathrm{side}\\) \\(= 64\\)"
   },
   {
     "objectID": "2026_10_PhD/index.html#defining-parameter-patches-on-the-sphere",
     "href": "2026_10_PhD/index.html#defining-parameter-patches-on-the-sphere",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Defining parameter patches on the sphere",
-    "text": "Defining parameter patches on the sphere\nMulti-resolution (HEALPix) LiteBIRD Collaboration (2023)\n\n\n\n\n\\(N_{\\rm side} = 4\\) · 192 patches\n\n\n\n\\(N_{\\rm side} = 16\\) · 3072 patches\n\n\n\n\\(N_{\\rm side} = 32\\) · 12288 patches\n\n\n\n\nlow · mid · high Galactic latitude, 20 % of the sky each\n\n\n\\(N_{\\rm side}\\) per parameter in the LiteBIRD analysis\n\n\n\n\nlow\nmid\nhigh\n\n\n\n\n\\(\\beta_d\\)\n64\n64\n64\n\n\n\\(T_d\\)\n8\n4\n0\n\n\n\\(\\beta_s\\)\n4\n2\n2\n\n\n\nper Galactic region (0: one patch)\n\n\nExample: the \\(T_d\\) partition\n\n\\(T_d\\) at \\(N_{\\rm side}\\) 8 / 4 / 0 · 344 patches"
+    "text": "Defining parameter patches on the sphere\nMulti-resolution (HEALPix) LiteBIRD Collaboration (2023)\n\n\n\n\n\\(N_{\\rm side} = 4\\) · 192 patches\n\n\n\n\\(N_{\\rm side} = 16\\) · 3072 patches\n\n\n\n\\(N_{\\rm side} = 32\\) · 12288 patches\n\n\n\n\\(N_{\\rm side} = 64\\) · 49152 patches\n\n\n\n\nlow · mid · high Galactic latitude, 20 % of the sky each\n\n\n  \n\\(N_{\\rm side}\\) per parameter in the LiteBIRD analysis\n\n\n\n\nlow\nmid\nhigh\n\n\n\n\n\\(\\beta_d\\)\n64\n64\n64\n\n\n\\(T_d\\)\n8\n4\n0\n\n\n\\(\\beta_s\\)\n4\n2\n2\n\n\n\nper Galactic region (0: one patch)\n\n\nExample: the \\(T_d\\) partition\n\n\\(T_d\\) at \\(N_{\\rm side}\\) 8 / 4 / 0 · 344 patches"
   },
   {
     "objectID": "2026_10_PhD/index.html#defining-parameter-patches-on-the-sphere-1",
@@ -1285,7 +1285,7 @@
     "href": "2026_10_PhD/index.html#fast-and-robust-minimisation",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Fast and robust minimisation",
-    "text": "Fast and robust minimisation\n\n\n\n\n \n\n\n \n\n\n\nHow do we minimise?\n\n\n\nThe Newton method\n\\[\\boldsymbol\\beta_{k+1} = \\boldsymbol\\beta_k - \\mathbf{H}_k^{-1}\\,\\mathbf{g}_k\\] \\[\\mathbf{g} = \\nabla_{\\boldsymbol\\beta}\\left(-\\ln\\mathcal{L}\\right), \\qquad \\mathbf{H} = \\nabla^2_{\\boldsymbol\\beta}\\left(-\\ln\\mathcal{L}\\right)\\]\n\n\n\n\n140 GHz, LiteBIRD depth\n\n\n\n\n\n\nNoisy sky data make the Hessian poorly conditioned and hard to invert\nQuasi-Newton methods suffer most. They approximate the inverse Hessian as if the likelihood were a clean quadratic bowl"
+    "text": "Fast and robust minimisation\n\n\n\n\n \n\n\n \n\n\n\nHow do we minimise?\n\n\n\nThe Newton method\n\\[\\boldsymbol\\beta_{k+1} = \\boldsymbol\\beta_k - \\mathbf{H}_k^{-1}\\,\\mathbf{g}_k\\] \\[\\mathbf{g} = \\nabla_{\\boldsymbol\\beta}\\left(-\\ln\\mathcal{L}\\right), \\qquad \\mathbf{H} = \\nabla^2_{\\boldsymbol\\beta}\\left(-\\ln\\mathcal{L}\\right)\\]\n\n\n\n\n140 GHz, LiteBIRD depth\n\n\n\n\n\n\nNoisy sky data make the Hessian poorly conditioned and hard to invert\nQuasi-Newton methods suffer the most since they approximate the inverse Hessian."
   },
   {
     "objectID": "2026_10_PhD/index.html#adaptive-moment-based-methods",
@@ -1299,35 +1299,35 @@
     "href": "2026_10_PhD/index.html#scaling-of-adatopk",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Scaling of AdaTopK",
-    "text": "Scaling of AdaTopK\n\n\n\n\n\n\n\n\nScaling\n\n\n\nAdaTopK runs on GPUs with first-order gradients only: its cost stays flat as the number of patches grows, about 60 times faster than the reference solver at 10 000 patches\nNext: scan many patch configurations and select the best"
+    "text": "Scaling of AdaTopK\n\n\n\n\n\n\n\n\nScaling\n\n\n\nAdaTopK runs on GPUs with first-order gradients only.\nIt scales well as number of patches grows."
   },
   {
     "objectID": "2026_10_PhD/index.html#selection-criteria-for-optimal-patches",
     "href": "2026_10_PhD/index.html#selection-criteria-for-optimal-patches",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Selection criteria for optimal patches",
-    "text": "Selection criteria for optimal patches\n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\nMinimising \\(\\hat r + \\sigma(r)\\) cannot remove a primordial \\(r\\). The mixing matrix \\(\\mathbf{A}\\) contains the CMB with its known spectrum, so the recovered CMB keeps unit response for every partition\nThe guarantee is specific to map-based parametric separation. A forward model or a non-map-based method loses it"
+    "text": "Selection criteria for optimal patches\n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMinimising \\(\\hat r + \\sigma(r)\\) cannot remove a primordial \\(r\\), since we do map-based component separation and the mixing matrix is linear in the CMB."
   },
   {
     "objectID": "2026_10_PhD/index.html#selection-criteria-for-optimal-patches-1",
     "href": "2026_10_PhD/index.html#selection-criteria-for-optimal-patches-1",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Selection criteria for optimal patches",
-    "text": "Selection criteria for optimal patches\n\n\nJean Zay, IDRISNVIDIA H100 GPUs\n\nWe do this for each region\n\n\n\n\\(\\beta_d\\) patches\n\n\n\n\n\n\n\\(T_d\\) patches\n\n\n\n\n\n\n\\(\\beta_s\\) patches\n\n\n\n\n\n\n\n\n\n\n\nRun details\n\n\nOver 10 000 component separation runs on H100 GPUs\nFinishing in 4 hours"
+    "text": "Selection criteria for optimal patches\n\n\nJean Zay, IDRISNVIDIA H100 GPUs\n\nWe do this for each region\n\n\n\n\\(\\beta_d\\) patches\n\n\n\n\n\n\n\\(T_d\\) patches\n\n\n\n\n\n\n\\(\\beta_s\\) patches\n\n\n\n\n\n\n\n\n\n\n\nRun details\n\n\nOver 10 000 component separation runs on 64 NVIDIA H100 GPUs\nFinishing in 10 hours"
   },
   {
     "objectID": "2026_10_PhD/index.html#results-comparison-with-multi-resolution",
     "href": "2026_10_PhD/index.html#results-comparison-with-multi-resolution",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Results: comparison with multi-resolution",
-    "text": "Results: comparison with multi-resolution\n\n\n\n\n\nmulti-resolution (LiteBIRD PTEP)\n\n\n\n\n\\(\\beta_d\\)\n\n\n\n\\(T_d\\)\n\n\n\n\\(\\beta_s\\)\n\n\n\nspherical \\(K\\)-means (this work)\n\n\n\n\n\\(\\beta_d\\)\n\n\n\n\\(T_d\\)\n\n\n\n\\(\\beta_s\\)\n\n\n\n\n\n\n30 % lower 68 % upper limit on \\(r\\), with the same instrument, sky and noise: only the partition changes"
+    "text": "Results: comparison with multi-resolution\n\n\n\n\n\nmulti-resolution (LiteBIRD PTEP)\n\n\n\n\n\\(\\beta_d\\)\n\n\n\n\\(T_d\\)\n\n\n\n\\(\\beta_s\\)\n\n\n\nspherical \\(K\\)-means (this work)\n\n\n\n\n\\(\\beta_d\\)\n\n\n\n\\(T_d\\)\n\n\n\n\\(\\beta_s\\)\n\n\n\n\n\n30 % lower 68 % upper limit on \\(r\\), with thf same instrument, sky and noise: only the partition changes"
   },
   {
     "objectID": "2026_10_PhD/index.html#contribution-1-conclusion",
     "href": "2026_10_PhD/index.html#contribution-1-conclusion",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Contribution 1: conclusion",
-    "text": "Contribution 1: conclusion\n\n\n\nParametric component separation in JAX, almost two orders of magnitude faster, over thousands of sky partitions\nAdaTopK: a bounded optimiser built for noisy physical likelihoods\nChoosing the partition by the upper limit on \\(r\\): 30 % lower than the hand-tuned configuration\n\nKabalan et al. (2026), RASTI\n\n\n\n\n\nNow part of the Megatop pipeline for the Simons Observatory\nNext\n\npreparing its integration into the LiteBIRD component-separation pipeline\nreal data from the Simons Observatory, through Megatop\ninstrument systematics as linear operators in FURAX\nmore flexible spatial partitions of the foreground parameters"
+    "text": "Contribution 1: conclusion\n\n\n\nParametric component separation in JAX, about 60 faster, over thousands of sky partitions\nImplemented a bounded optimiser AdaTopK for noisy physical likelihoods\na data-driven criterion to choose the spatial partition.\n\nKabalan et al. (2026), RASTI\n\n\n\n\n\nNow part of the Megatop pipeline for the Simons Observatory\nNext\n\npreparing its integration into the LiteBIRD component-separation pipeline\nreal data from the Simons Observatory, through Megatop\nadding instrument systematics in FURAX"
   },
   {
     "objectID": "2026_10_PhD/index.html#a-weak-lensing-forward-model-end-to-end",
@@ -1390,63 +1390,70 @@
     "href": "2026_10_PhD/index.html#building-the-observable-requirements",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Building the observable: requirements",
-    "text": "Building the observable: requirements\n\n\n\n\n\n\nWhat volume does such an analysis need?\n\n\n\nobserver at the centre\n\n\n\nshifted-quadrant observer (0.1, 0.5, 0.9)\n\n\n\n\n\n\n\n\nfull sky, \\(f_\\mathrm{sky} = 1\\)\n\n\n\n\n\n\n\\(f_\\mathrm{sky} = 0.35\\), contains DES Y3\n\n\n\n\n\n\nSimulation-based inference on real survey data\n\n\nThe DES Y3 simulation-based analysis of Jeffrey et al. (2024, arXiv:2403.02314) used CosmoGridV1 as its validation suite. The forward model must simulate the same volume."
+    "text": "Building the observable: requirements\n\n\n\n\n\n\n\nSimulation-based inference on real survey data\n\n\nApplied on DES Y3, Jeffrey et al. (2024): SBI on real data and validated on CosmoGridV1.\nThe forward model must simulate the same volume."
+  },
+  {
+    "objectID": "2026_10_PhD/index.html#building-the-observable-requirements-1",
+    "href": "2026_10_PhD/index.html#building-the-observable-requirements-1",
+    "title": "Differentiable Field-Level Cosmology",
+    "section": "Building the observable: requirements",
+    "text": "Building the observable: requirements\n\n\n\n\nFull-sky simulation\n\n\nTo simulate the full sky, we need a box that spans twice the comoving distance of the furthest bin"
   },
   {
     "objectID": "2026_10_PhD/index.html#painting-on-spherical-shells",
     "href": "2026_10_PhD/index.html#painting-on-spherical-shells",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Painting on spherical shells",
-    "text": "Painting on spherical shells\n\n\n\nbin 4\nbin 3\nbin 2\nbin 1\nκ bin 1\nκ bin 2\nκ bin 3\nκ bin 4\nobserver\n\n\n\n\n\n\n\n\nevolved particles\n\n⟶\n\n\none HEALPix shell\n\n\n\n\n\\[r = \\lVert \\mathbf{x} - \\mathbf{x}_o \\rVert, \\qquad \\theta = \\arccos\\frac{z - z_o}{r}\\] \\[\\varphi = \\operatorname{atan2}(y - y_o,\\, x - x_o)\\] \\[p = \\texttt{ang2pix}(N_\\mathrm{side}, \\theta, \\varphi)\\]\n\n\n\n\nang2pix: jax-healpy\n\n\nImplemented in jax-healpy by Pierre Chanial. Works by binning each particle into one pixel but it is not differentiable because the pixel index is piecewise constant in the particle position, so its gradient is zero"
+    "text": "Painting on spherical shells\n\n\n\n\\(\\delta_4\\)\n\\(\\delta_3\\)\n\\(\\delta_2\\)\n\\(\\delta_1\\)\nκ bin 1\nκ bin 2\nκ bin 3\nκ bin 4\nobserver\n\n\n\n\n\n\n\n\nevolved particles\n\n⟶\n\n\none HEALPix shell\n\n\n\n\n\\[r = \\lVert \\mathbf{x} - \\mathbf{x}_o \\rVert, \\qquad \\theta = \\arccos\\frac{z - z_o}{r}\\] \\[\\varphi = \\operatorname{atan2}(y - y_o,\\, x - x_o)\\] \\[p = \\texttt{ang2pix}(N_\\mathrm{side}, \\theta, \\varphi)\\]\n\n\n\n\nang2pix: jax-healpy\n\n\nImplemented in jax-healpy Works by binning each particle into the pixel that contains. It is not differentiable."
   },
   {
     "objectID": "2026_10_PhD/index.html#painting-on-spherical-shells-1",
     "href": "2026_10_PhD/index.html#painting-on-spherical-shells-1",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Painting on spherical shells",
-    "text": "Painting on spherical shells\n\n\n\nbin 4\nbin 3\nbin 2\nbin 1\nκ bin 1\nκ bin 2\nκ bin 3\nκ bin 4\nobserver\n\n\n\n\n\n\nBilinear interpolation\n\n\n\n\n\nFour pixels, weighted by the position between their centres: get_interp_weights, implemented in jax-healpy\n\n\n\nRadial basis function interpolation\n\n\n\n\n\n\n\n\n\nThe pixel and its eight neighbours (get_all_neighbours, implemented in jax-healpy), weighted by a Gaussian kernel of adjustable width\n\n\n\n\n\n\n\n\n\n\nThe RBF scheme keeps the gradient and gives control over the smoothing\nBoth methods are implemented in jax-healpy and are differentiable"
+    "text": "Painting on spherical shells\n\n\n\n\\(\\delta_4\\)\n\\(\\delta_3\\)\n\\(\\delta_2\\)\n\\(\\delta_1\\)\nκ bin 1\nκ bin 2\nκ bin 3\nκ bin 4\nobserver\n\n\n\n\n\n\nBilinear interpolation\n\n\n\n\n\nFour pixels, weighted by the position between their centres: get_interp_weights, implemented in jax-healpy\n\n\n\nRadial basis function interpolation\n\n\n\n\n\n\n\n\n\nThe pixel and its eight neighbours (get_all_neighbours, implemented in jax-healpy), weighted by a Gaussian kernel of adjustable width\n\n\n\n\n\n\n\n\n\n\nThe RBF gives control over the smoothing\nBoth methods are differentiable"
   },
   {
     "objectID": "2026_10_PhD/index.html#creating-the-lightcone",
     "href": "2026_10_PhD/index.html#creating-the-lightcone",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Creating the lightcone",
-    "text": "Creating the lightcone\n\n\n\n\nbin 4\nbin 3\nbin 2\nbin 1\n\nκ bin 1\nκ bin 2\nκ bin 3\nκ bin 4\nobserver\n\n\n\n\n\n\n\n\n\n\n\n\nThe 3D density field is projected onto concentric spherical shells around the observer, each at its own redshift. How should these redshifts be chosen?"
+    "text": "Creating the lightcone\n\n\n\n\n\\(\\delta_4\\)\n\\(\\delta_3\\)\n\\(\\delta_2\\)\n\\(\\delta_1\\)\n\nκ bin 1\nκ bin 2\nκ bin 3\nκ bin 4\nobserver\n\n\n\n\n\n\n\n\n\n\n\n\nThe 3D density field is projected onto concentric spherical shells around the observer, each at its own redshift."
   },
   {
     "objectID": "2026_10_PhD/index.html#choosing-an-optimal-shell-spacing",
     "href": "2026_10_PhD/index.html#choosing-an-optimal-shell-spacing",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Choosing an optimal shell spacing",
-    "text": "Choosing an optimal shell spacing\n\n\nUniform in scale factor\n\n\\[a_i = a_{\\min} + \\tfrac{i}{n}\\,(1 - a_{\\min})\\]\n\n\n\n\n\n\nEqual volume\n\n\\[r_i^3 = r_{\\min}^3 + \\tfrac{i}{n}\\,(r_{\\max}^3 - r_{\\min}^3)\\]\n\nouter shells floored at 50 Mpc/\\(h\\)\n\n\n\n\n\n\nEqual volume spacing vs linear in scale factor spacing\n\n\nUniform steps in \\(a\\): the innermost shell holds three orders of magnitude fewer particles than with equal volume, so it is shot noise dominated\nThe downside of equal volume: fewer shells cover the lensing kernel of the first redshift bin\nBin 1 is therefore not used for inference"
+    "text": "Choosing an optimal shell spacing\n\n\nUniform in scale factor\n\n\\[a_i = a_{\\min} + \\tfrac{i}{n}\\,(1 - a_{\\min})\\]\n\n\n\n\n\n\nEqual volume\n\n\\[r_i^3 = r_{\\min}^3 + \\tfrac{i}{n}\\,(r_{\\max}^3 - r_{\\min}^3)\\]\n\nouter shells capped at 50 Mpc/\\(h\\)\n\n\n\n\n\n\nEqual volume spacing vs linear in scale factor spacing\n\n\nUniform steps in \\(a\\): the innermost shell holds three orders of magnitude fewer particles than with equal volume, so it is shot noise dominated\nThe downside of equal volume: fewer shells cover the lensing kernel of the first redshift bin"
   },
   {
     "objectID": "2026_10_PhD/index.html#impact-of-the-number-of-shells-on-the-accuracy",
     "href": "2026_10_PhD/index.html#impact-of-the-number-of-shells-on-the-accuracy",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Impact of the number of shells on the accuracy",
-    "text": "Impact of the number of shells on the accuracy\n\nuniform in \\(a\\)innermost shell\n\n\n\nequal volume, driftedconvergence vs Limber\n\n\n\n\n\nHow many shells?\n\n\nMore shells: each shell is thinner, so the innermost one holds fewer particles and is shot-noise dominated\nFewer shells: a few wide shells sample the lensing kernel of the first bin, so its convergence is biased low below \\(\\ell =\\) 100\nFor this work we adopt 20 shells"
+    "text": "Impact of the number of shells on the accuracy\n\nuniform in \\(a\\)innermost shell\n\n\n\nequal volume,vs Limber\n\n\n\n\n\nHow many shells?\n\n\nMore shells: each shell is thinner, so the innermost one holds fewer particles and is shot-noise dominated\nFewer shells: a few wide shells sample the lensing kernel of the first bin, so its convergence is biased low below \\(\\ell =\\) 100"
   },
   {
     "objectID": "2026_10_PhD/index.html#from-shells-to-convergence-the-born-approximation",
     "href": "2026_10_PhD/index.html#from-shells-to-convergence-the-born-approximation",
     "title": "Differentiable Field-Level Cosmology",
     "section": "From shells to convergence: the Born approximation",
-    "text": "From shells to convergence: the Born approximation\n\n\n\n\nbin 4\nbin 3\nbin 2\nbin 1\n\nκ bin 1\nκ bin 2\nκ bin 3\nκ bin 4\nobserver\n\n\n\n\n\n\n\nBorn approximation: straight lines of sight\n\n\\[\\kappa(\\hat{\\mathbf n};\\chi_s) = \\frac{3}{2}\\,\\Omega_m\\Big(\\frac{H_0}{c}\\Big)^2 \\sum_j W_j(\\chi_s)\\,\\delta_j(\\hat{\\mathbf n})\\]\n\\[W_j(\\chi_s) = \\int_{\\mathrm{shell}\\ j} \\mathrm{d}\\chi\\;\\chi\\,(1+z)\\Big(1-\\frac{\\chi}{\\chi_s}\\Big)\\]\n\n\n\n\n\n\n\n\n\\[\\kappa_i(\\hat{\\mathbf n}) = \\int \\mathrm{d}z\\; n_i(z)\\,\\kappa\\big(\\hat{\\mathbf n};\\chi_s(z)\\big)\\]\n\n\n\n\n\n\n\nThe Born approximation computes the convergence along undeflected light rays\nPost-Born ray tracing deflects them by under 1 arcmin, below the accuracy of our gravity solver"
+    "text": "From shells to convergence: the Born approximation\n\n\n\n\n\\(\\delta_4\\)\n\\(\\delta_3\\)\n\\(\\delta_2\\)\n\\(\\delta_1\\)\n\nκ bin 1\nκ bin 2\nκ bin 3\nκ bin 4\nobserver\n\n\n\n\n\n\n\nBorn approximation: straight lines of sight\n\n\\[\\kappa(\\hat{\\mathbf n};\\chi_s) = \\frac{3}{2}\\,\\Omega_m\\Big(\\frac{H_0}{c}\\Big)^2 \\sum_j W_j(\\chi_s)\\,\\delta_j(\\hat{\\mathbf n})\\]\n\\[W_j(\\chi_s) = \\int_{\\mathrm{shell}\\ j} \\mathrm{d}\\chi\\;\\chi\\,(1+z)\\Big(1-\\frac{\\chi}{\\chi_s}\\Big)\\]\n\n\n\n\n\n\n\n\n\\[\\kappa_i(\\hat{\\mathbf n}) = \\int \\mathrm{d}z\\; n_i(z)\\,\\kappa\\big(\\hat{\\mathbf n};\\chi_s(z)\\big)\\]\n\n\n\n\n\n\n\nThe Born approximation computes the convergence along undeflected light rays\nPost-Born ray tracing computes deflection angle, but its correction to the convergence power spectrim is below the arcminute scale."
   },
   {
     "objectID": "2026_10_PhD/index.html#comparing-against-cosmogrid",
     "href": "2026_10_PhD/index.html#comparing-against-cosmogrid",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Comparing against CosmoGrid",
-    "text": "Comparing against CosmoGrid\n\n\n\n\n\n\n\n\n\n\n\nValidation against an independent \\(N\\)-body code\n\n\nCosmoGrid: pkdgrav3, independent initial conditions\nConverges with the mesh. At \\(2560^3\\): within 9 % to \\(\\ell =\\) 250 (bin 3), 11 % to \\(\\ell =\\) 200 (bin 2)"
+    "text": "Comparing against CosmoGrid\n\n\n\n\n\n\n\n\n\n\n\nValidation against an independent \\(N\\)-body code\n\n\nCosmoGrid: pkdgrav3, independent initial conditions\nConverges with the mesh. At \\(4096^3\\): within 7 % to \\(\\ell =\\) 200 (bin 2), 10 % to \\(\\ell =\\) 250 (bin 3)"
   },
   {
     "objectID": "2026_10_PhD/index.html#higher-order-statistics-the-starlet-ell_1-norm",
     "href": "2026_10_PhD/index.html#higher-order-statistics-the-starlet-ell_1-norm",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Higher-order statistics: the starlet \\(\\ell_1\\) norm",
-    "text": "Higher-order statistics: the starlet \\(\\ell_1\\) norm\n\n\nA starlet transform splits the convergence map into angular scales\n\n\n\nFor convergence maps, the starlet \\(\\ell_1\\) norm is a sufficient statistic\n\n\n\n\nStarlet \\(\\ell_1\\) norm\n\n\nIntroduced for weak lensing by Ajani et al. (2021), arXiv:2101.01542\nAs constraining as a CNN: Tersenov et al. (2026), in prep.\n\n\n\n\n\nTomographic bin 3, this work against CosmoGrid\n\n\n\n\nFinest scale (\\(\\ell \\gtrsim\\) 700): 25 % narrower than CosmoGrid\nCoarser scales: within 7 %"
+    "text": "Higher-order statistics: the starlet \\(\\ell_1\\) norm\n\n\nA starlet transform splits the convergence map into angular scales\n\n\n\nFor convergence maps, the starlet \\(\\ell_1\\) norm is a sufficient statistic\n\n\n\n\nStarlet \\(\\ell_1\\) norm\n\n\nIntroduced for weak lensing by Ajani et al. (2021), arXiv:2101.01542\nAs constraining as a CNN: Tersenov et al. (2026), in prep.\n\n\n\n\n\nTomographic bin 3, this work against CosmoGrid"
   },
   {
     "objectID": "2026_10_PhD/index.html#scaling-on-supercomputers",
@@ -1460,14 +1467,14 @@
     "href": "2026_10_PhD/index.html#field-level-likelihood-and-scale-cut",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Field-level likelihood and scale cut",
-    "text": "Field-level likelihood and scale cut\n\n\nGaussian likelihood on the convergence pixels\n\n\\[-\\ln\\mathcal{L}(\\boldsymbol\\theta,\\mathbf{s}) = \\sum_i \\frac{\\lVert \\color{#c2560a}{\\hat{\\mathbf{d}}_i} - \\mathbf{d}_i \\rVert_2^2}{2\\,\\color{#3b6fb6}{\\sigma_i^2}}\\]\n\n\n\nNoise per pixel\n\n\\[\\color{#3b6fb6}{\\sigma_i} = \\frac{\\sigma_e}{\\sqrt{n_{\\mathrm{gal},i}\\;\\Omega_\\mathrm{pix}}}\\]\n\n\\(\\sigma_e\\) shape noise per component, \\(n_{\\mathrm{gal},i}\\) galaxies per arcmin² in bin \\(i\\), \\(\\Omega_\\mathrm{pix}\\) pixel area in arcmin² at \\(N_\\mathrm{side} = 256\\)\n\n\n\n\nDES Y3\nbin 1\nbin 2\nbin 3\nbin 4\n\n\n\n\n\\(n_\\mathrm{gal}\\) [arcmin\\(^{-2}\\)]\n1.476\n1.479\n1.484\n1.461\n\n\n\\(\\sigma_e\\)\n0.26\n0.26\n0.26\n0.26\n\n\n\n\n\n\n\n\nA map-level scale cut on the prediction\n\n\\[\\color{#c2560a}{\\hat{\\mathbf{d}}_i} = T_\\ell\\big[\\kappa_i(\\mathbf{s},\\boldsymbol\\theta)\\big]\\]\n\n\n\n\n\nmap2alm\n\n\n\n\n× \\(T_\\ell\\)\n\n\n\n\nalm2map"
+    "text": "Field-level likelihood and scale cut\n\n\nGaussian likelihood on the convergence pixels\n\n\\[-\\ln\\mathcal{L}(\\boldsymbol\\theta,\\mathbf{s}) = \\sum_i \\frac{\\lVert \\color{#c2560a}{\\hat{\\mathbf{d}}_i} - \\mathbf{d}_i \\rVert_2^2}{2\\,\\color{#3b6fb6}{\\sigma_i^2}}\\]\n\n\nNoise per pixel\n\n\\[\\color{#3b6fb6}{\\sigma_i} = \\frac{\\sigma_e}{\\sqrt{n_{\\mathrm{gal},i}\\;\\Omega_\\mathrm{pix}}}\\]\n\n\n\n\n\n\n\n\nDES Y3\nbin 1\nbin 2\nbin 3\nbin 4\n\n\n\n\n\\(n_\\mathrm{gal}\\) [arcmin\\(^{-2}\\)]\n1.476\n1.479\n1.484\n1.461\n\n\n\\(\\sigma_e\\)\n0.26\n0.26\n0.26\n0.26\n\n\n\n\n\\(\\sigma_e\\) shape noise per component, \\(n_{\\mathrm{gal},i}\\) galaxies per arcmin² in bin \\(i\\),\\(\\Omega_\\mathrm{pix}\\) pixel area in arcmin² at \\(N_\\mathrm{side} = 256\\)\n\n\n\n\nA map-level scale cut on the prediction\n\n\\[\\color{#c2560a}{\\hat{\\mathbf{d}}_i} = T_\\ell\\big[\\kappa_i(\\mathbf{s},\\boldsymbol\\theta)\\big]\\]\n\n\n\n\n\nmap2alm\n\n\n\n\n× \\(T_\\ell\\)\n\n\n\n\nalm2map\n\n\n\n\n\n\n\n\\[T_\\ell = \\begin{cases} 1, & \\ell \\le \\ell_\\mathrm{cut}-\\ell_\\mathrm{width} \\\\ \\tfrac12\\,(1+\\cos\\pi x), & \\ell_\\mathrm{cut}-\\ell_\\mathrm{width} &lt; \\ell &lt; \\ell_\\mathrm{cut} \\\\ 0, & \\ell \\ge \\ell_\\mathrm{cut} \\end{cases} \\qquad x = \\frac{\\ell-(\\ell_\\mathrm{cut}-\\ell_\\mathrm{width})}{\\ell_\\mathrm{width}}\\]\n\n\\(\\ell_\\mathrm{cut}\\) = 200 (bin 2), 250 (bin 3), \\(\\ell_\\mathrm{width}\\) = 50"
   },
   {
     "objectID": "2026_10_PhD/index.html#recovering-the-maximum-a-posteriori",
     "href": "2026_10_PhD/index.html#recovering-the-maximum-a-posteriori",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Recovering the maximum a posteriori",
-    "text": "Recovering the maximum a posteriori\n\nPreliminaryDES Y3 noise, \\(416^3\\) mesh, 2LPT\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe reconstruction reaches the coherence of the joint Wiener filter, the best linear reconstruction from the same maps, in both bins (0.71 and 0.73 up to \\(\\ell = 164\\)). Its starlet \\(\\ell_1\\) norm recovers 86 to 95 % of the truth’s at scales 2 to 5, and 73 % at the finest."
+    "text": "Recovering the maximum a posteriori\n\nPreliminaryDES Y3 noise, \\(1200^3\\) mesh, 2LPT\\(N_\\mathrm{side} = 1024\\), painted at \\(512\\), \\(\\ell \\le 700\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMAP from DES Y3 bins 2 and 3\n\n\nThe predicted \\(\\kappa\\) reaches the limit of the joint Wiener filter, the best linear reconstruction, in both bins\nStarlet \\(\\ell_1\\): 74–98 % of the truth at scales 1–4, ~45 % at the finest scale 0"
   },
   {
     "objectID": "2026_10_PhD/index.html#contribution-2-conclusion-and-perspectives",
@@ -1622,6 +1629,13 @@
     "title": "Differentiable Field-Level Cosmology",
     "section": "A survey mask leaks",
     "text": "A survey mask leaks"
+  },
+  {
+    "objectID": "2026_10_PhD/index.html#kaisersquires-on-the-sphere",
+    "href": "2026_10_PhD/index.html#kaisersquires-on-the-sphere",
+    "title": "Differentiable Field-Level Cosmology",
+    "section": "Kaiser–Squires on the sphere",
+    "text": "Kaiser–Squires on the sphere\n\n\n\nFrom \\(\\kappa\\) to \\(\\gamma\\)\n\n\\[\n\\gamma^E_{\\ell m} = -\\sqrt{\\frac{(\\ell+2)(\\ell-1)}{\\ell(\\ell+1)}}\\;\\kappa_{\\ell m}, \\qquad \\gamma^B_{\\ell m} = 0\n\\] \\[\n\\gamma_1 + i\\gamma_2 = \\sum_{\\ell m} \\gamma^E_{\\ell m}\\;{}_2Y_{\\ell m}\n\\]\n\n\nFrom \\(\\gamma\\) back to \\(\\kappa\\)\n\n\\[\n\\kappa_{\\ell m} = -\\sqrt{\\frac{\\ell(\\ell+1)}{(\\ell+2)(\\ell-1)}}\\;\\gamma^E_{\\ell m}\n\\]\n\n\n\n\n \nconvergence κ\n\n\n\n\n\n\n \nshear γ1\n\n\n \nshear γ2\n\n\n\n\n\n\nKaiser–Squires is a simple per-\\(\\ell\\) rescaling between \\(\\kappa\\) and the \\(E\\)-mode of the shear"
   },
   {
     "objectID": "index.html",

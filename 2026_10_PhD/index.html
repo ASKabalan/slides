@@ -6,8 +6,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-bb62276ab45c84d9efd712f51ff97b5a.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.10.18">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-5c1318cf63eba56dbef7ba16bc7d56f5.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.19">
 
   <meta name="author" content="Wassim Kabalan">
   <meta name="dcterms.date" content="2026-10-12">
@@ -36,7 +36,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-04886c4882783cafe64d1f47c0f718f6.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-33276d6d021ebec172c04134116697b7.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -202,14 +202,14 @@
 <div class="row flat bare" style="--gap: 0.9em; --justify: center;">
 <p><img data-src="PhD/1_intro/telescopes/telescope_litebird.svg" style="max-height: 150px; max-width: 50%; margin: 0;"></p>
 <div style="font-size: 0.82em; line-height: 1.45; white-space: nowrap; text-align: left; color: #2E2E2E;">
-<p>full sky, from L2<br>
-15 bands, 34–448 GHz<br>
-σ(<em>r</em>) &lt; 0.001</p>
+<p>full sky, from space<br>
+12 bands, 40–402 GHz<br>
+</p>
 </div>
 </div>
 </div>
 </div>
-<div class="figcadre fragment" data-fragment-index="1" style="display: flex; flex-direction: column; min-height: 0; font-size: 0.8em; grid-column: 3; grid-row: 2;">
+<div class="figcadre fragment" data-fragment-index="2" style="display: flex; flex-direction: column; min-height: 0; font-size: 0.8em; grid-column: 3; grid-row: 2;">
 <div class="figcadre-header">
 <p>Euclid</p>
 </div>
@@ -218,14 +218,14 @@
 <p><img data-src="PhD/1_intro/telescopes/telescope_euclid.svg" style="max-height: 150px; max-width: 50%; margin: 0;"></p>
 <div style="font-size: 0.82em; line-height: 1.45; white-space: nowrap; text-align: left; color: #2E2E2E;">
 <p>14 000 deg²<br>
-<em>z</em> ~ 0.2–2<br>
 30 gal arcmin⁻²<br>
+From Space<br>
 ~1.5 billion galaxies</p>
 </div>
 </div>
 </div>
 </div>
-<div class="figcadre fragment" data-fragment-index="2" style="display: flex; flex-direction: column; min-height: 0; font-size: 0.8em; grid-column: 2; grid-row: 3;">
+<div class="figcadre fragment" data-fragment-index="1" style="display: flex; flex-direction: column; min-height: 0; font-size: 0.8em; grid-column: 2; grid-row: 3;">
 <div class="figcadre-header">
 <p>Simons Observatory</p>
 </div>
@@ -235,7 +235,7 @@
 <div style="font-size: 0.82em; line-height: 1.45; white-space: nowrap; text-align: left; color: #2E2E2E;">
 <p>Atacama, Chile<br>
 6 bands, 27–280 GHz<br>
-σ(<em>r</em>) ≈ 0.003</p>
+</p>
 </div>
 </div>
 </div>
@@ -249,8 +249,8 @@
 <p><img data-src="PhD/1_intro/telescopes/telescope_lsst_rubin.svg" style="max-height: 150px; max-width: 50%; margin: 0;"></p>
 <div style="font-size: 0.82em; line-height: 1.45; white-space: nowrap; text-align: left; color: #2E2E2E;">
 <p>18 000 deg²<br>
-<em>z</em> ~ 0.2–2.5<br>
 30 gal arcmin⁻²<br>
+Cerro Pachón in Chile<br>
 ~2 billion galaxies</p>
 </div>
 </div>
@@ -271,50 +271,55 @@
 </div>
 <div class="r-stack">
 <div class="fragment fade-in-then-out" data-fragment-index="1">
+<h3 style="font-size: 0.95em; margin-bottom: 0; text-align: center;" id="the-friedmannlemaîtrerobertsonwalker-metric">The Friedmann–Lemaître–Robertson–Walker metric</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/1_intro/scientists/flrw_curv.svg" class="quarto-figure quarto-figure-center" style="margin: -0.4em 0 0;;width:96.0%"></p>
+</figure>
+</div>
+</div>
+<div class="fragment fade-in" data-fragment-index="2">
 <div class="columns">
-<div class="column" style="width:38%;">
+<div class="column" style="width:40%;">
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="3">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="PhD/1_intro/scientists/hubble_portrait.jpg" class="quarto-figure quarto-figure-center" style="border-radius: 6px;" height="340"></p>
 </figure>
 </div>
-</div><div class="column" style="width:62%;">
+</div>
+<div class="fragment fade-in" data-fragment-index="3">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/1_intro/scientists/hubble_expansion.gif" class="screen-only quarto-figure quarto-figure-center" height="340"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/1_intro/scientists/hubble_expansion_last.svg" class="print-only quarto-figure quarto-figure-center" height="340"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:60%;">
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="4">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="PhD/1_intro/scientists/hubble_diagram.svg" class="quarto-figure quarto-figure-center" height="340"></p>
 </figure>
 </div>
-</div></div>
 <p><span class="credit">Credit: NASA (photograph); Hubble (1929), PNAS 15, 168, Fig. 1, redrawn</span></p>
 </div>
-<div class="fragment fade-in" data-fragment-index="2">
-<div class="columns">
-<div class="column" style="width:42%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="PhD/1_intro/scientists/hubble_expansion.gif" class="screen-only quarto-figure quarto-figure-center" height="350"></p>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="PhD/1_intro/scientists/hubble_expansion_last.svg" class="print-only quarto-figure quarto-figure-center" height="350"></p>
-</figure>
-</div>
-</div><div class="column fragment" data-fragment-index="3" style="width:58%;">
-<h3 style="font-size: 0.85em; margin-bottom: 0;" id="the-friedmannlemaîtrerobertsonwalker-metric">The Friedmann–Lemaître–Robertson–Walker metric</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="PhD/1_intro/scientists/flrw_curv.svg" class="quarto-figure quarto-figure-center" style="margin: 0;;width:82.0%"></p>
-</figure>
-</div>
-<div class="r-stack">
-<div class="fragment" data-fragment-index="4">
+<div class="fragment fade-in" data-fragment-index="4">
 <div class="solutionbox">
-<div class="solutionbox-header" style="font-size: 17px;">
+<div class="solutionbox-header">
 <p>The Expanding Universe</p>
 </div>
-<div class="solutionbox-body" style="font-size: 16px;">
-<p><span class="kw">Georges Lemaître</span>: predicted the <span class="kw">primeval atom</span> as the origin of the Universe</p>
+<div class="solutionbox-body">
+<p><span class="kw">Georges Lemaître</span>: the Universe had a <span class="kw">beginning</span><br>
+It expanded from an <span class="kw">extremely dense</span> early state</p>
 </div>
 </div>
 </div>
@@ -327,7 +332,7 @@
 <h2>The Cosmic Microwave Background</h2>
 <p><br> <br></p>
 <div class="columns">
-<div class="column" style="width:51%;">
+<div class="column fragment" data-fragment-index="1" style="width:51%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="PhD/1_intro/CMB/horn_antenna.jpg" class="quarto-figure quarto-figure-center" style="margin: 0;;width:100.0%"></p>
@@ -337,27 +342,29 @@
 </div><div class="column" style="width:47%;">
 <div style="font-size: 0.75em;">
 <ul>
-<li>The <span class="kw">relic light of the hot Big Bang</span>, released 380 000 years after it</li>
+<li>A hot, dense beginning should leave <span class="kw">relic radiation</span>: predicted by <span class="kw">Gamow, Alpher &amp; Herman</span> in 1948, at a few kelvin</li>
 </ul>
-<div class="fragment">
+<div class="fragment" data-fragment-index="1">
 <ul>
-<li>At Princeton, <span class="kw">Dicke, Peebles, Roll &amp; Wilkinson</span> had predicted this relic radiation and were building a radiometer to find it</li>
-<li>The two groups published side by side in 1965: <span class="kw">Penzias &amp; Wilson</span> the measurement, Princeton the interpretation</li>
+<li>Found by accident in 1965 by <span class="kw">Penzias &amp; Wilson</span>: a <span class="kw2">3 K signal from every direction</span>, interpreted by <span class="kw">Dicke &amp; Peebles</span> at Princeton</li>
 </ul>
 </div>
-<div class="fragment">
+<div class="fragment" data-fragment-index="2">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="PhD/1_intro/CMB/cmb_map_transparent.png" class="quarto-figure quarto-figure-center" style="width:92.0%"></p>
 </figure>
 </div>
+<ul>
+<li>The <span class="kw">oldest light we can observe</span>, released when the Universe became <span class="kw2">transparent</span>, 380 000 years after the Big Bang</li>
+</ul>
 </div>
 </div>
 </div></div>
-<div class="fragment">
+<div class="fragment" data-fragment-index="2">
 <div class="solutionbox">
 <div class="solutionbox-body">
-<p>The discovery of the <span class="kw">CMB</span> confirmed the expanding universe</p>
+<p>The discovery of the <span class="kw">CMB</span> confirmed the <span class="kw">hot Big Bang</span></p>
 </div>
 </div>
 </div>
@@ -391,47 +398,56 @@
 <h2>The limits of <span class="math inline">\(\Lambda\)</span>CDM</h2>
 <div class="r-stack" style="width: 46%; margin: -1.8em auto -0.9em;">
 <p><img data-src="PhD/1_intro/lcdm/lcdm_model.svg" style="width: 100%; margin: 0;"></p>
-<p><img data-src="PhD/1_intro/lcdm/lcdm_model_cmb.svg" class="fragment fade-in-then-out" style="width: 100%; margin: 0;" data-fragment-index="1"></p>
-<p><img data-src="PhD/1_intro/lcdm/lcdm_model_lss.svg" class="fragment" style="width: 100%; margin: 0;" data-fragment-index="2"></p>
+<div class="fragment fade-out" data-fragment-index="4" style="width: 100%;">
+<p><img data-src="PhD/1_intro/lcdm/lcdm_model_cmb.svg" class="fragment" style="width: 100%; margin: 0;" data-fragment-index="1"></p>
+</div>
+<p><img data-src="PhD/1_intro/lcdm/lcdm_model_lss.svg" class="fragment" style="width: 100%; margin: 0;" data-fragment-index="4"></p>
 </div>
 <p><br> <br></p>
 <div class="columns" style="font-size: 0.8em;">
 <div class="column" style="width:49%;">
-<p><span class="kw">The early Universe</span></p>
-<div class="fragment grid" data-fragment-index="1" style="--cols: 1.34fr 1.97fr; --gap: 0.8em; --align: start; --cell-margin: 0.1em 0; --img-margin: 0.2em 0 0;">
-<div class="cell">
+<p><span class="kw fragment" data-fragment-index="1">The early Universe</span></p>
+<div class="grid" style="--cols: 1.34fr 1.97fr; --gap: 0.8em; --align: start; --cell-margin: 0.1em 0; --img-margin: 0.2em 0 0;">
+<div class="cell fragment" data-fragment-index="2">
 <p>horizon</p>
 <p><img data-src="PhD/1_intro/lcdm/cmb_horizon_transparent.png"></p>
 <p><span class="credit">Credit: NASA / WMAP Science Team</span></p>
 </div>
-<div class="cell">
+<div class="cell fragment" data-fragment-index="3">
 <p>flatness</p>
 <p><img data-src="PhD/1_intro/lcdm/flrw_flat.svg"></p>
-<p>+ monopole dilution</p>
+<p>+ magnetic monopole problem</p>
 </div>
 </div>
 </div><div class="column" style="width: 49%; box-sizing: border-box; border-left: 2px solid #d9d4c9; padding-left: 1.2em; margin-top: -0.5em; padding-top: 0.5em;">
-<p><span class="kw">The late Universe</span></p>
-<div class="cell fragment" data-fragment-index="2" style="--gap: 0.8em; --align: start; --cell-margin: 0.1em 0; --img-margin: 0.2em 0 0;">
-<div class="grid" style="--cols: 1.73fr 1.33fr; --gap: 0.8em; --align: start; --cell-margin: 0.1em 0; --img-margin: 0.2em 0 0;">
-<div class="cell">
-<p>components</p>
-<p><img data-src="PhD/1_intro/lcdm/content_pie.svg"></p>
+<p><span class="kw fragment" data-fragment-index="4">95% of the Universe is dark</span></p>
+<div class="grid" style="--cols: 1fr 1fr; --gap: 0.8em; --align: start; --cell-margin: 0.1em 0; --img-margin: 0.2em 0 0;">
+<div class="cell fragment" data-fragment-index="5">
+<p>dark energy</p>
+<p><img data-src="PhD/1_intro/lcdm/sn_hubble.svg"></p>
+<p><span class="credit">Data: DES-SN5YR (DES Collaboration)</span></p>
 </div>
-<div class="cell">
-<p>History of the expanding Universe</p>
-<p><img data-src="PhD/1_intro/lcdm/rho_vs_a.svg"></p>
-</div>
+<div class="cell fragment" data-fragment-index="6">
+<p>dark matter</p>
+<p><img data-src="PhD/1_intro/lcdm/rotation_curve.svg"></p>
+<p><span class="credit">Data: NGC 3198, SPARC (Lelli et al.&nbsp;2016)</span></p>
 </div>
 </div>
 </div></div>
 </section></section>
 <section id="outline" class="title-slide slide level1 big-title stack-top center" style="text-align: center;">
 <h1>Outline</h1>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="PhD/2_outline/rail_full.svg" class="quarto-figure quarto-figure-center" style="width:86.0%"></p>
-</figure>
+<div class="rail-stack" style="width: 98%;">
+<p><img data-src="PhD/2_outline/rail_full.svg"></p>
+<!-- Paper references under the contribution boxes of the outline map.
+     Positions are % of the map (rail.tex coordinates over its bounding box). -->
+<div class="rail-paper" style="left: 62.98%; top: 41.0%;">
+<p><a href="https://arxiv.org/abs/2604.08463" class="kw">arXiv:2604.08463</a> · submitted to <span class="kw">RASTI</span></p>
+</div>
+<div class="rail-paper" style="left: 62.98%; top: 76.7%;">
+<p><a href="https://joss.theoj.org/papers/10.21105/joss.08852" class="kw">JOSS · doi:10.21105/joss.08852</a><br>
+<span class="kw">JCAP</span> in prep.</p>
+</div>
 </div>
 </section>
 
@@ -441,6 +457,15 @@
 <div class="rail-stack">
 <p><img data-src="PhD/2_outline/rail_full.svg" class="rail-full"></p>
 <p><img data-src="PhD/2_outline/rail_focus_cmb.svg" class="rail-focus"></p>
+<!-- Paper references under the contribution boxes of the outline map.
+     Positions are % of the map (rail.tex coordinates over its bounding box). -->
+<div class="rail-paper" style="left: 62.98%; top: 41.0%;">
+<p><a href="https://arxiv.org/abs/2604.08463" class="kw">arXiv:2604.08463</a> · submitted to <span class="kw">RASTI</span></p>
+</div>
+<div class="rail-paper" style="left: 62.98%; top: 76.7%;">
+<p><a href="https://joss.theoj.org/papers/10.21105/joss.08852" class="kw">JOSS · doi:10.21105/joss.08852</a><br>
+<span class="kw">JCAP</span> in prep.</p>
+</div>
 </div>
 </section>
 <section id="inflation" class="slide level2" data-corner="PhD/1_intro/lcdm/lcdm_model_cmb.svg">
@@ -457,7 +482,6 @@
 <div class="cell">
 <p>flatness</p>
 <p><img data-src="PhD/1_intro/lcdm/flrw_flat.svg"></p>
-<p>+ monopole dilution</p>
 </div>
 </div>
 </div>
@@ -469,10 +493,10 @@
 </div>
 </div>
 </div>
-<div class="fragment" data-fragment-index="2">
+<div class="fragment" data-fragment-index="1">
 <ul>
 <li>A brief <span class="kw">accelerated expansion</span> solves the horizon and flatness problems</li>
-<li>Its <span class="kw">quantum fluctuations</span> <span class="math inline">\(\delta\phi\)</span> seed every structure we see today</li>
+<li>Its <span class="kw">quantum fluctuations</span> <span class="math inline">\(\delta\phi\)</span> seed the large scale structure we see today</li>
 </ul>
 </div>
 </section>
@@ -492,10 +516,8 @@
 r \equiv \frac{A_t}{A_s} \;\propto\; E_\mathrm{inf}^4
 \]</span></p>
 </div>
-<p>The tensor-to-scalar ratio fixes the <span class="kw">energy scale of inflation</span></p>
-</div>
-<div class="fragment">
-<p>Primordial GWs leave a unique imprint in the CMB <span class="kw2">polarisation</span></p>
+<p>The tensor-to-scalar ratio determines the <span class="kw">energy scale of inflation</span></p>
+<p>Primordial Gravitational Waves leave a unique imprint in the CMB <span class="kw">polarisation</span></p>
 </div>
 </div><div class="column" style="width:54%;">
 <div class="quarto-figure quarto-figure-center">
@@ -513,27 +535,30 @@ r \equiv \frac{A_t}{A_s} \;\propto\; E_\mathrm{inf}^4
 <section id="polarisation-of-the-cmb" class="slide level2" data-corner="PhD/1_intro/lcdm/lcdm_model_cmb.svg">
 <h2>Polarisation of the CMB</h2>
 <p><img data-src="PhD/1_intro/lcdm/lcdm_model_cmb.svg" class="corner print-only"></p>
-<div class="row bare" style="--gap: 0.6em; margin-top: 0.4em;">
-<div style="display: flex; flex-direction: column; gap: 0.5em; flex: 0 0 auto;">
-<p><span class="tag"><span class="math inline">\(A_s\)</span></span></p>
-<p><span class="tag"><span class="math inline">\(A_t\)</span></span></p>
-</div>
-<div style="position: relative; flex: 1 1 auto;">
-<p><img data-src="PhD/3_observation/cmb/03_polarisation/polarised_photon.gif" class="screen-only" style="display: block; width: 100%;"></p>
-<p><img data-src="PhD/1_intro/CMB/cmb_map_transparent.png" class="screen-only" style="position: absolute; left: 66.25%; top: 17.5%; width: 32.5%; height: 65%;"></p>
-<p><img data-src="PhD/3_observation/cmb/03_polarisation/polarised_photon_last.svg" class="print-only"></p>
-</div>
-</div>
-<div class="fragment">
-<div style="font-size: 0.85em;">
+<div style="font-size: 0.85em; margin-top: 0.3em;">
 <ul>
 <li>A quadrupole at last scattering + Thomson scattering, <span class="math inline">\(\propto |\hat{\epsilon}\cdot\hat{\epsilon}'|^2\)</span> → <span class="kw">linear polarisation</span></li>
+</ul>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/3_observation/cmb/03_polarisation/polarised_photon.gif" class="screen-only quarto-figure quarto-figure-center" style="margin: -0.4em 0 0;;width:100.0%"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/3_observation/cmb/03_polarisation/polarised_photon_last.svg" class="print-only quarto-figure quarto-figure-center" style="margin: -0.4em 0 0;;width:100.0%"></p>
+</figure>
+</div>
+<div class="fragment">
+<div style="font-size: 0.85em; margin-top: -1.6em;">
+<ul>
 <li>3 <span class="kw">Stokes parameters</span> describe linearly polarised light</li>
 </ul>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/3_observation/cmb/03_polarisation/stokes_iqu.svg" class="quarto-figure quarto-figure-center" style="width:88.0%"></p>
+<p><img data-src="PhD/3_observation/cmb/03_polarisation/stokes_iqu.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0.3em;;width:70.0%"></p>
 </figure>
 </div>
 <p><span class="credit">Adapted from: Emma Alexander, Wikimedia Commons (<a href="https://commons.wikimedia.org/wiki/File:Emmaalexander_Stokes_params.png">Stokes params</a>)</span></p>
@@ -562,7 +587,7 @@ r \equiv \frac{A_t}{A_s} \;\propto\; E_\mathrm{inf}^4
 <div class="fragment" data-fragment-index="2">
 <div class="solutionbox">
 <div class="solutionbox-body">
-<p><span class="math inline">\(Q\)</span> and <span class="math inline">\(U\)</span> depend on the <span class="kw">reference frame</span>: turning it by <span class="math inline">\(\psi\)</span> mixes them, <span class="math inline">\(\;Q' = Q\cos 2\psi + U\sin 2\psi\)</span></p>
+<p><span class="kw2"><span class="math inline">\(Q\)</span></span> and <span class="kw2"><span class="math inline">\(U\)</span></span> depend on the <span class="kw">reference frame</span>: turning it by <span class="math inline">\(45^\circ\)</span> swaps them, <span class="kw2"><span class="math inline">\(Q'\)</span></span> <span class="math inline">\(=\)</span> <span class="kw2"><span class="math inline">\(U\)</span></span> and <span class="kw2"><span class="math inline">\(U'\)</span></span> <span class="math inline">\(= -\)</span><span class="kw2"><span class="math inline">\(Q\)</span></span></p>
 </div>
 </div>
 </div>
@@ -579,22 +604,19 @@ r \equiv \frac{A_t}{A_s} \;\propto\; E_\mathrm{inf}^4
 </figure>
 </div>
 </div><div class="column" style="width:48%;">
-<div class="row fragment" data-fragment-index="1" style="--justify: space-around; --cell-margin: 0; --img-w: auto; --img-h: 130px; --img-radius: 8px;">
-<div class="cell">
+<div class="row" style="--justify: space-around; --cell-margin: 0; --img-w: auto; --img-h: 130px; --img-radius: 8px;">
+<div class="cell fragment" data-fragment-index="1">
 <p><img data-src="PhD/3_observation/cmb/05_e_and_b/eb_drop.gif" class="screen-only"></p>
 <p><img data-src="PhD/3_observation/cmb/05_e_and_b/eb_drop_first.png" class="print-only"></p>
 </div>
-<div class="cell">
+<div class="cell fragment" data-fragment-index="2">
 <p><img data-src="PhD/3_observation/cmb/05_e_and_b/eb_vortex.gif" class="screen-only"></p>
 <p><img data-src="PhD/3_observation/cmb/05_e_and_b/eb_vortex_first.png" class="print-only"></p>
 </div>
 </div>
-<div class="fragment" data-fragment-index="2">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="PhD/3_observation/cmb/05_e_and_b/eb_patterns.svg" class="quarto-figure quarto-figure-center" style="margin: 0.3em auto 0;;width:88.0%"></p>
-</figure>
-</div>
+<div class="r-stack" style="width: 88%; margin: 0.3em auto 0;">
+<p><img data-src="PhD/3_observation/cmb/05_e_and_b/eb_patterns_e.svg" class="fragment" style="width: 100%; margin: 0;" data-fragment-index="1"></p>
+<p><img data-src="PhD/3_observation/cmb/05_e_and_b/eb_patterns_b.svg" class="fragment" style="width: 100%; margin: 0;" data-fragment-index="2"></p>
 </div>
 </div></div>
 <div class="fragment" data-fragment-index="2">
@@ -602,7 +624,7 @@ r \equiv \frac{A_t}{A_s} \;\propto\; E_\mathrm{inf}^4
 <div class="solutionbox-body">
 <ul>
 <li>Density (scalar) perturbations make only <span class="kw"><span class="math inline">\(E\)</span> modes</span></li>
-<li><span class="kw"><span class="math inline">\(B\)</span> modes</span> are sourced by <span class="kw">tensor perturbations</span>: a direct window onto inflation</li>
+<li>At linear order, <span class="kw"><span class="math inline">\(B\)</span> modes</span> are only produced by <span class="kw">tensor perturbations</span></li>
 </ul>
 </div>
 </div>
@@ -617,52 +639,7 @@ r \equiv \frac{A_t}{A_s} \;\propto\; E_\mathrm{inf}^4
 <p><img data-src="PhD/3_observation/cmb/06_two_point/two_point_last.svg" class="print-only" style="position: absolute; inset: 0; width: 100%; height: 100%;"></p>
 </div>
 <p><span class="math inline">\(C(\theta) = \langle \Delta T(\hat n_1)\,\Delta T(\hat n_2)\rangle\)</span> over all pairs at separation <span class="math inline">\(\theta\)</span>: its expansion in Legendre polynomials gives the <span class="kw"><span class="math inline">\(C_\ell\)</span></span></p>
-</section>
-<section id="healpix" class="slide level2" data-corner="PhD/1_intro/lcdm/lcdm_model_cmb.svg">
-<h2>How do we represent sky data numerically?</h2>
-<p><br></p>
-<p><img data-src="PhD/1_intro/lcdm/lcdm_model_cmb.svg" class="corner print-only"></p>
-<h4 id="hierarchical-equal-area-iso-latitude-pixellation-of-the-sphere"><span class="kw">Hierarchical Equal Area iso-latitude Pixellation</span> (of the sphere)</h4>
-<div class="row" style="margin-top: -0.3em;">
-<div class="cell" style="flex: 0 0 17%; --cell-margin: 0.15em 0; --img-w: 90%;">
-<p><img data-src="PhD/3_observation/cmb/07_healpix/healpix_logo.svg"></p>
-<p><span style="display: block; font-weight: 700; font-size: 1.05em; color: #2E2E2E;">HEALPix</span></p>
-<p><img data-src="PhD/3_observation/cmb/07_healpix/nasa_logo.svg" style="width: 48%;"></p>
-</div>
-<div class="r-stack bare" style="flex: 1 1 auto;">
-<div class="fragment fade-out" data-fragment-index="1">
-<p><img data-src="PhD/3_observation/cmb/07_healpix/healpix_nside4.png" style="width: 100%;"></p>
-<p><span class="kw"><span class="math inline">\(N_\mathrm{side}\)</span></span> <span class="math inline">\(= 4\)</span></p>
-</div>
-<div class="fragment fade-in-then-out" data-fragment-index="1">
-<p><img data-src="PhD/3_observation/cmb/07_healpix/healpix_nside16.png" style="width: 100%;"></p>
-<p><span class="kw"><span class="math inline">\(N_\mathrm{side}\)</span></span> <span class="math inline">\(= 16\)</span></p>
-</div>
-<div class="fragment fade-in-then-out" data-fragment-index="2">
-<p><img data-src="PhD/3_observation/cmb/07_healpix/healpix_nside32.png" style="width: 100%;"></p>
-<p><span class="kw"><span class="math inline">\(N_\mathrm{side}\)</span></span> <span class="math inline">\(= 32\)</span></p>
-</div>
-<div class="fragment" data-fragment-index="3">
-<p><img data-src="PhD/3_observation/cmb/07_healpix/healpix_nside64.png" style="width: 100%;"></p>
-<p><span class="kw"><span class="math inline">\(N_\mathrm{side}\)</span></span> <span class="math inline">\(= 64\)</span></p>
-</div>
-</div>
-<div class="cell fragment" data-fragment-index="4" style="flex: 0 0 20%; margin-top: 70px; --cell-margin: 0 0 0.35em; --img-margin: 0; --img-radius: 8px; --img-max-w: 95%;">
-<p><img data-src="PhD/3_observation/cmb/07_healpix/detector_bolometer.jpg"></p>
-<p><img data-src="PhD/3_observation/cmb/07_healpix/detector_ccd.jpg"></p>
-<p><span class="caption" style="--cap-size: 0.62em;">Pixels on the sky, like pixels on a detector</span></p>
-</div>
-</div>
-<div class="fragment" data-fragment-index="4">
-<div class="solutionbox" style="margin-top: 0.2em;">
-<div class="solutionbox-body" style="font-size: 0.85em;">
-<ul>
-<li><span class="kw">Equal area</span>: every pixel weighs the same in a <span class="math inline">\(C_\ell\)</span></li>
-<li><span class="kw">Hierarchical</span>, <span class="math inline">\(N_\mathrm{side} = 2^k\)</span>: 12 pixels to billions; the standard of Planck, SO, LiteBIRD, and in JAX with jax-healpy</li>
-</ul>
-</div>
-</div>
-</div>
+<p><span class="credit">Planck 2018, SMICA · smoothed to 1° FWHM</span></p>
 </section>
 <section id="sht" class="slide level2" data-corner="PhD/1_intro/lcdm/lcdm_model_cmb.svg">
 <h2>Spherical Harmonic Transforms</h2>
@@ -684,11 +661,12 @@ C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
 <div class="cell">
 <p><img data-src="PhD/3_observation/cmb/08_sht/sht_map_I.svg"> <span class="caption"><em>I</em></span></p>
 </div>
-<div class="bare fragment" data-fragment-index="1">
+<div class="bare fragment" data-fragment-index="1" style="position: relative;">
 <p><img data-src="PhD/3_observation/cmb/08_sht/sht_arrow.svg" style="display: block; margin: 0 auto;" width="110"></p>
+<p><span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, 85%); font-size: 0.78em; font-weight: 600; color: #6E6E6E; white-space: nowrap;">spin-0</span></p>
 </div>
 <div class="cell fragment" data-fragment-index="1">
-<p><img data-src="PhD/3_observation/cmb/08_sht/sht_alm_T.svg"> <span class="caption"><em>a</em><sub>ℓm</sub><sup>T</sup></span></p>
+<p><img data-src="PhD/3_observation/cmb/08_sht/sht_alm_T.svg"> <span class="caption"><span class="math inline">\(|a^T_{\ell m}|^2\)</span></span></p>
 </div>
 <div class="bare fragment" data-fragment-index="2">
 <p><img data-src="PhD/3_observation/cmb/08_sht/sht_arrow.svg" style="display: block; margin: 0 auto;" width="110"></p>
@@ -699,11 +677,12 @@ C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
 <div class="cell">
 <p><img data-src="PhD/3_observation/cmb/08_sht/sht_map_Q.svg"> <span class="caption"><em>Q</em></span></p>
 </div>
-<div class="bare fragment" data-fragment-index="1">
-<p><img data-src="PhD/3_observation/cmb/08_sht/sht_arrow.svg" style="display: block; margin: 0 auto;" width="110"></p>
+<div class="bare fragment" data-fragment-index="1" style="grid-column: 2; grid-row: 2 / span 2; display: flex; align-items: center; justify-content: center; position: relative;">
+<p><img data-src="PhD/3_observation/cmb/08_sht/sht_brace_arrow.svg" style="display: block; width: 150px; height: 92%; margin: 0;"></p>
+<p><span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -120%); font-size: 0.78em; font-weight: 600; color: #6E6E6E; white-space: nowrap;">spin-2</span></p>
 </div>
 <div class="cell fragment" data-fragment-index="1">
-<p><img data-src="PhD/3_observation/cmb/08_sht/sht_alm_E.svg"> <span class="caption"><em>a</em><sub>ℓm</sub><sup>E</sup></span></p>
+<p><img data-src="PhD/3_observation/cmb/08_sht/sht_alm_E.svg"> <span class="caption"><span class="math inline">\(|a^E_{\ell m}|^2\)</span></span></p>
 </div>
 <div class="bare fragment" data-fragment-index="2">
 <p><img data-src="PhD/3_observation/cmb/08_sht/sht_arrow.svg" style="display: block; margin: 0 auto;" width="110"></p>
@@ -714,11 +693,8 @@ C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
 <div class="cell">
 <p><img data-src="PhD/3_observation/cmb/08_sht/sht_map_U.svg"> <span class="caption"><em>U</em></span></p>
 </div>
-<div class="bare fragment" data-fragment-index="1">
-<p><img data-src="PhD/3_observation/cmb/08_sht/sht_arrow.svg" style="display: block; margin: 0 auto;" width="110"></p>
-</div>
 <div class="cell fragment" data-fragment-index="1">
-<p><img data-src="PhD/3_observation/cmb/08_sht/sht_alm_B.svg"> <span class="caption"><em>a</em><sub>ℓm</sub><sup>B</sup></span></p>
+<p><img data-src="PhD/3_observation/cmb/08_sht/sht_alm_B.svg"> <span class="caption"><span class="math inline">\(|a^B_{\ell m}|^2\)</span></span></p>
 </div>
 <div class="bare fragment" data-fragment-index="2">
 <p><img data-src="PhD/3_observation/cmb/08_sht/sht_arrow.svg" style="display: block; margin: 0 auto;" width="110"></p>
@@ -740,9 +716,8 @@ C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
 <div class="solutionbox">
 <div class="solutionbox-body">
 <ul>
-<li><span class="kw">The primordial tensor perturbations</span> are a clear probe of <span class="kw"><span class="math inline">\(r\)</span></span> and of the inflation period</li>
-<li>They are measurable through <span class="kw2"><span class="math inline">\(C_\ell^{BB}\)</span></span> of the <span class="kw">CMB</span></li>
-<li>Current surveys forecast an upper bound of <span class="kw"><span class="math inline">\(r \approx 0.003\)</span></span></li>
+<li><span class="kw">The primordial tensor perturbations</span> are very faint (below than lensing B modes)</li>
+<li>Measurement of <span class="kw2"><span class="math inline">\(r\)</span></span> requires isolating the primordial B modes from all other contaminants.</li>
 </ul>
 </div>
 </div>
@@ -753,7 +728,7 @@ C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
 <p><img data-src="PhD/1_intro/lcdm/lcdm_model_cmb.svg" class="corner print-only"></p>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/3_observation/cmb/10_r_constraints/r_constraints.svg" class="quarto-figure quarto-figure-center" style="width:74.0%"></p>
+<p><img data-src="PhD/3_observation/cmb/10_r_constraints/r_constraints.svg" class="quarto-figure quarto-figure-center" style="width:90.0%"></p>
 </figure>
 </div>
 <div class="fragment">
@@ -761,7 +736,7 @@ C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
 <div class="solutionbox-body">
 <ul>
 <li>Best limit: <span class="kw"><span class="math inline">\(r &lt; 0.032\)</span></span> (95 %, Planck PR4 + BICEP/Keck 2018)</li>
-<li>The main obstacle is the <span class="kw">Galactic foregrounds</span> that obscure the <span class="kw">CMB</span>: <span class="kw2">Contribution 1</span></li>
+<li><span class="kw">Simons Observatory</span> forecasts a sensitivity of <span class="kw"><span class="math inline">\(r \approx 0.003\)</span></span></li>
 </ul>
 </div>
 </div>
@@ -772,15 +747,20 @@ C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
 <h2>The CMB data-analysis pipeline</h2>
 <div class="hl-host bare" style="margin-top: 0.2em;">
 <p><img data-src="PhD/3_observation/cmb/11_pipeline/scipol_pipeline.png" style="display: block; width: 990px;"></p>
+<p><img data-src="PhD/3_observation/cmb/11_pipeline/scipol_credit.png" style="position: absolute; right: 0.5%; bottom: 0.3%; width: 31%; margin: 0;"></p>
+<!-- one highlight box in three places: the sky stack, then detectors to map-making,
+     then component separation to parameters (two boxes cross-fading at the middle spot) -->
 <div class="fragment" data-fragment-index="1">
 <div class="fragment fade-out" data-fragment-index="3">
-<div class="hlbox fragment custom hlbox-move" data-fragment-index="2" style="--x: 6%; --y: 4.5%; --w: 27.5%; --h: 32.5%; --x2: 9.5%; --y2: 43%; --w2: 23.5%; --h2: 13.5%;">
+<div class="hlbox fragment custom hlbox-move" data-fragment-index="2" style="--x: 0.3%; --y: 2.5%; --w: 33.7%; --h: 95%; --x2: 34.6%; --y2: 2.5%; --w2: 27%; --h2: 95%;">
 
 </div>
 </div>
 </div>
-<div class="hlbox fragment" data-fragment-index="3" style="--x: 61.8%; --y: 30.2%; --w: 8.2%; --h: 33%;">
+<div class="fragment" data-fragment-index="3">
+<div class="hlbox fragment custom hlbox-move" data-fragment-index="3" style="--x: 34.6%; --y: 2.5%; --w: 27%; --h: 95%; --x2: 61.8%; --y2: 30.2%; --w2: 30.6%; --h2: 33%;">
 
+</div>
 </div>
 </div>
 </section></section>
@@ -790,6 +770,15 @@ C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
 <div class="rail-stack">
 <p><img data-src="PhD/2_outline/rail_full.svg" class="rail-full"></p>
 <p><img data-src="PhD/2_outline/rail_focus_lensing.svg" class="rail-focus"></p>
+<!-- Paper references under the contribution boxes of the outline map.
+     Positions are % of the map (rail.tex coordinates over its bounding box). -->
+<div class="rail-paper" style="left: 62.98%; top: 41.0%;">
+<p><a href="https://arxiv.org/abs/2604.08463" class="kw">arXiv:2604.08463</a> · submitted to <span class="kw">RASTI</span></p>
+</div>
+<div class="rail-paper" style="left: 62.98%; top: 76.7%;">
+<p><a href="https://joss.theoj.org/papers/10.21105/joss.08852" class="kw">JOSS · doi:10.21105/joss.08852</a><br>
+<span class="kw">JCAP</span> in prep.</p>
+</div>
 </div>
 </section>
 <section id="lss-opener" class="slide level2" data-auto-animate="true" data-visibility="uncounted">
@@ -802,22 +791,13 @@ C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
 <p><img data-src="PhD/1_intro/lcdm/lcdm_model_lss.svg" class="fragment" style="width:82.0%" data-fragment-index="2" data-id="lcdm"></p>
 </div>
 </section>
-<section id="the-large-scale-structure-of-the-universe" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">The Large-Scale Structure of the Universe</h2>
+<section id="what-dominates-the-late-universe" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">What dominates the late Universe?</h2>
 <p><img data-src="PhD/1_intro/lcdm/lcdm_model_lss.svg" class="corner" data-id="lcdm"></p>
-<p><br> <br> <br> <br> <br></p>
-<div style="width: 80%; margin: 0 auto;">
-<p><span class="kw">The late Universe</span></p>
-<div class="grid" style="--cols: 1.73fr 1.33fr; --gap: 0.8em; --align: start; --cell-margin: 0.1em 0; --img-margin: 0.2em 0 0;">
-<div class="cell">
-<p>components</p>
-<p><img data-src="PhD/1_intro/lcdm/content_pie.svg"></p>
-</div>
-<div class="cell">
-<p>History of the expanding Universe</p>
-<p><img data-src="PhD/1_intro/lcdm/rho_vs_a.svg"></p>
-</div>
-</div>
+<p><br> <br></p>
+<div style="width: 84%; margin: 0.6em auto 0;">
+<p><span class="kw">The history of the expansion</span></p>
+<p><img data-src="PhD/1_intro/lcdm/rho_vs_a.svg" style="display: block; width: 100%; height: 540px; object-fit: contain; max-width: none; max-height: none; margin: 0.4em auto 0;"></p>
 </div>
 </section>
 <section id="the-expanding-universe-and-dark-energy" class="slide level2" data-corner="PhD/1_intro/lcdm/lcdm_model_lss.svg">
@@ -826,27 +806,24 @@ C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
 <p><br> <br></p>
 <div class="columns" style="display: flex; align-items: center; min-height: 500px;">
 <div class="column" style="width:52%;">
-<p><img data-src="PhD/3_observation/weaklensing/01_expansion/redshift_light.gif" class="screen-only fragment" style="width:100.0%" data-fragment-index="1"></p>
+<p><img data-src="PhD/3_observation/weaklensing/01_expansion/redshift_light.gif" class="screen-only" style="width:100.0%"></p>
 <p><img data-src="PhD/3_observation/weaklensing/01_expansion/redshift_light_last.svg" class="print-only" style="width:100.0%"></p>
 </div><div class="column" style="width:46%;">
 <div class="grid" style="--cols: 1fr; --row-gap: 1.1em;">
-<div class="eqbox fragment" data-fragment-index="1" style="--eq-border: #2aa198; --eq-size: 0.8em; --eq-math-margin: 0.2em 0; --eq-pad: 0.2em 1.2em; text-align: center;">
+<div class="eqbox" style="--eq-border: #2aa198; --eq-size: 0.8em; --eq-math-margin: 0.2em 0; --eq-pad: 0.2em 1.2em; text-align: center;">
 <p><span class="kw" style="display: block;">redshift</span> <span class="math inline">\(1 + z = \dfrac{\lambda_\mathrm{obs}}{\lambda_\mathrm{emit}} = \dfrac{1}{a}\)</span></p>
 </div>
-<div class="eqbox fragment" data-fragment-index="2" style="--eq-border: #2aa198; --eq-size: 0.8em; --eq-math-margin: 0.2em 0; --eq-pad: 0.2em 1.2em; text-align: center;">
+<div class="eqbox fragment" data-fragment-index="1" style="--eq-border: #2aa198; --eq-size: 0.8em; --eq-math-margin: 0.2em 0; --eq-pad: 0.2em 1.2em; text-align: center;">
 <p><span class="kw" style="display: block;">scale factor</span> <span class="math inline">\(a(t),\qquad a_0 = 1,\qquad H = \dot a / a\)</span></p>
 </div>
-<div class="eqbox fragment" data-fragment-index="3" style="--eq-border: #2aa198; --eq-size: 0.8em; --eq-math-margin: 0.2em 0; --eq-pad: 0.2em 1.2em; text-align: center;">
+<div class="eqbox fragment" data-fragment-index="2" style="--eq-border: #2aa198; --eq-size: 0.8em; --eq-math-margin: 0.2em 0; --eq-pad: 0.2em 1.2em; text-align: center;">
 <p><span class="kw" style="display: block;">comoving distance</span> <span class="math inline">\(\chi(z) = \displaystyle\int_0^z \frac{c\,dz'}{H(z')}\)</span></p>
 </div>
-<div class="eqbox fragment" data-fragment-index="4" style="--eq-border: #2aa198; --eq-size: 0.8em; --eq-math-margin: 0.2em 0; --eq-pad: 0.2em 1.2em; text-align: center;">
-<p><span class="kw" style="display: block;">expansion rate</span> <span class="math inline">\(H(z) = H_0\sqrt{\Omega_m(1+z)^3 + \Omega_\Lambda}\)</span></p>
+<div class="eqbox fragment" data-fragment-index="3" style="--eq-border: #2aa198; --eq-size: 0.8em; --eq-math-margin: 0.2em 0; --eq-pad: 0.2em 1.2em; text-align: center;">
+<p><span class="kw" style="display: block;">expansion rate</span> <span class="math inline">\(H(z) = H_0\sqrt{\Omega_r(1+z)^4 + \Omega_m(1+z)^3 + \Omega_\Lambda}\)</span></p>
 </div>
 </div>
 </div></div>
-<div class="fragment" data-fragment-index="5">
-<p>Dark energy accelerates the expansion today: it sets <span class="kw"><span class="math inline">\(H(z)\)</span></span>, hence distances and the growth of structure</p>
-</div>
 </section>
 <section id="weak-gravitational-lensing" class="slide level2" data-corner="PhD/1_intro/lcdm/lcdm_model_lss.svg">
 <h2>Mapping dark matter through weak gravitational lensing</h2>
@@ -877,84 +854,31 @@ C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
 <p><span>convergence <span class="kw"><span class="math inline">\(\kappa\)</span></span> (spin 0)</span></p>
 <p><span>shear <span class="kw"><span class="math inline">\(\gamma_1, \gamma_2\)</span></span> (spin 2)</span></p>
 </div>
-<div class="fragment">
 <div class="eqbox" style="--eq-border: #2aa198; width: fit-content; margin: 0.3em auto 0; --eq-size: 1em; --eq-math-margin: 0.3em 0;">
 <p><span class="math display">\[
 \mathbf{A} = \begin{pmatrix} 1-\kappa-\gamma_1 &amp; -\gamma_2 \\ -\gamma_2 &amp; 1-\kappa+\gamma_1 \end{pmatrix}
 \]</span></p>
 </div>
-</div>
-<div class="fragment">
 <div class="solutionbox">
 <div class="solutionbox-body" style="font-size: 0.95em;">
 <p>Matter deforms galaxies through <span class="kw">weak lensing</span>, by a <span class="kw2">spin-0</span> field, the <span class="kw">convergence <span class="math inline">\(\kappa\)</span></span>, and a <span class="kw2">spin-2</span> field, the two components of the <span class="kw">shear <span class="math inline">\(\gamma\)</span></span></p>
 <div class="fragment">
-<p><span class="kw2">Fun fact</span>: <span class="kw2"><span class="math inline">\(\kappa\)</span>, <span class="math inline">\(\gamma\)</span></span> relate like <span class="kw2"><span class="math inline">\(Q\)</span>, <span class="math inline">\(U\)</span></span>: <span class="math inline">\(\gamma_1 + i\gamma_2\)</span> is the same mathematical object as <span class="math inline">\(Q + iU\)</span>, and splits into <span class="kw2"><span class="math inline">\(E\)</span> and <span class="math inline">\(B\)</span></span> modes in the same way</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="kaisersquires-on-the-sphere" class="slide level2" data-corner="PhD/1_intro/lcdm/lcdm_model_lss.svg">
-<h2>Kaiser–Squires on the sphere</h2>
-<p><img data-src="PhD/1_intro/lcdm/lcdm_model_lss.svg" class="corner print-only"></p>
-<div class="columns">
-<div class="column" style="width: 45%; padding-top: 1em;">
-<p><span class="kw">From <span class="math inline">\(\kappa\)</span> to <span class="math inline">\(\gamma\)</span></span></p>
-<div class="eqbox" style="--eq-border: #2aa198; --eq-size: 0.8em; --eq-math-margin: 0.3em 0;">
-<p><span class="math display">\[
-\gamma^E_{\ell m} = -\sqrt{\frac{(\ell+2)(\ell-1)}{\ell(\ell+1)}}\;\kappa_{\ell m}, \qquad \gamma^B_{\ell m} = 0
-\]</span> <span class="math display">\[
-\gamma_1 + i\gamma_2 = \sum_{\ell m} \gamma^E_{\ell m}\;{}_2Y_{\ell m}
-\]</span></p>
-</div>
-<div class="fragment" data-fragment-index="1">
-<p><span class="kw">From <span class="math inline">\(\gamma\)</span> back to <span class="math inline">\(\kappa\)</span></span></p>
-<div class="eqbox" style="--eq-border: #2aa198; --eq-size: 0.8em; --eq-math-margin: 0.3em 0;">
-<p><span class="math display">\[
-\kappa_{\ell m} = -\sqrt{\frac{\ell(\ell+1)}{(\ell+2)(\ell-1)}}\;\gamma^E_{\ell m}
-\]</span></p>
-</div>
-</div>
-</div><div class="column" style="width:55%;">
-<div class="cell bare" style="--img-w: 200px; --cap-size: 0.6em; --cell-margin: 0.1em 0 0;">
-<p><img data-src="PhD/3_observation/weaklensing/04_kaiser_squires/kappa.gif" class="screen-only"> <img data-src="PhD/3_observation/weaklensing/04_kaiser_squires/kappa.png" class="print-only"></p>
-<p><span class="caption">convergence κ</span></p>
-</div>
-<div style="text-align: center; margin: 0.1em 0; line-height: 0;">
-<p><span class="arrow down" style="--len: 34px; --head: 20px;"></span></p>
-</div>
-<div class="row bare" style="--gap: 24px; --justify: center; --img-w: 175px; --cap-size: 0.6em; --cell-margin: 0.1em 0 0;">
-<div class="cell">
-<p><img data-src="PhD/3_observation/weaklensing/04_kaiser_squires/gamma1.gif" class="screen-only"> <img data-src="PhD/3_observation/weaklensing/04_kaiser_squires/gamma1.png" class="print-only"></p>
-<p><span class="caption">shear γ<sub>1</sub></span></p>
-</div>
-<div class="cell">
-<p><img data-src="PhD/3_observation/weaklensing/04_kaiser_squires/gamma2.gif" class="screen-only"> <img data-src="PhD/3_observation/weaklensing/04_kaiser_squires/gamma2.png" class="print-only"></p>
-<p><span class="caption">shear γ<sub>2</sub></span></p>
-</div>
-</div>
-</div></div>
-<div class="fragment" data-fragment-index="2">
-<div class="solutionbox">
-<div class="solutionbox-body" style="font-size: 0.75em;">
-<ul>
-<li>Kaiser–Squires is a <span class="kw">simple per-<span class="math inline">\(\ell\)</span> rescaling</span> between <span class="math inline">\(\kappa\)</span> and the <span class="math inline">\(E\)</span>-mode of the shear: one field, two views</li>
-</ul>
+<p><span class="kw2">Fun fact</span>: <span class="kw2"><span class="math inline">\(\gamma\)</span></span> relates to <span class="kw2"><span class="math inline">\(Q\)</span>, <span class="math inline">\(U\)</span></span>: <span class="math inline">\(\gamma_1 + i\gamma_2\)</span> is the same mathematical object as <span class="math inline">\(Q + iU\)</span>, and splits into <span class="kw2"><span class="math inline">\(E\)</span> and <span class="math inline">\(B\)</span></span> modes in the same way</p>
 </div>
 </div>
 </div>
 </section>
-<section id="tomographic-reconstruction" class="slide level2" data-corner="PhD/1_intro/lcdm/lcdm_model_lss.svg">
-<h2>Tomographic reconstruction</h2>
+<section id="tomographic-projection-of-overdensity" class="slide level2" data-corner="PhD/1_intro/lcdm/lcdm_model_lss.svg">
+<h2>Tomographic projection of overdensity</h2>
 <p><img data-src="PhD/1_intro/lcdm/lcdm_model_lss.svg" class="corner print-only"></p>
 <div style="position: relative; height: 495px; margin-top: 0.1em;">
 <div class="tomo-diagram">
+<div class="eqbox" style="position: absolute; left: 680px; top: 20px; margin: 0; --eq-border: #25406b; --eq-size: 1.3em; --eq-math-margin: 0.15em 0; --eq-pad: 0.25em 1em;">\[\delta = \frac{\rho - \bar{\rho}}{\bar{\rho}}\]</div>
 <div class="fragment fade-out" data-fragment-index="1"><img src="PhD/3_observation/weaklensing/05_tomography/slab.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 20px; top: 0px; width: 600px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 20px; width: 600px; top: 222px;">matter density field</span></div>
-<div class="fragment" data-fragment-index="1"><img src="PhD/3_observation/weaklensing/05_tomography/box_0.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 20px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 20px; width: 135px; top: 163px;">bin 4</span></div>
-<div class="fragment" data-fragment-index="1"><img src="PhD/3_observation/weaklensing/05_tomography/box_1.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 175px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 175px; width: 135px; top: 163px;">bin 3</span></div>
-<div class="fragment" data-fragment-index="1"><img src="PhD/3_observation/weaklensing/05_tomography/box_2.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 330px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 330px; width: 135px; top: 163px;">bin 2</span></div>
-<div class="fragment" data-fragment-index="1"><img src="PhD/3_observation/weaklensing/05_tomography/box_3.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 485px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 485px; width: 135px; top: 163px;">bin 1</span></div>
+<div class="fragment" data-fragment-index="1"><img src="PhD/3_observation/weaklensing/05_tomography/box_0.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 20px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.85em; color: #2E2E2E; text-align: center; left: 20px; width: 135px; top: 156px;">\(\delta_4\)</span></div>
+<div class="fragment" data-fragment-index="1"><img src="PhD/3_observation/weaklensing/05_tomography/box_1.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 175px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.85em; color: #2E2E2E; text-align: center; left: 175px; width: 135px; top: 156px;">\(\delta_3\)</span></div>
+<div class="fragment" data-fragment-index="1"><img src="PhD/3_observation/weaklensing/05_tomography/box_2.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 330px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.85em; color: #2E2E2E; text-align: center; left: 330px; width: 135px; top: 156px;">\(\delta_2\)</span></div>
+<div class="fragment" data-fragment-index="1"><img src="PhD/3_observation/weaklensing/05_tomography/box_3.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 485px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.85em; color: #2E2E2E; text-align: center; left: 485px; width: 135px; top: 156px;">\(\delta_1\)</span></div>
 <div class="fragment" data-fragment-index="2"><svg style="position: absolute; left: 552px; top: 203px; width: 78px; height: 24px;" viewbox="0 0 78 24"><line x1="0" y1="12" x2="60" y2="12" stroke="#6E6E6E" stroke-width="5" stroke-linecap="round"></line><polygon points="58,2 78,12 58,22" fill="#6E6E6E"></polygon></svg><img src="PhD/3_observation/weaklensing/05_tomography/kappa_3.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 643px; top: 171px; width: 88px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 739px; top: 204px; text-align: left;">κ bin 1</span></div>
 <div class="fragment" data-fragment-index="3"><svg style="position: absolute; left: 397px; top: 299px; width: 233px; height: 24px;" viewbox="0 0 233 24"><line x1="0" y1="12" x2="215" y2="12" stroke="#6E6E6E" stroke-width="5" stroke-linecap="round"></line><polygon points="213,2 233,12 213,22" fill="#6E6E6E"></polygon></svg><img src="PhD/3_observation/weaklensing/05_tomography/kappa_2.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 643px; top: 267px; width: 88px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 739px; top: 300px; text-align: left;">κ bin 2</span></div>
 <div class="fragment" data-fragment-index="4"><svg style="position: absolute; left: 242px; top: 395px; width: 388px; height: 24px;" viewbox="0 0 388 24"><line x1="0" y1="12" x2="370" y2="12" stroke="#6E6E6E" stroke-width="5" stroke-linecap="round"></line><polygon points="368,2 388,12 368,22" fill="#6E6E6E"></polygon></svg><img src="PhD/3_observation/weaklensing/05_tomography/kappa_1.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 643px; top: 363px; width: 88px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 739px; top: 396px; text-align: left;">κ bin 3</span></div>
@@ -966,28 +890,17 @@ C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
 <div class="solutionbox">
 <div class="solutionbox-body" style="font-size: 0.75em;">
 <ul>
-<li>Each source bin sees the <span class="kw">integral of all the matter</span> in front of it: <span class="math inline">\(\kappa_i(\hat n) = \int_0^{\chi_i} q_i(\chi)\,\delta(\chi\hat n,\chi)\,\mathrm{d}\chi\)</span></li>
-<li>Farther bins cross more matter and see a stronger <span class="math inline">\(\kappa\)</span>; comparing bins follows the <span class="kw2">growth of structure</span> along the line of sight</li>
+<li>Each source bin is lensed by the <span class="kw">all the matter</span> in front of it: <span class="math inline">\(\kappa_i(\hat n) = \int_0^{\chi_i} q_i(\chi)\,\delta(\chi\hat n,\chi)\,\mathrm{d}\chi\)</span></li>
+<li>comparing bins, probes the <span class="kw">growth of structure</span> along the line of sight</li>
 </ul>
 </div>
 </div>
 </div>
 </section>
-<section id="tomographic-bins" class="slide level2" data-corner="PhD/1_intro/lcdm/lcdm_model_lss.svg">
-<h2>Tomographic bins</h2>
-<p><img data-src="PhD/1_intro/lcdm/lcdm_model_lss.svg" class="corner print-only"></p>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="PhD/3_observation/weaklensing/06_tomographic_bins/nz_tomography.svg" class="quarto-figure quarto-figure-center" style="width:62.0%"></p>
-</figure>
-</div>
-<p>Each bin is sensitive to matter <span class="kw">about half-way to its galaxies</span></p>
-<p><span class="credit">DES Y3 source redshift distributions</span></p>
-</section>
 <section id="from-shear-to-cosmology" class="slide level2" data-corner="PhD/1_intro/lcdm/lcdm_model_lss.svg">
 <h2>From shear to cosmology</h2>
 <p><img data-src="PhD/1_intro/lcdm/lcdm_model_lss.svg" class="corner print-only"></p>
-<div class="grid bare" style="--cols: 62px 96px 50px 205px 70px 150px 50px 140px 150px; grid-template-rows: 300px 50px 190px; justify-content: start; --gap: 2px; --row-gap: 0; margin-top: 0.2em;">
+<div class="grid bare" style="--cols: 62px 125px 50px 176px 70px 150px 50px 140px 150px; grid-template-rows: 300px 50px 190px; justify-content: start; --gap: 2px; --row-gap: 0; margin-top: 0.2em;">
 <div style="font-size: 0.6em; font-weight: 700; letter-spacing: 0.05em; color: #C2560A;">
 <p>DATA</p>
 </div>
@@ -1024,15 +937,14 @@ shapes</span></p>
 <div class="fragment" data-fragment-index="1" style="font-size: 0.6em; font-weight: 700; letter-spacing: 0.05em; color: #521463; text-align: center;">
 <p>THEORY</p>
 </div>
-<div class="fragment" data-fragment-index="1" style="border: 2px solid #521463; border-radius: 10px; padding: 0.4em 0.45em; font-size: 0.72em; line-height: 1.35; background: #FFFFFF; text-align: center;">
-<p><span class="math inline">\(\Omega_\mathrm{m},\)</span><br>
-<span class="math inline">\(\sigma_8, \dots\)</span></p>
+<div class="fragment" data-fragment-index="1" style="border: 2px solid #521463; border-radius: 10px; padding: 0.4em 0.45em; font-size: 0.72em; line-height: 1.35; background: #FFFFFF; text-align: center; white-space: nowrap;">
+<p><span class="math inline">\(\theta = (\Omega_\mathrm{m}, \dots)\)</span></p>
 </div>
 <div class="fragment" data-fragment-index="1" style="text-align: center; line-height: 0;">
 <p><span class="arrow" style="--len: 50px; --w: 4px; --head: 18px;"></span></p>
 </div>
 <div class="cell fragment" data-fragment-index="1">
-<p><img data-src="PhD/3_observation/weaklensing/07_matter_spectrum/pk_lin_nl.svg" style="width: 200px;"></p>
+<p><img data-src="PhD/3_observation/weaklensing/07_matter_spectrum/pk_lin_nl_plain.svg" style="width: 172px;"></p>
 <p><span class="caption" style="--cap-size: 0.62em; --cap-lh: 1.2; margin-top: 0.15em;">matter spectrum <span class="math inline">\(P(k, z)\)</span></span></p>
 </div>
 <div class="fragment" data-fragment-index="1" style="text-align: center; grid-column: span 3;">
@@ -1041,64 +953,51 @@ shapes</span></p>
 </div>
 <div class="fragment" data-fragment-index="1" style="border: 2px solid #521463; border-radius: 10px; padding: 0.4em 0.45em; font-size: 0.72em; line-height: 1.35; background: #FFFFFF; text-align: center;">
 <p>predicted<br>
-<span class="math inline">\(C_\ell^{\,ij}(\Omega_\mathrm{m}, \sigma_8)\)</span></p>
+<span class="math inline">\(C_\ell^{\,ij}(\theta)\)</span></p>
 </div>
 <div class="row flat fragment" data-fragment-index="2" style="grid-column: 9; grid-row: 1 / 4; align-self: start; margin-top: 150px; height: 295px; --gap: 0;">
 <p><img data-src="PhD/3_observation/weaklensing/07_matter_spectrum/compare_bracket.svg" style="width: 30px; height: 295px; flex: none;"></p>
 <div style="border: 2px solid #2E2E2E; border-radius: 10px; padding: 0.5em 0.6em; font-size: 0.75em; line-height: 1.35; background: #FFFFFF; text-align: center; margin-left: 6px;">
 <p>compare<br>
 ↓<br>
-<span style="color: #C2560A; font-weight: 700;"><span class="math inline">\(\Omega_\mathrm{m},\ \sigma_8\)</span></span></p>
+<span style="color: #C2560A; font-weight: 700;">infer <span class="math inline">\(\theta\)</span></span></p>
 </div>
 </div>
 </div>
-<div class="fragment" data-fragment-index="3">
+<div class="fragment" data-fragment-index="2">
 <div class="solutionbox">
 <div class="solutionbox-body" style="font-size: 0.8em;">
 <ul>
-<li>Same recipe as the CMB: compress the maps into <span class="kw">angular power spectra <span class="math inline">\(C_\ell\)</span></span> and compare them with the prediction</li>
-<li>This is called a <span class="kw">two-point correlation analysis (2PCF)</span></li>
+<li>In traditional anaysis we compress the maps into <span class="kw">angular power spectra <span class="math inline">\(C_\ell\)</span></span> and compare them with the prediction</li>
+<li>This is called a <span class="kw">two-point correlation function (2PCF)</span></li>
 </ul>
 </div>
 </div>
 </div>
 </section>
-<section id="the-two-point-analysis" class="slide level2" data-corner="PhD/1_intro/lcdm/lcdm_model_lss.svg">
-<h2>The two-point analysis</h2>
-<p><br> <br></p>
+<section id="the-target-of-2pcf-analysis" class="slide level2" data-corner="PhD/1_intro/lcdm/lcdm_model_lss.svg">
+<h2>The target of 2PCF analysis</h2>
 <p><img data-src="PhD/1_intro/lcdm/lcdm_model_lss.svg" class="corner print-only"></p>
-<div class="columns">
-<div class="column" style="width:50%;">
+<p><br> <br> <br></p>
+<div class="columns" style="display: flex; align-items: Left;">
+<div class="column" style="width:60%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/3_observation/weaklensing/07_matter_spectrum/pk_lin_nl.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+<p><img data-src="PhD/3_observation/weaklensing/07_matter_spectrum/pk_lin_nl.svg" class="quarto-figure quarto-figure-center" style="height: 470px; width: auto; max-width: none; margin: 0;"></p>
 </figure>
 </div>
-</div><div class="column" style="width:50%;">
-<div class="eqbox" style="--eq-border: #2aa198; --eq-size: 0.8em; --eq-math-margin: 0.2em 0; margin-top: 1.6em;">
-<p><span class="math display">\[
-C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\left(k=\tfrac{\ell+1/2}{\chi}, z\right)
-\]</span></p>
-</div>
-<p><span style="font-size: 0.8em;">Each multipole <span class="math inline">\(\ell\)</span> reads the <span class="kw">matter spectrum</span> at <span class="math inline">\(k = \ell/\chi\)</span>, weighted by the <span class="kw2">lensing kernels <span class="math inline">\(q_i\)</span></span> of the tomographic bins</span></p>
-<div class="fragment" data-fragment-index="1">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="PhD/3_observation/weaklensing/07_matter_spectrum/cl_kappa.svg" class="quarto-figure quarto-figure-center" style="margin: 0.2em 0 0;;width:100.0%"></p>
-</figure>
-</div>
-</div>
-</div></div>
-<div class="fragment" data-fragment-index="2">
-<div class="solutionbox">
-<div class="solutionbox-body" style="font-size: 0.85em;">
+</div><div class="column" style="width: 38%; padding-left: 1.2em; box-sizing: border-box;">
+<p><br> <br></p>
+<div class="solutionbox" style="margin-top: 0.8em;">
+<div class="solutionbox-body" style="font-size: 0.95em;">
 <ul>
-<li><span class="kw"><span class="math inline">\(\Omega_\mathrm{m}\)</span></span>: how much matter · <span class="kw"><span class="math inline">\(\sigma_8\)</span></span>: how clumpy it is on <span class="math inline">\(8\,h^{-1}\mathrm{Mpc}\)</span> scales</li>
-<li>Weak lensing probes both parameters, and best the combination <span class="kw2"><span class="math inline">\(S_8 = \sigma_8\sqrt{\Omega_\mathrm{m}/0.3}\)</span></span></li>
+<li><span class="kw"><span class="math inline">\(\Omega_\mathrm{m}\)</span></span>: how much matter</li>
+<li><span class="kw"><span class="math inline">\(\sigma_8\)</span></span>: how clumpy it is on <span class="math inline">\(8\,h^{-1}\mathrm{Mpc}\)</span> scales</li>
+<li>Weak lensing analysis targets the combination <span class="kw2"><span class="math inline">\(S_8 = \sigma_8\sqrt{\Omega_\mathrm{m}/0.3}\)</span></span></li>
 </ul>
 </div>
 </div>
-</div>
+</div></div>
 </section>
 <section id="current-constraints-on-s_8" class="slide level2" data-corner="PhD/1_intro/lcdm/lcdm_model_lss.svg">
 <h2>Current constraints on <span class="math inline">\(S_8\)</span></h2>
@@ -1108,15 +1007,7 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <p><img data-src="PhD/3_observation/weaklensing/07_matter_spectrum/s8_constraints.svg" class="quarto-figure quarto-figure-center" style="width:90.0%"></p>
 </figure>
 </div>
-<div class="fragment">
-<div class="solutionbox">
-<div class="solutionbox-body">
-<ul>
-<li>Lensing has sat below the <span class="kw">CMB</span>: the <span class="kw"><span class="math inline">\(S_8\)</span> tension</span>, now shrinking with better data</li>
-</ul>
-</div>
-</div>
-</div>
+<p><span class="credit">Asgari+21, Secco/Amon+22, Dalal+23, DES &amp; KiDS 2023, Wright+25, DES Y6 2026, Planck 2018 VI</span></p>
 </section>
 <section id="limitation-of-the-two-point-analysis" class="slide level2" data-corner="PhD/1_intro/lcdm/lcdm_model_lss.svg">
 <h2>Limitation of the two-point analysis</h2>
@@ -1125,10 +1016,10 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <div class="columns" style="width: 100%;">
 <div class="column" style="width: 50%; text-align: center;">
 <p><img data-src="PhD/3_observation/weaklensing/09_two_point_limits/cosmic_web.gif" class="screen-only" style="margin: 0.4em 0 0;" width="265"> <img data-src="PhD/3_observation/weaklensing/09_two_point_limits/cosmic_web.png" class="print-only" style="margin: 0.4em 0 0;" width="265"></p>
-<p><span style="font-size: 0.75em;">the cosmic web</span></p>
+<p><span style="font-size: 0.75em;">the cosmic web, <span class="kw">non-Gaussian</span></span></p>
 </div><div class="column" style="width: 50%; text-align: center;">
 <p><img data-src="PhD/3_observation/weaklensing/09_two_point_limits/gaussian.gif" class="screen-only" style="margin: 0.4em 0 0;" width="265"> <img data-src="PhD/3_observation/weaklensing/09_two_point_limits/gaussian.png" class="print-only" style="margin: 0.4em 0 0;" width="265"></p>
-<p><span style="font-size: 0.75em;">a Gaussian field with the <span class="kw">same <span class="math inline">\(C_\ell\)</span></span></span></p>
+<p><span style="font-size: 0.75em;">a <span class="kw">Gaussian</span> field</span></p>
 </div></div>
 <div class="figcadre fragment" data-fragment-index="1" style="width: 40%; margin-top: 11.5em;">
 <div class="figcadre-body">
@@ -1141,26 +1032,28 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <div class="solutionbox-body" style="font-size: 0.85em;">
 <ul>
 <li>The 2PCF captures only the <span class="kw">Gaussian features</span> of a field</li>
-<li>We need to go beyond the 2PCF to extract more physical information: <span class="kw2">Contribution 2</span></li>
 </ul>
 </div>
 </div>
 </div>
 </section>
-<section id="the-omega_mathrmmsigma_8-degeneracy" class="slide level2" data-corner="PhD/1_intro/lcdm/lcdm_model_lss.svg">
-<h2>The <span class="math inline">\(\Omega_\mathrm{m}\)</span>–<span class="math inline">\(\sigma_8\)</span> degeneracy</h2>
+<section id="two-point-degeneracy" class="slide level2" data-visibility="uncounted" data-corner="PhD/1_intro/lcdm/lcdm_model_lss.svg">
+<h2>Limitation of the two-point analysis</h2>
 <p><img data-src="PhD/1_intro/lcdm/lcdm_model_lss.svg" class="corner print-only"></p>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="PhD/3_observation/weaklensing/08_banana/doux_banana.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0.1em;" height="480"></p>
-</figure>
+<div class="figcadre" style="width: fit-content; margin: 0.2em auto 0;">
+<div class="figcadre-header">
+<p>DES Y6 cosmic shear (2026)</p>
 </div>
-<p><span style="display: block; text-align: center; font-size: 0.55em; color: #6E6E6E; margin-top: -0.4em;">DES Y3 cosmic shear <span class="math inline">\(C_\ell\)</span>, Doux et al.&nbsp;(2022)</span></p>
+<div class="figcadre-body" style="text-align: center;">
+<p><img data-src="PhD/3_observation/weaklensing/08_banana/des_y6_om_s8.svg" style="margin: 0;" height="410"></p>
+</div>
+</div>
+<p><span class="credit">DES Y6 cosmic shear, DES Collaboration (2026), arXiv:2602.10065, Fig. 3 · CMB: <em>Planck</em> 2018, ACT DR6 and SPT-3G, TT+TE+EE+lowE, no lensing</span></p>
 <div class="fragment">
 <div class="solutionbox">
 <div class="solutionbox-body" style="font-size: 0.85em;">
 <ul>
-<li>The two-point posterior is <span class="kw">degenerate</span>: lensing pins down <span class="kw2"><span class="math inline">\(S_8\)</span></span>, not <span class="math inline">\(\Omega_\mathrm{m}\)</span> and <span class="math inline">\(\sigma_8\)</span> separately</li>
+<li>We need to go beyond the 2PCF to extract more physical information: <span class="kw2">Contribution 2</span></li>
 </ul>
 </div>
 </div>
@@ -1173,36 +1066,35 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <p><img data-src="PhD/1_intro/lcdm/lcdm_model_both.svg" class="quarto-figure quarto-figure-center" style="margin: -0.8em auto -0.6em; position: relative; left: -7%;;width:42.0%"></p>
 </figure>
 </div>
-<div class="columns" style="font-size: 0.8em;">
-<div class="column" style="width:50%;">
+<!-- one grid, row by row, so the two columns line up: targets, obstacles, contributions -->
+<div class="grid" style="--cols: 1fr 1fr; --gap: 1.6em; --row-gap: 0.5em; --align: stretch; font-size: 0.8em;">
+<div>
 <p><span class="kw">Target</span>: the tensor-to-scalar ratio <span class="math inline">\(r\)</span><br><span style="font-size: 0.8em; color: #6E6E6E;">the energy scale of inflation</span></p>
+</div>
+<div>
+<p><span class="kw">Target</span>: <span class="math inline">\(\Omega_\mathrm{m}\)</span> and <span class="math inline">\(\sigma_8\)</span><br><span style="font-size: 0.8em; color: #6E6E6E;">Dark matter distribution and growth of structure</span></p>
+</div>
 <div class="fragment" data-fragment-index="1">
 <p><span class="kw">Obstacle</span>: Galactic foregrounds hide the primordial <span class="math inline">\(B\)</span>-modes</p>
 </div>
-<div class="fragment" data-fragment-index="2">
-<div class="solutionbox">
+<div class="fragment" data-fragment-index="1">
+<p><span class="kw">Obstacle</span>: Traditional analysis does not capture <span class="kw">non-Gaussianities</span> of the cosmic shear.</p>
+</div>
+<div class="solutionbox fragment" data-fragment-index="1" style="margin: 0.4em 0 0; display: flex; align-items: center; justify-content: center;">
 <div class="solutionbox-body" style="text-align: center;">
 <p><span class="kw2">Contribution 1</span><br>Spatially varying component separation for space-based telescopes</p>
 </div>
 </div>
-</div>
-</div><div class="column" style="width:50%;">
-<p><span class="kw">Target</span>: <span class="math inline">\(\Omega_\mathrm{m}\)</span> and <span class="math inline">\(\sigma_8\)</span><br><span style="font-size: 0.8em; color: #6E6E6E;">dark matter and the late-time expansion</span></p>
-<div class="fragment" data-fragment-index="1">
-<p><span class="kw">Obstacle</span>: the two-point analysis misses the non-Gaussian information</p>
-</div>
-<div class="fragment" data-fragment-index="2">
-<div class="solutionbox">
+<div class="solutionbox fragment" data-fragment-index="1" style="margin: 0.4em 0 0; display: flex; align-items: center; justify-content: center;">
 <div class="solutionbox-body" style="text-align: center;">
 <p><span class="kw2">Contribution 2</span><br>Field-level inference for Stage IV weak lensing surveys<br>using differentiable forward models</p>
 </div>
 </div>
 </div>
-</div></div>
-<div class="fragment" data-fragment-index="3">
+<div class="fragment" data-fragment-index="2">
 <div class="solutionbox">
 <div class="solutionbox-body" style="text-align: center;">
-<p>How do we <span class="kw">infer the cosmological parameters</span> from these two probes?</p>
+<p>How do we <span class="kw">infer physical parameters</span> from these cosmological probes?</p>
 </div>
 </div>
 </div>
@@ -1213,6 +1105,15 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <div class="rail-stack">
 <p><img data-src="PhD/2_outline/rail_full.svg" class="rail-full"></p>
 <p><img data-src="PhD/2_outline/rail_focus_stats.svg" class="rail-focus"></p>
+<!-- Paper references under the contribution boxes of the outline map.
+     Positions are % of the map (rail.tex coordinates over its bounding box). -->
+<div class="rail-paper" style="left: 62.98%; top: 41.0%;">
+<p><a href="https://arxiv.org/abs/2604.08463" class="kw">arXiv:2604.08463</a> · submitted to <span class="kw">RASTI</span></p>
+</div>
+<div class="rail-paper" style="left: 62.98%; top: 76.7%;">
+<p><a href="https://joss.theoj.org/papers/10.21105/joss.08852" class="kw">JOSS · doi:10.21105/joss.08852</a><br>
+<span class="kw">JCAP</span> in prep.</p>
+</div>
 </div>
 </section>
 <section id="inverse-problems-in-cosmology" class="slide level2">
@@ -1248,37 +1149,35 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <div class="fragment" data-fragment-index="4">
 <div class="solutionbox" style="margin-top: 1.2em;">
 <div class="solutionbox-body" style="font-size: 0.85em;">
-<ul>
-<li>The signal <span class="math inline">\(\mathbf{s}\)</span> is removed analytically, so only the few parameters <span class="math inline">\(\boldsymbol\theta\)</span> are searched</li>
-<li>This requires a model <span class="kw">linear in <span class="math inline">\(\mathbf{s}\)</span></span> with Gaussian noise</li>
-</ul>
+<p>Analytical inversion requires a model <span class="kw">linear</span> in <span class="kw2"><span class="math inline">\(\mathbf{s}\)</span></span> with <span class="kw">Gaussian</span> noise</p>
 </div>
 </div>
 </div>
 </section>
 <section id="solving-inverse-problems-forward-modelling" class="slide level2" data-visibility="uncounted">
 <h2>Solving Inverse Problems : Forward Modelling</h2>
-<p><br></p>
 <p><span class="kw">Forward modelling</span></p>
-<div class="grid" style="--cols: 1fr 1fr 1.15fr; --gap: 1em; --align: start;">
+<div class="grid" style="--cols: auto auto; --gap: 2em; --align: center; justify-content: center; margin: 0.2em 0 0.3em;">
+<div class="eqbox" style="--eq-size: 0.85em; --eq-math-margin: 0.1em 0; --eq-pad: 0.2em 1em; margin: 0; text-align: center;">
+<p><span class="math display">\[\hat{\mathbf{d}} = \mathcal{A}(\mathbf{s},\boldsymbol\theta)\]</span></p>
+</div>
+<div class="eqbox" style="--eq-size: 0.85em; --eq-math-margin: 0.1em 0; --eq-pad: 0.2em 1em; margin: 0; text-align: center;">
+<p><span class="math display">\[-\ln\mathcal{L}(\boldsymbol\theta,\mathbf{s}) \;\propto\; \frac{\lVert \hat{\mathbf{d}} - \mathbf{d} \rVert_2^2}{\sigma^2}\]</span></p>
+</div>
+</div>
+<div class="grid" style="--cols: 1fr 1fr 1.25fr; --gap: 1.2em; --align: center;">
 <div class="fragment" data-fragment-index="1" style="text-align: center;">
 <p><span class="kw2">Implicit inference</span></p>
-<p><img data-src="PhD/4_inference/02_forward_modelling/implicit.svg" style="margin: 0.2em auto 0;" height="500"></p>
+<p><img data-src="PhD/4_inference/02_forward_modelling/implicit.svg" style="margin: 0.1em auto 0;" height="400"></p>
 </div>
 <div class="fragment" data-fragment-index="2" style="text-align: center;">
 <p><span class="kw">Explicit inference</span></p>
-<p><img data-src="PhD/4_inference/02_forward_modelling/explicit.svg" style="margin: 0.2em auto 0;" height="500"></p>
+<p><img data-src="PhD/4_inference/02_forward_modelling/explicit.svg" style="margin: 0.1em auto 0;" height="400"></p>
 </div>
-<div style="padding-top: 1.6em;">
-<div class="eqbox" style="--eq-size: 0.95em; --eq-math-margin: 0.15em 0; --eq-pad: 0.3em 0.8em; margin: 0 0 0.6em; text-align: center;">
-<p><span class="math display">\[\hat{\mathbf{d}} = \mathcal{A}(\mathbf{s},\boldsymbol\theta)\]</span></p>
-</div>
-<div class="eqbox" style="--eq-size: 0.95em; --eq-math-margin: 0.15em 0; --eq-pad: 0.3em 0.8em; margin: 0 0 1em; text-align: center;">
-<p><span class="math display">\[-\ln\mathcal{L}(\boldsymbol\theta,\mathbf{s}) \;\propto\; \frac{\lVert \hat{\mathbf{d}} - \mathbf{d} \rVert_2^2}{\sigma^2}\]</span></p>
-</div>
+<div>
 <div class="fragment" data-fragment-index="3">
-<div class="solutionbox">
-<div class="solutionbox-body" style="font-size: 0.85em;">
+<div class="solutionbox" style="margin: 0;">
+<div class="solutionbox-body" style="font-size: 0.8em;">
 <ul>
 <li>Explicit inference is more <span class="kw">interpretable</span> than its implicit counterpart</li>
 <li>It fits the latent field <span class="kw"><span class="math inline">\(\mathbf{s}\)</span></span> together with <span class="math inline">\(\boldsymbol\theta\)</span>, instead of marginalising over it</li>
@@ -1288,7 +1187,7 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 </div>
 <div class="fragment" data-fragment-index="4">
 <div class="solutionbox" style="margin-top: 1em;">
-<div class="solutionbox-body" style="font-size: 0.85em;">
+<div class="solutionbox-body" style="font-size: 0.8em;">
 <p>This thesis uses explicit inference for both the <span class="kw2">analytical model</span> and the <span class="kw2">forward model</span></p>
 </div>
 </div>
@@ -1320,52 +1219,31 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 </div>
 </div></div>
 </section>
-<section id="optimising-the-posterior" class="slide level2">
-<h2>Optimising the posterior</h2>
+<section id="exploring-the-posterior" class="slide level2">
+<h2>Exploring the posterior</h2>
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="3" style="width: 100%;">
 <div class="columns">
 <div class="column" style="width: 50%; text-align: center;">
-<p><span class="kw">Minimising the negative log-likelihood</span></p>
-<div class="r-stack">
-<div class="fragment fade-out" data-fragment-index="3">
+<p><span class="kw">Finding the maximum a posteriori (MAP)</span></p>
 <p><img data-src="PhD/4_inference/04_optimising_posterior/minimise.gif" class="screen-only" style="margin: 0.2em 0 0;" height="360"> <img data-src="PhD/4_inference/04_optimising_posterior/minimise.png" class="print-only" style="margin: 0.2em 0 0;" height="360"></p>
-</div>
-<p><img data-src="PhD/4_inference/04_optimising_posterior/laplace.svg" class="fragment" style="margin: 0.2em 0 0;" data-fragment-index="3" height="360"></p>
-</div>
 </div><div class="column fragment" data-fragment-index="1" style="width: 50%; text-align: center;">
 <p><span class="kw">Sampling the full posterior</span></p>
-<div class="r-stack">
-<div class="fragment fade-out" data-fragment-index="3">
 <p><img data-src="PhD/4_inference/04_optimising_posterior/sample.gif" class="screen-only" style="margin: 0.2em 0 0;" height="360"> <img data-src="PhD/4_inference/04_optimising_posterior/sample.png" class="print-only" style="margin: 0.2em 0 0;" height="360"></p>
-</div>
-<p><img data-src="PhD/4_inference/04_optimising_posterior/hpd.svg" class="fragment" style="margin: 0.2em 0 0;" data-fragment-index="4" height="360"></p>
-</div>
 </div></div>
-<div class="r-stack">
-<div class="fragment fade-in-then-out" data-fragment-index="2" style="width: 100%;">
+</div>
+<div class="fragment" data-fragment-index="3" style="width: 100%; text-align: center;">
+<p><img data-src="PhD/4_inference/04_optimising_posterior/trust_1d.svg" style="margin: 1.2em auto 0;" height="380"></p>
+</div>
+</div>
+<div class="fragment" data-fragment-index="2">
 <div class="solutionbox">
 <div class="solutionbox-body" style="text-align: center; font-size: 1.05em;">
 <p>How do we measure how much we <span class="kw">trust the result</span>?</p>
 </div>
 </div>
 </div>
-<div class="grid" style="--cols: 1fr 1fr; --gap: 1.2em; --align: stretch; width: 100%;">
-<div class="fragment" data-fragment-index="3">
-<div class="solutionbox" style="height: 100%;">
-<div class="solutionbox-body" style="font-size: 0.9em;">
-<p>The inverse Hessian of <span class="math inline">\(-\ln\mathcal{L}\)</span> at the minimum gives the covariance, <span class="math inline">\(\mathbf{C} = \mathbf{H}^{-1}\)</span>, and with it the <span class="kw">confidence intervals</span>, assuming the posterior is Gaussian</p>
-</div>
-</div>
-</div>
-<div class="fragment" data-fragment-index="4">
-<div class="solutionbox" style="height: 100%;">
-<div class="solutionbox-body" style="font-size: 0.9em;">
-<p>The samples give the <span class="kw">credible regions</span> directly: the smallest regions holding 68, 95 and 99.7 % of them</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="fragment" data-fragment-index="5" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; min-height: 700px; z-index: 20; background: rgba(250, 247, 240, 0.86); display: flex; align-items: center; justify-content: center;">
+<div class="fragment" data-fragment-index="4" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; min-height: 700px; z-index: 20; background: rgba(250, 247, 240, 0.86); display: flex; align-items: center; justify-content: center;">
 <div class="solutionbox" style="width: 88%;">
 <div class="solutionbox-body" style="text-align: center; font-size: 1.15em;">
 <p>Both methods become more efficient with a <span class="kw">differentiable likelihood</span></p>
@@ -1384,7 +1262,6 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <div class="solutionbox-body" style="font-size: 1.2em;">
 <ul>
 <li><span class="kw">JAX</span> computes exact gradients of numerical code by automatic differentiation</li>
-<li>Custom gradients replace the automatic ones where memory or speed requires it</li>
 <li>The same code runs on CPUs, GPUs and multi-GPU clusters</li>
 <li>I used <span class="kw2">Optax</span> for optimisation</li>
 <li><span class="kw2">BlackJAX</span> and <span class="kw2">NumPyro</span> for sampling</li>
@@ -1395,7 +1272,7 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <div class="fragment">
 <div class="solutionbox">
 <div class="solutionbox-body" style="text-align: center;">
-<p>Can better numerical methods extract <span class="kw">more cosmology</span> from the same data?</p>
+<p>Can better numerical methods improve <span class="kw">cosmological pipelines</span>?</p>
 </div>
 </div>
 </div>
@@ -1406,6 +1283,15 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <div class="rail-stack">
 <p><img data-src="PhD/2_outline/rail_full.svg" class="rail-full"></p>
 <p><img data-src="PhD/2_outline/rail_focus_c1.svg" class="rail-focus"></p>
+<!-- Paper references under the contribution boxes of the outline map.
+     Positions are % of the map (rail.tex coordinates over its bounding box). -->
+<div class="rail-paper" style="left: 62.98%; top: 41.0%;">
+<p><a href="https://arxiv.org/abs/2604.08463" class="kw">arXiv:2604.08463</a> · submitted to <span class="kw">RASTI</span></p>
+</div>
+<div class="rail-paper" style="left: 62.98%; top: 76.7%;">
+<p><a href="https://joss.theoj.org/papers/10.21105/joss.08852" class="kw">JOSS · doi:10.21105/joss.08852</a><br>
+<span class="kw">JCAP</span> in prep.</p>
+</div>
 </div>
 <div style="display: flex; justify-content: center; align-items: center; gap: 36px; margin-top: 1.2em;">
 <p><img data-src="assets/Logos/JaxLogo.png" style="height: 70px;"> <a href="https://github.com/CMBSciPol/furax-cs"><img data-src="https://img.shields.io/badge/GitHub-furax--cs-blue?logo=github.png"></a> <a href="https://github.com/CMBSciPol/furax"><img data-src="https://img.shields.io/badge/GitHub-furax-blue?logo=github.png"></a></p>
@@ -1418,10 +1304,10 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <p><img data-src="PhD/5_contribution/compsep/01_sky_to_maps/sky_stack_cmb.png" class="fragment fade-out" style="height: 405px;" data-fragment-index="1"></p>
 <p><img data-src="PhD/5_contribution/compsep/01_sky_to_maps/sky_stack_full.png" class="fragment" style="height: 405px;" data-fragment-index="1"></p>
 </div>
-<p><img data-src="PhD/5_contribution/compsep/01_sky_to_maps/sky_bracket.svg" class="fragment" style="width: 90px; height: 405px; flex: none; margin-left: -15px;" data-fragment-index="3"></p>
+<p><img data-src="PhD/5_contribution/compsep/01_sky_to_maps/sky_bracket.svg" class="fragment" style="width: 90px; height: 405px; flex: none; margin-left: -15px;" data-fragment-index="2"></p>
 <p><img data-src="PhD/5_contribution/compsep/01_sky_to_maps/freq_cards.png" class="fragment" style="width: 440px; flex: none; margin: 35px 0 0 -5px;" data-fragment-index="2"></p>
 </div>
-<div class="fragment" data-fragment-index="4" style="margin-top: 38px;">
+<div class="fragment" data-fragment-index="3" style="margin-top: 38px;">
 <div class="solutionbox">
 <div class="solutionbox-header">
 <p>CMB component separation</p>
@@ -1429,9 +1315,8 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <div class="solutionbox-body row flat" style="font-size: 0.9em; --gap: 24px;">
 <div style="flex: 1;">
 <ul>
-<li>LiteBIRD observes the sky in <span class="kw">15 frequency bands</span>, from 40 to 402 GHz</li>
-<li>The CMB must be separated from the <span class="kw">foregrounds</span> that contaminate it</li>
-<li>Only then can <span class="kw"><span class="math inline">\(r\)</span></span> be estimated without bias</li>
+<li>LiteBIRD observes the sky in <span class="kw">12 frequency bands</span>, from 40 to 402 GHz</li>
+<li>To estimate <span class="kw"><span class="math inline">\(r\)</span></span>, the CMB must be separated from the <span class="kw">foregrounds</span> that contaminate it</li>
 </ul>
 </div>
 <p><img data-src="PhD/6_ending/software/logo_litebird.png" style="height: 80px; margin: 0;"></p>
@@ -1439,9 +1324,24 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 </div>
 </div>
 </section>
+<section id="foreground-spectral-energy-distributions" class="slide level2">
+<h2>Foreground spectral energy distributions</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/5_contribution/compsep/01b_seds/foreground_sed.svg" class="quarto-figure quarto-figure-center" style="margin: 0.3em auto 0;" height="440"></p>
+</figure>
+</div>
+<div class="solutionbox">
+<div class="solutionbox-body" style="font-size: 0.85em;">
+<ul>
+<li>Each component has its own SED: <span class="kw">synchrotron</span> dominates at low frequencies, <span class="kw">dust</span> at high frequencies</li>
+<li>The primordial <span class="math inline">\(B\)</span> modes are best seen near the <span class="kw">foreground minimum</span>, around <span class="kw2">80 GHz</span></li>
+</ul>
+</div>
+</div>
+</section>
 <section id="parametric-component-separation-the-spectral-model" class="slide level2">
 <h2>Parametric component separation: the spectral model</h2>
-<p><br></p>
 <h3 id="synchrotron-and-dust-galactic-foregrounds"><span class="kw">Synchrotron and dust (Galactic foregrounds)</span></h3>
 <div class="columns" style="text-align: center;">
 <div class="column" style="width:50%;">
@@ -1459,18 +1359,38 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <p><img data-src="PhD/5_contribution/compsep/02_spectral_model/planck_dust.png" style="margin: 0;" height="165"></p>
 <p><span style="font-size: 0.6em; color: #6E6E6E; display: block; margin-top: -0.9em;">Planck: thermal dust</span></p>
 </div></div>
-<div class="fragment">
-<h3 id="the-spectral-likelihood"><span class="kw">The spectral likelihood</span></h3>
 <div class="eqbox" style="--eq-border: #521463; --eq-size: 1.1em; --eq-math-margin: 0.2em 0; width: fit-content; margin: 0.3em auto 0; text-align: center;">
 <p><span class="math display">\[\mathbf{d}_\nu = A^{\mathrm{cmb}}_\nu\,\mathbf{s}_{\mathrm{cmb}} + A^{\mathrm{dust}}_\nu({\color{#d68910}\beta_d},{\color{#d68910}T_d})\,\mathbf{s}_{\mathrm{dust}} + A^{\mathrm{sync}}_\nu({\color{#3b6fb6}\beta_s})\,\mathbf{s}_{\mathrm{sync}} + \mathbf{n}_\nu\]</span></p>
 </div>
-</div>
 <p><br></p>
 <div class="fragment">
+<h3 id="the-spectral-likelihood"><span class="kw">The spectral likelihood</span></h3>
 <div class="eqbox" style="--eq-border: #521463; --eq-size: 1.1em; --eq-math-margin: 0.2em 0; width: fit-content; margin: 0.45em auto 0; text-align: center;">
 <p><span class="math display">\[-2\ln\mathcal{L}(\boldsymbol\beta) = -\left(\mathbf{A}^{\top}\mathbf{N}^{-1}\mathbf{d}\right)^{\top}\left(\mathbf{A}^{\top}\mathbf{N}^{-1}\mathbf{A}\right)^{-1}\left(\mathbf{A}^{\top}\mathbf{N}^{-1}\mathbf{d}\right), \qquad \boldsymbol\beta = ({\color{#d68910}\beta_d}, {\color{#d68910}T_d}, {\color{#3b6fb6}\beta_s})\]</span></p>
 </div>
 </div>
+</section>
+<section id="estimating-r-from-a-clean-cmb-map" class="slide level2">
+<h2>Estimating <span class="math inline">\(r\)</span> from a clean CMB map</h2>
+<div class="columns" style="display: flex; align-items: center; min-height: 540px;">
+<div class="column" style="width:40%;">
+<p><img data-src="PhD/5_contribution/compsep/02b_r_estimation/r_budget.svg" style="width: 118%; max-width: none; margin: 0 0 0 -14%;"></p>
+</div><div class="column" style="width:60%;">
+<div class="eqbox" style="--eq-border: #521463; --eq-size: 0.8em; --eq-math-margin: 0.15em 0; width: fit-content; margin: 0 auto; text-align: center;">
+<p><span class="math display">\[C_\ell^{BB,\mathrm{model}}(r) = {\color{#C2560A} r}\,C_\ell^{\mathrm{tensor}} + C_\ell^{\mathrm{lens}} + C_\ell^{\mathrm{stat}}\]</span></p>
+</div>
+<div class="eqbox" style="--eq-border: #521463; --eq-size: 0.8em; --eq-math-margin: 0.15em 0; width: fit-content; margin: 0.6em auto 0; text-align: center;">
+<p><span class="math display">\[\text{with}\quad C_\ell^{\mathrm{stat}} = \big\langle C_\ell^{BB,\mathrm{noise}} \big\rangle_n\]</span></p>
+</div>
+<div class="eqbox" style="--eq-border: #521463; --eq-size: 0.8em; --eq-math-margin: 0.15em 0; width: fit-content; margin: 0.6em auto 0; text-align: center;">
+<p><span class="math display">\[C_\ell^{BB,\mathrm{obs}} = C_\ell^{BB,\mathrm{CMB}} + C_\ell^{\mathrm{lens}} + C_\ell^{\mathrm{stat}}\]</span></p>
+</div>
+<div class="fragment">
+<div class="eqbox" style="--eq-border: #521463; --eq-size: 0.8em; --eq-math-margin: 0.15em 0; width: fit-content; margin: 0.8em auto 0; text-align: center;">
+<p><span class="math display">\[-2\ln\mathcal{L}_\mathrm{cosmo}(r) = f_\mathrm{sky}\sum_{\ell}(2\ell+1)\left[\frac{C_\ell^{BB,\mathrm{obs}}}{C_\ell^{BB,\mathrm{model}}(r)} + \ln C_\ell^{BB,\mathrm{model}}(r)\right]\]</span></p>
+</div>
+</div>
+</div></div>
 </section>
 <section id="spatially-varying-foregrounds" class="slide level2">
 <h2>Spatially varying foregrounds</h2>
@@ -1495,15 +1415,31 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <p><img data-src="PhD/5_contribution/compsep/03_pysm_models/c1d1s1_sed.svg" style="margin: 0;" height="145"></p>
 </div>
 </div>
-<p><br></p>
+<p><span class="credit">Sky models: PySM (Thorne et al.&nbsp;2017; Zonca et al.&nbsp;2021; Pan-Experiment Galactic Science Group 2025)</span></p>
 <div class="fragment" data-fragment-index="2">
 <div class="solutionbox" style="margin-top: 0.4em;">
 <div class="solutionbox-body" style="font-size: 0.85em;">
 <ul>
-<li>In c1d1s1 each pixel has its own spectrum. The likelihood must model this <span class="kw">spatial variability</span></li>
-<li>Both skies have <span class="math inline">\(r = 0\)</span> and serve for validation</li>
+<li>In <span class="kw2">c1d1s1</span> each pixel has its own spectrum. The likelihood must model this <span class="kw">spatial variability</span></li>
+<li>Both skies have <span class="kw2"><span class="math inline">\(r = 0\)</span></span> and serve for validation</li>
 </ul>
 </div>
+</div>
+</div>
+</section>
+<section id="healpix" class="slide level2">
+<h2>How do we represent sky data numerically?</h2>
+<p><br></p>
+<h4 id="hierarchical-equal-area-iso-latitude-pixellation-of-the-sphere"><span class="kw">Hierarchical Equal Area iso-latitude Pixellation</span> (of the sphere)</h4>
+<div class="row" style="margin-top: -0.3em;">
+<div class="cell" style="flex: 0 0 17%; --cell-margin: 0.15em 0; --img-w: 90%;">
+<p><img data-src="PhD/3_observation/cmb/07_healpix/healpix_logo.svg"></p>
+<p><span style="display: block; font-weight: 700; font-size: 1.05em; color: #2E2E2E;">HEALPix</span></p>
+<p><img data-src="PhD/3_observation/cmb/07_healpix/nasa_logo.svg" style="width: 48%;"></p>
+</div>
+<div class="bare" style="flex: 1 1 auto; text-align: center;">
+<p><img data-src="PhD/3_observation/cmb/07_healpix/healpix_nside64.png" style="width: 100%;"></p>
+<p><span class="kw"><span class="math inline">\(N_\mathrm{side}\)</span></span> <span class="math inline">\(= 64\)</span></p>
 </div>
 </div>
 </section>
@@ -1520,16 +1456,21 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <p><img data-src="PhD/5_contribution/compsep/04_multires/nside_16.png"></p>
 <p><span class="caption"><span class="math inline">\(N_{\rm side} = 16\)</span> · 3072 patches</span></p>
 </div>
-<div class="cell fragment" data-fragment-index="2">
+<div class="cell fragment fade-in-then-out" data-fragment-index="2">
 <p><img data-src="PhD/5_contribution/compsep/04_multires/nside_32.png"></p>
 <p><span class="caption"><span class="math inline">\(N_{\rm side} = 32\)</span> · 12288 patches</span></p>
 </div>
-</div>
 <div class="cell fragment" data-fragment-index="3">
+<p><img data-src="PhD/5_contribution/compsep/04_multires/nside_64.png"></p>
+<p><span class="caption"><span class="math inline">\(N_{\rm side} = 64\)</span> · 49152 patches</span></p>
+</div>
+</div>
+<div class="cell fragment" data-fragment-index="4">
 <p><img data-src="PhD/5_contribution/compsep/04_multires/regions.png"></p>
 <p><span class="caption"><span class="kw">low</span> · <span class="kw2">mid</span> · <span style="color: #3B6FB6; font-weight: 700;">high</span> Galactic latitude, 20 % of the sky each</span></p>
 </div>
-<div class="fragment table-full" data-fragment-index="4" style="padding: 0 20px 0 30px; font-size: 0.95em;">
+<div class="fragment table-full" data-fragment-index="5" style="padding: 0 20px 0 30px; font-size: 0.95em;">
+<p><br> <br> <br></p>
 <p><span class="kw" style="display: block; font-size: 0.85em; margin-bottom: 0.3em; text-align: center;"><span class="math inline">\(N_{\rm side}\)</span> per parameter in the LiteBIRD analysis</span></p>
 <table class="caption-top">
 <thead>
@@ -1563,7 +1504,7 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 </table>
 <p><span style="display: block; font-size: 0.8em; color: #6E6E6E; margin-top: 0.4em; text-align: center;">per Galactic region (0: one patch)</span></p>
 </div>
-<div class="cell fragment" data-fragment-index="5" style="--img-w: 420px;">
+<div class="cell fragment" data-fragment-index="6" style="--img-w: 420px;">
 <p><span class="kw" style="display: block; font-size: 0.85em; margin-bottom: 0.3em;">Example: the <span class="math inline">\(T_d\)</span> partition</span></p>
 <p><img data-src="PhD/5_contribution/compsep/04_multires/multires_td.png"></p>
 <p><span class="caption"><span class="math inline">\(T_d\)</span> at <span class="math inline">\(N_{\rm side}\)</span> 8 / 4 / 0 · 344 patches</span></p>
@@ -1630,7 +1571,7 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <div class="solutionbox-body" style="font-size: 0.85em;">
 <ul>
 <li>Noisy sky data make the Hessian <span class="kw">poorly conditioned</span> and hard to invert</li>
-<li><span class="kw">Quasi-Newton</span> methods suffer most. They approximate the inverse Hessian as if the likelihood were a clean quadratic bowl</li>
+<li><span class="kw">Quasi-Newton</span> methods suffer the most since they approximate the inverse Hessian.</li>
 </ul>
 </div>
 </div>
@@ -1686,8 +1627,8 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 </div>
 <div class="solutionbox-body" style="font-size: 0.85em;">
 <ul>
-<li>AdaTopK runs on GPUs with first-order gradients only: its cost stays flat as the number of patches grows, <span class="kw">about 60 times faster</span> than the reference solver at 10 000 patches</li>
-<li>Next: <span class="kw2">scan many patch configurations</span> and select the best</li>
+<li>AdaTopK runs on GPUs with first-order gradients only.</li>
+<li>It scales well as number of patches grows.</li>
 </ul>
 </div>
 </div>
@@ -1695,24 +1636,26 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 </section>
 <section id="selection-criteria-for-optimal-patches" class="slide level2">
 <h2>Selection criteria for optimal patches</h2>
-<p><img data-src="PhD/6_ending/software/logo_furax.png" style="position: absolute; top: -12px; right: 0; height: 78px; margin: 0; border-radius: 10px;"></p>
+<p><img data-src="PhD/6_ending/software/logo_furax.png" style="position: absolute; top: -20px; right: 0; height: 110px; margin: 0; border-radius: 10px;"></p>
 <div style="display: flex; align-items: center; gap: 18px; margin-top: -0.2em;">
 <p><img data-src="assets/Logos/JaxLogo.png" style="height: 40px; margin: 0;"> <a href="https://github.com/CMBSciPol/furax"><img data-src="https://img.shields.io/badge/GitHub-furax-blue?logo=github.png"></a> <a href="https://github.com/CMBSciPol/furax-cs"><img data-src="https://img.shields.io/badge/GitHub-furax--cs-blue?logo=github.png"></a></p>
 </div>
-<video src="PhD/5_contribution/compsep/09_selection/selection.mp4" data-autoplay="" muted="" playsinline="" preload="auto" style="display: block; width: 80%; margin: 0.2em auto 0;">
-</video>
+<!-- one box from entry to end: the video's poster is its frame 0 and the click (a custom fragment,
+never hidden) only starts it; it stops on the largest partition, and the next click lays the ringed
+optimum exactly over it -->
+<div style="position: relative; width: 80%; margin: 0.2em auto 0;">
+<video src="PhD/5_contribution/compsep/09_selection/selection.mp4" poster="PhD/5_contribution/compsep/09_selection/selection_first.png" class="fragment custom screen-only" data-fragment-index="1" muted="" playsinline="" preload="auto" style="display: block; width: 100%; margin: 0;"></video>
+<img src="PhD/5_contribution/compsep/09_selection/selection_best.png" class="fragment" data-fragment-index="2" style="position: absolute; left: 0; top: 0; width: 100%; height: auto; max-width: none; max-height: none; margin: 0;">
+</div>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/5_contribution/compsep/09_selection/selection_last.png" class="print-only quarto-figure quarto-figure-center" style="width:80.0%"></p>
+<p><img data-src="PhD/5_contribution/compsep/09_selection/selection_best.png" class="print-only quarto-figure quarto-figure-center" style="width:80.0%"></p>
 </figure>
 </div>
-<div class="fragment">
+<div class="fragment" data-fragment-index="3">
 <div class="solutionbox" style="margin-top: 0.3em;">
 <div class="solutionbox-body" style="font-size: 0.8em;">
-<ul>
-<li>Minimising <span class="math inline">\(\hat r + \sigma(r)\)</span> cannot remove a primordial <span class="math inline">\(r\)</span>. The mixing matrix <span class="math inline">\(\mathbf{A}\)</span> contains the CMB with its known spectrum, so the recovered CMB keeps <span class="kw">unit response</span> for every partition</li>
-<li>The guarantee is specific to map-based parametric separation. A forward model or a non-map-based method loses it</li>
-</ul>
+<p>Minimising <span class="kw2"><span class="math inline">\(\hat r + \sigma(r)\)</span></span> cannot remove a primordial <span class="math inline">\(r\)</span>, since we do <span class="kw">map-based component separation</span> and the <span class="kw">mixing matrix</span> is linear in the <span class="kw">CMB</span>.</p>
 </div>
 </div>
 </div>
@@ -1756,8 +1699,8 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <p>Run details</p>
 </div>
 <div class="solutionbox-body" style="font-size: 0.72em;">
-<p>Over <span class="kw2">10 000</span> component separation runs on <span class="kw">H100 GPUs</span></p>
-<p>Finishing in <span class="kw2">4 hours</span></p>
+<p>Over <span class="kw2">10 000</span> component separation runs on <span class="kw">64 NVIDIA H100 GPUs</span></p>
+<p>Finishing in <span class="kw2">10 hours</span></p>
 </div>
 </div>
 </div>
@@ -1804,11 +1747,9 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 </div>
 </div>
 </div></div>
-<div class="fragment" data-fragment-index="1">
 <div class="solutionbox">
 <div class="solutionbox-body">
-<p><span class="kw">30 % lower 68 % upper limit on <span class="math inline">\(r\)</span></span>, with the same instrument, sky and noise: only the partition changes</p>
-</div>
+<p><span class="kw">30 % lower 68 % upper limit on <span class="math inline">\(r\)</span></span>, with thf same instrument, sky and noise: only the partition changes</p>
 </div>
 </div>
 <div class="fragment" data-fragment-index="2" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; min-height: 700px; z-index: 20; background: rgba(250, 247, 240, 0.88); display: flex; align-items: center; justify-content: center;">
@@ -1820,9 +1761,9 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <div class="solutionbox" style="margin-top: 1.4em;">
 <div class="solutionbox-body">
 <ul>
-<li>Parametric component separation in JAX, <span class="kw">almost two orders of magnitude faster</span>, over thousands of sky partitions</li>
-<li>AdaTopK: a bounded optimiser built for <span class="kw">noisy physical likelihoods</span></li>
-<li>Choosing the partition by the upper limit on <span class="math inline">\(r\)</span>: <span class="kw">30 % lower</span> than the hand-tuned configuration</li>
+<li>Parametric component separation in JAX, <span class="kw">about 60 faster</span>, over thousands of sky partitions</li>
+<li>Implemented a bounded optimiser <span class="kw">AdaTopK</span> for <span class="kw">noisy physical likelihoods</span></li>
+<li><span class="kw">a data-driven</span> criterion to choose the spatial partition.</li>
 </ul>
 <p><span class="credit" style="text-align: right;">Kabalan et al.&nbsp;(2026), RASTI</span></p>
 </div>
@@ -1835,8 +1776,7 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <ul>
 <li>preparing its integration into the <span class="kw">LiteBIRD</span> component-separation pipeline</li>
 <li>real data from the Simons Observatory, through Megatop</li>
-<li>instrument systematics as <span class="kw">linear operators</span> in FURAX</li>
-<li>more flexible spatial partitions of the foreground parameters</li>
+<li>adding instrument systematics in <span class="kw">FURAX</span></li>
 </ul>
 </div>
 <div style="flex: none; display: flex; flex-direction: column; align-items: center; gap: 18px;">
@@ -1851,6 +1791,15 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <div class="rail-stack">
 <p><img data-src="PhD/2_outline/rail_full.svg" class="rail-full"></p>
 <p><img data-src="PhD/2_outline/rail_focus_c2.svg" class="rail-focus"></p>
+<!-- Paper references under the contribution boxes of the outline map.
+     Positions are % of the map (rail.tex coordinates over its bounding box). -->
+<div class="rail-paper" style="left: 62.98%; top: 41.0%;">
+<p><a href="https://arxiv.org/abs/2604.08463" class="kw">arXiv:2604.08463</a> · submitted to <span class="kw">RASTI</span></p>
+</div>
+<div class="rail-paper" style="left: 62.98%; top: 76.7%;">
+<p><a href="https://joss.theoj.org/papers/10.21105/joss.08852" class="kw">JOSS · doi:10.21105/joss.08852</a><br>
+<span class="kw">JCAP</span> in prep.</p>
+</div>
 </div>
 <div style="display: flex; justify-content: center; align-items: center; gap: 36px; margin-top: 1.2em;">
 <p><img data-src="assets/Logos/JaxLogo.png" style="height: 70px;"> <a href="https://github.com/ASKabalan/jax-fli"><img data-src="https://img.shields.io/badge/GitHub-jax--fli-blue?logo=github.png"></a></p>
@@ -1895,7 +1844,7 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <div class="columns" style="display: flex; align-items: flex-start; margin-top: 1.2em;">
 <div class="column" style="width: 42%;">
 <p><span style="font-size: 0.85em;">Each particle moves from its initial grid position <span class="math inline">\(\mathbf{q}\)</span></span></p>
-<div class="eqbox" style="--eq-size: 0.8em; --eq-math-margin: 0.3em 0; --eq-pad: 0.2em 0.6em; width: fit-content; margin: 0.4em auto;">
+<div class="eqbox" style="--eq-size: 0.72em; --eq-math-margin: 0.3em 0; --eq-pad: 0.2em 0.6em; width: fit-content; max-width: 100%; box-sizing: border-box; margin: 0.4em 0;">
 <p><span class="math display">\[\mathbf{x}(\mathbf{q}, a) = \mathbf{q} + D_1(a)\,\mathbf{\Psi}^{(1)}(\mathbf{q}) + D_2(a)\,\mathbf{\Psi}^{(2)}(\mathbf{q}) + \dots\]</span> <span class="math display">\[\nabla \cdot \mathbf{\Psi}^{(1)} = -\delta_\mathrm{ini}\]</span></p>
 </div>
 <p><span style="font-size: 0.8em; color: #6E6E6E;">First order: the Zel’dovich approximation. Second order (2LPT) adds the tidal field.</span></p>
@@ -1988,49 +1937,34 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 </div>
 </div>
 </section>
-<section id="building-the-observable-requirements" class="slide level2">
+<section id="building-the-observable-requirements" class="slide level2" data-transition="slide-in none-out">
 <h2>Building the observable: requirements</h2>
-<div class="columns" style="display: flex; align-items: flex-start;">
-<div class="column" style="width: 55%;">
-<div class="figcadre" style="padding: 0.9em 0.4em 0.3em;">
-<p><img data-src="PhD/5_contribution/fli/09_observable/geometry.svg" style="display: block; margin: 0 auto;" width="540"></p>
+<div class="r-stack" style="margin-top: 0.1em;">
+<p><img data-src="PhD/5_contribution/fli/09_observable/depth.svg" style="display: block; margin: 0 auto;" width="760"></p>
+<p><img data-src="PhD/5_contribution/fli/09_observable/depth_lines.svg" class="fragment" style="display: block; margin: 0 auto;" data-fragment-index="2" width="760"></p>
 </div>
-</div><div class="column" style="width: 45%; padding-left: 0.6em;">
-<p><span class="kw fragment" data-fragment-index="2" style="font-size: 0.85em;">What volume does such an analysis need?</span></p>
-<div class="grid bare fragment" data-fragment-index="3" style="--cols: 1fr 1fr; --gap: 10px; --row-gap: 0;">
-<div class="cell">
-<p><img data-src="PhD/5_contribution/fli/09_observable/wire_centre.svg"></p>
-<p><span class="caption" style="--cap-size: 0.55em;">observer at the centre</span></p>
-</div>
-<div class="cell">
-<p><img data-src="PhD/5_contribution/fli/09_observable/wire_shifted.svg"></p>
-<p><span class="caption" style="--cap-size: 0.55em;">shifted-quadrant observer (0.1, 0.5, 0.9)</span></p>
-</div>
-</div>
-<div class="grid bare fragment" data-fragment-index="4" style="--cols: 1fr 1fr; --gap: 10px; --row-gap: 0; margin-top: 0.6em;">
-<div class="cell">
-<div class="r-stack">
-<p><img data-src="PhD/5_contribution/fli/09_observable/sky_centre.png" class="fragment fade-out" data-fragment-index="5"></p>
-<p><img data-src="PhD/5_contribution/fli/09_observable/sky_centre_des.png" class="fragment" data-fragment-index="5"></p>
-</div>
-<p><span class="caption" style="--cap-size: 0.55em;">full sky, <span class="math inline">\(f_\mathrm{sky} = 1\)</span></span></p>
-</div>
-<div class="cell">
-<div class="r-stack">
-<p><img data-src="PhD/5_contribution/fli/09_observable/sky_shifted.png" class="fragment fade-out" data-fragment-index="5"></p>
-<p><img data-src="PhD/5_contribution/fli/09_observable/sky_shifted_des.png" class="fragment" data-fragment-index="5"></p>
-</div>
-<p><span class="caption" style="--cap-size: 0.55em;"><span class="math inline">\(f_\mathrm{sky} = 0.35\)</span><span class="fragment" data-fragment-index="5">, contains <span class="kw">DES Y3</span></span></span></p>
-</div>
-</div>
-</div></div>
 <div class="fragment" data-fragment-index="1">
 <div class="solutionbox" style="margin-top: 0.3em;">
 <div class="solutionbox-header" style="font-size: 0.8em;">
 <p>Simulation-based inference on real survey data</p>
 </div>
 <div class="solutionbox-body" style="font-size: 0.72em;">
-<p>The DES Y3 simulation-based analysis of Jeffrey et al.&nbsp;(2024, arXiv:2403.02314) used <span class="kw">CosmoGridV1</span> as its validation suite. The forward model must simulate the same volume.</p>
+<p>Applied on <span class="kw">DES Y3</span>, Jeffrey et al.&nbsp;(2024): SBI on <span class="kw">real data</span> and validated on <span class="kw">CosmoGridV1</span>.<br>
+The forward model must simulate the <span class="kw">same volume</span>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="building-the-observable-requirements-1" class="slide level2" data-visibility="uncounted" data-transition="none-in slide-out">
+<h2>Building the observable: requirements</h2>
+<p><img data-src="PhD/5_contribution/fli/09_observable/observer_views.png" style="display: block; margin: 0 auto;" width="740"></p>
+<div class="fragment" data-fragment-index="1">
+<div class="solutionbox" style="margin-top: 0.2em;">
+<div class="solutionbox-header" style="font-size: 0.8em;">
+<p>Full-sky simulation</p>
+</div>
+<div class="solutionbox-body" style="font-size: 0.72em;">
+<p>To simulate the full sky, we need a box that spans <span class="kw">twice</span> the comoving distance of the <span class="kw">furthest bin</span></p>
 </div>
 </div>
 </div>
@@ -2040,10 +1974,10 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <div style="position: relative; height: 0; margin-top: 0.1em;">
 <div class="fragment custom transform" data-fragment-index="1" style="position: absolute; left: 0; top: 0; width: 960px; height: 560px; --to: translate(800px, -80px) scale(0.182); --origin: top left;">
 <div class="tomo-diagram">
-<img src="PhD/3_observation/weaklensing/05_tomography/box_0.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 20px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 20px; width: 135px; top: 163px;">bin 4</span>
-<img src="PhD/3_observation/weaklensing/05_tomography/box_1.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 175px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 175px; width: 135px; top: 163px;">bin 3</span>
-<img src="PhD/3_observation/weaklensing/05_tomography/box_2.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 330px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 330px; width: 135px; top: 163px;">bin 2</span>
-<img src="PhD/3_observation/weaklensing/05_tomography/box_3.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 485px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 485px; width: 135px; top: 163px;">bin 1</span>
+<img src="PhD/3_observation/weaklensing/05_tomography/box_0.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 20px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.85em; color: #2E2E2E; text-align: center; left: 20px; width: 135px; top: 156px;">\(\delta_4\)</span>
+<img src="PhD/3_observation/weaklensing/05_tomography/box_1.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 175px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.85em; color: #2E2E2E; text-align: center; left: 175px; width: 135px; top: 156px;">\(\delta_3\)</span>
+<img src="PhD/3_observation/weaklensing/05_tomography/box_2.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 330px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.85em; color: #2E2E2E; text-align: center; left: 330px; width: 135px; top: 156px;">\(\delta_2\)</span>
+<img src="PhD/3_observation/weaklensing/05_tomography/box_3.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 485px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.85em; color: #2E2E2E; text-align: center; left: 485px; width: 135px; top: 156px;">\(\delta_1\)</span>
 <svg style="position: absolute; left: 552px; top: 203px; width: 78px; height: 24px;" viewbox="0 0 78 24"><line x1="0" y1="12" x2="60" y2="12" stroke="#6E6E6E" stroke-width="5" stroke-linecap="round"></line><polygon points="58,2 78,12 58,22" fill="#6E6E6E"></polygon></svg><img src="PhD/3_observation/weaklensing/05_tomography/kappa_3.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 643px; top: 171px; width: 88px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; left: 739px; top: 204px;">κ bin 1</span>
 <svg style="position: absolute; left: 397px; top: 299px; width: 233px; height: 24px;" viewbox="0 0 233 24"><line x1="0" y1="12" x2="215" y2="12" stroke="#6E6E6E" stroke-width="5" stroke-linecap="round"></line><polygon points="213,2 233,12 213,22" fill="#6E6E6E"></polygon></svg><img src="PhD/3_observation/weaklensing/05_tomography/kappa_2.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 643px; top: 267px; width: 88px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; left: 739px; top: 300px;">κ bin 2</span>
 <svg style="position: absolute; left: 242px; top: 395px; width: 388px; height: 24px;" viewbox="0 0 388 24"><line x1="0" y1="12" x2="370" y2="12" stroke="#6E6E6E" stroke-width="5" stroke-linecap="round"></line><polygon points="368,2 388,12 368,22" fill="#6E6E6E"></polygon></svg><img src="PhD/3_observation/weaklensing/05_tomography/kappa_1.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 643px; top: 363px; width: 88px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; left: 739px; top: 396px;">κ bin 3</span>
@@ -2055,8 +1989,8 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <div class="columns" style="display: flex; align-items: center; margin-top: 100px;">
 <div class="column fragment" data-fragment-index="2" style="width: 50%;">
 <div class="row bare" style="--gap: 0.5em; --justify: center;">
-<div class="cell" style="width: 170px;">
-<p><img data-src="PhD/5_contribution/fli/10_painting/density_box.png"></p>
+<div class="cell" style="width: 200px;">
+<p><img data-src="PhD/5_contribution/fli/10_painting/particles_box.png"></p>
 <p><span class="caption" style="--cap-size: 0.55em;">evolved particles</span></p>
 </div>
 <p><span style="font-size: 2.4em; color: #6E6E6E;">⟶</span></p>
@@ -2075,7 +2009,7 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <p><span style="font-family: monospace;">ang2pix</span>: jax-healpy</p>
 </div>
 <div class="solutionbox-body" style="font-size: 0.8em;">
-<p>Implemented in jax-healpy by Pierre Chanial. Works by binning each particle into one pixel but it is <span class="kw">not differentiable</span> because the pixel index is piecewise constant in the particle position, so its gradient is zero</p>
+<p>Implemented in <span class="kw">jax-healpy</span> Works by binning each particle into the pixel that contains. It is <span class="kw">not differentiable</span>.</p>
 </div>
 </div>
 </div>
@@ -2086,10 +2020,10 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <div style="position: relative; height: 0;">
 <div style="position: absolute; left: 0; top: 0; width: 960px; height: 560px; transform: translate(800px, -80px) scale(0.182); transform-origin: top left;">
 <div class="tomo-diagram">
-<img src="PhD/3_observation/weaklensing/05_tomography/box_0.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 20px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 20px; width: 135px; top: 163px;">bin 4</span>
-<img src="PhD/3_observation/weaklensing/05_tomography/box_1.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 175px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 175px; width: 135px; top: 163px;">bin 3</span>
-<img src="PhD/3_observation/weaklensing/05_tomography/box_2.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 330px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 330px; width: 135px; top: 163px;">bin 2</span>
-<img src="PhD/3_observation/weaklensing/05_tomography/box_3.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 485px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 485px; width: 135px; top: 163px;">bin 1</span>
+<img src="PhD/3_observation/weaklensing/05_tomography/box_0.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 20px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.85em; color: #2E2E2E; text-align: center; left: 20px; width: 135px; top: 156px;">\(\delta_4\)</span>
+<img src="PhD/3_observation/weaklensing/05_tomography/box_1.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 175px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.85em; color: #2E2E2E; text-align: center; left: 175px; width: 135px; top: 156px;">\(\delta_3\)</span>
+<img src="PhD/3_observation/weaklensing/05_tomography/box_2.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 330px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.85em; color: #2E2E2E; text-align: center; left: 330px; width: 135px; top: 156px;">\(\delta_2\)</span>
+<img src="PhD/3_observation/weaklensing/05_tomography/box_3.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 485px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.85em; color: #2E2E2E; text-align: center; left: 485px; width: 135px; top: 156px;">\(\delta_1\)</span>
 <svg style="position: absolute; left: 552px; top: 203px; width: 78px; height: 24px;" viewbox="0 0 78 24"><line x1="0" y1="12" x2="60" y2="12" stroke="#6E6E6E" stroke-width="5" stroke-linecap="round"></line><polygon points="58,2 78,12 58,22" fill="#6E6E6E"></polygon></svg><img src="PhD/3_observation/weaklensing/05_tomography/kappa_3.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 643px; top: 171px; width: 88px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; left: 739px; top: 204px;">κ bin 1</span>
 <svg style="position: absolute; left: 397px; top: 299px; width: 233px; height: 24px;" viewbox="0 0 233 24"><line x1="0" y1="12" x2="215" y2="12" stroke="#6E6E6E" stroke-width="5" stroke-linecap="round"></line><polygon points="213,2 233,12 213,22" fill="#6E6E6E"></polygon></svg><img src="PhD/3_observation/weaklensing/05_tomography/kappa_2.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 643px; top: 267px; width: 88px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; left: 739px; top: 300px;">κ bin 2</span>
 <svg style="position: absolute; left: 242px; top: 395px; width: 388px; height: 24px;" viewbox="0 0 388 24"><line x1="0" y1="12" x2="370" y2="12" stroke="#6E6E6E" stroke-width="5" stroke-linecap="round"></line><polygon points="368,2 388,12 368,22" fill="#6E6E6E"></polygon></svg><img src="PhD/3_observation/weaklensing/05_tomography/kappa_1.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 643px; top: 363px; width: 88px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; left: 739px; top: 396px;">κ bin 3</span>
@@ -2107,7 +2041,7 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <p><img data-src="PhD/5_contribution/fli/10_painting/bilinear_last.png" class="print-only" style="width:82.0%"></p>
 <div class="solutionbox" style="text-align: left;">
 <div class="solutionbox-body" style="font-size: 0.72em;">
-<p>Four pixels, weighted by the position between their centres: <code>get_interp_weights</code>, implemented in jax-healpy</p>
+<p>Four pixels, weighted by the position between their centres: <code>get_interp_weights</code>, implemented in <span class="kw">jax-healpy</span></p>
 </div>
 </div>
 </div><div class="column fragment" data-fragment-index="1" style="width: 50%; text-align: center;">
@@ -2121,7 +2055,7 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 </div>
 <div class="solutionbox" style="text-align: left;">
 <div class="solutionbox-body" style="font-size: 0.72em;">
-<p>The pixel and its eight neighbours (<code>get_all_neighbours</code>, implemented in jax-healpy), weighted by a Gaussian kernel of adjustable width</p>
+<p>The pixel and its eight neighbours (<code>get_all_neighbours</code>, implemented in <span class="kw">jax-healpy</span>), weighted by a Gaussian kernel of adjustable width</p>
 </div>
 </div>
 </div></div>
@@ -2132,8 +2066,8 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 </div>
 <div class="solutionbox" style="width: 900px; margin-top: 0.3em;">
 <div class="solutionbox-body" style="font-size: 0.85em;">
-<p>The RBF scheme keeps the gradient and gives <span class="kw">control over the smoothing</span></p>
-<p>Both methods are implemented in <span class="kw">jax-healpy</span> and are <span class="kw">differentiable</span></p>
+<p>The <span class="kw">RBF</span> gives <span class="kw">control over the smoothing</span></p>
+<p>Both methods are <span class="kw">differentiable</span></p>
 </div>
 </div>
 </div>
@@ -2144,10 +2078,10 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <div class="fragment fade-out" data-fragment-index="3">
 <div class="fragment custom transform" data-fragment-index="1" style="position: absolute; left: 0; top: 0; width: 960px; height: 560px; --from: translate(800px, -80px) scale(0.182); --to: none; --origin: top left;">
 <div class="tomo-diagram">
-<img src="PhD/3_observation/weaklensing/05_tomography/box_0.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 20px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 20px; width: 135px; top: 163px;">bin 4</span>
-<img src="PhD/3_observation/weaklensing/05_tomography/box_1.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 175px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 175px; width: 135px; top: 163px;">bin 3</span>
-<img src="PhD/3_observation/weaklensing/05_tomography/box_2.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 330px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 330px; width: 135px; top: 163px;">bin 2</span>
-<img src="PhD/3_observation/weaklensing/05_tomography/box_3.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 485px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 485px; width: 135px; top: 163px;">bin 1</span>
+<img src="PhD/3_observation/weaklensing/05_tomography/box_0.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 20px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.85em; color: #2E2E2E; text-align: center; left: 20px; width: 135px; top: 156px;">\(\delta_4\)</span>
+<img src="PhD/3_observation/weaklensing/05_tomography/box_1.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 175px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.85em; color: #2E2E2E; text-align: center; left: 175px; width: 135px; top: 156px;">\(\delta_3\)</span>
+<img src="PhD/3_observation/weaklensing/05_tomography/box_2.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 330px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.85em; color: #2E2E2E; text-align: center; left: 330px; width: 135px; top: 156px;">\(\delta_2\)</span>
+<img src="PhD/3_observation/weaklensing/05_tomography/box_3.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 485px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.85em; color: #2E2E2E; text-align: center; left: 485px; width: 135px; top: 156px;">\(\delta_1\)</span>
 <div class="fragment semi-fade-out" data-fragment-index="2">
 <svg style="position: absolute; left: 552px; top: 203px; width: 78px; height: 24px;" viewbox="0 0 78 24"><line x1="0" y1="12" x2="60" y2="12" stroke="#6E6E6E" stroke-width="5" stroke-linecap="round"></line><polygon points="58,2 78,12 58,22" fill="#6E6E6E"></polygon></svg><img src="PhD/3_observation/weaklensing/05_tomography/kappa_3.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 643px; top: 171px; width: 88px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; left: 739px; top: 204px;">κ bin 1</span>
 <svg style="position: absolute; left: 397px; top: 299px; width: 233px; height: 24px;" viewbox="0 0 233 24"><line x1="0" y1="12" x2="215" y2="12" stroke="#6E6E6E" stroke-width="5" stroke-linecap="round"></line><polygon points="213,2 233,12 213,22" fill="#6E6E6E"></polygon></svg><img src="PhD/3_observation/weaklensing/05_tomography/kappa_2.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 643px; top: 267px; width: 88px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; left: 739px; top: 300px;">κ bin 2</span>
@@ -2166,7 +2100,7 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <div class="fragment" data-fragment-index="4">
 <div class="solutionbox" style="margin-top: -0.2em;">
 <div class="solutionbox-body" style="font-size: 0.85em;">
-<p>The 3D density field is projected onto concentric spherical shells around the observer, each at its own redshift. How should these redshifts be chosen?</p>
+<p>The 3D density field is projected onto concentric <span class="kw">spherical shells</span> around the observer, each at its own redshift.</p>
 </div>
 </div>
 </div>
@@ -2188,7 +2122,7 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <div class="eqbox" style="--eq-border: #25406b; --eq-size: 0.72em; --eq-math-margin: 0.25em 0; --eq-pad: 0.05em 0.5em; margin-top: 0.3em;">
 <p><span class="math display">\[r_i^3 = r_{\min}^3 + \tfrac{i}{n}\,(r_{\max}^3 - r_{\min}^3)\]</span></p>
 </div>
-<p><span class="caption" style="--cap-size: 0.55em; margin-top: 0.3em;">outer shells floored at 50 Mpc/<span class="math inline">\(h\)</span></span></p>
+<p><span class="caption" style="--cap-size: 0.55em; margin-top: 0.3em;">outer shells capped at 50 Mpc/<span class="math inline">\(h\)</span></span></p>
 </div>
 <p><img data-src="PhD/5_contribution/fli/12_spacing/spacing_equal_vol.svg" width="800"></p>
 </div>
@@ -2200,30 +2134,30 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <div class="solutionbox-body" style="font-size: 0.7em;">
 <p>Uniform steps in <span class="math inline">\(a\)</span>: the innermost shell holds <span class="kw2">three orders of magnitude</span> fewer particles than with equal volume, so it is <span class="kw">shot noise</span> dominated</p>
 <p>The downside of equal volume: <span class="kw">fewer shells</span> cover the lensing kernel of the <span class="kw">first redshift bin</span></p>
-<p><span class="kw2">Bin 1</span> is therefore not used for inference</p>
+<!-- [Bin 1]{.kw2} is therefore not used for inference -->
 </div>
 </div>
 </div>
 </section>
 <section id="impact-of-the-number-of-shells-on-the-accuracy" class="slide level2" data-visibility="uncounted">
 <h2>Impact of the number of shells on the accuracy</h2>
-<div class="grid bare" style="--cols: 150px 1fr; --gap: 10px; margin-top: 0.1em;">
-<p><span class="kw" style="font-size: 0.7em; text-align: right;">uniform in <span class="math inline">\(a\)</span><br>innermost shell</span></p>
-<p><img data-src="PhD/5_contribution/fli/13_nshells/nshells_density.svg" width="800"></p>
+<div class="grid bare" style="--cols: 110px 1fr; --gap: 10px; margin-top: 0.1em;">
+<p><span class="kw" style="font-size: 0.62em; text-align: right;">uniform in <span class="math inline">\(a\)</span><br>innermost shell</span></p>
+<p><img data-src="PhD/5_contribution/fli/13_nshells/nshells_density.svg" width="923"></p>
 </div>
-<div class="grid bare fragment" data-fragment-index="1" style="--cols: 150px 1fr; --gap: 10px; margin-top: 0.1em;">
-<p><span class="kw" style="font-size: 0.7em; text-align: right;">equal volume, drifted<br>convergence vs Limber</span></p>
-<p><img data-src="PhD/5_contribution/fli/13_nshells/nshells_kappa.svg" width="800"></p>
+<div class="grid bare fragment" data-fragment-index="1" style="--cols: 110px 1fr; --gap: 10px; margin-top: 0.1em;">
+<p><span class="kw" style="font-size: 0.62em; text-align: right;">equal volume,<br>vs Limber</span></p>
+<p><img data-src="PhD/5_contribution/fli/13_nshells/nshells_kappa.svg" width="923"></p>
 </div>
 <div class="fragment" data-fragment-index="2">
 <div class="solutionbox" style="margin-top: 0.2em;">
-<div class="solutionbox-header" style="font-size: 0.75em;">
+<div class="solutionbox-header" style="font-size: 0.70em;">
 <p>How many shells?</p>
 </div>
-<div class="solutionbox-body" style="font-size: 0.7em;">
+<div class="solutionbox-body" style="font-size: 0.6em;">
 <p><span class="kw">More shells</span>: each shell is thinner, so the innermost one holds fewer particles and is <span class="kw">shot-noise</span> dominated</p>
 <p><span class="kw">Fewer shells</span>: a few wide shells sample the lensing kernel of the first bin, so its convergence is <span class="kw">biased</span> low below <span class="math inline">\(\ell =\)</span> <span class="kw2">100</span></p>
-<p>For this work we adopt <span class="kw2">20</span> shells</p>
+<!-- For this work we adopt [20]{.kw2} shells -->
 </div>
 </div>
 </div>
@@ -2234,10 +2168,10 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <div class="fragment fade-out" data-fragment-index="1">
 <div class="tomo-diagram">
 <div style="opacity: 0.45;">
-<img src="PhD/3_observation/weaklensing/05_tomography/box_0.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 20px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 20px; width: 135px; top: 163px;">bin 4</span>
-<img src="PhD/3_observation/weaklensing/05_tomography/box_1.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 175px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 175px; width: 135px; top: 163px;">bin 3</span>
-<img src="PhD/3_observation/weaklensing/05_tomography/box_2.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 330px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 330px; width: 135px; top: 163px;">bin 2</span>
-<img src="PhD/3_observation/weaklensing/05_tomography/box_3.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 485px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; text-align: center; left: 485px; width: 135px; top: 163px;">bin 1</span>
+<img src="PhD/3_observation/weaklensing/05_tomography/box_0.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 20px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.85em; color: #2E2E2E; text-align: center; left: 20px; width: 135px; top: 156px;">\(\delta_4\)</span>
+<img src="PhD/3_observation/weaklensing/05_tomography/box_1.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 175px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.85em; color: #2E2E2E; text-align: center; left: 175px; width: 135px; top: 156px;">\(\delta_3\)</span>
+<img src="PhD/3_observation/weaklensing/05_tomography/box_2.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 330px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.85em; color: #2E2E2E; text-align: center; left: 330px; width: 135px; top: 156px;">\(\delta_2\)</span>
+<img src="PhD/3_observation/weaklensing/05_tomography/box_3.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 485px; top: 10px; width: 135px;"><span style="position: absolute; font-size: 0.85em; color: #2E2E2E; text-align: center; left: 485px; width: 135px; top: 156px;">\(\delta_1\)</span>
 </div>
 <svg style="position: absolute; left: 552px; top: 203px; width: 78px; height: 24px;" viewbox="0 0 78 24"><line x1="0" y1="12" x2="60" y2="12" stroke="#6E6E6E" stroke-width="5" stroke-linecap="round"></line><polygon points="58,2 78,12 58,22" fill="#6E6E6E"></polygon></svg><img src="PhD/3_observation/weaklensing/05_tomography/kappa_3.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 643px; top: 171px; width: 88px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; left: 739px; top: 204px;">κ bin 1</span>
 <svg style="position: absolute; left: 397px; top: 299px; width: 233px; height: 24px;" viewbox="0 0 233 24"><line x1="0" y1="12" x2="215" y2="12" stroke="#6E6E6E" stroke-width="5" stroke-linecap="round"></line><polygon points="213,2 233,12 213,22" fill="#6E6E6E"></polygon></svg><img src="PhD/3_observation/weaklensing/05_tomography/kappa_2.png" style="position: absolute; margin: 0; max-width: none; max-height: none; left: 643px; top: 267px; width: 88px;"><span style="position: absolute; font-size: 0.55em; color: #2E2E2E; left: 739px; top: 300px;">κ bin 2</span>
@@ -2272,7 +2206,7 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <div class="solutionbox" style="margin-top: 0.3em;">
 <div class="solutionbox-body" style="font-size: 0.72em;">
 <p>The Born approximation computes the convergence along <span class="kw">undeflected light rays</span></p>
-<p>Post-Born ray tracing deflects them by under <span class="kw2">1 arcmin</span>, below the accuracy of our <span class="kw">gravity solver</span></p>
+<p>Post-Born ray tracing computes deflection angle, but its correction to the convergence power spectrim is below the <span class="kw">arcminute</span> scale.</p>
 </div>
 </div>
 </div>
@@ -2294,7 +2228,7 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 </div>
 <div class="solutionbox-body" style="font-size: 0.72em;">
 <p><span class="kw">CosmoGrid</span>: pkdgrav3, independent initial conditions</p>
-<p>Converges with the mesh. At <span class="kw2"><span class="math inline">\(2560^3\)</span></span>: within <span class="kw2">9 %</span> to <span class="math inline">\(\ell =\)</span> <span class="kw2">250</span> (bin 3), <span class="kw2">11 %</span> to <span class="math inline">\(\ell =\)</span> <span class="kw2">200</span> (bin 2)</p>
+<p>Converges with the mesh. At <span class="kw2"><span class="math inline">\(4096^3\)</span></span>: within <span class="kw2">7 %</span> to <span class="math inline">\(\ell =\)</span> <span class="kw2">200</span> (bin 2), <span class="kw2">10 %</span> to <span class="math inline">\(\ell =\)</span> <span class="kw2">250</span> (bin 3)</p>
 </div>
 </div>
 </div>
@@ -2324,14 +2258,6 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <div class="fragment" data-fragment-index="2" style="width: 100%; text-align: center;">
 <p><span class="kw" style="display: block; font-size: 0.75em; text-align: left;">Tomographic bin 3, this work against CosmoGrid</span></p>
 <p><img data-src="PhD/5_contribution/fli/17_starlet/starlet_l1.svg" width="1000"></p>
-<div class="fragment" data-fragment-index="3" style="text-align: left;">
-<div class="solutionbox" style="margin-top: 0.2em;">
-<div class="solutionbox-body" style="font-size: 0.75em;">
-<p>Finest scale (<span class="math inline">\(\ell \gtrsim\)</span> <span class="kw2">700</span>): <span class="kw2">25 %</span> narrower than CosmoGrid</p>
-<p>Coarser scales: within <span class="kw2">7 %</span></p>
-</div>
-</div>
-</div>
 </div>
 </div>
 </section>
@@ -2372,20 +2298,21 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 </section>
 <section id="field-level-likelihood-and-scale-cut" class="slide level2">
 <h2>Field-level likelihood and scale cut</h2>
-<div class="row bare" style="--gap: 40px; --align: flex-start; --justify: center; margin-top: 0.8em;">
+<div class="row bare" style="--gap: 36px; --align: center; --justify: center; margin-top: 0.4em;">
 <div style="flex: none; text-align: center;">
-<p><span class="kw" style="display: block; font-size: 0.8em; margin-bottom: 0.3em;">Gaussian likelihood on the convergence pixels</span></p>
-<div class="eqbox" style="--eq-border: #3b6fb6; --eq-size: 1.1em; --eq-math-margin: 0.3em 0; --eq-pad: 0.2em 0.9em; width: fit-content; margin: 0 auto;">
+<p><span class="kw" style="display: block; font-size: 0.75em; margin-bottom: 0.2em;">Gaussian likelihood on the convergence pixels</span></p>
+<div class="eqbox" style="--eq-border: #3b6fb6; --eq-size: 0.9em; --eq-math-margin: 0.2em 0; --eq-pad: 0.1em 0.8em; width: fit-content; margin: 0 auto;">
 <p><span class="math display">\[-\ln\mathcal{L}(\boldsymbol\theta,\mathbf{s}) = \sum_i \frac{\lVert \color{#c2560a}{\hat{\mathbf{d}}_i} - \mathbf{d}_i \rVert_2^2}{2\,\color{#3b6fb6}{\sigma_i^2}}\]</span></p>
 </div>
-</div>
-<div class="fragment" data-fragment-index="1" style="flex: none; width: 470px; text-align: center;">
-<p><span class="kw" style="display: block; font-size: 0.8em; margin-bottom: 0.3em;">Noise per pixel</span></p>
-<div class="eqbox" style="--eq-border: #3b6fb6; --eq-size: 1.1em; --eq-math-margin: 0.3em 0; --eq-pad: 0.2em 0.9em; width: fit-content; margin: 0 auto;">
+<div class="fragment" data-fragment-index="1">
+<p><span class="kw" style="display: block; font-size: 0.75em; margin: 0.4em 0 0.2em;">Noise per pixel</span></p>
+<div class="eqbox" style="--eq-border: #3b6fb6; --eq-size: 0.9em; --eq-math-margin: 0.2em 0; --eq-pad: 0.1em 0.8em; width: fit-content; margin: 0 auto;">
 <p><span class="math display">\[\color{#3b6fb6}{\sigma_i} = \frac{\sigma_e}{\sqrt{n_{\mathrm{gal},i}\;\Omega_\mathrm{pix}}}\]</span></p>
 </div>
-<p><span class="caption" style="--cap-size: 0.55em; margin-top: 0.4em;"><span class="math inline">\(\sigma_e\)</span> shape noise per component, <span class="math inline">\(n_{\mathrm{gal},i}\)</span> galaxies per arcmin² in bin <span class="math inline">\(i\)</span>, <span class="math inline">\(\Omega_\mathrm{pix}\)</span> pixel area in arcmin² at <span class="math inline">\(N_\mathrm{side} = 256\)</span></span></p>
-<div class="table-full" style="font-size: 0.68em; margin-top: 0.3em;">
+</div>
+</div>
+<div class="fragment" data-fragment-index="1" style="flex: none; width: 480px; text-align: center;">
+<div class="table-full" style="font-size: 0.85em;">
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -2414,9 +2341,10 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 </tbody>
 </table>
 </div>
+<p><span class="caption" style="--cap-size: 0.55em; margin-top: 0.4em;"><span class="math inline">\(\sigma_e\)</span> shape noise per component, <span class="math inline">\(n_{\mathrm{gal},i}\)</span> galaxies per arcmin² in bin <span class="math inline">\(i\)</span>,<br><span class="math inline">\(\Omega_\mathrm{pix}\)</span> pixel area in arcmin² at <span class="math inline">\(N_\mathrm{side} = 256\)</span></span></p>
 </div>
 </div>
-<div class="fragment" data-fragment-index="2" style="margin-top: 1.8em;">
+<div class="fragment" data-fragment-index="2" style="margin-top: 0.6em;">
 <div class="row bare" style="--gap: 16px; --justify: center;">
 <p><span style="font-size: 0.85em;">A <span class="kw">map-level scale cut</span> on the prediction</span></p>
 <div class="eqbox" style="--eq-border: #3b6fb6; --eq-size: 0.95em; --eq-math-margin: 0.15em 0; --eq-pad: 0.05em 0.7em; width: fit-content; margin: 0;">
@@ -2442,11 +2370,17 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <p><img data-src="PhD/5_contribution/fli/backup/scalecut_map_cut.png" width="275"></p>
 </div>
 </div>
+<div class="fragment" data-fragment-index="2" style="text-align: center; margin-top: 0.3em;">
+<div class="eqbox" style="--eq-border: #3b6fb6; --eq-size: 0.78em; --eq-math-margin: 0.1em 0; --eq-pad: 0.05em 0.8em; width: fit-content; margin: 0 auto;">
+<p><span class="math display">\[T_\ell = \begin{cases} 1, &amp; \ell \le \ell_\mathrm{cut}-\ell_\mathrm{width} \\ \tfrac12\,(1+\cos\pi x), &amp; \ell_\mathrm{cut}-\ell_\mathrm{width} &lt; \ell &lt; \ell_\mathrm{cut} \\ 0, &amp; \ell \ge \ell_\mathrm{cut} \end{cases} \qquad x = \frac{\ell-(\ell_\mathrm{cut}-\ell_\mathrm{width})}{\ell_\mathrm{width}}\]</span></p>
+</div>
+<p><span class="caption" style="--cap-size: 0.55em; margin-top: 0.2em;"><span class="math inline">\(\ell_\mathrm{cut}\)</span> = <span class="kw2">200</span> (bin 2), <span class="kw2">250</span> (bin 3), <span class="math inline">\(\ell_\mathrm{width}\)</span> = <span class="kw2">50</span></span></p>
+</div>
 </section>
 <section id="recovering-the-maximum-a-posteriori" class="slide level2">
 <h2>Recovering the maximum a posteriori</h2>
-<div class="absolute" style="font-size: 0.6em; text-align: right; line-height: 1.3;top: 6px; right: 0px; ">
-<p><span class="kw">Preliminary</span><br>DES Y3 noise, <span class="math inline">\(416^3\)</span> mesh, 2LPT</p>
+<div class="absolute" style="font-size: 0.55em; text-align: right; line-height: 1.3;top: -16px; right: 0px; ">
+<p><span class="kw">Preliminary</span><br>DES Y3 noise, <span class="math inline">\(1200^3\)</span> mesh, 2LPT<br><span class="math inline">\(N_\mathrm{side} = 1024\)</span>, painted at <span class="math inline">\(512\)</span>, <span class="math inline">\(\ell \le 700\)</span></p>
 </div>
 <div class="r-stack bare" style="margin-top: 0.1em;">
 <div class="fragment fade-out" data-fragment-index="2" style="width: 100%; text-align: center;">
@@ -2467,8 +2401,12 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 </div>
 <div class="fragment" data-fragment-index="3">
 <div class="solutionbox" style="margin-top: 0.2em;">
+<div class="solutionbox-header" style="font-size: 0.75em;">
+<p>MAP from DES Y3 bins 2 and 3</p>
+</div>
 <div class="solutionbox-body" style="font-size: 0.72em;">
-<p>The reconstruction reaches the coherence of the joint Wiener filter, the best linear reconstruction from the same maps, in both bins (0.71 and 0.73 up to <span class="math inline">\(\ell = 164\)</span>). Its starlet <span class="math inline">\(\ell_1\)</span> norm recovers 86 to 95 % of the truth’s at scales 2 to 5, and 73 % at the finest.</p>
+<p>The predicted <span class="kw"><span class="math inline">\(\kappa\)</span></span> reaches the limit of the <span class="kw">joint Wiener filter</span>, the best linear reconstruction, in both bins</p>
+<p>Starlet <span class="math inline">\(\ell_1\)</span>: <span class="kw2">74–98 %</span> of the truth at scales 1–4, <span class="kw2">~45 %</span> at the finest scale 0</p>
 </div>
 </div>
 </div>
@@ -2517,6 +2455,15 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <div class="rail-stack">
 <p><img data-src="PhD/2_outline/rail_full.svg" class="rail-full"></p>
 <p><img data-src="PhD/2_outline/rail_focus_conclusion.svg" class="rail-focus"></p>
+<!-- Paper references under the contribution boxes of the outline map.
+     Positions are % of the map (rail.tex coordinates over its bounding box). -->
+<div class="rail-paper" style="left: 62.98%; top: 41.0%;">
+<p><a href="https://arxiv.org/abs/2604.08463" class="kw">arXiv:2604.08463</a> · submitted to <span class="kw">RASTI</span></p>
+</div>
+<div class="rail-paper" style="left: 62.98%; top: 76.7%;">
+<p><a href="https://joss.theoj.org/papers/10.21105/joss.08852" class="kw">JOSS · doi:10.21105/joss.08852</a><br>
+<span class="kw">JCAP</span> in prep.</p>
+</div>
 </div>
 </section>
 <section id="the-software-behind-this-thesis" class="slide level2">
@@ -2894,6 +2841,54 @@ C_\ell^{ij} = \int \mathrm{d}\chi\, \frac{q_i(\chi)\,q_j(\chi)}{\chi^2}\; P\!\le
 <figure>
 <p><img data-src="PhD/5_contribution/fli/backup/masked_shear_residual_maps.svg" class="quarto-figure quarto-figure-center" width="760"></p>
 </figure>
+</div>
+</section>
+<section id="kaisersquires-on-the-sphere" class="slide level2" data-corner="PhD/1_intro/lcdm/lcdm_model_lss.svg" data-visibility="uncounted">
+<h2>Kaiser–Squires on the sphere</h2>
+<p><img data-src="PhD/1_intro/lcdm/lcdm_model_lss.svg" class="corner print-only"></p>
+<div class="columns">
+<div class="column" style="width: 45%; padding-top: 1em;">
+<p><span class="kw">From <span class="math inline">\(\kappa\)</span> to <span class="math inline">\(\gamma\)</span></span></p>
+<div class="eqbox" style="--eq-border: #2aa198; --eq-size: 0.8em; --eq-math-margin: 0.3em 0;">
+<p><span class="math display">\[
+\gamma^E_{\ell m} = -\sqrt{\frac{(\ell+2)(\ell-1)}{\ell(\ell+1)}}\;\kappa_{\ell m}, \qquad \gamma^B_{\ell m} = 0
+\]</span> <span class="math display">\[
+\gamma_1 + i\gamma_2 = \sum_{\ell m} \gamma^E_{\ell m}\;{}_2Y_{\ell m}
+\]</span></p>
+</div>
+<div class="fragment" data-fragment-index="1">
+<p><span class="kw">From <span class="math inline">\(\gamma\)</span> back to <span class="math inline">\(\kappa\)</span></span></p>
+<div class="eqbox" style="--eq-border: #2aa198; --eq-size: 0.8em; --eq-math-margin: 0.3em 0;">
+<p><span class="math display">\[
+\kappa_{\ell m} = -\sqrt{\frac{\ell(\ell+1)}{(\ell+2)(\ell-1)}}\;\gamma^E_{\ell m}
+\]</span></p>
+</div>
+</div>
+</div><div class="column" style="width:55%;">
+<div class="cell bare" style="--img-w: 200px; --cap-size: 0.6em; --cell-margin: 0.1em 0 0;">
+<p><img data-src="PhD/3_observation/weaklensing/04_kaiser_squires/kappa.gif" class="screen-only"> <img data-src="PhD/3_observation/weaklensing/04_kaiser_squires/kappa.png" class="print-only"></p>
+<p><span class="caption">convergence κ</span></p>
+</div>
+<div style="text-align: center; margin: 0.1em 0; line-height: 0;">
+<p><span class="arrow down" style="--len: 34px; --head: 20px;"></span></p>
+</div>
+<div class="row bare" style="--gap: 24px; --justify: center; --img-w: 175px; --cap-size: 0.6em; --cell-margin: 0.1em 0 0;">
+<div class="cell">
+<p><img data-src="PhD/3_observation/weaklensing/04_kaiser_squires/gamma1.gif" class="screen-only"> <img data-src="PhD/3_observation/weaklensing/04_kaiser_squires/gamma1.png" class="print-only"></p>
+<p><span class="caption">shear γ<sub>1</sub></span></p>
+</div>
+<div class="cell">
+<p><img data-src="PhD/3_observation/weaklensing/04_kaiser_squires/gamma2.gif" class="screen-only"> <img data-src="PhD/3_observation/weaklensing/04_kaiser_squires/gamma2.png" class="print-only"></p>
+<p><span class="caption">shear γ<sub>2</sub></span></p>
+</div>
+</div>
+</div></div>
+<div class="solutionbox">
+<div class="solutionbox-body" style="font-size: 0.75em;">
+<ul>
+<li>Kaiser–Squires is a <span class="kw">simple per-<span class="math inline">\(\ell\)</span> rescaling</span> between <span class="math inline">\(\kappa\)</span> and the <span class="math inline">\(E\)</span>-mode of the shear</li>
+</ul>
+</div>
 </div>
 
 
