@@ -1166,7 +1166,7 @@
     "href": "2026_10_PhD/index.html#from-shear-to-cosmology",
     "title": "Differentiable Field-Level Cosmology",
     "section": "From shear to cosmology",
-    "text": "From shear to cosmology\n\n\nDATA\n\n\n\ngalaxy\nshapes\n\n\n\n\n\n \nshear \\(\\gamma_1, \\gamma_2\\)\n\n\nInverse Kaiser–Squires\n\n\n\n \nconvergence \\(\\kappa\\) per bin\n\n\n\n\n\nmeasured\n\\(\\hat C_\\ell^{\\,ij}\\)\n\n\n\n\n\nTHEORY\n\n\n\\(\\theta = (\\Omega_\\mathrm{m}, \\dots)\\)\n\n\n\n\n\n\nmatter spectrum \\(P(k, z)\\)\n\n\nLimber, with the lensing kernels \\(q_i(\\chi)\\)\n\n\n\npredicted\n\\(C_\\ell^{\\,ij}(\\theta)\\)\n\n\n\n\ncompare\n↓\ninfer \\(\\theta\\)\n\n\n\n\n\n\n\nIn traditional anaysis we compress the maps into angular power spectra \\(C_\\ell\\) and compare them with the prediction\nThis is called a two-point correlation function (2PCF)"
+    "text": "From shear to cosmology\n\n\nDATA\n\n\n\ngalaxy\nshapes\n\n\n\n\n\n \nshear \\(\\gamma_1, \\gamma_2\\)\n\n\nInverse Kaiser–Squires\n\n\n\n \nconvergence \\(\\kappa\\) per bin\n\n\n\n\n\nmeasured\n\\(\\hat C_\\ell^{\\,ij}\\)\n\n\n\n\n\nTHEORY\n\n\n\\(\\theta = (\\Omega_\\mathrm{m}, \\dots)\\)\n\n\n\n\n\n\nmatter spectrum \\(P(k, z)\\)\n\n\nLimber, with the lensing kernels \\(q_i(\\chi)\\)\n\n\n\npredicted\n\\(C_\\ell^{\\,ij}(\\theta)\\)\n\n\n\n\ncompare\n↓\ninfer \\(\\theta\\)\n\n\n\n\n\n\n\nIn traditional anaysis we compress the maps into angular power spectra \\(C_\\ell\\).\nThis is called a two-point correlation function (2PCF)"
   },
   {
     "objectID": "2026_10_PhD/index.html#the-target-of-2pcf-analysis",
@@ -1376,28 +1376,28 @@
     "href": "2026_10_PhD/index.html#the-gravity-solver-lagrangian-perturbation-theory",
     "title": "Differentiable Field-Level Cosmology",
     "section": "The gravity solver: Lagrangian perturbation theory",
-    "text": "The gravity solver: Lagrangian perturbation theory\n \n\n\nEach particle moves from its initial grid position \\(\\mathbf{q}\\)\n\n\\[\\mathbf{x}(\\mathbf{q}, a) = \\mathbf{q} + D_1(a)\\,\\mathbf{\\Psi}^{(1)}(\\mathbf{q}) + D_2(a)\\,\\mathbf{\\Psi}^{(2)}(\\mathbf{q}) + \\dots\\] \\[\\nabla \\cdot \\mathbf{\\Psi}^{(1)} = -\\delta_\\mathrm{ini}\\]\n\nFirst order: the Zel’dovich approximation. Second order (2LPT) adds the tidal field.\n\n\n\n\nPerturbation theory does not capture the non-linear growth of structure\nWe need a fast and differentiable gravity solver that can model the non-linear signal\n\n\n\n\n\n\nLensing \\(C_\\ell\\) of the four DES Y3 bins, linear theory against halofit"
+    "text": "The gravity solver: Lagrangian perturbation theory\n \n\n\nEach particle moves from its initial grid position \\(\\mathbf{q}\\)\n\n\\[\\mathbf{x}(\\mathbf{q}, a) = \\mathbf{q} + D_1(a)\\,\\mathbf{\\Psi}^{(1)}(\\mathbf{q}) + D_2(a)\\,\\mathbf{\\Psi}^{(2)}(\\mathbf{q}) + \\dots\\] \\[\\nabla \\cdot \\mathbf{\\Psi}^{(1)} = -\\delta_\\mathrm{ini}\\]\n\nFirst order: the Zel’dovich approximation.\n\n\n\n\nPerturbation theory does not capture the non-linear growth of structure\nWe need a fast and differentiable gravity solver that can model the non-linear growth of structure\n\n\n\n\n\n\nLensing \\(C_\\ell\\) of the four DES Y3 bins, linear theory against halofit"
   },
   {
     "objectID": "2026_10_PhD/index.html#the-gravity-solver-particle-mesh",
     "href": "2026_10_PhD/index.html#the-gravity-solver-particle-mesh",
     "title": "Differentiable Field-Level Cosmology",
     "section": "The gravity solver: particle mesh",
-    "text": "The gravity solver: particle mesh\n\n \n\n\n\n\n\n\n\n\n\n\n\nGravity through FFTs on a mesh: cheap, differentiable, and limited by the mesh resolution"
+    "text": "The gravity solver: particle mesh\n\n \n\n\n\n\n\n\n\n\n\n\n\nGravity through FFTs on a mesh: fast, differentiable, and limited by the mesh resolution"
   },
   {
     "objectID": "2026_10_PhD/index.html#accuracy-of-the-particle-mesh",
     "href": "2026_10_PhD/index.html#accuracy-of-the-particle-mesh",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Accuracy of the particle mesh",
-    "text": "Accuracy of the particle mesh\n\n\n\n\n\n\n\n\n\n\n\nThe accuracy of a particle-mesh simulation is limited by the resolution of its mesh\nAt survey volume, a mesh with that resolution does not fit on one GPU\nWe need a scalable gravity solver"
+    "text": "Accuracy of the particle mesh\n\n\n\n\n\n\n\n\n\n\n\nThe accuracy of a particle-mesh simulation is limited by the resolution of its mesh\nAt survey volume, a mesh with that resolution does not fit on one GPU (For \\(4096^3\\) requires 1.6 TB of memory).\nWe need a scalable gravity solver"
   },
   {
     "objectID": "2026_10_PhD/index.html#distributing-the-simulation",
     "href": "2026_10_PhD/index.html#distributing-the-simulation",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Distributing the simulation",
-    "text": "Distributing the simulation\n\n \n\nDistributed components for particle-mesh simulation\n\n\nDistributed fast Fourier transforms\n\n\n\nDistributed transpositions\n\n\n\nDistributed halo exchange\n\n\n\n\n\nThe FFT and the halo exchange are the two operations that require communication between devices. Both are differentiable, distributed and written in JAX\nKabalan et al. (2026b), jaxDecomp: JAX library for 3D domain decomposition and parallel FFTs, accepted to JOSS"
+    "text": "Distributing the simulation\n\n \n\n\n\n\n\n\n\n\n\n\n\n\nWe split the box into pencils, one per GPU\njaxDecomp implements a differentiable, distributed FFT for the particle-mesh solver\n\n\n\n\nKabalan et al. (2026b), jaxDecomp: JAX library for 3D domain decomposition and parallel FFTs, accepted to JOSS"
   },
   {
     "objectID": "2026_10_PhD/index.html#building-the-observable",
@@ -1411,14 +1411,7 @@
     "href": "2026_10_PhD/index.html#building-the-observable-requirements",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Building the observable: requirements",
-    "text": "Building the observable: requirements\n\n\n\n\n\n\n\nSimulation-based inference on real survey data\n\n\nApplied on DES Y3, Jeffrey et al. (2024): SBI on real data and validated on CosmoGridV1.\nThe forward model must simulate the same volume."
-  },
-  {
-    "objectID": "2026_10_PhD/index.html#building-the-observable-requirements-1",
-    "href": "2026_10_PhD/index.html#building-the-observable-requirements-1",
-    "title": "Differentiable Field-Level Cosmology",
-    "section": "Building the observable: requirements",
-    "text": "Building the observable: requirements\n\n\n\n\nFull-sky simulation\n\n\nTo simulate the full sky, we need a box that spans twice the comoving distance of the furthest bin"
+    "text": "Building the observable: requirements\n\n\n\n\n\n\n\nSimulation-based inference on real survey data\n\n\nApplied on DES Y3, Jeffrey et al. (2024): SBI on real data using Gower Street Similations and validated on CosmoGridV1."
   },
   {
     "objectID": "2026_10_PhD/index.html#painting-on-spherical-shells",
@@ -1439,28 +1432,35 @@
     "href": "2026_10_PhD/index.html#creating-the-lightcone",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Creating the lightcone",
-    "text": "Creating the lightcone\n\n\n\n\n\n\nThe 3D density field is projected onto concentric spherical shells around the observer, each at its own redshift."
+    "text": "Creating the lightcone"
   },
   {
     "objectID": "2026_10_PhD/index.html#choosing-an-optimal-shell-spacing",
     "href": "2026_10_PhD/index.html#choosing-an-optimal-shell-spacing",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Choosing an optimal shell spacing",
-    "text": "Choosing an optimal shell spacing\n\n\nUniform in scale factor\n\n\\[a_i = a_{\\min} + \\tfrac{i}{n}\\,(1 - a_{\\min})\\]\n\n\n\n\n\n\nEqual volume\n\n\\[r_i^3 = r_{\\min}^3 + \\tfrac{i}{n}\\,(r_{\\max}^3 - r_{\\min}^3)\\]\n\nouter shells capped at 50 Mpc/\\(h\\)\n\n\n\n\n\n\nEqual volume spacing vs linear in scale factor spacing\n\n\nUniform steps in \\(a\\): the innermost shell holds three orders of magnitude fewer particles than with equal volume, so it is shot noise dominated\nThe downside of equal volume: fewer shells cover the lensing kernel of the first redshift bin"
+    "text": "Choosing an optimal shell spacing\n\n\nUniform in scale factor\n\n\\[a_i = a_{\\min} + \\tfrac{i}{n}\\,(1 - a_{\\min})\\]\n\n\n\n\n\n\nEqual volume\n\n\\[r_i^3 = r_{\\min}^3 + \\tfrac{i}{n}\\,(r_{\\max}^3 - r_{\\min}^3)\\]\n\nouter shells capped at 60 Mpc/\\(h\\)\n\n\n\n\n\n\nEqual volume spacing vs linear in scale factor spacing\n\n\nUniform steps in \\(a\\): the innermost shell holds three orders of magnitude fewer particles than with equal volume, so it is shot noise dominated\nThe downside of equal volume: fewer shells cover the lensing kernel of the first redshift bin"
   },
   {
     "objectID": "2026_10_PhD/index.html#impact-of-the-number-of-shells-on-the-accuracy",
     "href": "2026_10_PhD/index.html#impact-of-the-number-of-shells-on-the-accuracy",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Impact of the number of shells on the accuracy",
-    "text": "Impact of the number of shells on the accuracy\n\nuniform in \\(a\\)innermost shell\n\n\n\nequal volume,vs Limber\n\n\n\n\n\nHow many shells?\n\n\nMore shells: each shell is thinner, so the innermost one holds fewer particles and is shot-noise dominated\nFewer shells: a few wide shells sample the lensing kernel of the first bin, so its convergence is biased low below \\(\\ell =\\) 100"
+    "text": "Impact of the number of shells on the accuracy\nEqual-volume shells: convergence against Limber\n\n\n\n\n\n\n\n\nHow many shells?\n\n\nMore shells: each shell is thinner and holds fewer particles, so they are shot-noise dominated\nFewer shells: a few wide shells sample the lensing kernel of the first bin, so they become biased low below \\(\\ell =\\) 100"
+  },
+  {
+    "objectID": "2026_10_PhD/index.html#building-the-observable-lensing",
+    "href": "2026_10_PhD/index.html#building-the-observable-lensing",
+    "title": "Differentiable Field-Level Cosmology",
+    "section": "Building the observable",
+    "text": "Building the observable"
   },
   {
     "objectID": "2026_10_PhD/index.html#from-shells-to-convergence-the-born-approximation",
     "href": "2026_10_PhD/index.html#from-shells-to-convergence-the-born-approximation",
     "title": "Differentiable Field-Level Cosmology",
     "section": "From shells to convergence: the Born approximation",
-    "text": "From shells to convergence: the Born approximation\n\n\n\nBorn approximation: straight lines of sight\n\n\\[\\kappa(\\hat{\\mathbf n};\\chi_s) = \\frac{3}{2}\\,\\Omega_m\\Big(\\frac{H_0}{c}\\Big)^2 \\sum_j W_j(\\chi_s)\\,\\delta_j(\\hat{\\mathbf n})\\]\n\\[W_j(\\chi_s) = \\int_{\\mathrm{shell}\\ j} \\mathrm{d}\\chi\\;\\chi\\,(1+z)\\Big(1-\\frac{\\chi}{\\chi_s}\\Big)\\]\n\n\n\n\n\n\n\n\n\\[\\kappa_i(\\hat{\\mathbf n}) = \\int \\mathrm{d}z\\; n_i(z)\\,\\kappa\\big(\\hat{\\mathbf n};\\chi_s(z)\\big)\\]\n\n\n\n\n\n\n\nThe Born approximation computes the convergence along undeflected light rays\nPost-Born ray tracing computes deflection angle, but its correction to the convergence power spectrim is below the arcminute scale."
+    "text": "From shells to convergence: the Born approximation\n\n\n\nBorn approximation: straight lines of sight\n\n\\[\\kappa(\\hat{\\mathbf n};\\chi_s) = \\frac{3}{2}\\,\\Omega_m\\Big(\\frac{H_0}{c}\\Big)^2 \\sum_j W_j(\\chi_s)\\,\\delta_j(\\hat{\\mathbf n})\\]\n\\[W_j(\\chi_s) = \\int_{\\mathrm{shell}\\ j} \\mathrm{d}\\chi\\;\\chi\\,(1+z)\\Big(1-\\frac{\\chi}{\\chi_s}\\Big)\\]\n\n\n\n\n\n\n\n\n\\[\\kappa_i(\\hat{\\mathbf n}) = \\int \\mathrm{d}z\\; n_i(z)\\,\\kappa\\big(\\hat{\\mathbf n};\\chi_s(z)\\big)\\]\n\n\n\n\n\n\n\nThe Born approximation computes the convergence along undeflected light rays\nPost-Born ray tracing computes deflection angle, but its correction to the convergence power spectrum is below the arcminute scale."
   },
   {
     "objectID": "2026_10_PhD/index.html#comparing-against-cosmogrid",
@@ -1488,14 +1488,14 @@
     "href": "2026_10_PhD/index.html#recovering-the-maximum-a-posteriori",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Recovering the maximum a posteriori",
-    "text": "Recovering the maximum a posteriori\n\nPreliminaryDES Y3 noise, \\(1200^3\\) mesh, 2LPT\\(N_\\mathrm{side} = 1024\\), painted at \\(512\\), \\(\\ell \\le 700\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMAP from DES Y3 bins 2 and 3\n\n\nThe predicted \\(\\kappa\\) reaches the limit of the joint Wiener filter, the best linear reconstruction, in both bins\nStarlet \\(\\ell_1\\): 74–98 % of the truth at scales 1–4, ~45 % at the finest scale 0"
+    "text": "Recovering the maximum a posteriori\n\nPreliminaryDES Y3 noise, \\(1200^3\\) mesh, 2LPT\\(N_\\mathrm{side} = 1024\\), painted at \\(512\\), \\(\\ell \\le 700\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMAP from DES Y3 bins 2 and 3\n\n\nThe predicted \\(\\kappa\\) reaches the limit of the joint Wiener filter, the best linear reconstruction, in both bins\nStarlet \\(\\ell_1\\): 74–98 % of the truth at scales 1–4, ~45 % at the finest scale 0"
   },
   {
     "objectID": "2026_10_PhD/index.html#contribution-2-conclusion-and-perspectives",
     "href": "2026_10_PhD/index.html#contribution-2-conclusion-and-perspectives",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Contribution 2: conclusion and perspectives",
-    "text": "Contribution 2: conclusion and perspectives\n\n\n\nThe first differentiable weak-lensing forward model covering a full survey footprint on the curved sky\nDistributed over hundreds of GPUs, with a gradient end to end\nValidated against an independent \\(N\\)-body code: about 10 % to \\(\\ell \\approx 250\\)\nA first maximum a posteriori of the initial field from DES Y3-like maps, at the coherence of the Wiener filter (preliminary)\nKabalan et al. (2026b), jaxDecomp, accepted to JOSS\nKabalan et al. (2026c), in prep. for JCAP\n\n\n\n\n\n\nNext\n\nthe first survey-scale posterior, with coverage tests\na better gravity solver: a learned force correction or a differentiable moving mesh\nintrinsic alignments and photometric-redshift errors as latent variables\nbaryonification inside the model\n\n\n\n\nMoving-mesh particle mesh\n\n\n\n\n\nMoving mesh: B. Horowitz (2026), arXiv:2607.10983"
+    "text": "Contribution 2: conclusion and perspectives\n\n\n\nThe first differentiable weak-lensing forward model covering a full survey footprint on the curved sky\nDistributed over hundreds of GPUs, with a gradient end to end\nValidated against an independent \\(N\\)-body code: about 10 % to \\(\\ell \\approx 250\\)\nKabalan et al. (2026b), jaxDecomp, accepted to JOSS\nKabalan et al. (2026c), in prep. for JCAP\n\n\n\n\n\n\nNext\n\nthe first survey-scale posterior, with coverage tests\na better gravity solver: a learned force correction or a differentiable moving mesh\nintrinsic alignments and photometric-redshift errors as latent variables\nbaryonification inside the model\n\n\n\n\nMoving-mesh particle mesh\n\n\n\n\n\nMoving mesh: B. Horowitz (2026), arXiv:2607.10983"
   },
   {
     "objectID": "2026_10_PhD/index.html#the-software-behind-this-thesis",
@@ -1545,6 +1545,13 @@
     "title": "Differentiable Field-Level Cosmology",
     "section": "Integrators and time steps",
     "text": "Integrators and time steps"
+  },
+  {
+    "objectID": "2026_10_PhD/index.html#observer-positioning",
+    "href": "2026_10_PhD/index.html#observer-positioning",
+    "title": "Differentiable Field-Level Cosmology",
+    "section": "Observer positioning",
+    "text": "Observer positioning"
   },
   {
     "objectID": "2026_10_PhD/index.html#shell-spacing-and-the-lightcone",
@@ -1608,6 +1615,34 @@
     "title": "Differentiable Field-Level Cosmology",
     "section": "Scaling on supercomputers",
     "text": "Scaling on supercomputers\n\n\nJean Zay, IDRISNVIDIA H100 GPUs\n\n\nPerformance of the forward model\n\n\n\nPerformance of the gradient"
+  },
+  {
+    "objectID": "2026_10_PhD/index.html#distributed-fourier-transform",
+    "href": "2026_10_PhD/index.html#distributed-fourier-transform",
+    "title": "Differentiable Field-Level Cosmology",
+    "section": "Distributed Fourier transform",
+    "text": "Distributed Fourier transform"
+  },
+  {
+    "objectID": "2026_10_PhD/index.html#distributed-transpositions",
+    "href": "2026_10_PhD/index.html#distributed-transpositions",
+    "title": "Differentiable Field-Level Cosmology",
+    "section": "Distributed transpositions",
+    "text": "Distributed transpositions"
+  },
+  {
+    "objectID": "2026_10_PhD/index.html#halo-exchange",
+    "href": "2026_10_PhD/index.html#halo-exchange",
+    "title": "Differentiable Field-Level Cosmology",
+    "section": "Halo exchange",
+    "text": "Halo exchange"
+  },
+  {
+    "objectID": "2026_10_PhD/index.html#map-power-spectra-of-the-reconstruction",
+    "href": "2026_10_PhD/index.html#map-power-spectra-of-the-reconstruction",
+    "title": "Differentiable Field-Level Cosmology",
+    "section": "MAP: power spectra of the reconstruction",
+    "text": "MAP: power spectra of the reconstruction"
   },
   {
     "objectID": "2026_10_PhD/index.html#map-des-y3-against-euclid-coherence",

@@ -982,7 +982,7 @@ shapes</span></p>
 <div class="solutionbox">
 <div class="solutionbox-body" style="font-size: 0.8em;">
 <ul>
-<li>In traditional anaysis we compress the maps into <span class="kw">angular power spectra <span class="math inline">\(C_\ell\)</span></span> and compare them with the prediction</li>
+<li>In traditional anaysis we compress the maps into <span class="kw">angular power spectra <span class="math inline">\(C_\ell\)</span></span>.</li>
 <li>This is called a <span class="kw">two-point correlation function (2PCF)</span></li>
 </ul>
 </div>
@@ -1871,13 +1871,13 @@ optimum exactly over it -->
 <div class="eqbox" style="--eq-size: 0.72em; --eq-math-margin: 0.3em 0; --eq-pad: 0.2em 0.6em; width: fit-content; max-width: 100%; box-sizing: border-box; margin: 0.4em 0;">
 <p><span class="math display">\[\mathbf{x}(\mathbf{q}, a) = \mathbf{q} + D_1(a)\,\mathbf{\Psi}^{(1)}(\mathbf{q}) + D_2(a)\,\mathbf{\Psi}^{(2)}(\mathbf{q}) + \dots\]</span> <span class="math display">\[\nabla \cdot \mathbf{\Psi}^{(1)} = -\delta_\mathrm{ini}\]</span></p>
 </div>
-<p><span style="font-size: 0.8em; color: #6E6E6E;">First order: the Zel’dovich approximation. Second order (2LPT) adds the tidal field.</span></p>
+<p><span style="font-size: 0.8em; color: #6E6E6E;">First order: the Zel’dovich approximation.</span></p>
 <div class="fragment" data-fragment-index="2">
 <div class="solutionbox" style="margin-top: 0.9em;">
 <div class="solutionbox-body" style="font-size: 0.8em;">
 <ul>
 <li>Perturbation theory does not capture the <span class="kw" style="white-space: nowrap;">non-linear</span> growth of structure</li>
-<li>We need a <span class="kw">fast</span> and <span class="kw">differentiable</span> gravity solver that can model the <span class="kw" style="white-space: nowrap;">non-linear</span> signal</li>
+<li>We need a <span class="kw">fast</span> and <span class="kw">differentiable</span> gravity solver that can model the <span class="kw" style="white-space: nowrap;">non-linear</span> growth of structure</li>
 </ul>
 </div>
 </div>
@@ -1902,7 +1902,7 @@ optimum exactly over it -->
 <p><img data-src="PhD/5_contribution/fli/05_pm/pm_run.gif" class="fragment screen-only" style="width: 1000px;" data-fragment-index="6"></p>
 <p><img data-src="PhD/5_contribution/fli/05_pm/pm_run_last.png" class="print-only" style="width: 1000px;"></p>
 </div>
-<p>Gravity through FFTs on a mesh: cheap, differentiable, and <span class="kw">limited by the mesh resolution</span></p>
+<p>Gravity through FFTs on a mesh: fast, differentiable, and <span class="kw">limited by the mesh resolution</span></p>
 </section>
 <section id="accuracy-of-the-particle-mesh" class="slide level2">
 <h2>Accuracy of the particle mesh</h2>
@@ -1918,7 +1918,7 @@ optimum exactly over it -->
 <div class="solutionbox-body" style="font-size: 0.85em;">
 <ul>
 <li>The accuracy of a particle-mesh simulation is limited by the <span class="kw">resolution of its mesh</span></li>
-<li>At survey volume, a mesh with that resolution <span class="kw">does not fit on one GPU</span></li>
+<li>At survey volume, a mesh with that resolution <span class="kw">does not fit on one GPU</span> (For <span class="math inline">\(4096^3\)</span> requires <span class="kw2">1.6 TB</span> of memory).</li>
 <li>We need a <span class="kw">scalable</span> gravity solver</li>
 </ul>
 </div>
@@ -1930,24 +1930,23 @@ optimum exactly over it -->
 <div style="display: flex; align-items: center; gap: 18px; margin-top: -0.2em;">
 <p><img data-src="assets/Logos/JaxLogo.png" style="height: 40px; margin: 0;"> <a href="https://github.com/DifferentiableUniverseInitiative/jaxDecomp"><img data-src="https://img.shields.io/badge/GitHub-jaxDecomp-blue?logo=github.png"></a></p>
 </div>
-<h3 style="margin: 0.2em 0 0.1em;" id="distributed-components-for-particle-mesh-simulation"><span class="kw">Distributed components for particle-mesh simulation</span></h3>
-<div class="r-stack">
-<div class="fragment fade-out bare" data-fragment-index="1" style="text-align: center;">
-<p><span class="kw2">Distributed fast Fourier transforms</span></p>
-<p><img data-src="PhD/5_contribution/fli/07_distributed/jaxdecomp_fft.svg" style="margin: 0.2em 0 0;" height="285"></p>
+<div class="columns" style="display: flex; align-items: center; margin-top: 1em;">
+<div class="column" style="width:44%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/5_contribution/fli/07_distributed/pencils.svg" class="quarto-figure quarto-figure-center" style="margin: 0;;width:95.0%"></p>
+</figure>
 </div>
-<div class="fragment fade-in-then-out bare" data-fragment-index="1" style="text-align: center;">
-<p><span class="kw2">Distributed transpositions</span></p>
-<p><img data-src="PhD/5_contribution/fli/07_distributed/decomp2d.gif" style="margin: 0.2em 0 0;" height="285"></p>
-</div>
-<div class="fragment bare" data-fragment-index="2" style="text-align: center;">
-<p><span class="kw2">Distributed halo exchange</span></p>
-<video src="PhD/5_contribution/fli/07_distributed/halo_exchange.mp4" class="screen-only" muted="" playsinline="" preload="auto" style="width: 680px; margin-top: 0.2em;">
-</video>
-<p><img data-src="PhD/5_contribution/fli/07_distributed/halo_exchange_last.png" class="print-only" width="680"></p>
+</div><div class="column" style="width:56%;">
+<div class="solutionbox">
+<div class="solutionbox-body">
+<ul>
+<li>We split the box into <span class="kw">pencils</span>, one per GPU</li>
+<li><span class="kw">jaxDecomp</span> implements a <span class="kw">differentiable</span>, <span class="kw">distributed</span> FFT for the particle-mesh solver</li>
+</ul>
 </div>
 </div>
-<p>The FFT and the halo exchange are the two operations that require communication between devices. Both are <span class="kw">differentiable</span>, <span class="kw">distributed</span> and written in <span class="kw">JAX</span></p>
+</div></div>
 <p><span class="credit">Kabalan et al.&nbsp;(2026b), jaxDecomp: JAX library for 3D domain decomposition and parallel FFTs, accepted to JOSS</span></p>
 </section>
 <section id="building-the-observable" class="slide level2">
@@ -1959,34 +1958,20 @@ optimum exactly over it -->
 </div>
 </div>
 </section>
-<section id="building-the-observable-requirements" class="slide level2" data-transition="slide-in none-out">
+<section id="building-the-observable-requirements" class="slide level2">
 <h2>Building the observable: requirements</h2>
 <div class="r-stack" style="margin-top: 0.1em;">
 <p><img data-src="PhD/5_contribution/fli/09_observable/depth.svg" style="display: block; margin: 0 auto;" width="860"></p>
-<p><img data-src="PhD/5_contribution/fli/09_observable/depth_lines.svg" class="fragment" style="display: block; margin: 0 auto;" data-fragment-index="2" width="860"></p>
+<p><img data-src="PhD/5_contribution/fli/09_observable/depth_lines.svg" class="fragment" style="display: block; margin: 0 auto;" data-fragment-index="1" width="860"></p>
 </div>
-<div class="fragment" data-fragment-index="1">
+<div class="fragment" data-fragment-index="2">
 <div class="solutionbox" style="margin-top: 0.3em;">
 <div class="solutionbox-header" style="font-size: 0.8em;">
 <p>Simulation-based inference on real survey data</p>
 </div>
 <div class="solutionbox-body" style="font-size: 0.72em;">
-<p>Applied on <span class="kw">DES Y3</span>, Jeffrey et al.&nbsp;(2024): SBI on <span class="kw">real data</span> and validated on <span class="kw">CosmoGridV1</span>.<br>
-The forward model must simulate the <span class="kw">same volume</span>.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="building-the-observable-requirements-1" class="slide level2" data-visibility="uncounted" data-transition="none-in slide-out">
-<h2>Building the observable: requirements</h2>
-<p><img data-src="PhD/5_contribution/fli/09_observable/observer_views.png" style="display: block; margin: 0 auto;" width="740"></p>
-<div class="fragment" data-fragment-index="1">
-<div class="solutionbox" style="margin-top: 0.2em;">
-<div class="solutionbox-header" style="font-size: 0.8em;">
-<p>Full-sky simulation</p>
-</div>
-<div class="solutionbox-body" style="font-size: 0.72em;">
-<p>To simulate the full sky, we need a box that spans <span class="kw">twice</span> the comoving distance of the <span class="kw">furthest bin</span></p>
+<p>Applied on <span class="kw">DES Y3</span>, Jeffrey et al.&nbsp;(2024): SBI on <span class="kw">real data</span> using <span class="kw">Gower Street Similations</span> and validated on <span class="kw">CosmoGridV1</span>.<br>
+</p>
 </div>
 </div>
 </div>
@@ -2028,7 +2013,7 @@ The forward model must simulate the <span class="kw">same volume</span>.</p>
 <div class="columns">
 <div class="column" style="width: 50%; text-align: center;">
 <h4 style="margin: 0.2em 0;" id="bilinear-interpolation"><span class="kw2">Bilinear interpolation</span></h4>
-<video src="PhD/5_contribution/fli/10_painting/bilinear.mp4" class="screen-only" data-autoplay="" muted="" playsinline="" preload="auto" style="width: 82%;">
+<video src="PhD/5_contribution/fli/10_painting/bilinear.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="width: 82%;">
 </video>
 <p><img data-src="PhD/5_contribution/fli/10_painting/bilinear_last.png" class="print-only" style="width:82.0%"></p>
 <div class="solutionbox" style="text-align: left;">
@@ -2039,9 +2024,9 @@ The forward model must simulate the <span class="kw">same volume</span>.</p>
 </div><div class="column fragment" data-fragment-index="1" style="width: 50%; text-align: center;">
 <h4 style="margin: 0.2em 0;" id="radial-basis-function-interpolation"><span class="kw">Radial basis function interpolation</span></h4>
 <div class="r-stack">
-<video src="PhD/5_contribution/fli/10_painting/rbf.mp4" class="fragment fade-out screen-only" data-fragment-index="2" muted="" playsinline="" preload="auto" style="width: 82%;">
+<video src="PhD/5_contribution/fli/10_painting/rbf.mp4" class="fragment fade-out screen-only" data-fragment-index="2" loop="" muted="" playsinline="" preload="auto" style="width: 82%;">
 </video>
-<video src="PhD/5_contribution/fli/10_painting/rbf_kernel.mp4" class="fragment screen-only" data-fragment-index="2" muted="" playsinline="" preload="auto" style="width: 82%;">
+<video src="PhD/5_contribution/fli/10_painting/rbf_kernel.mp4" class="fragment screen-only" data-fragment-index="2" loop="" muted="" playsinline="" preload="auto" style="width: 82%;">
 </video>
 <p><img data-src="PhD/5_contribution/fli/10_painting/rbf_kernel_last.png" class="print-only" style="width:82.0%"></p>
 </div>
@@ -2067,14 +2052,7 @@ The forward model must simulate the <span class="kw">same volume</span>.</p>
 <section id="creating-the-lightcone" class="slide level2" data-transition="none-in slide-out">
 <h2>Creating the lightcone</h2>
 <div style="text-align: center; margin-top: 0.2em;">
-<p><img data-src="PhD/5_contribution/fli/11_lightcone/lightcone_shells.png" style="height: 440px;"></p>
-</div>
-<div class="fragment" data-fragment-index="1">
-<div class="solutionbox" style="margin-top: -0.2em;">
-<div class="solutionbox-body" style="font-size: 0.85em;">
-<p>The 3D density field is projected onto concentric <span class="kw">spherical shells</span> around the observer, each at its own redshift.</p>
-</div>
-</div>
+<p><img data-src="PhD/5_contribution/fli/11_lightcone/lightcone_shells.png" style="height: 530px;"></p>
 </div>
 </section>
 <section id="choosing-an-optimal-shell-spacing" class="slide level2">
@@ -2094,11 +2072,11 @@ The forward model must simulate the <span class="kw">same volume</span>.</p>
 <div class="eqbox" style="--eq-border: #25406b; --eq-size: 0.72em; --eq-math-margin: 0.25em 0; --eq-pad: 0.05em 0.5em; margin-top: 0.3em;">
 <p><span class="math display">\[r_i^3 = r_{\min}^3 + \tfrac{i}{n}\,(r_{\max}^3 - r_{\min}^3)\]</span></p>
 </div>
-<p><span class="caption" style="--cap-size: 0.55em; margin-top: 0.3em;">outer shells capped at 50 Mpc/<span class="math inline">\(h\)</span></span></p>
+<p><span class="caption" style="--cap-size: 0.55em; margin-top: 0.3em;">outer shells capped at 60 Mpc/<span class="math inline">\(h\)</span></span></p>
 </div>
 <p><img data-src="PhD/5_contribution/fli/12_spacing/spacing_equal_vol.svg" width="800"></p>
 </div>
-<div class="fragment" data-fragment-index="2">
+<div class="fragment" data-fragment-index="1">
 <div class="solutionbox" style="margin-top: 0.2em;">
 <div class="solutionbox-header" style="font-size: 0.75em;">
 <p>Equal volume spacing vs linear in scale factor spacing</p>
@@ -2113,24 +2091,31 @@ The forward model must simulate the <span class="kw">same volume</span>.</p>
 </section>
 <section id="impact-of-the-number-of-shells-on-the-accuracy" class="slide level2" data-visibility="uncounted">
 <h2>Impact of the number of shells on the accuracy</h2>
-<div class="grid bare" style="--cols: 110px 1fr; --gap: 10px; margin-top: 0.1em;">
-<p><span class="kw" style="font-size: 0.62em; text-align: right;">uniform in <span class="math inline">\(a\)</span><br>innermost shell</span></p>
-<p><img data-src="PhD/5_contribution/fli/13_nshells/nshells_density.svg" width="923"></p>
+<p><span class="kw" style="display: block; font-size: 0.8em; margin-top: 0.3em;">Equal-volume shells: convergence against Limber</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/5_contribution/fli/13_nshells/nshells_kappa.svg" class="quarto-figure quarto-figure-center" style="margin: 0.2em auto 0;" width="1000"></p>
+</figure>
 </div>
-<div class="grid bare fragment" data-fragment-index="1" style="--cols: 110px 1fr; --gap: 10px; margin-top: 0.1em;">
-<p><span class="kw" style="font-size: 0.62em; text-align: right;">equal volume,<br>vs Limber</span></p>
-<p><img data-src="PhD/5_contribution/fli/13_nshells/nshells_kappa.svg" width="923"></p>
-</div>
-<div class="fragment" data-fragment-index="2">
-<div class="solutionbox" style="margin-top: 0.2em;">
-<div class="solutionbox-header" style="font-size: 0.70em;">
+<div class="fragment" data-fragment-index="1">
+<div class="solutionbox" style="margin-top: 0.4em;">
+<div class="solutionbox-header" style="font-size: 0.8em;">
 <p>How many shells?</p>
 </div>
-<div class="solutionbox-body" style="font-size: 0.6em;">
-<p><span class="kw">More shells</span>: each shell is thinner, so the innermost one holds fewer particles and is <span class="kw">shot-noise</span> dominated</p>
-<p><span class="kw">Fewer shells</span>: a few wide shells sample the lensing kernel of the first bin, so its convergence is <span class="kw">biased</span> low below <span class="math inline">\(\ell =\)</span> <span class="kw2">100</span></p>
-<!-- For this work we adopt [20]{.kw2} shells -->
+<div class="solutionbox-body" style="font-size: 0.75em;">
+<p><span class="kw">More shells</span>: each shell is thinner and holds fewer particles, so they are <span class="kw">shot-noise</span> dominated</p>
+<p><span class="kw">Fewer shells</span>: a few wide shells sample the lensing kernel of the first bin, so they become <span class="kw">biased</span> low below <span class="math inline">\(\ell =\)</span> <span class="kw2">100</span></p>
+<!-- For this work we adopt [25]{.kw2} shells -->
 </div>
+</div>
+</div>
+</section>
+<section id="building-the-observable-lensing" class="slide level2">
+<h2>Building the observable</h2>
+<div class="hl-host bare" style="margin-top: 0.1em;">
+<p><img data-src="PhD/5_contribution/fli/01_pipeline/pipeline.svg" style="display: block;" width="800"></p>
+<div class="hlbox fragment custom hlbox-move" data-fragment-index="1" style="--x: 47%; --y: 5%; --w: 47%; --h: 42%; --x2: 21%; --y2: 59%; --w2: 28%; --h2: 40%;">
+
 </div>
 </div>
 </section>
@@ -2160,7 +2145,7 @@ The forward model must simulate the <span class="kw">same volume</span>.</p>
 <div class="solutionbox" style="margin-top: 0.3em;">
 <div class="solutionbox-body" style="font-size: 0.72em;">
 <p>The Born approximation computes the convergence along <span class="kw">undeflected light rays</span></p>
-<p>Post-Born ray tracing computes deflection angle, but its correction to the convergence power spectrim is below the <span class="kw">arcminute</span> scale.</p>
+<p>Post-Born ray tracing computes deflection angle, but its correction to the convergence power spectrum is below the <span class="kw">arcminute</span> scale.</p>
 </div>
 </div>
 </div>
@@ -2216,9 +2201,14 @@ The forward model must simulate the <span class="kw">same volume</span>.</p>
 </div>
 </section></section>
 <section>
-<section id="using-the-forward-model-for-field-level-inference" class="title-slide slide level1 center">
+<section id="using-the-forward-model-for-field-level-inference" class="title-slide slide level1 stack-top center">
 <h1>Using the forward model for field-level inference</h1>
+<div class="hl-host bare" style="margin-top: 0.1em;">
+<p><img data-src="PhD/5_contribution/fli/01_pipeline/pipeline.svg" style="display: block;" width="800"></p>
+<div class="hlbox fragment custom hlbox-move" data-fragment-index="1" style="--x: 22%; --y: 5%; --w: 42%; --h: 42%; --x2: 20.5%; --y2: 55%; --w2: 66%; --h2: 44.5%;">
 
+</div>
+</div>
 </section>
 <section id="field-level-likelihood" class="slide level2">
 <h2>Field-level likelihood</h2>
@@ -2287,12 +2277,17 @@ The forward model must simulate the <span class="kw">same volume</span>.</p>
 </div>
 </div>
 <div class="fragment" data-fragment-index="2" style="width: 100%; text-align: center;">
-<video src="PhD/5_contribution/fli/18_map/compare_run.mp4" class="screen-only" muted="" playsinline="" preload="auto" style="width: 1000px;">
-</video>
-<p><img data-src="PhD/5_contribution/fli/18_map/compare_last.png" class="print-only" width="1000"></p>
-</div>
-</div>
+<div class="r-stack">
+<p><img data-src="PhD/5_contribution/fli/18_map/starlet_first.png" width="1000"></p>
 <div class="fragment" data-fragment-index="3">
+<video src="PhD/5_contribution/fli/18_map/starlet_run.mp4" class="screen-only" muted="" playsinline="" preload="auto" style="width: 1000px;">
+</video>
+<p><img data-src="PhD/5_contribution/fli/18_map/starlet_last.png" class="print-only" width="1000"></p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment" data-fragment-index="4">
 <div class="solutionbox" style="margin-top: 0.2em;">
 <div class="solutionbox-header" style="font-size: 0.75em;">
 <p>MAP from DES Y3 bins 2 and 3</p>
@@ -2312,7 +2307,6 @@ The forward model must simulate the <span class="kw">same volume</span>.</p>
 <li>The first differentiable weak-lensing forward model covering <span class="kw">a full survey footprint on the curved sky</span></li>
 <li>Distributed over hundreds of GPUs, with a gradient end to end</li>
 <li>Validated against an independent <span class="math inline">\(N\)</span>-body code: about 10 % to <span class="math inline">\(\ell \approx 250\)</span></li>
-<li>A first maximum a posteriori of the initial field from DES Y3-like maps, at the coherence of the Wiener filter (<span class="kw">preliminary</span>)</li>
 <li><span class="kw2">Kabalan et al.&nbsp;(2026b)</span>, jaxDecomp, accepted to JOSS</li>
 <li><span class="kw2">Kabalan et al.&nbsp;(2026c)</span>, in prep. for JCAP</li>
 </ul>
@@ -2459,6 +2453,14 @@ The forward model must simulate the <span class="kw">same volume</span>.</p>
 </figure>
 </div>
 </section>
+<section id="observer-positioning" class="slide level2" data-visibility="uncounted">
+<h2>Observer positioning</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/5_contribution/fli/09_observable/observer_views.png" class="quarto-figure quarto-figure-center" style="margin-top: 0;" width="900"></p>
+</figure>
+</div>
+</section>
 <section id="shell-spacing-and-the-lightcone" class="slide level2" data-visibility="uncounted">
 <h2>Shell spacing and the lightcone</h2>
 <div class="quarto-figure quarto-figure-center">
@@ -2585,6 +2587,40 @@ The forward model must simulate the <span class="kw">same volume</span>.</p>
 <div class="bare" style="text-align: center; margin-top: 0.15em;">
 <p><span class="kw" style="display: block; font-size: 0.75em; text-align: left;">Performance of the gradient</span></p>
 <p><img data-src="PhD/5_contribution/fli/15_scaling/scaling_gradient.svg" width="1000"></p>
+</div>
+</section>
+<section id="distributed-fourier-transform" class="slide level2" data-visibility="uncounted">
+<h2>Distributed Fourier transform</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/5_contribution/fli/07_distributed/jaxdecomp_fft.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0.4em;" height="540"></p>
+</figure>
+</div>
+</section>
+<section id="distributed-transpositions" class="slide level2" data-visibility="uncounted">
+<h2>Distributed transpositions</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/5_contribution/fli/07_distributed/decomp2d.gif" class="quarto-figure quarto-figure-center" style="margin-top: 0.4em;" height="540"></p>
+</figure>
+</div>
+</section>
+<section id="halo-exchange" class="slide level2" data-visibility="uncounted">
+<h2>Halo exchange</h2>
+<video src="PhD/5_contribution/fli/07_distributed/halo_exchange.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 1000px; max-width: none; margin: 4.5em auto 0;">
+</video>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/5_contribution/fli/07_distributed/halo_exchange_last.png" class="print-only quarto-figure quarto-figure-center" style="margin-top: 4.5em;" width="1000"></p>
+</figure>
+</div>
+</section>
+<section id="map-power-spectra-of-the-reconstruction" class="slide level2" data-visibility="uncounted">
+<h2>MAP: power spectra of the reconstruction</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/5_contribution/fli/18_map/map_spectra.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0.4em;" width="1000"></p>
+</figure>
 </div>
 </section>
 <section id="map-des-y3-against-euclid-coherence" class="slide level2" data-visibility="uncounted">
