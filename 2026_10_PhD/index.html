@@ -2166,7 +2166,6 @@ optimum exactly over it -->
 <p>Validation against an independent <span class="math inline">\(N\)</span>-body code</p>
 </div>
 <div class="solutionbox-body" style="font-size: 0.72em;">
-<p><span class="kw">CosmoGrid</span>: pkdgrav3, independent initial conditions</p>
 <p>Converges with the mesh. At <span class="kw2"><span class="math inline">\(4096^3\)</span></span>: within <span class="kw2">7 %</span> to <span class="math inline">\(\ell =\)</span> <span class="kw2">200</span> (bin 2), <span class="kw2">10 %</span> to <span class="math inline">\(\ell =\)</span> <span class="kw2">250</span> (bin 3)</p>
 </div>
 </div>
@@ -2205,7 +2204,7 @@ optimum exactly over it -->
 <h1>Using the forward model for field-level inference</h1>
 <div class="hl-host bare" style="margin-top: 0.1em;">
 <p><img data-src="PhD/5_contribution/fli/01_pipeline/pipeline.svg" style="display: block;" width="800"></p>
-<div class="hlbox fragment custom hlbox-move" data-fragment-index="1" style="--x: 22%; --y: 5%; --w: 42%; --h: 42%; --x2: 20.5%; --y2: 55%; --w2: 66%; --h2: 44.5%;">
+<div class="hlbox fragment custom hlbox-move" data-fragment-index="1" style="--x: 21%; --y: 59%; --w: 28%; --h: 40%; --x2: 20.5%; --y2: 55%; --w2: 66%; --h2: 44.5%;">
 
 </div>
 </div>
@@ -2256,12 +2255,12 @@ optimum exactly over it -->
 </tbody>
 </table>
 </div>
-<p><span class="caption" style="--cap-size: 0.7em; margin-top: 0.5em;"><span class="math inline">\(\sigma_e\)</span> shape noise per component, <span class="math inline">\(n_{\mathrm{gal},i}\)</span> galaxies per arcmin² in bin <span class="math inline">\(i\)</span>,<br><span class="math inline">\(\Omega_\mathrm{pix}\)</span> pixel area in arcmin² at <span class="math inline">\(N_\mathrm{side} = 256\)</span></span></p>
+<p><span class="caption" style="--cap-size: 0.7em; margin-top: 0.5em;"><span class="math inline">\(\sigma_e\)</span> shape noise per component, <span class="math inline">\(n_{\mathrm{gal},i}\)</span> galaxies per arcmin² in bin <span class="math inline">\(i\)</span>,<br><span class="math inline">\(\Omega_\mathrm{pix}\)</span> pixel area in arcmin<span class="math inline">\(^2\)</span></span></p>
 </div>
 </div>
 </section>
-<section id="recovering-the-maximum-a-posteriori" class="slide level2">
-<h2>Recovering the maximum a posteriori</h2>
+<section id="reconstructing-the-initial-conditions" class="slide level2">
+<h2>Reconstructing the initial conditions</h2>
 <div class="absolute" style="font-size: 0.55em; text-align: right; line-height: 1.3;top: -16px; right: 0px; ">
 <p><span class="kw">Preliminary</span><br>DES Y3 noise, <span class="math inline">\(1200^3\)</span> mesh, 2LPT<br><span class="math inline">\(N_\mathrm{side} = 1024\)</span>, painted at <span class="math inline">\(512\)</span>, <span class="math inline">\(\ell \le 700\)</span></p>
 </div>
@@ -2287,17 +2286,6 @@ optimum exactly over it -->
 </div>
 </div>
 </div>
-<div class="fragment" data-fragment-index="4">
-<div class="solutionbox" style="margin-top: 0.2em;">
-<div class="solutionbox-header" style="font-size: 0.75em;">
-<p>MAP from DES Y3 bins 2 and 3</p>
-</div>
-<div class="solutionbox-body" style="font-size: 0.72em;">
-<p>The predicted <span class="kw"><span class="math inline">\(\kappa\)</span></span> reaches the limit of the <span class="kw">joint Wiener filter</span>, the best linear reconstruction, in both bins</p>
-<p>Starlet <span class="math inline">\(\ell_1\)</span>: <span class="kw2">74–98 %</span> of the truth at scales 1–4, <span class="kw2">~45 %</span> at the finest scale 0</p>
-</div>
-</div>
-</div>
 </section>
 <section id="contribution-2-conclusion-and-perspectives" class="slide level2 frosted" data-background-image="PhD/0_cover/bg_cosmic_web.jpg" data-background-size="cover" data-background-opacity="0.25" data-hide-chrome="true">
 <h2>Contribution 2: conclusion and perspectives</h2>
@@ -2306,7 +2294,7 @@ optimum exactly over it -->
 <ul>
 <li>The first differentiable weak-lensing forward model covering <span class="kw">a full survey footprint on the curved sky</span></li>
 <li>Distributed over hundreds of GPUs, with a gradient end to end</li>
-<li>Validated against an independent <span class="math inline">\(N\)</span>-body code: about 10 % to <span class="math inline">\(\ell \approx 250\)</span></li>
+<li>Validated against an independent <span class="math inline">\(N\)</span>-body code and is one step closer towards applying field level inference on real weak-lensing data</li>
 <li><span class="kw2">Kabalan et al.&nbsp;(2026b)</span>, jaxDecomp, accepted to JOSS</li>
 <li><span class="kw2">Kabalan et al.&nbsp;(2026c)</span>, in prep. for JCAP</li>
 </ul>
@@ -2315,9 +2303,9 @@ optimum exactly over it -->
 <div class="fragment frosted-panel" style="margin-top: 0.6em; --panel-pad: 14px 22px;">
 <div class="columns" style="display: flex; align-items: center;">
 <div class="column" style="width: 50%; font-size: 0.9em;">
-<p><span class="kw2" style="font-weight: 700;">Next</span></p>
+<p><span class="kw2" style="font-weight: 700;">Perspectives</span></p>
 <ul>
-<li>the first survey-scale <span class="kw">posterior</span>, with coverage tests</li>
+<li>the first survey-scale <span class="kw">posterior</span></li>
 <li>a better gravity solver: a <span class="kw">learned force correction</span> or a differentiable <span class="kw">moving mesh</span></li>
 <li><span class="kw">intrinsic alignments</span> and photometric-redshift errors as latent variables</li>
 <li><span class="kw">baryonification</span> inside the model</li>

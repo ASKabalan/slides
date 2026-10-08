@@ -1467,7 +1467,7 @@
     "href": "2026_10_PhD/index.html#comparing-against-cosmogrid",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Comparing against CosmoGrid",
-    "text": "Comparing against CosmoGrid\n\n\n\n\n\n\n\n\n\n\n\nValidation against an independent \\(N\\)-body code\n\n\nCosmoGrid: pkdgrav3, independent initial conditions\nConverges with the mesh. At \\(4096^3\\): within 7 % to \\(\\ell =\\) 200 (bin 2), 10 % to \\(\\ell =\\) 250 (bin 3)"
+    "text": "Comparing against CosmoGrid\n\n\n\n\n\n\n\n\n\n\n\nValidation against an independent \\(N\\)-body code\n\n\nConverges with the mesh. At \\(4096^3\\): within 7 % to \\(\\ell =\\) 200 (bin 2), 10 % to \\(\\ell =\\) 250 (bin 3)"
   },
   {
     "objectID": "2026_10_PhD/index.html#higher-order-statistics-the-starlet-ell_1-norm",
@@ -1481,21 +1481,21 @@
     "href": "2026_10_PhD/index.html#field-level-likelihood",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Field-level likelihood",
-    "text": "Field-level likelihood\n\nGaussian likelihood on the convergence pixels\n\n\\[-\\ln\\mathcal{L}(\\boldsymbol\\theta,\\mathbf{s}) = \\sum_i \\frac{\\lVert \\color{#c2560a}{\\hat{\\mathbf{d}}_i} - \\mathbf{d}_i \\rVert_2^2}{2\\,\\color{#3b6fb6}{\\sigma_i^2}}\\]\n\n\\(\\color{#c2560a}{\\hat{\\mathbf{d}}_i} = \\kappa_i(\\mathbf{s},\\boldsymbol\\theta)\\) the predicted and \\(\\mathbf{d}_i\\) the observed convergence map of bin \\(i\\)\n\n\n\nNoise per pixel\n\n\\[\\color{#3b6fb6}{\\sigma_i} = \\frac{\\sigma_e}{\\sqrt{n_{\\mathrm{gal},i}\\;\\Omega_\\mathrm{pix}}}\\]\n\n\n\n\n\n\n\nDES Y3\nbin 1\nbin 2\nbin 3\nbin 4\n\n\n\n\n\\(n_\\mathrm{gal}\\) [arcmin\\(^{-2}\\)]\n1.476\n1.479\n1.484\n1.461\n\n\n\\(\\sigma_e\\)\n0.26\n0.26\n0.26\n0.26\n\n\n\n\n\\(\\sigma_e\\) shape noise per component, \\(n_{\\mathrm{gal},i}\\) galaxies per arcmin² in bin \\(i\\),\\(\\Omega_\\mathrm{pix}\\) pixel area in arcmin² at \\(N_\\mathrm{side} = 256\\)"
+    "text": "Field-level likelihood\n\nGaussian likelihood on the convergence pixels\n\n\\[-\\ln\\mathcal{L}(\\boldsymbol\\theta,\\mathbf{s}) = \\sum_i \\frac{\\lVert \\color{#c2560a}{\\hat{\\mathbf{d}}_i} - \\mathbf{d}_i \\rVert_2^2}{2\\,\\color{#3b6fb6}{\\sigma_i^2}}\\]\n\n\\(\\color{#c2560a}{\\hat{\\mathbf{d}}_i} = \\kappa_i(\\mathbf{s},\\boldsymbol\\theta)\\) the predicted and \\(\\mathbf{d}_i\\) the observed convergence map of bin \\(i\\)\n\n\n\nNoise per pixel\n\n\\[\\color{#3b6fb6}{\\sigma_i} = \\frac{\\sigma_e}{\\sqrt{n_{\\mathrm{gal},i}\\;\\Omega_\\mathrm{pix}}}\\]\n\n\n\n\n\n\n\nDES Y3\nbin 1\nbin 2\nbin 3\nbin 4\n\n\n\n\n\\(n_\\mathrm{gal}\\) [arcmin\\(^{-2}\\)]\n1.476\n1.479\n1.484\n1.461\n\n\n\\(\\sigma_e\\)\n0.26\n0.26\n0.26\n0.26\n\n\n\n\n\\(\\sigma_e\\) shape noise per component, \\(n_{\\mathrm{gal},i}\\) galaxies per arcmin² in bin \\(i\\),\\(\\Omega_\\mathrm{pix}\\) pixel area in arcmin\\(^2\\)"
   },
   {
-    "objectID": "2026_10_PhD/index.html#recovering-the-maximum-a-posteriori",
-    "href": "2026_10_PhD/index.html#recovering-the-maximum-a-posteriori",
+    "objectID": "2026_10_PhD/index.html#reconstructing-the-initial-conditions",
+    "href": "2026_10_PhD/index.html#reconstructing-the-initial-conditions",
     "title": "Differentiable Field-Level Cosmology",
-    "section": "Recovering the maximum a posteriori",
-    "text": "Recovering the maximum a posteriori\n\nPreliminaryDES Y3 noise, \\(1200^3\\) mesh, 2LPT\\(N_\\mathrm{side} = 1024\\), painted at \\(512\\), \\(\\ell \\le 700\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMAP from DES Y3 bins 2 and 3\n\n\nThe predicted \\(\\kappa\\) reaches the limit of the joint Wiener filter, the best linear reconstruction, in both bins\nStarlet \\(\\ell_1\\): 74–98 % of the truth at scales 1–4, ~45 % at the finest scale 0"
+    "section": "Reconstructing the initial conditions",
+    "text": "Reconstructing the initial conditions\n\nPreliminaryDES Y3 noise, \\(1200^3\\) mesh, 2LPT\\(N_\\mathrm{side} = 1024\\), painted at \\(512\\), \\(\\ell \\le 700\\)"
   },
   {
     "objectID": "2026_10_PhD/index.html#contribution-2-conclusion-and-perspectives",
     "href": "2026_10_PhD/index.html#contribution-2-conclusion-and-perspectives",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Contribution 2: conclusion and perspectives",
-    "text": "Contribution 2: conclusion and perspectives\n\n\n\nThe first differentiable weak-lensing forward model covering a full survey footprint on the curved sky\nDistributed over hundreds of GPUs, with a gradient end to end\nValidated against an independent \\(N\\)-body code: about 10 % to \\(\\ell \\approx 250\\)\nKabalan et al. (2026b), jaxDecomp, accepted to JOSS\nKabalan et al. (2026c), in prep. for JCAP\n\n\n\n\n\n\nNext\n\nthe first survey-scale posterior, with coverage tests\na better gravity solver: a learned force correction or a differentiable moving mesh\nintrinsic alignments and photometric-redshift errors as latent variables\nbaryonification inside the model\n\n\n\n\nMoving-mesh particle mesh\n\n\n\n\n\nMoving mesh: B. Horowitz (2026), arXiv:2607.10983"
+    "text": "Contribution 2: conclusion and perspectives\n\n\n\nThe first differentiable weak-lensing forward model covering a full survey footprint on the curved sky\nDistributed over hundreds of GPUs, with a gradient end to end\nValidated against an independent \\(N\\)-body code and is one step closer towards applying field level inference on real weak-lensing data\nKabalan et al. (2026b), jaxDecomp, accepted to JOSS\nKabalan et al. (2026c), in prep. for JCAP\n\n\n\n\n\n\nPerspectives\n\nthe first survey-scale posterior\na better gravity solver: a learned force correction or a differentiable moving mesh\nintrinsic alignments and photometric-redshift errors as latent variables\nbaryonification inside the model\n\n\n\n\nMoving-mesh particle mesh\n\n\n\n\n\nMoving mesh: B. Horowitz (2026), arXiv:2607.10983"
   },
   {
     "objectID": "2026_10_PhD/index.html#the-software-behind-this-thesis",
