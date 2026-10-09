@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 44">
+  <!-- Wavelength axis of the surveys slide: long wavelengths (microwave) on the left, short
+       (optical / near-infrared) on the right. Palette and proportions of the HOT -> COLD arrow
+       of 1_intro/lcdm/lcdm_model_arrow.svg (bar 20.8 high, heads 42 x 31). -->
+  <defs>
+    <linearGradient id="lambda" x1="31" y1="0" x2="569" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8f1206"/>
+      <stop offset="0.4" stop-color="#ee6b18"/>
+      <stop offset="0.55" stop-color="#d4476b"/>
+      <stop offset="0.7" stop-color="#7846c4"/>
+      <stop offset="0.85" stop-color="#325bc4"/>
+      <stop offset="1" stop-color="#0e3a86"/>
+    </linearGradient>
+  </defs>
+  <rect x="30" y="11.6" width="540" height="20.8" fill="url(#lambda)"/>
+  <path d="M31 1 L31 43 L0 22 Z" fill="#8f1206"/>
+  <path d="M569 1 L569 43 L600 22 Z" fill="#0e3a86"/>
+</svg>

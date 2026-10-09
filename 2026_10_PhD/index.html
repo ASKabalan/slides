@@ -36,7 +36,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-fe432caaad1bf6d66a7a51a34f591e99.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-1ff7641c758d7fc159859bd25fbd642a.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -143,8 +143,8 @@
 <div style="display: flex; justify-content: center; align-items: center; gap: 56px; margin: 40px auto; width: fit-content; padding: 14px 40px; border-radius: 18px; background: rgba(250, 247, 240, 0.88); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); box-shadow: 0 10px 36px rgba(0, 0, 0, 0.3);">
   <img src="assets/Logos/APC.png" style="height: 80px; margin: 0; border-radius: 6px;">
   <img src="assets/Logos/scipol.png" style="height: 84px; margin: 0;">
-  <img src="assets/Logos/AstroDeep-2.png" style="height: 88px; margin: 0;">
-  <img src="assets/Logos/cosmostat.png" style="height: 54px; margin: 0;">
+  <img src="assets/Logos/AstroDeep-2.png" style="height: 150px; margin: -14px 0;">
+  <img src="assets/Logos/cosmostat.png" style="height: 80px; margin: 0;">
 </div>
 <div style="background: rgba(250, 247, 240, 0.88); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); border-radius: 18px; padding: 18px 36px 16px; margin: 0 auto; width: fit-content; max-width: 960px; box-shadow: 0 10px 36px rgba(0, 0, 0, 0.3); text-align: center;">
   <p style="margin: 0; font-size: 0.85em;"><span style="color: #C2560A; font-weight: 700;">Wassim Kabalan</span><span style="color: #2E2E2E; margin-left: 0.7em;">Université Paris Cité, APC/CNRS</span></p>
@@ -173,14 +173,23 @@
 <p><span class="bleed-credit">Abell 2390 · Credit: SDSS DR18 (left); ESA / Euclid / Euclid Consortium / NASA, J.-C. Cuillandre &amp; G. Anselmi (right)</span></p>
 </section>
 <section>
-<section id="telescopes" class="title-slide slide level1 stack-top center" data-visibility="uncounted" data-transition="slide-in none-out">
-<h1>Modern observational cosmology</h1>
-<div class="bare" style="position: relative; display: grid; grid-template-columns: 2.2em 1fr 1fr; grid-template-rows: auto 1fr 1fr; column-gap: 2.2em; row-gap: 1.6em; width: 74%; height: 560px; margin: 0 0 0 1em;">
-<div style="grid-column: 2; grid-row: 1; text-align: center; font-size: 0.9em;">
-<p><span class="kw">Early Universe</span></p>
+<section id="telescopes" class="title-slide slide level1 stack-top center" data-visibility="uncounted">
+<h1>Some of the Stage IV Cosmological Surveys</h1>
+<div class="bare" style="position: relative; display: grid; grid-template-columns: 2.2em 1fr 1fr; grid-template-rows: auto 1fr 1fr; column-gap: 2.2em; row-gap: 1.2em; width: 74%; height: 545px; margin: 0.9em 0 0 1em;">
+<!-- one wavelength axis over both columns, drawn like the HOT -> COLD arrow of the ΛCDM figure -->
+<div class="row flat bare" style="grid-column: 2 / 4; grid-row: 1; --gap: 0.6em; --align: center; font-size: 0.72em; line-height: 1.15;">
+<div style="flex: none; text-align: right;">
+<p><span style="font-weight: 700; color: #8f1206;">Microwave</span><br>
+<span style="font-size: 0.8em; color: #6E6E6E;">λ ≈ 1–10 mm</span></p>
 </div>
-<div style="grid-column: 3; grid-row: 1; text-align: center; font-size: 0.9em;">
-<p><span class="kw">Late Universe</span></p>
+<div style="flex: 1; position: relative; text-align: center;">
+<p><img data-src="PhD/1_intro/telescopes/wavelength_arrow.svg" style="display: block; width: 100%; margin: 0;"></p>
+<p><span style="position: absolute; left: 50%; top: -1.25em; transform: translateX(-50%); font-size: 0.85em; color: #6E6E6E;">wavelength</span></p>
+</div>
+<div style="flex: none; text-align: left;">
+<p><span style="font-weight: 700; color: #0e3a86;">Optical / near-infrared</span><br>
+<span style="font-size: 0.8em; color: #6E6E6E;">λ ≈ 0.3–2 µm</span></p>
+</div>
 </div>
 <div class="vlabel" style="grid-column: 1; grid-row: 2; align-self: center; justify-self: center; font-size: 0.85em; color: #2E2E2E;">
 <p>Space based</p>
@@ -262,12 +271,14 @@ Cerro Pachón in Chile<br>
 </div>
 </div>
 </section>
-<section id="modern_cosmo" class="slide level2" data-visibility="uncounted" data-transition="none-in slide-out">
+<section id="modern_cosmo" class="slide level2" data-visibility="uncounted">
 <h2>Modern observational cosmology</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="PhD/1_intro/surveys/cosmology_timeline.svg" class="quarto-figure quarto-figure-center" style="width:62.0%"></p>
-</figure>
+<!-- the timeline rings who the slide is on: Einstein, then Friedmann and Lemaître with the FLRW
+     geometry (click 1), then Hubble with the Hubble block (click 2) -->
+<div class="r-stack" style="width: 88%; margin: 0 auto;">
+<p><img data-src="PhD/1_intro/surveys/cosmology_timeline_einstein.svg" class="fragment fade-out" style="width: 100%; margin: 0;" data-fragment-index="1"></p>
+<p><img data-src="PhD/1_intro/surveys/cosmology_timeline_fl.svg" class="fragment fade-in-then-out" style="width: 100%; margin: 0;" data-fragment-index="1"></p>
+<p><img data-src="PhD/1_intro/surveys/cosmology_timeline_hubble.svg" class="fragment" style="width: 100%; margin: 0;" data-fragment-index="2"></p>
 </div>
 <div class="r-stack">
 <div class="fragment fade-in-then-out" data-fragment-index="1">
@@ -348,7 +359,7 @@ It expanded from an <span class="kw">extremely dense</span> early state</p>
 <ul>
 <li>Found by accident in 1965 by <span class="kw">Penzias &amp; Wilson</span>: a <span class="kw2">3 K signal from every direction</span>, interpreted by <span class="kw">Dicke &amp; Peebles</span> at Princeton</li>
 </ul>
-<p><img data-src="PhD/1_intro/CMB/nobel_medal.png" style="margin: 0; flex: none;" width="95"></p>
+<p><img data-src="PhD/1_intro/CMB/nobel_medal.png" style="margin: 0; flex: none;" width="150"></p>
 </div>
 <div class="fragment" data-fragment-index="2">
 <div class="quarto-figure quarto-figure-center">
@@ -365,7 +376,7 @@ It expanded from an <span class="kw">extremely dense</span> early state</p>
 <div class="fragment" data-fragment-index="2">
 <div class="solutionbox">
 <div class="solutionbox-body">
-<p>The discovery of the <span class="kw">CMB</span> confirmed the <span class="kw">hot Big Bang</span></p>
+<p>The <span class="kw">CMB</span> is one of the essential discoveries that confirm the <span class="kw">hot Big Bang</span></p>
 </div>
 </div>
 </div>
@@ -425,37 +436,42 @@ It expanded from an <span class="kw">extremely dense</span> early state</p>
 <div class="cell fragment" data-fragment-index="3">
 <p>flatness</p>
 <p><img data-src="PhD/1_intro/lcdm/flrw_flat.svg"></p>
-<p>+ magnetic monopole problem</p>
+<p>+ origin of inhomogeneities<br>
++ magnetic monopole problem</p>
 </div>
 </div>
 </div><div class="column" style="width: 49%; box-sizing: border-box; border-left: 2px solid #d9d4c9; padding-left: 1.2em; margin-top: -0.5em; padding-top: 0.5em;">
-<p><span class="kw fragment" data-fragment-index="4">95% of the Universe is dark</span></p>
-<div class="grid" style="--cols: 1fr 1fr; --gap: 0.8em; --align: start; --cell-margin: 0.1em 0; --img-margin: 0.2em 0 0;">
-<div class="cell fragment" data-fragment-index="5">
+<p><span class="kw fragment" data-fragment-index="4">The late Universe</span></p>
+<div class="grid" style="--cols: 1fr 1.15fr; --gap: 0.8em; --align: start; --cell-margin: 0.1em 0; --img-margin: 0.2em 0 0;">
+<div class="cell fragment" data-fragment-index="5" style="position: relative;">
 <p>dark energy</p>
 <p><img data-src="PhD/1_intro/lcdm/sn_hubble.svg"></p>
-<p><span class="credit">Data: DES-SN5YR (DES Collaboration)</span></p>
+<p><span class="credit">Data: Perlmutter et al.&nbsp;(1999)</span></p>
+<div class="row flat bare" style="position: absolute; top: -0.35em; right: -0.9em; --gap: 0.25em; --align: center; line-height: 1;">
+<p><img data-src="PhD/1_intro/CMB/nobel_medal.png" style="height: 1.7em; width: auto; margin: 0;"></p>
+<p><span style="font-size: 0.55em; color: #6E6E6E; text-align: left;">Nobel<br>2011</span></p>
+</div>
 </div>
 <div class="cell fragment" data-fragment-index="6">
 <p>dark matter</p>
-<p><img data-src="PhD/1_intro/lcdm/rotation_curve.svg"></p>
-<p><span class="credit">Data: NGC 3198, SPARC (Lelli et al.&nbsp;2016)</span></p>
+<p><img data-src="PhD/1_intro/lcdm/rubin1980_fig6.png" style="margin-top: 1.6em;"></p>
+<p><span class="credit">Rubin, Ford &amp; Thonnard (1980), Fig. 6</span></p>
 </div>
 </div>
 </div></div>
 </section></section>
 <section id="outline" class="title-slide slide level1 big-title stack-top center" style="text-align: center;">
 <h1>Outline</h1>
-<div class="rail-stack" style="width: 98%;">
+<div class="rail-stack" style="width: 106%; margin: 0 -3% 0;">
 <p><img data-src="PhD/2_outline/rail_full.svg"></p>
 <!-- Paper references under the contribution boxes of the outline map.
      Positions are % of the map (rail.tex coordinates over its bounding box). -->
-<div class="rail-paper" style="left: 62.98%; top: 41.0%;">
-<p><a href="https://arxiv.org/abs/2604.08463" class="kw">arXiv:2604.08463</a> · submitted to <span class="kw">RASTI</span></p>
+<div class="rail-paper" style="left: 63.6%; top: 41.0%;">
+<p><a href="https://arxiv.org/abs/2604.08463" class="kw">Kabalan et al.&nbsp;(2026)</a> · submitted to RASTI</p>
 </div>
-<div class="rail-paper" style="left: 62.98%; top: 76.7%;">
-<p><a href="https://joss.theoj.org/papers/10.21105/joss.08852" class="kw">JOSS · doi:10.21105/joss.08852</a><br>
-<span class="kw">JCAP</span> in prep.</p>
+<div class="rail-paper" style="left: 64.4%; top: 76.9%;">
+<p><a href="https://joss.theoj.org/papers/10.21105/joss.08852" class="kw">Kabalan et al.&nbsp;(2026b)</a> · accepted to JOSS<br>
+<span class="kw">Kabalan et al.&nbsp;(2026c)</span> · in prep. for JCAP</p>
 </div>
 </div>
 </section>
@@ -468,12 +484,12 @@ It expanded from an <span class="kw">extremely dense</span> early state</p>
 <p><img data-src="PhD/2_outline/rail_focus_cmb.svg" class="rail-focus"></p>
 <!-- Paper references under the contribution boxes of the outline map.
      Positions are % of the map (rail.tex coordinates over its bounding box). -->
-<div class="rail-paper" style="left: 62.98%; top: 41.0%;">
-<p><a href="https://arxiv.org/abs/2604.08463" class="kw">arXiv:2604.08463</a> · submitted to <span class="kw">RASTI</span></p>
+<div class="rail-paper" style="left: 63.6%; top: 41.0%;">
+<p><a href="https://arxiv.org/abs/2604.08463" class="kw">Kabalan et al.&nbsp;(2026)</a> · submitted to RASTI</p>
 </div>
-<div class="rail-paper" style="left: 62.98%; top: 76.7%;">
-<p><a href="https://joss.theoj.org/papers/10.21105/joss.08852" class="kw">JOSS · doi:10.21105/joss.08852</a><br>
-<span class="kw">JCAP</span> in prep.</p>
+<div class="rail-paper" style="left: 64.4%; top: 76.9%;">
+<p><a href="https://joss.theoj.org/papers/10.21105/joss.08852" class="kw">Kabalan et al.&nbsp;(2026b)</a> · accepted to JOSS<br>
+<span class="kw">Kabalan et al.&nbsp;(2026c)</span> · in prep. for JCAP</p>
 </div>
 </div>
 </section>
@@ -651,7 +667,6 @@ r \equiv \frac{A_t}{A_s} \;\propto\; E_\mathrm{inf}^4
 </section>
 <section id="sht" class="slide level2">
 <h2>Spherical Harmonic Transforms</h2>
-<p><br><br></p>
 <div class="grid" style="--cols: 1fr 190px 1fr 190px 1fr; --gap: 0; width: 96%; margin: 0 auto; --align: stretch; margin-bottom: 0.2em;">
 <div class="eqbox" style="--eq-border: #25406b; --eq-math-margin: 0.35em 0; grid-column: 2;">
 <p><span class="math display">\[
@@ -664,7 +679,7 @@ C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
 \]</span></p>
 </div>
 </div>
-<div class="grid" style="--cols: 1fr 190px 1fr 190px 1fr; --gap: 0; width: 96%; margin: 0 auto; --row-gap: 0.2em; --img-w: auto; --img-h: 118px; --img-max-w: 100%; --img-max-h: 95%; --cap-size: 0.75em; --cap-lh: 1.1;">
+<div class="grid" style="--cols: 1fr 190px 1fr 190px 1fr; --gap: 0; width: 96%; margin: 0 auto; --row-gap: 0.2em; --img-w: auto; --img-h: 136px; --img-max-w: 100%; --img-max-h: 95%; --cap-size: 1em; --cap-lh: 1.1;">
 <div class="cell">
 <p><img data-src="PhD/3_observation/cmb/08_sht/sht_map_I.svg"> <span class="caption"><em>I</em></span></p>
 </div>
@@ -710,6 +725,7 @@ C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
 <p><img data-src="PhD/3_observation/cmb/08_sht/sht_cl_BB.svg"></p>
 </div>
 </div>
+<p><span class="credit" style="text-align: left; margin-top: -0.4em;">Maps: Planck 2018 SMICA (Planck Collaboration)</span></p>
 </section>
 <section id="predicted-cmb-power-spectra" class="slide level2">
 <h2>Predicted CMB power spectra</h2>
@@ -740,6 +756,7 @@ C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
 </section>
 <section id="the-cmb-data-analysis-pipeline" class="slide level2">
 <h2>The CMB data-analysis pipeline</h2>
+<p><img data-src="assets/Logos/scipol.png" style="position: absolute; top: -20px; right: 0; height: 120px; margin: 0;"></p>
 <div class="hl-host bare" style="margin-top: 0.2em;">
 <p><img data-src="PhD/3_observation/cmb/11_pipeline/scipol_pipeline.png" style="display: block; width: 990px;"></p>
 <p><img data-src="PhD/3_observation/cmb/11_pipeline/scipol_credit.png" style="position: absolute; right: 0.5%; bottom: 0.3%; width: 31%; margin: 0;"></p>
@@ -767,12 +784,12 @@ C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
 <p><img data-src="PhD/2_outline/rail_focus_lensing.svg" class="rail-focus"></p>
 <!-- Paper references under the contribution boxes of the outline map.
      Positions are % of the map (rail.tex coordinates over its bounding box). -->
-<div class="rail-paper" style="left: 62.98%; top: 41.0%;">
-<p><a href="https://arxiv.org/abs/2604.08463" class="kw">arXiv:2604.08463</a> · submitted to <span class="kw">RASTI</span></p>
+<div class="rail-paper" style="left: 63.6%; top: 41.0%;">
+<p><a href="https://arxiv.org/abs/2604.08463" class="kw">Kabalan et al.&nbsp;(2026)</a> · submitted to RASTI</p>
 </div>
-<div class="rail-paper" style="left: 62.98%; top: 76.7%;">
-<p><a href="https://joss.theoj.org/papers/10.21105/joss.08852" class="kw">JOSS · doi:10.21105/joss.08852</a><br>
-<span class="kw">JCAP</span> in prep.</p>
+<div class="rail-paper" style="left: 64.4%; top: 76.9%;">
+<p><a href="https://joss.theoj.org/papers/10.21105/joss.08852" class="kw">Kabalan et al.&nbsp;(2026b)</a> · accepted to JOSS<br>
+<span class="kw">Kabalan et al.&nbsp;(2026c)</span> · in prep. for JCAP</p>
 </div>
 </div>
 </section>
@@ -790,7 +807,6 @@ C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
 <h2>The history of the expanding Universe</h2>
 <p><br> <br></p>
 <div style="width: 84%; margin: 0.6em auto 0;">
-<p><span class="kw">The history of the expansion</span></p>
 <p><img data-src="PhD/1_intro/lcdm/rho_vs_a.svg" style="display: block; width: 100%; height: 540px; object-fit: contain; max-width: none; max-height: none; margin: 0.4em auto 0;"></p>
 </div>
 </section>
@@ -855,6 +871,18 @@ C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
 <p>Matter deforms galaxies through <span class="kw">weak lensing</span>, by a <span class="kw2">spin-0</span> field, the <span class="kw">convergence <span class="math inline">\(\kappa\)</span></span>, and a <span class="kw2">spin-2</span> field, the two components of the <span class="kw">shear <span class="math inline">\(\gamma\)</span></span></p>
 </div>
 </div>
+<!-- closing overlay: the same distortion over a whole field, after Mandelbaum (2018) Fig. 1 -->
+<div class="fragment bare" data-fragment-index="1" style="position: absolute; top: 72px; left: 0; width: 1050px; height: 600px; box-sizing: border-box; z-index: 20; background: rgba(250, 247, 240, 0.96); display: flex; flex-direction: column; align-items: center; justify-content: flex-start;">
+<div class="figcadre" style="width: fit-content; margin: 0;">
+<div class="figcadre-header">
+<p>Distant galaxies lensed by the cosmic web</p>
+</div>
+<div class="figcadre-body" style="text-align: center;">
+<p><img data-src="PhD/3_observation/weaklensing/03_convergence_shear/lensed_galaxies.png" style="height: 455px; margin: 0; border-radius: 4px;"></p>
+</div>
+</div>
+<p><span class="credit" style="margin-top: 0.4em;">After Mandelbaum (2018), arXiv:1710.03235, Fig. 1 (image: CFHT) · shell of this work’s 3072³ run, z = 0.36</span></p>
+</div>
 </section>
 <section id="from-galaxy-shapes-to-shear" class="slide level2">
 <h2>From galaxy shapes to shear</h2>
@@ -876,7 +904,6 @@ C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
 <div class="fragment" data-fragment-index="1">
 <div class="solutionbox" style="margin-top: 0.6em;">
 <div class="solutionbox-body">
-<p>Galaxies are grouped by redshift into <span class="kw">tomographic bins</span></p>
 <p>Averaging their shapes per pixel and per bin gives one <span class="kw">shear map</span> per bin</p>
 </div>
 </div>
@@ -1092,7 +1119,7 @@ shapes</span></p>
 </div>
 <div class="solutionbox fragment" data-fragment-index="1" style="margin: 0.4em 0 0; display: flex; align-items: center; justify-content: center;">
 <div class="solutionbox-body" style="text-align: center;">
-<p><span class="kw2">Contribution 1</span><br>Spatially varying component separation for space-based telescopes</p>
+<p><span class="kw2">Contribution 1</span><br>Spatially varying map-based component separation for space-based telescopes</p>
 </div>
 </div>
 <div class="solutionbox fragment" data-fragment-index="1" style="margin: 0.4em 0 0; display: flex; align-items: center; justify-content: center;">
@@ -1117,12 +1144,12 @@ shapes</span></p>
 <p><img data-src="PhD/2_outline/rail_focus_stats.svg" class="rail-focus"></p>
 <!-- Paper references under the contribution boxes of the outline map.
      Positions are % of the map (rail.tex coordinates over its bounding box). -->
-<div class="rail-paper" style="left: 62.98%; top: 41.0%;">
-<p><a href="https://arxiv.org/abs/2604.08463" class="kw">arXiv:2604.08463</a> · submitted to <span class="kw">RASTI</span></p>
+<div class="rail-paper" style="left: 63.6%; top: 41.0%;">
+<p><a href="https://arxiv.org/abs/2604.08463" class="kw">Kabalan et al.&nbsp;(2026)</a> · submitted to RASTI</p>
 </div>
-<div class="rail-paper" style="left: 62.98%; top: 76.7%;">
-<p><a href="https://joss.theoj.org/papers/10.21105/joss.08852" class="kw">JOSS · doi:10.21105/joss.08852</a><br>
-<span class="kw">JCAP</span> in prep.</p>
+<div class="rail-paper" style="left: 64.4%; top: 76.9%;">
+<p><a href="https://joss.theoj.org/papers/10.21105/joss.08852" class="kw">Kabalan et al.&nbsp;(2026b)</a> · accepted to JOSS<br>
+<span class="kw">Kabalan et al.&nbsp;(2026c)</span> · in prep. for JCAP</p>
 </div>
 </div>
 </section>
@@ -1313,22 +1340,22 @@ shapes</span></p>
 </div>
 </section></section>
 <section>
-<section id="contribution-1-spatially-varying-cmb-component-separation" class="title-slide slide level1 center">
-<h1>Contribution 1: spatially varying CMB component separation</h1>
-<div class="rail-stack">
+<section id="contribution-1-spatially-varying-map-based-component-separation" class="title-slide slide level1 center">
+<h1>Contribution 1: spatially varying map-based component separation</h1>
+<div class="rail-stack" style="width: 82%; margin-top: 0;">
 <p><img data-src="PhD/2_outline/rail_full.svg" class="rail-full"></p>
 <p><img data-src="PhD/2_outline/rail_focus_c1.svg" class="rail-focus"></p>
 <!-- Paper references under the contribution boxes of the outline map.
      Positions are % of the map (rail.tex coordinates over its bounding box). -->
-<div class="rail-paper" style="left: 62.98%; top: 41.0%;">
-<p><a href="https://arxiv.org/abs/2604.08463" class="kw">arXiv:2604.08463</a> · submitted to <span class="kw">RASTI</span></p>
+<div class="rail-paper" style="left: 63.6%; top: 41.0%;">
+<p><a href="https://arxiv.org/abs/2604.08463" class="kw">Kabalan et al.&nbsp;(2026)</a> · submitted to RASTI</p>
 </div>
-<div class="rail-paper" style="left: 62.98%; top: 76.7%;">
-<p><a href="https://joss.theoj.org/papers/10.21105/joss.08852" class="kw">JOSS · doi:10.21105/joss.08852</a><br>
-<span class="kw">JCAP</span> in prep.</p>
+<div class="rail-paper" style="left: 64.4%; top: 76.9%;">
+<p><a href="https://joss.theoj.org/papers/10.21105/joss.08852" class="kw">Kabalan et al.&nbsp;(2026b)</a> · accepted to JOSS<br>
+<span class="kw">Kabalan et al.&nbsp;(2026c)</span> · in prep. for JCAP</p>
 </div>
 </div>
-<div style="display: flex; justify-content: center; align-items: center; gap: 36px; margin-top: 1.2em;">
+<div style="display: flex; justify-content: center; align-items: center; gap: 36px; margin-top: 0.3em;">
 <p><img data-src="assets/Logos/JaxLogo.png" style="height: 70px;"> <a href="https://github.com/CMBSciPol/furax-cs"><img data-src="https://img.shields.io/badge/GitHub-furax--cs-blue?logo=github.png"></a> <a href="https://github.com/CMBSciPol/furax"><img data-src="https://img.shields.io/badge/GitHub-furax-blue?logo=github.png"></a></p>
 </div>
 </section>
@@ -1394,11 +1421,17 @@ shapes</span></p>
 <p><img data-src="PhD/5_contribution/compsep/02_spectral_model/planck_dust.png" style="margin: 0;" height="165"></p>
 <p><span style="font-size: 0.6em; color: #6E6E6E; display: block; margin-top: -0.9em;">Planck: thermal dust</span></p>
 </div></div>
-<div class="eqbox" style="--eq-border: #521463; --eq-size: 1.1em; --eq-math-margin: 0.2em 0; width: fit-content; margin: 0.3em auto 0; text-align: center;">
+<!-- the data model and the components that maximise the likelihood at fixed beta -->
+<div class="row bare" style="--gap: 18px; --justify: center; --align: center; margin-top: 0.3em;">
+<div class="eqbox" style="--eq-border: #521463; --eq-size: 0.92em; --eq-math-margin: 0.2em 0; width: fit-content; margin: 0; text-align: center;">
 <p><span class="math display">\[\mathbf{d}_\nu = A^{\mathrm{cmb}}_\nu\,\mathbf{s}_{\mathrm{cmb}} + A^{\mathrm{dust}}_\nu({\color{#d68910}\beta_d},{\color{#d68910}T_d})\,\mathbf{s}_{\mathrm{dust}} + A^{\mathrm{sync}}_\nu({\color{#3b6fb6}\beta_s})\,\mathbf{s}_{\mathrm{sync}} + \mathbf{n}_\nu\]</span></p>
 </div>
+<div class="eqbox" style="--eq-border: #521463; --eq-size: 0.92em; --eq-math-margin: 0.2em 0; width: fit-content; margin: 0; text-align: center;">
+<p><span class="math display">\[\hat{\mathbf{s}}(\boldsymbol\beta) = \left(\mathbf{A}^{\top}\mathbf{N}^{-1}\mathbf{A}\right)^{-1}\mathbf{A}^{\top}\mathbf{N}^{-1}\mathbf{d}\]</span></p>
+</div>
+</div>
 <p><br></p>
-<div class="fragment">
+<div class="fragment" data-fragment-index="1">
 <h3 id="the-spectral-likelihood"><span class="kw">The spectral likelihood</span></h3>
 <div class="eqbox" style="--eq-border: #521463; --eq-size: 1.1em; --eq-math-margin: 0.2em 0; width: fit-content; margin: 0.45em auto 0; text-align: center;">
 <p><span class="math display">\[-2\ln\mathcal{L}(\boldsymbol\beta) = -\left(\mathbf{A}^{\top}\mathbf{N}^{-1}\mathbf{d}\right)^{\top}\left(\mathbf{A}^{\top}\mathbf{N}^{-1}\mathbf{A}\right)^{-1}\left(\mathbf{A}^{\top}\mathbf{N}^{-1}\mathbf{d}\right), \qquad \boldsymbol\beta = ({\color{#d68910}\beta_d}, {\color{#d68910}T_d}, {\color{#3b6fb6}\beta_s})\]</span></p>
@@ -1687,13 +1720,7 @@ optimum exactly over it -->
 <p><img data-src="PhD/5_contribution/compsep/09_selection/selection_best.png" class="print-only quarto-figure quarto-figure-center" style="width:80.0%"></p>
 </figure>
 </div>
-<div class="fragment" data-fragment-index="3">
-<div class="solutionbox" style="margin-top: 0.3em;">
-<div class="solutionbox-body" style="font-size: 0.8em;">
-<p>Minimising <span class="kw2"><span class="math inline">\(\hat r + \sigma(r)\)</span></span> cannot remove a primordial <span class="math inline">\(r\)</span>, since we do <span class="kw">map-based component separation</span> and the <span class="kw">mixing matrix</span> is linear in the <span class="kw">CMB</span>.</p>
-</div>
-</div>
-</div>
+<p><span class="selfcredit" style="margin-top: 0.4em;">Chanial, Biquard, Kabalan et al.&nbsp;(2026), FURAX, <a href="https://arxiv.org/abs/2603.19600">arXiv:2603.19600</a>, submitted to JOSS<br>Kabalan et al.&nbsp;(2026), <a href="https://arxiv.org/abs/2604.08463">arXiv:2604.08463</a>, submitted to RASTI</span></p>
 </section>
 <section id="selection-criteria-for-optimal-patches-1" class="slide level2" data-visibility="uncounted">
 <h2>Selection criteria for optimal patches</h2>
@@ -1793,21 +1820,21 @@ optimum exactly over it -->
 <div class="solutionbox" style="margin-top: 1.4em;">
 <div class="solutionbox-body">
 <ul>
-<li>Parametric component separation in JAX, <span class="kw">about 60 faster</span>, over thousands of sky partitions</li>
-<li>Implemented a bounded optimiser <span class="kw">AdaTopK</span> for <span class="kw">noisy physical likelihoods</span></li>
-<li><span class="kw">a data-driven</span> criterion to choose the spatial partition.</li>
-<li><span class="kw2">Kabalan et al.&nbsp;(2026)</span>, JAX-accelerated parametric CMB component separation, submitted to RASTI</li>
+<li>JAX parametric component separation: <span class="kw2">60×</span> faster, scaling to <span class="kw">thousands</span> of sky patches</li>
+<li><span class="kw">AdaTopK</span>: a bounded optimiser for <span class="kw">noisy physical likelihoods</span></li>
+<li>A <span class="kw">data-driven</span> criterion to choose the spatial partition</li>
 </ul>
 </div>
 </div>
+<p><span class="selfcredit">Kabalan et al.&nbsp;(2026), JAX-accelerated parametric CMB component separation, submitted to RASTI</span></p>
 <div class="fragment frosted-panel" style="margin-top: 1.4em; --panel-pad: 20px 30px;">
 <div class="row bare" style="--gap: 32px; --align: center;">
 <div style="flex: 1; font-size: 0.95em;">
 <p><span style="display: block; margin-bottom: 0.6em;">Now part of the <span class="kw2">Megatop</span> pipeline for the Simons Observatory</span></p>
-<p><span class="kw2" style="font-weight: 700;">Next</span></p>
+<p><span class="kw2" style="font-weight: 700;">Perspectives</span></p>
 <ul>
 <li>preparing its integration into the <span class="kw">LiteBIRD</span> component-separation pipeline</li>
-<li>real data from the Simons Observatory, through Megatop</li>
+<li>real data from the <span class="kw">Simons Observatory</span></li>
 <li>adding instrument systematics in <span class="kw">FURAX</span></li>
 </ul>
 </div>
@@ -1820,20 +1847,20 @@ optimum exactly over it -->
 <section>
 <section id="contribution-2-field-level-inference-for-weak-lensing-surveys" class="title-slide slide level1 center">
 <h1>Contribution 2: field-level inference for weak lensing surveys</h1>
-<div class="rail-stack">
+<div class="rail-stack" style="width: 82%; margin-top: 0;">
 <p><img data-src="PhD/2_outline/rail_full.svg" class="rail-full"></p>
 <p><img data-src="PhD/2_outline/rail_focus_c2.svg" class="rail-focus"></p>
 <!-- Paper references under the contribution boxes of the outline map.
      Positions are % of the map (rail.tex coordinates over its bounding box). -->
-<div class="rail-paper" style="left: 62.98%; top: 41.0%;">
-<p><a href="https://arxiv.org/abs/2604.08463" class="kw">arXiv:2604.08463</a> · submitted to <span class="kw">RASTI</span></p>
+<div class="rail-paper" style="left: 63.6%; top: 41.0%;">
+<p><a href="https://arxiv.org/abs/2604.08463" class="kw">Kabalan et al.&nbsp;(2026)</a> · submitted to RASTI</p>
 </div>
-<div class="rail-paper" style="left: 62.98%; top: 76.7%;">
-<p><a href="https://joss.theoj.org/papers/10.21105/joss.08852" class="kw">JOSS · doi:10.21105/joss.08852</a><br>
-<span class="kw">JCAP</span> in prep.</p>
+<div class="rail-paper" style="left: 64.4%; top: 76.9%;">
+<p><a href="https://joss.theoj.org/papers/10.21105/joss.08852" class="kw">Kabalan et al.&nbsp;(2026b)</a> · accepted to JOSS<br>
+<span class="kw">Kabalan et al.&nbsp;(2026c)</span> · in prep. for JCAP</p>
 </div>
 </div>
-<div style="display: flex; justify-content: center; align-items: center; gap: 36px; margin-top: 1.2em;">
+<div style="display: flex; justify-content: center; align-items: center; gap: 36px; margin-top: 0.3em;">
 <p><img data-src="assets/Logos/JaxLogo.png" style="height: 70px;"> <a href="https://github.com/ASKabalan/jax-fli"><img data-src="https://img.shields.io/badge/GitHub-jax--fli-blue?logo=github.png"></a></p>
 </div>
 </section>
@@ -1947,7 +1974,7 @@ optimum exactly over it -->
 </div>
 </div>
 </div></div>
-<p><span class="credit">Kabalan et al.&nbsp;(2026b), jaxDecomp: JAX library for 3D domain decomposition and parallel FFTs, accepted to JOSS</span></p>
+<p><span class="selfcredit">Kabalan et al.&nbsp;(2026b), jaxDecomp: JAX library for 3D domain decomposition and parallel FFTs, accepted to JOSS</span></p>
 </section>
 <section id="building-the-observable" class="slide level2">
 <h2>Building the observable</h2>
@@ -2076,36 +2103,23 @@ optimum exactly over it -->
 </div>
 <p><img data-src="PhD/5_contribution/fli/12_spacing/spacing_equal_vol.svg" width="800"></p>
 </div>
-<div class="fragment" data-fragment-index="1">
-<div class="solutionbox" style="margin-top: 0.2em;">
+<div class="row bare" style="--gap: 16px; --align: stretch; margin-top: 0.2em;">
+<div class="solutionbox fragment" data-fragment-index="1" style="flex: 1; margin: 0;">
 <div class="solutionbox-header" style="font-size: 0.75em;">
-<p>Equal volume spacing vs linear in scale factor spacing</p>
+<p>Equal volume vs uniform scale factor spacing</p>
 </div>
-<div class="solutionbox-body" style="font-size: 0.7em;">
-<p>Uniform steps in <span class="math inline">\(a\)</span>: the innermost shell holds <span class="kw2">three orders of magnitude</span> fewer particles than with equal volume, so it is <span class="kw">shot noise</span> dominated</p>
+<div class="solutionbox-body" style="font-size: 0.68em;">
+<p>Uniform steps in <span class="math inline">\(a\)</span>: the innermost shell has <span class="kw">fewer particles</span>, so it is <span class="kw">shot-noise</span> dominated</p>
 <p>The downside of equal volume: <span class="kw">fewer shells</span> cover the lensing kernel of the <span class="kw">first redshift bin</span></p>
-<!-- [Bin 1]{.kw2} is therefore not used for inference -->
 </div>
 </div>
+<div class="solutionbox fragment" data-fragment-index="2" style="flex: 1; margin: 0;">
+<div class="solutionbox-header" style="font-size: 0.75em;">
+<p>Optimal number of shells</p>
 </div>
-</section>
-<section id="impact-of-the-number-of-shells-on-the-accuracy" class="slide level2" data-visibility="uncounted">
-<h2>Impact of the number of shells on the accuracy</h2>
-<p><span class="kw" style="display: block; font-size: 0.8em; margin-top: 0.3em;">Equal-volume shells: convergence against Limber</span></p>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="PhD/5_contribution/fli/13_nshells/nshells_kappa.svg" class="quarto-figure quarto-figure-center" style="margin: 0.2em auto 0;" width="1000"></p>
-</figure>
-</div>
-<div class="fragment" data-fragment-index="1">
-<div class="solutionbox" style="margin-top: 0.4em;">
-<div class="solutionbox-header" style="font-size: 0.8em;">
-<p>How many shells?</p>
-</div>
-<div class="solutionbox-body" style="font-size: 0.75em;">
-<p><span class="kw">More shells</span>: each shell is thinner and holds fewer particles, so they are <span class="kw">shot-noise</span> dominated</p>
-<p><span class="kw">Fewer shells</span>: a few wide shells sample the lensing kernel of the first bin, so they become <span class="kw">biased</span> low below <span class="math inline">\(\ell =\)</span> <span class="kw2">100</span></p>
-<!-- For this work we adopt [25]{.kw2} shells -->
+<div class="solutionbox-body" style="font-size: 0.68em;">
+<p><span class="kw">More shells</span>: thinner shells with fewer particles, <span class="kw">shot-noise</span> dominated</p>
+<p><span class="kw">Fewer shells</span>: a few wide shells sample the first bin’s kernel and are <span class="kw">biased</span> low below <span class="math inline">\(\ell =\)</span> <span class="kw2">100</span></p>
 </div>
 </div>
 </div>
@@ -2150,53 +2164,15 @@ optimum exactly over it -->
 </div>
 </div>
 </section>
-<section id="comparing-against-cosmogrid" class="slide level2">
-<h2>Comparing against CosmoGrid</h2>
-<div class="r-stack bare" style="margin-top: 0.1em;">
-<p><img data-src="PhD/5_contribution/fli/16_cosmogrid/ladder_512.svg" class="fragment fade-out" data-fragment-index="1" width="1000"></p>
-<p><img data-src="PhD/5_contribution/fli/16_cosmogrid/ladder_1024.svg" class="fragment fade-in-then-out" data-fragment-index="1" width="1000"></p>
-<p><img data-src="PhD/5_contribution/fli/16_cosmogrid/ladder_2048.svg" class="fragment fade-in-then-out" data-fragment-index="2" width="1000"></p>
-<p><img data-src="PhD/5_contribution/fli/16_cosmogrid/ladder_2560.svg" class="fragment fade-in-then-out" data-fragment-index="3" width="1000"></p>
-<p><img data-src="PhD/5_contribution/fli/16_cosmogrid/ladder_3072.svg" class="fragment fade-in-then-out" data-fragment-index="4" width="1000"></p>
-<p><img data-src="PhD/5_contribution/fli/16_cosmogrid/ladder_4096.svg" class="fragment" data-fragment-index="5" width="1000"></p>
-</div>
-<div class="fragment" data-fragment-index="6">
-<div class="solutionbox" style="margin-top: 0.2em;">
-<div class="solutionbox-header" style="font-size: 0.75em;">
-<p>Validation against an independent <span class="math inline">\(N\)</span>-body code</p>
-</div>
-<div class="solutionbox-body" style="font-size: 0.72em;">
-<p>Converges with the mesh. At <span class="kw2"><span class="math inline">\(4096^3\)</span></span>: within <span class="kw2">7 %</span> to <span class="math inline">\(\ell =\)</span> <span class="kw2">200</span> (bin 2), <span class="kw2">10 %</span> to <span class="math inline">\(\ell =\)</span> <span class="kw2">250</span> (bin 3)</p>
-</div>
-</div>
-</div>
-</section>
-<section id="higher-order-statistics-the-starlet-ell_1-norm" class="slide level2">
-<h2>Higher-order statistics: the starlet <span class="math inline">\(\ell_1\)</span> norm</h2>
-<div class="r-stack bare" style="margin-top: 0.2em; align-items: start;">
-<div class="fragment fade-out" data-fragment-index="1" style="width: 100%; text-align: center;">
-<p><span style="display: block; font-size: 0.8em; margin-bottom: 0.3em;">A <span class="kw">starlet transform</span> splits the convergence map into angular scales</span></p>
-<p><img data-src="PhD/5_contribution/fli/17_starlet/starlet_response.svg" width="1000"></p>
-</div>
-<div class="fragment fade-in-then-out" data-fragment-index="1" style="width: 100%; text-align: center;">
-<p><span style="display: block; font-size: 0.85em; margin-bottom: 0.3em;">For convergence maps, the <span class="kw">starlet <span class="math inline">\(\ell_1\)</span> norm</span> is a <span class="kw">sufficient statistic</span></span></p>
-<div class="row flat bare" style="--gap: 28px; --justify: center;">
-<p><img data-src="PhD/5_contribution/fli/17_starlet/tersenov_l1_cnn.png" style="width: 450px; flex: none;"></p>
-<div class="solutionbox" style="width: 430px; flex: none; text-align: left;">
-<div class="solutionbox-header" style="font-size: 0.75em;">
-<p>Starlet <span class="math inline">\(\ell_1\)</span> norm</p>
-</div>
-<div class="solutionbox-body" style="font-size: 0.7em;">
-<p>Introduced for weak lensing by <span class="kw">Ajani et al.&nbsp;(2021)</span>, arXiv:2101.01542</p>
-<p>As constraining as a CNN: <span class="kw">Tersenov et al.&nbsp;(2026)</span>, in prep.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="fragment" data-fragment-index="2" style="width: 100%; text-align: center;">
-<p><span class="kw" style="display: block; font-size: 0.75em; text-align: left;">Tomographic bin 3, this work against CosmoGrid</span></p>
-<p><img data-src="PhD/5_contribution/fli/17_starlet/starlet_l1.svg" width="1000"></p>
-</div>
+<section id="valid-scales-for-real-survey-analysis" class="slide level2">
+<h2>Valid scales for real survey analysis</h2>
+<div class="r-stack bare" style="margin-top: -0.2em;">
+<p><img data-src="PhD/5_contribution/fli/16_cosmogrid/ladder_512.svg" class="fragment fade-out" data-fragment-index="1" width="1050"></p>
+<p><img data-src="PhD/5_contribution/fli/16_cosmogrid/ladder_1024.svg" class="fragment fade-in-then-out" data-fragment-index="1" width="1050"></p>
+<p><img data-src="PhD/5_contribution/fli/16_cosmogrid/ladder_2048.svg" class="fragment fade-in-then-out" data-fragment-index="2" width="1050"></p>
+<p><img data-src="PhD/5_contribution/fli/16_cosmogrid/ladder_2560.svg" class="fragment fade-in-then-out" data-fragment-index="3" width="1050"></p>
+<p><img data-src="PhD/5_contribution/fli/16_cosmogrid/ladder_3072.svg" class="fragment fade-in-then-out" data-fragment-index="4" width="1050"></p>
+<p><img data-src="PhD/5_contribution/fli/16_cosmogrid/ladder_4096.svg" class="fragment" data-fragment-index="5" width="1050"></p>
 </div>
 </section></section>
 <section>
@@ -2265,25 +2241,11 @@ optimum exactly over it -->
 <p><span class="kw">Preliminary</span><br>DES Y3 noise, <span class="math inline">\(1200^3\)</span> mesh, 2LPT<br><span class="math inline">\(N_\mathrm{side} = 1024\)</span>, painted at <span class="math inline">\(512\)</span>, <span class="math inline">\(\ell \le 700\)</span></p>
 </div>
 <div class="r-stack bare" style="margin-top: 0.1em;">
-<div class="fragment fade-out" data-fragment-index="2" style="width: 100%; text-align: center;">
-<div class="r-stack">
 <p><img data-src="PhD/5_contribution/fli/18_map/map_first.png" width="1000"></p>
 <div class="fragment" data-fragment-index="1">
 <video src="PhD/5_contribution/fli/18_map/map_run.mp4" class="screen-only" muted="" playsinline="" preload="auto" style="width: 1000px;">
 </video>
 <p><img data-src="PhD/5_contribution/fli/18_map/map_last.png" class="print-only" width="1000"></p>
-</div>
-</div>
-</div>
-<div class="fragment" data-fragment-index="2" style="width: 100%; text-align: center;">
-<div class="r-stack">
-<p><img data-src="PhD/5_contribution/fli/18_map/starlet_first.png" width="1000"></p>
-<div class="fragment" data-fragment-index="3">
-<video src="PhD/5_contribution/fli/18_map/starlet_run.mp4" class="screen-only" muted="" playsinline="" preload="auto" style="width: 1000px;">
-</video>
-<p><img data-src="PhD/5_contribution/fli/18_map/starlet_last.png" class="print-only" width="1000"></p>
-</div>
-</div>
 </div>
 </div>
 </section>
@@ -2292,23 +2254,22 @@ optimum exactly over it -->
 <div class="solutionbox">
 <div class="solutionbox-body" style="font-size: 0.9em;">
 <ul>
-<li>The first differentiable weak-lensing forward model covering <span class="kw">a full survey footprint on the curved sky</span></li>
-<li>Distributed over hundreds of GPUs, with a gradient end to end</li>
-<li>Validated against an independent <span class="math inline">\(N\)</span>-body code and is one step closer towards applying field level inference on real weak-lensing data</li>
-<li><span class="kw2">Kabalan et al.&nbsp;(2026b)</span>, jaxDecomp, accepted to JOSS</li>
-<li><span class="kw2">Kabalan et al.&nbsp;(2026c)</span>, in prep. for JCAP</li>
+<li>The first <span class="kw">differentiable</span> weak-lensing forward model over a <span class="kw">full survey footprint</span> on the curved sky</li>
+<li><span class="kw">Distributed</span> over hundreds of GPUs, with gradients end to end</li>
+<li>Validated against an independent <span class="kw"><span class="math inline">\(N\)</span>-body</span> code: one step closer to <span class="kw">field-level inference</span> on real data</li>
 </ul>
 </div>
 </div>
+<p><span class="selfcredit">Kabalan et al.&nbsp;(2026b), jaxDecomp, accepted to JOSS · Kabalan et al.&nbsp;(2026c), in prep. for JCAP</span></p>
 <div class="fragment frosted-panel" style="margin-top: 0.6em; --panel-pad: 14px 22px;">
 <div class="columns" style="display: flex; align-items: center;">
 <div class="column" style="width: 50%; font-size: 0.9em;">
 <p><span class="kw2" style="font-weight: 700;">Perspectives</span></p>
 <ul>
-<li>the first survey-scale <span class="kw">posterior</span></li>
-<li>a better gravity solver: a <span class="kw">learned force correction</span> or a differentiable <span class="kw">moving mesh</span></li>
-<li><span class="kw">intrinsic alignments</span> and photometric-redshift errors as latent variables</li>
-<li><span class="kw">baryonification</span> inside the model</li>
+<li><span class="kw">Jointly infer</span> cosmology and initial conditions from <span class="kw">real survey data</span></li>
+<li>A better gravity solver: <span class="kw">learned force corrections</span> or a differentiable <span class="kw">moving mesh</span></li>
+<li><span class="kw">Intrinsic alignments</span> and <span class="kw">photo-z errors</span> as latent variables</li>
+<li><span class="kw">Baryonification</span> inside the forward model</li>
 </ul>
 </div><div class="column" style="width: 50%;">
 <div class="figcadre">
@@ -2333,12 +2294,12 @@ optimum exactly over it -->
 <p><img data-src="PhD/2_outline/rail_focus_conclusion.svg" class="rail-focus"></p>
 <!-- Paper references under the contribution boxes of the outline map.
      Positions are % of the map (rail.tex coordinates over its bounding box). -->
-<div class="rail-paper" style="left: 62.98%; top: 41.0%;">
-<p><a href="https://arxiv.org/abs/2604.08463" class="kw">arXiv:2604.08463</a> · submitted to <span class="kw">RASTI</span></p>
+<div class="rail-paper" style="left: 63.6%; top: 41.0%;">
+<p><a href="https://arxiv.org/abs/2604.08463" class="kw">Kabalan et al.&nbsp;(2026)</a> · submitted to RASTI</p>
 </div>
-<div class="rail-paper" style="left: 62.98%; top: 76.7%;">
-<p><a href="https://joss.theoj.org/papers/10.21105/joss.08852" class="kw">JOSS · doi:10.21105/joss.08852</a><br>
-<span class="kw">JCAP</span> in prep.</p>
+<div class="rail-paper" style="left: 64.4%; top: 76.9%;">
+<p><a href="https://joss.theoj.org/papers/10.21105/joss.08852" class="kw">Kabalan et al.&nbsp;(2026b)</a> · accepted to JOSS<br>
+<span class="kw">Kabalan et al.&nbsp;(2026c)</span> · in prep. for JCAP</p>
 </div>
 </div>
 </section>
@@ -2354,42 +2315,40 @@ optimum exactly over it -->
 </div>
 <div class="fragment" data-fragment-index="1">
 <div class="solutionbox" style="margin-top: 0.3em;">
-<div class="solutionbox-body" style="font-size: 0.75em;">
-<p><span class="kw2" style="font-weight: 700;">Goal</span>: Applications to <span class="kw">CMB × LSS</span> with CMB lensing</p>
+<div class="solutionbox-header" style="font-size: 0.8em;">
+<p>Reproducible software for research</p>
 </div>
-</div>
-</div>
-<div class="fragment" data-fragment-index="2">
-<div class="solutionbox" style="margin-top: 0.3em;">
-<div class="solutionbox-header" style="font-size: 0.75em;">
-<p>Where it is used</p>
-</div>
-<div class="solutionbox-body row flat" style="font-size: 0.7em; --gap: 24px;">
+<div class="solutionbox-body" style="font-size: 0.7em;">
+<p><span class="kw2" style="display: block; font-weight: 700; margin-bottom: 0.3em;">Where it is used</span></p>
+<div class="row flat bare" style="--gap: 24px; --align: center;">
 <div style="flex: 1;">
 <p><span class="kw">furax-cs</span> → the Megatop pipeline for the Simons Observatory; LiteBIRD component separation next</p>
-<p><span class="kw">jax-healpy</span> → used within the DESI collaboration.</p>
+<p><span class="kw">jax-healpy</span> → used within the DESI collaboration</p>
 <p><span class="kw">jaxDecomp</span> → beyond cosmology: fluid dynamics, ocean models, imaging</p>
 </div>
 <div class="row flat bare" style="--gap: 14px; --align: center; flex: none;">
 <p><img data-src="PhD/6_ending/software/logo_megatop.png" style="height: 26px;"> <img data-src="PhD/6_ending/software/logo_so.png" style="height: 40px;"> <img data-src="PhD/6_ending/software/logo_litebird.png" style="height: 36px;"></p>
 </div>
 </div>
+<p><span class="kw2" style="font-weight: 700;">Scientific goal</span>: applications to <span class="kw">CMB × LSS</span> with CMB lensing</p>
+</div>
 </div>
 </div>
 </section>
-<section id="conclusion" class="slide level2 center" data-hide-chrome="true">
+<section id="conclusion" class="slide level2" data-hide-chrome="true">
 <h2>Conclusion</h2>
-<div class="solutionbox" style="width: 900px; margin: 1.2em auto 0;">
-<div class="solutionbox-header">
-<p>Applying modern numerical methods and high-performance computing to bottlenecks at both ends of the Universe</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/1_intro/lcdm/lcdm_model_both.svg" class="quarto-figure quarto-figure-center" style="margin: 0 auto -0.4em;;width:52.0%"></p>
+</figure>
 </div>
-<div class="solutionbox-body">
-<ul>
-<li><span class="kw">Spatially varying</span> component separation on the spherical sky</li>
-<li>A <span class="kw">distributed</span> particle-mesh solver</li>
-<li>A first <span class="kw">end-to-end</span> differentiable lensing code on the sphere</li>
-<li><span class="kw">Open-source</span> software already in use: Megatop for the Simons Observatory, field-level CMB lensing with DESI, jaxDecomp beyond cosmology</li>
-</ul>
+<div class="solutionbox" style="width: 940px; margin: 0 auto;">
+<div class="solutionbox-header" style="text-align: center;">
+<p>Removing computational bottlenecks for Stage IV surveys</p>
+</div>
+<div class="solutionbox-body grid" style="--cols: 1fr 1fr; --gap: 1.6em; text-align: center;">
+<p><span class="kw">Early Universe · inflation</span><br>Spatial variability for the CMB</p>
+<p><span class="kw">Late Universe · dark energy</span><br>Explicit field-level inference for large-scale structure</p>
 </div>
 </div>
 </section>
@@ -2624,6 +2583,32 @@ optimum exactly over it -->
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="PhD/5_contribution/fli/backup/map_des_euclid_starlet.svg" class="quarto-figure quarto-figure-center" width="1000"></p>
+</figure>
+</div>
+</section>
+<section id="map-starlet-ell_1-norm-of-the-reconstruction" class="slide level2" data-visibility="uncounted">
+<h2>MAP: starlet <span class="math inline">\(\ell_1\)</span> norm of the reconstruction</h2>
+<video src="PhD/5_contribution/fli/18_map/starlet_run.mp4" class="screen-only" data-autoplay="" muted="" playsinline="" preload="auto" style="display: block; width: 1000px; margin: 0.6em auto 0;">
+</video>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/5_contribution/fli/18_map/starlet_last.png" class="print-only quarto-figure quarto-figure-center" width="1000"></p>
+</figure>
+</div>
+</section>
+<section id="higher-order-statistics-the-starlet-ell_1-norm" class="slide level2" data-visibility="uncounted">
+<h2>Higher-order statistics: the starlet <span class="math inline">\(\ell_1\)</span> norm</h2>
+<div class="row flat bare" style="--gap: 24px; --justify: center; --align: center; margin-top: 0.6em;">
+<p><img data-src="PhD/5_contribution/fli/17_starlet/starlet_response.svg" style="width: 620px; flex: none;"></p>
+<p><img data-src="PhD/5_contribution/fli/17_starlet/tersenov_l1_cnn.png" style="width: 400px; flex: none;"></p>
+</div>
+<p><span class="credit" style="margin-top: 0.6em;">Ajani et al.&nbsp;(2021), arXiv:2101.01542; Tersenov et al.&nbsp;(2026), in prep.</span></p>
+</section>
+<section id="starlet-ell_1-norm-against-cosmogrid" class="slide level2" data-visibility="uncounted">
+<h2>Starlet <span class="math inline">\(\ell_1\)</span> norm against CosmoGrid</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/5_contribution/fli/17_starlet/starlet_l1.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0.4em;" width="1000"></p>
 </figure>
 </div>
 </section>
