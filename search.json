@@ -1040,7 +1040,7 @@
     "href": "2026_10_PhD/index.html#the-limits-of-lambdacdm",
     "title": "Differentiable Field-Level Cosmology",
     "section": "The limits of \\(\\Lambda\\)CDM",
-    "text": "The limits of \\(\\Lambda\\)CDM\n\n\n\n\n\n\n\n \n\n\nThe early Universe\n\n\nhorizon\n\nCredit: NASA / WMAP Science Team\n\n\nflatness\n\n+ origin of inhomogeneities\n+ magnetic monopole problem\n\n\n\nThe late Universe\n\n\ndark energy\n\nData: Perlmutter et al. (1999)\n\n\nNobel2011\n\n\n\ndark matter\n\nRubin, Ford & Thonnard (1980), Fig. 6"
+    "text": "The limits of \\(\\Lambda\\)CDM\n\n\n\n\n\n\n\n\n\nThe early Universe\n\n\nhorizon\n\nCredit: NASA / WMAP Science Team\n\n\nflatness\n\n+ origin of inhomogeneities\n+ magnetic monopole problem\n\n\n\nThe late Universe\n\n\ndark energy\n\nData: Perlmutter et al. (1999)\n\n\nNobel2011\n\n\n\ndark matter\n\nRubin & Ford (1970), Fig. 9 (M31)"
   },
   {
     "objectID": "2026_10_PhD/index.html#inflation",
@@ -1075,21 +1075,21 @@
     "href": "2026_10_PhD/index.html#e-and-b-modes",
     "title": "Differentiable Field-Level Cosmology",
     "section": "\\(E\\) and \\(B\\) modes",
-    "text": "\\(E\\) and \\(B\\) modes\n \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDensity (scalar) perturbations make only \\(E\\) modes\nAt linear order, \\(B\\) modes are only produced by tensor perturbations"
+    "text": "\\(E\\) and \\(B\\) modes\n \n\n\n\n\n\n\n\nPlanck 2018 SMICA: temperature (colour), polarisation (sticks)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDensity (scalar) perturbations make only \\(E\\) modes\nAt linear order, \\(B\\) modes are only produced by tensor perturbations"
   },
   {
     "objectID": "2026_10_PhD/index.html#two-point-statistics",
     "href": "2026_10_PhD/index.html#two-point-statistics",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Two-point statistics",
-    "text": "Two-point statistics\n\n\n\n\n\n\\(C(\\theta) = \\langle \\Delta T(\\hat n_1)\\,\\Delta T(\\hat n_2)\\rangle\\) over all pairs at separation \\(\\theta\\): its expansion in Legendre polynomials gives the \\(C_\\ell\\)\nPlanck 2018, SMICA · smoothed to 1° FWHM"
+    "text": "Two-point statistics\n\n\n\n\n\n\\(C(\\theta) = \\langle \\Delta T(\\hat n_1)\\,\\Delta T(\\hat n_2)\\rangle\\) over all pairs at separation \\(\\theta\\): its expansion in Legendre polynomials gives the \\(C_\\ell\\)\nPlanck 2018 SMICA temperature map · smoothed to 1° FWHM"
   },
   {
     "objectID": "2026_10_PhD/index.html#sht",
     "href": "2026_10_PhD/index.html#sht",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Spherical Harmonic Transforms",
-    "text": "Spherical Harmonic Transforms\n\n\n\\[\nf(\\theta,\\varphi) = \\sum_{\\ell=0}^{\\infty} \\sum_{m=-\\ell}^{\\ell} a_{\\ell m}\\, Y_\\ell^m(\\theta,\\varphi)\n\\]\n\n\n\\[\nC_\\ell = \\frac{1}{2\\ell+1} \\sum_{m=-\\ell}^{\\ell} |a_{\\ell m}|^2\n\\]\n\n\n\n\n I\n\n\n\nspin-0\n\n\n \\(|a^T_{\\ell m}|^2\\)\n\n\n\n\n\n\n\n\n Q\n\n\n\nspin-2\n\n\n \\(|a^E_{\\ell m}|^2\\)\n\n\n\n\n\n\n\n\n U\n\n\n \\(|a^B_{\\ell m}|^2\\)\n\n\n\n\n\n\n\n\nMaps: Planck 2018 SMICA (Planck Collaboration)"
+    "text": "Spherical Harmonic Transforms\n\n\n\\[\nf(\\theta,\\varphi) = \\sum_{\\ell=0}^{\\infty} \\sum_{m=-\\ell}^{\\ell} a_{\\ell m}\\, Y_\\ell^m(\\theta,\\varphi)\n\\]\n\n\n\\[\nC_\\ell = \\frac{1}{2\\ell+1} \\sum_{m=-\\ell}^{\\ell} |a_{\\ell m}|^2\n\\]\n\n\n\n\n I\n\n\n\nspin-0\n\n\n \\(|a^T_{\\ell m}|^2\\)\n\n\n\n\n\n\n\n\n Q\n\n\n\nspin-2\n\n\n \\(|a^E_{\\ell m}|^2\\)\n\n\n\n\n\n\n\n\n U\n\n\n \\(|a^B_{\\ell m}|^2\\)\n\n\n\n\n\n\n\n\nCredit: ESA / Planck Collaboration · Planck 2018 SMICA maps (inpainted), \\(I\\), \\(Q\\), \\(U\\)"
   },
   {
     "objectID": "2026_10_PhD/index.html#predicted-cmb-power-spectra",
@@ -1138,14 +1138,14 @@
     "href": "2026_10_PhD/index.html#convergence-and-shear",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Convergence and shear",
-    "text": "Convergence and shear\n\n\n\n\n\n\n\n\n\n\n\ngalaxy\nconvergence \\(\\kappa\\) (spin 0)\nshear \\(\\gamma_1, \\gamma_2\\) (spin 2)\n\n\n\\[\n\\mathbf{A} = \\begin{pmatrix} 1-\\kappa-\\gamma_1 & -\\gamma_2 \\\\ -\\gamma_2 & 1-\\kappa+\\gamma_1 \\end{pmatrix}\n\\]\n\n\n\nMatter deforms galaxies through weak lensing, by a spin-0 field, the convergence \\(\\kappa\\), and a spin-2 field, the two components of the shear \\(\\gamma\\)\n\n\n\n\n\n\nDistant galaxies lensed by the cosmic web\n\n\n\n\n\nAfter Mandelbaum (2018), arXiv:1710.03235, Fig. 1 (image: CFHT) · shell of this work’s 3072³ run, z = 0.36"
+    "text": "Convergence and shear\n\n\n\n\n\n\n\n\n\n\n\ngalaxy\nconvergence \\(\\kappa\\) (spin 0)\nshear \\(\\gamma_1, \\gamma_2\\) (spin 2)\n\nM101: NASA / ESA / Hubble (STScI-PRC2006-10a)\n\n\\[\n\\mathbf{A} = \\begin{pmatrix} 1-\\kappa-\\gamma_1 & -\\gamma_2 \\\\ -\\gamma_2 & 1-\\kappa+\\gamma_1 \\end{pmatrix}\n\\]\n\n\n\nMatter deforms galaxies through weak lensing, by a spin-0 field, the convergence \\(\\kappa\\), and a spin-2 field, the two components of the shear \\(\\gamma\\)\n\n\n\n\n\n\nDistant galaxies lensed by the cosmic web\n\n\n\n\n\nAfter Mandelbaum (2018), arXiv:1710.03235, Fig. 1 (image: CFHT) · shell of this work’s 3072³ run, z = 0.36"
   },
   {
     "objectID": "2026_10_PhD/index.html#from-galaxy-shapes-to-shear",
     "href": "2026_10_PhD/index.html#from-galaxy-shapes-to-shear",
     "title": "Differentiable Field-Level Cosmology",
     "section": "From galaxy shapes to shear",
-    "text": "From galaxy shapes to shear\n\n\n\n\n\n\n\n\n\nellipticity \\[e = e_1 + i\\,e_2 = \\frac{a-b}{a+b}\\,e^{2i\\varphi}\\]\n\n\nshear in a pixel \\[\\hat\\gamma_1 = \\frac{\\sum_k w_k\\,e_{1,k}}{\\sum_k w_k}, \\qquad \\hat\\gamma_2 = \\frac{\\sum_k w_k\\,e_{2,k}}{\\sum_k w_k}\\]\n\n\n\n\n\nAveraging their shapes per pixel and per bin gives one shear map per bin"
+    "text": "From galaxy shapes to shear\n\n\n\n\n\n\n\nM101: NASA / ESA / Hubble (STScI-PRC2006-10a)\n\n\nellipticity \\[e = e_1 + i\\,e_2 = \\frac{a-b}{a+b}\\,e^{2i\\varphi}\\]\n\n\nshear in a pixel \\[\\hat\\gamma_1 = \\frac{\\sum_k w_k\\,e_{1,k}}{\\sum_k w_k}, \\qquad \\hat\\gamma_2 = \\frac{\\sum_k w_k\\,e_{2,k}}{\\sum_k w_k}\\]\n\n\n\n\nAveraging their shapes per pixel gives one shear map."
   },
   {
     "objectID": "2026_10_PhD/index.html#dark-energy-survey-y3-redshift-distribution",
@@ -1271,7 +1271,7 @@
     "href": "2026_10_PhD/index.html#parametric-component-separation-the-spectral-model",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Parametric component separation: the spectral model",
-    "text": "Parametric component separation: the spectral model\nSynchrotron and dust (Galactic foregrounds)\n\n\n\nSynchrotron: power law\n\\[A^{\\mathrm{sync}}_\\nu({\\color{#3b6fb6}\\beta_s}) \\;\\propto\\; \\left(\\frac{\\nu}{\\nu_0}\\right)^{\\color{#3b6fb6}\\beta_s}\\]\n\n\nPlanck: synchrotron\n\n\nDust: modified black body\n\\[A^{\\mathrm{dust}}_\\nu({\\color{#d68910}\\beta_d}, {\\color{#d68910}T_d}) \\;\\propto\\; \\left(\\frac{\\nu}{\\nu_0}\\right)^{{\\color{#d68910}\\beta_d}+1}\\frac{e^{h\\nu_0/k{\\color{#d68910}T_d}}-1}{e^{h\\nu/k{\\color{#d68910}T_d}}-1}\\]\n\n\nPlanck: thermal dust\n\n\n\n\n\\[\\mathbf{d}_\\nu = A^{\\mathrm{cmb}}_\\nu\\,\\mathbf{s}_{\\mathrm{cmb}} + A^{\\mathrm{dust}}_\\nu({\\color{#d68910}\\beta_d},{\\color{#d68910}T_d})\\,\\mathbf{s}_{\\mathrm{dust}} + A^{\\mathrm{sync}}_\\nu({\\color{#3b6fb6}\\beta_s})\\,\\mathbf{s}_{\\mathrm{sync}} + \\mathbf{n}_\\nu\\]\n\n\n\\[\\hat{\\mathbf{s}}(\\boldsymbol\\beta) = \\left(\\mathbf{A}^{\\top}\\mathbf{N}^{-1}\\mathbf{A}\\right)^{-1}\\mathbf{A}^{\\top}\\mathbf{N}^{-1}\\mathbf{d}\\]\n\n\n\n\nThe spectral likelihood\n\n\\[-2\\ln\\mathcal{L}(\\boldsymbol\\beta) = -\\left(\\mathbf{A}^{\\top}\\mathbf{N}^{-1}\\mathbf{d}\\right)^{\\top}\\left(\\mathbf{A}^{\\top}\\mathbf{N}^{-1}\\mathbf{A}\\right)^{-1}\\left(\\mathbf{A}^{\\top}\\mathbf{N}^{-1}\\mathbf{d}\\right), \\qquad \\boldsymbol\\beta = ({\\color{#d68910}\\beta_d}, {\\color{#d68910}T_d}, {\\color{#3b6fb6}\\beta_s})\\]"
+    "text": "Parametric component separation: the spectral model\nSynchrotron and dust (Galactic foregrounds)\n\n\n\nSynchrotron: power law\n\\[A^{\\mathrm{sync}}_\\nu({\\color{#3b6fb6}\\beta_s}) \\;\\propto\\; \\left(\\frac{\\nu}{\\nu_0}\\right)^{\\color{#3b6fb6}\\beta_s}\\]\n\n\nPlanck: synchrotron\n\n\nDust: modified black body\n\\[A^{\\mathrm{dust}}_\\nu({\\color{#d68910}\\beta_d}, {\\color{#d68910}T_d}) \\;\\propto\\; \\left(\\frac{\\nu}{\\nu_0}\\right)^{{\\color{#d68910}\\beta_d}+1}\\frac{e^{h\\nu_0/k{\\color{#d68910}T_d}}-1}{e^{h\\nu/k{\\color{#d68910}T_d}}-1}\\]\n\n\nPlanck: thermal dust\n\n\n\n\n\\[\\mathbf{d}_\\nu = A^{\\mathrm{cmb}}_\\nu\\,\\mathbf{s}_{\\mathrm{cmb}} + A^{\\mathrm{dust}}_\\nu({\\color{#d68910}\\beta_d},{\\color{#d68910}T_d})\\,\\mathbf{s}_{\\mathrm{dust}} + A^{\\mathrm{sync}}_\\nu({\\color{#3b6fb6}\\beta_s})\\,\\mathbf{s}_{\\mathrm{sync}} + \\mathbf{n}_\\nu\\]\n\n\n\\[\\hat{\\mathbf{s}}(\\boldsymbol\\beta) = \\left(\\mathbf{A}^{\\top}\\mathbf{N}^{-1}\\mathbf{A}\\right)^{-1}\\mathbf{A}^{\\top}\\mathbf{N}^{-1}\\mathbf{d}\\]\n\n\n\n\nRizzieri et al. (2025), arXiv:2510.08534\n\n\nThe spectral likelihood\n\n\\[-2\\ln\\mathcal{L}(\\boldsymbol\\beta) = -\\left(\\mathbf{A}^{\\top}\\mathbf{N}^{-1}\\mathbf{d}\\right)^{\\top}\\left(\\mathbf{A}^{\\top}\\mathbf{N}^{-1}\\mathbf{A}\\right)^{-1}\\left(\\mathbf{A}^{\\top}\\mathbf{N}^{-1}\\mathbf{d}\\right), \\qquad \\boldsymbol\\beta = ({\\color{#d68910}\\beta_d}, {\\color{#d68910}T_d}, {\\color{#3b6fb6}\\beta_s})\\]"
   },
   {
     "objectID": "2026_10_PhD/index.html#estimating-r-from-a-clean-cmb-map",
@@ -1299,7 +1299,7 @@
     "href": "2026_10_PhD/index.html#defining-parameter-patches-on-the-sphere",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Defining parameter patches on the sphere",
-    "text": "Defining parameter patches on the sphere\nMulti-resolution (HEALPix) LiteBIRD Collaboration (2023)\n\n\n\n\n\\(N_{\\rm side} = 4\\) · 192 patches\n\n\n\n\\(N_{\\rm side} = 16\\) · 3072 patches\n\n\n\n\\(N_{\\rm side} = 32\\) · 12288 patches\n\n\n\n\\(N_{\\rm side} = 64\\) · 49152 patches\n\n\n\n\nlow · mid · high Galactic latitude, 20 % of the sky each\n\n\n  \n\\(N_{\\rm side}\\) per parameter in the LiteBIRD analysis\n\n\n\n\nlow\nmid\nhigh\n\n\n\n\n\\(\\beta_d\\)\n64\n64\n64\n\n\n\\(T_d\\)\n8\n4\n0\n\n\n\\(\\beta_s\\)\n4\n2\n2\n\n\n\nper Galactic region (0: one patch)\n\n\nExample: the \\(T_d\\) partition\n\n\\(T_d\\) at \\(N_{\\rm side}\\) 8 / 4 / 0 · 344 patches"
+    "text": "Defining parameter patches on the sphere\nMulti-resolution (HEALPix) LiteBIRD Collaboration (2023)\n\n\n\n\n\\(N_{\\rm side} = 4\\) · 192 patches\n\n\n\n\\(N_{\\rm side} = 16\\) · 3072 patches\n\n\n\n\\(N_{\\rm side} = 32\\) · 12288 patches\n\n\n\n\\(N_{\\rm side} = 64\\) · 49152 patches\n\n\n\n\nlow · mid · high Galactic latitude, 20 % of the sky each\nPlanck Galactic masks: Planck Collaboration (2020), A&A 641, A4\n\n\n  \n\\(N_{\\rm side}\\) per parameter in the LiteBIRD analysis\n\n\n\n\nlow\nmid\nhigh\n\n\n\n\n\\(\\beta_d\\)\n64\n64\n64\n\n\n\\(T_d\\)\n8\n4\n0\n\n\n\\(\\beta_s\\)\n4\n2\n2\n\n\n\nper Galactic region (0: one patch)\n\n\nExample: the \\(T_d\\) partition\n\n\\(T_d\\) at \\(N_{\\rm side}\\) 8 / 4 / 0 · 344 patches"
   },
   {
     "objectID": "2026_10_PhD/index.html#defining-parameter-patches-on-the-sphere-1",
@@ -1327,14 +1327,14 @@
     "href": "2026_10_PhD/index.html#scaling-of-adatopk",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Scaling of AdaTopK",
-    "text": "Scaling of AdaTopK\n\n\n\n\n\n\n\n\nScaling\n\n\n\nAdaTopK runs on GPUs with first-order gradients only.\nIt scales well as number of patches grows."
+    "text": "Scaling of AdaTopK\n\n\n\n\n\n\n\nScaling\n\n\n\nAdaTopK runs on GPUs with first-order gradients only.\nIt scales well as number of patches grows."
   },
   {
     "objectID": "2026_10_PhD/index.html#selection-criteria-for-optimal-patches",
     "href": "2026_10_PhD/index.html#selection-criteria-for-optimal-patches",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Selection criteria for optimal patches",
-    "text": "Selection criteria for optimal patches\n\n\n  \n\n\n\n\n\n\n\n\n\n\n\nChanial, Biquard, Kabalan et al. (2026), FURAX, arXiv:2603.19600, submitted to JOSSKabalan et al. (2026), arXiv:2604.08463, submitted to RASTI"
+    "text": "Selection criteria for optimal patches\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\n\nChanial, Biquard, Kabalan et al. (2026), FURAX, arXiv:2603.19600, submitted to JOSSKabalan et al. (2026), arXiv:2604.08463, submitted to RASTI"
   },
   {
     "objectID": "2026_10_PhD/index.html#selection-criteria-for-optimal-patches-1",
@@ -1355,7 +1355,7 @@
     "href": "2026_10_PhD/index.html#contribution-1-conclusion",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Contribution 1: conclusion",
-    "text": "Contribution 1: conclusion\n\n\n\nJAX parametric component separation: 60× faster, scaling to thousands of sky patches\nAdaTopK: a bounded optimiser for noisy physical likelihoods\nA data-driven criterion to choose the spatial partition\n\n\n\nKabalan et al. (2026), JAX-accelerated parametric CMB component separation, submitted to RASTI\n\n\n\nNow part of the Megatop pipeline for the Simons Observatory\nPerspectives\n\npreparing its integration into the LiteBIRD component-separation pipeline\nreal data from the Simons Observatory\nadding instrument systematics in FURAX"
+    "text": "Contribution 1: conclusion\n\n\n\nA data-driven method to select the optimal patch configuration, essential for Stage IV full-sky surveys like LiteBIRD\nA faster, more robust parametric map-based component-separation code\nContributed to the CMB data-analysis package FURAX and its component-separation sub-package furax-cs\n\n\n\nKabalan et al. (2026), JAX-accelerated parametric CMB component separation, submitted to RASTI\n\n\n\nNow part of the Megatop pipeline for the Simons Observatory\nPerspectives\n\npreparing its integration into the LiteBIRD component-separation pipeline\nadding instrument systematics in FURAX"
   },
   {
     "objectID": "2026_10_PhD/index.html#a-weak-lensing-forward-model-end-to-end",
@@ -1397,7 +1397,7 @@
     "href": "2026_10_PhD/index.html#distributing-the-simulation",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Distributing the simulation",
-    "text": "Distributing the simulation\n\n \n\n\n\n\n\n\n\n\n\n\n\n\nWe split the box into pencils, one per GPU\njaxDecomp implements a differentiable, distributed FFT for the particle-mesh solver\n\n\n\n\nKabalan et al. (2026b), jaxDecomp: JAX library for 3D domain decomposition and parallel FFTs, accepted to JOSS"
+    "text": "Distributing the simulation\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\nWe split the box into pencils, one per GPU\njaxDecomp implements a differentiable, distributed FFT for the particle-mesh solver\n\n\n\n\nKabalan et al. (2026b), jaxDecomp: JAX library for 3D domain decomposition and parallel FFTs, accepted to JOSS"
   },
   {
     "objectID": "2026_10_PhD/index.html#building-the-observable",
@@ -1481,7 +1481,7 @@
     "href": "2026_10_PhD/index.html#contribution-2-conclusion-and-perspectives",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Contribution 2: conclusion and perspectives",
-    "text": "Contribution 2: conclusion and perspectives\n\n\n\nThe first differentiable weak-lensing forward model over a full survey footprint on the curved sky\nDistributed over hundreds of GPUs, with gradients end to end\nValidated against an independent \\(N\\)-body code: one step closer to field-level inference on real data\n\n\n\nKabalan et al. (2026b), jaxDecomp, accepted to JOSS · Kabalan et al. (2026c), in prep. for JCAP\n\n\n\nPerspectives\n\nJointly infer cosmology and initial conditions from real survey data\nA better gravity solver: learned force corrections or a differentiable moving mesh\nIntrinsic alignments and photo-z errors as latent variables\nBaryonification inside the forward model\n\n\n\n\nMoving-mesh particle mesh\n\n\n\n\n\nMoving mesh: B. Horowitz (2026), arXiv:2607.10983"
+    "text": "Contribution 2: conclusion and perspectives\n\n\n\nThe first fully differentiable forward model for Stage IV weak-lensing surveys\nA massively distributed \\(N\\)-body solver, lightcone and lensing model\nOne step closer to field-level inference on real survey data\n\n\n\nKabalan et al. (2026b), jaxDecomp, accepted to JOSS · Kabalan et al. (2026c), in prep. for JCAP\n\n\n\nPerspectives\n\nJointly infer cosmology and initial conditions from real survey data\nA better gravity solver: learned force corrections or a differentiable moving mesh\nIntrinsic alignments and photo-z errors as latent variables\n\n\n\n\nMoving-mesh particle mesh\n\n\n\n\n\nMoving mesh: B. Horowitz (2026), arXiv:2607.10983"
   },
   {
     "objectID": "2026_10_PhD/index.html#the-software-behind-this-thesis",
