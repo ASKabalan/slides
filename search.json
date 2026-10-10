@@ -1085,13 +1085,6 @@
     "text": "Two-point statistics\n\n\n\n\n\n\\(C(\\theta) = \\langle \\Delta T(\\hat n_1)\\,\\Delta T(\\hat n_2)\\rangle\\) over all pairs at separation \\(\\theta\\): its expansion in Legendre polynomials gives the \\(C_\\ell\\)\nPlanck 2018 SMICA temperature map · smoothed to 1° FWHM"
   },
   {
-    "objectID": "2026_10_PhD/index.html#sht",
-    "href": "2026_10_PhD/index.html#sht",
-    "title": "Differentiable Field-Level Cosmology",
-    "section": "Spherical Harmonic Transforms",
-    "text": "Spherical Harmonic Transforms\n\n\n\\[\nf(\\theta,\\varphi) = \\sum_{\\ell=0}^{\\infty} \\sum_{m=-\\ell}^{\\ell} a_{\\ell m}\\, Y_\\ell^m(\\theta,\\varphi)\n\\]\n\n\n\\[\nC_\\ell = \\frac{1}{2\\ell+1} \\sum_{m=-\\ell}^{\\ell} |a_{\\ell m}|^2\n\\]\n\n\n\n\n I\n\n\n\nspin-0\n\n\n \\(|a^T_{\\ell m}|^2\\)\n\n\n\n\n\n\n\n\n Q\n\n\n\nspin-2\n\n\n \\(|a^E_{\\ell m}|^2\\)\n\n\n\n\n\n\n\n\n U\n\n\n \\(|a^B_{\\ell m}|^2\\)\n\n\n\n\n\n\n\n\nCredit: ESA / Planck Collaboration · Planck 2018 SMICA maps (inpainted), \\(I\\), \\(Q\\), \\(U\\)"
-  },
-  {
     "objectID": "2026_10_PhD/index.html#predicted-cmb-power-spectra",
     "href": "2026_10_PhD/index.html#predicted-cmb-power-spectra",
     "title": "Differentiable Field-Level Cosmology",
@@ -1141,13 +1134,6 @@
     "text": "Convergence and shear\n\n\n\n\n\n\n\n\n\n\n\ngalaxy\nconvergence \\(\\kappa\\) (spin 0)\nshear \\(\\gamma_1, \\gamma_2\\) (spin 2)\n\nM101: NASA / ESA / Hubble (STScI-PRC2006-10a)\n\n\\[\n\\mathbf{A} = \\begin{pmatrix} 1-\\kappa-\\gamma_1 & -\\gamma_2 \\\\ -\\gamma_2 & 1-\\kappa+\\gamma_1 \\end{pmatrix}\n\\]\n\n\n\nMatter deforms galaxies through weak lensing, by a spin-0 field, the convergence \\(\\kappa\\), and a spin-2 field, the two components of the shear \\(\\gamma\\)\n\n\n\n\n\n\nDistant galaxies lensed by the cosmic web\n\n\n\n\n\nAfter Mandelbaum (2018), arXiv:1710.03235, Fig. 1 (image: CFHT) · shell of this work’s 3072³ run, z = 0.36"
   },
   {
-    "objectID": "2026_10_PhD/index.html#from-galaxy-shapes-to-shear",
-    "href": "2026_10_PhD/index.html#from-galaxy-shapes-to-shear",
-    "title": "Differentiable Field-Level Cosmology",
-    "section": "From galaxy shapes to shear",
-    "text": "From galaxy shapes to shear\n\n\n\n\n\n\n\nM101: NASA / ESA / Hubble (STScI-PRC2006-10a)\n\n\nellipticity \\[e = e_1 + i\\,e_2 = \\frac{a-b}{a+b}\\,e^{2i\\varphi}\\]\n\n\nshear in a pixel \\[\\hat\\gamma_1 = \\frac{\\sum_k w_k\\,e_{1,k}}{\\sum_k w_k}, \\qquad \\hat\\gamma_2 = \\frac{\\sum_k w_k\\,e_{2,k}}{\\sum_k w_k}\\]\n\n\n\n\nAveraging their shapes per pixel gives one shear map."
-  },
-  {
     "objectID": "2026_10_PhD/index.html#dark-energy-survey-y3-redshift-distribution",
     "href": "2026_10_PhD/index.html#dark-energy-survey-y3-redshift-distribution",
     "title": "Differentiable Field-Level Cosmology",
@@ -1195,13 +1181,6 @@
     "title": "Differentiable Field-Level Cosmology",
     "section": "Limitation of the two-point analysis",
     "text": "Limitation of the two-point analysis\n\n\nDES Y6 cosmic shear (2026)\n\n\n\n\n\nDES Y6 cosmic shear, DES Collaboration (2026), arXiv:2602.10065, Fig. 3 · CMB: Planck 2018, ACT DR6 and SPT-3G, TT+TE+EE+lowE, no lensing\n\n\n\n\nWe need to go beyond the 2PCF to extract more physical information: Contribution 2"
-  },
-  {
-    "objectID": "2026_10_PhD/index.html#from-model-to-observation",
-    "href": "2026_10_PhD/index.html#from-model-to-observation",
-    "title": "Differentiable Field-Level Cosmology",
-    "section": "From model to observation",
-    "text": "From model to observation\n\n\n\n\n\n\n\n\nTarget: the tensor-to-scalar ratio \\(r\\)the energy scale of inflation\n\n\nTarget: \\(\\Omega_\\mathrm{m}\\) and \\(\\sigma_8\\)Dark matter distribution and growth of structure\n\n\nObstacle: Galactic foregrounds hide the primordial \\(B\\)-modes\n\n\nObstacle: Traditional analysis does not capture non-Gaussianities of the cosmic shear.\n\n\n\nContribution 1Spatially varying map-based component separation for space-based telescopes\n\n\n\n\nContribution 2Field-level inference for Stage IV weak lensing surveysusing differentiable forward models\n\n\n\n\n\n\nHow do we infer physical parameters from these cosmological probes?"
   },
   {
     "objectID": "2026_10_PhD/index.html#inverse-problems-in-cosmology",
@@ -1376,7 +1355,7 @@
     "href": "2026_10_PhD/index.html#the-gravity-solver-lagrangian-perturbation-theory",
     "title": "Differentiable Field-Level Cosmology",
     "section": "The gravity solver: Lagrangian perturbation theory",
-    "text": "The gravity solver: Lagrangian perturbation theory\n \n\n\nEach particle moves from its initial grid position \\(\\mathbf{q}\\)\n\n\\[\\mathbf{x}(\\mathbf{q}, a) = \\mathbf{q} + D_1(a)\\,\\mathbf{\\Psi}^{(1)}(\\mathbf{q}) + D_2(a)\\,\\mathbf{\\Psi}^{(2)}(\\mathbf{q}) + \\dots\\] \\[\\nabla \\cdot \\mathbf{\\Psi}^{(1)} = -\\delta_\\mathrm{ini}\\]\n\nFirst order: the Zel’dovich approximation.\n\n\n\n\nPerturbation theory does not capture the non-linear growth of structure\nWe need a fast and differentiable gravity solver that can model the non-linear growth of structure\n\n\n\n\n\n\nLensing \\(C_\\ell\\) of the four DES Y3 bins, linear theory against halofit"
+    "text": "The gravity solver: Lagrangian perturbation theory\n \n\n\nEach particle moves from its initial grid position \\(\\mathbf{q}\\)\n\n\\[\\mathbf{x}(\\mathbf{q}, a) = \\mathbf{q} + D_1(a)\\,\\mathbf{\\Psi}^{(1)}(\\mathbf{q}) + D_2(a)\\,\\mathbf{\\Psi}^{(2)}(\\mathbf{q}) + \\dots\\] \\[\\nabla \\cdot \\mathbf{\\Psi}^{(1)} = -\\delta_\\mathrm{ini}\\]\n\nFirst order: the Zel’dovich approximation.\n\n\n\n\nPerturbation theory does not capture the non-linear growth of structure\nWe need a fast and differentiable gravity solver that can model the non-linear growth of structure\n\n\n\n\n\n\nMatter power spectrum at \\(z=0\\), linear theory against halofit"
   },
   {
     "objectID": "2026_10_PhD/index.html#the-gravity-solver-particle-mesh",
@@ -1418,14 +1397,14 @@
     "href": "2026_10_PhD/index.html#painting-on-spherical-shells",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Painting on spherical shells",
-    "text": "Painting on spherical shells\n\n\n\n\n\nevolved particles\n\n⟶\n\n\none HEALPix shell\n\n\n\n\n\\[r = \\lVert \\mathbf{x} - \\mathbf{x}_o \\rVert, \\qquad \\theta = \\arccos\\frac{z - z_o}{r}\\] \\[\\varphi = \\operatorname{atan2}(y - y_o,\\, x - x_o)\\] \\[p = \\texttt{ang2pix}(N_\\mathrm{side}, \\theta, \\varphi)\\]\n\n\n\n\nang2pix: jax-healpy\n\n\nImplemented in jax-healpy Works by binning each particle into the pixel that contains. It is not differentiable."
+    "text": "Painting on spherical shells\n\n\n\nevolved particles\n\n⟶\n\n\none HEALPix shell"
   },
   {
     "objectID": "2026_10_PhD/index.html#painting-on-spherical-shells-1",
     "href": "2026_10_PhD/index.html#painting-on-spherical-shells-1",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Painting on spherical shells",
-    "text": "Painting on spherical shells\n\n\n\nBilinear interpolation\n\n\n\n\n\nFour pixels, weighted by the position between their centres: get_interp_weights, implemented in jax-healpy\n\n\n\nRadial basis function interpolation\n\n\n\n\n\n\n\n\n\nThe pixel and its eight neighbours (get_all_neighbours, implemented in jax-healpy), weighted by a Gaussian kernel of adjustable width\n\n\n\n\n\n\n\n\n\n\nThe RBF gives control over the smoothing\nBoth methods are differentiable"
+    "text": "Painting on spherical shells\n\n\n\nBilinear interpolation\n\n\n\n\n\nFour pixels, weighted by the position between their centres: get_interp_weights, implemented in jax-healpy\n\n\n\nRadial basis function interpolation\n\n\n\n\n\n\n\n\n\nThe pixel and its eight neighbours (get_all_neighbours, implemented in jax-healpy), weighted by a Gaussian kernel of adjustable width"
   },
   {
     "objectID": "2026_10_PhD/index.html#creating-the-lightcone",
@@ -1435,11 +1414,11 @@
     "text": "Creating the lightcone"
   },
   {
-    "objectID": "2026_10_PhD/index.html#choosing-an-optimal-shell-spacing",
-    "href": "2026_10_PhD/index.html#choosing-an-optimal-shell-spacing",
+    "objectID": "2026_10_PhD/index.html#calibrating-the-lightcone-model",
+    "href": "2026_10_PhD/index.html#calibrating-the-lightcone-model",
     "title": "Differentiable Field-Level Cosmology",
-    "section": "Choosing an optimal shell spacing",
-    "text": "Choosing an optimal shell spacing\n\n\nUniform in scale factor\n\n\\[a_i = a_{\\min} + \\tfrac{i}{n}\\,(1 - a_{\\min})\\]\n\n\n\n\n\n\nEqual volume\n\n\\[r_i^3 = r_{\\min}^3 + \\tfrac{i}{n}\\,(r_{\\max}^3 - r_{\\min}^3)\\]\n\nouter shells capped at 60 Mpc/\\(h\\)\n\n\n\n\n\n\nEqual volume vs uniform scale factor spacing\n\n\nUniform steps in \\(a\\): the innermost shell has fewer particles, so it is shot-noise dominated\nThe downside of equal volume: fewer shells cover the lensing kernel of the first redshift bin\n\n\n\n\nOptimal number of shells\n\n\nMore shells: thinner shells with fewer particles, shot-noise dominated\nFewer shells: a few wide shells sample the first bin’s kernel and are biased low below \\(\\ell =\\) 100"
+    "section": "Calibrating the lightcone model",
+    "text": "Calibrating the lightcone model\n\n\n\n\n\n\nThe integrator and step size\nThe mesh resolution\nThe mass assignment and the spherical painting\nThe number and spacing of the density shells\nThe interpolation of the particles onto the lightcone\nThe gradient (adjoint) of the particle-mesh ODE\nThe performance of the forward model and its gradient"
   },
   {
     "objectID": "2026_10_PhD/index.html#building-the-observable-lensing",
@@ -1460,7 +1439,7 @@
     "href": "2026_10_PhD/index.html#valid-scales-for-real-survey-analysis",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Valid scales for real survey analysis",
-    "text": "Valid scales for real survey analysis"
+    "text": "Valid scales for real survey analysis\n\n\n\n\n\n\n\n\nKabalan et al. (2026c), in prep. for JCAP"
   },
   {
     "objectID": "2026_10_PhD/index.html#field-level-likelihood",
@@ -1512,6 +1491,13 @@
     "text": "Why not simply the maximum a posteriori?"
   },
   {
+    "objectID": "2026_10_PhD/index.html#sht",
+    "href": "2026_10_PhD/index.html#sht",
+    "title": "Differentiable Field-Level Cosmology",
+    "section": "Spherical Harmonic Transforms",
+    "text": "Spherical Harmonic Transforms\n\n\n\\[\nf(\\theta,\\varphi) = \\sum_{\\ell=0}^{\\infty} \\sum_{m=-\\ell}^{\\ell} a_{\\ell m}\\, Y_\\ell^m(\\theta,\\varphi)\n\\]\n\n\n\\[\nC_\\ell = \\frac{1}{2\\ell+1} \\sum_{m=-\\ell}^{\\ell} |a_{\\ell m}|^2\n\\]\n\n\n\n\n I\n\n\n\nspin-0\n\n\n \\(|a^T_{\\ell m}|^2\\)\n\n\n\n\n\n\n\n\n Q\n\n\n\nspin-2\n\n\n \\(|a^E_{\\ell m}|^2\\)\n\n\n\n\n\n\n\n\n U\n\n\n \\(|a^B_{\\ell m}|^2\\)\n\n\n\n\n\n\n\n\nCredit: ESA / Planck Collaboration · Planck 2018 SMICA maps (inpainted), \\(I\\), \\(Q\\), \\(U\\)"
+  },
+  {
     "objectID": "2026_10_PhD/index.html#adatopk-handling-parameter-bounds",
     "href": "2026_10_PhD/index.html#adatopk-handling-parameter-bounds",
     "title": "Differentiable Field-Level Cosmology",
@@ -1524,6 +1510,34 @@
     "title": "Differentiable Field-Level Cosmology",
     "section": "Patch selection on skies with \\(r \\neq 0\\)",
     "text": "Patch selection on skies with \\(r \\neq 0\\)"
+  },
+  {
+    "objectID": "2026_10_PhD/index.html#from-galaxy-shapes-to-shear",
+    "href": "2026_10_PhD/index.html#from-galaxy-shapes-to-shear",
+    "title": "Differentiable Field-Level Cosmology",
+    "section": "From galaxy shapes to shear",
+    "text": "From galaxy shapes to shear\n\n\n\n\n\n\n\nM101: NASA / ESA / Hubble (STScI-PRC2006-10a)\n\n\nellipticity \\[e = e_1 + i\\,e_2 = \\frac{a-b}{a+b}\\,e^{2i\\varphi}\\]\n\n\nshear in a pixel \\[\\hat\\gamma_1 = \\frac{\\sum_k w_k\\,e_{1,k}}{\\sum_k w_k}, \\qquad \\hat\\gamma_2 = \\frac{\\sum_k w_k\\,e_{2,k}}{\\sum_k w_k}\\]"
+  },
+  {
+    "objectID": "2026_10_PhD/index.html#kaisersquires-on-the-sphere",
+    "href": "2026_10_PhD/index.html#kaisersquires-on-the-sphere",
+    "title": "Differentiable Field-Level Cosmology",
+    "section": "Kaiser–Squires on the sphere",
+    "text": "Kaiser–Squires on the sphere\n\n\nFrom \\(\\kappa\\) to \\(\\gamma\\)\n\n\\[\n\\gamma^E_{\\ell m} = -\\sqrt{\\frac{(\\ell+2)(\\ell-1)}{\\ell(\\ell+1)}}\\;\\kappa_{\\ell m}, \\qquad \\gamma^B_{\\ell m} = 0\n\\] \\[\n\\gamma_1 + i\\gamma_2 = \\sum_{\\ell m} \\gamma^E_{\\ell m}\\;{}_2Y_{\\ell m}\n\\]\n\n\nFrom \\(\\gamma\\) back to \\(\\kappa\\)\n\n\\[\n\\kappa_{\\ell m} = -\\sqrt{\\frac{\\ell(\\ell+1)}{(\\ell+2)(\\ell-1)}}\\;\\gamma^E_{\\ell m}\n\\]\n\n\n\n\n \nconvergence κ\n\n\n\n\n\n\n \nshear γ1\n\n\n \nshear γ2\n\n\n\n\n\n\nKaiser–Squires is a simple per-\\(\\ell\\) rescaling between \\(\\kappa\\) and the \\(E\\)-mode of the shear"
+  },
+  {
+    "objectID": "2026_10_PhD/index.html#linear-theory-against-halofit-lensing-c_ell",
+    "href": "2026_10_PhD/index.html#linear-theory-against-halofit-lensing-c_ell",
+    "title": "Differentiable Field-Level Cosmology",
+    "section": "Linear theory against halofit: lensing \\(C_\\ell\\)",
+    "text": "Linear theory against halofit: lensing \\(C_\\ell\\)"
+  },
+  {
+    "objectID": "2026_10_PhD/index.html#a-survey-mask-leaks",
+    "href": "2026_10_PhD/index.html#a-survey-mask-leaks",
+    "title": "Differentiable Field-Level Cosmology",
+    "section": "A survey mask leaks",
+    "text": "A survey mask leaks"
   },
   {
     "objectID": "2026_10_PhD/index.html#integrators-and-time-steps",
@@ -1547,6 +1561,20 @@
     "text": "Shell spacing and the lightcone"
   },
   {
+    "objectID": "2026_10_PhD/index.html#shell-spacing-convergence-against-cosmogrid",
+    "href": "2026_10_PhD/index.html#shell-spacing-convergence-against-cosmogrid",
+    "title": "Differentiable Field-Level Cosmology",
+    "section": "Shell spacing: convergence against CosmoGrid",
+    "text": "Shell spacing: convergence against CosmoGrid"
+  },
+  {
+    "objectID": "2026_10_PhD/index.html#uniform-scale-factor-against-equal-volume",
+    "href": "2026_10_PhD/index.html#uniform-scale-factor-against-equal-volume",
+    "title": "Differentiable Field-Level Cosmology",
+    "section": "Uniform scale factor against equal volume",
+    "text": "Uniform scale factor against equal volume"
+  },
+  {
     "objectID": "2026_10_PhD/index.html#drift-on-the-lightcone",
     "href": "2026_10_PhD/index.html#drift-on-the-lightcone",
     "title": "Differentiable Field-Level Cosmology",
@@ -1558,7 +1586,21 @@
     "href": "2026_10_PhD/index.html#impact-of-the-drift-on-the-first-shell",
     "title": "Differentiable Field-Level Cosmology",
     "section": "Impact of the drift on the first shell",
-    "text": "Impact of the drift on the first shell\n\n\n\n\n\n\n\nRemoves the single-redshift bias of wide shells: 16 % on the first equal-volume shell"
+    "text": "Impact of the drift on the first shell\n\n\n\n\n\n\n\nRemoves the single-redshift bias of wide shells: 17 % on the first equal-volume shell"
+  },
+  {
+    "objectID": "2026_10_PhD/index.html#painting-rbf-against-nearest-grid-point",
+    "href": "2026_10_PhD/index.html#painting-rbf-against-nearest-grid-point",
+    "title": "Differentiable Field-Level Cosmology",
+    "section": "Painting: RBF against nearest grid point",
+    "text": "Painting: RBF against nearest grid point"
+  },
+  {
+    "objectID": "2026_10_PhD/index.html#valid-scales-finer-bandpowers",
+    "href": "2026_10_PhD/index.html#valid-scales-finer-bandpowers",
+    "title": "Differentiable Field-Level Cosmology",
+    "section": "Valid scales: finer bandpowers",
+    "text": "Valid scales: finer bandpowers"
   },
   {
     "objectID": "2026_10_PhD/index.html#mesh-plateau-density-shells",
@@ -1573,13 +1615,6 @@
     "title": "Differentiable Field-Level Cosmology",
     "section": "Mesh plateau: convergence",
     "text": "Mesh plateau: convergence"
-  },
-  {
-    "objectID": "2026_10_PhD/index.html#scale-cuts-and-baryons",
-    "href": "2026_10_PhD/index.html#scale-cuts-and-baryons",
-    "title": "Differentiable Field-Level Cosmology",
-    "section": "Scale cuts and baryons",
-    "text": "Scale cuts and baryons\n\n\n\nmap2alm\n\n\n\n\n× \\(T_\\ell\\)\n\n\n\n\nalm2map\n\n\n\n\n\n\n\\[T_\\ell = \\begin{cases} 1, & \\ell \\le \\ell_\\mathrm{cut} - \\ell_\\mathrm{width} \\\\ \\tfrac12\\left(1 + \\cos \\pi x\\right), & \\ell_\\mathrm{cut} - \\ell_\\mathrm{width} &lt; \\ell &lt; \\ell_\\mathrm{cut} \\\\ 0, & \\ell \\ge \\ell_\\mathrm{cut} \\end{cases}\\]\n\\[x = \\frac{\\ell - (\\ell_\\mathrm{cut} - \\ell_\\mathrm{width})}{\\ell_\\mathrm{width}}\\]\n\n\n\nTersenov, Guerrini, Starck & Kilbinger (2026), arXiv:2609.09131"
   },
   {
     "objectID": "2026_10_PhD/index.html#the-ghost-zone",
@@ -1624,6 +1659,27 @@
     "text": "Halo exchange"
   },
   {
+    "objectID": "2026_10_PhD/index.html#scale-cuts-and-baryons",
+    "href": "2026_10_PhD/index.html#scale-cuts-and-baryons",
+    "title": "Differentiable Field-Level Cosmology",
+    "section": "Scale cuts and baryons",
+    "text": "Scale cuts and baryons\n\n\n\nmap2alm\n\n\n\n\n× \\(T_\\ell\\)\n\n\n\n\nalm2map\n\n\n\n\n\n\n\\[T_\\ell = \\begin{cases} 1, & \\ell \\le \\ell_\\mathrm{cut} - \\ell_\\mathrm{width} \\\\ \\tfrac12\\left(1 + \\cos \\pi x\\right), & \\ell_\\mathrm{cut} - \\ell_\\mathrm{width} &lt; \\ell &lt; \\ell_\\mathrm{cut} \\\\ 0, & \\ell \\ge \\ell_\\mathrm{cut} \\end{cases}\\]\n\\[x = \\frac{\\ell - (\\ell_\\mathrm{cut} - \\ell_\\mathrm{width})}{\\ell_\\mathrm{width}}\\]\n\n\n\nTersenov, Guerrini, Starck & Kilbinger (2026), arXiv:2609.09131"
+  },
+  {
+    "objectID": "2026_10_PhD/index.html#higher-order-statistics-the-starlet-ell_1-norm",
+    "href": "2026_10_PhD/index.html#higher-order-statistics-the-starlet-ell_1-norm",
+    "title": "Differentiable Field-Level Cosmology",
+    "section": "Higher-order statistics: the starlet \\(\\ell_1\\) norm",
+    "text": "Higher-order statistics: the starlet \\(\\ell_1\\) norm\n\n\n\n\nAjani et al. (2021), arXiv:2101.01542; Tersenov et al. (2026), in prep."
+  },
+  {
+    "objectID": "2026_10_PhD/index.html#starlet-ell_1-norm-against-cosmogrid",
+    "href": "2026_10_PhD/index.html#starlet-ell_1-norm-against-cosmogrid",
+    "title": "Differentiable Field-Level Cosmology",
+    "section": "Starlet \\(\\ell_1\\) norm against CosmoGrid",
+    "text": "Starlet \\(\\ell_1\\) norm against CosmoGrid"
+  },
+  {
     "objectID": "2026_10_PhD/index.html#map-power-spectra-of-the-reconstruction",
     "href": "2026_10_PhD/index.html#map-power-spectra-of-the-reconstruction",
     "title": "Differentiable Field-Level Cosmology",
@@ -1652,20 +1708,6 @@
     "text": "MAP: starlet \\(\\ell_1\\) norm of the reconstruction"
   },
   {
-    "objectID": "2026_10_PhD/index.html#higher-order-statistics-the-starlet-ell_1-norm",
-    "href": "2026_10_PhD/index.html#higher-order-statistics-the-starlet-ell_1-norm",
-    "title": "Differentiable Field-Level Cosmology",
-    "section": "Higher-order statistics: the starlet \\(\\ell_1\\) norm",
-    "text": "Higher-order statistics: the starlet \\(\\ell_1\\) norm\n\n\n\n\nAjani et al. (2021), arXiv:2101.01542; Tersenov et al. (2026), in prep."
-  },
-  {
-    "objectID": "2026_10_PhD/index.html#starlet-ell_1-norm-against-cosmogrid",
-    "href": "2026_10_PhD/index.html#starlet-ell_1-norm-against-cosmogrid",
-    "title": "Differentiable Field-Level Cosmology",
-    "section": "Starlet \\(\\ell_1\\) norm against CosmoGrid",
-    "text": "Starlet \\(\\ell_1\\) norm against CosmoGrid"
-  },
-  {
     "objectID": "2026_10_PhD/index.html#field-level-posterior-convergence",
     "href": "2026_10_PhD/index.html#field-level-posterior-convergence",
     "title": "Differentiable Field-Level Cosmology",
@@ -1685,20 +1727,6 @@
     "title": "Differentiable Field-Level Cosmology",
     "section": "Cosmology-only inference",
     "text": "Cosmology-only inference\n\n\n\n\n\n\nNUTS, initial conditions at the truth\n\n\n\n\n\nWarmup\n100 iterations\n\n\nSampling\n10 batches of 10 draws\n\n\n\\(\\Omega_c\\)\n\\(0.2603 \\pm 0.0013\\) (truth 0.2607)\n\n\n\\(\\sigma_8\\)\n\\(0.8102 \\pm 0.0025\\) (truth 0.8102)\n\n\nWall time\n4 h 56 min"
-  },
-  {
-    "objectID": "2026_10_PhD/index.html#a-survey-mask-leaks",
-    "href": "2026_10_PhD/index.html#a-survey-mask-leaks",
-    "title": "Differentiable Field-Level Cosmology",
-    "section": "A survey mask leaks",
-    "text": "A survey mask leaks"
-  },
-  {
-    "objectID": "2026_10_PhD/index.html#kaisersquires-on-the-sphere",
-    "href": "2026_10_PhD/index.html#kaisersquires-on-the-sphere",
-    "title": "Differentiable Field-Level Cosmology",
-    "section": "Kaiser–Squires on the sphere",
-    "text": "Kaiser–Squires on the sphere\n\n\nFrom \\(\\kappa\\) to \\(\\gamma\\)\n\n\\[\n\\gamma^E_{\\ell m} = -\\sqrt{\\frac{(\\ell+2)(\\ell-1)}{\\ell(\\ell+1)}}\\;\\kappa_{\\ell m}, \\qquad \\gamma^B_{\\ell m} = 0\n\\] \\[\n\\gamma_1 + i\\gamma_2 = \\sum_{\\ell m} \\gamma^E_{\\ell m}\\;{}_2Y_{\\ell m}\n\\]\n\n\nFrom \\(\\gamma\\) back to \\(\\kappa\\)\n\n\\[\n\\kappa_{\\ell m} = -\\sqrt{\\frac{\\ell(\\ell+1)}{(\\ell+2)(\\ell-1)}}\\;\\gamma^E_{\\ell m}\n\\]\n\n\n\n\n \nconvergence κ\n\n\n\n\n\n\n \nshear γ1\n\n\n \nshear γ2\n\n\n\n\n\n\nKaiser–Squires is a simple per-\\(\\ell\\) rescaling between \\(\\kappa\\) and the \\(E\\)-mode of the shear"
   },
   {
     "objectID": "index.html",

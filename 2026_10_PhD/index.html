@@ -665,74 +665,12 @@ r \equiv \frac{A_t}{A_s} \;\propto\; E_\mathrm{inf}^4
 <p><span class="math inline">\(C(\theta) = \langle \Delta T(\hat n_1)\,\Delta T(\hat n_2)\rangle\)</span> over all pairs at separation <span class="math inline">\(\theta\)</span>: its expansion in Legendre polynomials gives the <span class="kw"><span class="math inline">\(C_\ell\)</span></span></p>
 <p><span class="credit">Planck 2018 SMICA temperature map · smoothed to 1° FWHM</span></p>
 </section>
-<section id="sht" class="slide level2">
-<h2>Spherical Harmonic Transforms</h2>
-<div class="grid" style="--cols: 1fr 190px 1fr 190px 1fr; --gap: 0; width: 96%; margin: 0 auto; --align: stretch; margin-bottom: 0.2em;">
-<div class="eqbox" style="--eq-border: #25406b; --eq-math-margin: 0.35em 0; grid-column: 2;">
-<p><span class="math display">\[
-f(\theta,\varphi) = \sum_{\ell=0}^{\infty} \sum_{m=-\ell}^{\ell} a_{\ell m}\, Y_\ell^m(\theta,\varphi)
-\]</span></p>
-</div>
-<div class="eqbox fragment" data-fragment-index="2" style="--eq-border: #25406b; --eq-math-margin: 0.35em 0; grid-column: 4;">
-<p><span class="math display">\[
-C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
-\]</span></p>
-</div>
-</div>
-<div class="grid" style="--cols: 1fr 190px 1fr 190px 1fr; --gap: 0; width: 96%; margin: 0 auto; --row-gap: 0.2em; --img-w: auto; --img-h: 136px; --img-max-w: 100%; --img-max-h: 95%; --cap-size: 1em; --cap-lh: 1.1;">
-<div class="cell">
-<p><img data-src="PhD/3_observation/cmb/08_sht/sht_map_I.svg"> <span class="caption"><em>I</em></span></p>
-</div>
-<div class="bare fragment" data-fragment-index="1" style="position: relative;">
-<p><img data-src="PhD/3_observation/cmb/08_sht/sht_arrow.svg" style="display: block; margin: 0 auto;" width="110"></p>
-<p><span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, 85%); font-size: 0.78em; font-weight: 600; color: #6E6E6E; white-space: nowrap;">spin-0</span></p>
-</div>
-<div class="cell fragment" data-fragment-index="1">
-<p><img data-src="PhD/3_observation/cmb/08_sht/sht_alm_T.svg"> <span class="caption"><span class="math inline">\(|a^T_{\ell m}|^2\)</span></span></p>
-</div>
-<div class="bare fragment" data-fragment-index="2">
-<p><img data-src="PhD/3_observation/cmb/08_sht/sht_arrow.svg" style="display: block; margin: 0 auto;" width="110"></p>
-</div>
-<div class="cell fragment" data-fragment-index="2">
-<p><img data-src="PhD/3_observation/cmb/08_sht/sht_cl_TT.svg"></p>
-</div>
-<div class="cell">
-<p><img data-src="PhD/3_observation/cmb/08_sht/sht_map_Q.svg"> <span class="caption"><em>Q</em></span></p>
-</div>
-<div class="bare fragment" data-fragment-index="1" style="grid-column: 2; grid-row: 2 / span 2; display: flex; align-items: center; justify-content: center; position: relative;">
-<p><img data-src="PhD/3_observation/cmb/08_sht/sht_brace_arrow.svg" style="display: block; width: 150px; height: 92%; margin: 0;"></p>
-<p><span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -120%); font-size: 0.78em; font-weight: 600; color: #6E6E6E; white-space: nowrap;">spin-2</span></p>
-</div>
-<div class="cell fragment" data-fragment-index="1">
-<p><img data-src="PhD/3_observation/cmb/08_sht/sht_alm_E.svg"> <span class="caption"><span class="math inline">\(|a^E_{\ell m}|^2\)</span></span></p>
-</div>
-<div class="bare fragment" data-fragment-index="2">
-<p><img data-src="PhD/3_observation/cmb/08_sht/sht_arrow.svg" style="display: block; margin: 0 auto;" width="110"></p>
-</div>
-<div class="cell fragment" data-fragment-index="2">
-<p><img data-src="PhD/3_observation/cmb/08_sht/sht_cl_EE.svg"></p>
-</div>
-<div class="cell">
-<p><img data-src="PhD/3_observation/cmb/08_sht/sht_map_U.svg"> <span class="caption"><em>U</em></span></p>
-</div>
-<div class="cell fragment" data-fragment-index="1">
-<p><img data-src="PhD/3_observation/cmb/08_sht/sht_alm_B.svg"> <span class="caption"><span class="math inline">\(|a^B_{\ell m}|^2\)</span></span></p>
-</div>
-<div class="bare fragment" data-fragment-index="2">
-<p><img data-src="PhD/3_observation/cmb/08_sht/sht_arrow.svg" style="display: block; margin: 0 auto;" width="110"></p>
-</div>
-<div class="cell fragment" data-fragment-index="2">
-<p><img data-src="PhD/3_observation/cmb/08_sht/sht_cl_BB.svg"></p>
-</div>
-</div>
-<p><span class="credit" style="margin-top: -0.2em;">Credit: ESA / Planck Collaboration · Planck 2018 SMICA maps (inpainted), <span class="math inline">\(I\)</span>, <span class="math inline">\(Q\)</span>, <span class="math inline">\(U\)</span></span></p>
-</section>
 <section id="predicted-cmb-power-spectra" class="slide level2">
 <h2>Predicted CMB power spectra</h2>
 <div class="r-stack">
-<p><img data-src="PhD/3_observation/cmb/09_power_spectrum/cl_step1.svg" class="fragment fade-out" style="width:92.0%" data-fragment-index="1"></p>
-<p><img data-src="PhD/3_observation/cmb/09_power_spectrum/cl_step2.svg" class="fragment fade-in-then-out" style="width:92.0%" data-fragment-index="1"></p>
-<p><img data-src="PhD/3_observation/cmb/09_power_spectrum/cl_step3.svg" class="fragment" style="width:92.0%" data-fragment-index="2"></p>
+<p><img data-src="PhD/3_observation/cmb/07_power_spectrum/cl_step1.svg" class="fragment fade-out" style="width:92.0%" data-fragment-index="1"></p>
+<p><img data-src="PhD/3_observation/cmb/07_power_spectrum/cl_step2.svg" class="fragment fade-in-then-out" style="width:92.0%" data-fragment-index="1"></p>
+<p><img data-src="PhD/3_observation/cmb/07_power_spectrum/cl_step3.svg" class="fragment" style="width:92.0%" data-fragment-index="2"></p>
 </div>
 <div class="fragment" data-fragment-index="3">
 <div class="solutionbox">
@@ -749,7 +687,7 @@ C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
 <h2>Current constraints on <span class="math inline">\(r\)</span></h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/3_observation/cmb/10_r_constraints/r_constraints.svg" class="quarto-figure quarto-figure-center" style="width:90.0%"></p>
+<p><img data-src="PhD/3_observation/cmb/08_r_constraints/r_constraints.svg" class="quarto-figure quarto-figure-center" style="width:90.0%"></p>
 </figure>
 </div>
 <p><span class="credit">Tristram et al.&nbsp;(2022); Simons Observatory (Ade et al.&nbsp;2019); LiteBIRD Collaboration (2023)</span></p>
@@ -758,8 +696,8 @@ C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
 <h2>The CMB data-analysis pipeline</h2>
 <p><img data-src="assets/Logos/scipol.png" style="position: absolute; top: -20px; right: 0; height: 120px; margin: 0;"></p>
 <div class="hl-host bare" style="margin-top: 0.2em;">
-<p><img data-src="PhD/3_observation/cmb/11_pipeline/scipol_pipeline.png" style="display: block; width: 990px;"></p>
-<p><img data-src="PhD/3_observation/cmb/11_pipeline/scipol_credit.png" style="position: absolute; right: 0.5%; bottom: 0.3%; width: 31%; margin: 0;"></p>
+<p><img data-src="PhD/3_observation/cmb/09_pipeline/scipol_pipeline.png" style="display: block; width: 990px;"></p>
+<p><img data-src="PhD/3_observation/cmb/09_pipeline/scipol_credit.png" style="position: absolute; right: 0.5%; bottom: 0.3%; width: 31%; margin: 0;"></p>
 <!-- one highlight box in three places: the sky stack, then detectors to map-making,
      then component separation to parameters (two boxes cross-fading at the middle spot) -->
 <div class="fragment" data-fragment-index="1">
@@ -885,35 +823,11 @@ C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
 <p><span class="credit" style="margin-top: 0.4em;">After Mandelbaum (2018), arXiv:1710.03235, Fig. 1 (image: CFHT) · shell of this work’s 3072³ run, z = 0.36</span></p>
 </div>
 </section>
-<section id="from-galaxy-shapes-to-shear" class="slide level2">
-<h2>From galaxy shapes to shear</h2>
-<div class="columns" style="display: flex; align-items: center; margin-top: 0.6em;">
-<div class="column" style="width:40%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="PhD/3_observation/weaklensing/03_convergence_shear/galaxy_ellipticity.png" class="quarto-figure quarto-figure-center" style="margin: 0;;width:92.0%"></p>
-</figure>
-</div>
-<p><span class="credit">M101: NASA / ESA / Hubble (STScI-PRC2006-10a)</span></p>
-</div><div class="column" style="width:58%;">
-<div class="eqbox" style="--eq-border: #2aa198; --eq-size: 1em; --eq-math-margin: 0.2em 0; --eq-pad: 0.15em 1em; width: fit-content; margin: 0 auto; text-align: center;">
-<p><span class="kw" style="display: block; font-size: 0.75em;">ellipticity</span> <span class="math display">\[e = e_1 + i\,e_2 = \frac{a-b}{a+b}\,e^{2i\varphi}\]</span></p>
-</div>
-<div class="eqbox" style="--eq-border: #2aa198; --eq-size: 1em; --eq-math-margin: 0.2em 0; --eq-pad: 0.15em 1em; width: fit-content; margin: 0.6em auto 0; text-align: center;">
-<p><span class="kw" style="display: block; font-size: 0.75em;">shear in a pixel</span> <span class="math display">\[\hat\gamma_1 = \frac{\sum_k w_k\,e_{1,k}}{\sum_k w_k}, \qquad \hat\gamma_2 = \frac{\sum_k w_k\,e_{2,k}}{\sum_k w_k}\]</span></p>
-</div>
-</div></div>
-<div class="solutionbox" style="margin-top: 0.6em;">
-<div class="solutionbox-body">
-<p>Averaging their shapes per pixel gives one <span class="kw">shear map</span>.</p>
-</div>
-</div>
-</section>
 <section id="dark-energy-survey-y3-redshift-distribution" class="slide level2">
 <h2>Dark Energy Survey Y3 redshift distribution</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/3_observation/weaklensing/06_tomographic_bins/nz.svg" class="quarto-figure quarto-figure-center" style="width: 940px; margin: 0.6em auto 0;"></p>
+<p><img data-src="PhD/3_observation/weaklensing/04_tomographic_bins/nz.svg" class="quarto-figure quarto-figure-center" style="width: 940px; margin: 0.6em auto 0;"></p>
 </figure>
 </div>
 </section>
@@ -954,7 +868,7 @@ shapes</span></p>
 <p><span class="arrow" style="--len: 50px; --w: 4px; --head: 18px;"></span></p>
 </div>
 <div class="cell">
-<p><img data-src="PhD/3_observation/weaklensing/04_kaiser_squires/gamma1.gif" class="screen-only" style="width: 150px;"> <img data-src="PhD/3_observation/weaklensing/04_kaiser_squires/gamma1.png" class="print-only" style="width: 150px;"></p>
+<p><img data-src="PhD/3_observation/weaklensing/06_kaiser_squires/gamma1.gif" class="screen-only" style="width: 150px;"> <img data-src="PhD/3_observation/weaklensing/06_kaiser_squires/gamma1.png" class="print-only" style="width: 150px;"></p>
 <p><span class="caption" style="--cap-size: 0.62em; --cap-lh: 1.2; margin-top: 0.15em;">shear <span class="math inline">\(\gamma_1, \gamma_2\)</span></span></p>
 </div>
 <div style="text-align: center;">
@@ -962,7 +876,7 @@ shapes</span></p>
 <p><span class="arrow" style="--len: 64px; --w: 4px; --head: 18px;"></span></p>
 </div>
 <div class="cell">
-<p><img data-src="PhD/3_observation/weaklensing/04_kaiser_squires/kappa.gif" class="screen-only" style="width: 140px;"> <img data-src="PhD/3_observation/weaklensing/04_kaiser_squires/kappa.png" class="print-only" style="width: 140px;"></p>
+<p><img data-src="PhD/3_observation/weaklensing/06_kaiser_squires/kappa.gif" class="screen-only" style="width: 140px;"> <img data-src="PhD/3_observation/weaklensing/06_kaiser_squires/kappa.png" class="print-only" style="width: 140px;"></p>
 <p><span class="caption" style="--cap-size: 0.62em; --cap-lh: 1.2; margin-top: 0.15em;">convergence <span class="math inline">\(\kappa\)</span> per bin</span></p>
 </div>
 <div style="text-align: center; line-height: 0;">
@@ -1053,15 +967,15 @@ shapes</span></p>
 <div class="r-stack">
 <div class="columns" style="width: 100%;">
 <div class="column" style="width: 50%; text-align: center;">
-<p><img data-src="PhD/3_observation/weaklensing/09_two_point_limits/cosmic_web.gif" class="screen-only" style="margin: 0.4em 0 0;" width="265"> <img data-src="PhD/3_observation/weaklensing/09_two_point_limits/cosmic_web.png" class="print-only" style="margin: 0.4em 0 0;" width="265"></p>
+<p><img data-src="PhD/3_observation/weaklensing/08_two_point_limits/cosmic_web.gif" class="screen-only" style="margin: 0.4em 0 0;" width="265"> <img data-src="PhD/3_observation/weaklensing/08_two_point_limits/cosmic_web.png" class="print-only" style="margin: 0.4em 0 0;" width="265"></p>
 <p><span style="font-size: 0.75em;">the cosmic web, <span class="kw">non-Gaussian</span></span></p>
 </div><div class="column" style="width: 50%; text-align: center;">
-<p><img data-src="PhD/3_observation/weaklensing/09_two_point_limits/gaussian.gif" class="screen-only" style="margin: 0.4em 0 0;" width="265"> <img data-src="PhD/3_observation/weaklensing/09_two_point_limits/gaussian.png" class="print-only" style="margin: 0.4em 0 0;" width="265"></p>
+<p><img data-src="PhD/3_observation/weaklensing/08_two_point_limits/gaussian.gif" class="screen-only" style="margin: 0.4em 0 0;" width="265"> <img data-src="PhD/3_observation/weaklensing/08_two_point_limits/gaussian.png" class="print-only" style="margin: 0.4em 0 0;" width="265"></p>
 <p><span style="font-size: 0.75em;">a <span class="kw">Gaussian</span> field</span></p>
 </div></div>
 <div class="figcadre fragment" data-fragment-index="1" style="width: 40%; margin-top: 11.5em;">
 <div class="figcadre-body">
-<p><img data-src="PhD/3_observation/weaklensing/09_two_point_limits/cl_overlay.svg" style="margin: 0.4em 0 0;;width:100.0%"></p>
+<p><img data-src="PhD/3_observation/weaklensing/08_two_point_limits/cl_overlay.svg" style="margin: 0.4em 0 0;;width:100.0%"></p>
 </div>
 </div>
 </div>
@@ -1082,7 +996,7 @@ shapes</span></p>
 <p>DES Y6 cosmic shear (2026)</p>
 </div>
 <div class="figcadre-body" style="text-align: center;">
-<p><img data-src="PhD/3_observation/weaklensing/08_banana/des_y6_om_s8.svg" style="margin: 0;" height="410"></p>
+<p><img data-src="PhD/3_observation/weaklensing/09_banana/des_y6_om_s8.svg" style="margin: 0;" height="410"></p>
 </div>
 </div>
 <p><span class="credit">DES Y6 cosmic shear, DES Collaboration (2026), arXiv:2602.10065, Fig. 3 · CMB: <em>Planck</em> 2018, ACT DR6 and SPT-3G, TT+TE+EE+lowE, no lensing</span></p>
@@ -1092,46 +1006,6 @@ shapes</span></p>
 <ul>
 <li>We need to go beyond the 2PCF to extract more physical information: <span class="kw2">Contribution 2</span></li>
 </ul>
-</div>
-</div>
-</div>
-</section>
-<section id="from-model-to-observation" class="slide level2">
-<h2>From model to observation</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="PhD/1_intro/lcdm/lcdm_model_both.svg" class="quarto-figure quarto-figure-center" style="margin: -0.8em auto -0.6em; position: relative; left: -7%;;width:42.0%"></p>
-</figure>
-</div>
-<!-- one grid, row by row, so the two columns line up: targets, obstacles, contributions -->
-<div class="grid" style="--cols: 1fr 1fr; --gap: 1.6em; --row-gap: 0.5em; --align: stretch; font-size: 0.8em;">
-<div>
-<p><span class="kw">Target</span>: the tensor-to-scalar ratio <span class="math inline">\(r\)</span><br><span style="font-size: 0.8em; color: #6E6E6E;">the energy scale of inflation</span></p>
-</div>
-<div>
-<p><span class="kw">Target</span>: <span class="math inline">\(\Omega_\mathrm{m}\)</span> and <span class="math inline">\(\sigma_8\)</span><br><span style="font-size: 0.8em; color: #6E6E6E;">Dark matter distribution and growth of structure</span></p>
-</div>
-<div class="fragment" data-fragment-index="1">
-<p><span class="kw">Obstacle</span>: Galactic foregrounds hide the primordial <span class="math inline">\(B\)</span>-modes</p>
-</div>
-<div class="fragment" data-fragment-index="1">
-<p><span class="kw">Obstacle</span>: Traditional analysis does not capture <span class="kw">non-Gaussianities</span> of the cosmic shear.</p>
-</div>
-<div class="solutionbox fragment" data-fragment-index="1" style="margin: 0.4em 0 0; display: flex; align-items: center; justify-content: center;">
-<div class="solutionbox-body" style="text-align: center;">
-<p><span class="kw2">Contribution 1</span><br>Spatially varying map-based component separation for space-based telescopes</p>
-</div>
-</div>
-<div class="solutionbox fragment" data-fragment-index="1" style="margin: 0.4em 0 0; display: flex; align-items: center; justify-content: center;">
-<div class="solutionbox-body" style="text-align: center;">
-<p><span class="kw2">Contribution 2</span><br>Field-level inference for Stage IV weak lensing surveys<br>using differentiable forward models</p>
-</div>
-</div>
-</div>
-<div class="fragment" data-fragment-index="2">
-<div class="solutionbox">
-<div class="solutionbox-body" style="text-align: center;">
-<p>How do we <span class="kw">infer physical parameters</span> from these cosmological probes?</p>
 </div>
 </div>
 </div>
@@ -1390,7 +1264,7 @@ shapes</span></p>
 <h2>Foreground spectral energy distributions</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/5_contribution/compsep/01b_seds/foreground_sed.svg" class="quarto-figure quarto-figure-center" style="margin: 0.3em auto 0;" height="440"></p>
+<p><img data-src="PhD/5_contribution/compsep/02_seds/foreground_sed.svg" class="quarto-figure quarto-figure-center" style="margin: 0.3em auto 0;" height="440"></p>
 </figure>
 </div>
 <div class="solutionbox">
@@ -1411,14 +1285,14 @@ shapes</span></p>
 <p><span style="font-size: 0.75em;"><span style="color: #3b6fb6; font-weight: 700;">Synchrotron</span>: power law</span></p>
 <p><span class="math display">\[A^{\mathrm{sync}}_\nu({\color{#3b6fb6}\beta_s}) \;\propto\; \left(\frac{\nu}{\nu_0}\right)^{\color{#3b6fb6}\beta_s}\]</span></p>
 </div>
-<p><img data-src="PhD/5_contribution/compsep/02_spectral_model/planck_sync.png" style="margin: 0;" height="165"></p>
+<p><img data-src="PhD/5_contribution/compsep/03_spectral_model/planck_sync.png" style="margin: 0;" height="165"></p>
 <p><span style="font-size: 0.6em; color: #6E6E6E; display: block; margin-top: -0.9em;">Planck: synchrotron</span></p>
 </div><div class="column" style="width:50%;">
 <div class="eqbox" style="--eq-border: #d68910; --eq-size: 1.05em; --eq-math-margin: 0.1em 0 0.2em; --eq-pad: 0.25em 0.9em 0.05em; width: fit-content; margin: 0.2em auto 0.3em;">
 <p><span style="font-size: 0.75em;"><span style="color: #d68910; font-weight: 700;">Dust</span>: modified black body</span></p>
 <p><span class="math display">\[A^{\mathrm{dust}}_\nu({\color{#d68910}\beta_d}, {\color{#d68910}T_d}) \;\propto\; \left(\frac{\nu}{\nu_0}\right)^{{\color{#d68910}\beta_d}+1}\frac{e^{h\nu_0/k{\color{#d68910}T_d}}-1}{e^{h\nu/k{\color{#d68910}T_d}}-1}\]</span></p>
 </div>
-<p><img data-src="PhD/5_contribution/compsep/02_spectral_model/planck_dust.png" style="margin: 0;" height="165"></p>
+<p><img data-src="PhD/5_contribution/compsep/03_spectral_model/planck_dust.png" style="margin: 0;" height="165"></p>
 <p><span style="font-size: 0.6em; color: #6E6E6E; display: block; margin-top: -0.9em;">Planck: thermal dust</span></p>
 </div></div>
 <!-- the data model and the components that maximise the likelihood at fixed beta -->
@@ -1445,7 +1319,7 @@ shapes</span></p>
 <h2>Estimating <span class="math inline">\(r\)</span> from a clean CMB map</h2>
 <div class="columns" style="display: flex; align-items: center; min-height: 540px;">
 <div class="column" style="width:40%;">
-<p><img data-src="PhD/5_contribution/compsep/02b_r_estimation/r_budget.svg" style="width: 118%; max-width: none; margin: 0 0 0 -14%;"></p>
+<p><img data-src="PhD/5_contribution/compsep/04_r_estimation/r_budget.svg" style="width: 118%; max-width: none; margin: 0 0 0 -14%;"></p>
 </div><div class="column" style="width:60%;">
 <div class="eqbox" style="--eq-border: #521463; --eq-size: 0.8em; --eq-math-margin: 0.15em 0; width: fit-content; margin: 0 auto; text-align: center;">
 <p><span class="math display">\[C_\ell^{BB,\mathrm{model}}(r) = {\color{#C2560A} r}\,C_\ell^{\mathrm{tensor}} + C_\ell^{\mathrm{lens}} + C_\ell^{\mathrm{stat}}\]</span></p>
@@ -1472,18 +1346,18 @@ shapes</span></p>
 <p><span style="font-size: 0.6em;">dust index <span class="math inline">\(\beta_d\)</span></span></p>
 <p><span style="font-size: 0.6em;">dust temperature <span class="math inline">\(T_d\)</span></span></p>
 <p><span style="font-size: 0.6em;">SEDs of 300 pixels</span></p>
-<p><img data-src="PhD/5_contribution/compsep/03_pysm_models/c1d0s0_beta_pl.png" style="margin: 0;" height="128"></p>
-<p><img data-src="PhD/5_contribution/compsep/03_pysm_models/c1d0s0_beta_dust.png" style="margin: 0;" height="128"></p>
-<p><img data-src="PhD/5_contribution/compsep/03_pysm_models/c1d0s0_temp_dust.png" style="margin: 0;" height="128"></p>
-<p><img data-src="PhD/5_contribution/compsep/03_pysm_models/c1d0s0_sed.svg" style="margin: 0;" height="145"></p>
+<p><img data-src="PhD/5_contribution/compsep/05_pysm_models/c1d0s0_beta_pl.png" style="margin: 0;" height="128"></p>
+<p><img data-src="PhD/5_contribution/compsep/05_pysm_models/c1d0s0_beta_dust.png" style="margin: 0;" height="128"></p>
+<p><img data-src="PhD/5_contribution/compsep/05_pysm_models/c1d0s0_temp_dust.png" style="margin: 0;" height="128"></p>
+<p><img data-src="PhD/5_contribution/compsep/05_pysm_models/c1d0s0_sed.svg" style="margin: 0;" height="145"></p>
 </div>
 <div class="fragment" data-fragment-index="1">
 <h3 style="margin: 0.3em 0 0.1em;" id="c1d1s1-one-spectrum-per-pixel"><span class="kw">c1d1s1</span> <span style="font-size: 0.6em; font-weight: 400; color: #6E6E6E;">one spectrum per pixel</span></h3>
 <div class="grid bare" style="--cols: 1fr 1fr 1fr 1.3fr; --gap: 0.6em; --align: center; text-align: center;">
-<p><img data-src="PhD/5_contribution/compsep/03_pysm_models/c1d1s1_beta_pl.png" style="margin: 0;" height="128"></p>
-<p><img data-src="PhD/5_contribution/compsep/03_pysm_models/c1d1s1_beta_dust.png" style="margin: 0;" height="128"></p>
-<p><img data-src="PhD/5_contribution/compsep/03_pysm_models/c1d1s1_temp_dust.png" style="margin: 0;" height="128"></p>
-<p><img data-src="PhD/5_contribution/compsep/03_pysm_models/c1d1s1_sed.svg" style="margin: 0;" height="145"></p>
+<p><img data-src="PhD/5_contribution/compsep/05_pysm_models/c1d1s1_beta_pl.png" style="margin: 0;" height="128"></p>
+<p><img data-src="PhD/5_contribution/compsep/05_pysm_models/c1d1s1_beta_dust.png" style="margin: 0;" height="128"></p>
+<p><img data-src="PhD/5_contribution/compsep/05_pysm_models/c1d1s1_temp_dust.png" style="margin: 0;" height="128"></p>
+<p><img data-src="PhD/5_contribution/compsep/05_pysm_models/c1d1s1_sed.svg" style="margin: 0;" height="145"></p>
 </div>
 </div>
 <p><span class="credit">Sky models: PySM (Thorne et al.&nbsp;2017; Zonca et al.&nbsp;2021; Pan-Experiment Galactic Science Group 2025)</span></p>
@@ -1504,12 +1378,12 @@ shapes</span></p>
 <h4 id="hierarchical-equal-area-iso-latitude-pixellation-of-the-sphere"><span class="kw">Hierarchical Equal Area iso-latitude Pixellation</span> (of the sphere)</h4>
 <div class="row" style="margin-top: -0.3em;">
 <div class="cell" style="flex: 0 0 17%; --cell-margin: 0.15em 0; --img-w: 90%;">
-<p><img data-src="PhD/3_observation/cmb/07_healpix/healpix_logo.svg"></p>
+<p><img data-src="PhD/5_contribution/compsep/06_healpix/healpix_logo.svg"></p>
 <p><span style="display: block; font-weight: 700; font-size: 1.05em; color: #2E2E2E;">HEALPix</span></p>
-<p><img data-src="PhD/3_observation/cmb/07_healpix/nasa_logo.svg" style="width: 48%;"></p>
+<p><img data-src="PhD/5_contribution/compsep/06_healpix/nasa_logo.svg" style="width: 48%;"></p>
 </div>
 <div class="bare" style="flex: 1 1 auto; text-align: center;">
-<p><img data-src="PhD/3_observation/cmb/07_healpix/healpix_nside64.png" style="width: 100%;"></p>
+<p><img data-src="PhD/5_contribution/compsep/06_healpix/healpix_nside64.png" style="width: 100%;"></p>
 <p><span class="kw"><span class="math inline">\(N_\mathrm{side}\)</span></span> <span class="math inline">\(= 64\)</span></p>
 </div>
 </div>
@@ -1520,24 +1394,24 @@ shapes</span></p>
 <div class="grid bare" style="--cols: 470px 470px; --gap: 60px; --row-gap: 18px; --align: start; --img-w: 450px; --cap-size: 0.72em; --cell-margin: 0.3em 0 0; margin-top: 0.2em;">
 <div class="r-stack">
 <div class="cell fragment fade-out" data-fragment-index="1">
-<p><img data-src="PhD/5_contribution/compsep/04_multires/nside_4.png"></p>
+<p><img data-src="PhD/5_contribution/compsep/07_multires/nside_4.png"></p>
 <p><span class="caption"><span class="math inline">\(N_{\rm side} = 4\)</span> · 192 patches</span></p>
 </div>
 <div class="cell fragment fade-in-then-out" data-fragment-index="1">
-<p><img data-src="PhD/5_contribution/compsep/04_multires/nside_16.png"></p>
+<p><img data-src="PhD/5_contribution/compsep/07_multires/nside_16.png"></p>
 <p><span class="caption"><span class="math inline">\(N_{\rm side} = 16\)</span> · 3072 patches</span></p>
 </div>
 <div class="cell fragment fade-in-then-out" data-fragment-index="2">
-<p><img data-src="PhD/5_contribution/compsep/04_multires/nside_32.png"></p>
+<p><img data-src="PhD/5_contribution/compsep/07_multires/nside_32.png"></p>
 <p><span class="caption"><span class="math inline">\(N_{\rm side} = 32\)</span> · 12288 patches</span></p>
 </div>
 <div class="cell fragment" data-fragment-index="3">
-<p><img data-src="PhD/5_contribution/compsep/04_multires/nside_64.png"></p>
+<p><img data-src="PhD/5_contribution/compsep/07_multires/nside_64.png"></p>
 <p><span class="caption"><span class="math inline">\(N_{\rm side} = 64\)</span> · 49152 patches</span></p>
 </div>
 </div>
 <div class="cell fragment" data-fragment-index="4">
-<p><img data-src="PhD/5_contribution/compsep/04_multires/regions.png"></p>
+<p><img data-src="PhD/5_contribution/compsep/07_multires/regions.png"></p>
 <p><span class="caption"><span class="kw">low</span> · <span class="kw2">mid</span> · <span style="color: #3B6FB6; font-weight: 700;">high</span> Galactic latitude, 20 % of the sky each</span></p>
 <p><span class="credit" style="margin-top: 0.1em;">Planck Galactic masks: Planck Collaboration (2020), A&amp;A 641, A4</span></p>
 </div>
@@ -1578,7 +1452,7 @@ shapes</span></p>
 </div>
 <div class="cell fragment" data-fragment-index="6" style="--img-w: 420px;">
 <p><span class="kw" style="display: block; font-size: 0.85em; margin-bottom: 0.3em;">Example: the <span class="math inline">\(T_d\)</span> partition</span></p>
-<p><img data-src="PhD/5_contribution/compsep/04_multires/multires_td.png"></p>
+<p><img data-src="PhD/5_contribution/compsep/07_multires/multires_td.png"></p>
 <p><span class="caption"><span class="math inline">\(T_d\)</span> at <span class="math inline">\(N_{\rm side}\)</span> 8 / 4 / 0 · 344 patches</span></p>
 </div>
 </div>
@@ -1592,10 +1466,10 @@ shapes</span></p>
 <div style="display: flex; justify-content: center; align-items: center; gap: 14px; margin-bottom: 0.2em;">
 <p><a href="https://github.com/CMBSciPol/jax-healpy"><img data-src="https://img.shields.io/badge/GitHub-jax--healpy-blue?logo=github.png"></a> <img data-src="PhD/6_ending/software/logo_scipol.png" style="height: 34px; margin: 0;"></p>
 </div>
-<p><img data-src="PhD/5_contribution/compsep/05_kmeans/kmeans_fill.gif" class="screen-only" style="margin: 0;" width="380"> <img data-src="PhD/5_contribution/compsep/05_kmeans/kmeans_fill.png" class="print-only" style="margin: 0;" width="380"></p>
+<p><img data-src="PhD/5_contribution/compsep/08_kmeans/kmeans_fill.gif" class="screen-only" style="margin: 0;" width="380"> <img data-src="PhD/5_contribution/compsep/08_kmeans/kmeans_fill.png" class="print-only" style="margin: 0;" width="380"></p>
 </div><div class="column fragment" data-fragment-index="1" style="width: 50%; text-align: center;">
 <h4 style="margin: 0 0 0.3em;" id="the-biasvariance-trade-off"><span class="kw">The bias–variance trade-off</span></h4>
-<p><img data-src="PhD/5_contribution/compsep/05_kmeans/r_likelihood_high_low.svg" style="margin: 0;;width:84.0%"></p>
+<p><img data-src="PhD/5_contribution/compsep/08_kmeans/r_likelihood_high_low.svg" style="margin: 0;;width:84.0%"></p>
 </div></div>
 <div class="fragment" data-fragment-index="2">
 <div class="solutionbox">
@@ -1618,10 +1492,10 @@ shapes</span></p>
 <div class="column" style="width: 480px;">
 <div class="r-stack bare">
 <div class="fragment fade-out" data-fragment-index="2" style="margin: 40px 0 0 20px; align-self: start; justify-self: start;">
-<p><img data-src="PhD/5_contribution/compsep/06_newton/newton_bowl.gif" class="screen-only" style="width: 450px;"> <img data-src="PhD/5_contribution/compsep/06_newton/newton_bowl.png" class="print-only" style="width: 450px;"></p>
+<p><img data-src="PhD/5_contribution/compsep/09_newton/newton_bowl.gif" class="screen-only" style="width: 450px;"> <img data-src="PhD/5_contribution/compsep/09_newton/newton_bowl.png" class="print-only" style="width: 450px;"></p>
 </div>
 <div class="fragment" data-fragment-index="2" style="margin: 0 0 0 40px; align-self: start; justify-self: start;">
-<p><img data-src="PhD/5_contribution/compsep/06_newton/noise_left.gif" class="screen-only" style="width: 430px;"> <img data-src="PhD/5_contribution/compsep/06_newton/noise_left.png" class="print-only" style="width: 430px;"></p>
+<p><img data-src="PhD/5_contribution/compsep/09_newton/noise_left.gif" class="screen-only" style="width: 430px;"> <img data-src="PhD/5_contribution/compsep/09_newton/noise_left.png" class="print-only" style="width: 430px;"></p>
 </div>
 </div>
 </div><div class="column" style="width: 500px;">
@@ -1634,7 +1508,7 @@ shapes</span></p>
 </div>
 </div>
 <div class="fragment" data-fragment-index="1" style="width: 100%; text-align: center;">
-<p><img data-src="PhD/5_contribution/compsep/06_newton/snr_map.png" style="width: 440px; margin: 0.2em 0 0;"></p>
+<p><img data-src="PhD/5_contribution/compsep/09_newton/snr_map.png" style="width: 440px; margin: 0.2em 0 0;"></p>
 <p><span style="display: block; font-size: 0.6em; color: #6E6E6E; margin: 0.1em 0 0;">140 GHz, LiteBIRD depth</span></p>
 </div>
 </div>
@@ -1659,9 +1533,9 @@ shapes</span></p>
 <div class="column" style="width: 54%;">
 <div class="r-stack">
 <div class="fragment fade-out" data-fragment-index="1">
-<p><img data-src="PhD/5_contribution/compsep/07_adam/adam_path.gif" class="screen-only" style="margin: 0 auto; display: block;;width:80.0%"> <img data-src="PhD/5_contribution/compsep/07_adam/adam_path.png" class="print-only" style="margin: 0 auto; display: block;;width:80.0%"></p>
+<p><img data-src="PhD/5_contribution/compsep/10_adam/adam_path.gif" class="screen-only" style="margin: 0 auto; display: block;;width:80.0%"> <img data-src="PhD/5_contribution/compsep/10_adam/adam_path.png" class="print-only" style="margin: 0 auto; display: block;;width:80.0%"></p>
 </div>
-<p><img data-src="PhD/5_contribution/compsep/07_adam/adabelief.svg" class="fragment" style="margin: 0 auto; display: block;;width:80.0%" data-fragment-index="1"></p>
+<p><img data-src="PhD/5_contribution/compsep/10_adam/adabelief.svg" class="fragment" style="margin: 0 auto; display: block;;width:80.0%" data-fragment-index="1"></p>
 </div>
 </div><div class="column" style="width: 46%; font-size: 1em;">
 <p><span class="kw2">Adam</span> is the standard optimiser of machine learning, built for very many parameters and very noisy gradients</p>
@@ -1689,7 +1563,7 @@ shapes</span></p>
 <h2>Scaling of AdaTopK</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/5_contribution/compsep/08_scaling/runtime_scaling.svg" class="quarto-figure quarto-figure-center" style="margin-bottom: 0.2em;;width:62.0%"></p>
+<p><img data-src="PhD/5_contribution/compsep/11_scaling/runtime_scaling.svg" class="quarto-figure quarto-figure-center" style="margin-bottom: 0.2em;;width:62.0%"></p>
 </figure>
 </div>
 <div class="solutionbox">
@@ -1715,12 +1589,12 @@ shapes</span></p>
 never hidden) only starts it; it stops on the largest partition, and the next click lays the ringed
 optimum exactly over it -->
 <div style="position: relative; width: 80%; margin: 0.2em auto 0;">
-<video src="PhD/5_contribution/compsep/09_selection/selection.mp4" poster="PhD/5_contribution/compsep/09_selection/selection_first.png" class="fragment custom screen-only" data-fragment-index="1" muted="" playsinline="" preload="auto" style="display: block; width: 100%; margin: 0;"></video>
-<img src="PhD/5_contribution/compsep/09_selection/selection_best.png" class="fragment" data-fragment-index="2" style="position: absolute; left: 0; top: 0; width: 100%; height: auto; max-width: none; max-height: none; margin: 0;">
+<video src="PhD/5_contribution/compsep/12_selection/selection.mp4" poster="PhD/5_contribution/compsep/12_selection/selection_first.png" class="fragment custom screen-only" data-fragment-index="1" muted="" playsinline="" preload="auto" style="display: block; width: 100%; margin: 0;"></video>
+<img src="PhD/5_contribution/compsep/12_selection/selection_best.png" class="fragment" data-fragment-index="2" style="position: absolute; left: 0; top: 0; width: 100%; height: auto; max-width: none; max-height: none; margin: 0;">
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/5_contribution/compsep/09_selection/selection_best.png" class="print-only quarto-figure quarto-figure-center" style="width:80.0%"></p>
+<p><img data-src="PhD/5_contribution/compsep/12_selection/selection_best.png" class="print-only quarto-figure quarto-figure-center" style="width:80.0%"></p>
 </figure>
 </div>
 <p><span class="selfcredit" style="margin-top: 0.4em;">Chanial, Biquard, Kabalan et al.&nbsp;(2026), FURAX, <a href="https://arxiv.org/abs/2603.19600">arXiv:2603.19600</a>, submitted to JOSS<br>Kabalan et al.&nbsp;(2026), <a href="https://arxiv.org/abs/2604.08463">arXiv:2604.08463</a>, submitted to RASTI</span></p>
@@ -1728,35 +1602,35 @@ optimum exactly over it -->
 <section id="selection-criteria-for-optimal-patches-1" class="slide level2" data-visibility="uncounted">
 <h2>Selection criteria for optimal patches</h2>
 <div class="absolute bare" style="display: flex; align-items: center; gap: 10px;top: -12px; right: 0px; ">
-<p><img data-src="PhD/5_contribution/fli/15_scaling/jean_zay_logo.png" height="58"></p>
+<p><img data-src="PhD/5_contribution/compsep/12_selection/jean_zay_logo.png" height="58"></p>
 <p><span style="font-size: 0.55em; line-height: 1.25; color: #2E2E2E;">Jean Zay, IDRIS<br>NVIDIA H100 GPUs</span></p>
 </div>
 <p><span class="kw">We do this for each region</span></p>
 <div class="grid bare" style="--cols: 300px 295px 1fr; grid-template-rows: repeat(3, 172px); --gap: 12px; --row-gap: 2px; --img-w: 290px; --cap-size: 0.55em; --cell-margin: 0; margin-top: 0.2em;">
 <div class="cell fragment" data-fragment-index="1">
-<p><img data-src="PhD/5_contribution/compsep/09_selection/best_patches_beta_dust.png"></p>
+<p><img data-src="PhD/5_contribution/compsep/12_selection/best_patches_beta_dust.png"></p>
 <p><span class="caption"><span class="math inline">\(\beta_d\)</span> patches</span></p>
 </div>
 <div class="fragment" data-fragment-index="1">
-<p><img data-src="PhD/5_contribution/compsep/09_selection/gridding_beta_dust.svg" width="285"></p>
+<p><img data-src="PhD/5_contribution/compsep/12_selection/gridding_beta_dust.svg" width="285"></p>
 </div>
 <div class="cell fragment" data-fragment-index="2">
-<p><img data-src="PhD/5_contribution/compsep/09_selection/best_patches_temp_dust.png"></p>
+<p><img data-src="PhD/5_contribution/compsep/12_selection/best_patches_temp_dust.png"></p>
 <p><span class="caption"><span class="math inline">\(T_d\)</span> patches</span></p>
 </div>
 <div class="fragment" data-fragment-index="2">
-<p><img data-src="PhD/5_contribution/compsep/09_selection/gridding_temp_dust.svg" width="285"></p>
+<p><img data-src="PhD/5_contribution/compsep/12_selection/gridding_temp_dust.svg" width="285"></p>
 </div>
 <div class="cell fragment" data-fragment-index="3">
-<p><img data-src="PhD/5_contribution/compsep/09_selection/best_patches_beta_pl.png"></p>
+<p><img data-src="PhD/5_contribution/compsep/12_selection/best_patches_beta_pl.png"></p>
 <p><span class="caption"><span class="math inline">\(\beta_s\)</span> patches</span></p>
 </div>
 <div class="fragment" data-fragment-index="3">
-<p><img data-src="PhD/5_contribution/compsep/09_selection/gridding_beta_pl.svg" width="285"></p>
+<p><img data-src="PhD/5_contribution/compsep/12_selection/gridding_beta_pl.svg" width="285"></p>
 </div>
 <div class="r-stack" style="grid-column: 3; grid-row: 1 / 3;">
-<p><img data-src="PhD/5_contribution/compsep/09_selection/r_likelihood_regions.svg" class="fragment fade-in-then-out" data-fragment-index="4" width="380"></p>
-<p><img data-src="PhD/5_contribution/compsep/09_selection/r_likelihood_combined.svg" class="fragment" data-fragment-index="5" width="380"></p>
+<p><img data-src="PhD/5_contribution/compsep/12_selection/r_likelihood_regions.svg" class="fragment fade-in-then-out" data-fragment-index="4" width="380"></p>
+<p><img data-src="PhD/5_contribution/compsep/12_selection/r_likelihood_combined.svg" class="fragment" data-fragment-index="5" width="380"></p>
 </div>
 <div class="fragment" data-fragment-index="5" style="grid-column: 3; grid-row: 3; align-self: end;">
 <div class="solutionbox">
@@ -1775,22 +1649,22 @@ optimum exactly over it -->
 <h2>Results: comparison with multi-resolution</h2>
 <div class="columns" style="display: flex; align-items: center;">
 <div class="column" style="width: 46%;">
-<p><img data-src="PhD/5_contribution/compsep/10_results/r_likelihood.svg" style="margin: 0;;width:100.0%"></p>
+<p><img data-src="PhD/5_contribution/compsep/13_results/r_likelihood.svg" style="margin: 0;;width:100.0%"></p>
 </div><div class="column" style="width: 54%;">
 <div class="bare" style="margin: 0.5em 0 0.2em; font-size: 0.9em;">
 <p><span class="kw2">multi-resolution</span> (LiteBIRD PTEP)</p>
 </div>
 <div class="grid bare" style="--cols: 1fr 1fr 1fr; --gap: 8px; --row-gap: 8px; --cap-size: 0.62em; --cell-margin: 0;">
 <div class="cell">
-<p><img data-src="PhD/5_contribution/compsep/10_results/patches_multires_beta_dust.png"></p>
+<p><img data-src="PhD/5_contribution/compsep/13_results/patches_multires_beta_dust.png"></p>
 <p><span class="caption"><span class="math inline">\(\beta_d\)</span></span></p>
 </div>
 <div class="cell">
-<p><img data-src="PhD/5_contribution/compsep/10_results/patches_multires_temp_dust.png"></p>
+<p><img data-src="PhD/5_contribution/compsep/13_results/patches_multires_temp_dust.png"></p>
 <p><span class="caption"><span class="math inline">\(T_d\)</span></span></p>
 </div>
 <div class="cell">
-<p><img data-src="PhD/5_contribution/compsep/10_results/patches_multires_beta_pl.png"></p>
+<p><img data-src="PhD/5_contribution/compsep/13_results/patches_multires_beta_pl.png"></p>
 <p><span class="caption"><span class="math inline">\(\beta_s\)</span></span></p>
 </div>
 </div>
@@ -1799,15 +1673,15 @@ optimum exactly over it -->
 </div>
 <div class="grid bare" style="--cols: 1fr 1fr 1fr; --gap: 8px; --row-gap: 8px; --cap-size: 0.62em; --cell-margin: 0;">
 <div class="cell">
-<p><img data-src="PhD/5_contribution/compsep/10_results/patches_kmeans_beta_dust.png"></p>
+<p><img data-src="PhD/5_contribution/compsep/13_results/patches_kmeans_beta_dust.png"></p>
 <p><span class="caption"><span class="math inline">\(\beta_d\)</span></span></p>
 </div>
 <div class="cell">
-<p><img data-src="PhD/5_contribution/compsep/10_results/patches_kmeans_temp_dust.png"></p>
+<p><img data-src="PhD/5_contribution/compsep/13_results/patches_kmeans_temp_dust.png"></p>
 <p><span class="caption"><span class="math inline">\(T_d\)</span></span></p>
 </div>
 <div class="cell">
-<p><img data-src="PhD/5_contribution/compsep/10_results/patches_kmeans_beta_pl.png"></p>
+<p><img data-src="PhD/5_contribution/compsep/13_results/patches_kmeans_beta_pl.png"></p>
 <p><span class="caption"><span class="math inline">\(\beta_s\)</span></span></p>
 </div>
 </div>
@@ -1912,8 +1786,8 @@ optimum exactly over it -->
 </div>
 </div>
 </div><div class="column fragment" data-fragment-index="1" style="width: 58%;">
-<p><img data-src="PhD/5_contribution/fli/04_lpt/limber_lin_vs_halofit.svg" style="margin: 0;;width:100.0%"></p>
-<p><span style="font-size: 0.6em; color: #6E6E6E;">Lensing <span class="math inline">\(C_\ell\)</span> of the four DES Y3 bins, linear theory against halofit</span></p>
+<p><img data-src="PhD/5_contribution/fli/02_lpt/pk_lin_vs_halofit.svg" style="margin: 0;;width:100.0%"></p>
+<p><span style="font-size: 0.6em; color: #6E6E6E;">Matter power spectrum at <span class="math inline">\(z=0\)</span>, linear theory against halofit</span></p>
 </div></div>
 </section>
 <section id="the-gravity-solver-particle-mesh" class="slide level2">
@@ -1922,25 +1796,25 @@ optimum exactly over it -->
 <p><img data-src="assets/Logos/JaxLogo.png" style="height: 40px; margin: 0;"> <a href="https://github.com/DifferentiableUniverseInitiative/JaxPM"><img data-src="https://img.shields.io/badge/GitHub-JaxPM-blue?logo=github.png"></a></p>
 </div>
 <div class="r-stack bare" style="margin-top: 0.3em;">
-<p><img data-src="PhD/5_contribution/fli/05_pm/pm_0.png" class="fragment fade-out" style="width: 1000px;" data-fragment-index="1"></p>
-<p><img data-src="PhD/5_contribution/fli/05_pm/pm_1.png" class="fragment fade-in-then-out" style="width: 1000px;" data-fragment-index="1"></p>
-<p><img data-src="PhD/5_contribution/fli/05_pm/pm_2.png" class="fragment fade-in-then-out" style="width: 1000px;" data-fragment-index="2"></p>
-<p><img data-src="PhD/5_contribution/fli/05_pm/pm_3.png" class="fragment fade-in-then-out" style="width: 1000px;" data-fragment-index="3"></p>
-<p><img data-src="PhD/5_contribution/fli/05_pm/pm_4.png" class="fragment fade-in-then-out" style="width: 1000px;" data-fragment-index="4"></p>
-<p><img data-src="PhD/5_contribution/fli/05_pm/pm_5.png" class="fragment" style="width: 1000px;" data-fragment-index="5"></p>
-<p><img data-src="PhD/5_contribution/fli/05_pm/pm_run.gif" class="fragment screen-only" style="width: 1000px;" data-fragment-index="6"></p>
-<p><img data-src="PhD/5_contribution/fli/05_pm/pm_run_last.png" class="print-only" style="width: 1000px;"></p>
+<p><img data-src="PhD/5_contribution/fli/03_pm/pm_0.png" class="fragment fade-out" style="width: 1000px;" data-fragment-index="1"></p>
+<p><img data-src="PhD/5_contribution/fli/03_pm/pm_1.png" class="fragment fade-in-then-out" style="width: 1000px;" data-fragment-index="1"></p>
+<p><img data-src="PhD/5_contribution/fli/03_pm/pm_2.png" class="fragment fade-in-then-out" style="width: 1000px;" data-fragment-index="2"></p>
+<p><img data-src="PhD/5_contribution/fli/03_pm/pm_3.png" class="fragment fade-in-then-out" style="width: 1000px;" data-fragment-index="3"></p>
+<p><img data-src="PhD/5_contribution/fli/03_pm/pm_4.png" class="fragment fade-in-then-out" style="width: 1000px;" data-fragment-index="4"></p>
+<p><img data-src="PhD/5_contribution/fli/03_pm/pm_5.png" class="fragment" style="width: 1000px;" data-fragment-index="5"></p>
+<p><img data-src="PhD/5_contribution/fli/03_pm/pm_run.gif" class="fragment screen-only" style="width: 1000px;" data-fragment-index="6"></p>
+<p><img data-src="PhD/5_contribution/fli/03_pm/pm_run_last.png" class="print-only" style="width: 1000px;"></p>
 </div>
 <p>Gravity through FFTs on a mesh: fast, differentiable, and <span class="kw">limited by the mesh resolution</span></p>
 </section>
 <section id="accuracy-of-the-particle-mesh" class="slide level2">
 <h2>Accuracy of the particle mesh</h2>
 <div class="r-stack">
-<p><img data-src="PhD/5_contribution/fli/06_accuracy/pm3d_frag_1.png" class="fragment fade-out" data-fragment-index="1" width="1000"></p>
-<p><img data-src="PhD/5_contribution/fli/06_accuracy/pm3d_frag_2.png" class="fragment fade-in-then-out" data-fragment-index="1" width="1000"></p>
-<p><img data-src="PhD/5_contribution/fli/06_accuracy/pm3d_frag_3.png" class="fragment fade-in-then-out" data-fragment-index="2" width="1000"></p>
-<p><img data-src="PhD/5_contribution/fli/06_accuracy/pm3d_frag_4.png" class="fragment fade-in-then-out" data-fragment-index="3" width="1000"></p>
-<p><img data-src="PhD/5_contribution/fli/06_accuracy/pm3d_frag_5.png" class="fragment fade-in" data-fragment-index="4" width="1000"></p>
+<p><img data-src="PhD/5_contribution/fli/04_accuracy/pm3d_frag_1.png" class="fragment fade-out" data-fragment-index="1" width="1000"></p>
+<p><img data-src="PhD/5_contribution/fli/04_accuracy/pm3d_frag_2.png" class="fragment fade-in-then-out" data-fragment-index="1" width="1000"></p>
+<p><img data-src="PhD/5_contribution/fli/04_accuracy/pm3d_frag_3.png" class="fragment fade-in-then-out" data-fragment-index="2" width="1000"></p>
+<p><img data-src="PhD/5_contribution/fli/04_accuracy/pm3d_frag_4.png" class="fragment fade-in-then-out" data-fragment-index="3" width="1000"></p>
+<p><img data-src="PhD/5_contribution/fli/04_accuracy/pm3d_frag_5.png" class="fragment fade-in" data-fragment-index="4" width="1000"></p>
 </div>
 <div class="fragment">
 <div class="solutionbox">
@@ -1963,7 +1837,7 @@ optimum exactly over it -->
 <div class="column" style="width:44%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/5_contribution/fli/07_distributed/pencils.svg" class="quarto-figure quarto-figure-center" style="margin: 0;;width:95.0%"></p>
+<p><img data-src="PhD/5_contribution/fli/05_distributed/pencils.svg" class="quarto-figure quarto-figure-center" style="margin: 0;;width:95.0%"></p>
 </figure>
 </div>
 </div><div class="column" style="width:56%;">
@@ -1990,8 +1864,8 @@ optimum exactly over it -->
 <section id="building-the-observable-requirements" class="slide level2">
 <h2>Building the observable: requirements</h2>
 <div class="r-stack" style="margin-top: 0.1em;">
-<p><img data-src="PhD/5_contribution/fli/09_observable/depth.svg" style="display: block; margin: 0 auto;" width="860"></p>
-<p><img data-src="PhD/5_contribution/fli/09_observable/depth_lines.svg" class="fragment" style="display: block; margin: 0 auto;" data-fragment-index="1" width="860"></p>
+<p><img data-src="PhD/5_contribution/fli/06_observable/depth.svg" style="display: block; margin: 0 auto;" width="860"></p>
+<p><img data-src="PhD/5_contribution/fli/06_observable/depth_lines.svg" class="fragment" style="display: block; margin: 0 auto;" data-fragment-index="1" width="860"></p>
 </div>
 <div class="fragment" data-fragment-index="2">
 <div class="solutionbox" style="margin-top: 0.3em;">
@@ -2007,34 +1881,17 @@ optimum exactly over it -->
 </section>
 <section id="painting-on-spherical-shells" class="slide level2" data-transition="slide-in none-out">
 <h2>Painting on spherical shells</h2>
-<div class="columns" style="display: flex; align-items: center; margin-top: 100px;">
-<div class="column" style="width: 50%;">
-<div class="row bare" style="--gap: 0.5em; --justify: center;">
-<div class="cell" style="width: 200px;">
-<p><img data-src="PhD/5_contribution/fli/10_painting/particles_box.png"></p>
-<p><span class="caption" style="--cap-size: 0.55em;">evolved particles</span></p>
+<div class="row bare" style="--gap: 1.2em; --justify: center; --align: center; margin-top: 110px;">
+<div class="cell" style="width: 380px;">
+<p><img data-src="PhD/5_contribution/fli/07_painting/particles_box.png"></p>
+<p><span class="caption" style="--cap-size: 0.7em;">evolved particles</span></p>
 </div>
-<p><span style="font-size: 2.4em; color: #6E6E6E;">⟶</span></p>
-<div class="cell" style="width: 250px;">
-<p><img data-src="PhD/5_contribution/fli/10_painting/density_shell.png"></p>
-<p><span class="caption" style="--cap-size: 0.55em;">one HEALPix shell</span></p>
+<p><span style="font-size: 3.4em; color: #6E6E6E;">⟶</span></p>
+<div class="cell" style="width: 480px;">
+<p><img data-src="PhD/5_contribution/fli/07_painting/density_shell.png"></p>
+<p><span class="caption" style="--cap-size: 0.7em;">one HEALPix shell</span></p>
 </div>
 </div>
-</div><div class="column" style="width: 50%;">
-<div class="eqbox" style="--eq-size: 0.95em; --eq-math-margin: 0.2em 0; --eq-pad: 0.2em 0.9em; width: fit-content; margin: 0 auto; text-align: center;">
-<p><span class="math display">\[r = \lVert \mathbf{x} - \mathbf{x}_o \rVert, \qquad \theta = \arccos\frac{z - z_o}{r}\]</span> <span class="math display">\[\varphi = \operatorname{atan2}(y - y_o,\, x - x_o)\]</span> <span class="math display">\[p = \texttt{ang2pix}(N_\mathrm{side}, \theta, \varphi)\]</span></p>
-</div>
-<div class="fragment" data-fragment-index="1" style="margin-top: 1.4em;">
-<div class="solutionbox">
-<div class="solutionbox-header">
-<p><span style="font-family: monospace;">ang2pix</span>: jax-healpy</p>
-</div>
-<div class="solutionbox-body" style="font-size: 0.8em;">
-<p>Implemented in <span class="kw">jax-healpy</span> Works by binning each particle into the pixel that contains. It is <span class="kw">not differentiable</span>.</p>
-</div>
-</div>
-</div>
-</div></div>
 </section>
 <section id="painting-on-spherical-shells-1" class="slide level2" data-visibility="uncounted" data-transition="none-in none-out">
 <h2>Painting on spherical shells</h2>
@@ -2042,9 +1899,9 @@ optimum exactly over it -->
 <div class="columns">
 <div class="column" style="width: 50%; text-align: center;">
 <h4 style="margin: 0.2em 0;" id="bilinear-interpolation"><span class="kw2">Bilinear interpolation</span></h4>
-<video src="PhD/5_contribution/fli/10_painting/bilinear.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="width: 82%;">
+<video src="PhD/5_contribution/fli/07_painting/bilinear.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="width: 82%;">
 </video>
-<p><img data-src="PhD/5_contribution/fli/10_painting/bilinear_last.png" class="print-only" style="width:82.0%"></p>
+<p><img data-src="PhD/5_contribution/fli/07_painting/bilinear_last.png" class="print-only" style="width:82.0%"></p>
 <div class="solutionbox" style="text-align: left;">
 <div class="solutionbox-body" style="font-size: 0.72em;">
 <p>Four pixels, weighted by the position between their centres: <code>get_interp_weights</code>, implemented in <span class="kw">jax-healpy</span></p>
@@ -2053,11 +1910,11 @@ optimum exactly over it -->
 </div><div class="column fragment" data-fragment-index="1" style="width: 50%; text-align: center;">
 <h4 style="margin: 0.2em 0;" id="radial-basis-function-interpolation"><span class="kw">Radial basis function interpolation</span></h4>
 <div class="r-stack">
-<video src="PhD/5_contribution/fli/10_painting/rbf.mp4" class="fragment fade-out screen-only" data-fragment-index="2" loop="" muted="" playsinline="" preload="auto" style="width: 82%;">
+<video src="PhD/5_contribution/fli/07_painting/rbf.mp4" class="fragment fade-out screen-only" data-fragment-index="2" loop="" muted="" playsinline="" preload="auto" style="width: 82%;">
 </video>
-<video src="PhD/5_contribution/fli/10_painting/rbf_kernel.mp4" class="fragment screen-only" data-fragment-index="2" loop="" muted="" playsinline="" preload="auto" style="width: 82%;">
+<video src="PhD/5_contribution/fli/07_painting/rbf_kernel.mp4" class="fragment screen-only" data-fragment-index="2" loop="" muted="" playsinline="" preload="auto" style="width: 82%;">
 </video>
-<p><img data-src="PhD/5_contribution/fli/10_painting/rbf_kernel_last.png" class="print-only" style="width:82.0%"></p>
+<p><img data-src="PhD/5_contribution/fli/07_painting/rbf_kernel_last.png" class="print-only" style="width:82.0%"></p>
 </div>
 <div class="solutionbox" style="text-align: left;">
 <div class="solutionbox-body" style="font-size: 0.72em;">
@@ -2065,64 +1922,29 @@ optimum exactly over it -->
 </div>
 </div>
 </div></div>
-<div class="fragment bare" data-fragment-index="3" style="position: absolute; top: -100px; left: 0; width: 1050px; height: 700px; padding-top: 100px; z-index: 20; background: rgba(250, 247, 240, 0.93); display: flex; flex-direction: column; align-items: center; justify-content: center;">
-<div class="r-stack" style="width: 640px;">
-<p><img data-src="PhD/5_contribution/fli/10_painting/painting_cl.svg" class="fragment fade-out" data-fragment-index="4" width="640"></p>
-<p><img data-src="PhD/5_contribution/fli/10_painting/painting_cl_zoom.svg" class="fragment" data-fragment-index="4" width="640"></p>
-</div>
-<div class="solutionbox" style="width: 900px; margin-top: 0.3em;">
-<div class="solutionbox-body" style="font-size: 0.85em;">
-<p>The <span class="kw">RBF</span> gives <span class="kw">control over the smoothing</span></p>
-<p>Both methods are <span class="kw">differentiable</span></p>
-</div>
-</div>
-</div>
 </section>
 <section id="creating-the-lightcone" class="slide level2" data-transition="none-in slide-out">
 <h2>Creating the lightcone</h2>
 <div style="text-align: center; margin-top: 0.2em;">
-<p><img data-src="PhD/5_contribution/fli/11_lightcone/lightcone_shells.png" style="height: 530px;"></p>
+<p><img data-src="PhD/5_contribution/fli/08_lightcone/lightcone_shells.png" style="height: 530px;"></p>
 </div>
 </section>
-<section id="choosing-an-optimal-shell-spacing" class="slide level2">
-<h2>Choosing an optimal shell spacing</h2>
-<div class="grid bare" style="--cols: 225px 1fr; --gap: 10px; margin-top: 0.3em;">
-<div style="text-align: center;">
-<p><span class="kw" style="font-size: 0.75em;">Uniform in scale factor</span></p>
-<div class="eqbox" style="--eq-border: #25406b; --eq-size: 0.72em; --eq-math-margin: 0.25em 0; --eq-pad: 0.05em 0.5em; margin-top: 0.3em;">
-<p><span class="math display">\[a_i = a_{\min} + \tfrac{i}{n}\,(1 - a_{\min})\]</span></p>
+<section id="calibrating-the-lightcone-model" class="slide level2">
+<h2>Calibrating the lightcone model</h2>
+<div class="solutionbox" style="position: relative; width: 82%; margin: 3.6em auto 0;">
+<div class="bare" style="position: absolute; top: 0.6em; right: 0.8em;">
+<p><a href="https://jax-fli.readthedocs.io/"><img data-src="https://img.shields.io/static/v1?label=docs&amp;message=https%3A%2F%2Fjax-fli.readthedocs.io&amp;color=blue&amp;logo=readthedocs"></a></p>
 </div>
-</div>
-<p><img data-src="PhD/5_contribution/fli/12_spacing/spacing_a.svg" width="800"></p>
-</div>
-<div class="grid bare fragment" data-fragment-index="1" style="--cols: 225px 1fr; --gap: 10px; margin-top: 0.2em;">
-<div style="text-align: center;">
-<p><span class="kw" style="font-size: 0.75em;">Equal volume</span></p>
-<div class="eqbox" style="--eq-border: #25406b; --eq-size: 0.72em; --eq-math-margin: 0.25em 0; --eq-pad: 0.05em 0.5em; margin-top: 0.3em;">
-<p><span class="math display">\[r_i^3 = r_{\min}^3 + \tfrac{i}{n}\,(r_{\max}^3 - r_{\min}^3)\]</span></p>
-</div>
-<p><span class="caption" style="--cap-size: 0.55em; margin-top: 0.3em;">outer shells capped at 60 Mpc/<span class="math inline">\(h\)</span></span></p>
-</div>
-<p><img data-src="PhD/5_contribution/fli/12_spacing/spacing_equal_vol.svg" width="800"></p>
-</div>
-<div class="row bare" style="--gap: 16px; --align: stretch; margin-top: 0.2em;">
-<div class="solutionbox fragment" data-fragment-index="1" style="flex: 1; margin: 0;">
-<div class="solutionbox-header" style="font-size: 0.75em;">
-<p>Equal volume vs uniform scale factor spacing</p>
-</div>
-<div class="solutionbox-body" style="font-size: 0.68em;">
-<p>Uniform steps in <span class="math inline">\(a\)</span>: the innermost shell has <span class="kw">fewer particles</span>, so it is <span class="kw">shot-noise</span> dominated</p>
-<p>The downside of equal volume: <span class="kw">fewer shells</span> cover the lensing kernel of the <span class="kw">first redshift bin</span></p>
-</div>
-</div>
-<div class="solutionbox fragment" data-fragment-index="2" style="flex: 1; margin: 0;">
-<div class="solutionbox-header" style="font-size: 0.75em;">
-<p>Optimal number of shells</p>
-</div>
-<div class="solutionbox-body" style="font-size: 0.68em;">
-<p><span class="kw">More shells</span>: thinner shells with fewer particles, <span class="kw">shot-noise</span> dominated</p>
-<p><span class="kw">Fewer shells</span>: a few wide shells sample the first bin’s kernel and are <span class="kw">biased</span> low below <span class="math inline">\(\ell =\)</span> <span class="kw2">100</span></p>
-</div>
+<div class="solutionbox-body" style="font-size: 1.05em; line-height: 1.9; padding-top: 0.4em;">
+<ul>
+<li>The <span class="kw">integrator</span> and <span class="kw">step size</span></li>
+<li>The <span class="kw">mesh resolution</span></li>
+<li>The <span class="kw">mass assignment</span> and the spherical <span class="kw">painting</span></li>
+<li>The <span class="kw">number</span> and <span class="kw">spacing</span> of the density shells</li>
+<li>The <span class="kw">interpolation</span> of the particles onto the <span class="kw">lightcone</span></li>
+<li>The <span class="kw">gradient</span> (<span class="kw">adjoint</span>) of the particle-mesh ODE</li>
+<li>The <span class="kw">performance</span> of the forward model and its gradient</li>
+</ul>
 </div>
 </div>
 </section>
@@ -2146,7 +1968,7 @@ optimum exactly over it -->
 <p><span class="math display">\[W_j(\chi_s) = \int_{\mathrm{shell}\ j} \mathrm{d}\chi\;\chi\,(1+z)\Big(1-\frac{\chi}{\chi_s}\Big)\]</span></p>
 </div>
 </div>
-<p><img data-src="PhD/5_contribution/fli/19_born/born_weights.svg" width="560"></p>
+<p><img data-src="PhD/5_contribution/fli/09_born/born_weights.svg" width="560"></p>
 </div>
 </div>
 <div class="fragment" data-fragment-index="1">
@@ -2154,7 +1976,7 @@ optimum exactly over it -->
 <div class="eqbox" style="--eq-border: #25406b; --eq-size: 0.72em; --eq-math-margin: 0.3em 0; margin: 0 auto; width: fit-content;">
 <p><span class="math display">\[\kappa_i(\hat{\mathbf n}) = \int \mathrm{d}z\; n_i(z)\,\kappa\big(\hat{\mathbf n};\chi_s(z)\big)\]</span></p>
 </div>
-<p><img data-src="PhD/5_contribution/fli/19_born/born_kappa.png" width="745"></p>
+<p><img data-src="PhD/5_contribution/fli/09_born/born_kappa.png" width="745"></p>
 </div>
 </div>
 <div class="fragment" data-fragment-index="2">
@@ -2168,17 +1990,15 @@ optimum exactly over it -->
 </section>
 <section id="valid-scales-for-real-survey-analysis" class="slide level2">
 <h2>Valid scales for real survey analysis</h2>
-<div class="absolute bare" style="top: -8px; right: 0px; ">
-<p><a href="https://jax-fli.readthedocs.io/"><img data-src="https://img.shields.io/static/v1?label=docs&amp;message=https%3A%2F%2Fjax-fli.readthedocs.io&amp;color=blue&amp;logo=readthedocs"></a></p>
-</div>
 <div class="r-stack bare" style="margin-top: -0.2em;">
-<p><img data-src="PhD/5_contribution/fli/16_cosmogrid/ladder_512.svg" class="fragment fade-out" data-fragment-index="1" width="1050"></p>
-<p><img data-src="PhD/5_contribution/fli/16_cosmogrid/ladder_1024.svg" class="fragment fade-in-then-out" data-fragment-index="1" width="1050"></p>
-<p><img data-src="PhD/5_contribution/fli/16_cosmogrid/ladder_2048.svg" class="fragment fade-in-then-out" data-fragment-index="2" width="1050"></p>
-<p><img data-src="PhD/5_contribution/fli/16_cosmogrid/ladder_2560.svg" class="fragment fade-in-then-out" data-fragment-index="3" width="1050"></p>
-<p><img data-src="PhD/5_contribution/fli/16_cosmogrid/ladder_3072.svg" class="fragment fade-in-then-out" data-fragment-index="4" width="1050"></p>
-<p><img data-src="PhD/5_contribution/fli/16_cosmogrid/ladder_4096.svg" class="fragment" data-fragment-index="5" width="1050"></p>
+<p><img data-src="PhD/5_contribution/fli/10_cosmogrid/ladder_512.svg" class="fragment fade-out" data-fragment-index="1" width="990"></p>
+<p><img data-src="PhD/5_contribution/fli/10_cosmogrid/ladder_1024.svg" class="fragment fade-in-then-out" data-fragment-index="1" width="990"></p>
+<p><img data-src="PhD/5_contribution/fli/10_cosmogrid/ladder_2048.svg" class="fragment fade-in-then-out" data-fragment-index="2" width="990"></p>
+<p><img data-src="PhD/5_contribution/fli/10_cosmogrid/ladder_2560.svg" class="fragment fade-in-then-out" data-fragment-index="3" width="990"></p>
+<p><img data-src="PhD/5_contribution/fli/10_cosmogrid/ladder_3072.svg" class="fragment fade-in-then-out" data-fragment-index="4" width="990"></p>
+<p><img data-src="PhD/5_contribution/fli/10_cosmogrid/ladder_4096.svg" class="fragment" data-fragment-index="5" width="990"></p>
 </div>
+<p><span class="selfcredit" style="margin-top: -0.2em;">Kabalan et al.&nbsp;(2026c), in prep. for JCAP</span></p>
 </section></section>
 <section>
 <section id="using-the-forward-model-for-field-level-inference" class="title-slide slide level1 stack-top center">
@@ -2246,11 +2066,11 @@ optimum exactly over it -->
 <p><span class="kw">Preliminary</span><br>DES Y3 noise, <span class="math inline">\(1200^3\)</span> mesh, 2LPT<br><span class="math inline">\(N_\mathrm{side} = 1024\)</span>, painted at <span class="math inline">\(512\)</span>, <span class="math inline">\(\ell \le 700\)</span></p>
 </div>
 <div class="r-stack bare" style="margin-top: 0.1em;">
-<p><img data-src="PhD/5_contribution/fli/18_map/map_first.png" width="1000"></p>
+<p><img data-src="PhD/5_contribution/fli/11_map/map_first.png" width="1000"></p>
 <div class="fragment" data-fragment-index="1">
-<video src="PhD/5_contribution/fli/18_map/map_run.mp4" class="screen-only" muted="" playsinline="" preload="auto" style="width: 1000px;">
+<video src="PhD/5_contribution/fli/11_map/map_run.mp4" class="screen-only" muted="" playsinline="" preload="auto" style="width: 1000px;">
 </video>
-<p><img data-src="PhD/5_contribution/fli/18_map/map_last.png" class="print-only" width="1000"></p>
+<p><img data-src="PhD/5_contribution/fli/11_map/map_last.png" class="print-only" width="1000"></p>
 </div>
 </div>
 </section>
@@ -2281,9 +2101,9 @@ optimum exactly over it -->
 <p>Moving-mesh particle mesh</p>
 </div>
 <div class="figcadre-body" style="text-align: center;">
-<video src="PhD/5_contribution/fli/20_conclusion/moving_mesh.mp4" class="screen-only" loop="" muted="" playsinline="" preload="auto" style="width: 100%; margin: 0;">
+<video src="PhD/5_contribution/fli/12_conclusion/moving_mesh.mp4" class="screen-only" loop="" muted="" playsinline="" preload="auto" style="width: 100%; margin: 0;">
 </video>
-<p><img data-src="PhD/5_contribution/fli/20_conclusion/moving_mesh_last.png" class="print-only" style="width:100.0%"></p>
+<p><img data-src="PhD/5_contribution/fli/12_conclusion/moving_mesh_last.png" class="print-only" style="width:100.0%"></p>
 <p><span class="credit">Moving mesh: B. Horowitz (2026), arXiv:2607.10983</span></p>
 </div>
 </div>
@@ -2355,6 +2175,23 @@ optimum exactly over it -->
 <p><span class="kw">Late Universe · dark energy</span><br>Explicit field-level inference for large-scale structure</p>
 </div>
 </div>
+<!-- on the click: the people and places of the PhD, over the slide below its title -->
+<div class="fragment bare" data-fragment-index="1" style="position: absolute; top: 72px; left: 0; width: 1050px; height: 640px; box-sizing: border-box; z-index: 20; background: #faf7f0; display: flex; align-items: flex-start; justify-content: center;">
+<div class="figcadre" style="width: fit-content; margin: 0;">
+<div class="figcadre-body bare" style="display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 1em 0.9em 0.7em;">
+<div class="row flat bare" style="--gap: 10px; --justify: center;">
+<p><img data-src="PhD/6_ending/photos/moriond.jpg" style="height: 200px; width: auto; margin: 0; border-radius: 4px;"></p>
+</div>
+<div class="row flat bare" style="--gap: 10px; --justify: center;">
+<p><img data-src="PhD/6_ending/photos/ski.jpg" style="height: 160px; width: auto; margin: 0; border-radius: 4px;"></p>
+<p><img data-src="PhD/6_ending/photos/sixty.jpg" style="height: 160px; width: auto; margin: 0; border-radius: 4px;"></p>
+</div>
+<div class="row flat bare" style="--gap: 10px; --justify: center;">
+<p><img data-src="PhD/6_ending/photos/chili.jpg" style="height: 204px; width: auto; margin: 0; border-radius: 4px;"></p>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="thank-you" class="slide level2" data-background-video="PhD/0_cover/cmb_to_cosmicweb.mp4" data-background-video-loop="true" data-background-video-muted="true" data-background-size="cover" data-hide-chrome="true">
 <h2></h2>
@@ -2365,26 +2202,98 @@ optimum exactly over it -->
 </div>
 </div>
 </section></section>
-<section>
-<section id="backup" class="title-slide slide level1 center" data-visibility="uncounted" data-background-image="PhD/6_ending/backup/backpack_dump.svg" data-background-size="auto 86%" data-background-position="76% center" data-background-color="#faf7f0">
+<section id="backup" class="title-slide slide level1 center" data-visibility="uncounted" data-background-image="PhD/7_backup/backpack_dump.svg" data-background-size="auto 86%" data-background-position="76% center" data-background-color="#faf7f0">
 <h1>Backup</h1>
+
+</section>
+
+<section>
+<section id="backup-general" class="title-slide slide level1 center" data-visibility="uncounted">
+<h1>Backup: General</h1>
 
 </section>
 <section id="why-not-simply-the-maximum-a-posteriori" class="slide level2" data-visibility="uncounted">
 <h2>Why not simply the maximum a posteriori?</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/6_ending/backup/typical_set.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0.4em;" width="1000"></p>
+<p><img data-src="PhD/7_backup/1_general/01_typical_set/typical_set.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0.4em;" width="1000"></p>
 </figure>
 </div>
+</section></section>
+<section>
+<section id="backup-cmb" class="title-slide slide level1 center" data-visibility="uncounted">
+<h1>Backup: CMB</h1>
+
+</section>
+<section id="sht" class="slide level2" data-visibility="uncounted">
+<h2>Spherical Harmonic Transforms</h2>
+<div class="grid" style="--cols: 1fr 190px 1fr 190px 1fr; --gap: 0; width: 96%; margin: 0 auto; --align: stretch; margin-bottom: 0.2em;">
+<div class="eqbox" style="--eq-border: #25406b; --eq-math-margin: 0.35em 0; grid-column: 2;">
+<p><span class="math display">\[
+f(\theta,\varphi) = \sum_{\ell=0}^{\infty} \sum_{m=-\ell}^{\ell} a_{\ell m}\, Y_\ell^m(\theta,\varphi)
+\]</span></p>
+</div>
+<div class="eqbox" style="--eq-border: #25406b; --eq-math-margin: 0.35em 0; grid-column: 4;">
+<p><span class="math display">\[
+C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
+\]</span></p>
+</div>
+</div>
+<div class="grid" style="--cols: 1fr 190px 1fr 190px 1fr; --gap: 0; width: 96%; margin: 0 auto; --row-gap: 0.2em; --img-w: auto; --img-h: 136px; --img-max-w: 100%; --img-max-h: 95%; --cap-size: 1em; --cap-lh: 1.1;">
+<div class="cell">
+<p><img data-src="PhD/7_backup/2_cmb/01_sht/sht_map_I.svg"> <span class="caption"><em>I</em></span></p>
+</div>
+<div class="bare" style="position: relative;">
+<p><img data-src="PhD/7_backup/2_cmb/01_sht/sht_arrow.svg" style="display: block; margin: 0 auto;" width="110"></p>
+<p><span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, 85%); font-size: 0.78em; font-weight: 600; color: #6E6E6E; white-space: nowrap;">spin-0</span></p>
+</div>
+<div class="cell">
+<p><img data-src="PhD/7_backup/2_cmb/01_sht/sht_alm_T.svg"> <span class="caption"><span class="math inline">\(|a^T_{\ell m}|^2\)</span></span></p>
+</div>
+<div class="bare">
+<p><img data-src="PhD/7_backup/2_cmb/01_sht/sht_arrow.svg" style="display: block; margin: 0 auto;" width="110"></p>
+</div>
+<div class="cell">
+<p><img data-src="PhD/7_backup/2_cmb/01_sht/sht_cl_TT.svg"></p>
+</div>
+<div class="cell">
+<p><img data-src="PhD/7_backup/2_cmb/01_sht/sht_map_Q.svg"> <span class="caption"><em>Q</em></span></p>
+</div>
+<div class="bare" style="grid-column: 2; grid-row: 2 / span 2; display: flex; align-items: center; justify-content: center; position: relative;">
+<p><img data-src="PhD/7_backup/2_cmb/01_sht/sht_brace_arrow.svg" style="display: block; width: 150px; height: 92%; margin: 0;"></p>
+<p><span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -120%); font-size: 0.78em; font-weight: 600; color: #6E6E6E; white-space: nowrap;">spin-2</span></p>
+</div>
+<div class="cell">
+<p><img data-src="PhD/7_backup/2_cmb/01_sht/sht_alm_E.svg"> <span class="caption"><span class="math inline">\(|a^E_{\ell m}|^2\)</span></span></p>
+</div>
+<div class="bare">
+<p><img data-src="PhD/7_backup/2_cmb/01_sht/sht_arrow.svg" style="display: block; margin: 0 auto;" width="110"></p>
+</div>
+<div class="cell">
+<p><img data-src="PhD/7_backup/2_cmb/01_sht/sht_cl_EE.svg"></p>
+</div>
+<div class="cell">
+<p><img data-src="PhD/7_backup/2_cmb/01_sht/sht_map_U.svg"> <span class="caption"><em>U</em></span></p>
+</div>
+<div class="cell">
+<p><img data-src="PhD/7_backup/2_cmb/01_sht/sht_alm_B.svg"> <span class="caption"><span class="math inline">\(|a^B_{\ell m}|^2\)</span></span></p>
+</div>
+<div class="bare">
+<p><img data-src="PhD/7_backup/2_cmb/01_sht/sht_arrow.svg" style="display: block; margin: 0 auto;" width="110"></p>
+</div>
+<div class="cell">
+<p><img data-src="PhD/7_backup/2_cmb/01_sht/sht_cl_BB.svg"></p>
+</div>
+</div>
+<p><span class="credit" style="margin-top: -0.2em;">Credit: ESA / Planck Collaboration · Planck 2018 SMICA maps (inpainted), <span class="math inline">\(I\)</span>, <span class="math inline">\(Q\)</span>, <span class="math inline">\(U\)</span></span></p>
 </section>
 <section id="adatopk-handling-parameter-bounds" class="slide level2" data-visibility="uncounted">
 <h2>AdaTopK: handling parameter bounds</h2>
-<video src="PhD/5_contribution/compsep/backup_adatopk/adatopk.mp4" class="screen-only" data-autoplay="" muted="" playsinline="" preload="auto" style="display: block; width: 1000px; margin: 0.2em auto 0;">
+<video src="PhD/7_backup/2_cmb/02_adatopk/adatopk.mp4" class="screen-only" data-autoplay="" muted="" playsinline="" preload="auto" style="display: block; width: 1000px; margin: 0.2em auto 0;">
 </video>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/5_contribution/compsep/backup_adatopk/adatopk_last.png" class="print-only quarto-figure quarto-figure-center" width="1000"></p>
+<p><img data-src="PhD/7_backup/2_cmb/02_adatopk/adatopk_last.png" class="print-only quarto-figure quarto-figure-center" width="1000"></p>
 </figure>
 </div>
 </section>
@@ -2392,15 +2301,112 @@ optimum exactly over it -->
 <h2>Patch selection on skies with <span class="math inline">\(r \neq 0\)</span></h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/5_contribution/compsep/backup_r_nonzero/r_likelihood_r_nonzero.svg" class="quarto-figure quarto-figure-center" height="560"></p>
+<p><img data-src="PhD/7_backup/2_cmb/03_r_nonzero/r_likelihood_r_nonzero.svg" class="quarto-figure quarto-figure-center" height="560"></p>
 </figure>
 </div>
+</section></section>
+<section>
+<section id="backup-weak-lensing" class="title-slide slide level1 center" data-visibility="uncounted">
+<h1>Backup: Weak lensing</h1>
+
+</section>
+<section id="from-galaxy-shapes-to-shear" class="slide level2" data-visibility="uncounted">
+<h2>From galaxy shapes to shear</h2>
+<div class="columns" style="display: flex; align-items: center; margin-top: 0.6em;">
+<div class="column" style="width:40%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/7_backup/3_weaklensing/01_galaxy_shapes/galaxy_ellipticity.png" class="quarto-figure quarto-figure-center" style="margin: 0;;width:92.0%"></p>
+</figure>
+</div>
+<p><span class="credit">M101: NASA / ESA / Hubble (STScI-PRC2006-10a)</span></p>
+</div><div class="column" style="width:58%;">
+<div class="eqbox" style="--eq-border: #2aa198; --eq-size: 1em; --eq-math-margin: 0.2em 0; --eq-pad: 0.15em 1em; width: fit-content; margin: 0 auto; text-align: center;">
+<p><span class="kw" style="display: block; font-size: 0.75em;">ellipticity</span> <span class="math display">\[e = e_1 + i\,e_2 = \frac{a-b}{a+b}\,e^{2i\varphi}\]</span></p>
+</div>
+<div class="eqbox" style="--eq-border: #2aa198; --eq-size: 1em; --eq-math-margin: 0.2em 0; --eq-pad: 0.15em 1em; width: fit-content; margin: 0.6em auto 0; text-align: center;">
+<p><span class="kw" style="display: block; font-size: 0.75em;">shear in a pixel</span> <span class="math display">\[\hat\gamma_1 = \frac{\sum_k w_k\,e_{1,k}}{\sum_k w_k}, \qquad \hat\gamma_2 = \frac{\sum_k w_k\,e_{2,k}}{\sum_k w_k}\]</span></p>
+</div>
+</div></div>
+</section>
+<section id="kaisersquires-on-the-sphere" class="slide level2" data-visibility="uncounted">
+<h2>Kaiser–Squires on the sphere</h2>
+<div class="columns">
+<div class="column" style="width: 45%; padding-top: 1em;">
+<p><span class="kw">From <span class="math inline">\(\kappa\)</span> to <span class="math inline">\(\gamma\)</span></span></p>
+<div class="eqbox" style="--eq-border: #2aa198; --eq-size: 0.8em; --eq-math-margin: 0.3em 0;">
+<p><span class="math display">\[
+\gamma^E_{\ell m} = -\sqrt{\frac{(\ell+2)(\ell-1)}{\ell(\ell+1)}}\;\kappa_{\ell m}, \qquad \gamma^B_{\ell m} = 0
+\]</span> <span class="math display">\[
+\gamma_1 + i\gamma_2 = \sum_{\ell m} \gamma^E_{\ell m}\;{}_2Y_{\ell m}
+\]</span></p>
+</div>
+<div class="fragment" data-fragment-index="1">
+<p><span class="kw">From <span class="math inline">\(\gamma\)</span> back to <span class="math inline">\(\kappa\)</span></span></p>
+<div class="eqbox" style="--eq-border: #2aa198; --eq-size: 0.8em; --eq-math-margin: 0.3em 0;">
+<p><span class="math display">\[
+\kappa_{\ell m} = -\sqrt{\frac{\ell(\ell+1)}{(\ell+2)(\ell-1)}}\;\gamma^E_{\ell m}
+\]</span></p>
+</div>
+</div>
+</div><div class="column" style="width:55%;">
+<div class="cell bare" style="--img-w: 200px; --cap-size: 0.6em; --cell-margin: 0.1em 0 0;">
+<p><img data-src="PhD/3_observation/weaklensing/06_kaiser_squires/kappa.gif" class="screen-only"> <img data-src="PhD/3_observation/weaklensing/06_kaiser_squires/kappa.png" class="print-only"></p>
+<p><span class="caption">convergence κ</span></p>
+</div>
+<div style="text-align: center; margin: 0.1em 0; line-height: 0;">
+<p><span class="arrow down" style="--len: 34px; --head: 20px;"></span></p>
+</div>
+<div class="row bare" style="--gap: 24px; --justify: center; --img-w: 175px; --cap-size: 0.6em; --cell-margin: 0.1em 0 0;">
+<div class="cell">
+<p><img data-src="PhD/3_observation/weaklensing/06_kaiser_squires/gamma1.gif" class="screen-only"> <img data-src="PhD/3_observation/weaklensing/06_kaiser_squires/gamma1.png" class="print-only"></p>
+<p><span class="caption">shear γ<sub>1</sub></span></p>
+</div>
+<div class="cell">
+<p><img data-src="PhD/3_observation/weaklensing/06_kaiser_squires/gamma2.gif" class="screen-only"> <img data-src="PhD/3_observation/weaklensing/06_kaiser_squires/gamma2.png" class="print-only"></p>
+<p><span class="caption">shear γ<sub>2</sub></span></p>
+</div>
+</div>
+</div></div>
+<div class="solutionbox">
+<div class="solutionbox-body" style="font-size: 0.75em;">
+<ul>
+<li>Kaiser–Squires is a <span class="kw">simple per-<span class="math inline">\(\ell\)</span> rescaling</span> between <span class="math inline">\(\kappa\)</span> and the <span class="math inline">\(E\)</span>-mode of the shear</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="linear-theory-against-halofit-lensing-c_ell" class="slide level2" data-visibility="uncounted">
+<h2>Linear theory against halofit: lensing <span class="math inline">\(C_\ell\)</span></h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/7_backup/3_weaklensing/02_limber/limber_lin_vs_halofit.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0.4em;" height="560"></p>
+</figure>
+</div>
+</section>
+<section id="a-survey-mask-leaks" class="slide level2" data-visibility="uncounted">
+<h2>A survey mask leaks</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/7_backup/3_weaklensing/03_masked_shear/masked_shear_masks.svg" class="quarto-figure quarto-figure-center" width="900"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/7_backup/3_weaklensing/03_masked_shear/masked_shear_residual_maps.svg" class="quarto-figure quarto-figure-center" width="760"></p>
+</figure>
+</div>
+</section></section>
+<section>
+<section id="backup-field-level" class="title-slide slide level1 center" data-visibility="uncounted">
+<h1>Backup: Field level</h1>
+
 </section>
 <section id="integrators-and-time-steps" class="slide level2" data-visibility="uncounted">
 <h2>Integrators and time steps</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/5_contribution/fli/backup/step_convergence.svg" class="quarto-figure quarto-figure-center" width="1000"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/01_step_convergence/step_convergence.svg" class="quarto-figure quarto-figure-center" width="1000"></p>
 </figure>
 </div>
 </section>
@@ -2408,7 +2414,7 @@ optimum exactly over it -->
 <h2>Observer positioning</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/5_contribution/fli/09_observable/observer_views.png" class="quarto-figure quarto-figure-center" style="margin-top: 0;" width="900"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/02_observer_views/observer_views.png" class="quarto-figure quarto-figure-center" style="margin-top: 0;" width="900"></p>
 </figure>
 </div>
 </section>
@@ -2416,7 +2422,23 @@ optimum exactly over it -->
 <h2>Shell spacing and the lightcone</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/5_contribution/fli/backup/shell_spacing.svg" class="quarto-figure quarto-figure-center" width="1000"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/03_shell_spacing/shell_spacing.svg" class="quarto-figure quarto-figure-center" width="1000"></p>
+</figure>
+</div>
+</section>
+<section id="shell-spacing-convergence-against-cosmogrid" class="slide level2" data-visibility="uncounted">
+<h2>Shell spacing: convergence against CosmoGrid</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/7_backup/4_fieldlevel/04_lensing_spacing/lensing_spacing_25.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0.4em;" width="1000"></p>
+</figure>
+</div>
+</section>
+<section id="uniform-scale-factor-against-equal-volume" class="slide level2" data-visibility="uncounted">
+<h2>Uniform scale factor against equal volume</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/7_backup/4_fieldlevel/05_spacing_compare/spacing_compare.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0.2em;" width="1000"></p>
 </figure>
 </div>
 </section>
@@ -2425,17 +2447,17 @@ optimum exactly over it -->
 <div class="row bare" style="--gap: 14px; --justify: center; --align: flex-end; margin-top: 0.3em;">
 <div style="width: 285px; flex: none; text-align: center;">
 <p><span class="kw" style="display: block; font-size: 0.6em;">10 shells, one redshift per shell</span></p>
-<p><img data-src="PhD/5_contribution/fli/14_drift/drift_a10.png" style="margin: 0;" width="285"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/06_drift/drift_a10.png" style="margin: 0;" width="285"></p>
 </div>
 <div style="width: 285px; flex: none; text-align: center;">
 <p><span class="kw" style="display: block; font-size: 0.6em;">10 shells, drifted</span></p>
-<p><img data-src="PhD/5_contribution/fli/14_drift/drift_smooth.png" style="margin: 0;" width="285"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/06_drift/drift_smooth.png" style="margin: 0;" width="285"></p>
 </div>
 <div style="width: 285px; flex: none; text-align: center;">
 <p><span class="kw" style="display: block; font-size: 0.6em;">40 shells, one redshift per shell</span></p>
-<p><img data-src="PhD/5_contribution/fli/14_drift/drift_a40.png" style="margin: 0;" width="285"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/06_drift/drift_a40.png" style="margin: 0;" width="285"></p>
 </div>
-<p><img data-src="PhD/5_contribution/fli/14_drift/drift_cbar.svg" style="height: 260px; flex: none; margin: 0 0 6px;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/06_drift/drift_cbar.svg" style="height: 260px; flex: none; margin: 0 0 6px;"></p>
 </div>
 <div style="text-align: center; margin-top: 0.3em;">
 <div class="eqbox" style="--eq-border: #25406b; --eq-size: 0.9em; --eq-math-margin: 0.2em 0; margin: 0 auto; width: fit-content;">
@@ -2456,20 +2478,36 @@ optimum exactly over it -->
 <h2>Impact of the drift on the first shell</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/5_contribution/fli/21_drift_census/drift_census_shell1.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0.3em;" width="900"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/07_drift_census/drift_census_shell1.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0.3em;" width="900"></p>
 </figure>
 </div>
 <div class="solutionbox" style="margin-top: 0.3em;">
 <div class="solutionbox-body" style="font-size: 0.85em;">
-<p>Removes the <span class="kw">single-redshift bias</span> of wide shells: <span class="kw2">16 %</span> on the first equal-volume shell</p>
+<p>Removes the <span class="kw">single-redshift bias</span> of wide shells: <span class="kw2">17 %</span> on the first equal-volume shell</p>
 </div>
+</div>
+</section>
+<section id="painting-rbf-against-nearest-grid-point" class="slide level2" data-visibility="uncounted">
+<h2>Painting: RBF against nearest grid point</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/7_backup/4_fieldlevel/08_painting_zoom/painting_cl_zoom.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0.4em;" height="560"></p>
+</figure>
+</div>
+</section>
+<section id="valid-scales-finer-bandpowers" class="slide level2" data-visibility="uncounted">
+<h2>Valid scales: finer bandpowers</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/7_backup/4_fieldlevel/09_ladder_nlb4/ladder_4096_nlb4.svg" class="quarto-figure quarto-figure-center" style="margin-top: -0.2em;" width="990"></p>
+</figure>
 </div>
 </section>
 <section id="mesh-plateau-density-shells" class="slide level2" data-visibility="uncounted">
 <h2>Mesh plateau: density shells</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/5_contribution/fli/backup/mesh_plateau_density.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0.6em;" width="1000"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/10_mesh_plateau/mesh_plateau_density.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0.6em;" width="1000"></p>
 </figure>
 </div>
 </section>
@@ -2477,74 +2515,45 @@ optimum exactly over it -->
 <h2>Mesh plateau: convergence</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/5_contribution/fli/backup/mesh_plateau_kappa.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0.6em;" width="1000"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/10_mesh_plateau/mesh_plateau_kappa.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0.6em;" width="1000"></p>
 </figure>
 </div>
-</section>
-<section id="scale-cuts-and-baryons" class="slide level2" data-visibility="uncounted">
-<h2>Scale cuts and baryons</h2>
-<div class="grid bare" style="--cols: 230px 62px 180px 62px 180px 62px 230px; --gap: 0; --align: center; margin-top: 0.3em;">
-<p><img data-src="PhD/5_contribution/fli/backup/scalecut_map.png" width="230"></p>
-<div style="text-align: center;">
-<p><span class="kw" style="display: block; font-size: 0.75em;">map2alm</span></p>
-<p><img data-src="PhD/3_observation/cmb/08_sht/sht_arrow.svg" style="display: block; margin: 0 auto;" width="64"></p>
-</div>
-<p><img data-src="PhD/5_contribution/fli/backup/scalecut_alm.png" width="180"></p>
-<div style="text-align: center;">
-<p><span class="kw" style="display: block; font-size: 0.75em;">× <span class="math inline">\(T_\ell\)</span></span></p>
-<p><img data-src="PhD/3_observation/cmb/08_sht/sht_arrow.svg" style="display: block; margin: 0 auto;" width="64"></p>
-</div>
-<p><img data-src="PhD/5_contribution/fli/backup/scalecut_alm_cut.png" width="180"></p>
-<div style="text-align: center;">
-<p><span class="kw" style="display: block; font-size: 0.75em;">alm2map</span></p>
-<p><img data-src="PhD/3_observation/cmb/08_sht/sht_arrow.svg" style="display: block; margin: 0 auto;" width="64"></p>
-</div>
-<p><img data-src="PhD/5_contribution/fli/backup/scalecut_map_cut.png" width="230"></p>
-</div>
-<div class="grid bare" style="--cols: 430px 1fr; --gap: 20px; --align: center; margin-top: 0.4em;">
-<div class="eqbox" style="--eq-border: #25406b; --eq-size: 0.68em; --eq-math-margin: 0.3em 0; margin: 0 auto; width: fit-content;">
-<p><span class="math display">\[T_\ell = \begin{cases} 1, &amp; \ell \le \ell_\mathrm{cut} - \ell_\mathrm{width} \\ \tfrac12\left(1 + \cos \pi x\right), &amp; \ell_\mathrm{cut} - \ell_\mathrm{width} &lt; \ell &lt; \ell_\mathrm{cut} \\ 0, &amp; \ell \ge \ell_\mathrm{cut} \end{cases}\]</span></p>
-<p><span class="math display">\[x = \frac{\ell - (\ell_\mathrm{cut} - \ell_\mathrm{width})}{\ell_\mathrm{width}}\]</span></p>
-</div>
-<p><img data-src="PhD/5_contribution/fli/backup/scalecut_spectra.svg" width="560"></p>
-</div>
-<p><span class="credit" style="margin-top: 0.6em;">Tersenov, Guerrini, Starck &amp; Kilbinger (2026), arXiv:2609.09131</span></p>
 </section>
 <section id="the-ghost-zone" class="slide level2" data-visibility="uncounted">
 <h2>The ghost zone</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/5_contribution/fli/backup/ghost_zone.svg" class="quarto-figure quarto-figure-center" width="1000"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/11_ghost_zone/ghost_zone.svg" class="quarto-figure quarto-figure-center" width="1000"></p>
 </figure>
 </div>
 </section>
 <section id="the-two-adjoints" class="slide level2" data-visibility="uncounted">
 <h2>The two adjoints</h2>
 <div class="row bare" style="--gap: 40px; --justify: center; margin-top: 0.3em;">
-<p><img data-src="PhD/5_contribution/fli/backup/adjoints.svg" height="540"></p>
-<p><img data-src="PhD/5_contribution/fli/backup/adjoint_memory.svg" height="500"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/12_adjoints/adjoints.svg" height="540"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/12_adjoints/adjoint_memory.svg" height="500"></p>
 </div>
 </section>
 <section id="scaling-on-supercomputers" class="slide level2" data-visibility="uncounted">
 <h2>Scaling on supercomputers</h2>
 <div class="absolute bare" style="display: flex; align-items: center; gap: 10px;top: -12px; right: 0px; ">
-<p><img data-src="PhD/5_contribution/fli/15_scaling/jean_zay_logo.png" height="58"></p>
+<p><img data-src="PhD/5_contribution/compsep/12_selection/jean_zay_logo.png" height="58"></p>
 <p><span style="font-size: 0.55em; line-height: 1.25; color: #2E2E2E;">Jean Zay, IDRIS<br>NVIDIA H100 GPUs</span></p>
 </div>
 <div class="bare" style="text-align: center; margin-top: 0.15em;">
 <p><span class="kw" style="display: block; font-size: 0.75em; text-align: left;">Performance of the forward model</span></p>
-<p><img data-src="PhD/5_contribution/fli/15_scaling/scaling_forward.svg" width="1000"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/13_scaling/scaling_forward.svg" width="1000"></p>
 </div>
 <div class="bare" style="text-align: center; margin-top: 0.15em;">
 <p><span class="kw" style="display: block; font-size: 0.75em; text-align: left;">Performance of the gradient</span></p>
-<p><img data-src="PhD/5_contribution/fli/15_scaling/scaling_gradient.svg" width="1000"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/13_scaling/scaling_gradient.svg" width="1000"></p>
 </div>
 </section>
 <section id="distributed-fourier-transform" class="slide level2" data-visibility="uncounted">
 <h2>Distributed Fourier transform</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/5_contribution/fli/07_distributed/jaxdecomp_fft.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0.4em;" height="540"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/14_distributed/jaxdecomp_fft.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0.4em;" height="540"></p>
 </figure>
 </div>
 </section>
@@ -2552,61 +2561,54 @@ optimum exactly over it -->
 <h2>Distributed transpositions</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/5_contribution/fli/07_distributed/decomp2d.gif" class="quarto-figure quarto-figure-center" style="margin-top: 0.4em;" height="540"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/14_distributed/decomp2d.gif" class="quarto-figure quarto-figure-center" style="margin-top: 0.4em;" height="540"></p>
 </figure>
 </div>
 </section>
 <section id="halo-exchange" class="slide level2" data-visibility="uncounted">
 <h2>Halo exchange</h2>
-<video src="PhD/5_contribution/fli/07_distributed/halo_exchange.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 1000px; max-width: none; margin: 4.5em auto 0;">
+<video src="PhD/7_backup/4_fieldlevel/15_halo_exchange/halo_exchange.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 1000px; max-width: none; margin: 4.5em auto 0;">
 </video>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/5_contribution/fli/07_distributed/halo_exchange_last.png" class="print-only quarto-figure quarto-figure-center" style="margin-top: 4.5em;" width="1000"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/15_halo_exchange/halo_exchange_last.png" class="print-only quarto-figure quarto-figure-center" style="margin-top: 4.5em;" width="1000"></p>
 </figure>
 </div>
 </section>
-<section id="map-power-spectra-of-the-reconstruction" class="slide level2" data-visibility="uncounted">
-<h2>MAP: power spectra of the reconstruction</h2>
-<video src="PhD/5_contribution/fli/18_map/spectra_run.mp4" class="screen-only" data-autoplay="" muted="" playsinline="" preload="auto" style="display: block; width: 1000px; margin: 0.4em auto 0;">
-</video>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="PhD/5_contribution/fli/18_map/spectra_last.png" class="print-only quarto-figure quarto-figure-center" width="1000"></p>
-</figure>
+<section id="scale-cuts-and-baryons" class="slide level2" data-visibility="uncounted">
+<h2>Scale cuts and baryons</h2>
+<div class="grid bare" style="--cols: 230px 62px 180px 62px 180px 62px 230px; --gap: 0; --align: center; margin-top: 0.3em;">
+<p><img data-src="PhD/7_backup/4_fieldlevel/16_scalecut/scalecut_map.png" width="230"></p>
+<div style="text-align: center;">
+<p><span class="kw" style="display: block; font-size: 0.75em;">map2alm</span></p>
+<p><img data-src="PhD/7_backup/2_cmb/01_sht/sht_arrow.svg" style="display: block; margin: 0 auto;" width="64"></p>
 </div>
-</section>
-<section id="map-des-y3-against-euclid-coherence" class="slide level2" data-visibility="uncounted">
-<h2>MAP: DES Y3 against Euclid, coherence</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="PhD/5_contribution/fli/backup/map_des_euclid_coherence.svg" class="quarto-figure quarto-figure-center" height="560"></p>
-</figure>
+<p><img data-src="PhD/7_backup/4_fieldlevel/16_scalecut/scalecut_alm.png" width="180"></p>
+<div style="text-align: center;">
+<p><span class="kw" style="display: block; font-size: 0.75em;">× <span class="math inline">\(T_\ell\)</span></span></p>
+<p><img data-src="PhD/7_backup/2_cmb/01_sht/sht_arrow.svg" style="display: block; margin: 0 auto;" width="64"></p>
 </div>
-</section>
-<section id="map-des-y3-against-euclid-starlet-ell_1-norm" class="slide level2" data-visibility="uncounted">
-<h2>MAP: DES Y3 against Euclid, starlet <span class="math inline">\(\ell_1\)</span> norm</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="PhD/5_contribution/fli/backup/map_des_euclid_starlet.svg" class="quarto-figure quarto-figure-center" width="1000"></p>
-</figure>
+<p><img data-src="PhD/7_backup/4_fieldlevel/16_scalecut/scalecut_alm_cut.png" width="180"></p>
+<div style="text-align: center;">
+<p><span class="kw" style="display: block; font-size: 0.75em;">alm2map</span></p>
+<p><img data-src="PhD/7_backup/2_cmb/01_sht/sht_arrow.svg" style="display: block; margin: 0 auto;" width="64"></p>
 </div>
-</section>
-<section id="map-starlet-ell_1-norm-of-the-reconstruction" class="slide level2" data-visibility="uncounted">
-<h2>MAP: starlet <span class="math inline">\(\ell_1\)</span> norm of the reconstruction</h2>
-<video src="PhD/5_contribution/fli/18_map/starlet_run.mp4" class="screen-only" data-autoplay="" muted="" playsinline="" preload="auto" style="display: block; width: 1000px; margin: 0.6em auto 0;">
-</video>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="PhD/5_contribution/fli/18_map/starlet_last.png" class="print-only quarto-figure quarto-figure-center" width="1000"></p>
-</figure>
+<p><img data-src="PhD/7_backup/4_fieldlevel/16_scalecut/scalecut_map_cut.png" width="230"></p>
 </div>
+<div class="grid bare" style="--cols: 430px 1fr; --gap: 20px; --align: center; margin-top: 0.4em;">
+<div class="eqbox" style="--eq-border: #25406b; --eq-size: 0.68em; --eq-math-margin: 0.3em 0; margin: 0 auto; width: fit-content;">
+<p><span class="math display">\[T_\ell = \begin{cases} 1, &amp; \ell \le \ell_\mathrm{cut} - \ell_\mathrm{width} \\ \tfrac12\left(1 + \cos \pi x\right), &amp; \ell_\mathrm{cut} - \ell_\mathrm{width} &lt; \ell &lt; \ell_\mathrm{cut} \\ 0, &amp; \ell \ge \ell_\mathrm{cut} \end{cases}\]</span></p>
+<p><span class="math display">\[x = \frac{\ell - (\ell_\mathrm{cut} - \ell_\mathrm{width})}{\ell_\mathrm{width}}\]</span></p>
+</div>
+<p><img data-src="PhD/7_backup/4_fieldlevel/16_scalecut/scalecut_spectra.svg" width="560"></p>
+</div>
+<p><span class="credit" style="margin-top: 0.6em;">Tersenov, Guerrini, Starck &amp; Kilbinger (2026), arXiv:2609.09131</span></p>
 </section>
 <section id="higher-order-statistics-the-starlet-ell_1-norm" class="slide level2" data-visibility="uncounted">
 <h2>Higher-order statistics: the starlet <span class="math inline">\(\ell_1\)</span> norm</h2>
 <div class="row flat bare" style="--gap: 24px; --justify: center; --align: center; margin-top: 0.6em;">
-<p><img data-src="PhD/5_contribution/fli/17_starlet/starlet_response.svg" style="width: 620px; flex: none;"></p>
-<p><img data-src="PhD/5_contribution/fli/17_starlet/tersenov_l1_cnn.png" style="width: 400px; flex: none;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/17_starlet/starlet_response.svg" style="width: 620px; flex: none;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/17_starlet/tersenov_l1_cnn.png" style="width: 400px; flex: none;"></p>
 </div>
 <p><span class="credit" style="margin-top: 0.6em;">Ajani et al.&nbsp;(2021), arXiv:2101.01542; Tersenov et al.&nbsp;(2026), in prep.</span></p>
 </section>
@@ -2614,7 +2616,43 @@ optimum exactly over it -->
 <h2>Starlet <span class="math inline">\(\ell_1\)</span> norm against CosmoGrid</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/5_contribution/fli/17_starlet/starlet_l1.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0.4em;" width="1000"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/17_starlet/starlet_l1.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0.4em;" width="1000"></p>
+</figure>
+</div>
+</section>
+<section id="map-power-spectra-of-the-reconstruction" class="slide level2" data-visibility="uncounted">
+<h2>MAP: power spectra of the reconstruction</h2>
+<video src="PhD/7_backup/4_fieldlevel/18_map_spectra/spectra_run.mp4" class="screen-only" data-autoplay="" muted="" playsinline="" preload="auto" style="display: block; width: 1000px; margin: 0.4em auto 0;">
+</video>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/7_backup/4_fieldlevel/18_map_spectra/spectra_last.png" class="print-only quarto-figure quarto-figure-center" width="1000"></p>
+</figure>
+</div>
+</section>
+<section id="map-des-y3-against-euclid-coherence" class="slide level2" data-visibility="uncounted">
+<h2>MAP: DES Y3 against Euclid, coherence</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/7_backup/4_fieldlevel/20_map_euclid/map_des_euclid_coherence.svg" class="quarto-figure quarto-figure-center" height="560"></p>
+</figure>
+</div>
+</section>
+<section id="map-des-y3-against-euclid-starlet-ell_1-norm" class="slide level2" data-visibility="uncounted">
+<h2>MAP: DES Y3 against Euclid, starlet <span class="math inline">\(\ell_1\)</span> norm</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/7_backup/4_fieldlevel/20_map_euclid/map_des_euclid_starlet.svg" class="quarto-figure quarto-figure-center" width="1000"></p>
+</figure>
+</div>
+</section>
+<section id="map-starlet-ell_1-norm-of-the-reconstruction" class="slide level2" data-visibility="uncounted">
+<h2>MAP: starlet <span class="math inline">\(\ell_1\)</span> norm of the reconstruction</h2>
+<video src="PhD/7_backup/4_fieldlevel/19_map_starlet/starlet_run.mp4" class="screen-only" data-autoplay="" muted="" playsinline="" preload="auto" style="display: block; width: 1000px; margin: 0.6em auto 0;">
+</video>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/7_backup/4_fieldlevel/19_map_starlet/starlet_last.png" class="print-only quarto-figure quarto-figure-center" width="1000"></p>
 </figure>
 </div>
 </section>
@@ -2627,35 +2665,35 @@ optimum exactly over it -->
 <p><span class="kw" style="font-size: 0.6em;">standard deviation</span></p>
 <p><span class="kw" style="font-size: 0.6em;">truth − draw</span></p>
 <p><span class="kw" style="font-size: 0.6em; color: #C2560A; text-align: right;">bin 2</span></p>
-<p><img data-src="PhD/5_contribution/fli/backup_sampling/kappa_truth_bin2.png" style="width: 100%; margin: 0;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/21_sampling/kappa_truth_bin2.png" style="width: 100%; margin: 0;"></p>
 <div>
-<video src="PhD/5_contribution/fli/backup_sampling/kappa_samples_bin2.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 100%; margin: 0;">
+<video src="PhD/7_backup/4_fieldlevel/21_sampling/kappa_samples_bin2.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 100%; margin: 0;">
 </video>
-<p><img data-src="PhD/5_contribution/fli/backup_sampling/kappa_samples_bin2_last.png" class="print-only" style="width: 100%; margin: 0;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/21_sampling/kappa_samples_bin2_last.png" class="print-only" style="width: 100%; margin: 0;"></p>
 </div>
-<p><img data-src="PhD/5_contribution/fli/backup_sampling/kappa_std_bin2.png" style="width: 100%; margin: 0;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/21_sampling/kappa_std_bin2.png" style="width: 100%; margin: 0;"></p>
 <div>
-<video src="PhD/5_contribution/fli/backup_sampling/kappa_diff_bin2.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 100%; margin: 0;">
+<video src="PhD/7_backup/4_fieldlevel/21_sampling/kappa_diff_bin2.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 100%; margin: 0;">
 </video>
-<p><img data-src="PhD/5_contribution/fli/backup_sampling/kappa_diff_bin2_last.png" class="print-only" style="width: 100%; margin: 0;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/21_sampling/kappa_diff_bin2_last.png" class="print-only" style="width: 100%; margin: 0;"></p>
 </div>
 <p><span class="kw" style="font-size: 0.6em; color: #3B6FB6; text-align: right;">bin 3</span></p>
-<p><img data-src="PhD/5_contribution/fli/backup_sampling/kappa_truth_bin3.png" style="width: 100%; margin: 0;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/21_sampling/kappa_truth_bin3.png" style="width: 100%; margin: 0;"></p>
 <div>
-<video src="PhD/5_contribution/fli/backup_sampling/kappa_samples_bin3.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 100%; margin: 0;">
+<video src="PhD/7_backup/4_fieldlevel/21_sampling/kappa_samples_bin3.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 100%; margin: 0;">
 </video>
-<p><img data-src="PhD/5_contribution/fli/backup_sampling/kappa_samples_bin3_last.png" class="print-only" style="width: 100%; margin: 0;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/21_sampling/kappa_samples_bin3_last.png" class="print-only" style="width: 100%; margin: 0;"></p>
 </div>
-<p><img data-src="PhD/5_contribution/fli/backup_sampling/kappa_std_bin3.png" style="width: 100%; margin: 0;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/21_sampling/kappa_std_bin3.png" style="width: 100%; margin: 0;"></p>
 <div>
-<video src="PhD/5_contribution/fli/backup_sampling/kappa_diff_bin3.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 100%; margin: 0;">
+<video src="PhD/7_backup/4_fieldlevel/21_sampling/kappa_diff_bin3.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 100%; margin: 0;">
 </video>
-<p><img data-src="PhD/5_contribution/fli/backup_sampling/kappa_diff_bin3_last.png" class="print-only" style="width: 100%; margin: 0;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/21_sampling/kappa_diff_bin3_last.png" class="print-only" style="width: 100%; margin: 0;"></p>
 </div>
 <p><span></span></p>
-<p><img data-src="PhD/5_contribution/fli/backup_sampling/cbar_kappa.svg" style="grid-column: span 2; width: 230px; margin: 0 auto;"></p>
-<p><img data-src="PhD/5_contribution/fli/backup_sampling/cbar_std.svg" style="width: 200px; margin: 0 auto;"></p>
-<p><img data-src="PhD/5_contribution/fli/backup_sampling/cbar_diff.svg" style="width: 200px; margin: 0 auto;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/21_sampling/cbar_kappa.svg" style="grid-column: span 2; width: 230px; margin: 0 auto;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/21_sampling/cbar_std.svg" style="width: 200px; margin: 0 auto;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/21_sampling/cbar_diff.svg" style="width: 200px; margin: 0 auto;"></p>
 </div>
 <div class="nice-table" style="--table-size: 0.72em; margin-top: 0.7em;">
 <table class="caption-top">
@@ -2699,34 +2737,34 @@ optimum exactly over it -->
 <div class="grid bare" style="--cols: 110px 600px; --gap: 10px; --row-gap: 2px; --align: center; justify-content: center; margin-top: 0.2em;">
 <p><span class="kw" style="font-size: 0.6em; color: #C2560A; text-align: right;">bin 2<br>ℓ₁ norm</span></p>
 <div>
-<video src="PhD/5_contribution/fli/backup_sampling/starlet_l1_bin2.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 600px; margin: 0;">
+<video src="PhD/7_backup/4_fieldlevel/21_sampling/starlet_l1_bin2.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 600px; margin: 0;">
 </video>
-<p><img data-src="PhD/5_contribution/fli/backup_sampling/starlet_l1_bin2_last.png" class="print-only" style="width: 600px; margin: 0;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/21_sampling/starlet_l1_bin2_last.png" class="print-only" style="width: 600px; margin: 0;"></p>
 </div>
 <p><span class="kw" style="font-size: 0.6em; color: #C2560A; text-align: right;">bin 2<br>draw − truth</span></p>
 <div>
-<video src="PhD/5_contribution/fli/backup_sampling/starlet_resid_bin2.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 600px; margin: 0;">
+<video src="PhD/7_backup/4_fieldlevel/21_sampling/starlet_resid_bin2.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 600px; margin: 0;">
 </video>
-<p><img data-src="PhD/5_contribution/fli/backup_sampling/starlet_resid_bin2_last.png" class="print-only" style="width: 600px; margin: 0;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/21_sampling/starlet_resid_bin2_last.png" class="print-only" style="width: 600px; margin: 0;"></p>
 </div>
 <p><span class="kw" style="font-size: 0.6em; color: #3B6FB6; text-align: right;">bin 3<br>ℓ₁ norm</span></p>
 <div>
-<video src="PhD/5_contribution/fli/backup_sampling/starlet_l1_bin3.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 600px; margin: 0;">
+<video src="PhD/7_backup/4_fieldlevel/21_sampling/starlet_l1_bin3.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 600px; margin: 0;">
 </video>
-<p><img data-src="PhD/5_contribution/fli/backup_sampling/starlet_l1_bin3_last.png" class="print-only" style="width: 600px; margin: 0;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/21_sampling/starlet_l1_bin3_last.png" class="print-only" style="width: 600px; margin: 0;"></p>
 </div>
 <p><span class="kw" style="font-size: 0.6em; color: #3B6FB6; text-align: right;">bin 3<br>draw − truth</span></p>
 <div>
-<video src="PhD/5_contribution/fli/backup_sampling/starlet_resid_bin3.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 600px; margin: 0;">
+<video src="PhD/7_backup/4_fieldlevel/21_sampling/starlet_resid_bin3.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 600px; margin: 0;">
 </video>
-<p><img data-src="PhD/5_contribution/fli/backup_sampling/starlet_resid_bin3_last.png" class="print-only" style="width: 600px; margin: 0;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/21_sampling/starlet_resid_bin3_last.png" class="print-only" style="width: 600px; margin: 0;"></p>
 </div>
 </div>
 </section>
 <section id="cosmology-only-inference" class="slide level2" data-visibility="uncounted">
 <h2>Cosmology-only inference</h2>
 <div class="row flat bare" style="--gap: 40px; --justify: center; margin-top: 0.3em;">
-<p><img data-src="PhD/5_contribution/fli/backup_sampling/posterior_nb17.svg" style="height: 480px; flex: none; margin: 0;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/21_sampling/posterior_nb17.svg" style="height: 480px; flex: none; margin: 0;"></p>
 <div class="nice-table" style="--table-size: 0.8em; flex: none;">
 <table class="caption-top">
 <thead>
@@ -2758,66 +2796,6 @@ optimum exactly over it -->
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-</section>
-<section id="a-survey-mask-leaks" class="slide level2" data-visibility="uncounted">
-<h2>A survey mask leaks</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="PhD/5_contribution/fli/backup/masked_shear_masks.svg" class="quarto-figure quarto-figure-center" width="900"></p>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="PhD/5_contribution/fli/backup/masked_shear_residual_maps.svg" class="quarto-figure quarto-figure-center" width="760"></p>
-</figure>
-</div>
-</section>
-<section id="kaisersquires-on-the-sphere" class="slide level2" data-visibility="uncounted">
-<h2>Kaiser–Squires on the sphere</h2>
-<div class="columns">
-<div class="column" style="width: 45%; padding-top: 1em;">
-<p><span class="kw">From <span class="math inline">\(\kappa\)</span> to <span class="math inline">\(\gamma\)</span></span></p>
-<div class="eqbox" style="--eq-border: #2aa198; --eq-size: 0.8em; --eq-math-margin: 0.3em 0;">
-<p><span class="math display">\[
-\gamma^E_{\ell m} = -\sqrt{\frac{(\ell+2)(\ell-1)}{\ell(\ell+1)}}\;\kappa_{\ell m}, \qquad \gamma^B_{\ell m} = 0
-\]</span> <span class="math display">\[
-\gamma_1 + i\gamma_2 = \sum_{\ell m} \gamma^E_{\ell m}\;{}_2Y_{\ell m}
-\]</span></p>
-</div>
-<div class="fragment" data-fragment-index="1">
-<p><span class="kw">From <span class="math inline">\(\gamma\)</span> back to <span class="math inline">\(\kappa\)</span></span></p>
-<div class="eqbox" style="--eq-border: #2aa198; --eq-size: 0.8em; --eq-math-margin: 0.3em 0;">
-<p><span class="math display">\[
-\kappa_{\ell m} = -\sqrt{\frac{\ell(\ell+1)}{(\ell+2)(\ell-1)}}\;\gamma^E_{\ell m}
-\]</span></p>
-</div>
-</div>
-</div><div class="column" style="width:55%;">
-<div class="cell bare" style="--img-w: 200px; --cap-size: 0.6em; --cell-margin: 0.1em 0 0;">
-<p><img data-src="PhD/3_observation/weaklensing/04_kaiser_squires/kappa.gif" class="screen-only"> <img data-src="PhD/3_observation/weaklensing/04_kaiser_squires/kappa.png" class="print-only"></p>
-<p><span class="caption">convergence κ</span></p>
-</div>
-<div style="text-align: center; margin: 0.1em 0; line-height: 0;">
-<p><span class="arrow down" style="--len: 34px; --head: 20px;"></span></p>
-</div>
-<div class="row bare" style="--gap: 24px; --justify: center; --img-w: 175px; --cap-size: 0.6em; --cell-margin: 0.1em 0 0;">
-<div class="cell">
-<p><img data-src="PhD/3_observation/weaklensing/04_kaiser_squires/gamma1.gif" class="screen-only"> <img data-src="PhD/3_observation/weaklensing/04_kaiser_squires/gamma1.png" class="print-only"></p>
-<p><span class="caption">shear γ<sub>1</sub></span></p>
-</div>
-<div class="cell">
-<p><img data-src="PhD/3_observation/weaklensing/04_kaiser_squires/gamma2.gif" class="screen-only"> <img data-src="PhD/3_observation/weaklensing/04_kaiser_squires/gamma2.png" class="print-only"></p>
-<p><span class="caption">shear γ<sub>2</sub></span></p>
-</div>
-</div>
-</div></div>
-<div class="solutionbox">
-<div class="solutionbox-body" style="font-size: 0.75em;">
-<ul>
-<li>Kaiser–Squires is a <span class="kw">simple per-<span class="math inline">\(\ell\)</span> rescaling</span> between <span class="math inline">\(\kappa\)</span> and the <span class="math inline">\(E\)</span>-mode of the shear</li>
-</ul>
 </div>
 </div>
 
