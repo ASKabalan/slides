@@ -1,0 +1,37 @@
+[project]
+name = "phd-assets"
+version = "0.2.0"
+description = "Figure and animation generators for the PhD defense slides"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+    "requests>=2.31",
+    "pillow>=10.0",
+    "matplotlib>=3.8",
+    "numpy>=1.26",
+    "scipy>=1.17.1",
+    "astropy>=8.0.1",
+    "cdshealpix>=0.8.1",
+    "healpy>=1.17",
+    "camb>=1.5",
+    "jax-cosmo",
+    "datasets>=3.0",
+    "huggingface-hub>=0.26",
+    "pyarrow>=17.0",
+    "pandas>=2.2",
+    "imageio>=2.35",
+]
+
+[dependency-groups]
+jax-fli = ["jax-fli", "jax[cuda12]"]
+manim = ["manim>=0.20.1"]
+furax-cs = ["furax-cs[plotting,io]", "jax[cuda12]"]
+
+[tool.uv]
+package = false
+
+[tool.uv.sources]
+jax-fli = { git = "https://github.com/ASKabalan/jax-fli" }
+furax-cs = { git = "https://github.com/CMBSciPol/furax-cs", branch = "main", lfs = true }
+
+[tool.ruff.lint]
+ignore = ["E402"]

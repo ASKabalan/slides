@@ -1,0 +1,38 @@
+% Stokes I, Q, U as sums and differences of intensities along pairs of axes,
+% three cells in a row, each with its caption, on the slide palette.
+% Compile: pdflatex stokes_iqu.tex && pdftocairo -svg stokes_iqu.pdf stokes_iqu.svg
+\documentclass[tikz,border=4pt]{standalone}
+\usepackage{tikz}
+\usepackage[T1]{fontenc}
+\usetikzlibrary{arrows.meta}
+
+\definecolor{ink}{HTML}{2E2E2E}
+\definecolor{icol}{HTML}{521463}
+\definecolor{qcol}{HTML}{2AA198}
+\definecolor{ucol}{HTML}{B8791D}
+\definecolor{frame}{HTML}{D9D4C9}
+
+\tikzset{pol/.style={{Stealth[length=2.6mm]}-{Stealth[length=2.6mm]},line width=1.6pt}}
+\def\L{0.55}   % half-length of a polarisation arrow
+\def\cw{4.2}   % cell width
+
+% #1 x-offset  #2 colour  #3 first arrow angle  #4 sign  #5 second arrow angle  #6 name
+% #7 caption
+\newcommand{\cell}[7]{%
+  \begin{scope}[shift={(#1,0)}]
+    \draw[frame,rounded corners=5pt,line width=0.8pt] (-\cw/2+0.1,-1.85) rectangle (\cw/2-0.1,1.05);
+    \draw[pol,#2] ($(-0.85,0.25)+(#3:\L)$) -- ($(-0.85,0.25)+(#3+180:\L)$);
+    \node[font=\sffamily\LARGE,ink] at (0,0.25) {#4};
+    \draw[pol,#2] ($(0.85,0.25)+(#5:\L)$) -- ($(0.85,0.25)+(#5+180:\L)$);
+    \node[font=\sffamily\bfseries\Large,#2] at (0,-0.75) {#6};
+    \node[font=\sffamily\large,ink] at (0,-1.4) {#7};
+  \end{scope}}
+
+\usetikzlibrary{calc}
+\begin{document}
+\begin{tikzpicture}
+  \cell{0}{icol}{90}{$+$}{0}{I}{total intensity}
+  \cell{\cw}{qcol}{0}{$-$}{90}{Q}{horizontal $-$ vertical}
+  \cell{2*\cw}{ucol}{45}{$-$}{135}{U}{$+45^\circ$ $-$ $-45^\circ$}
+\end{tikzpicture}
+\end{document}

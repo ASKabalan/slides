@@ -1,0 +1,12 @@
+# FGBuster (scipy TNC, n=64) best-of-repeats time to fit, in milliseconds, for 5000-10000 patches.
+# The original runs are lost. These values are read off the vector paths of the thesis figure
+# chap5/section_42/runtime_comparison.pdf (axis mapping from its gridlines and plot box); the same
+# decoding reproduces all 14 timings still stored in CLUSTERS_FGBUSTER.csv and CLUSTERS_FURAX.csv
+# to four significant digits.
+x,min_time
+5000,823200
+6000,878000
+7000,924300
+8000,964600
+9000,1000000
+10000,1032000

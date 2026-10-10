@@ -1,0 +1,148 @@
+<script>
+// Deck JS, included via include-after-body. Jobs, all tied to the CSS in
+// phd.scss:
+//
+// 1. Videos: a video plays while its fragment is on screen and pauses
+//    (and rewinds) as soon as it hides or the slide changes, so every run of
+//    the animation starts from the beginning.
+// 2. GIFs (played once, no loop) restart whenever they come on screen: when
+//    their fragment is shown, and when their slide is entered by any route
+//    (forward, back, jump), so the animation never shows up frozen. A GIF is hidden
+//    while its fresh copy loads, so its old last frame never flashes before frame 0.
+// 3. Full-bleed slides: the .bleed-tag / .bleed-credit children of a
+//    .bleed-slide move into the slide's background layer, which spans the
+//    whole viewport, so they sit in the true screen corners at any aspect.
+
+(function () {
+  function ready(fn) {
+    if (document.readyState !== "loading") fn();
+    else document.addEventListener("DOMContentLoaded", fn);
+  }
+
+  ready(function () {
+    // ---------------------------------------------------------------- video
+    // the fragment itself may be the video
+    function videosIn(root) {
+      if (!root) return [];
+      const vids = Array.from(root.querySelectorAll("video"));
+      if (root.matches && root.matches("video")) vids.push(root);
+      return vids;
+    }
+
+    // a video inside a later fragment waits for its own click
+    function playVideos(root) {
+      videosIn(root).forEach(function (v) {
+        if (hiddenByFragment(v, root)) return;
+        try {
+          v.currentTime = 0;
+          v.play();
+        } catch (e) { /* autoplay quirks are harmless here */ }
+      });
+    }
+
+    function stopVideos(root) {
+      videosIn(root).forEach(function (v) {
+        try {
+          v.pause();
+          v.currentTime = 0;
+        } catch (e) { /* ignore */ }
+      });
+    }
+
+    function pauseElsewhere(current) {
+      document.querySelectorAll(".reveal video").forEach(function (v) {
+        if (current && current.contains(v)) return;
+        try {
+          v.pause();
+          v.currentTime = 0;
+        } catch (e) { /* ignore */ }
+      });
+    }
+
+    // The deck is rendered by Quarto's revealjs, so Reveal is defined by the
+    // time the scripts at the end of <body> run.
+    if (typeof Reveal === "undefined") return;
+
+    // ---------------------------------------------------------------- bleed
+    function moveBleedOverlays() {
+      document.querySelectorAll(".reveal .slides section.bleed-slide").forEach(function (slide) {
+        const bg = Reveal.getSlideBackground(slide);
+        if (!bg) return;
+        const layer = document.createElement("div");
+        layer.className = "bleed-layer";
+        slide.querySelectorAll(":scope > .bleed-tag, :scope > .bleed-credit, :scope > p > .bleed-credit").forEach(function (el) {
+          layer.appendChild(el);
+        });
+        bg.appendChild(layer);
+      });
+    }
+    if (Reveal.isReady()) moveBleedOverlays();
+    else Reveal.on("ready", moveBleedOverlays);
+
+    // ---------------------------------------------------------------- gif
+    // a fade-out fragment is on screen until it is shown; the others only once shown
+    function fragmentHides(n) {
+      if (!n.classList.contains("fragment")) return false;
+      const shown = n.classList.contains("visible");
+      if (n.classList.contains("fade-out")) return shown;
+      if (n.classList.contains("fade-in-then-out")) return !n.classList.contains("current-fragment");
+      return !shown;
+    }
+
+    function hiddenByFragment(el, root) {
+      for (let n = el; n && n !== root.parentElement; n = n.parentElement) {
+        if (fragmentHides(n)) return true;
+      }
+      return false;
+    }
+
+    function restartGifs(root) {
+      if (!root) return;
+      // the fragment itself may be the image; include it
+      const imgs = Array.from(root.querySelectorAll('img[src*=".gif"]'));
+      if (root.matches && root.matches('img[src*=".gif"]')) imgs.push(root);
+      imgs.forEach(function (img) {
+        if (hiddenByFragment(img, root)) return;
+        // a fresh URL forces the browser to decode the GIF again from frame 0;
+        // re-setting the same src is ignored by Chrome's image cache
+        const base = img.getAttribute("src").split("?")[0];
+        // until the fresh copy has loaded the browser keeps painting the old one, stopped on
+        // its last frame, so the GIF stays hidden (layout kept) and whatever lies under it shows
+        const show = function () { img.style.visibility = ""; };
+        img.style.visibility = "hidden";
+        img.addEventListener("load", show, { once: true });
+        img.addEventListener("error", show, { once: true });
+        img.setAttribute("src", base + "?t=" + Date.now());
+      });
+    }
+
+    // e.fragment is only the first element of the step; elements sharing a
+    // data-fragment-index (a fade-out and a fade-in swapping places) are in e.fragments
+    // A fade-out fragment works the other way round: showing it hides what it holds, so its
+    // videos stop, and stepping back over it brings them back from the start.
+    Reveal.on("fragmentshown", function (e) {
+      (e.fragments || [e.fragment]).forEach(function (f) {
+        if (f.classList.contains("fade-out")) stopVideos(f);
+        else playVideos(f);
+        restartGifs(f);
+      });
+    });
+    Reveal.on("fragmenthidden", function (e) {
+      (e.fragments || [e.fragment]).forEach(function (f) {
+        if (f.classList.contains("fade-out")) playVideos(f);
+        else stopVideos(f);
+      });
+    });
+    Reveal.on("slidechanged", function (e) {
+      pauseElsewhere(e.currentSlide);
+      restartGifs(e.currentSlide);
+    });
+    // Opening the deck on a slide (reload, jump by URL) fires no slide event.
+    function onEnter() {
+      restartGifs(Reveal.getCurrentSlide());
+    }
+    if (Reveal.isReady()) onEnter();
+    else Reveal.on("ready", onEnter);
+  });
+})();
+</script>

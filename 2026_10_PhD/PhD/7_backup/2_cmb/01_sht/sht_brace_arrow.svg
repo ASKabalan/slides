@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 190 300" width="190" height="300">
+  <!-- Q and U enter the spin-2 transform together and give a^E and a^B together -->
+  <path d="M14 18 Q32 18 32 40 L32 128 Q32 150 50 150 Q32 150 32 172 L32 260 Q32 282 14 282" fill="none" stroke="#6E6E6E" stroke-width="4" stroke-linecap="round"/>
+  <path d="M58 150 L124 150" fill="none" stroke="#6E6E6E" stroke-width="4" stroke-linecap="round"/>
+  <path d="M120 140 L138 150 L120 160 Z" fill="#6E6E6E"/>
+  <path d="M176 18 Q158 18 158 40 L158 128 Q158 150 140 150 Q158 150 158 172 L158 260 Q158 282 176 282" fill="none" stroke="#6E6E6E" stroke-width="4" stroke-linecap="round"/>
+</svg>

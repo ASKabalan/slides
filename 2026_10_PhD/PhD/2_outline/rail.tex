@@ -1,0 +1,98 @@
+% Outline map for the PhD defense deck. One source, eight renders: the full map
+% plus one focused variant per section.
+% Compile: see build.sh in this directory (it prepares the badge images in
+% .cache/, sets \focus and renames the output).
+%
+% Layout: four columns read left to right: Introduction; the three ways we
+% probe the Universe (CMB, weak lensing, statistical inference); my two
+% contributions; the conclusion. Each box carries small illustrated badges.
+%
+% \focus selects the highlighted box (0 = none, 1..7 = the sections). The
+% geometry never moves between variants: only the opacity of the other boxes
+% changes, so the SVGs register 1:1 inside the deck's .rail-stack.
+\documentclass[tikz,border=2pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usetikzlibrary{arrows.meta,calc,decorations.pathreplacing,shapes.geometric}
+
+\providecommand{\focus}{0}
+
+% Deck palette (keep in step with _common.py / phd.scss)
+\definecolor{introtop}{HTML}{DDF0E6}\definecolor{introbot}{HTML}{A9D9BF}\definecolor{introline}{HTML}{2AA198}
+\definecolor{obstop}{HTML}{E3ECF8}\definecolor{obsbot}{HTML}{A9C3E6}\definecolor{obsline}{HTML}{3B6FB6}
+\definecolor{conttop}{HTML}{F1E4F2}\definecolor{contbot}{HTML}{D8A9D6}\definecolor{contline}{HTML}{521463}
+\definecolor{ink}{HTML}{2E2E2E}
+\definecolor{greytx}{HTML}{6E6E6E}
+\definecolor{bracket}{HTML}{9A9A9A}
+
+\newcommand{\boxw}{4.4}
+\newcommand{\boxh}{1.55}
+
+% Faded unless this index is focused, or nothing is: only \fv (opacity) changes,
+% so every variant overlays the full map exactly. \sv (scale) and \wv (outline
+% width) stay fixed. TikZ options cannot hold \ifnum.
+\newcommand{\setlook}[1]{%
+  \def\fv{0.32}\def\sv{1}\def\wv{0.8pt}%
+  \ifnum\focus=0 \def\fv{1}\fi
+  \ifnum\focus=#1 \def\fv{1}\fi}
+\ifnum\focus=0 \def\av{1}\else \def\av{0.45}\fi
+
+% #1 index  #2 name  #3 x  #4 y  #5 top  #6 bottom  #7 line  #8 label
+\newcommand{\sectionbox}[8]{%
+  \setlook{#1}%
+  \begin{scope}[opacity=\fv,transparency group]
+    \node[draw=#7,line width=\wv,top color=#5,bottom color=#6,
+          rounded corners=6pt,minimum width=\boxw cm,minimum height=\boxh cm,
+          align=center,text=ink,font=\sffamily\large,
+          scale=\sv,transform shape] (#2) at (#3,#4) {#8};
+  \end{scope}}
+
+% A plain illustration or logo, faded with its box.
+% #1 index  #2 x  #3 y  #4 \includegraphics...
+\newcommand{\badge}[4]{%
+  \setlook{#1}%
+  \begin{scope}[opacity=\fv,transparency group]
+    \node[inner sep=0] at (#2,#3) {#4};
+  \end{scope}}
+
+\begin{document}
+% y=1.2cm stretches the map vertically (positions only, the boxes keep their size) so it fills
+% the slide below the title; the deck's _papers.qmd positions are % of this bounding box.
+\begin{tikzpicture}[y=1.2cm]
+\useasboundingbox (-0.1,-10.95) rectangle (24.8,0.1);
+
+% ---------------------------------------------------------------- boxes
+\sectionbox{1}{intro}{2.4}{-4.9}{introtop}{introbot}{introline}{Introduction}
+\sectionbox{2}{cmb}{8.6}{-2.5}{obstop}{obsbot}{obsline}{The Cosmic Microwave\\Background}
+\sectionbox{3}{wl}{8.6}{-5.0}{obstop}{obsbot}{obsline}{Cosmic Shear}
+\sectionbox{4}{stats}{8.6}{-7.5}{obstop}{obsbot}{obsline}{Statistical Inference}
+\sectionbox{5}{c1}{15.6}{-3.2}{conttop}{contbot}{contline}{Component Separation}
+\sectionbox{6}{c2}{15.6}{-6.9}{conttop}{contbot}{contline}{Field-Level Inference\\for Weak Lensing}
+\sectionbox{7}{concl}{22.4}{-4.9}{introtop}{introbot}{introline}{Conclusion}
+
+% ---------------------------------------------------------------- brackets
+\begin{scope}[opacity=\av]
+  \draw[decorate,decoration={brace,amplitude=8pt},bracket,line width=0.9pt]
+        (6.4,-1.25) -- (11.2,-1.25);
+  \node[font=\sffamily\large,text=greytx] at (8.8,-0.5) {How to probe the Universe};
+  \draw[decorate,decoration={brace,amplitude=8pt},bracket,line width=0.9pt]
+        (13.2,-1.25) -- (18.0,-1.25);
+  \node[font=\sffamily\large,text=greytx] at (15.6,-0.5) {My contributions};
+\end{scope}
+
+% ---------------------------------------------------------------- badges
+% Illustrations to the right of the probe boxes; the contributions' logos sit
+% just above their box (SciPol: component separation; CosmoStat + AstroDeep:
+% FLI), and the FLI pipeline sits under its box. The strip just under each
+% contribution box stays empty: the deck overlays the paper references there
+% (_papers.qmd).
+\badge{2}{11.35}{-2.5}{\includegraphics[height=1.55cm]{.cache/lcdm_cmb.pdf}}
+\badge{3}{11.35}{-5.0}{\includegraphics[height=1.55cm]{.cache/lcdm_lss.pdf}}
+\badge{4}{11.95}{-7.55}{\includegraphics[width=2.2cm]{.cache/mle_vs_bayes_icon.pdf}}
+\badge{5}{18.55}{-3.2}{\includegraphics[height=1.95cm]{../3_observation/cmb/scipol/scipol_cmb_layers.png}}
+\badge{5}{16.8}{-1.9}{\includegraphics[height=1.25cm]{../../assets/Logos/scipol.png}}
+\badge{6}{14.35}{-5.6}{\includegraphics[height=0.65cm]{../../assets/Logos/cosmostat.png}}
+\badge{6}{16.7}{-5.6}{\includegraphics[height=1.35cm]{../../assets/Logos/AstroDeep-2.png}}
+\badge{6}{15.6}{-9.9}{\includegraphics[width=3.6cm]{.cache/fli_pipeline.pdf}}
+\end{tikzpicture}
+\end{document}

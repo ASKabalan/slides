@@ -60,6 +60,11 @@ jobs:
       #     CONNECT_SERVER: enter-the-server-url-here
       #     CONNECT_API_KEY: ${{ secrets.CONNECT_API_KEY }} 
 
+      # The PhD deck's private photos are not in git: put grey stand-ins in their place (--update=none never
+      # overwrites, so a local checkout that has the real photos is untouched)
+      - name: Stand-ins for the private photos of the PhD deck
+        run: cp -r --update=none 2026_10_PhD/PhD/_public/. 2026_10_PhD/PhD/
+
       # NOTE: If Publishing to GitHub Pages, set the permissions correctly (see top of this yaml)
       - name: Publish to GitHub Pages (and render) 
         uses: quarto-dev/quarto-actions/publish@v2

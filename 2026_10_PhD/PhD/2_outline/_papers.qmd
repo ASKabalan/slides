@@ -1,0 +1,10 @@
+<!-- Paper references under the contribution boxes of the outline map.
+     Positions are % of the map (rail.tex coordinates over its bounding box). -->
+::: {.rail-paper style="left: 63.6%; top: 38.8%;"}
+[Kabalan et al. (2026)](https://arxiv.org/abs/2604.08463){.kw} · submitted to RASTI
+:::
+
+::: {.rail-paper style="left: 65.8%; top: 73.5%;"}
+[Kabalan et al. (2026b)](https://joss.theoj.org/papers/10.21105/joss.08852){.kw} · accepted to JOSS\
+[Kabalan et al. (2026c)]{.kw} · in prep. for JCAP
+:::

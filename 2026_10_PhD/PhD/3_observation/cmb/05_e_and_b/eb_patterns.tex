@@ -1,0 +1,50 @@
+% E and B modes: the parity-even and parity-odd polarisation patterns.
+% After figures/chap3/fig_eb_patterns.tex in the thesis, redrawn for a slide.
+% Compile: pdflatex eb_patterns.tex && pdftocairo -svg eb_patterns.pdf eb_patterns.svg
+% \ebshow selects what is drawn: 0 both (default), 1 the E pattern only, 2 the B
+% pattern only. The bounding box is fixed, so the variants (eb_patterns_e.tex,
+% eb_patterns_b.tex) overlay 1:1 and can be revealed one after the other.
+\documentclass[tikz,border=4pt]{standalone}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage[T1]{fontenc}
+\usetikzlibrary{calc}
+
+\definecolor{ink}{HTML}{2E2E2E}
+\definecolor{ecol}{HTML}{3B6FB6}
+\definecolor{bcol}{HTML}{C0392B}
+\definecolor{hot}{HTML}{E8853D}
+\definecolor{cold}{HTML}{4E9BD1}
+
+\providecommand{\ebshow}{0}
+\def\bl{0.32}
+
+% #1 colour  #2 extra rotation of the bars  #3 hot-spot colour  #4 caption
+% (named \ebpattern, not \pattern: TikZ already defines \pattern.)
+\newcommand{\ebpattern}[4]{%
+  \shade[ball color=#3] (0,0) circle (0.34);
+  \foreach \rr in {1.02,1.92}{%
+    \foreach \ang in {0,30,...,330}{%
+      \pgfmathsetmacro{\cx}{\rr*cos(\ang)}
+      \pgfmathsetmacro{\cy}{\rr*sin(\ang)}
+      \pgfmathsetmacro{\ap}{\ang + #2}
+      \draw[line width=2.2pt,#1,line cap=round]
+        ($({\cx},{\cy}) + ({\bl*cos(\ap)},{\bl*sin(\ap)})$) --
+        ($({\cx},{\cy}) - ({\bl*cos(\ap)},{\bl*sin(\ap)})$);}}
+  \node[font=\sffamily\small,ink,anchor=north] at (0,-2.55) {#4};}
+
+\begin{document}
+\begin{tikzpicture}
+  \useasboundingbox (-2.45,-3.05) rectangle (9.05,2.4);
+  \ifnum\ebshow=2\else
+  \begin{scope}
+    \ebpattern{ecol}{0}{hot}{$E$ mode: radial and tangential}
+  \end{scope}
+  \fi
+  \ifnum\ebshow=1\else
+  \begin{scope}[shift={(6.6,0)}]
+    \ebpattern{bcol}{45}{cold}{$B$ mode: turned by $45^{\circ}$}
+  \end{scope}
+  \fi
+\end{tikzpicture}
+\end{document}
