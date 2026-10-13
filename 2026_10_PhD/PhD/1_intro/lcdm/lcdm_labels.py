@@ -10,14 +10,17 @@ Both are a transparent PNG (4096 x 2288) under one traced vector <path> that hol
 and leader line. The path is split into its subpaths (each starts with M; every command is
 absolute: M, L, C, Z), and:
 
-  - "Quantum Fluctuations" and its leader line are removed (and the leader's short stub painted
-    inside the inflation bulge is filled from the neighbouring pixels of the PNG);
-  - "Big Bang Expansion" becomes "Big Bang", moved down onto the tip of the funnel;
+  - "Big Bang Expansion" is removed and "Quantum Fluctuations" takes its place at the tip of the
+    funnel; its leader line is removed (and the leader's short stub painted inside the inflation
+    bulge is filled from the neighbouring pixels of the PNG);
+  - "(EPOCH OF REIONIZATION)" is removed from the upper first-stars label, and "1st STARS" moves
+    down onto the leader line;
   - the second "1st STARS (EPOCH OF REIONIZATION) ABOUT 400 MILLION YEARS" label, under the
     first-stars ellipse, is removed with its leader line;
   - "TODAY / PRESENT" becomes "TODAY";
   - "RECOMBINATION" is added above "380,000 YEARS", built from glyphs of the removed label (same
-    font and size as the figure), and the CMB leader line is shortened to make room.
+    font and size as the figure), and the CMB leader line is shortened to make room;
+  - the ticks of the time axis are removed: the axis is redrawn as a bar between its two end caps.
 
 Run lcdm_variants.py afterwards (FORCE_REGEN=1): the boxed variants are copies of lcdm_model.svg.
 """
@@ -65,9 +68,13 @@ def inside(b, box):
 
 # ---------------------------------------------------------------- regions (viewBox units)
 QUANTUM = (380, 800, 800, 1085)          # "Quantum Fluctuations" + its leader line
-EXPANSION = (250, 1206, 525, 1280)       # "Expansion"
-BIG_BANG = (250, 1125, 525, 1206)        # "Big Bang", moved down by BIG_BANG_DY
-BIG_BANG_DY = 36
+QUANTUM_TEXT = (380, 800, 720, 945)      # the label alone, moved to the funnel tip
+BIG_BANG = (250, 1125, 525, 1280)        # "Big Bang Expansion"
+TIP_Y = 1204                             # height of the funnel tip: the label is centred on it
+STARS_UP = (2050, 505, 2320, 570)        # "1st STARS" of the upper label, moved down by STARS_DY
+EPOCH_UP = (2000, 575, 2370, 712)        # its "(EPOCH OF / REIONIZATION)" lines
+STARS_DY = 131                           # onto the baseline of the removed REIONIZATION)
+RULER = (500, 2030, 3600, 2145)          # the time axis, one subpath with its ticks
 STARS_LOW = (1840, 1570, 2520, 1945)     # the lower first-stars label + its leader line
 PRESENT = (3440, 1940, 3740, 2012)       # "/ PRESENT"
 CMB_LEADER = (1236, 1555, 1318, 1725)    # leader from the CMB ellipse to "380,000 YEARS"
@@ -97,6 +104,17 @@ def glyphs(subs, boxes, region):
         else:
             out.append({"ids": [i], "x0": b[0], "x1": b[2], "y1": b[3]})
     return out
+
+
+def ruler(x0, y0, x1, y1, cap=6.5, bar=(2087.0, 2093.0)):
+    """The time axis without its ticks: a bar between two end caps (caps cap wide, rounded ends)."""
+    r = cap / 2
+    a, b = x0 + cap, x1 - cap
+    return (f"M{x0:.1f},{y1 - r:.1f}L{x0:.1f},{y0 + r:.1f}C{x0:.1f},{y0:.1f} {a:.1f},{y0:.1f} {a:.1f},{y0 + r:.1f}"
+            f"L{a:.1f},{bar[0]:.1f}L{b:.1f},{bar[0]:.1f}L{b:.1f},{y0 + r:.1f}"
+            f"C{b:.1f},{y0:.1f} {x1:.1f},{y0:.1f} {x1:.1f},{y0 + r:.1f}L{x1:.1f},{y1 - r:.1f}"
+            f"C{x1:.1f},{y1:.1f} {b:.1f},{y1:.1f} {b:.1f},{y1 - r:.1f}L{b:.1f},{bar[1]:.1f}L{a:.1f},{bar[1]:.1f}"
+            f"L{a:.1f},{y1 - r:.1f}C{a:.1f},{y1:.1f} {x0:.1f},{y1:.1f} {x0:.1f},{y1 - r:.1f}Z")
 
 
 def edit_labels(d):
@@ -134,12 +152,21 @@ def edit_labels(d):
         step = rows[k][j + 1]["x0"] - g["x1"] if nxt == (k, j + 1) else gap + KERN.get(n, 0.0)
         cursor += g["x1"] - g["x0"] + step
 
+    # "Quantum Fluctuations": right edge where "Big Bang Expansion" ended, centred on the tip
+    qf = [b for b in boxes if inside(b, QUANTUM_TEXT)]
+    qf_dx = max(b[2] for b in boxes if inside(b, BIG_BANG)) - max(b[2] for b in qf)
+    qf_dy = TIP_Y - 0.5 * (min(b[1] for b in qf) + max(b[3] for b in qf))
+
     keep = []
     for sp, b in zip(subs, boxes):
-        if any(inside(b, r) for r in (QUANTUM, EXPANSION, STARS_LOW, PRESENT)):
+        if inside(b, QUANTUM_TEXT):
+            sp = transform(sp, lambda x, y: (x + qf_dx, y + qf_dy))
+        elif any(inside(b, r) for r in (QUANTUM, BIG_BANG, EPOCH_UP, STARS_LOW, PRESENT)):
             continue
-        if inside(b, BIG_BANG):
-            sp = transform(sp, lambda x, y: (x, y + BIG_BANG_DY))
+        elif inside(b, STARS_UP):
+            sp = transform(sp, lambda x, y: (x, y + STARS_DY))
+        elif inside(b, RULER):
+            sp = ruler(*b)
         elif inside(b, CMB_LEADER) and b[3] - b[1] > 100:
             # shorten the leader: its foot moves up to clear the new word, its top stays on the ellipse
             y0, y1 = b[1], b[3]

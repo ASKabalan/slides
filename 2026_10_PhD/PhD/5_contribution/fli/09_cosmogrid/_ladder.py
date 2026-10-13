@@ -1,5 +1,5 @@
 """Shared data and drawing for the mesh ladder against CosmoGrid: the slide frames (mesh_ladder.py,
-beside this file) and the finer-bandpower backup (7_backup/4_fieldlevel/09_ladder_nlb4).
+beside this file) and the finer-bandpower backup (7_backup/4_fieldlevel/10_ladder_nlb4).
 
 jax-fli experiment 05e (jax-fli-experiments, 05-spacing-n-stepping/05e-mesh/kappa_spectra): the
 production lightcone (5000 Mpc/h box, BullFrog with 50 steps, 20 equal-volume shells drifted on the

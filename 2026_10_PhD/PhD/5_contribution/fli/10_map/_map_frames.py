@@ -10,13 +10,13 @@ next for display; the step counter and the correlation with the truth are those 
 map_anim.py (beside this file) for the MAP slide.
 
 starlet_frame: over the same saved steps, the starlet l1 norm of kappa in bin 3 at the five scales (0, finest,
-to 4, low-pass), reconstruction against truth. Rendered by 7_backup/4_fieldlevel/19_map_starlet/map_starlet.py.
+to 4, low-pass), reconstruction against truth. Rendered by 7_backup/4_fieldlevel/17_map_starlet/map_starlet.py.
 
 spectra_frame: over the same saved steps as the starlet video, the cross-correlation coefficient
 C_l^{k^ k} / sqrt(C_l^{k^ k^} C_l^{kk}) and the power ratio C_l^{k^ k^} / C_l^{kk} of the reconstructed kappa k^
 against the truth k, for both bins, each against its joint Wiener-filter value (dotted: r_W and r_W^2), up to
 l = 1000 with the scale cut of the likelihood (l_max = 700, above which the forward model has no kappa) marked.
-Rendered by 7_backup/4_fieldlevel/18_map_spectra/map_spectra.py.
+Rendered by 7_backup/4_fieldlevel/15_map_spectra/map_spectra.py.
 
 The importing script puts the deck's PhD folder on sys.path first (for _common).
 """

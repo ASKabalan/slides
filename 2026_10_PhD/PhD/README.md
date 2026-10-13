@@ -16,19 +16,20 @@ Nothing in the deck points at a figure that cannot be rebuilt from this director
 │   └── weaklensing/          00_opener … 09_banana
 ├── 5_contribution/           the thesis's two contributions, one folder per slide in slide order
 │   ├── compsep/              01_sky_to_maps … 13_results, _data.py (shared data access)
-│   └── fli/                  01_pipeline … 12_conclusion, build.sh, convert_*.py, .cache/ (shared by every field-level script)
+│   └── fli/                  01_pipeline … 11_conclusion, build.sh, convert_*.py, .cache/ (shared by every field-level script)
 ├── 6_ending/                 software/ (logos, also used by the compsep slides), photos/
 ├── 7_backup/                 backpack_dump.svg, then one folder per backup slide, in backup order:
 │   ├── 1_general/            01_typical_set
 │   ├── 2_cmb/                01_sht, 02_adatopk, 03_r_nonzero
 │   ├── 3_weaklensing/        01_galaxy_shapes, 02_limber, 03_masked_shear
-│   └── 4_fieldlevel/         01_step_convergence … 21_sampling (forward model first, then inference)
+│   ├── 4_fieldlevel/         01_step_convergence … 20_intrinsic_alignment (forward model first, then inference)
+│   └── 5_numerical/          01_adjoints, 02_distributed, 03_halo_exchange, 04_scaling, 05_moving_mesh, 06_box_replication
 └── FOR_USAGE/                source material handed over, not generated here
 ```
 
 A figure used by a main slide and a backup stays with the main slide. Where one figure family
 serves both, the shared data and drawing sit in a `_name.py` module beside the main generator
-(`fli/10_cosmogrid/_ladder.py`, `fli/11_map/_map_frames.py`) and
+(`fli/09_cosmogrid/_ladder.py`, `fli/10_map/_map_frames.py`) and
 the backup generator imports it; `bake.sh` skips `_*.py`.
 
 ## Rebuilding

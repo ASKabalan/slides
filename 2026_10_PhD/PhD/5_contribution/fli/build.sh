@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Build the field-level section: one folder per main slide, numbered in slide order (01_pipeline ...
-# 12_conclusion), the shared cache in .cache/. The field-level backups live in 7_backup/4_fieldlevel and
+# 11_conclusion), the shared cache in .cache/. The field-level backups live in 7_backup/{4_fieldlevel,5_numerical} and
 # are built by ../../bake.sh; the figures copied from jax-fli and the thesis come through the two
 # convert_*.py scripts. Staged TikZ figures have several renders from one source.
 set -euo pipefail
@@ -38,12 +38,10 @@ run 03_pm pm_run.py
 run 04_accuracy pm3d_fragments.py
 run 05_distributed pencils.py
 run 06_observable depth.py
-run 07_painting particles_box.py
-run 07_painting painting_interp.py
-run 08_lightcone lightcone_shells.py
-run 09_born born.py
-run 10_cosmogrid mesh_ladder.py
-run 11_map map_data.py        # the MAP run, from HF jax-fli-sampling, into ../.cache
-run 11_map map_anim.py
-run 12_conclusion moving_mesh.py
+run 07_lightcone lightcone_shells.py
+run 08_born born.py
+run 09_cosmogrid mesh_ladder.py
+run 10_map map_data.py        # the MAP run, from HF jax-fli-sampling, into ../.cache
+run 10_map map_anim.py
+run 11_conclusion moving_mesh.py
 rm -f ./*.aux ./*.log

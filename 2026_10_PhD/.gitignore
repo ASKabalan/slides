@@ -9,8 +9,8 @@
 /.shot_index.html
 AGENTS.md
 # the 3D-box version of the MAP animation, kept locally
-/PhD/5_contribution/fli/11_map/map_anim3D.py
-/PhD/5_contribution/fli/11_map/map3d_*
+/PhD/5_contribution/fli/10_map/map_anim3D.py
+/PhD/5_contribution/fli/10_map/map3d_*
 # Private photos: local only. The published site shows the grey stand-ins of PhD/_public/
 # (copied into place by .github/workflows/publish.yml; regenerate with PhD/_public/make_standins.py)
 /PhD/1_intro/telescopes/me_at_lsst.jpg

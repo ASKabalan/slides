@@ -629,6 +629,9 @@ $C(\theta) = \langle \Delta T(\hat n_1)\,\Delta T(\hat n_2)\rangle$ over all pai
 ::: {.hlbox .fragment .custom .hlbox-move fragment-index=3 style="--x: 34.6%; --y: 2.5%; --w: 27%; --h: 95%; --x2: 61.8%; --y2: 30.2%; --w2: 30.6%; --h2: 33%;"}
 :::
 :::
+
+<!-- under the third box, once it has slid into place -->
+[My contribution]{.fragment fragment-index=3 style="position: absolute; left: 61.8%; top: 64.5%; width: 30.6%; text-align: center; font-size: 0.8em; transition-delay: 0.6s; text-shadow: 0 0 4px #fff, 0 0 4px #fff;"}
 :::::
 
 # From model to observation: weak gravitational lensing
@@ -1342,7 +1345,7 @@ $$-2\ln\mathcal{L}(\boldsymbol\beta) = -\left(\mathbf{A}^{\top}\mathbf{N}^{-1}\m
 
 ::: {.column width="60%"}
 ::: {.eqbox style="--eq-border: #521463; --eq-size: 0.8em; --eq-math-margin: 0.15em 0; width: fit-content; margin: 0 auto; text-align: center;"}
-$$C_\ell^{BB,\mathrm{model}}(r) = {\color{#C2560A} r}\,C_\ell^{\mathrm{tensor}} + C_\ell^{\mathrm{lens}} + C_\ell^{\mathrm{stat}}$$
+$$C_\ell^{BB,\mathrm{obs}} = C_\ell^{BB,\mathrm{CMB}} + C_\ell^{\mathrm{lens}} + C_\ell^{\mathrm{stat}}$$
 :::
 
 ::: {.eqbox style="--eq-border: #521463; --eq-size: 0.8em; --eq-math-margin: 0.15em 0; width: fit-content; margin: 0.6em auto 0; text-align: center;"}
@@ -1350,7 +1353,7 @@ $$\text{with}\quad C_\ell^{\mathrm{stat}} = \big\langle C_\ell^{BB,\mathrm{noise
 :::
 
 ::: {.eqbox style="--eq-border: #521463; --eq-size: 0.8em; --eq-math-margin: 0.15em 0; width: fit-content; margin: 0.6em auto 0; text-align: center;"}
-$$C_\ell^{BB,\mathrm{obs}} = C_\ell^{BB,\mathrm{CMB}} + C_\ell^{\mathrm{lens}} + C_\ell^{\mathrm{stat}}$$
+$$C_\ell^{BB,\mathrm{model}}(r) = {\color{#C2560A} r}\,C_\ell^{\mathrm{tensor}} + C_\ell^{\mathrm{lens}} + C_\ell^{\mathrm{stat}}$$
 :::
 
 ::: {.fragment}
@@ -2012,67 +2015,11 @@ Applied on [DES Y3]{.kw}, Jeffrey et al. (2024): SBI on [real data]{.kw} using [
 ::::
 :::::
 
-## Painting on spherical shells {transition="slide-in none-out"}
-
-:::: {.row .bare style="--gap: 1.2em; --justify: center; --align: center; margin-top: 110px;"}
-::: {.cell style="width: 380px;"}
-![](PhD/5_contribution/fli/07_painting/particles_box.png)
-
-[evolved particles]{.caption style="--cap-size: 0.7em;"}
-:::
-
-[⟶]{style="font-size: 3.4em; color: #6E6E6E;"}
-
-::: {.cell style="width: 480px;"}
-![](PhD/5_contribution/fli/07_painting/density_shell.png)
-
-[one HEALPix shell]{.caption style="--cap-size: 0.7em;"}
-:::
-::::
-
-## Painting on spherical shells {visibility="uncounted" transition="none-in none-out"}
-
-[![](https://img.shields.io/badge/GitHub-jax--healpy-blue?logo=github)](https://github.com/CMBSciPol/jax-healpy)
-
-:::: {.columns}
-::: {.column style="width: 50%; text-align: center;"}
-#### [Bilinear interpolation]{.kw2} {style="margin: 0.2em 0;"}
-
-<video src="PhD/5_contribution/fli/07_painting/bilinear.mp4" class="screen-only" data-autoplay loop muted playsinline preload="auto" style="width: 82%;"></video>
-
-![](PhD/5_contribution/fli/07_painting/bilinear_last.png){.print-only width="82%"}
-
-:::: {.solutionbox style="text-align: left;"}
-::: {.solutionbox-body style="font-size: 0.72em;"}
-Four pixels, weighted by the position between their centres: `get_interp_weights`, implemented in [jax-healpy]{.kw}
-:::
-::::
-:::
-
-::: {.column .fragment fragment-index=1 style="width: 50%; text-align: center;"}
-#### [Radial basis function interpolation]{.kw} {style="margin: 0.2em 0;"}
-
-::: {.r-stack}
-<video src="PhD/5_contribution/fli/07_painting/rbf.mp4" class="fragment fade-out screen-only" data-fragment-index="2" loop muted playsinline preload="auto" style="width: 82%;"></video>
-
-<video src="PhD/5_contribution/fli/07_painting/rbf_kernel.mp4" class="fragment screen-only" data-fragment-index="2" loop muted playsinline preload="auto" style="width: 82%;"></video>
-
-![](PhD/5_contribution/fli/07_painting/rbf_kernel_last.png){.print-only width="82%"}
-:::
-
-:::: {.solutionbox style="text-align: left;"}
-::: {.solutionbox-body style="font-size: 0.72em;"}
-The pixel and its eight neighbours (`get_all_neighbours`, implemented in [jax-healpy]{.kw}), weighted by a Gaussian kernel of adjustable width
-:::
-::::
-:::
-::::
-
-## Creating the lightcone {transition="none-in slide-out"}
+## Creating the lightcone
 
 
 ::: {style="text-align: center; margin-top: 0.2em;"}
-![](PhD/5_contribution/fli/08_lightcone/lightcone_shells.png){style="height: 530px;"}
+![](PhD/5_contribution/fli/07_lightcone/lightcone_shells.png){style="height: 530px;"}
 :::
 
 ## Calibrating the lightcone model
@@ -2117,7 +2064,7 @@ $$W_j(\chi_s) = \int_{\mathrm{shell}\ j} \mathrm{d}\chi\;\chi\,(1+z)\Big(1-\frac
 :::
 :::
 
-![](PhD/5_contribution/fli/09_born/born_weights.svg){width="560px"}
+![](PhD/5_contribution/fli/08_born/born_weights.svg){width="560px"}
 :::
 ::::
 
@@ -2127,7 +2074,7 @@ $$W_j(\chi_s) = \int_{\mathrm{shell}\ j} \mathrm{d}\chi\;\chi\,(1+z)\Big(1-\frac
 $$\kappa_i(\hat{\mathbf n}) = \int \mathrm{d}z\; n_i(z)\,\kappa\big(\hat{\mathbf n};\chi_s(z)\big)$$
 :::
 
-![](PhD/5_contribution/fli/09_born/born_kappa.png){width="745px"}
+![](PhD/5_contribution/fli/08_born/born_kappa.png){width="745px"}
 :::
 ::::
 
@@ -2144,17 +2091,17 @@ Post-Born ray tracing computes deflection angle, but its correction to the conve
 ## Valid scales for real survey analysis
 
 ::: {.r-stack .bare style="margin-top: -0.2em;"}
-![](PhD/5_contribution/fli/10_cosmogrid/ladder_512.svg){.fragment .fade-out fragment-index=1 width="990px"}
+![](PhD/5_contribution/fli/09_cosmogrid/ladder_512.svg){.fragment .fade-out fragment-index=1 width="990px"}
 
-![](PhD/5_contribution/fli/10_cosmogrid/ladder_1024.svg){.fragment .fade-in-then-out fragment-index=1 width="990px"}
+![](PhD/5_contribution/fli/09_cosmogrid/ladder_1024.svg){.fragment .fade-in-then-out fragment-index=1 width="990px"}
 
-![](PhD/5_contribution/fli/10_cosmogrid/ladder_2048.svg){.fragment .fade-in-then-out fragment-index=2 width="990px"}
+![](PhD/5_contribution/fli/09_cosmogrid/ladder_2048.svg){.fragment .fade-in-then-out fragment-index=2 width="990px"}
 
-![](PhD/5_contribution/fli/10_cosmogrid/ladder_2560.svg){.fragment .fade-in-then-out fragment-index=3 width="990px"}
+![](PhD/5_contribution/fli/09_cosmogrid/ladder_2560.svg){.fragment .fade-in-then-out fragment-index=3 width="990px"}
 
-![](PhD/5_contribution/fli/10_cosmogrid/ladder_3072.svg){.fragment .fade-in-then-out fragment-index=4 width="990px"}
+![](PhD/5_contribution/fli/09_cosmogrid/ladder_3072.svg){.fragment .fade-in-then-out fragment-index=4 width="990px"}
 
-![](PhD/5_contribution/fli/10_cosmogrid/ladder_4096.svg){.fragment fragment-index=5 width="990px"}
+![](PhD/5_contribution/fli/09_cosmogrid/ladder_4096.svg){.fragment fragment-index=5 width="990px"}
 :::
 
 [Kabalan et al. (2026c), in prep. for JCAP]{.selfcredit style="margin-top: -0.2em;"}
@@ -2208,12 +2155,12 @@ $$\color{#3b6fb6}{\sigma_i} = \frac{\sigma_e}{\sqrt{n_{\mathrm{gal},i}\;\Omega_\
 :::
 
 ::: {.r-stack .bare style="margin-top: 0.1em;"}
-![](PhD/5_contribution/fli/11_map/map_first.png){width="1000px"}
+![](PhD/5_contribution/fli/10_map/map_first.png){width="1000px"}
 
 ::: {.fragment fragment-index=1}
-<video src="PhD/5_contribution/fli/11_map/map_run.mp4" class="screen-only" muted playsinline preload="auto" style="width: 1000px;"></video>
+<video src="PhD/5_contribution/fli/10_map/map_run.mp4" class="screen-only" muted playsinline preload="auto" style="width: 1000px;"></video>
 
-![](PhD/5_contribution/fli/11_map/map_last.png){.print-only width="1000px"}
+![](PhD/5_contribution/fli/10_map/map_last.png){.print-only width="1000px"}
 :::
 :::
 
@@ -2247,9 +2194,9 @@ Moving-mesh particle mesh
 :::
 
 ::: {.figcadre-body style="text-align: center;"}
-<video src="PhD/5_contribution/fli/12_conclusion/moving_mesh.mp4" class="screen-only" loop muted playsinline preload="auto" style="width: 100%; margin: 0;"></video>
+<video src="PhD/5_contribution/fli/11_conclusion/moving_mesh.mp4" class="screen-only" loop muted playsinline preload="auto" style="width: 100%; margin: 0;"></video>
 
-![](PhD/5_contribution/fli/12_conclusion/moving_mesh_last.png){.print-only width="100%"}
+![](PhD/5_contribution/fli/11_conclusion/moving_mesh_last.png){.print-only width="100%"}
 
 [Moving mesh: B. Horowitz (2026), arXiv:2607.10983]{.credit}
 :::
@@ -2324,7 +2271,7 @@ Removing computational bottlenecks for Stage IV surveys
 ::: {.solutionbox-body .grid style="--cols: 1fr 1fr; --gap: 1.6em; text-align: center;"}
 [Early Universe · inflation]{.kw}<br/>Spatial variability for the CMB
 
-[Late Universe · dark energy]{.kw}<br/>Explicit field-level inference for large-scale structure
+[Late Universe · dark matter]{.kw}<br/>Explicit field-level inference for large-scale structure
 :::
 ::::
 
@@ -2647,72 +2594,82 @@ Removes the [single-redshift bias]{.kw} of wide shells: [17 %]{.kw2} on the firs
 :::
 ::::
 
+## Painting on spherical shells {visibility="uncounted" transition="slide-in none-out"}
+
+:::: {.row .bare style="--gap: 1.2em; --justify: center; --align: center; margin-top: 110px;"}
+::: {.cell style="width: 380px;"}
+![](PhD/7_backup/4_fieldlevel/08_painting/particles_box.png)
+
+[evolved particles]{.caption style="--cap-size: 0.7em;"}
+:::
+
+[⟶]{style="font-size: 3.4em; color: #6E6E6E;"}
+
+::: {.cell style="width: 480px;"}
+![](PhD/7_backup/4_fieldlevel/08_painting/density_shell.png)
+
+[one HEALPix shell]{.caption style="--cap-size: 0.7em;"}
+:::
+::::
+
+## Painting on spherical shells {visibility="uncounted" transition="none-in slide-out"}
+
+[![](https://img.shields.io/badge/GitHub-jax--healpy-blue?logo=github)](https://github.com/CMBSciPol/jax-healpy)
+
+:::: {.columns}
+::: {.column style="width: 50%; text-align: center;"}
+#### [Bilinear interpolation]{.kw2} {style="margin: 0.2em 0;"}
+
+<video src="PhD/7_backup/4_fieldlevel/08_painting/bilinear.mp4" class="screen-only" data-autoplay loop muted playsinline preload="auto" style="width: 82%;"></video>
+
+![](PhD/7_backup/4_fieldlevel/08_painting/bilinear_last.png){.print-only width="82%"}
+
+:::: {.solutionbox style="text-align: left;"}
+::: {.solutionbox-body style="font-size: 0.72em;"}
+Four pixels, weighted by the position between their centres: `get_interp_weights`, implemented in [jax-healpy]{.kw}
+:::
+::::
+:::
+
+::: {.column style="width: 50%; text-align: center;"}
+#### [Radial basis function interpolation]{.kw} {style="margin: 0.2em 0;"}
+
+<video src="PhD/7_backup/4_fieldlevel/08_painting/rbf_kernel.mp4" class="screen-only" data-autoplay loop muted playsinline preload="auto" style="width: 82%;"></video>
+
+![](PhD/7_backup/4_fieldlevel/08_painting/rbf_kernel_last.png){.print-only width="82%"}
+
+:::: {.solutionbox style="text-align: left;"}
+::: {.solutionbox-body style="font-size: 0.72em;"}
+The pixel and its eight neighbours (`get_all_neighbours`, implemented in [jax-healpy]{.kw}), weighted by a Gaussian kernel of adjustable width
+:::
+::::
+:::
+::::
+
 ## Painting: RBF against nearest grid point {visibility="uncounted"}
 
-![](PhD/7_backup/4_fieldlevel/08_painting_zoom/painting_cl_zoom.svg){fig-align="center" height="560px" style="margin-top: 0.4em;"}
+![](PhD/7_backup/4_fieldlevel/09_painting_zoom/painting_cl_zoom.svg){fig-align="center" height="560px" style="margin-top: 0.4em;"}
 
 ## Valid scales: finer bandpowers {visibility="uncounted"}
 
-![](PhD/7_backup/4_fieldlevel/09_ladder_nlb4/ladder_4096_nlb4.svg){fig-align="center" width="990px" style="margin-top: -0.2em;"}
+![](PhD/7_backup/4_fieldlevel/10_ladder_nlb4/ladder_4096_nlb4.svg){fig-align="center" width="990px" style="margin-top: -0.2em;"}
 
 ## Mesh plateau: density shells {visibility="uncounted"}
 
-![](PhD/7_backup/4_fieldlevel/10_mesh_plateau/mesh_plateau_density.svg){fig-align="center" width="1000px" style="margin-top: 0.6em;"}
+![](PhD/7_backup/4_fieldlevel/11_mesh_plateau/mesh_plateau_density.svg){fig-align="center" width="1000px" style="margin-top: 0.6em;"}
 
 ## Mesh plateau: convergence {visibility="uncounted"}
 
-![](PhD/7_backup/4_fieldlevel/10_mesh_plateau/mesh_plateau_kappa.svg){fig-align="center" width="1000px" style="margin-top: 0.6em;"}
+![](PhD/7_backup/4_fieldlevel/11_mesh_plateau/mesh_plateau_kappa.svg){fig-align="center" width="1000px" style="margin-top: 0.6em;"}
 
 ## The ghost zone {visibility="uncounted"}
 
-![](PhD/7_backup/4_fieldlevel/11_ghost_zone/ghost_zone.svg){fig-align="center" width="1000px"}
-
-## The two adjoints {visibility="uncounted"}
-
-::: {.row .bare style="--gap: 40px; --justify: center; margin-top: 0.3em;"}
-![](PhD/7_backup/4_fieldlevel/12_adjoints/adjoints.svg){height="540px"}
-
-![](PhD/7_backup/4_fieldlevel/12_adjoints/adjoint_memory.svg){height="500px"}
-:::
-
-## Scaling on supercomputers {visibility="uncounted"}
-
-::: {.absolute .bare top=-12 right=0 style="display: flex; align-items: center; gap: 10px;"}
-![](PhD/5_contribution/compsep/12_selection/jean_zay_logo.png){height="58px"}
-
-[Jean Zay, IDRIS<br/>NVIDIA H100 GPUs]{style="font-size: 0.55em; line-height: 1.25; color: #2E2E2E;"}
-:::
-
-::: {.bare style="text-align: center; margin-top: 0.15em;"}
-[Performance of the forward model]{.kw style="display: block; font-size: 0.75em; text-align: left;"}
-
-![](PhD/7_backup/4_fieldlevel/13_scaling/scaling_forward.svg){width="1000px"}
-:::
-
-::: {.bare style="text-align: center; margin-top: 0.15em;"}
-[Performance of the gradient]{.kw style="display: block; font-size: 0.75em; text-align: left;"}
-
-![](PhD/7_backup/4_fieldlevel/13_scaling/scaling_gradient.svg){width="1000px"}
-:::
-
-## Distributed Fourier transform {visibility="uncounted"}
-
-![](PhD/7_backup/4_fieldlevel/14_distributed/jaxdecomp_fft.svg){fig-align="center" height="540px" style="margin-top: 0.4em;"}
-
-## Distributed transpositions {visibility="uncounted"}
-
-![](PhD/7_backup/4_fieldlevel/14_distributed/decomp2d.gif){fig-align="center" height="540px" style="margin-top: 0.4em;"}
-
-## Halo exchange {visibility="uncounted"}
-
-<video src="PhD/7_backup/4_fieldlevel/15_halo_exchange/halo_exchange.mp4" class="screen-only" data-autoplay loop muted playsinline preload="auto" style="display: block; width: 1000px; max-width: none; margin: 4.5em auto 0;"></video>
-
-![](PhD/7_backup/4_fieldlevel/15_halo_exchange/halo_exchange_last.png){.print-only fig-align="center" width="1000px" style="margin-top: 4.5em;"}
+![](PhD/7_backup/4_fieldlevel/12_ghost_zone/ghost_zone.svg){fig-align="center" width="1000px"}
 
 ## Scale cuts and baryons {visibility="uncounted"}
 
 ::: {.grid .bare style="--cols: 230px 62px 180px 62px 180px 62px 230px; --gap: 0; --align: center; margin-top: 0.3em;"}
-![](PhD/7_backup/4_fieldlevel/16_scalecut/scalecut_map.png){width="230px"}
+![](PhD/7_backup/4_fieldlevel/13_scalecut/scalecut_map.png){width="230px"}
 
 ::: {style="text-align: center;"}
 [map2alm]{.kw style="display: block; font-size: 0.75em;"}
@@ -2720,7 +2677,7 @@ Removes the [single-redshift bias]{.kw} of wide shells: [17 %]{.kw2} on the firs
 ![](PhD/7_backup/2_cmb/01_sht/sht_arrow.svg){width="64px" style="display: block; margin: 0 auto;"}
 :::
 
-![](PhD/7_backup/4_fieldlevel/16_scalecut/scalecut_alm.png){width="180px"}
+![](PhD/7_backup/4_fieldlevel/13_scalecut/scalecut_alm.png){width="180px"}
 
 ::: {style="text-align: center;"}
 [× $T_\ell$]{.kw style="display: block; font-size: 0.75em;"}
@@ -2728,7 +2685,7 @@ Removes the [single-redshift bias]{.kw} of wide shells: [17 %]{.kw2} on the firs
 ![](PhD/7_backup/2_cmb/01_sht/sht_arrow.svg){width="64px" style="display: block; margin: 0 auto;"}
 :::
 
-![](PhD/7_backup/4_fieldlevel/16_scalecut/scalecut_alm_cut.png){width="180px"}
+![](PhD/7_backup/4_fieldlevel/13_scalecut/scalecut_alm_cut.png){width="180px"}
 
 ::: {style="text-align: center;"}
 [alm2map]{.kw style="display: block; font-size: 0.75em;"}
@@ -2736,7 +2693,7 @@ Removes the [single-redshift bias]{.kw} of wide shells: [17 %]{.kw2} on the firs
 ![](PhD/7_backup/2_cmb/01_sht/sht_arrow.svg){width="64px" style="display: block; margin: 0 auto;"}
 :::
 
-![](PhD/7_backup/4_fieldlevel/16_scalecut/scalecut_map_cut.png){width="230px"}
+![](PhD/7_backup/4_fieldlevel/13_scalecut/scalecut_map_cut.png){width="230px"}
 :::
 
 ::: {.grid .bare style="--cols: 430px 1fr; --gap: 20px; --align: center; margin-top: 0.4em;"}
@@ -2746,7 +2703,7 @@ $$T_\ell = \begin{cases} 1, & \ell \le \ell_\mathrm{cut} - \ell_\mathrm{width} \
 $$x = \frac{\ell - (\ell_\mathrm{cut} - \ell_\mathrm{width})}{\ell_\mathrm{width}}$$
 :::
 
-![](PhD/7_backup/4_fieldlevel/16_scalecut/scalecut_spectra.svg){width="560px"}
+![](PhD/7_backup/4_fieldlevel/13_scalecut/scalecut_spectra.svg){width="560px"}
 :::
 
 [Tersenov, Guerrini, Starck & Kilbinger (2026), arXiv:2609.09131]{.credit style="margin-top: 0.6em;"}
@@ -2754,36 +2711,36 @@ $$x = \frac{\ell - (\ell_\mathrm{cut} - \ell_\mathrm{width})}{\ell_\mathrm{width
 ## Higher-order statistics: the starlet $\ell_1$ norm {visibility="uncounted"}
 
 ::: {.row .flat .bare style="--gap: 24px; --justify: center; --align: center; margin-top: 0.6em;"}
-![](PhD/7_backup/4_fieldlevel/17_starlet/starlet_response.svg){style="width: 620px; flex: none;"}
+![](PhD/7_backup/4_fieldlevel/14_starlet/starlet_response.svg){style="width: 620px; flex: none;"}
 
-![](PhD/7_backup/4_fieldlevel/17_starlet/tersenov_l1_cnn.png){style="width: 400px; flex: none;"}
+![](PhD/7_backup/4_fieldlevel/14_starlet/tersenov_l1_cnn.png){style="width: 400px; flex: none;"}
 :::
 
 [Ajani et al. (2021), arXiv:2101.01542; Tersenov et al. (2026), in prep.]{.credit style="margin-top: 0.6em;"}
 
 ## Starlet $\ell_1$ norm against CosmoGrid {visibility="uncounted"}
 
-![](PhD/7_backup/4_fieldlevel/17_starlet/starlet_l1.svg){fig-align="center" width="1000px" style="margin-top: 0.4em;"}
+![](PhD/7_backup/4_fieldlevel/14_starlet/starlet_l1.svg){fig-align="center" width="1000px" style="margin-top: 0.4em;"}
 
 ## MAP: power spectra of the reconstruction {visibility="uncounted"}
 
-<video src="PhD/7_backup/4_fieldlevel/18_map_spectra/spectra_run.mp4" class="screen-only" data-autoplay muted playsinline preload="auto" style="display: block; width: 1000px; margin: 0.4em auto 0;"></video>
+<video src="PhD/7_backup/4_fieldlevel/15_map_spectra/spectra_run.mp4" class="screen-only" data-autoplay muted playsinline preload="auto" style="display: block; width: 1000px; margin: 0.4em auto 0;"></video>
 
-![](PhD/7_backup/4_fieldlevel/18_map_spectra/spectra_last.png){.print-only fig-align="center" width="1000px"}
+![](PhD/7_backup/4_fieldlevel/15_map_spectra/spectra_last.png){.print-only fig-align="center" width="1000px"}
 
 ## MAP: DES Y3 against Euclid, coherence {visibility="uncounted"}
 
-![](PhD/7_backup/4_fieldlevel/20_map_euclid/map_des_euclid_coherence.svg){fig-align="center" height="560px"}
+![](PhD/7_backup/4_fieldlevel/16_map_euclid/map_des_euclid_coherence.svg){fig-align="center" height="560px"}
 
 ## MAP: DES Y3 against Euclid, starlet $\ell_1$ norm {visibility="uncounted"}
 
-![](PhD/7_backup/4_fieldlevel/20_map_euclid/map_des_euclid_starlet.svg){fig-align="center" width="1000px"}
+![](PhD/7_backup/4_fieldlevel/16_map_euclid/map_des_euclid_starlet.svg){fig-align="center" width="1000px"}
 
 ## MAP: starlet $\ell_1$ norm of the reconstruction {visibility="uncounted"}
 
-<video src="PhD/7_backup/4_fieldlevel/19_map_starlet/starlet_run.mp4" class="screen-only" data-autoplay muted playsinline preload="auto" style="display: block; width: 1000px; margin: 0.6em auto 0;"></video>
+<video src="PhD/7_backup/4_fieldlevel/17_map_starlet/starlet_run.mp4" class="screen-only" data-autoplay muted playsinline preload="auto" style="display: block; width: 1000px; margin: 0.6em auto 0;"></video>
 
-![](PhD/7_backup/4_fieldlevel/19_map_starlet/starlet_last.png){.print-only fig-align="center" width="1000px"}
+![](PhD/7_backup/4_fieldlevel/17_map_starlet/starlet_last.png){.print-only fig-align="center" width="1000px"}
 
 ## Field-level posterior: convergence {visibility="uncounted"}
 
@@ -2800,47 +2757,47 @@ $$x = \frac{\ell - (\ell_\mathrm{cut} - \ell_\mathrm{width})}{\ell_\mathrm{width
 
 [bin 2]{.kw style="font-size: 0.6em; color: #C2560A; text-align: right;"}
 
-![](PhD/7_backup/4_fieldlevel/21_sampling/kappa_truth_bin2.png){style="width: 100%; margin: 0;"}
+![](PhD/7_backup/4_fieldlevel/18_sampling/kappa_truth_bin2.png){style="width: 100%; margin: 0;"}
 
 ::: {}
-<video src="PhD/7_backup/4_fieldlevel/21_sampling/kappa_samples_bin2.mp4" class="screen-only" data-autoplay loop muted playsinline preload="auto" style="display: block; width: 100%; margin: 0;"></video>
+<video src="PhD/7_backup/4_fieldlevel/18_sampling/kappa_samples_bin2.mp4" class="screen-only" data-autoplay loop muted playsinline preload="auto" style="display: block; width: 100%; margin: 0;"></video>
 
-![](PhD/7_backup/4_fieldlevel/21_sampling/kappa_samples_bin2_last.png){.print-only style="width: 100%; margin: 0;"}
+![](PhD/7_backup/4_fieldlevel/18_sampling/kappa_samples_bin2_last.png){.print-only style="width: 100%; margin: 0;"}
 :::
 
-![](PhD/7_backup/4_fieldlevel/21_sampling/kappa_std_bin2.png){style="width: 100%; margin: 0;"}
+![](PhD/7_backup/4_fieldlevel/18_sampling/kappa_std_bin2.png){style="width: 100%; margin: 0;"}
 
 ::: {}
-<video src="PhD/7_backup/4_fieldlevel/21_sampling/kappa_diff_bin2.mp4" class="screen-only" data-autoplay loop muted playsinline preload="auto" style="display: block; width: 100%; margin: 0;"></video>
+<video src="PhD/7_backup/4_fieldlevel/18_sampling/kappa_diff_bin2.mp4" class="screen-only" data-autoplay loop muted playsinline preload="auto" style="display: block; width: 100%; margin: 0;"></video>
 
-![](PhD/7_backup/4_fieldlevel/21_sampling/kappa_diff_bin2_last.png){.print-only style="width: 100%; margin: 0;"}
+![](PhD/7_backup/4_fieldlevel/18_sampling/kappa_diff_bin2_last.png){.print-only style="width: 100%; margin: 0;"}
 :::
 
 [bin 3]{.kw style="font-size: 0.6em; color: #3B6FB6; text-align: right;"}
 
-![](PhD/7_backup/4_fieldlevel/21_sampling/kappa_truth_bin3.png){style="width: 100%; margin: 0;"}
+![](PhD/7_backup/4_fieldlevel/18_sampling/kappa_truth_bin3.png){style="width: 100%; margin: 0;"}
 
 ::: {}
-<video src="PhD/7_backup/4_fieldlevel/21_sampling/kappa_samples_bin3.mp4" class="screen-only" data-autoplay loop muted playsinline preload="auto" style="display: block; width: 100%; margin: 0;"></video>
+<video src="PhD/7_backup/4_fieldlevel/18_sampling/kappa_samples_bin3.mp4" class="screen-only" data-autoplay loop muted playsinline preload="auto" style="display: block; width: 100%; margin: 0;"></video>
 
-![](PhD/7_backup/4_fieldlevel/21_sampling/kappa_samples_bin3_last.png){.print-only style="width: 100%; margin: 0;"}
+![](PhD/7_backup/4_fieldlevel/18_sampling/kappa_samples_bin3_last.png){.print-only style="width: 100%; margin: 0;"}
 :::
 
-![](PhD/7_backup/4_fieldlevel/21_sampling/kappa_std_bin3.png){style="width: 100%; margin: 0;"}
+![](PhD/7_backup/4_fieldlevel/18_sampling/kappa_std_bin3.png){style="width: 100%; margin: 0;"}
 
 ::: {}
-<video src="PhD/7_backup/4_fieldlevel/21_sampling/kappa_diff_bin3.mp4" class="screen-only" data-autoplay loop muted playsinline preload="auto" style="display: block; width: 100%; margin: 0;"></video>
+<video src="PhD/7_backup/4_fieldlevel/18_sampling/kappa_diff_bin3.mp4" class="screen-only" data-autoplay loop muted playsinline preload="auto" style="display: block; width: 100%; margin: 0;"></video>
 
-![](PhD/7_backup/4_fieldlevel/21_sampling/kappa_diff_bin3_last.png){.print-only style="width: 100%; margin: 0;"}
+![](PhD/7_backup/4_fieldlevel/18_sampling/kappa_diff_bin3_last.png){.print-only style="width: 100%; margin: 0;"}
 :::
 
 []{}
 
-![](PhD/7_backup/4_fieldlevel/21_sampling/cbar_kappa.svg){style="grid-column: span 2; width: 230px; margin: 0 auto;"}
+![](PhD/7_backup/4_fieldlevel/18_sampling/cbar_kappa.svg){style="grid-column: span 2; width: 230px; margin: 0 auto;"}
 
-![](PhD/7_backup/4_fieldlevel/21_sampling/cbar_std.svg){style="width: 200px; margin: 0 auto;"}
+![](PhD/7_backup/4_fieldlevel/18_sampling/cbar_std.svg){style="width: 200px; margin: 0 auto;"}
 
-![](PhD/7_backup/4_fieldlevel/21_sampling/cbar_diff.svg){style="width: 200px; margin: 0 auto;"}
+![](PhD/7_backup/4_fieldlevel/18_sampling/cbar_diff.svg){style="width: 200px; margin: 0 auto;"}
 :::
 
 ::: {.nice-table style="--table-size: 0.72em; margin-top: 0.7em;"}
@@ -2859,40 +2816,40 @@ $$x = \frac{\ell - (\ell_\mathrm{cut} - \ell_\mathrm{width})}{\ell_\mathrm{width
 [bin 2<br/>ℓ₁ norm]{.kw style="font-size: 0.6em; color: #C2560A; text-align: right;"}
 
 ::: {}
-<video src="PhD/7_backup/4_fieldlevel/21_sampling/starlet_l1_bin2.mp4" class="screen-only" data-autoplay loop muted playsinline preload="auto" style="display: block; width: 600px; margin: 0;"></video>
+<video src="PhD/7_backup/4_fieldlevel/18_sampling/starlet_l1_bin2.mp4" class="screen-only" data-autoplay loop muted playsinline preload="auto" style="display: block; width: 600px; margin: 0;"></video>
 
-![](PhD/7_backup/4_fieldlevel/21_sampling/starlet_l1_bin2_last.png){.print-only style="width: 600px; margin: 0;"}
+![](PhD/7_backup/4_fieldlevel/18_sampling/starlet_l1_bin2_last.png){.print-only style="width: 600px; margin: 0;"}
 :::
 
 [bin 2<br/>draw − truth]{.kw style="font-size: 0.6em; color: #C2560A; text-align: right;"}
 
 ::: {}
-<video src="PhD/7_backup/4_fieldlevel/21_sampling/starlet_resid_bin2.mp4" class="screen-only" data-autoplay loop muted playsinline preload="auto" style="display: block; width: 600px; margin: 0;"></video>
+<video src="PhD/7_backup/4_fieldlevel/18_sampling/starlet_resid_bin2.mp4" class="screen-only" data-autoplay loop muted playsinline preload="auto" style="display: block; width: 600px; margin: 0;"></video>
 
-![](PhD/7_backup/4_fieldlevel/21_sampling/starlet_resid_bin2_last.png){.print-only style="width: 600px; margin: 0;"}
+![](PhD/7_backup/4_fieldlevel/18_sampling/starlet_resid_bin2_last.png){.print-only style="width: 600px; margin: 0;"}
 :::
 
 [bin 3<br/>ℓ₁ norm]{.kw style="font-size: 0.6em; color: #3B6FB6; text-align: right;"}
 
 ::: {}
-<video src="PhD/7_backup/4_fieldlevel/21_sampling/starlet_l1_bin3.mp4" class="screen-only" data-autoplay loop muted playsinline preload="auto" style="display: block; width: 600px; margin: 0;"></video>
+<video src="PhD/7_backup/4_fieldlevel/18_sampling/starlet_l1_bin3.mp4" class="screen-only" data-autoplay loop muted playsinline preload="auto" style="display: block; width: 600px; margin: 0;"></video>
 
-![](PhD/7_backup/4_fieldlevel/21_sampling/starlet_l1_bin3_last.png){.print-only style="width: 600px; margin: 0;"}
+![](PhD/7_backup/4_fieldlevel/18_sampling/starlet_l1_bin3_last.png){.print-only style="width: 600px; margin: 0;"}
 :::
 
 [bin 3<br/>draw − truth]{.kw style="font-size: 0.6em; color: #3B6FB6; text-align: right;"}
 
 ::: {}
-<video src="PhD/7_backup/4_fieldlevel/21_sampling/starlet_resid_bin3.mp4" class="screen-only" data-autoplay loop muted playsinline preload="auto" style="display: block; width: 600px; margin: 0;"></video>
+<video src="PhD/7_backup/4_fieldlevel/18_sampling/starlet_resid_bin3.mp4" class="screen-only" data-autoplay loop muted playsinline preload="auto" style="display: block; width: 600px; margin: 0;"></video>
 
-![](PhD/7_backup/4_fieldlevel/21_sampling/starlet_resid_bin3_last.png){.print-only style="width: 600px; margin: 0;"}
+![](PhD/7_backup/4_fieldlevel/18_sampling/starlet_resid_bin3_last.png){.print-only style="width: 600px; margin: 0;"}
 :::
 :::
 
 ## Cosmology-only inference {visibility="uncounted"}
 
 :::: {.row .flat .bare style="--gap: 40px; --justify: center; margin-top: 0.3em;"}
-![](PhD/7_backup/4_fieldlevel/21_sampling/posterior_nb17.svg){style="height: 480px; flex: none; margin: 0;"}
+![](PhD/7_backup/4_fieldlevel/18_sampling/posterior_nb17.svg){style="height: 480px; flex: none; margin: 0;"}
 
 ::: {.nice-table style="--table-size: 0.8em; flex: none;"}
 | NUTS, initial conditions at the truth | |
@@ -2904,3 +2861,75 @@ $$x = \frac{\ell - (\ell_\mathrm{cut} - \ell_\mathrm{width})}{\ell_\mathrm{width
 | **Wall time** | **4 h 56 min** |
 :::
 ::::
+
+## Photometric redshift uncertainty: hyperrank {visibility="uncounted"}
+
+![](PhD/7_backup/4_fieldlevel/19_hyperrank/hyperrank_nz.svg){fig-align="center" height="570px" style="margin-top: 0;"}
+
+[Jeffrey et al. (2024), arXiv:2403.02314; Cordero et al. (2022)]{.credit style="margin-top: 0.3em;"}
+
+## Intrinsic alignment in the forward model {visibility="uncounted"}
+
+![](PhD/7_backup/4_fieldlevel/20_intrinsic_alignment/ia_nla.png){fig-align="center" width="1050px" style="margin-top: 0; max-width: none; max-height: none;"}
+
+[Tsaprazi et al. (2022), arXiv:2112.04484]{.credit style="margin-top: 0.3em;"}
+
+# Backup: Numerical and technical details {visibility="uncounted"}
+
+## The two adjoints {visibility="uncounted"}
+
+::: {.row .bare style="--gap: 40px; --justify: center; margin-top: 0.3em;"}
+![](PhD/7_backup/5_numerical/01_adjoints/adjoints.svg){height="540px"}
+
+![](PhD/7_backup/5_numerical/01_adjoints/adjoint_memory.svg){height="500px"}
+:::
+
+## Distributed Fourier transform {visibility="uncounted"}
+
+![](PhD/7_backup/5_numerical/02_distributed/jaxdecomp_fft.svg){fig-align="center" height="540px" style="margin-top: 0.4em;"}
+
+## Distributed transpositions {visibility="uncounted"}
+
+![](PhD/7_backup/5_numerical/02_distributed/decomp2d.gif){fig-align="center" height="540px" style="margin-top: 0.4em;"}
+
+## Halo exchange {visibility="uncounted"}
+
+<video src="PhD/7_backup/5_numerical/03_halo_exchange/halo_exchange.mp4" class="screen-only" data-autoplay loop muted playsinline preload="auto" style="display: block; width: 1000px; max-width: none; margin: 4.5em auto 0;"></video>
+
+![](PhD/7_backup/5_numerical/03_halo_exchange/halo_exchange_last.png){.print-only fig-align="center" width="1000px" style="margin-top: 4.5em;"}
+
+## Scaling on supercomputers {visibility="uncounted"}
+
+::: {.absolute .bare top=-12 right=0 style="display: flex; align-items: center; gap: 10px;"}
+![](PhD/5_contribution/compsep/12_selection/jean_zay_logo.png){height="58px"}
+
+[Jean Zay, IDRIS<br/>NVIDIA H100 GPUs]{style="font-size: 0.55em; line-height: 1.25; color: #2E2E2E;"}
+:::
+
+::: {.bare style="text-align: center; margin-top: 0.15em;"}
+[Performance of the forward model]{.kw style="display: block; font-size: 0.75em; text-align: left;"}
+
+![](PhD/7_backup/5_numerical/04_scaling/scaling_forward.svg){width="1000px"}
+:::
+
+::: {.bare style="text-align: center; margin-top: 0.15em;"}
+[Performance of the gradient]{.kw style="display: block; font-size: 0.75em; text-align: left;"}
+
+![](PhD/7_backup/5_numerical/04_scaling/scaling_gradient.svg){width="1000px"}
+:::
+
+## Particle mesh against moving mesh {visibility="uncounted"}
+
+::: {.absolute .bare top=-12 right=0 style="display: flex; align-items: center; gap: 10px;"}
+![](PhD/5_contribution/compsep/12_selection/jean_zay_logo.png){height="58px"}
+
+[Jean Zay, IDRIS<br/>NVIDIA H100 GPUs]{style="font-size: 0.55em; line-height: 1.25; color: #2E2E2E;"}
+:::
+
+![](PhD/7_backup/5_numerical/05_moving_mesh/moving_mesh_scaling.svg){fig-align="center" width="1000px" style="margin-top: 0.3em;"}
+
+## Lightcone from a replicated box {visibility="uncounted"}
+
+![](PhD/7_backup/5_numerical/06_box_replication/box_replication.svg){fig-align="center" height="560px" style="margin-top: 0;"}
+
+[Sgier et al. (2021), arXiv:2007.05735]{.credit style="margin-top: 0.3em;"}

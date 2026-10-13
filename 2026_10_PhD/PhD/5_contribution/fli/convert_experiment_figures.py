@@ -39,14 +39,14 @@ PAYLOAD = Path("/home/wassim/Projects/NBody/jax-fli/docs/3-sampling-and-inferenc
 FIGURES = {
     # the forward model end to end (jax-fli README diagram)
     "5_contribution/fli/01_pipeline/pipeline.svg": Path("/home/wassim/Projects/NBody/jax-fli/assets/PIPELINE.svg"),
-    # one lightcone shell, the end of the painting step (the particles: 07_painting/particles_box.py)
-    "5_contribution/fli/07_painting/density_shell.png": Path("/home/wassim/Projects/NBody/jax-fli/assets/pipeline/pipeline_images/03_spherical_projection.png"),
+    # one lightcone shell, the end of the painting step (the particles: 7_backup/4_fieldlevel/08_painting/particles_box.py)
+    "7_backup/4_fieldlevel/08_painting/density_shell.png": Path("/home/wassim/Projects/NBody/jax-fli/assets/pipeline/pipeline_images/03_spherical_projection.png"),
     # the survey mask and what it costs
     "7_backup/3_weaklensing/03_masked_shear/masked_shear_masks.svg": MASK / "fig01-masks.svg",
     "7_backup/3_weaklensing/03_masked_shear/masked_shear_residual_maps.svg": MASK / "fig08-gamma1-residual-maps.svg",
     # the MAP reconstruction under DES Y3 and Euclid noise (experiment 13)
-    "7_backup/4_fieldlevel/20_map_euclid/map_des_euclid_coherence.svg": MAP / "fig13-des-vs-euclid-coherence.svg",
-    "7_backup/4_fieldlevel/20_map_euclid/map_des_euclid_starlet.svg": MAP / "fig14-des-vs-euclid-starlet.svg",
+    "7_backup/4_fieldlevel/16_map_euclid/map_des_euclid_coherence.svg": MAP / "fig13-des-vs-euclid-coherence.svg",
+    "7_backup/4_fieldlevel/16_map_euclid/map_des_euclid_starlet.svg": MAP / "fig14-des-vs-euclid-starlet.svg",
 }
 # the field-level sampling backups: posterior kappa and its starlet l1 norm (notebook 16), and the
 # cosmology at fixed initial conditions (notebook 17)
@@ -54,7 +54,7 @@ SAMPLING = [f"kappa_{q}_bin{b}.png" for q in ("truth", "std") for b in (2, 3)]
 SAMPLING += [f"{v}_bin{b}{ext}" for v in ("kappa_samples", "kappa_diff", "starlet_l1", "starlet_resid")
              for b in (2, 3) for ext in (".mp4", "_last.png")]
 SAMPLING += [f"cbar_{q}.svg" for q in ("kappa", "std", "diff")] + ["posterior_nb17.svg"]
-FIGURES.update({f"7_backup/4_fieldlevel/21_sampling/{name}": PAYLOAD / name for name in SAMPLING})
+FIGURES.update({f"7_backup/4_fieldlevel/18_sampling/{name}": PAYLOAD / name for name in SAMPLING})
 made, missing = 0, []
 for out, src in FIGURES.items():
     if (ROOT / out).exists() and not force_regen():

@@ -16,7 +16,7 @@ export FORCE_REGEN="${FORCE_REGEN:-0}"
 
 
 SECTIONS=(0_cover 1_intro 2_outline 3_observation/cmb 3_observation/weaklensing 4_inference 5_contribution/compsep 5_contribution/fli 6_ending/software
-          7_backup/1_general 7_backup/2_cmb 7_backup/3_weaklensing 7_backup/4_fieldlevel)
+          7_backup/1_general 7_backup/2_cmb 7_backup/3_weaklensing 7_backup/4_fieldlevel 7_backup/5_numerical)
 [ $# -gt 0 ] && SECTIONS=("$@")
 
 fail=0

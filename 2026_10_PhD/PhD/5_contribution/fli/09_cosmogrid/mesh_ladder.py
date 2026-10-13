@@ -3,7 +3,7 @@
 """
 The forward model against CosmoGrid as the particle-mesh resolution grows, for the slide "Valid
 scales for real survey analysis": one frame per mesh, in bandpowers of 16 multipoles (data and
-drawing in _ladder.py, shared with the finer-bandpower backup in 7_backup/4_fieldlevel/09_ladder_nlb4).
+drawing in _ladder.py, shared with the finer-bandpower backup in 7_backup/4_fieldlevel/10_ladder_nlb4).
 
 Outputs (this directory), one per mesh on the same canvas, the meshes before it greyed:
   ladder_512.svg ... ladder_4096.svg

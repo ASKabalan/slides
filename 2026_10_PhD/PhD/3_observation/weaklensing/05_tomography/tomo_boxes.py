@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # ENV: jax-fli
 """
-The four density cubes that 5_contribution/fli/08_lightcone/lightcone_shells.py draws above its
+The four density cubes that 5_contribution/fli/07_lightcone/lightcone_shells.py draws above its
 shells: a long 1LPT density box from one small run of my forward model, 256 x 64 x 64 cells,
 1600 x 400 x 400 Mpc/h, Planck 2018, at a = 1, cut into four 64^3 sub-boxes, far to near, on one
 colour scale (magma, transparent).

@@ -52,7 +52,7 @@ for out, src in FIGURES.items():
     print(f"wrote {out}")
 
 # Already SVG in the thesis: copied as is.
-for out, src in (("7_backup/4_fieldlevel/14_distributed/jaxdecomp_fft.svg", CHAP6 / "jaxdecomp_fft.svg"),):
+for out, src in (("7_backup/5_numerical/02_distributed/jaxdecomp_fft.svg", CHAP6 / "jaxdecomp_fft.svg"),):
     if src.exists() and (force_regen() or not (ROOT / out).exists()):
         shutil.copy(src, ROOT / out)
         print(f"copied {out}")
