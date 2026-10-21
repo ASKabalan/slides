@@ -712,6 +712,8 @@ r \equiv \frac{A_t}{A_s} \;\propto\; E_\mathrm{inf}^4
 
 </div>
 </div>
+<!-- under the third box, once it has slid into place -->
+<p><span class="fragment" data-fragment-index="3" style="position: absolute; left: 61.8%; top: 64.5%; width: 30.6%; text-align: center; font-size: 0.8em; transition-delay: 0.6s; text-shadow: 0 0 4px #fff, 0 0 4px #fff;">My contribution</span></p>
 </div>
 </section></section>
 <section>
@@ -1322,13 +1324,13 @@ shapes</span></p>
 <p><img data-src="PhD/5_contribution/compsep/04_r_estimation/r_budget.svg" style="width: 118%; max-width: none; margin: 0 0 0 -14%;"></p>
 </div><div class="column" style="width:60%;">
 <div class="eqbox" style="--eq-border: #521463; --eq-size: 0.8em; --eq-math-margin: 0.15em 0; width: fit-content; margin: 0 auto; text-align: center;">
-<p><span class="math display">\[C_\ell^{BB,\mathrm{model}}(r) = {\color{#C2560A} r}\,C_\ell^{\mathrm{tensor}} + C_\ell^{\mathrm{lens}} + C_\ell^{\mathrm{stat}}\]</span></p>
+<p><span class="math display">\[C_\ell^{BB,\mathrm{obs}} = C_\ell^{BB,\mathrm{CMB}} + C_\ell^{\mathrm{lens}} + C_\ell^{\mathrm{stat}}\]</span></p>
 </div>
 <div class="eqbox" style="--eq-border: #521463; --eq-size: 0.8em; --eq-math-margin: 0.15em 0; width: fit-content; margin: 0.6em auto 0; text-align: center;">
 <p><span class="math display">\[\text{with}\quad C_\ell^{\mathrm{stat}} = \big\langle C_\ell^{BB,\mathrm{noise}} \big\rangle_n\]</span></p>
 </div>
 <div class="eqbox" style="--eq-border: #521463; --eq-size: 0.8em; --eq-math-margin: 0.15em 0; width: fit-content; margin: 0.6em auto 0; text-align: center;">
-<p><span class="math display">\[C_\ell^{BB,\mathrm{obs}} = C_\ell^{BB,\mathrm{CMB}} + C_\ell^{\mathrm{lens}} + C_\ell^{\mathrm{stat}}\]</span></p>
+<p><span class="math display">\[C_\ell^{BB,\mathrm{model}}(r) = {\color{#C2560A} r}\,C_\ell^{\mathrm{tensor}} + C_\ell^{\mathrm{lens}} + C_\ell^{\mathrm{stat}}\]</span></p>
 </div>
 <div class="fragment">
 <div class="eqbox" style="--eq-border: #521463; --eq-size: 0.8em; --eq-math-margin: 0.15em 0; width: fit-content; margin: 0.8em auto 0; text-align: center;">
@@ -1879,54 +1881,10 @@ optimum exactly over it -->
 </div>
 </div>
 </section>
-<section id="painting-on-spherical-shells" class="slide level2" data-transition="slide-in none-out">
-<h2>Painting on spherical shells</h2>
-<div class="row bare" style="--gap: 1.2em; --justify: center; --align: center; margin-top: 110px;">
-<div class="cell" style="width: 380px;">
-<p><img data-src="PhD/5_contribution/fli/07_painting/particles_box.png"></p>
-<p><span class="caption" style="--cap-size: 0.7em;">evolved particles</span></p>
-</div>
-<p><span style="font-size: 3.4em; color: #6E6E6E;">⟶</span></p>
-<div class="cell" style="width: 480px;">
-<p><img data-src="PhD/5_contribution/fli/07_painting/density_shell.png"></p>
-<p><span class="caption" style="--cap-size: 0.7em;">one HEALPix shell</span></p>
-</div>
-</div>
-</section>
-<section id="painting-on-spherical-shells-1" class="slide level2" data-visibility="uncounted" data-transition="none-in none-out">
-<h2>Painting on spherical shells</h2>
-<p><a href="https://github.com/CMBSciPol/jax-healpy"><img data-src="https://img.shields.io/badge/GitHub-jax--healpy-blue?logo=github.png"></a></p>
-<div class="columns">
-<div class="column" style="width: 50%; text-align: center;">
-<h4 style="margin: 0.2em 0;" id="bilinear-interpolation"><span class="kw2">Bilinear interpolation</span></h4>
-<video src="PhD/5_contribution/fli/07_painting/bilinear.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="width: 82%;">
-</video>
-<p><img data-src="PhD/5_contribution/fli/07_painting/bilinear_last.png" class="print-only" style="width:82.0%"></p>
-<div class="solutionbox" style="text-align: left;">
-<div class="solutionbox-body" style="font-size: 0.72em;">
-<p>Four pixels, weighted by the position between their centres: <code>get_interp_weights</code>, implemented in <span class="kw">jax-healpy</span></p>
-</div>
-</div>
-</div><div class="column fragment" data-fragment-index="1" style="width: 50%; text-align: center;">
-<h4 style="margin: 0.2em 0;" id="radial-basis-function-interpolation"><span class="kw">Radial basis function interpolation</span></h4>
-<div class="r-stack">
-<video src="PhD/5_contribution/fli/07_painting/rbf.mp4" class="fragment fade-out screen-only" data-fragment-index="2" loop="" muted="" playsinline="" preload="auto" style="width: 82%;">
-</video>
-<video src="PhD/5_contribution/fli/07_painting/rbf_kernel.mp4" class="fragment screen-only" data-fragment-index="2" loop="" muted="" playsinline="" preload="auto" style="width: 82%;">
-</video>
-<p><img data-src="PhD/5_contribution/fli/07_painting/rbf_kernel_last.png" class="print-only" style="width:82.0%"></p>
-</div>
-<div class="solutionbox" style="text-align: left;">
-<div class="solutionbox-body" style="font-size: 0.72em;">
-<p>The pixel and its eight neighbours (<code>get_all_neighbours</code>, implemented in <span class="kw">jax-healpy</span>), weighted by a Gaussian kernel of adjustable width</p>
-</div>
-</div>
-</div></div>
-</section>
-<section id="creating-the-lightcone" class="slide level2" data-transition="none-in slide-out">
+<section id="creating-the-lightcone" class="slide level2">
 <h2>Creating the lightcone</h2>
 <div style="text-align: center; margin-top: 0.2em;">
-<p><img data-src="PhD/5_contribution/fli/08_lightcone/lightcone_shells.png" style="height: 530px;"></p>
+<p><img data-src="PhD/5_contribution/fli/07_lightcone/lightcone_shells.png" style="height: 530px;"></p>
 </div>
 </section>
 <section id="calibrating-the-lightcone-model" class="slide level2">
@@ -1968,7 +1926,7 @@ optimum exactly over it -->
 <p><span class="math display">\[W_j(\chi_s) = \int_{\mathrm{shell}\ j} \mathrm{d}\chi\;\chi\,(1+z)\Big(1-\frac{\chi}{\chi_s}\Big)\]</span></p>
 </div>
 </div>
-<p><img data-src="PhD/5_contribution/fli/09_born/born_weights.svg" width="560"></p>
+<p><img data-src="PhD/5_contribution/fli/08_born/born_weights.svg" width="560"></p>
 </div>
 </div>
 <div class="fragment" data-fragment-index="1">
@@ -1976,7 +1934,7 @@ optimum exactly over it -->
 <div class="eqbox" style="--eq-border: #25406b; --eq-size: 0.72em; --eq-math-margin: 0.3em 0; margin: 0 auto; width: fit-content;">
 <p><span class="math display">\[\kappa_i(\hat{\mathbf n}) = \int \mathrm{d}z\; n_i(z)\,\kappa\big(\hat{\mathbf n};\chi_s(z)\big)\]</span></p>
 </div>
-<p><img data-src="PhD/5_contribution/fli/09_born/born_kappa.png" width="745"></p>
+<p><img data-src="PhD/5_contribution/fli/08_born/born_kappa.png" width="745"></p>
 </div>
 </div>
 <div class="fragment" data-fragment-index="2">
@@ -1991,12 +1949,12 @@ optimum exactly over it -->
 <section id="valid-scales-for-real-survey-analysis" class="slide level2">
 <h2>Valid scales for real survey analysis</h2>
 <div class="r-stack bare" style="margin-top: -0.2em;">
-<p><img data-src="PhD/5_contribution/fli/10_cosmogrid/ladder_512.svg" class="fragment fade-out" data-fragment-index="1" width="990"></p>
-<p><img data-src="PhD/5_contribution/fli/10_cosmogrid/ladder_1024.svg" class="fragment fade-in-then-out" data-fragment-index="1" width="990"></p>
-<p><img data-src="PhD/5_contribution/fli/10_cosmogrid/ladder_2048.svg" class="fragment fade-in-then-out" data-fragment-index="2" width="990"></p>
-<p><img data-src="PhD/5_contribution/fli/10_cosmogrid/ladder_2560.svg" class="fragment fade-in-then-out" data-fragment-index="3" width="990"></p>
-<p><img data-src="PhD/5_contribution/fli/10_cosmogrid/ladder_3072.svg" class="fragment fade-in-then-out" data-fragment-index="4" width="990"></p>
-<p><img data-src="PhD/5_contribution/fli/10_cosmogrid/ladder_4096.svg" class="fragment" data-fragment-index="5" width="990"></p>
+<p><img data-src="PhD/5_contribution/fli/09_cosmogrid/ladder_512.svg" class="fragment fade-out" data-fragment-index="1" width="990"></p>
+<p><img data-src="PhD/5_contribution/fli/09_cosmogrid/ladder_1024.svg" class="fragment fade-in-then-out" data-fragment-index="1" width="990"></p>
+<p><img data-src="PhD/5_contribution/fli/09_cosmogrid/ladder_2048.svg" class="fragment fade-in-then-out" data-fragment-index="2" width="990"></p>
+<p><img data-src="PhD/5_contribution/fli/09_cosmogrid/ladder_2560.svg" class="fragment fade-in-then-out" data-fragment-index="3" width="990"></p>
+<p><img data-src="PhD/5_contribution/fli/09_cosmogrid/ladder_3072.svg" class="fragment fade-in-then-out" data-fragment-index="4" width="990"></p>
+<p><img data-src="PhD/5_contribution/fli/09_cosmogrid/ladder_4096.svg" class="fragment" data-fragment-index="5" width="990"></p>
 </div>
 <p><span class="selfcredit" style="margin-top: -0.2em;">Kabalan et al.&nbsp;(2026c), in prep. for JCAP</span></p>
 </section></section>
@@ -2066,11 +2024,11 @@ optimum exactly over it -->
 <p><span class="kw">Preliminary</span><br>DES Y3 noise, <span class="math inline">\(1200^3\)</span> mesh, 2LPT<br><span class="math inline">\(N_\mathrm{side} = 1024\)</span>, painted at <span class="math inline">\(512\)</span>, <span class="math inline">\(\ell \le 700\)</span></p>
 </div>
 <div class="r-stack bare" style="margin-top: 0.1em;">
-<p><img data-src="PhD/5_contribution/fli/11_map/map_first.png" width="1000"></p>
+<p><img data-src="PhD/5_contribution/fli/10_map/map_first.png" width="1000"></p>
 <div class="fragment" data-fragment-index="1">
-<video src="PhD/5_contribution/fli/11_map/map_run.mp4" class="screen-only" muted="" playsinline="" preload="auto" style="width: 1000px;">
+<video src="PhD/5_contribution/fli/10_map/map_run.mp4" class="screen-only" muted="" playsinline="" preload="auto" style="width: 1000px;">
 </video>
-<p><img data-src="PhD/5_contribution/fli/11_map/map_last.png" class="print-only" width="1000"></p>
+<p><img data-src="PhD/5_contribution/fli/10_map/map_last.png" class="print-only" width="1000"></p>
 </div>
 </div>
 </section>
@@ -2101,9 +2059,9 @@ optimum exactly over it -->
 <p>Moving-mesh particle mesh</p>
 </div>
 <div class="figcadre-body" style="text-align: center;">
-<video src="PhD/5_contribution/fli/12_conclusion/moving_mesh.mp4" class="screen-only" loop="" muted="" playsinline="" preload="auto" style="width: 100%; margin: 0;">
+<video src="PhD/5_contribution/fli/11_conclusion/moving_mesh.mp4" class="screen-only" loop="" muted="" playsinline="" preload="auto" style="width: 100%; margin: 0;">
 </video>
-<p><img data-src="PhD/5_contribution/fli/12_conclusion/moving_mesh_last.png" class="print-only" style="width:100.0%"></p>
+<p><img data-src="PhD/5_contribution/fli/11_conclusion/moving_mesh_last.png" class="print-only" style="width:100.0%"></p>
 <p><span class="credit">Moving mesh: B. Horowitz (2026), arXiv:2607.10983</span></p>
 </div>
 </div>
@@ -2172,7 +2130,7 @@ optimum exactly over it -->
 </div>
 <div class="solutionbox-body grid" style="--cols: 1fr 1fr; --gap: 1.6em; text-align: center;">
 <p><span class="kw">Early Universe · inflation</span><br>Spatial variability for the CMB</p>
-<p><span class="kw">Late Universe · dark energy</span><br>Explicit field-level inference for large-scale structure</p>
+<p><span class="kw">Late Universe · dark matter</span><br>Explicit field-level inference for large-scale structure</p>
 </div>
 </div>
 <!-- on the click: the people and places of the PhD, over the slide below its title -->
@@ -2487,11 +2445,51 @@ C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
 </div>
 </div>
 </section>
+<section id="painting-on-spherical-shells" class="slide level2" data-visibility="uncounted" data-transition="slide-in none-out">
+<h2>Painting on spherical shells</h2>
+<div class="row bare" style="--gap: 1.2em; --justify: center; --align: center; margin-top: 110px;">
+<div class="cell" style="width: 380px;">
+<p><img data-src="PhD/7_backup/4_fieldlevel/08_painting/particles_box.png"></p>
+<p><span class="caption" style="--cap-size: 0.7em;">evolved particles</span></p>
+</div>
+<p><span style="font-size: 3.4em; color: #6E6E6E;">⟶</span></p>
+<div class="cell" style="width: 480px;">
+<p><img data-src="PhD/7_backup/4_fieldlevel/08_painting/density_shell.png"></p>
+<p><span class="caption" style="--cap-size: 0.7em;">one HEALPix shell</span></p>
+</div>
+</div>
+</section>
+<section id="painting-on-spherical-shells-1" class="slide level2" data-visibility="uncounted" data-transition="none-in slide-out">
+<h2>Painting on spherical shells</h2>
+<p><a href="https://github.com/CMBSciPol/jax-healpy"><img data-src="https://img.shields.io/badge/GitHub-jax--healpy-blue?logo=github.png"></a></p>
+<div class="columns">
+<div class="column" style="width: 50%; text-align: center;">
+<h4 style="margin: 0.2em 0;" id="bilinear-interpolation"><span class="kw2">Bilinear interpolation</span></h4>
+<video src="PhD/7_backup/4_fieldlevel/08_painting/bilinear.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="width: 82%;">
+</video>
+<p><img data-src="PhD/7_backup/4_fieldlevel/08_painting/bilinear_last.png" class="print-only" style="width:82.0%"></p>
+<div class="solutionbox" style="text-align: left;">
+<div class="solutionbox-body" style="font-size: 0.72em;">
+<p>Four pixels, weighted by the position between their centres: <code>get_interp_weights</code>, implemented in <span class="kw">jax-healpy</span></p>
+</div>
+</div>
+</div><div class="column" style="width: 50%; text-align: center;">
+<h4 style="margin: 0.2em 0;" id="radial-basis-function-interpolation"><span class="kw">Radial basis function interpolation</span></h4>
+<video src="PhD/7_backup/4_fieldlevel/08_painting/rbf_kernel.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="width: 82%;">
+</video>
+<p><img data-src="PhD/7_backup/4_fieldlevel/08_painting/rbf_kernel_last.png" class="print-only" style="width:82.0%"></p>
+<div class="solutionbox" style="text-align: left;">
+<div class="solutionbox-body" style="font-size: 0.72em;">
+<p>The pixel and its eight neighbours (<code>get_all_neighbours</code>, implemented in <span class="kw">jax-healpy</span>), weighted by a Gaussian kernel of adjustable width</p>
+</div>
+</div>
+</div></div>
+</section>
 <section id="painting-rbf-against-nearest-grid-point" class="slide level2" data-visibility="uncounted">
 <h2>Painting: RBF against nearest grid point</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/7_backup/4_fieldlevel/08_painting_zoom/painting_cl_zoom.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0.4em;" height="560"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/09_painting_zoom/painting_cl_zoom.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0.4em;" height="560"></p>
 </figure>
 </div>
 </section>
@@ -2499,7 +2497,7 @@ C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
 <h2>Valid scales: finer bandpowers</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/7_backup/4_fieldlevel/09_ladder_nlb4/ladder_4096_nlb4.svg" class="quarto-figure quarto-figure-center" style="margin-top: -0.2em;" width="990"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/10_ladder_nlb4/ladder_4096_nlb4.svg" class="quarto-figure quarto-figure-center" style="margin-top: -0.2em;" width="990"></p>
 </figure>
 </div>
 </section>
@@ -2507,7 +2505,7 @@ C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
 <h2>Mesh plateau: density shells</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/7_backup/4_fieldlevel/10_mesh_plateau/mesh_plateau_density.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0.6em;" width="1000"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/11_mesh_plateau/mesh_plateau_density.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0.6em;" width="1000"></p>
 </figure>
 </div>
 </section>
@@ -2515,7 +2513,7 @@ C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
 <h2>Mesh plateau: convergence</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/7_backup/4_fieldlevel/10_mesh_plateau/mesh_plateau_kappa.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0.6em;" width="1000"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/11_mesh_plateau/mesh_plateau_kappa.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0.6em;" width="1000"></p>
 </figure>
 </div>
 </section>
@@ -2523,92 +2521,44 @@ C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
 <h2>The ghost zone</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/7_backup/4_fieldlevel/11_ghost_zone/ghost_zone.svg" class="quarto-figure quarto-figure-center" width="1000"></p>
-</figure>
-</div>
-</section>
-<section id="the-two-adjoints" class="slide level2" data-visibility="uncounted">
-<h2>The two adjoints</h2>
-<div class="row bare" style="--gap: 40px; --justify: center; margin-top: 0.3em;">
-<p><img data-src="PhD/7_backup/4_fieldlevel/12_adjoints/adjoints.svg" height="540"></p>
-<p><img data-src="PhD/7_backup/4_fieldlevel/12_adjoints/adjoint_memory.svg" height="500"></p>
-</div>
-</section>
-<section id="scaling-on-supercomputers" class="slide level2" data-visibility="uncounted">
-<h2>Scaling on supercomputers</h2>
-<div class="absolute bare" style="display: flex; align-items: center; gap: 10px;top: -12px; right: 0px; ">
-<p><img data-src="PhD/5_contribution/compsep/12_selection/jean_zay_logo.png" height="58"></p>
-<p><span style="font-size: 0.55em; line-height: 1.25; color: #2E2E2E;">Jean Zay, IDRIS<br>NVIDIA H100 GPUs</span></p>
-</div>
-<div class="bare" style="text-align: center; margin-top: 0.15em;">
-<p><span class="kw" style="display: block; font-size: 0.75em; text-align: left;">Performance of the forward model</span></p>
-<p><img data-src="PhD/7_backup/4_fieldlevel/13_scaling/scaling_forward.svg" width="1000"></p>
-</div>
-<div class="bare" style="text-align: center; margin-top: 0.15em;">
-<p><span class="kw" style="display: block; font-size: 0.75em; text-align: left;">Performance of the gradient</span></p>
-<p><img data-src="PhD/7_backup/4_fieldlevel/13_scaling/scaling_gradient.svg" width="1000"></p>
-</div>
-</section>
-<section id="distributed-fourier-transform" class="slide level2" data-visibility="uncounted">
-<h2>Distributed Fourier transform</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="PhD/7_backup/4_fieldlevel/14_distributed/jaxdecomp_fft.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0.4em;" height="540"></p>
-</figure>
-</div>
-</section>
-<section id="distributed-transpositions" class="slide level2" data-visibility="uncounted">
-<h2>Distributed transpositions</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="PhD/7_backup/4_fieldlevel/14_distributed/decomp2d.gif" class="quarto-figure quarto-figure-center" style="margin-top: 0.4em;" height="540"></p>
-</figure>
-</div>
-</section>
-<section id="halo-exchange" class="slide level2" data-visibility="uncounted">
-<h2>Halo exchange</h2>
-<video src="PhD/7_backup/4_fieldlevel/15_halo_exchange/halo_exchange.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 1000px; max-width: none; margin: 4.5em auto 0;">
-</video>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="PhD/7_backup/4_fieldlevel/15_halo_exchange/halo_exchange_last.png" class="print-only quarto-figure quarto-figure-center" style="margin-top: 4.5em;" width="1000"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/12_ghost_zone/ghost_zone.svg" class="quarto-figure quarto-figure-center" width="1000"></p>
 </figure>
 </div>
 </section>
 <section id="scale-cuts-and-baryons" class="slide level2" data-visibility="uncounted">
 <h2>Scale cuts and baryons</h2>
 <div class="grid bare" style="--cols: 230px 62px 180px 62px 180px 62px 230px; --gap: 0; --align: center; margin-top: 0.3em;">
-<p><img data-src="PhD/7_backup/4_fieldlevel/16_scalecut/scalecut_map.png" width="230"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/13_scalecut/scalecut_map.png" width="230"></p>
 <div style="text-align: center;">
 <p><span class="kw" style="display: block; font-size: 0.75em;">map2alm</span></p>
 <p><img data-src="PhD/7_backup/2_cmb/01_sht/sht_arrow.svg" style="display: block; margin: 0 auto;" width="64"></p>
 </div>
-<p><img data-src="PhD/7_backup/4_fieldlevel/16_scalecut/scalecut_alm.png" width="180"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/13_scalecut/scalecut_alm.png" width="180"></p>
 <div style="text-align: center;">
 <p><span class="kw" style="display: block; font-size: 0.75em;">× <span class="math inline">\(T_\ell\)</span></span></p>
 <p><img data-src="PhD/7_backup/2_cmb/01_sht/sht_arrow.svg" style="display: block; margin: 0 auto;" width="64"></p>
 </div>
-<p><img data-src="PhD/7_backup/4_fieldlevel/16_scalecut/scalecut_alm_cut.png" width="180"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/13_scalecut/scalecut_alm_cut.png" width="180"></p>
 <div style="text-align: center;">
 <p><span class="kw" style="display: block; font-size: 0.75em;">alm2map</span></p>
 <p><img data-src="PhD/7_backup/2_cmb/01_sht/sht_arrow.svg" style="display: block; margin: 0 auto;" width="64"></p>
 </div>
-<p><img data-src="PhD/7_backup/4_fieldlevel/16_scalecut/scalecut_map_cut.png" width="230"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/13_scalecut/scalecut_map_cut.png" width="230"></p>
 </div>
 <div class="grid bare" style="--cols: 430px 1fr; --gap: 20px; --align: center; margin-top: 0.4em;">
 <div class="eqbox" style="--eq-border: #25406b; --eq-size: 0.68em; --eq-math-margin: 0.3em 0; margin: 0 auto; width: fit-content;">
 <p><span class="math display">\[T_\ell = \begin{cases} 1, &amp; \ell \le \ell_\mathrm{cut} - \ell_\mathrm{width} \\ \tfrac12\left(1 + \cos \pi x\right), &amp; \ell_\mathrm{cut} - \ell_\mathrm{width} &lt; \ell &lt; \ell_\mathrm{cut} \\ 0, &amp; \ell \ge \ell_\mathrm{cut} \end{cases}\]</span></p>
 <p><span class="math display">\[x = \frac{\ell - (\ell_\mathrm{cut} - \ell_\mathrm{width})}{\ell_\mathrm{width}}\]</span></p>
 </div>
-<p><img data-src="PhD/7_backup/4_fieldlevel/16_scalecut/scalecut_spectra.svg" width="560"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/13_scalecut/scalecut_spectra.svg" width="560"></p>
 </div>
 <p><span class="credit" style="margin-top: 0.6em;">Tersenov, Guerrini, Starck &amp; Kilbinger (2026), arXiv:2609.09131</span></p>
 </section>
 <section id="higher-order-statistics-the-starlet-ell_1-norm" class="slide level2" data-visibility="uncounted">
 <h2>Higher-order statistics: the starlet <span class="math inline">\(\ell_1\)</span> norm</h2>
 <div class="row flat bare" style="--gap: 24px; --justify: center; --align: center; margin-top: 0.6em;">
-<p><img data-src="PhD/7_backup/4_fieldlevel/17_starlet/starlet_response.svg" style="width: 620px; flex: none;"></p>
-<p><img data-src="PhD/7_backup/4_fieldlevel/17_starlet/tersenov_l1_cnn.png" style="width: 400px; flex: none;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/14_starlet/starlet_response.svg" style="width: 620px; flex: none;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/14_starlet/tersenov_l1_cnn.png" style="width: 400px; flex: none;"></p>
 </div>
 <p><span class="credit" style="margin-top: 0.6em;">Ajani et al.&nbsp;(2021), arXiv:2101.01542; Tersenov et al.&nbsp;(2026), in prep.</span></p>
 </section>
@@ -2616,17 +2566,17 @@ C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
 <h2>Starlet <span class="math inline">\(\ell_1\)</span> norm against CosmoGrid</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/7_backup/4_fieldlevel/17_starlet/starlet_l1.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0.4em;" width="1000"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/14_starlet/starlet_l1.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0.4em;" width="1000"></p>
 </figure>
 </div>
 </section>
 <section id="map-power-spectra-of-the-reconstruction" class="slide level2" data-visibility="uncounted">
 <h2>MAP: power spectra of the reconstruction</h2>
-<video src="PhD/7_backup/4_fieldlevel/18_map_spectra/spectra_run.mp4" class="screen-only" data-autoplay="" muted="" playsinline="" preload="auto" style="display: block; width: 1000px; margin: 0.4em auto 0;">
+<video src="PhD/7_backup/4_fieldlevel/15_map_spectra/spectra_run.mp4" class="screen-only" data-autoplay="" muted="" playsinline="" preload="auto" style="display: block; width: 1000px; margin: 0.4em auto 0;">
 </video>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/7_backup/4_fieldlevel/18_map_spectra/spectra_last.png" class="print-only quarto-figure quarto-figure-center" width="1000"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/15_map_spectra/spectra_last.png" class="print-only quarto-figure quarto-figure-center" width="1000"></p>
 </figure>
 </div>
 </section>
@@ -2634,7 +2584,7 @@ C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
 <h2>MAP: DES Y3 against Euclid, coherence</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/7_backup/4_fieldlevel/20_map_euclid/map_des_euclid_coherence.svg" class="quarto-figure quarto-figure-center" height="560"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/16_map_euclid/map_des_euclid_coherence.svg" class="quarto-figure quarto-figure-center" height="560"></p>
 </figure>
 </div>
 </section>
@@ -2642,17 +2592,17 @@ C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
 <h2>MAP: DES Y3 against Euclid, starlet <span class="math inline">\(\ell_1\)</span> norm</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/7_backup/4_fieldlevel/20_map_euclid/map_des_euclid_starlet.svg" class="quarto-figure quarto-figure-center" width="1000"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/16_map_euclid/map_des_euclid_starlet.svg" class="quarto-figure quarto-figure-center" width="1000"></p>
 </figure>
 </div>
 </section>
 <section id="map-starlet-ell_1-norm-of-the-reconstruction" class="slide level2" data-visibility="uncounted">
 <h2>MAP: starlet <span class="math inline">\(\ell_1\)</span> norm of the reconstruction</h2>
-<video src="PhD/7_backup/4_fieldlevel/19_map_starlet/starlet_run.mp4" class="screen-only" data-autoplay="" muted="" playsinline="" preload="auto" style="display: block; width: 1000px; margin: 0.6em auto 0;">
+<video src="PhD/7_backup/4_fieldlevel/17_map_starlet/starlet_run.mp4" class="screen-only" data-autoplay="" muted="" playsinline="" preload="auto" style="display: block; width: 1000px; margin: 0.6em auto 0;">
 </video>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="PhD/7_backup/4_fieldlevel/19_map_starlet/starlet_last.png" class="print-only quarto-figure quarto-figure-center" width="1000"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/17_map_starlet/starlet_last.png" class="print-only quarto-figure quarto-figure-center" width="1000"></p>
 </figure>
 </div>
 </section>
@@ -2665,35 +2615,35 @@ C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
 <p><span class="kw" style="font-size: 0.6em;">standard deviation</span></p>
 <p><span class="kw" style="font-size: 0.6em;">truth − draw</span></p>
 <p><span class="kw" style="font-size: 0.6em; color: #C2560A; text-align: right;">bin 2</span></p>
-<p><img data-src="PhD/7_backup/4_fieldlevel/21_sampling/kappa_truth_bin2.png" style="width: 100%; margin: 0;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/18_sampling/kappa_truth_bin2.png" style="width: 100%; margin: 0;"></p>
 <div>
-<video src="PhD/7_backup/4_fieldlevel/21_sampling/kappa_samples_bin2.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 100%; margin: 0;">
+<video src="PhD/7_backup/4_fieldlevel/18_sampling/kappa_samples_bin2.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 100%; margin: 0;">
 </video>
-<p><img data-src="PhD/7_backup/4_fieldlevel/21_sampling/kappa_samples_bin2_last.png" class="print-only" style="width: 100%; margin: 0;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/18_sampling/kappa_samples_bin2_last.png" class="print-only" style="width: 100%; margin: 0;"></p>
 </div>
-<p><img data-src="PhD/7_backup/4_fieldlevel/21_sampling/kappa_std_bin2.png" style="width: 100%; margin: 0;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/18_sampling/kappa_std_bin2.png" style="width: 100%; margin: 0;"></p>
 <div>
-<video src="PhD/7_backup/4_fieldlevel/21_sampling/kappa_diff_bin2.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 100%; margin: 0;">
+<video src="PhD/7_backup/4_fieldlevel/18_sampling/kappa_diff_bin2.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 100%; margin: 0;">
 </video>
-<p><img data-src="PhD/7_backup/4_fieldlevel/21_sampling/kappa_diff_bin2_last.png" class="print-only" style="width: 100%; margin: 0;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/18_sampling/kappa_diff_bin2_last.png" class="print-only" style="width: 100%; margin: 0;"></p>
 </div>
 <p><span class="kw" style="font-size: 0.6em; color: #3B6FB6; text-align: right;">bin 3</span></p>
-<p><img data-src="PhD/7_backup/4_fieldlevel/21_sampling/kappa_truth_bin3.png" style="width: 100%; margin: 0;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/18_sampling/kappa_truth_bin3.png" style="width: 100%; margin: 0;"></p>
 <div>
-<video src="PhD/7_backup/4_fieldlevel/21_sampling/kappa_samples_bin3.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 100%; margin: 0;">
+<video src="PhD/7_backup/4_fieldlevel/18_sampling/kappa_samples_bin3.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 100%; margin: 0;">
 </video>
-<p><img data-src="PhD/7_backup/4_fieldlevel/21_sampling/kappa_samples_bin3_last.png" class="print-only" style="width: 100%; margin: 0;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/18_sampling/kappa_samples_bin3_last.png" class="print-only" style="width: 100%; margin: 0;"></p>
 </div>
-<p><img data-src="PhD/7_backup/4_fieldlevel/21_sampling/kappa_std_bin3.png" style="width: 100%; margin: 0;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/18_sampling/kappa_std_bin3.png" style="width: 100%; margin: 0;"></p>
 <div>
-<video src="PhD/7_backup/4_fieldlevel/21_sampling/kappa_diff_bin3.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 100%; margin: 0;">
+<video src="PhD/7_backup/4_fieldlevel/18_sampling/kappa_diff_bin3.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 100%; margin: 0;">
 </video>
-<p><img data-src="PhD/7_backup/4_fieldlevel/21_sampling/kappa_diff_bin3_last.png" class="print-only" style="width: 100%; margin: 0;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/18_sampling/kappa_diff_bin3_last.png" class="print-only" style="width: 100%; margin: 0;"></p>
 </div>
 <p><span></span></p>
-<p><img data-src="PhD/7_backup/4_fieldlevel/21_sampling/cbar_kappa.svg" style="grid-column: span 2; width: 230px; margin: 0 auto;"></p>
-<p><img data-src="PhD/7_backup/4_fieldlevel/21_sampling/cbar_std.svg" style="width: 200px; margin: 0 auto;"></p>
-<p><img data-src="PhD/7_backup/4_fieldlevel/21_sampling/cbar_diff.svg" style="width: 200px; margin: 0 auto;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/18_sampling/cbar_kappa.svg" style="grid-column: span 2; width: 230px; margin: 0 auto;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/18_sampling/cbar_std.svg" style="width: 200px; margin: 0 auto;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/18_sampling/cbar_diff.svg" style="width: 200px; margin: 0 auto;"></p>
 </div>
 <div class="nice-table" style="--table-size: 0.72em; margin-top: 0.7em;">
 <table class="caption-top">
@@ -2737,34 +2687,34 @@ C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
 <div class="grid bare" style="--cols: 110px 600px; --gap: 10px; --row-gap: 2px; --align: center; justify-content: center; margin-top: 0.2em;">
 <p><span class="kw" style="font-size: 0.6em; color: #C2560A; text-align: right;">bin 2<br>ℓ₁ norm</span></p>
 <div>
-<video src="PhD/7_backup/4_fieldlevel/21_sampling/starlet_l1_bin2.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 600px; margin: 0;">
+<video src="PhD/7_backup/4_fieldlevel/18_sampling/starlet_l1_bin2.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 600px; margin: 0;">
 </video>
-<p><img data-src="PhD/7_backup/4_fieldlevel/21_sampling/starlet_l1_bin2_last.png" class="print-only" style="width: 600px; margin: 0;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/18_sampling/starlet_l1_bin2_last.png" class="print-only" style="width: 600px; margin: 0;"></p>
 </div>
 <p><span class="kw" style="font-size: 0.6em; color: #C2560A; text-align: right;">bin 2<br>draw − truth</span></p>
 <div>
-<video src="PhD/7_backup/4_fieldlevel/21_sampling/starlet_resid_bin2.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 600px; margin: 0;">
+<video src="PhD/7_backup/4_fieldlevel/18_sampling/starlet_resid_bin2.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 600px; margin: 0;">
 </video>
-<p><img data-src="PhD/7_backup/4_fieldlevel/21_sampling/starlet_resid_bin2_last.png" class="print-only" style="width: 600px; margin: 0;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/18_sampling/starlet_resid_bin2_last.png" class="print-only" style="width: 600px; margin: 0;"></p>
 </div>
 <p><span class="kw" style="font-size: 0.6em; color: #3B6FB6; text-align: right;">bin 3<br>ℓ₁ norm</span></p>
 <div>
-<video src="PhD/7_backup/4_fieldlevel/21_sampling/starlet_l1_bin3.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 600px; margin: 0;">
+<video src="PhD/7_backup/4_fieldlevel/18_sampling/starlet_l1_bin3.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 600px; margin: 0;">
 </video>
-<p><img data-src="PhD/7_backup/4_fieldlevel/21_sampling/starlet_l1_bin3_last.png" class="print-only" style="width: 600px; margin: 0;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/18_sampling/starlet_l1_bin3_last.png" class="print-only" style="width: 600px; margin: 0;"></p>
 </div>
 <p><span class="kw" style="font-size: 0.6em; color: #3B6FB6; text-align: right;">bin 3<br>draw − truth</span></p>
 <div>
-<video src="PhD/7_backup/4_fieldlevel/21_sampling/starlet_resid_bin3.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 600px; margin: 0;">
+<video src="PhD/7_backup/4_fieldlevel/18_sampling/starlet_resid_bin3.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 600px; margin: 0;">
 </video>
-<p><img data-src="PhD/7_backup/4_fieldlevel/21_sampling/starlet_resid_bin3_last.png" class="print-only" style="width: 600px; margin: 0;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/18_sampling/starlet_resid_bin3_last.png" class="print-only" style="width: 600px; margin: 0;"></p>
 </div>
 </div>
 </section>
 <section id="cosmology-only-inference" class="slide level2" data-visibility="uncounted">
 <h2>Cosmology-only inference</h2>
 <div class="row flat bare" style="--gap: 40px; --justify: center; margin-top: 0.3em;">
-<p><img data-src="PhD/7_backup/4_fieldlevel/21_sampling/posterior_nb17.svg" style="height: 480px; flex: none; margin: 0;"></p>
+<p><img data-src="PhD/7_backup/4_fieldlevel/18_sampling/posterior_nb17.svg" style="height: 480px; flex: none; margin: 0;"></p>
 <div class="nice-table" style="--table-size: 0.8em; flex: none;">
 <table class="caption-top">
 <thead>
@@ -2798,6 +2748,98 @@ C_\ell = \frac{1}{2\ell+1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
 </table>
 </div>
 </div>
+</section>
+<section id="photometric-redshift-uncertainty-hyperrank" class="slide level2" data-visibility="uncounted">
+<h2>Photometric redshift uncertainty: hyperrank</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/7_backup/4_fieldlevel/19_hyperrank/hyperrank_nz.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0;" height="570"></p>
+</figure>
+</div>
+<p><span class="credit" style="margin-top: 0.3em;">Jeffrey et al.&nbsp;(2024), arXiv:2403.02314; Cordero et al.&nbsp;(2022)</span></p>
+</section>
+<section id="intrinsic-alignment-in-the-forward-model" class="slide level2" data-visibility="uncounted">
+<h2>Intrinsic alignment in the forward model</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/7_backup/4_fieldlevel/20_intrinsic_alignment/ia_nla.png" class="quarto-figure quarto-figure-center" style="margin-top: 0; max-width: none; max-height: none;" width="1050"></p>
+</figure>
+</div>
+<p><span class="credit" style="margin-top: 0.3em;">Tsaprazi et al.&nbsp;(2022), arXiv:2112.04484</span></p>
+</section></section>
+<section>
+<section id="backup-numerical-and-technical-details" class="title-slide slide level1 center" data-visibility="uncounted">
+<h1>Backup: Numerical and technical details</h1>
+
+</section>
+<section id="the-two-adjoints" class="slide level2" data-visibility="uncounted">
+<h2>The two adjoints</h2>
+<div class="row bare" style="--gap: 40px; --justify: center; margin-top: 0.3em;">
+<p><img data-src="PhD/7_backup/5_numerical/01_adjoints/adjoints.svg" height="540"></p>
+<p><img data-src="PhD/7_backup/5_numerical/01_adjoints/adjoint_memory.svg" height="500"></p>
+</div>
+</section>
+<section id="distributed-fourier-transform" class="slide level2" data-visibility="uncounted">
+<h2>Distributed Fourier transform</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/7_backup/5_numerical/02_distributed/jaxdecomp_fft.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0.4em;" height="540"></p>
+</figure>
+</div>
+</section>
+<section id="distributed-transpositions" class="slide level2" data-visibility="uncounted">
+<h2>Distributed transpositions</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/7_backup/5_numerical/02_distributed/decomp2d.gif" class="quarto-figure quarto-figure-center" style="margin-top: 0.4em;" height="540"></p>
+</figure>
+</div>
+</section>
+<section id="halo-exchange" class="slide level2" data-visibility="uncounted">
+<h2>Halo exchange</h2>
+<video src="PhD/7_backup/5_numerical/03_halo_exchange/halo_exchange.mp4" class="screen-only" data-autoplay="" loop="" muted="" playsinline="" preload="auto" style="display: block; width: 1000px; max-width: none; margin: 4.5em auto 0;">
+</video>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/7_backup/5_numerical/03_halo_exchange/halo_exchange_last.png" class="print-only quarto-figure quarto-figure-center" style="margin-top: 4.5em;" width="1000"></p>
+</figure>
+</div>
+</section>
+<section id="scaling-on-supercomputers" class="slide level2" data-visibility="uncounted">
+<h2>Scaling on supercomputers</h2>
+<div class="absolute bare" style="display: flex; align-items: center; gap: 10px;top: -12px; right: 0px; ">
+<p><img data-src="PhD/5_contribution/compsep/12_selection/jean_zay_logo.png" height="58"></p>
+<p><span style="font-size: 0.55em; line-height: 1.25; color: #2E2E2E;">Jean Zay, IDRIS<br>NVIDIA H100 GPUs</span></p>
+</div>
+<div class="bare" style="text-align: center; margin-top: 0.15em;">
+<p><span class="kw" style="display: block; font-size: 0.75em; text-align: left;">Performance of the forward model</span></p>
+<p><img data-src="PhD/7_backup/5_numerical/04_scaling/scaling_forward.svg" width="1000"></p>
+</div>
+<div class="bare" style="text-align: center; margin-top: 0.15em;">
+<p><span class="kw" style="display: block; font-size: 0.75em; text-align: left;">Performance of the gradient</span></p>
+<p><img data-src="PhD/7_backup/5_numerical/04_scaling/scaling_gradient.svg" width="1000"></p>
+</div>
+</section>
+<section id="particle-mesh-against-moving-mesh" class="slide level2" data-visibility="uncounted">
+<h2>Particle mesh against moving mesh</h2>
+<div class="absolute bare" style="display: flex; align-items: center; gap: 10px;top: -12px; right: 0px; ">
+<p><img data-src="PhD/5_contribution/compsep/12_selection/jean_zay_logo.png" height="58"></p>
+<p><span style="font-size: 0.55em; line-height: 1.25; color: #2E2E2E;">Jean Zay, IDRIS<br>NVIDIA H100 GPUs</span></p>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/7_backup/5_numerical/05_moving_mesh/moving_mesh_scaling.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0.3em;" width="1000"></p>
+</figure>
+</div>
+</section>
+<section id="lightcone-from-a-replicated-box" class="slide level2" data-visibility="uncounted">
+<h2>Lightcone from a replicated box</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="PhD/7_backup/5_numerical/06_box_replication/box_replication.svg" class="quarto-figure quarto-figure-center" style="margin-top: 0;" height="560"></p>
+</figure>
+</div>
+<p><span class="credit" style="margin-top: 0.3em;">Sgier et al.&nbsp;(2021), arXiv:2007.05735</span></p>
 
 
 </section></section>
