@@ -1,12 +1,27 @@
 ---
 title: 'JAXPM: A JAX-Based Framework for Scalable and Differentiable Particle Mesh Simulations'
 
-author: 
+author:
   - name: "Wassim Kabalan"
-  - name : "Alexandre Boucaud, François Lanusse"
+  - name: "Alexandre Boucaud"
+  - name: "François Lanusse"
+
+kicker: "Bayesian Deep Learning Workshop"
+title-scale: 0.85
+affiliation: "Université Paris Cité, APC/CNRS"
+slides-url: "https://askabalan.github.io/slides/2025_05_BDL/"
+slides-url-text: "askabalan.github.io/slides/2025_05_BDL"
+logos:
+  - src: "assets/Logos/APC.png"
+    height: 80px
+  - src: "assets/Logos/AstroDeep-2.png"
+    height: 150px
+  - src: "assets/Logos/cosmostat.png"
+    height: 80px
 
 footer: "Bayesian Deep Learning Workshop , 2025"
 date: "May 2025"
+date-format: "MMMM YYYY"
 image: "assets/jaxDecomp/fft.svg"
 format:
   revealjs:
@@ -20,6 +35,7 @@ format:
     pdfSeparateFragments: true
     template-partials:
       - css/title-slide.html
+    include-after-body: css/deck.html
 output: revealjs
 
 title-slide-attributes:
@@ -28,13 +44,7 @@ title-slide-attributes:
   data-background-opacity: "0.8"
 
 
-logo1 : '
-<div style="display: flex; justify-content: space-around; align-items: center; layout-valign="middle">
-  <img src="assets/Logos/AstroDeep-2.png" style="width: 35%;"/>
-  <img src="assets/Logos/APC.png" style="width: 20%;"/>
-  <img src="assets/Logos/scipol.png" style="width: 35%;"/>
-</div>
-'
+
 ---
 
 ## Outline for This Presentation 
@@ -156,7 +166,7 @@ Even higher-order statistics (like bispectrum or 3-point correlations) still red
 ![Credit: Natalia Porqueres](assets/latest/summ_stat.png){fig-align="center" width="80%" text-align="right"}
 ::::::
 :::::: {.fragment fragment-index=1 .fade-in}
-![[Jeffrey et al. (2024)](https://arxiv.org/abs/2403.02314)](assets/latest/bad_posterior.png){fig-align="center" width="50%"}
+![[Jeffrey et al. (2024)](https://arxiv.org/abs/2403.02314)](assets/latest/bad_posterior.png){fig-align="center" width="34%"}
 ::::::
 :::
 
@@ -178,7 +188,7 @@ Even higher-order statistics (like bispectrum or 3-point correlations) still red
 <br/>
 
 ::: {.r-stack}
-![](assets/latest/likelihood_free_cosmo.svg){fig-align="center" width="60%"}
+![](assets/latest/likelihood_free_cosmo.svg){fig-align="center" width="43%"}
 :::
 
 
@@ -252,7 +262,7 @@ $$
 ::: {.r-stack}
 
 :::::: {.fragment fragment-index=1 .fade-out}
-![Implicit Inference](assets/latest/likelihood_free_SBI.svg){fig-align="center" width="80%"}
+![Implicit Inference](assets/latest/likelihood_free_SBI.svg){fig-align="center" width="52%"}
 ::::::
 
 :::::: {.fragment fragment-index=1 .fade-in}
@@ -283,16 +293,16 @@ $$
 
 ::: {.r-stack}
 
-![](assets/latest/illu_compressor.svg){fig-align="center" width="70%"}
+![](assets/latest/illu_compressor.svg){fig-align="center" width="59%"}
 
 :::::: {.fragment fragment-index=2 .fade-in-then-out}
 
-![](assets/latest/neural_comp.png){fig-align="center" width="40%"}
+![](assets/latest/neural_comp.png){fig-align="center" width="34%"}
 ::::::
 
 :::::: {.fragment fragment-index=3 .fade-in}
 
-![](assets/latest/normal_flows.png){fig-align="center" width="60%"}
+![](assets/latest/normal_flows.png){fig-align="center" width="52%"}
 ::::::
 
 :::
@@ -459,12 +469,12 @@ The challenge of explicit inference
 ::: {.r-stack}
 
 :::::: {.fragment fragment-index=1 .fade-out}
-![](assets/bayes/FFI_full.svg){fig-align="center" width="100%"}
+![](assets/bayes/FFI_full.svg){fig-align="center" width="65%"}
 ::::::
 
 :::::: {.fragment fragment-index=1 .fade-in}
 
-![](assets/FFI/FFI_wl_focus.svg){fig-align="center" width="100%"}
+![](assets/FFI/FFI_wl_focus.svg){fig-align="center" width="65%"}
 
 ::::::
 
@@ -569,9 +579,9 @@ Now comes the big question: can we start doing inference?" (click)
 
 ::: {layout-ncol=2}
 
-![-](assets/latest/power_spectrum_comparison.png){fig-align="center" width="80%"}
+![-](assets/latest/power_spectrum_comparison.png){fig-align="center" width="64%"}
 
-![Biased Posterior](assets/latest/biased_posterior_plot.png){fig-align="center" width="50%"}
+![Biased Posterior](assets/latest/biased_posterior_plot.png){fig-align="center" width="44%"}
 
 :::
 
@@ -770,7 +780,7 @@ Modern high-end GPUs cap at **~80 GB**, so even a single box **requires multi-GP
 
 ::: {.r-stack}
 
-![Particle Mesh Simulation](assets/latest/pm_cic.svg){fig-align="center" width="60%"}
+![Particle Mesh Simulation](assets/latest/pm_cic.svg){fig-align="center" width="54%"}
 
 :::
 
@@ -784,7 +794,7 @@ Modern high-end GPUs cap at **~80 GB**, so even a single box **requires multi-GP
 
 ::::: {.fragment fragment-index=1 .fade-out}
 
-![](assets/latest/particles_animation.gif){fig-align="center" width="80%"}
+![](assets/latest/particles_animation.gif){fig-align="center" width="71%"}
 
 :::::
 
@@ -800,7 +810,7 @@ Modern high-end GPUs cap at **~80 GB**, so even a single box **requires multi-GP
 
 ::::: {.fragment fragment-index=1 .fade-out}
 
-![](assets/latest/field_animation.gif){fig-align="center" width="80%"}
+![](assets/latest/field_animation.gif){fig-align="center" width="71%"}
 
 :::::
 
@@ -1272,7 +1282,7 @@ What JAXPM v0.1.5 Supports
 ::::: {.r-stack}
 
 
-![Multigrid](assets/latest/multi_grid_1.svg){fig-align="center" width="70%"}
+![Multigrid](assets/latest/multi_grid_1.svg){fig-align="center" width="49%"}
 
 :::::
 

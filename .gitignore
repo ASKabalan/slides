@@ -5,3 +5,5 @@ search.json
 index.html
 .cache
 *pyc
+
+**/*.quarto_ipynb

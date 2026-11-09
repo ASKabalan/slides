@@ -18,7 +18,7 @@ footer: "Wassim Kabalan - PhD Defense - Université Paris Cité APC/CNRS"
 
 format:
   revealjs:
-    theme: [default, css/custom.scss, phd.scss]
+    theme: [default, css/custom.scss]
     incremental: false
     transition: slide
     background-transition: slide
@@ -29,7 +29,7 @@ format:
     pdfSeparateFragments: true
     template-partials:
       - css/title-slide.html
-    include-after-body: phd.html
+    include-after-body: css/deck.html
     auto-stretch: false
 output: revealjs
 
@@ -37,6 +37,7 @@ output: revealjs
 # <video>: list the slide videos here or the published site has none of them.
 resources:
   - "PhD/**/*.mp4"
+  - "PhD/**/*_first.png"   # video posters (frame 0): a raw <video poster=…> is not followed by Quarto
 
 title-slide-attributes:
   data-visibility: "uncounted"

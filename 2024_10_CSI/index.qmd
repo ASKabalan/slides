@@ -1,6 +1,22 @@
 ---
 title: "CSI Presentation 2024"
-author: "Wassim Kabalan"
+author:
+  - name: "Wassim Kabalan"
+
+kicker: "CSI Presentation 2024"
+affiliation: "Université Paris Cité, APC/CNRS"
+slides-url: "https://askabalan.github.io/slides/2024_10_CSI/"
+slides-url-text: "askabalan.github.io/slides/2024_10_CSI"
+logos:
+  - src: "assets/Logos/APC.png"
+    height: 80px
+  - src: "assets/Logos/scipol.png"
+    height: 84px
+  - src: "assets/Logos/AstroDeep-2.png"
+    height: 150px
+  - src: "assets/Logos/cosmostat.png"
+    height: 80px
+
 footer: "CSI Presentation 2024"
 format:
   revealjs:
@@ -12,6 +28,7 @@ format:
     slide-number: true
     template-partials:
       - css/title-slide.html
+    include-after-body: css/deck.html
 output: revealjs
 
 code-block-border-left: "#31BAE9"
@@ -20,7 +37,6 @@ title-slide-attributes:
   data-background-size: fill
   data-background-opacity: "0.5"
 
-logo1: '![](assets/Logos/AIM.png){fig-align="center"width=10%} ![](assets/Logos/APC.png){fig-align="center" width=10%} ![](assets/Logos/AstroDeep-2.png){fig-align="center" width=10%} ![](assets/Logos/scipol.jpeg){fig-align="center" width=10%}'
 
 
 ---
@@ -226,7 +242,7 @@ Dans cette présentation, nous allons nous concentrer sur les méthodes paramét
 
 :::
 
-## CMB Component Separation
+## CMB Component Separation {style="font-size: 84%;"}
 
 :::: {.columns}
 
@@ -352,7 +368,7 @@ La méthode que nous utilisons ici est **paramétrique**, où chaque composante 
 :::
 
 
-## Minimization Process in CMB Component Separation  ![SO](assets/Logos/so.webp){.nostretch fig-valign="center" width="5%"} ![LiteBIRD](assets/Logos/litebird.png){.nostretch fig-valign="center" width="7%"}
+## Minimization Process in CMB Component Separation  ![SO](assets/Logos/so.webp){.nostretch fig-valign="center" width="5%"} ![LiteBIRD](assets/Logos/litebird.png){.nostretch fig-valign="center" width="7%"} {style="font-size: 82%;"}
 
 
 ### Using Scipols's  `Furax` Library (Chanial et al. in prep.)
@@ -434,13 +450,13 @@ Mon travail consiste à utiliser les outils de JAX pour évaluer la fonction de 
 
 ::: {.fragment fragment-index=1 .fade-out}
 
-![Hubble eXtreme Deep Field](assets/CSI-Hubble.svg){.nostretch fig-align="center" width="55%"}
+![Hubble eXtreme Deep Field](assets/CSI-Hubble.svg){.nostretch fig-align="center" width="33%"}
 
 :::
 
 ::: {.fragment fragment-index=1 .fade-in-then-out}
 
-![Hubble eXtreme Deep Field](assets/CSI-Hubble Annotated.svg){.nostretch fig-align="center" width="55%"}
+![Hubble eXtreme Deep Field](assets/CSI-Hubble Annotated.svg){.nostretch fig-align="center" width="33%"}
 
 :::
 
@@ -492,13 +508,13 @@ $$
 
 ::: {.fragment fragment-index=1 .fade-in-then-out}
 
-![](assets/FFI/PowerSpec.svg){.nostretch fig-align="center" width="80%"}
+![](assets/FFI/PowerSpec.svg){.nostretch fig-align="center" width="48%"}
 
 :::
 
 ::: {.fragment fragment-index=2}
 
-![](assets/FFI/CSI-FFI.svg){.nostretch fig-align="center" width="80%"}
+![](assets/FFI/CSI-FFI.svg){.nostretch fig-align="center" width="40%"}
 
 :::
 
@@ -544,7 +560,7 @@ mon travail consist à faire un ce forward model
 
 :::{.column width="50%"}
 
-![Probabilistic Graphical Model](assets/FFI/HBM.png){.nostretch fig-align="center" width="70%"}
+![Probabilistic Graphical Model](assets/FFI/HBM.png){.nostretch fig-align="center" width="60%"}
 
 :::
 
@@ -775,13 +791,13 @@ Cette méthode est rapide et simple, mais elle approxime les interactions à cou
 
 ::: {.fragment fragment-index=1 .fade-in-then-out}
 
-![Initial Conditions with a 1024 mesh](assets/Fields/initial_conditions_1024.png){.nostretch fig-align="center" width="400px"}
+![Initial Conditions with a 1024 mesh](assets/Fields/initial_conditions_1024.png){.nostretch fig-align="center" width="369px"}
 
 ::: 
 
 ::: {.fragment fragment-index=2 .fade-in-then-out}
 
-![Initial Conditions with a 64 mesh](assets/Fields/initial_conditions_64.png){.nostretch fig-align="center" width="400px"}
+![Initial Conditions with a 64 mesh](assets/Fields/initial_conditions_64.png){.nostretch fig-align="center" width="369px"}
 
 ::: 
 
@@ -811,13 +827,13 @@ Cette méthode est rapide et simple, mais elle approxime les interactions à cou
 
 ::: {.fragment fragment-index=1 .fade-in-then-out}
 
-![Final field with a 1024 mesh](assets/Fields/LPT_density_field_z0_1024.png){.nostretch fig-align="center" width="400px"}
+![Final field with a 1024 mesh](assets/Fields/LPT_density_field_z0_1024.png){.nostretch fig-align="center" width="369px"}
 
 ::: 
 
 ::: {.fragment fragment-index=2 .fade-in-then-out}
 
-![Final field with a 64 mesh](assets/Fields/LPT_density_field_z0_64.png){.nostretch fig-align="center" width="400px"}
+![Final field with a 64 mesh](assets/Fields/LPT_density_field_z0_64.png){.nostretch fig-align="center" width="369px"}
 
 :::
 
@@ -1035,7 +1051,7 @@ Côté implémentation, j'effectue à une série de FFT locales sur chaque GPU, 
 
 ## Scaling of Distributed FFT operations
 
-![](assets/benchmarks/single_precision_gpus.png){.absolute top=50 left=0 width="1000"}
+![](assets/benchmarks/single_precision_gpus.png){.absolute top=50 left=0 width="960"}
 
 ::: {.notes}
 
@@ -1113,16 +1129,16 @@ $$
 
 ::: {.fragment fragment-index=1}
 
-![Particles](assets/Fields/CIC/CIC_Init.svg){.nostretch fig-align="center" width="20%"}
+![Particles](assets/Fields/CIC/CIC_Init.svg){.nostretch fig-align="center" width="14%"}
 
 :::
 
 ::: {.fragment fragment-index=2}
 
-![CIC Kernel](assets/Fields/CIC/CIC_Kernel.svg){.nostretch fig-align="center" width="20%"}
+![CIC Kernel](assets/Fields/CIC/CIC_Kernel.svg){.nostretch fig-align="center" width="14%"}
 
 
-![Mesh](assets/Fields/CIC/CIC_Grid.svg){.nostretch fig-align="center" width="20%"}
+![Mesh](assets/Fields/CIC/CIC_Grid.svg){.nostretch fig-align="center" width="14%"}
 
 :::
 
@@ -1213,13 +1229,13 @@ Je montre dans le slide suivant quel impact cela peut avoir sur les simulations.
 
 :::{layout="[[1] , [1] , [1] , [1]]" layout-valign="center" layout-align="center"}
 
-![First slice](assets/Fields/initial_conditions_0_no_halo.png){.nostretch fig-align="center" width="400px"}
+![First slice](assets/Fields/initial_conditions_0_no_halo.png){.nostretch fig-align="center" width="303px"}
 
-![Second slice](assets/Fields/initial_conditions_1_no_halo.png){.nostretch fig-align="center" width="400px"}
+![Second slice](assets/Fields/initial_conditions_1_no_halo.png){.nostretch fig-align="center" width="303px"}
 
-![Third slice](assets/Fields/initial_conditions_2_no_halo.png){.nostretch fig-align="center" width="400px"}
+![Third slice](assets/Fields/initial_conditions_2_no_halo.png){.nostretch fig-align="center" width="303px"}
 
-![Fourth slice](assets/Fields/initial_conditions_3_no_halo.png){.nostretch fig-align="center" width="400px"}
+![Fourth slice](assets/Fields/initial_conditions_3_no_halo.png){.nostretch fig-align="center" width="303px"}
 
 :::
 
@@ -1229,13 +1245,13 @@ Je montre dans le slide suivant quel impact cela peut avoir sur les simulations.
 
 :::{layout="[[1] , [1] , [1] , [1]]" layout-valign="center" layout-align="center"}
 
-![First slice](assets/Fields/LPT_density_field_z0_0_no_halo.png){.nostretch fig-align="center" width="400px"}
+![First slice](assets/Fields/LPT_density_field_z0_0_no_halo.png){.nostretch fig-align="center" width="303px"}
 
-![Second slice](assets/Fields/LPT_density_field_z0_1_no_halo.png){.nostretch fig-align="center" width="400px"}
+![Second slice](assets/Fields/LPT_density_field_z0_1_no_halo.png){.nostretch fig-align="center" width="303px"}
 
-![Third slice](assets/Fields/LPT_density_field_z0_2_no_halo.png){.nostretch fig-align="center" width="400px"}
+![Third slice](assets/Fields/LPT_density_field_z0_2_no_halo.png){.nostretch fig-align="center" width="303px"}
 
-![Fourth slice](assets/Fields/LPT_density_field_z0_3_no_halo.png){.nostretch fig-align="center" width="400px"}
+![Fourth slice](assets/Fields/LPT_density_field_z0_3_no_halo.png){.nostretch fig-align="center" width="303px"}
 
 :::
 
@@ -1257,7 +1273,7 @@ Je montre dans le slide suivant quel impact cela peut avoir sur les simulations.
 
 :::{.fragment fragment-index=6 .fade-in-then-out}
 
-![CIC Kernel](assets/Fields/CIC/CIC_Padding.svg){.nostretch fig-align="center" width="600%"}
+![CIC Kernel](assets/Fields/CIC/CIC_Padding.svg){.nostretch fig-align="center" width="54%"}
 
 
 :::

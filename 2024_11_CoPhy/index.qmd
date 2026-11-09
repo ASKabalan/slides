@@ -1,11 +1,27 @@
 ---
 title: "Massively Parallel Computing in Cosmology with JAX"
 
-author: 
-  - name: "<span style='font-size: larger;'>Wassim Kabalan</span>"
-  - name : "<span style='font-size: Smaller;'>François Lanusse, Alexandre Boucaud, Josquin Errard</span>"
+author:
+  - name: "Wassim Kabalan"
+  - name: "François Lanusse"
+  - name: "Alexandre Boucaud"
+  - name: "Josquin Errard"
+
+kicker: "GDR CoPhy, IAP"
+affiliation: "Université Paris Cité, APC/CNRS"
+slides-url: "https://askabalan.github.io/slides/2024_11_CoPhy/"
+slides-url-text: "askabalan.github.io/slides/2024_11_CoPhy"
+logos:
+  - src: "assets/Logos/APC.png"
+    height: 80px
+  - src: "assets/Logos/AstroDeep-2.png"
+    height: 150px
+  - src: "assets/Logos/cosmostat.png"
+    height: 80px
+
 footer: "GDR CoPhy,IAP , 2024"
 date: "Nov 2024"
+date-format: "MMMM YYYY"
 image: "assets/Fields/PM_1024.gif"
 format:
   revealjs:
@@ -18,6 +34,7 @@ format:
     slide-number: true
     template-partials:
       - css/title-slide.html
+    include-after-body: css/deck.html
 output: revealjs
 
 title-slide-attributes:
@@ -26,13 +43,7 @@ title-slide-attributes:
   data-background-opacity: "0.2"
 
 
-logo1 : '
-<div style="display: flex; justify-content: space-around; align-items: center; layout-valign="middle">
-  <img src="assets/Logos/AstroDeep-2.png" style="width: 35%;"/>
-  <img src="assets/Logos/APC.png" style="width: 20%;"/>
-  <img src="assets/Logos/scipol.png" style="width: 35%;"/>
-</div>
-'
+
 ---
 
 ## Goals for This Presentation 
@@ -1023,19 +1034,19 @@ Multi-Node scalability with Jean Zay
 
 :::{.fragment fragment-index=1}
 
-![](assets/HPC/single_A100.png){fig-align="center" width="55%"}
+![](assets/HPC/single_A100.png){fig-align="center" width="49%"}
 
 :::
 
 :::{.fragment fragment-index=2}
 
-![@credit: NVIDIA](assets/HPC/node_A100.png){fig-align="center" width="53%"}
+![@credit: NVIDIA](assets/HPC/node_A100.png){fig-align="center" width="49%"}
 
 :::
 
 :::{.fragment fragment-index=3}
 
-![@credit: servethehome.com](assets/HPC/cluster.jpg){fig-align="center" width="53%"}
+![@credit: servethehome.com](assets/HPC/cluster.jpg){fig-align="center" width="49%"}
 
 :::
 
@@ -1550,7 +1561,7 @@ Let's now look at example of usage in cosmology.
 ---
 
 
-## Forward Modeling in Cosmology {style="font-size: 20px;"}
+## Forward Modeling in Cosmology {style="font-size: 19.2px;"}
 
 :::{.columns}
 

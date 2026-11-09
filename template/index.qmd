@@ -8,7 +8,8 @@ title-slide-attributes:
   data-background-opacity: "0.5"
 format:
   revealjs:
-    theme: css/custom.scss
+    theme: [default, css/custom.scss]
+    include-after-body: css/deck.html
     incremental: false   
     transition: slide
     background-transition: slide

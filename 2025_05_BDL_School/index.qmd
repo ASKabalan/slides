@@ -2,10 +2,25 @@
 title: 'Bayesian Inference for Cosmology with JAX'
 
 author:
-  - name: "<span style='color:#ffffff; font-size: larger;'>Wassim Kabalan</span>"
-  - name : "<span style='color:#ffffff; font-size: Smaller;'>Alexandre Boucaud, François Lanusse</span>"
+  - name: "Wassim Kabalan"
+  - name: "Alexandre Boucaud"
+  - name: "François Lanusse"
+
+kicker: "Bayesian Deep Learning Workshop"
+affiliation: "Université Paris Cité, APC/CNRS"
+slides-url: "https://askabalan.github.io/slides/2025_05_BDL_School/"
+slides-url-text: "askabalan.github.io/slides/2025_05_BDL_School"
+logos:
+  - src: "assets/Logos/APC.png"
+    height: 80px
+  - src: "assets/Logos/AstroDeep-2.png"
+    height: 150px
+  - src: "assets/Logos/cosmostat.png"
+    height: 80px
+
 footer: "Bayesian Deep Learning Workshop , 2025"
 date: "May 2025"
+date-format: "MMMM YYYY"
 image: "assets/bayes/bayes_pipeline_2.svg"
 format:
   revealjs:
@@ -18,6 +33,7 @@ format:
     slide-number: true
     template-partials:
       - css/title-slide.html
+    include-after-body: css/deck.html
 output: revealjs
 
 title-slide-attributes:
@@ -26,13 +42,7 @@ title-slide-attributes:
   data-background-opacity: "0.8"
 
 
-logo1 : '
-<div style="display: flex; justify-content: space-around; align-items: center; layout-valign="middle">
-  <img src="assets/Logos/AstroDeep-2.png" style="width: 35%;"/>
-  <img src="assets/Logos/APC.png" style="width: 20%;"/>
-  <img src="assets/Logos/scipol.png" style="width: 35%;"/>
-</div>
-'
+
 ---
 
 ## Outline for This Presentation 
@@ -95,31 +105,31 @@ so if you have any questions, please ask them during the presentation.
 
 :::::: {.fragment fragment-index=1 .fade-in-then-out}
 
-![](assets/bayes/freq_pipeline_0.svg){fig-align="center" width="100%"}
+![](assets/bayes/freq_pipeline_0.svg){fig-align="center" width="75%"}
 
 ::::::
 
 :::::: {.fragment fragment-index=2 .fade-in-then-out}
 
-![](assets/bayes/freq_pipeline_1.svg){fig-align="center" width="100%"}
+![](assets/bayes/freq_pipeline_1.svg){fig-align="center" width="75%"}
 
 ::::::
 
 :::::: {.fragment fragment-index=3 .fade-in-then-out}
 
-![](assets/bayes/freq_pipeline_2.svg){fig-align="center" width="100%"}
+![](assets/bayes/freq_pipeline_2.svg){fig-align="center" width="75%"}
 
 ::::::
 
 :::::: {.fragment fragment-index=4 .fade-in-then-out}
 
-![](assets/bayes/freq_pipeline_3.svg){fig-align="center" width="100%"}
+![](assets/bayes/freq_pipeline_3.svg){fig-align="center" width="75%"}
 
 ::::::
 
 :::::: {.fragment fragment-index=5 .fade-in}
 
-![](assets/bayes/freq_pipeline_4.svg){fig-align="center" width="100%"}
+![](assets/bayes/freq_pipeline_4.svg){fig-align="center" width="75%"}
 
 ::::::
 
@@ -549,7 +559,7 @@ This tells us which model is better supported by the data.
 ## Two Roads to Inference: Frequentist and Bayesian {style="font-size: 20px;" }
 
 
-![](assets/bayes/freq_vs_bayes.png){.absolute top=-50 left=900 width="20%"}
+![](assets/bayes/freq_vs_bayes.png){.absolute top=-50 left=800 width="20%"}
 
 ::: aside
 @image credit:Wayne Stewart 
@@ -758,14 +768,14 @@ On the right, the key takeaways:
 :::: {.column width="35%"}
 
 :::::: {.fragment fragment-index=1 .fade-in}
-![](assets/Samplers/MCMC.gif){fig-align="center" width="80%" style="border: 2px solid black; padding: 2px;"}
+![](assets/Samplers/MCMC.gif){fig-align="center" width="70%" style="border: 2px solid black; padding: 2px;"}
 ::::::
 :::::: {.fragment fragment-index=2 .fade-in}
-![](assets/Samplers/HMC.gif){fig-align="center" width="80%" style="border: 2px solid black; padding: 2px;"}
+![](assets/Samplers/HMC.gif){fig-align="center" width="70%" style="border: 2px solid black; padding: 2px;"}
 ::::::
 
 :::::: {.fragment fragment-index=3 .fade-in}
-![](assets/Samplers/NUTS.gif){fig-align="center" width="80%" style="border: 2px solid black; padding: 2px;"}
+![](assets/Samplers/NUTS.gif){fig-align="center" width="70%" style="border: 2px solid black; padding: 2px;"}
 ::::::
 
 
@@ -911,13 +921,13 @@ Together, these illustrate a spectrum: from simple MH to advanced gradient-based
 
 :::::: {.fragment fragment-index=1 .fade-in-then-out}
 
-![Sampling Without Gradients ](assets/Samplers/samples_only.png){fig-align="center" width="50%"}
+![Sampling Without Gradients ](assets/Samplers/samples_only.png){fig-align="center" width="45%"}
 
 ::::::
 
 :::::: {.fragment fragment-index=2 .fade-in}
 
-![Sampling With Gradients ](assets/Samplers/samples_with_gradients.png){fig-align="center" width="50%"}
+![Sampling With Gradients ](assets/Samplers/samples_with_gradients.png){fig-align="center" width="45%"}
 
 ::::::
 
@@ -1126,19 +1136,19 @@ az.plot_pair(samples, marginals=True)
 ::::: {.r-stack}
 
 :::::: {.fragment fragment-index=1 .fade-in-then-out}
-![](assets/bayes/shopping_cart_0.svg){fig-align="center" width="40%"}
+![](assets/bayes/shopping_cart_0.svg){fig-align="center" width="35%"}
 ::::::
 :::::: {.fragment fragment-index=2 .fade-in-then-out}
-![](assets/bayes/shopping_cart_1.svg){fig-align="center" width="40%"}
+![](assets/bayes/shopping_cart_1.svg){fig-align="center" width="35%"}
 ::::::
 :::::: {.fragment fragment-index=3 .fade-in-then-out}
-![](assets/bayes/shopping_cart_2.svg){fig-align="center" width="40%"}
+![](assets/bayes/shopping_cart_2.svg){fig-align="center" width="35%"}
 ::::::
 :::::: {.fragment fragment-index=4 .fade-in-then-out}
-![](assets/bayes/shopping_cart_3.svg){fig-align="center" width="40%"}
+![](assets/bayes/shopping_cart_3.svg){fig-align="center" width="35%"}
 ::::::
 :::::: {.fragment fragment-index=5 .fade-in-then-out}
-![](assets/bayes/shopping_cart_4.svg){fig-align="center" width="40%"}
+![](assets/bayes/shopping_cart_4.svg){fig-align="center" width="35%"}
 ::::::
 
 ::::
@@ -1146,16 +1156,16 @@ az.plot_pair(samples, marginals=True)
 ::::: {.r-stack}
 
 :::::: {.fragment fragment-index=1 .fade-in-then-out}
-![](assets/bayes/bayes_full.svg){fig-align="center" width="70%"}
+![](assets/bayes/bayes_full.svg){fig-align="center" width="24%"}
 ::::::
 :::::: {.fragment fragment-index=2 .fade-in-then-out}
-![](assets/bayes/bayes_prior.svg){fig-align="center" width="70%"}
+![](assets/bayes/bayes_prior.svg){fig-align="center" width="24%"}
 ::::::
 :::::: {.fragment fragment-index=3 .fade-in-then-out}
-![](assets/bayes/bayes_likelihood.svg){fig-align="center" width="70%"}
+![](assets/bayes/bayes_likelihood.svg){fig-align="center" width="24%"}
 ::::::
 :::::: {.fragment fragment-index=4 .fade-in-then-out}
-![](assets/bayes/bayes_sample.svg){fig-align="center" width="70%"}
+![](assets/bayes/bayes_sample.svg){fig-align="center" width="24%"}
 ::::::
 :::::: {.fragment fragment-index=5 .fade-in-then-out}
 ![](assets/bayes/post_corner.png){fig-align="center" width="70%"}
@@ -1536,7 +1546,7 @@ This setup mirrors what we do in practice: forward-model observables, simulate n
 
 ---
 
-## Full Field Inference with Forward Models {style="font-size: 18px;"}
+## Full Field Inference with Forward Models {style="font-size: 17.6px;"}
 
 
 ::: {.columns}

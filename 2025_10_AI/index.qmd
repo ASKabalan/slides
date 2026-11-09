@@ -1,8 +1,23 @@
 ---
 title: "Generative AI with JAX"
-author: "Wassim Kabalan"
+author:
+  - name: "Wassim Kabalan"
+
+kicker: "AISSAI School"
+affiliation: "Université Paris Cité, APC/CNRS"
+slides-url: "https://askabalan.github.io/slides/2025_10_AI/"
+slides-url-text: "askabalan.github.io/slides/2025_10_AI"
+logos:
+  - src: "assets/Logos/APC.png"
+    height: 80px
+  - src: "assets/Logos/AstroDeep-2.png"
+    height: 150px
+  - src: "assets/Logos/cosmostat.png"
+    height: 80px
+
 footer: "AISSAI School 2025"
 date: "October 2025"
+date-format: "MMMM YYYY"
 image: "assets/vae_arch.png"
 format:
   revealjs:
@@ -16,6 +31,7 @@ format:
     pdfSeparateFragments: true
     template-partials:
       - css/title-slide.html
+    include-after-body: css/deck.html
 output: revealjs
 
 code-block-border-left: "#31BAE9"
@@ -24,13 +40,6 @@ title-slide-attributes:
   data-background-size: fill
   data-background-opacity: "0.4"
 
-logo1 : '
-<div style="display: flex; justify-content: space-around; align-items: center; layout-valign="middle">
-  <img src="assets/Logos/AstroDeep-2.png" style="width: 35%;"/>
-  <img src="assets/Logos/APC.png" style="width: 20%;"/>
-  <img src="assets/Logos/scipol.png" style="width: 35%;"/>
-</div>
-'
 
 ---
 
@@ -343,7 +352,7 @@ The KL term is crucial for organizing the latent space. Without it, the encoder 
 
 ::: {.fragment fragment-index=2 .fade-in}
 
-![Distribution e1/e2](assets/ai/distribution_e1_e2_recon_pred_no_filtered.png){width=95% .img-border-2}
+![Distribution e1/e2](assets/ai/distribution_e1_e2_recon_pred_no_filtered.png){width=82% .img-border-2}
 
 :::
 
@@ -505,7 +514,7 @@ $$
 
 ::: {.fragment .fade-in fragment-index=1}
 
-![Diffusion visualization](assets/diffusion_spiral.png){width=80% .img-border-2}
+![Diffusion visualization](assets/diffusion_spiral.png){width=72% .img-border-2}
 
 :::
 
@@ -572,10 +581,6 @@ Each generative model family has distinct tradeoffs. VAEs offer fast training an
 ## What is JAX? {.smaller}
 
 ![](assets/jax_openxla.png){width=100% .img-border-2}
-
-<div style="display:flex;justify-content:center;align-items:center;height:100%;">
-    <h2 style="margin:0;">JAX and OpenXLA</h2>
-</div>
 
 ::: {.notes}
 JAX provides a NumPy-compatible API with powerful function transformations. grad computes derivatives, jit compiles to optimized XLA code, vmap vectorizes operations, and pmap parallelizes across devices. JAX enforces functional programming: functions must be pure without side effects. Randomness is explicit via PRNG key splitting. The same code runs efficiently on CPU, GPU, or TPU through XLA compilation.
@@ -858,7 +863,7 @@ params = model.init(jax.random.PRNGKey(0), jnp.ones((1, 3, 8, 8)))
 ```
 
 
-## Training step example
+## Training step example {style="font-size: 93%;"}
 
 ### One training step in PyTorch
 

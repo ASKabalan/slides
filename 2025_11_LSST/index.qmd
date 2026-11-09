@@ -1,12 +1,28 @@
 ---
 title: 'Full-Field Weak Lensing Inference at LSST Scale with Differentiable, Distributed Simulations'
 
-author: 
+author:
   - name: "Wassim Kabalan"
-  - name : "Alexandre Boucaud, François Lanusse"
+  - name: "Alexandre Boucaud"
+  - name: "François Lanusse"
+
+kicker: "LSST France, Grenoble"
+title-scale: 0.85
+affiliation: "Université Paris Cité, APC/CNRS"
+slides-url: "https://askabalan.github.io/slides/2025_11_LSST/"
+slides-url-text: "askabalan.github.io/slides/2025_11_LSST"
+logos:
+  - src: "assets/Logos/APC.png"
+    height: 80px
+  - src: "assets/Logos/AstroDeep-2.png"
+    height: 150px
+  - src: "assets/Logos/cosmostat.png"
+    height: 80px
+
 image : "assets/latest/kappa_map.png"
 footer: "LSST France, Grenoble"
 date: "November 2025"
+date-format: "MMMM YYYY"
 format:
   revealjs:
     theme: [default, css/custom.scss]
@@ -19,6 +35,7 @@ format:
     pdfSeparateFragments: true
     template-partials:
       - css/title-slide.html
+    include-after-body: css/deck.html
 output: revealjs
 
 title-slide-attributes:
@@ -27,13 +44,6 @@ title-slide-attributes:
   data-background-opacity: "0.2"
 
 
-logo1 : '
-<div style="display: flex; justify-content: space-around; align-items: center; layout-valign="middle">
-  <img src="assets/Logos/AstroDeep-2.png" style="width: 35%;"/>
-  <img src="assets/Logos/APC.png" style="width: 20%;"/>
-  <img src="assets/Logos/scipol.png" style="width: 35%;"/>
-</div>
-'
 ---
 
 ## Outline for This Presentation 
@@ -158,7 +168,7 @@ Even higher-order statistics (like bispectrum or 3-point correlations) still red
 
 ::::::
 :::::: {.fragment fragment-index=1 .fade-in}
-![](assets/latest/bad_posterior.png){fig-align="center" width="40%" style="border: 2px solid black; border-radius: 6px;" fig-cap="" alt="Jeffrey et al. (2024): bad posterior"}
+![](assets/latest/bad_posterior.png){fig-align="center" width="32%" style="border: 2px solid black; border-radius: 6px;" fig-cap="" alt="Jeffrey et al. (2024): bad posterior"}
 
 <span style="font-size: 10px;">Credit: Jeffrey et al. (2024)</span>
 
@@ -183,7 +193,7 @@ Even higher-order statistics (like bispectrum or 3-point correlations) still red
 <br/>
 
 ::: {.r-stack}
-![](assets/latest/likelihood_free_cosmo.svg){fig-align="center" width="60%"}
+![](assets/latest/likelihood_free_cosmo.svg){fig-align="center" width="43%"}
 :::
 
 
@@ -261,7 +271,7 @@ $$
 ::: {.r-stack}
 
 :::::: {.fragment fragment-index=1 .fade-out}
-![Implicit Inference](assets/latest/likelihood_free_SBI.svg){fig-align="center" width="80%"}
+![Implicit Inference](assets/latest/likelihood_free_SBI.svg){fig-align="center" width="52%"}
 ::::::
 
 :::::: {.fragment fragment-index=1 .fade-in}
@@ -292,7 +302,7 @@ $$
 
 ::: {.r-stack}
 
-![](assets/latest/illu_compressor.svg){fig-align="center" width="70%"}
+![](assets/latest/illu_compressor.svg){fig-align="center" width="58%"}
 
 
 :::
@@ -459,12 +469,12 @@ The challenge of explicit inference
 ::: {.r-stack}
 
 :::::: {.fragment fragment-index=1 .fade-out}
-![](assets/bayes/FFI_full.svg){fig-align="center" width="100%"}
+![](assets/bayes/FFI_full.svg){fig-align="center" width="62%"}
 ::::::
 
 :::::: {.fragment fragment-index=1 .fade-in}
 
-![](assets/FFI/FFI_wl_focus.svg){fig-align="center" width="100%"}
+![](assets/FFI/FFI_wl_focus.svg){fig-align="center" width="65%"}
 
 ::::::
 
@@ -563,9 +573,9 @@ $$
 
 ::: {layout-ncol=2}
 
-![-](assets/latest/power_spectrum_comparison.png){fig-align="center" width="80%"}
+![-](assets/latest/power_spectrum_comparison.png){fig-align="center" width="64%"}
 
-![Biased Posterior](assets/latest/biased_posterior_plot.png){fig-align="center" width="50%"}
+![Biased Posterior](assets/latest/biased_posterior_plot.png){fig-align="center" width="44%"}
 
 :::
 
@@ -1041,7 +1051,7 @@ Status / next
 ::::: {.r-stack}
 
 
-![Multigrid](assets/latest/multi_grid_1.svg){fig-align="center" width="70%"}
+![Multigrid](assets/latest/multi_grid_1.svg){fig-align="center" width="49%"}
 
 :::::
 
@@ -1307,7 +1317,7 @@ Why full-sphere anyway?
 
 ::::: {.fragment fragment-index=1 .fade-out}
 
-![](assets/latest/particles_animation.gif){fig-align="center" width="80%"}
+![](assets/latest/particles_animation.gif){fig-align="center" width="71%"}
 
 :::::
 
@@ -1323,7 +1333,7 @@ Why full-sphere anyway?
 
 ::::: {.fragment fragment-index=1 .fade-out}
 
-![](assets/latest/field_animation.gif){fig-align="center" width="80%"}
+![](assets/latest/field_animation.gif){fig-align="center" width="71%"}
 
 :::::
 

@@ -16,3 +16,5 @@ AGENTS.md
 /PhD/1_intro/telescopes/me_at_lsst.jpg
 /PhD/1_intro/telescopes/me_at_lsst_slide.jpg
 /PhD/6_ending/photos/*.jpg
+
+**/*.quarto_ipynb

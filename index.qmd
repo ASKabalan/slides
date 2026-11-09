@@ -1,12 +1,24 @@
 ---
-title: "Wassim's Academic Presentations & Tutorials"
+title: "Wassim's talks"
 format:
   html:
     theme: [cosmo, css/custom.scss]
     toc: false
     page-layout: full
-    body-classes: talks-page 
+    body-classes: talks-page
 listing:
+  - id: phd
+    type: grid
+    sort: "date desc"
+    grid-columns: 1
+    image-height: "300px"
+    fields: [image, date, title, subtitle]
+    contents:
+        - "2026_10_PhD"
+    date-format: "MMM YYYY"
+    grid-item-border: true
+    grid-item-align: left
+  - id: cosmology
     type: grid
     sort: "date desc"
     grid-columns: 3
@@ -14,11 +26,21 @@ listing:
     fields: [image, date, title, subtitle]
     contents:
         - "2025_11_LSST"
-        - "2025_10_AI"
         - "2024_11_CoPhy"
         - "2024_06_LSST_FR"
         - "2025_05_BDL"
         - "2025_05_BDL_School"
+    date-format: "MMM YYYY"
+    grid-item-border: true
+    grid-item-align: left
+  - id: tutorials
+    type: grid
+    sort: "date desc"
+    grid-columns: 3
+    image-height: "200px"
+    fields: [image, date, title, subtitle]
+    contents:
+        - "2025_10_AI"
     date-format: "MMM YYYY"
     grid-item-border: true
     grid-item-align: left
@@ -28,4 +50,15 @@ listing:
 [< Back to Main Website](https://askabalan.github.io)
 :::
 
-##
+## Cosmology
+
+::: {#phd}
+:::
+
+::: {#cosmology}
+:::
+
+## Tutorials
+
+::: {#tutorials}
+:::
