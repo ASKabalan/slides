@@ -2,12 +2,13 @@
   {
     "listing": "/index.html",
     "items": [
+      "/2026_10_PhD/index.html",
       "/2025_11_LSST/index.html",
-      "/2025_10_AI/index.html",
       "/2025_05_BDL/index.html",
       "/2025_05_BDL_School/index.html",
       "/2024_11_CoPhy/index.html",
-      "/2024_06_LSST_FR/index.html"
+      "/2024_06_LSST_FR/index.html",
+      "/2025_10_AI/index.html"
     ]
   }
 ]
